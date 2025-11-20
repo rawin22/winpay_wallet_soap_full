@@ -1,0 +1,107 @@
+﻿@using Tsg.UI.Main.App_LocalResources
+@model Tsg.UI.Main.Models.UserMailModel
+
+@{
+    ViewBag.Title = GlobalRes.User_ContactUsPage_Title;
+    Layout = null;
+}
+
+<form id="Create" action="/ContactUs/ContactUs" method="post" class="form-horizontal" novalidate="novalidate">
+
+    @*<div class="form-horizontal">*@
+    @*<section class="panel panel-featured panel-featured-info">
+        <header class="panel-heading">
+            <h2 class="panel-title">Contact Form</h2>
+        </header>*@
+    <div class="panel-body">
+        <div class="alert alert-danger" style="display: none;" id="errorMessageBlock">
+            <p class="m-none text-weight-semibold h6" id="errorMesage">@Model.ActionResultText</p>
+        </div>
+        <div class="row">
+            <label class="col-sm-2 control-label">@GlobalRes.User_ContactUsPage_Email <span class="required" aria-required="true">*</span></label>
+            <div class="col-sm-10">
+                @Html.TextBoxFor(m => m.MailFrom, Model.MailFrom, new {@class = "form-control", required = "", type = "email"})
+            </div>
+        </div>
+        <div>&nbsp;</div>
+        <div class="row">
+            <label class="col-sm-2 control-label">@GlobalRes.User_ContactUsPage_Subject </label>
+            <div class="col-sm-10">
+                @Html.TextBoxFor(m => m.Subject, Model.Subject, new {@class = "form-control", required = ""})
+            </div>
+        </div>
+        <div>&nbsp;</div>
+        <div class="row">
+            <label class="col-sm-2 control-label">@GlobalRes.User_ContactUsPage_Message <span class="required" aria-required="true">*</span></label>
+            <div class="col-sm-10">
+                @Html.TextAreaFor(m => m.MailText, 5, 1, new {@class = "form-control", required = "", id = "textEditorMessage", name = "textEditorMessage"})
+            </div>
+        </div>
+    </div>
+    <footer class="panel-footer">
+        <div class="row">
+            <div class="col-sm-12 pull-left">
+                <button type="button" onclick="sendMail();" class="col-sm-4 col-sm-offset-2 btn btn-success">@GlobalRes.User_ContactUsPage_SendMessage<span class="fa fa-envelope pull-left"></span></button>
+            </div>
+        </div>
+    </footer>
+    @*</section>*@
+
+    @*</div>*@
+</form>
+
+@*@Scripts.Render("~/bundles/jqueryval")*@
+
+<script language="javascript" type="text/javascript">
+    $('#textEditorMessage').change(function () {
+        $("textarea#textEditorMessage").val($(this).val());
+        $("textarea#textEditorMessage").text($(this).val());
+    });
+
+
+    function sendMail() {
+        if (!validateEmail($("#MailFrom").val())) {
+            $("#errorMesage").text("Please write correct Mail in Mail From field");
+            $('#errorMessageBlock').css("display", "block");
+            setTimeout(function () { $('#errorMessageBlock').css("display", "none") }, 3000);
+            return false;
+        }
+        if ($("textarea#textEditorMessage").val() == null || $("textarea#textEditorMessage").text().trim().lenght < 1) {
+            $("#errorMesage").text("Please fill text in Message field");
+            $('#errorMessageBlock').css("display", "block");
+            setTimeout(function() { $('#errorMessageBlock').css("display", "none") }, 3000);
+            return false;
+        } else {
+            $.ajax({
+                url: '@Url.Action("ContactUs", "ContactUs")',
+                type: 'POST',
+                data: $("#Create").serialize(),
+                success: function (data) {
+                    console.log(data);
+                    if (data.IsSuccessResForAction) {
+                        $('#modal').modal('toggle');
+                    } else {
+                        $("#errorMesage").text(data.ActionResultText);
+                        $('#errorMessageBlock').css("display", "block");
+                        setTimeout(function () { $('#errorMessageBlock').css("display", "none") }, 3000);
+                    }
+                }
+            });
+            return true;
+        }
+    }
+
+
+    function validateEmail($email) {
+        var pattern = /^\b[A-Z0-9._%-]+@@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i;
+        return pattern.test($email);
+    }
+    @*$.ajax({
+        url: '@Url.Action("ContactUs", "ContactUs")',
+        type: 'POST',
+        data: $("#Create").serialize(),
+        success: function (data) {
+
+        }
+    });*@
+</script>

@@ -1,0 +1,76 @@
+﻿@using Tsg.UI.Main.App_LocalResources
+@model Tsg.UI.Main.Models.BankModel
+
+@{
+    ViewBag.Title = GlobalRes.EditBankPage_Title;
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <section class="panel  @(ViewBag.OpenPanel != null ? "" : "panel-featured panel-featured-info")">
+            <header class="panel-heading" data-panel-toggle="">
+                <div class="panel-actions">
+                    <a href="#" class="panel-action panel-action-toggle" data-panel-toggle=""></a>
+                </div>
+
+                <h2 class="panel-title">@GlobalRes.EditBankPage_PageTitle</h2>
+                <p class="panel-subtitle">@GlobalRes.EditBankPage_PageSubTitle</p>
+            </header>
+
+            <div class="panel-body">
+                <div class="form-group" hidden="hidden">
+                    <label class="col-sm-3 control-label">@GlobalRes.EditBankPage_BankId </label>
+                    <div class="col-sm-6">
+                        @Html.TextBoxFor(m => m.BankId, new { @class = "form-control", @readonly = "readonly", required = "" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">@GlobalRes.EditBankPage_BankName <span class="required" aria-required="true">*</span></label>
+                    <div class="col-sm-6">
+                        @Html.TextBoxFor(m => m.BankName, new { @class = "form-control", required = "" })
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">@GlobalRes.AddBankPage_BankCountry <span class="required" aria-required="true">*</span></label>
+                    <div class="col-sm-6">
+                        @Html.DropDownListFor(m => m.BankCountryId, UiHelper.PrepareAvailableCountries(), new { @class = "form-control", required = "" })
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">@GlobalRes.EditBankPage_ChooseCurrency <span class="required" aria-required="true">*</span></label>
+                    <div class="col-sm-3">
+                        @Html.DropDownListFor(m => m.CurrencyId, Model.AvailableCurrencies, new { @class = "form-control", required = "" })
+                    </div>
+                    <a class="btn btn-success" href="/Bank/AddCurrency">@GlobalRes.EditBankPage_AddNew</a>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-3 col-md-10" style="color:green">
+                        @ViewBag.Message
+                    </div>
+                </div>
+
+            </div>
+
+            <footer class="panel-footer">
+                <div class="row">
+                    <div class="col-sm-9 col-sm-offset-3">
+                        <input type="submit" class="btn btn-success" value="@GlobalRes.EditBankPage_Save" />
+                        <a class="btn btn-success" href="/Bank/GetBanks">@GlobalRes.EditBankPage_BackToList</a>
+                    </div>
+                </div>
+            </footer>
+        </section>
+    </div>
+}
+
+@section Scripts {
+    @*@Scripts.Render("~/bundles/jqueryval")*@
+}

@@ -1,0 +1,2114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AddBankAndWireInstPage.Add" xml:space="preserve">
+    <value>បន្ថែម</value>
+  </data>
+  <data name="AddBankAndWireInstPage.AddNewCurrencyButton" xml:space="preserve">
+    <value>បន្ថែមថ្មី</value>
+  </data>
+  <data name="AddBankAndWireInstPage.BackToList" xml:space="preserve">
+    <value>ត្រលប់ទៅតារាង</value>
+  </data>
+  <data name="AddBankAndWireInstPage.BankCountry" xml:space="preserve">
+    <value>​ប្រទេសរបស់ធនាគារ</value>
+  </data>
+  <data name="AddBankAndWireInstPage.BankName" xml:space="preserve">
+    <value>ឈ្មោះធនាគារ</value>
+  </data>
+  <data name="AddBankAndWireInstPage.SelectBank" xml:space="preserve">
+    <value>ជ្រើសរើសធនាគារ</value>
+  </data>
+  <data name="AddBankAndWireInstPage.ChooseCurrency" xml:space="preserve">
+    <value>ជ្រើសរើសរូបិយប័ណ្ណ</value>
+  </data>
+  <data name="AddBankAndWireInstPage.SubTitle" xml:space="preserve">
+    <value>បន្ថែមធនាគារ</value>
+  </data>
+  <data name="AddBankAndWireInstPage.Title" xml:space="preserve">
+    <value>បន្ថែមការណែនាំក្នុងការបង់ប្រាក់</value>
+  </data>
+  <data name="AddBankAndWireInstPage.WireInstructions" xml:space="preserve">
+    <value>ការណែនាំក្នុងការបង់ប្រាក់</value>
+  </data>
+  <data name="AddBankPage.Add" xml:space="preserve">
+    <value>បន្ថែម</value>
+  </data>
+  <data name="AddBankPage.AddNewCurrencyButton" xml:space="preserve">
+    <value>បន្ថែមថ្មី</value>
+  </data>
+  <data name="AddBankPage.BackToList" xml:space="preserve">
+    <value>ត្រលប់ទៅតារាង</value>
+  </data>
+  <data name="AddBankPage.BankCountry" xml:space="preserve">
+    <value>​ប្រទេសរបស់ធនាគារ</value>
+  </data>
+  <data name="AddBankPage.BankName" xml:space="preserve">
+    <value>ឈ្មោះធនាគារ</value>
+  </data>
+  <data name="AddBankPage.ChooseCurrency" xml:space="preserve">
+    <value>ជ្រើសរើសរូបិយប័ណ្ណ</value>
+  </data>
+  <data name="AddBankPage.PageTitle" xml:space="preserve">
+    <value>ធនាគារ</value>
+  </data>
+  <data name="AddBankPage.SubTitle" xml:space="preserve">
+    <value>បន្ថែមធនាគារ</value>
+  </data>
+  <data name="AddBankPage.Title" xml:space="preserve">
+    <value>បន្ថែមធនាគារ</value>
+  </data>
+  <data name="AddCurrencyPage.Add" xml:space="preserve">
+    <value>បន្ថែម</value>
+  </data>
+  <data name="AddCurrencyPage.Back" xml:space="preserve">
+    <value>ត្រលប់ក្រោយ</value>
+  </data>
+  <data name="AddCurrencyPage.CurrencyCode" xml:space="preserve">
+    <value>កូដរូបិយប័ណ្ណ</value>
+  </data>
+  <data name="AddCurrencyPage.CurrencyName" xml:space="preserve">
+    <value>ឈ្មោះរូបិយប័ណ្ណ</value>
+  </data>
+  <data name="AddCurrencyPage.CurrencySymbol" xml:space="preserve">
+    <value>និមិត្តសញ្ញារូបិយប័ណ្ណ</value>
+  </data>
+  <data name="AddCurrencyPage.PageSubTitle" xml:space="preserve">
+    <value>បន្ថែមរូបិយប័ណ្ណ</value>
+  </data>
+  <data name="AddCurrencyPage.PageTitle" xml:space="preserve">
+    <value>រូបិយប័ណ្ណ</value>
+  </data>
+  <data name="AddCurrencyPage.Title" xml:space="preserve">
+    <value>បន្ថែមរូបិយប័ណ្ណ</value>
+  </data>
+  <data name="EditBankPage.AddNew" xml:space="preserve">
+    <value>បន្ថែមថ្មី</value>
+  </data>
+  <data name="EditBankPage.Back" xml:space="preserve">
+    <value>ត្រលប់ក្រោយ</value>
+  </data>
+  <data name="EditBankPage.BackToList" xml:space="preserve">
+    <value>ត្រលប់ទៅតារាង</value>
+  </data>
+  <data name="EditBankPage.BankCountry" xml:space="preserve">
+    <value>ប្រទេសរបស់ធនាគារ</value>
+  </data>
+  <data name="EditBankPage.BankId" xml:space="preserve">
+    <value>អត្តលេខធនាគារ</value>
+  </data>
+  <data name="EditBankPage.BankName" xml:space="preserve">
+    <value>ឈ្មោះធនាគារ</value>
+  </data>
+  <data name="EditBankPage.ChooseCurrency" xml:space="preserve">
+    <value>ជ្រើសរើសរូបិយប័ណ្ណ</value>
+  </data>
+  <data name="EditBankPage.PageSubTitle" xml:space="preserve">
+    <value>កែសម្រួលព៌តមាន</value>
+  </data>
+  <data name="EditBankPage.PageTitle" xml:space="preserve">
+    <value>ធនាគារ</value>
+  </data>
+  <data name="EditBankPage.Save" xml:space="preserve">
+    <value>រក្សាទុក</value>
+  </data>
+  <data name="EditBankPage.Title" xml:space="preserve">
+    <value>កែសម្រួលធនាគារ</value>
+  </data>
+  <data name="GetAllContractUsListPage.Action" xml:space="preserve">
+    <value>សកម្មភាព</value>
+  </data>
+  <data name="GetAllContractUsListPage.Categories" xml:space="preserve">
+    <value>ប្រភេទ​ (ផ្នែកលក់, ជំនួយ ។ល។</value>
+  </data>
+  <data name="GetAllContractUsListPage.CategoryEmail" xml:space="preserve">
+    <value>ប្រភេទអ៊ីមែល</value>
+  </data>
+  <data name="GetAllContractUsListPage.Id" xml:space="preserve">
+    <value>អត្តលេខ</value>
+  </data>
+  <data name="GetAllContractUsListPage.ModalAddRec.Add" xml:space="preserve">
+    <value>បន្ថែម</value>
+  </data>
+  <data name="GetAllContractUsListPage.ModalAddRec.Save" xml:space="preserve">
+    <value>រក្សាទុក</value>
+  </data>
+  <data name="GetAllContractUsListPage.ModalAddRec.Category" xml:space="preserve">
+    <value>ប្រភេទ​ (ផ្នែកលក់, ជំនួយ ។ល។</value>
+  </data>
+  <data name="MerchantsPage.ModalAddRec.Name" xml:space="preserve">
+    <value>ឈ្មោះ</value>
+  </data>
+  <data name="MerchantsPage.ModalAddRec.Phone" xml:space="preserve">
+    <value>លេខទូរសព្ទ</value>
+  </data>
+  <data name="MerchantsPage.ModalAddRec.Address" xml:space="preserve">
+    <value>អាសយដ្ឋាន</value>
+  </data>
+  <data name="MerchantsPage.ModalAddRec.ButtonSize" xml:space="preserve">
+    <value>ទំហំប៊ូតុង</value>
+  </data>
+  <data name="MerchantsPage.ModalAddRec.CallBackAddress" xml:space="preserve">
+    <value>URL ហៅទៅវិញ</value>
+  </data>
+  <data name="MerchantsPage.ModalAddRec.SetCallBackAddress" xml:space="preserve">
+    <value>សូមបញ្ជូលលេខURL ហៅទៅវិញ</value>
+  </data>
+  <data name="MerchantsPage.ModalAddRec.Copied" xml:space="preserve">
+    <value>ចំលងពីclipboard</value>
+  </data>
+  <data name="GetAllContractUsListPage.ModalAddRec.CategoryMail" xml:space="preserve">
+    <value>ប្រភេទអ៊ីមែល</value>
+  </data>
+  <data name="UserResetPasswordPage.ModalResetRec.Close" xml:space="preserve">
+    <value>បោះបង់</value>
+  </data>
+  <data name="GetAllContractUsListPage.ModalAddRec.Close" xml:space="preserve">
+    <value>បិទ</value>
+  </data>
+  <data name="GetAllContractUsListPage.ModalDeleteRec.DeletionRec" xml:space="preserve">
+    <value>តើអ្នកអាចបញ្ជាក់ពីការលុបចោលកំណត់ត្រានៅក្នុងបញ្ជី "ទំនាក់ទំនងមកយើង" បានទេ?</value>
+  </data>
+  <data name="GetBankAndCurrencyInstructions.ModalDeleteRec.DeletionRec" xml:space="preserve">
+    <value>តើអ្នកអាចបញ្ជាក់ពីការលុបចោលកំណត់ត្រានៅក្នុងបញ្ជី "ការណែនាំក្នុងការបង់ប្រាក់" បានទេ?</value>
+  </data>
+  <data name="GetAllContractUsListPage.ModalDeleteRec.Ok" xml:space="preserve">
+    <value>យល់ព្រម</value>
+  </data>
+  <data name="MerchantsIndexPage.ModalGenerate.Copy" xml:space="preserve">
+    <value>ចំលង</value>
+  </data>
+  <data name="GetAllContractUsListPage.PageTitle" xml:space="preserve">
+    <value>ទំរង់មតិយោបល់</value>
+  </data>
+  <data name="MerchantsPage.PageTitle" xml:space="preserve">
+    <value>ពាណិជ្ជករ API Integration</value>
+  </data>
+  <data name="GetAllContractUsListPage.Title" xml:space="preserve">
+    <value>ទំរង់មតិយោបល់</value>
+  </data>
+  <data name="MerchantsIndexPage.Title" xml:space="preserve">
+    <value>មជ្ឈមណ្ឌលពាណិជ្ជករ</value>
+  </data>
+  <data name="MerchantsIndexPage.Id" xml:space="preserve">
+    <value>អត្តលេខ</value>
+  </data>
+  <data name="MerchantsIndexPage.Name" xml:space="preserve">
+    <value>ឈ្មោះពាណិជ្ជករ</value>
+  </data>
+  <data name="MerchantsIndexPage.AddMerchantModal.PlaceholderForMail" xml:space="preserve">
+    <value>សូមបញ្ចូលឈ្មោះសម្រាប់វេបសាយពាណិជ្ជករនេះ</value>
+  </data>
+  <data name="MerchantsIndexPage.AddMerchantModal.PlaceholderForName" xml:space="preserve">
+    <value>សូមបញ្ចូលឈ្មោះសម្រាប់វេបសាយពាណិជ្ជករនេះ</value>
+  </data>
+  <data name="MerchantsIndexPage.GenerateMerchantModal.Small" xml:space="preserve">
+    <value>តូច</value>
+  </data>
+  <data name="MerchantsIndexPage.GenerateMerchantModal.Medium" xml:space="preserve">
+    <value>មធ្យម</value>
+  </data>
+  <data name="MerchantsIndexPage.GenerateMerchantModal.Large" xml:space="preserve">
+    <value>ធំ</value>
+  </data>
+  <data name="MerchantsIndexPage.Phone" xml:space="preserve">
+    <value>លេខទូរសព្ទពាណិជ្ជករ</value>
+  </data>
+  <data name="MerchantsIndexPage.Address" xml:space="preserve">
+    <value>អាសយដ្ឋានពាណិជ្ជករ</value>
+  </data>
+  <data name="MerchantsIndexPage.CallBackAddress" xml:space="preserve">
+    <value>អាសយដ្ឋានហៅត្រលប់ទៅវិញរបស់ពាណិជ្ជករ</value>
+  </data>
+  <data name="MerchantsIndexPage.Action" xml:space="preserve">
+    <value>សកម្មភាព</value>
+  </data>
+  <data name="MerchantsIndexPage.BtnGenerateCode" xml:space="preserve">
+    <value>បង្កើតប៊ូតុងពាណិជ្ជករ</value>
+  </data>
+  <data name="UsersResetPasswordPage.Id" xml:space="preserve">
+    <value>អត្តលេខ</value>
+  </data>
+  <data name="UsersResetPasswordPage.UserName" xml:space="preserve">
+    <value>អត្តសញ្ញាណអ្នកប្រើ</value>
+  </data>
+  <data name="UsersResetPasswordPage.FirstName" xml:space="preserve">
+    <value>នាមឈ្មោះ</value>
+  </data>
+  <data name="UsersResetPasswordPage.LastName" xml:space="preserve">
+    <value>នាមត្រកូល</value>
+  </data>
+  <data name="UsersResetPasswordPage.LastLogOnDate" xml:space="preserve">
+    <value>កាលបរិច្ឆេទ ការចូលចុងក្រោយ</value>
+  </data>
+  <data name="UsersResetPasswordPage.BranchOrCustomerName" xml:space="preserve">
+    <value>សាខា​ រឺ​ ឈ្មោះអតិថិជន</value>
+  </data>
+  <data name="UsersResetPasswordPage.UserPassword" xml:space="preserve">
+    <value>សូមបញ្ជាក់ការកំណត់លេខសម្ងាត់ឡើងវិញ</value>
+  </data>
+  <data name="UsersResetPasswordPage.Reset" xml:space="preserve">
+    <value>កំណត់ឡើងវិញ</value>
+  </data>
+  <data name="GetBankDepositPage.Yes" xml:space="preserve">
+    <value>បាទ/ចាស</value>
+  </data>
+  <data name="GetBankDepositPage.No" xml:space="preserve">
+    <value>ទេ</value>
+  </data>
+  <data name="UsersResetPasswordPage.Action" xml:space="preserve">
+    <value>សកម្មភាព</value>
+  </data>
+  <data name="UsersResetPasswordPage.BtnResPassword" xml:space="preserve">
+    <value>កំណត់លេខសម្ងាត់ឡើងវិញ</value>
+  </data>
+  <data name="GetBankAndWireInstPage.AddNewBNWI" xml:space="preserve">
+    <value>បន្ថែមការណែនាំក្នុងការបង់ប្រាក់</value>
+  </data>
+  <data name="GetBankAndWireInstPage.BankCountry" xml:space="preserve">
+    <value>ប្រទេសរបស់ធនាគារ</value>
+  </data>
+  <data name="GetBankAndWireInstPage.BankName" xml:space="preserve">
+    <value>ឈ្មោះធនាគារ</value>
+  </data>
+  <data name="GetBankAndWireInstPage.Currency" xml:space="preserve">
+    <value>រូបិយប័ណ្ណ</value>
+  </data>
+  <data name="GetBankAndWireInstPage.PageTitle" xml:space="preserve">
+    <value>ធនាគារនិងការណែនាំក្នុងការបង់ប្រាក់</value>
+  </data>
+  <data name="GetBankAndWireInstPage.Title" xml:space="preserve">
+    <value>ធនាគារនិងការណែនាំក្នុងការបង់ប្រាក់</value>
+  </data>
+  <data name="GetBankAndWireInstPage.WireInstruction" xml:space="preserve">
+    <value>ការណែនាំក្នុងការបង់ប្រាក់</value>
+  </data>
+  <data name="GetBanksPage.Action" xml:space="preserve">
+    <value>សកម្មភាព</value>
+  </data>
+  <data name="GetBanksPage.AddNew" xml:space="preserve">
+    <value>បន្ថែមធនាគារ</value>
+  </data>
+  <data name="GetBanksPage.BankCountry" xml:space="preserve">
+    <value>ប្រទេសរបស់ធនាគារ</value>
+  </data>
+  <data name="GetBanksPage.BankName" xml:space="preserve">
+    <value>ឈ្មោះធនាគារ</value>
+  </data>
+  <data name="GetBanksPage.Id" xml:space="preserve">
+    <value>អត្តលេខ</value>
+  </data>
+  <data name="GetBanksPage.PageSubTitle" xml:space="preserve">
+    <value>តារាងនៃធនាគារ</value>
+  </data>
+  <data name="GetBanksPage.PageTitle" xml:space="preserve">
+    <value>ធនាគារ</value>
+  </data>
+  <data name="GetBanksPage.Title" xml:space="preserve">
+    <value>ធនាគារ</value>
+  </data>
+  <data name="GetPipItIndexPage.Id" xml:space="preserve">
+    <value>អត្តលេខ</value>
+  </data>
+  <data name="GetPipItIndexPage.PageSubTitle" xml:space="preserve">
+    <value>តារាងនៃលំដាប់លំដោយក្នុងប្រពន្ធPiplt</value>
+  </data>
+  <data name="GetPipItIndexPage.PageTitle" xml:space="preserve">
+    <value>លំដាប់លំដោយPiplt</value>
+  </data>
+  <data name="GetPipItIndexPage.Title" xml:space="preserve">
+    <value>លំដាប់លំដោយPiplt</value>
+  </data>
+  <data name="GetPipItIndexPage.BarCode" xml:space="preserve">
+    <value>Bar code</value>
+  </data>
+  <data name="GetPipItIndexPage.Status" xml:space="preserve">
+    <value>ស្ថានភាព</value>
+  </data>
+  <data name="GetPipItIndexPage.CreateDate" xml:space="preserve">
+    <value>កាលបរិច្ឆេទពេលបង្កើត</value>
+  </data>
+  <data name="GetPipItIndexPage.ExpiredDate" xml:space="preserve">
+    <value>កាលបរិច្ឆេទផុតកំណត់</value>
+  </data>
+  <data name="GetPipItIndexPage.CurrencyCode" xml:space="preserve">
+    <value>កូដរូបិយប័ណ្ណ</value>
+  </data>
+  <data name="GetPipItIndexPage.OrderValue" xml:space="preserve">
+    <value>តម្លៃលំដាប់</value>
+  </data>
+  <data name="GetPipItIndexPage.TotalValue" xml:space="preserve">
+    <value>តម្លៃសរុប</value>
+  </data>
+  <data name="User.LoginPage.Copyright" xml:space="preserve">
+    <value>©រក្សាសិទ្ធិ ២០១៦-២០១៧ ។​ រក្សា​រ​សិទ្ធ​គ្រប់យ៉ាង។</value>
+  </data>
+  <data name="User.LoginPage.Password" xml:space="preserve">
+    <value>លេខសំងាត់</value>
+  </data>
+  <data name="User.LoginPage.SignIn" xml:space="preserve">
+    <value>ចូលទៅកាន់</value>
+  </data>
+  <data name="User.LoginPage.Username" xml:space="preserve">
+    <value>អត្តសញ្ញាណអ្នកប្រើ</value>
+  </data>
+  <data name="AddBankAndWireInstPage.ModalBank.Add" xml:space="preserve">
+    <value>បន្ថែម</value>
+  </data>
+  <data name="AddBankAndWireInstPage.ModalBank.Close" xml:space="preserve">
+    <value>បិទ</value>
+  </data>
+  <data name="AddBankAndWireInstPage.Edit" xml:space="preserve">
+    <value>រក្សាទុក</value>
+  </data>
+  <data name="ResetUserPasswordPage.Reset" xml:space="preserve">
+    <value>កំណត់ឡើងវិញ</value>
+  </data>
+  <data name="AddBankAndWireInstPage.ModalCurrency.NameOfCurrency" xml:space="preserve">
+    <value>ឈ្មោះរូបិយប័ណ្ណ</value>
+  </data>
+  <data name="AddBankAndWireInstPage.ModalCurrency.ShortNameOfCurrency" xml:space="preserve">
+    <value>កូដរូបិយប័ណ្ណ</value>
+  </data>
+  <data name="AddBankAndWireInstPage.ModalCurrency.SymbolOfCurrency" xml:space="preserve">
+    <value>សញ្ញារូបិយប័ណ្ណ</value>
+  </data>
+  <data name="AddBankAndWireInstPage.TitleEdit" xml:space="preserve">
+    <value>កែសម្រួលការណែនាំក្នុងការបង់ប្រាក់</value>
+  </data>
+  <data name="AddBankAndWireInstPage.TitleEditPage" xml:space="preserve">
+    <value>កែសម្រួលការណែនាំក្នុងការបង់ប្រាក់</value>
+  </data>
+  <data name="EditCurrencyPage.Back" xml:space="preserve">
+    <value>ត្រលប់ក្រោយ</value>
+  </data>
+  <data name="EditCurrencyPage.CurrencyCode" xml:space="preserve">
+    <value>កូដរូបិយប័ណ្ណ</value>
+  </data>
+  <data name="EditCurrencyPage.CurrencyName" xml:space="preserve">
+    <value>ឈ្មោះរូបិយប័ណ្ណ</value>
+  </data>
+  <data name="EditCurrencyPage.CurrencySymbol" xml:space="preserve">
+    <value>សញ្ញារូបិយប័ណ្ណ</value>
+  </data>
+  <data name="EditCurrencyPage.Edit" xml:space="preserve">
+    <value>កែសម្រួល</value>
+  </data>
+  <data name="EditCurrencyPage.PageSubTitle" xml:space="preserve">
+    <value>កែសម្រួលរូបិយប័ណ្ណ</value>
+  </data>
+  <data name="EditCurrencyPage.PageTitle" xml:space="preserve">
+    <value>រូបិយប័ណ្ណ</value>
+  </data>
+  <data name="EditCurrencyPage.Title" xml:space="preserve">
+    <value>កែសម្រួលរូបិយប័ណ្ណ</value>
+  </data>
+  <data name="GetCurrencyPage.Action" xml:space="preserve">
+    <value>សកម្មភាព</value>
+  </data>
+  <data name="GetCurrencyPage.AddNew" xml:space="preserve">
+    <value>បន្ថែមរូបិយប័ណ្ណ</value>
+  </data>
+  <data name="GetCurrencyPage.CurrencyCode" xml:space="preserve">
+    <value>កូដរូបិយប័ណ្ណ</value>
+  </data>
+  <data name="GetCurrencyPage.CurrencyName" xml:space="preserve">
+    <value>ឈ្មោះរូបិយប័ណ្ណ</value>
+  </data>
+  <data name="GetCurrencyPage.CurrencySymbol" xml:space="preserve">
+    <value>សញ្ញា</value>
+  </data>
+  <data name="GetCurrencyPage.Id" xml:space="preserve">
+    <value>អត្តលេខ</value>
+  </data>
+  <data name="GetCurrencyPage.PageSubTitle" xml:space="preserve">
+    <value>តារាងរូបិយប័ណ្ណ</value>
+  </data>
+  <data name="GetCurrencyPage.PageTitle" xml:space="preserve">
+    <value>រូបិយប័ណ្ណ</value>
+  </data>
+  <data name="GetCurrencyPage.Title" xml:space="preserve">
+    <value>រូបិយប័ណ្ណ</value>
+  </data>
+  <data name="ContactUsIndexPage.Attachment" xml:space="preserve">
+    <value>ឯកសារ​ភ្ជាប់</value>
+  </data>
+  <data name="ContactUsIndexPage.Category" xml:space="preserve">
+    <value>ប្រភេទ</value>
+  </data>
+  <data name="ContactUsIndexPage.Email" xml:space="preserve">
+    <value>អ៊ីមែល</value>
+  </data>
+  <data name="ContactUsIndexPage.EmailCopy" xml:space="preserve">
+    <value>ចំលង</value>
+  </data>
+  <data name="ContactUsIndexPage.Message" xml:space="preserve">
+    <value>សារ</value>
+  </data>
+  <data name="ContactUsIndexPage.SendMail" xml:space="preserve">
+    <value>ផ្ញើសារ</value>
+  </data>
+  <data name="ContactUsIndexPage.Subject" xml:space="preserve">
+    <value>ប្រធានបទ</value>
+  </data>
+  <data name="ContactUsIndexPage.SubTitle" xml:space="preserve">
+    <value>ផ្តល់មតិយោបល់អំពីប្រព័ន្ធនិងតភ្ជាប់ជាមួយយើង</value>
+  </data>
+  <data name="ContactUsIndexPage.Title" xml:space="preserve">
+    <value>ទម្រង់ទំនាក់ទំនង</value>
+  </data>
+  <data name="ContactUsSendMessageInfo.ReturnButton" xml:space="preserve">
+    <value>ត្រលប់ទៅទំព័រដើម</value>
+  </data>
+  <data name="ContactUsSendMessageInfo.SubTitle" xml:space="preserve">
+    <value>ផ្តល់មតិយោបល់អំពីប្រព័ន្ធនិងតភ្ជាប់ជាមួយយើង</value>
+  </data>
+  <data name="ContactUsSendMessageInfo.Title" xml:space="preserve">
+    <value>ទម្រង់ទំនាក់ទំនង</value>
+  </data>
+  <data name="ExchangeCurrencyExchangePage.Amount" xml:space="preserve">
+    <value>ចំនួន</value>
+  </data>
+  <data name="ExchangeCurrencyExchangePage.Cancel" xml:space="preserve">
+    <value>បោះបង់</value>
+  </data>
+  <data name="ExchangeCurrencyExchangePage.Continue" xml:space="preserve">
+    <value>បន្ត</value>
+  </data>
+  <data name="ExchangeCurrencyExchangePage.From" xml:space="preserve">
+    <value>ពី</value>
+  </data>
+  <data name="ExchangeCurrencyExchangePage.SubTitle" xml:space="preserve">
+    <value>ជ្រើសរូបិយប័ណ្ណ ២ ដែលអ្នកចង់បម្លែងនិងបញ្ចូលចំនួន។​ អត្រានិងថ្លៃសេវាកម្មពិតប្រាកដសម្រាប់ប្រតិបត្តិការរបស់អ្នកនឹងត្រូវបានផ្តល់ជូនបន្ទាប់ពីអ្នកចុចរួច។</value>
+  </data>
+  <data name="ExchangeCurrencyExchangePage.TimeRemining" xml:space="preserve">
+    <value>វិនាទីនៅសល់</value>
+  </data>
+  <data name="ExchangeCurrencyExchangePage.Title" xml:space="preserve">
+    <value>ផ្ទេរ</value>
+  </data>
+  <data name="ExchangeCurrencyExchangePage.To" xml:space="preserve">
+    <value>ទៅ</value>
+  </data>
+  <data name="AccountStatementPage.To" xml:space="preserve">
+    <value>ទៅ</value>
+  </data>
+  <data name="ExchangeCurrencyExchangePage.TransferButton" xml:space="preserve">
+    <value>ផ្ទេរ</value>
+  </data>
+  <data name="ExchangeCurrencyExchangePage2.Title" xml:space="preserve">
+    <value>ផ្ទេរ</value>
+  </data>
+  <data name="ExchangeCurrencyExchangePage3.ExchangeRate" xml:space="preserve">
+    <value>អត្រាប្តូរប្រាក់</value>
+  </data>
+  <data name="ExchangeCurrencyExchangePage3.Title" xml:space="preserve">
+    <value>ផ្ទេរ</value>
+  </data>
+  <data name="ExchangeCurrencyExchangePage4.MessageAcc" xml:space="preserve">
+    <value>គណនី</value>
+  </data>
+  <data name="ExchangeCurrencyExchangePage4.MessageAcc2" xml:space="preserve">
+    <value>គណនី</value>
+  </data>
+  <data name="ExchangeCurrencyExchangePage4.MessageFromAcc" xml:space="preserve">
+    <value>ត្រូវបានផ្ទេរពី់…របស់អ្នក</value>
+  </data>
+  <data name="ExchangeCurrencyExchangePage4.MessageToAcc" xml:space="preserve">
+    <value>ត្រូវបានផ្ទេរទៅ​…របស់អ្នក</value>
+  </data>
+  <data name="ExchangeCurrencyExchangePage4.MessageTransferFailed" xml:space="preserve">
+    <value>ការផ្ទេរត្រូវបានបរាជ័យ</value>
+  </data>
+  <data name="ExchangeCurrencyExchangePage4.MessageUnspecError" xml:space="preserve">
+    <value>កំហុសមិនជាក់លាក់</value>
+  </data>
+  <data name="ExchangeCurrencyExchangePage4.ReturnButton" xml:space="preserve">
+    <value>ត្រលប់ទៅទំព័រដើម</value>
+  </data>
+  <data name="ExchangeCurrencyExchangePage4.Title" xml:space="preserve">
+    <value>ផ្ទេរ</value>
+  </data>
+  <data name="FavoriteCurrencyIndexPage.CurrencyCode" xml:space="preserve">
+    <value>កូដរូបិយប័ណ្ណ</value>
+  </data>
+  <data name="FavoriteCurrencyIndexPage.CurrencyName" xml:space="preserve">
+    <value>ឈ្មោះរូបិយប័ណ្ណ</value>
+  </data>
+  <data name="FavoriteCurrencyIndexPage.CurrencySymbol" xml:space="preserve">
+    <value>សញ្ញា</value>
+  </data>
+  <data name="FavoriteCurrencyIndexPage.SubTitle" xml:space="preserve">
+    <value>ខាងក្រោមនេះអ្នកអាចជ្រើសរូបិយប័ណ្ណដើម្បីបង្ហាញ / លាក់ពួកវានៅក្នុងទម្រង់ទូទាត់ភ្លាមៗ។ វានឹងមិនលុបរូបិយប័ណ្ណទេ។</value>
+  </data>
+  <data name="FavoriteCurrencyIndexPage.Title" xml:space="preserve">
+    <value>ការកំណត់រូបិយប័ណ្ណ</value>
+  </data>
+  <data name="FundingAddBankDepositPage.CCY" xml:space="preserve">
+    <value>រូបិយប័ណ្ណ</value>
+  </data>
+  <data name="FundingAddBankDepositPage.Copy" xml:space="preserve">
+    <value>ចំលង</value>
+  </data>
+  <data name="FundingAddBankDepositPage.DepositHistory" xml:space="preserve">
+    <value>ប្រវត្តិនៃការដាក់ប្រាក់</value>
+  </data>
+  <data name="FundingAddBankDepositPage.Print" xml:space="preserve">
+    <value>បោះពុម្ព</value>
+  </data>
+  <data name="FundingAddBankDepositPage.SubTitle" xml:space="preserve">
+    <value>សូមជ្រើសរូបិយប័ណ្ណនិងធនាគារដើម្បីបោះពុម្ពការណែនាំក្នុងការបង់ប្រាក់</value>
+  </data>
+  <data name="FundingAddBankDepositPage.Title" xml:space="preserve">
+    <value>ការណែនាំក្នុងការបង់ប្រាក់</value>
+  </data>
+  <data name="FundingAddBankDepositPage.UploadProof" xml:space="preserve">
+    <value>បញ្ចូលភស្តុតាង</value>
+  </data>
+  <data name="FundingAddBankDepositPage.WireInstructions" xml:space="preserve">
+    <value>ការណែនាំក្នុងការបង់ប្រាក់</value>
+  </data>
+  <data name="FundingGetBankDepositsPage.Amount" xml:space="preserve">
+    <value>ចំនួន</value>
+  </data>
+  <data name="FundingGetBankDepositsPage.CCyAndBank" xml:space="preserve">
+    <value>រូបិយប័ណ្ណ​​ និង ធនាគារ</value>
+  </data>
+  <data name="FundingGetBankDepositsPage.CreatedDate" xml:space="preserve">
+    <value>កាលបរិច្ឆេទពេលបង្កើត</value>
+  </data>
+  <data name="FundingGetBankDepositsPage.Delete" xml:space="preserve">
+    <value>លុបចោល</value>
+  </data>
+  <data name="FundingGetBankDepositsPage.DeleteRecMessage" xml:space="preserve">
+    <value>តើអ្នកប្រាកដថាចង់លុបភស្តុតាងនៃការដាក់ប្រាក់នេះទេ?</value>
+  </data>
+  <data name="FundingGetBankDepositsPage.Id" xml:space="preserve">
+    <value>អត្តលេខ</value>
+  </data>
+  <data name="FundingGetBankDepositsPage.ProofOfPayment" xml:space="preserve">
+    <value>ភស្តុតាងនៃការទូទាត់</value>
+  </data>
+  <data name="FundingGetBankDepositsPage.Status" xml:space="preserve">
+    <value>ស្ថានភាព</value>
+  </data>
+  <data name="FundingGetBankDepositsPage.SubTitle" xml:space="preserve">
+    <value>តារាងនៃការដាក់ប្រាក់</value>
+  </data>
+  <data name="FundingGetBankDepositsPage.Title" xml:space="preserve">
+    <value>ប្រវត្តិនៃការដាក់ប្រាក់</value>
+  </data>
+  <data name="FundingGetBankDepositsPage.UploadProof" xml:space="preserve">
+    <value>បញ្ចូលភស្តុតាង</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.AccNumber" xml:space="preserve">
+    <value>លេខគណនី</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.Action" xml:space="preserve">
+    <value>សកម្មភាព</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.Amount" xml:space="preserve">
+    <value>ចំនួន</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.Bank" xml:space="preserve">
+    <value>ធនាគារ</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.CCY" xml:space="preserve">
+    <value>រូបិយប័ណ្ណ</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.Date" xml:space="preserve">
+    <value>កាលបរិច្ឆេទ</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.Id" xml:space="preserve">
+    <value>អត្តលេខ</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.ModalFilterRecAccNumber" xml:space="preserve">
+    <value>លេខគណនី</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.ModalFilterRecAmountRange" xml:space="preserve">
+    <value>ចំនួនជាជួរ</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.ModalFilterRecBank" xml:space="preserve">
+    <value>ធនាគារ</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.ModalFilterRecClose" xml:space="preserve">
+    <value>បិទ</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.ModalFilterRecCurrency" xml:space="preserve">
+    <value>រូបិយប័ណ្ណ</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.ModalFilterRecDate" xml:space="preserve">
+    <value>កាលបរិច្ឆេទ</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.ModalFilterRecEnd" xml:space="preserve">
+    <value>បញ្ចប់</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.ModalFilterRecFrom" xml:space="preserve">
+    <value>ពី</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.ModalFilterRecNameOfSender" xml:space="preserve">
+    <value>ឈ្មោះអ្នកផ្ញើ</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.ModalFilterRecNameOfSendingBank" xml:space="preserve">
+    <value>ឈ្មោះធនាគារដែលផ្ញើ</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.ModalFilterRecOtherInfo" xml:space="preserve">
+    <value>ព័ត៌មានផ្សេងៗ</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.ModalFilterRecSearch" xml:space="preserve">
+    <value>ស្វែងរក</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.ModalFilterRecStart" xml:space="preserve">
+    <value>ចាប់ផ្តើម</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.ModalFilterRecTo" xml:space="preserve">
+    <value>ទៅ</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.NotYetUpload" xml:space="preserve">
+    <value>មិនទាន់បានបញ្ចូល</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.OtherInformation" xml:space="preserve">
+    <value>ព័ត៌មានផ្សេងៗ</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.Proof" xml:space="preserve">
+    <value>ភស្តុតាង</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.SendingBank" xml:space="preserve">
+    <value>ធនាគារដែលផ្ញើ</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.Status" xml:space="preserve">
+    <value>ស្ថានភាព</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.SubTitle" xml:space="preserve">
+    <value>ទីនេះអ្នកអាចយល់ព្រមឬបដិសេធសំណើថវិកា</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.Title" xml:space="preserve">
+    <value>សំណើថវិកា</value>
+  </data>
+  <data name="FundingGetHystoryByFundingPage.AdminNotes" xml:space="preserve">
+    <value>កំណត់ចំណាំរដ្ឋបាល:</value>
+  </data>
+  <data name="FundingGetHystoryByFundingPage.ChangedBy" xml:space="preserve">
+    <value>បានផ្លាស់ប្តូរដោយ:</value>
+  </data>
+  <data name="FundingGetHystoryByFundingPage.StatusChange" xml:space="preserve">
+    <value>ការផ្លាស់ប្តូរស្ថានភាព:</value>
+  </data>
+  <data name="FundingGetHystoryByFundingPage.Title" xml:space="preserve">
+    <value>ផ្លាស់ប្តូរប្រវត្តិ</value>
+  </data>
+  <data name="FundingUpdateFundRequestStatusPage.AccountNumber" xml:space="preserve">
+    <value>លេខគណនី</value>
+  </data>
+  <data name="FundingUpdateFundRequestStatusPage.AdminNotes" xml:space="preserve">
+    <value>កំណត់ចំណាំរដ្ឋបាល:</value>
+  </data>
+  <data name="FundingUpdateFundRequestStatusPage.Amount" xml:space="preserve">
+    <value>ចំនួន</value>
+  </data>
+  <data name="FundingUpdateFundRequestStatusPage.AttachmentFile" xml:space="preserve">
+    <value>ឯកសារភ្ជាប់</value>
+  </data>
+  <data name="FundingUpdateFundRequestStatusPage.BackToList" xml:space="preserve">
+    <value>ត្រលប់ទៅតារាង</value>
+  </data>
+  <data name="FundingUpdateFundRequestStatusPage.Bank" xml:space="preserve">
+    <value>ធនាគារ</value>
+  </data>
+  <data name="FundingUpdateFundRequestStatusPage.CCY" xml:space="preserve">
+    <value>រូបិយប័ណ្ណ</value>
+  </data>
+  <data name="FundingUpdateFundRequestStatusPage.DepositId" xml:space="preserve">
+    <value>អត្តលេខនៃការដាក់ប្រាក់</value>
+  </data>
+  <data name="FundingUpdateFundRequestStatusPage.NameOfSendingBank" xml:space="preserve">
+    <value>ឈ្មោះធនាគារដែលផ្ញើ</value>
+  </data>
+  <data name="FundingUpdateFundRequestStatusPage.OtherInformation" xml:space="preserve">
+    <value>ព័ត៌មានផ្សេងៗ</value>
+  </data>
+  <data name="FundingUpdateFundRequestStatusPage.PaymentDate" xml:space="preserve">
+    <value>កាលបរិច្ឆេទទូទាត់ប្រាក់</value>
+  </data>
+  <data name="FundingUpdateFundRequestStatusPage.Save" xml:space="preserve">
+    <value>រក្សាទុក</value>
+  </data>
+  <data name="FundingUpdateFundRequestStatusPage.SenderName" xml:space="preserve">
+    <value>ឈ្មោះអ្នកផ្ញើ</value>
+  </data>
+  <data name="FundingUpdateFundRequestStatusPage.Status" xml:space="preserve">
+    <value>ស្ថានភាព</value>
+  </data>
+  <data name="FundingUpdateFundRequestStatusPage.SubTitle" xml:space="preserve">
+    <value>ធ្វើបច្ចុប្បន្នភាពស្ថានភាពនៃសំណើថវិកា</value>
+  </data>
+  <data name="FundingUpdateFundRequestStatusPage.Title" xml:space="preserve">
+    <value>សំណើថវិកា</value>
+  </data>
+  <data name="HomeAccountsPage.Title" xml:space="preserve">
+    <value>គណនីអតិថិជន</value>
+  </data>
+  <data name="HomeAccountStatementPage.Account" xml:space="preserve">
+    <value>គណនី</value>
+  </data>
+  <data name="HomeAccountStatementPage.Amount" xml:space="preserve">
+    <value>ចំនួន</value>
+  </data>
+  <data name="HomeAccountStatementPage.Balance" xml:space="preserve">
+    <value>សមតុល្យ</value>
+  </data>
+  <data name="HomeAccountStatementPage.BeginningBalance" xml:space="preserve">
+    <value>សមតុល្យដំបូង:</value>
+  </data>
+  <data name="HomeAccountStatementPage.ClosingBalance" xml:space="preserve">
+    <value>សមតុល្យចុងក្រោយ:</value>
+  </data>
+  <data name="HomeAccountStatementPage.Date" xml:space="preserve">
+    <value>កាលបរិច្ឆេទ</value>
+  </data>
+  <data name="HomeAccountStatementPage.DateRange" xml:space="preserve">
+    <value>កាលបរិច្ឆេទជាជួរ</value>
+  </data>
+  <data name="HomeAccountStatementPage.Description" xml:space="preserve">
+    <value>សេចក្តីបរិយាយ</value>
+  </data>
+  <data name="HomeAccountStatementPage.GetReport" xml:space="preserve">
+    <value>ទទួលរបាយការណ៍</value>
+  </data>
+  <data name="HomeAccountStatementPage.Period" xml:space="preserve">
+    <value>កំឡុងពេល</value>
+  </data>
+  <data name="HomeAccountStatementPage.Reference" xml:space="preserve">
+    <value>សេចក្តីយោង</value>
+  </data>
+  <data name="HomeAccountStatementPage.Reset" xml:space="preserve">
+    <value>កំណត់ឡើងវិញ</value>
+  </data>
+  <data name="HomeAccountStatementPage.SubTitle" xml:space="preserve">
+    <value>បង្ហាញ / លាក់សមតុល្យគណនី</value>
+  </data>
+  <data name="HomeAccountStatementPage.Title" xml:space="preserve">
+    <value>របាយការណ៍គណនី</value>
+  </data>
+  <data name="HomeCheckoutIndexPage.ChooseAccount" xml:space="preserve">
+    <value>បិទគណនី</value>
+  </data>
+  <data name="HomeCheckoutIndexPage.ChooseAlias" xml:space="preserve">
+    <value>ជ្រើសរើសឈ្មោះហៅក្រៅ</value>
+  </data>
+  <data name="HomeCheckoutIndexPage.Confirm" xml:space="preserve">
+    <value>បញ្ជាក់</value>
+  </data>
+  <data name="HomeCheckoutIndexPage.CustomerName" xml:space="preserve">
+    <value>ឈ្មោះអតិជន</value>
+  </data>
+  <data name="HomeCheckoutIndexPage.MerchantName" xml:space="preserve">
+    <value>ឈ្មោះពាណិជ្ជករ</value>
+  </data>
+  <data name="HomeCheckoutIndexPage.SubTitle" xml:space="preserve">
+    <value>សូមជ្រើសរើសប្រភពថវិកានិងបញ្ជាក់ពីទំនាក់ទំនងនិងព័ត៌មានដឹកជញ្ជូន</value>
+  </data>
+  <data name="HomeCheckoutIndexPage.Title" xml:space="preserve">
+    <value>បញ្ជាក់ព័ត៌មានលម្អិត</value>
+  </data>
+  <data name="HomeIndexPage.At" xml:space="preserve">
+    <value>នៅ</value>
+  </data>
+  <data name="HomeIndexPage.LastLoginText" xml:space="preserve">
+    <value>ការចូលចុងក្រោយរបស់អ្នកនៅ</value>
+  </data>
+  <data name="HomeIndexPage.Title" xml:space="preserve">
+    <value>Dashboard</value>
+  </data>
+  <data name="HomeIndexPage.WelcomeMessage" xml:space="preserve">
+    <value>ស្វាគមន៍,</value>
+  </data>
+  <data name="PaymentCreatePage.TitleNew" xml:space="preserve">
+    <value>ការទូទាត់ភ្លាមៗ</value>
+  </data>
+  <data name="PaymentCreatePage.TitleRepeat" xml:space="preserve">
+    <value>ធ្វើការទូទាត់ភ្លាមៗម្តងទៀត</value>
+  </data>
+  <data name="PaymentCurrenciesPage.CurrencyCode" xml:space="preserve">
+    <value>កូដរូបិយប័ណ្ណ</value>
+  </data>
+  <data name="PaymentCurrenciesPage.CurrencyName" xml:space="preserve">
+    <value>ឈ្មោះរូបិយប័ណ្ណ</value>
+  </data>
+  <data name="PaymentCurrenciesPage.PaymentCutOffTime" xml:space="preserve">
+    <value>រយៈពេលបញ្ចប់ក្នុងការទូទាត់</value>
+  </data>
+  <data name="PaymentCurrenciesPage.SettelementDaysToAdd" xml:space="preserve">
+    <value>ចំនួនថ្ងៃទូទាត់ដើម្បីបន្ថែម</value>
+  </data>
+  <data name="PaymentCurrenciesPage.SubTitle" xml:space="preserve">
+    <value>រូបិយប័ណ្ណដែលមានទាំងអស់</value>
+  </data>
+  <data name="PaymentCurrenciesPage.Symbol" xml:space="preserve">
+    <value>សញ្ញា</value>
+  </data>
+  <data name="PaymentCurrenciesPage.Title" xml:space="preserve">
+    <value>រូបិយប័ណ្ណនៃការទូទាត់</value>
+  </data>
+  <data name="PaymentDetailsPage.Amount" xml:space="preserve">
+    <value>ចំនួន:</value>
+  </data>
+  <data name="PaymentDetailsPage.Currency" xml:space="preserve">
+    <value>រូបិយប័ណ្ណ:</value>
+  </data>
+  <data name="PaymentDetailsPage.Date" xml:space="preserve">
+    <value>កាលបរិច្ឆេទ:</value>
+  </data>
+  <data name="PaymentDetailsPage.From" xml:space="preserve">
+    <value>ពី:</value>
+  </data>
+  <data name="PaymentDetailsPage.Invoice" xml:space="preserve">
+    <value>វិក័យប័ត្រ:</value>
+  </data>
+  <data name="PaymentDetailsPage.Memo" xml:space="preserve">
+    <value>ចំនាំ:</value>
+  </data>
+  <data name="PaymentDetailsPage.ModalSendMailClose" xml:space="preserve">
+    <value>បិទ:</value>
+  </data>
+  <data name="PaymentDetailsPage.ModalSendMailFrom" xml:space="preserve">
+    <value>ពី</value>
+  </data>
+  <data name="PaymentDetailsPage.ModalSendMailNote" xml:space="preserve">
+    <value>ចំនាំ</value>
+  </data>
+  <data name="PaymentDetailsPage.ModalSendMailSend" xml:space="preserve">
+    <value>ផ្ញើ</value>
+  </data>
+  <data name="PaymentDetailsPage.PaymentReference" xml:space="preserve">
+    <value>សេចក្ដីយោងក្នុងការទូទាត់:</value>
+  </data>
+  <data name="PaymentDetailsPage.Status" xml:space="preserve">
+    <value>ស្ថានភាព:</value>
+  </data>
+  <data name="PaymentDetailsPage.Title" xml:space="preserve">
+    <value>សេចក្តីលំអិតក្នុងការទូទាត់ភ្លាមៗ</value>
+  </data>
+  <data name="PaymentDetailsPage.To" xml:space="preserve">
+    <value>ទៅ:</value>
+  </data>
+  <data name="PaymentHistoryPage.Action" xml:space="preserve">
+    <value>សកម្មភាព</value>
+  </data>
+  <data name="PaymentHistoryPage.Amount" xml:space="preserve">
+    <value>ចំនួន</value>
+  </data>
+  <data name="PaymentHistoryPage.CCY" xml:space="preserve">
+    <value>រូបិយប័ណ្ណ</value>
+  </data>
+  <data name="PaymentHistoryPage.CreatedDate" xml:space="preserve">
+    <value>កាលបរិច្ឆេទពេលបង្កើត</value>
+  </data>
+  <data name="PaymentHistoryPage.Date" xml:space="preserve">
+    <value>កាលបរិច្ឆេទ</value>
+  </data>
+  <data name="PaymentHistoryPage.From" xml:space="preserve">
+    <value>ពី</value>
+  </data>
+  <data name="PaymentHistoryPage.NewPayment" xml:space="preserve">
+    <value>ធ្វើការទូទាត់ភ្លាមៗថ្មី</value>
+  </data>
+  <data name="PaymentHistoryPage.Ref" xml:space="preserve">
+    <value>Ref</value>
+  </data>
+  <data name="PaymentHistoryPage.SubTitle" xml:space="preserve">
+    <value>ប្រវត្តិនៃការទូទាត់ភ្លាមៗ</value>
+  </data>
+  <data name="PaymentHistoryPage.Title" xml:space="preserve">
+    <value>ប្រវត្តិនៃការទូទាត់</value>
+  </data>
+  <data name="PaymentHistoryPage.To" xml:space="preserve">
+    <value>ទៅ</value>
+  </data>
+  <data name="PaymentPostPage.MessageSuccess" xml:space="preserve">
+    <value>ការទូទាត់ភ្លាមៗត្រូវបានផ្ញើដោយជោគជ័យ។</value>
+  </data>
+  <data name="PaymentPostPage.Title" xml:space="preserve">
+    <value>ប្រកាសការទូទាត់ភ្លាមៗ</value>
+  </data>
+  <data name="ProofDocUploadProofDocPage.AccountNumber" xml:space="preserve">
+    <value>លេខគណនី​ (លេខចុងក្រោយ ៤ខ្ទង់យ៉ាងតិច)</value>
+  </data>
+  <data name="ProofDocUploadProofDocPage.Amount" xml:space="preserve">
+    <value>ចំនួន</value>
+  </data>
+  <data name="ProofDocUploadProofDocPage.AttachmentFile" xml:space="preserve">
+    <value>ឯកសារភ្ជាប់</value>
+  </data>
+  <data name="ProofDocUploadProofDocPage.AttachProof" xml:space="preserve">
+    <value>ភ្ជាប់រូបភាព</value>
+  </data>
+  <data name="ProofDocUploadProofDocPage.DepositHistory" xml:space="preserve">
+    <value>ប្រវត្តិនៃការដាក់ប្រាក់</value>
+  </data>
+  <data name="ProofDocUploadProofDocPage.NameOfSender" xml:space="preserve">
+    <value>ឈ្មោះអ្នកផ្ញើប្រសិនបើខុសពីអ្នក</value>
+  </data>
+  <data name="ProofDocUploadProofDocPage.NameOfSendingBank" xml:space="preserve">
+    <value>ឈ្មោះរបស់ធនាគារដែលផ្ញើ</value>
+  </data>
+  <data name="ProofDocUploadProofDocPage.OtherInformation" xml:space="preserve">
+    <value>ព៌តមានផ្សេងៗ</value>
+  </data>
+  <data name="ProofDocUploadProofDocPage.PaymentDate" xml:space="preserve">
+    <value>កាលបរិច្ឆេទនៃការទូទាត់</value>
+  </data>
+  <data name="ProofDocUploadProofDocPage.ReceivingBank" xml:space="preserve">
+    <value>ធនាគារទទួលប្រាក់និងរូបិយប័ណ្ណ</value>
+  </data>
+  <data name="ProofDocUploadProofDocPage.Save" xml:space="preserve">
+    <value>រក្សាទុក</value>
+  </data>
+  <data name="ProofDocUploadProofDocPage.Status" xml:space="preserve">
+    <value>ស្ថានភាព</value>
+  </data>
+  <data name="ProofDocUploadProofDocPage.SubTitle" xml:space="preserve">
+    <value>បញ្ចូលភស្តុតាងឯកសារ</value>
+  </data>
+  <data name="ProofDocUploadProofDocPage.Title" xml:space="preserve">
+    <value>ភស្តុតាងឯកសារ</value>
+  </data>
+  <data name="ReferralChangeInvintationsLinkPage.Back" xml:space="preserve">
+    <value>ត្រលប់ក្រោយ</value>
+  </data>
+  <data name="ReferralChangeInvintationsLinkPage.ReferalLink" xml:space="preserve">
+    <value>link​ អ្នកដែលបានបញ្ជូន</value>
+  </data>
+  <data name="ReferralChangeInvintationsLinkPage.SubTitle" xml:space="preserve">
+    <value>សូមបញ្ចូលការចាប់ផ្តើមនៃ URL។ ឈ្មោះហៅក្រៅនឹងត្រូវបានបន្ថែមនៅចុងបញ្ចប់នៃអ៊ីមែល។</value>
+  </data>
+  <data name="ReferralChangeInvintationsLinkPage.Title" xml:space="preserve">
+    <value>ធ្វើបច្ចុប្បន្នភាព​ទំរង់URL​អ្នកដែលបានបញ្ជូន</value>
+  </data>
+  <data name="ReferralChangeInvintationsLinkPage.UpdateLink" xml:space="preserve">
+    <value>ធ្វើបច្ចុប្បន្នភាពlink</value>
+  </data>
+  <data name="ReferralReferFriendPage.Copy" xml:space="preserve">
+    <value>ចំលង</value>
+  </data>
+  <data name="ReferralReferFriendPage.SelectAlias" xml:space="preserve">
+    <value>ជ្រើសរើសឈ្មោះហៅក្រៅ</value>
+  </data>
+  <data name="ReferralReferFriendPage.SubTitle" xml:space="preserve">
+    <value>ផ្ញើសាររហ័សទៅមិត្តដើម្បីណែនាំប្រព័ន្ធ E-wallet</value>
+  </data>
+  <data name="ReferralReferFriendPage.Title" xml:space="preserve">
+    <value>Link​ យោង</value>
+  </data>
+  <data name="Shared.ErrorMessagePage.Action" xml:space="preserve">
+    <value>សកម្មភាព:</value>
+  </data>
+  <data name="Shared.ErrorMessagePage.CallAdmin" xml:space="preserve">
+    <value>&lt;p&gt;កំហុស​ដែល​មិន​រំពឹង​ទុក​បាន​កើត​ឡើង​។ សូមទាក់ទងអ្នកគ្រប់គ្រងប្រព័ន្ធ។&lt;/p&gt;</value>
+  </data>
+  <data name="Shared.ErrorMessagePage.Controller" xml:space="preserve">
+    <value>អ្នកត្រួតពិនិត្រ:</value>
+  </data>
+  <data name="Shared.ErrorMessagePage.Exception" xml:space="preserve">
+    <value>ករណី​លើកលែង:</value>
+  </data>
+  <data name="Shared.ErrorMessagePage.SubTitle" xml:space="preserve">
+    <value>កំហុសទូទៅបានកើតឡើង</value>
+  </data>
+  <data name="Shared.ErrorMessagePage.Title" xml:space="preserve">
+    <value>កំហុសទូទៅ</value>
+  </data>
+  <data name="Shared.Header.LastLogin" xml:space="preserve">
+    <value>ការចូលចុងក្រោយ:</value>
+  </data>
+  <data name="Shared.Header.Logout" xml:space="preserve">
+    <value>ចាកចេញ</value>
+  </data>
+  <data name="Shared.Header.MyProfile" xml:space="preserve">
+    <value>ពត៌មានរបស់ខ្ញុំ</value>
+  </data>
+  <data name="Shared.Header.Lang.English" xml:space="preserve">
+    <value>ភាសាអង់គ្លេស</value>
+  </data>
+  <data name="Shared.Header.Lang.French" xml:space="preserve">
+    <value>ភាសាបារាំង</value>
+  </data>
+  <data name="Shared.Header.Lang.Russian" xml:space="preserve">
+    <value>ភាសារុស្ស៊ី</value>
+  </data>
+  <data name="Shared.InstantPaymentListPage.Action" xml:space="preserve">
+    <value>សកម្មភាព</value>
+  </data>
+  <data name="Shared.InstantPaymentListPage.Amount" xml:space="preserve">
+    <value>ចំំនួន</value>
+  </data>
+  <data name="Shared.InstantPaymentListPage.CCY" xml:space="preserve">
+    <value>រូបិយប័ណ្ណ</value>
+  </data>
+  <data name="Shared.InstantPaymentListPage.CreatedDate" xml:space="preserve">
+    <value>កាលបរិច្ឆេទពេលបង្កើត</value>
+  </data>
+  <data name="Shared.InstantPaymentListPage.From" xml:space="preserve">
+    <value>ពី</value>
+  </data>
+  <data name="Shared.InstantPaymentListPage.PaymentHistoryText" xml:space="preserve">
+    <value>&lt;p&gt; បង្ហាញតែការទូទាត់ប្រាក់ភ្លាមៗចំនួន 10 ប៉ុណ្ណោះ។ &lt;a href="/Payment/History"&gt; ចុចទីនេះ &lt;/a&gt; ដើម្បីមើលរាល់ការទូទាត់ភ្លាមៗទាំងអស់យ៉ាងលំអិត។ &lt;/ p&gt;</value>
+  </data>
+  <data name="Shared.InstantPaymentListPage.Refresh" xml:space="preserve">
+    <value>សារឡើងវិញ</value>
+  </data>
+  <data name="Shared.InstantPaymentListPage.SubTitle" xml:space="preserve">
+    <value>បង្ហាញ / លាក់ការទូទាត់ភ្លាមៗចុងក្រោយបំផុត</value>
+  </data>
+  <data name="Shared.InstantPaymentListPage.Details" xml:space="preserve">
+    <value>លំអិត</value>
+  </data>
+  <data name="Shared.InstantPaymentListPage.Send" xml:space="preserve">
+    <value>ផ្ញើ</value>
+  </data>
+  <data name="Shared.InstantPaymentListPage.Repeat" xml:space="preserve">
+    <value>ធ្វើម្តងទៀត</value>
+  </data>
+  <data name="Shared.InstantPaymentListPage.Title" xml:space="preserve">
+    <value>ប្រវតិ្ត</value>
+  </data>
+  <data name="Shared.InstantPaymentListPage.To" xml:space="preserve">
+    <value>ទៅ</value>
+  </data>
+  <data name="Shared.InternalServerErrorPage.SorryMessage" xml:space="preserve">
+    <value>&lt;p&gt; យើងសូមអភ័យទោស ប៉ុន្តែកំហុសបច្ចេកទេសបានកើតឡើង។ &lt;br /&gt; សូមទៅកាន់ទំព័រដើមដើម្បីចាប់ផ្ដើមសំណើរបស់អ្នកម្តងទៀត។ &lt;/ p&gt;</value>
+  </data>
+  <data name="Shared.InternalServerErrorPage.SubTitle" xml:space="preserve">
+    <value>កំហុសInternal Server</value>
+  </data>
+  <data name="Shared.InternalServerErrorPage.Title" xml:space="preserve">
+    <value>Internal Server</value>
+  </data>
+  <data name="Shared.Navigation.Accounts" xml:space="preserve">
+    <value>គណនី</value>
+  </data>
+  <data name="Shared.Navigation.AddFunds" xml:space="preserve">
+    <value>បន្ថែមថវិការ</value>
+  </data>
+  <data name="Shared.Navigation.Admins" xml:space="preserve">
+    <value>អ្នកគ្រប់គ្រង</value>
+  </data>
+  <data name="Shared.Navigation.Balances" xml:space="preserve">
+    <value>សមតុល្យ</value>
+  </data>
+  <data name="Shared.Navigation.Banks" xml:space="preserve">
+    <value>ធនាគារ</value>
+  </data>
+  <data name="Shared.Navigation.ChangePassword" xml:space="preserve">
+    <value>កែប្រែលេខសំងាត់</value>
+  </data>
+  <data name="Shared.Navigation.Merchants" xml:space="preserve">
+    <value>មជ្ឈមណ្ឌលពាណិជ្ជករ[Beta]</value>
+  </data>
+  <data name="Shared.Navigation.Pipit" xml:space="preserve">
+    <value>Pipit</value>
+  </data>
+  <data name="Shared.Navigation.ContactUs" xml:space="preserve">
+    <value>ទំនាក់ទំនងមកយើង</value>
+  </data>
+  <data name="Shared.Navigation.Convert" xml:space="preserve">
+    <value>បម្លែង</value>
+  </data>
+  <data name="Shared.Navigation.ConvertAndExchange" xml:space="preserve">
+    <value>បម្លែង &amp; ផ្លាស់ប្តូរ</value>
+  </data>
+  <data name="Shared.Navigation.Currencies" xml:space="preserve">
+    <value>រូបិយប័ណ្ណ</value>
+  </data>
+  <data name="Shared.Navigation.CurrencySettings" xml:space="preserve">
+    <value>ការកំណត់រូបិយប័ណ្ណ</value>
+  </data>
+  <data name="Shared.Navigation.Dashboard" xml:space="preserve">
+    <value>ផ្ទាំងគ្រប់គ្រង</value>
+  </data>
+  <data name="Shared.Navigation.DepositHistory" xml:space="preserve">
+    <value>ប្រវត្តិនៃការតំកល់ប្រាក់</value>
+  </data>
+  <data name="Shared.Navigation.DepositInstructions" xml:space="preserve">
+    <value>ការណែនាំក្នុងការតំកល់ប្រាក់</value>
+  </data>
+  <data name="Shared.Navigation.FeedbackSettings" xml:space="preserve">
+    <value>ការកំណត់មតិយោបល់</value>
+  </data>
+  <data name="Shared.Navigation.History" xml:space="preserve">
+    <value>ប្រវត្តិ</value>
+  </data>
+  <data name="Shared.Navigation.InstantPayment" xml:space="preserve">
+    <value>ការទូទាត់ភ្លាមៗ</value>
+  </data>
+  <data name="Shared.Navigation.InvintationLink" xml:space="preserve">
+    <value>Link​ អញ្ជើញ</value>
+  </data>
+  <data name="Shared.Navigation.ReferralLink" xml:space="preserve">
+    <value>Link យោង​</value>
+  </data>
+  <data name="Shared.Navigation.InvitationLink" xml:space="preserve">
+    <value>Link​ អញ្ជើញ</value>
+  </data>
+  <data name="Shared.Navigation.Maintenance" xml:space="preserve">
+    <value>លំហែទាំ</value>
+  </data>
+  <data name="Shared.Navigation.ManageFundRequest" xml:space="preserve">
+    <value>គ្រប់គ្រងសំណើថវិការ</value>
+  </data>
+  <data name="Shared.Navigation.PayInInstructions" xml:space="preserve">
+    <value>ការណែនាំការបង់ប្រាក់</value>
+  </data>
+  <data name="Shared.Navigation.PayNow" xml:space="preserve">
+    <value>ទូទាត់ឥឡូវ​នេះ</value>
+  </data>
+  <data name="Shared.Navigation.SideBar" xml:space="preserve">
+    <value>បិទ / បើករបារចំហៀង</value>
+  </data>
+  <data name="Shared.Navigation.Statements" xml:space="preserve">
+    <value>របាយការណ៍​ធនាគារ</value>
+  </data>
+  <data name="Shared.Navigation.SuperAdmin" xml:space="preserve">
+    <value>អ្នកគ្រប់គ្រងកំពូល</value>
+  </data>
+  <data name="Shared.Navigation.UploadDepositProof" xml:space="preserve">
+    <value>បញ្ចូលភស្តុតាងនៃប្រាក់តំកល់</value>
+  </data>
+  <data name="Shared.Navigation.UserProfile" xml:space="preserve">
+    <value>ប្រវត្តិរូបអ្នកប្រើ</value>
+  </data>
+  <data name="Shared.Navigation.Merchants.Integration" xml:space="preserve">
+    <value>ការស្វែងរក</value>
+  </data>
+  <data name="User.ResetPassword.SuccessChanged" xml:space="preserve">
+    <value>លេខសម្ងាត់សម្រាប់ {0} ត្រូវបានកំណត់ឡើងវិញនិងបញ្ជូនតាមអ៊ីម៉ែល</value>
+  </data>
+  <data name="Shared.Navigation.View Profile" xml:space="preserve">
+    <value>មើលប្រវត្តិរូប / ស្ថានភាព​KYC</value>
+  </data>
+  <data name="Shared.Navigation.WelcomeMessage" xml:space="preserve">
+    <value>សារស្វាគមន៍</value>
+  </data>
+  <data name="Shared.NewInstantPaymentFormPage.Amount" xml:space="preserve">
+    <value>ចំនួន</value>
+  </data>
+  <data name="Shared.NewInstantPaymentFormPage.Create" xml:space="preserve">
+    <value>បង្កើត</value>
+  </data>
+  <data name="Shared.NewInstantPaymentFormPage.Currency" xml:space="preserve">
+    <value>រូបិយប័ណ្ណ</value>
+  </data>
+  <data name="Shared.NewInstantPaymentFormPage.From" xml:space="preserve">
+    <value>ពី</value>
+  </data>
+  <data name="Shared.NewInstantPaymentFormPage.Invoice" xml:space="preserve">
+    <value>វិក័យប័ត្រ</value>
+  </data>
+  <data name="Shared.NewInstantPaymentFormPage.Memo" xml:space="preserve">
+    <value>ចំនាំ</value>
+  </data>
+  <data name="Shared.NewInstantPaymentFormPage.PayNow" xml:space="preserve">
+    <value>ទូទាត់ឥឡូវ​នេះ</value>
+  </data>
+  <data name="Shared.NewInstantPaymentFormPage.Reset" xml:space="preserve">
+    <value>កំណត់ឡើងវិញ</value>
+  </data>
+  <data name="Shared.NewInstantPaymentFormPage.Search" xml:space="preserve">
+    <value>ស្វែងរក</value>
+  </data>
+  <data name="Shared.NewInstantPaymentFormPage.SelectCurrency" xml:space="preserve">
+    <value>ជ្រើសរើសរូបិយប័ណ្ណ</value>
+  </data>
+  <data name="Shared.NewInstantPaymentFormPage.SubTitle" xml:space="preserve">
+    <value>ធ្វើការទូទាត់ភ្លាមៗថ្មី</value>
+  </data>
+  <data name="Shared.NewInstantPaymentFormPage.TitlePayNow" xml:space="preserve">
+    <value>ទូទាត់ឥឡូវ​នេះ</value>
+  </data>
+  <data name="Shared.NewInstantPaymentFormPage.TitleRepeatInstantPayment" xml:space="preserve">
+    <value>ធ្វើការទូទាត់ភ្លាមៗម្តងទៀត</value>
+  </data>
+  <data name="Shared.NewInstantPaymentFormPage.To" xml:space="preserve">
+    <value>ទៅ</value>
+  </data>
+  <data name="Shared.NotFoundPage.SorryMessage" xml:space="preserve">
+    <value>&lt;p&gt;ពួកយើងសូមអភ័យទោស ប៉ុន្តែទំព័រដែលអ្នកបានស្នើមិនត្រូវបានរកឃើញទេ។ &lt;br/&gt; សូមទៅកាន់ទំព័រដើមដើម្បីចាប់ផ្ដើមសំណើរបស់អ្នក។ &lt;/p&gt;</value>
+  </data>
+  <data name="Shared.NotFoundPage.SubTitle" xml:space="preserve">
+    <value>ទំព័ររកមិនឃើញកំហុស</value>
+  </data>
+  <data name="Shared.NotFoundPage.Title" xml:space="preserve">
+    <value>ទំព័ររកមិនឃើញ</value>
+  </data>
+  <data name="Shared.WebPartsAccountingPage.AccNumber" xml:space="preserve">
+    <value>លេខគណនី</value>
+  </data>
+  <data name="Shared.WebPartsAccountingPage.ActiveHolds" xml:space="preserve">
+    <value>ទឹកប្រាក់ដែលបានបង្កក់ទុក</value>
+  </data>
+  <data name="Shared.WebPartsAccountingPage.AllAccText" xml:space="preserve">
+    <value>&lt;p&gt; គណនីទាំងអស់ដែលមានលេខ &lt;i&gt; &lt;b&gt; សូន្យ &lt;/b&gt; &lt;/i&gt; សមតុល្យត្រូវបានលាក់តាមលំនាំដើម។ &lt;/p&gt;</value>
+  </data>
+  <data name="Shared.WebPartsAccountingPage.AvailableBalance" xml:space="preserve">
+    <value>សមតុល្យដែលមាន</value>
+  </data>
+  <data name="Shared.WebPartsAccountingPage.CCY" xml:space="preserve">
+    <value>រូបិយប័ណ្ណ</value>
+  </data>
+  <data name="Shared.WebPartsAccountingPage.CurrentBalance" xml:space="preserve">
+    <value>សមតុល្យបច្ចុប្បន្ន</value>
+  </data>
+  <data name="Shared.WebPartsAccountingPage.SubTitle" xml:space="preserve">
+    <value>បង្ហាញ / លាក់សមតុល្យគណនី</value>
+  </data>
+  <data name="Shared.WebPartsAccountingPage.Title" xml:space="preserve">
+    <value>សមតុល្យ</value>
+  </data>
+  <data name="Shared.WebPartsAccountingPage.UncheckForAllAcc" xml:space="preserve">
+    <value>ដោះធីកដើម្បីបង្ហាញគណនីទាំងអស់</value>
+  </data>
+  <data name="User.AddAdminUserPage.Add" xml:space="preserve">
+    <value>បន្ថែម</value>
+  </data>
+  <data name="User.AddAdminUserPage.Back" xml:space="preserve">
+    <value>ត្រលប់ក្រោយ</value>
+  </data>
+  <data name="User.AddAdminUserPage.Email" xml:space="preserve">
+    <value>អ៊ីមែល</value>
+  </data>
+  <data name="User.AddAdminUserPage.FirstName" xml:space="preserve">
+    <value>នាមឈ្មោះ</value>
+  </data>
+  <data name="User.AddAdminUserPage.LastName" xml:space="preserve">
+    <value>នាមត្រកូល</value>
+  </data>
+  <data name="User.AddAdminUserPage.SubTitle" xml:space="preserve">
+    <value>សូមបំពេញសេចក្តីលម្អិតខាងក្រោមដើម្បីបង្កើតអ្នកគ្រប់គ្រង</value>
+  </data>
+  <data name="User.AddAdminUserPage.Title" xml:space="preserve">
+    <value>បន្ថែមអ្នកគ្រប់គ្រង</value>
+  </data>
+  <data name="User.AddAdminUserPage.UserName" xml:space="preserve">
+    <value>អត្តសញ្ញាណអ្នកប្រើ</value>
+  </data>
+  <data name="User.ChangePasswordPage.LogOut" xml:space="preserve">
+    <value>ចាកចេញ</value>
+  </data>
+  <data name="User.ChangePasswordPage.CurrentPassword" xml:space="preserve">
+    <value>លេខសំងាត់ចាស់</value>
+  </data>
+  <data name="User.ChangePasswordPage.NewPassword" xml:space="preserve">
+    <value>លេខសំងាត់ថ្មី</value>
+  </data>
+  <data name="User.ChangePasswordPage.RepeatNewPassword" xml:space="preserve">
+    <value>បំពេញលេខសំងាត់ថ្មីម្តងទៀត</value>
+  </data>
+  <data name="User.ChangePasswordPage.ResetPasswordBtn" xml:space="preserve">
+    <value>កែសម្រួលលេខសំងាត់</value>
+  </data>
+  <data name="User.ChangePasswordPage.SubTitle" xml:space="preserve">
+    <value>ប្រសិនបើអ្នកមិនចាំលេខសម្ងាត់បច្ចុប្បន្នរបស់អ្នកទេ សូម {0} ហើយប្រើ តំណ ទំនាក់ទំនងមកយើង" នៅលើទំព័រចូលទៅកាន់</value>
+  </data>
+  <data name="User.ChangePasswordPage.Title" xml:space="preserve">
+    <value>កែសម្រួលលេខសំងាត់</value>
+  </data>
+  <data name="User.CheckOutLoginPage.CopyRight" xml:space="preserve">
+    <value>©រក្សាសិទ្ធិ {0}-{1}។ រក្សា​រ​សិទ្ធ​គ្រប់យ៉ាង។</value>
+  </data>
+  <data name="User.CheckOutLoginPage.Password" xml:space="preserve">
+    <value>លេខសំងាត់</value>
+  </data>
+  <data name="User.CheckOutLoginPage.SignIn" xml:space="preserve">
+    <value>ចូលទៅកាន់</value>
+  </data>
+  <data name="User.CheckOutLoginPage.SignInToPay" xml:space="preserve">
+    <value>ចូលទៅកាន់ដើម្បីទូទាត់</value>
+  </data>
+  <data name="User.CheckOutLoginPage.Title" xml:space="preserve">
+    <value>ចូលទៅកាន់</value>
+  </data>
+  <data name="User.CheckOutLoginPage.UserName" xml:space="preserve">
+    <value>អត្តសញ្ញាណអ្នកប្រើ</value>
+  </data>
+  <data name="User.ContactUsPage.Email" xml:space="preserve">
+    <value>អ៊ីមែល​របស់​អ្នក</value>
+  </data>
+  <data name="User.ContactUsPage.Message" xml:space="preserve">
+    <value>សារ</value>
+  </data>
+  <data name="User.ContactUsPage.SendMessage" xml:space="preserve">
+    <value>សារស្វាគមន៍</value>
+  </data>
+  <data name="User.ContactUsPage.Subject" xml:space="preserve">
+    <value>ប្រធានបទ</value>
+  </data>
+  <data name="User.ContactUsPage.Title" xml:space="preserve">
+    <value>ទំនាក់ទំនងមកយើង</value>
+  </data>
+  <data name="User.GetUserPage.Action" xml:space="preserve">
+    <value>សកម្មភាព</value>
+  </data>
+  <data name="User.GetUserPage.AddNewAdmin" xml:space="preserve">
+    <value>បន្ថែមអ្នកគ្រប់គ្រង</value>
+  </data>
+  <data name="User.GetUserPage.ConfirmDelUser" xml:space="preserve">
+    <value>តើអ្នកប្រាកដថាចង់លុបទេ?</value>
+  </data>
+  <data name="User.GetUserPage.Email" xml:space="preserve">
+    <value>អ៊ីមែល</value>
+  </data>
+  <data name="User.GetUserPage.FirstName" xml:space="preserve">
+    <value>នាមឈ្មោះ</value>
+  </data>
+  <data name="User.GetUserPage.LastName" xml:space="preserve">
+    <value>នាមត្រកូល</value>
+  </data>
+  <data name="User.GetUserPage.SubTitle" xml:space="preserve">
+    <value>គ្រប់គ្រងអ្នកគ្រប់គ្រង</value>
+  </data>
+  <data name="User.GetUserPage.Title" xml:space="preserve">
+    <value>អ្នកគ្រប់គ្រង</value>
+  </data>
+  <data name="User.GetUserPage.UserName" xml:space="preserve">
+    <value>អត្តសញ្ញាណអ្នកប្រើ</value>
+  </data>
+  <data name="User.LoginPage.ForgotPassword" xml:space="preserve">
+    <value>កំណត់ពាក្យសម្ងាត់</value>
+  </data>
+  <data name="User.LoginPage.ContactUs" xml:space="preserve">
+    <value>ទំនាក់ទំនងមកយើង</value>
+  </data>
+  <data name="User.LoginPage.ModalConctactUsEmail" xml:space="preserve">
+    <value>អ៊ីមែល​របស់​អ្នក</value>
+  </data>
+  <data name="User.LoginPage.ModalConctactUsMessage" xml:space="preserve">
+    <value>សារ</value>
+  </data>
+  <data name="User.LoginPage.ModalConctactUsSendMessage" xml:space="preserve">
+    <value>ផ្ញើសារ</value>
+  </data>
+  <data name="User.LoginPage.ModalConctactUsSubject" xml:space="preserve">
+    <value>ប្រធានបទ</value>
+  </data>
+  <data name="User.LoginPage.Title" xml:space="preserve">
+    <value>ចូលទៅកាន់</value>
+  </data>
+  <data name="User.ProfilePage.AccessToKYC" xml:space="preserve">
+    <value>ចូលដំណើរការទម្រង់ KYC</value>
+  </data>
+  <data name="User.ProfilePage.Alias" xml:space="preserve">
+    <value>ឈ្មោះហៅក្រៅ:</value>
+  </data>
+  <data name="User.ProfilePage.Aliases" xml:space="preserve">
+    <value>ឈ្មោះហៅក្រៅ:</value>
+  </data>
+  <data name="User.ProfilePage.Cancel" xml:space="preserve">
+    <value>បោះបង់</value>
+  </data>
+  <data name="User.ProfilePage.CreatePayment" xml:space="preserve">
+    <value>ធ្វើការទូទាត់ (តាមរយៈសេវាបណ្ដាញ)</value>
+  </data>
+  <data name="User.ProfilePage.Customer" xml:space="preserve">
+    <value>អតិថិជន</value>
+  </data>
+  <data name="User.ProfilePage.Email" xml:space="preserve">
+    <value>អ៊ីមែល:</value>
+  </data>
+  <data name="User.ProfilePage.FirstName" xml:space="preserve">
+    <value>នាមឈ្មោះ:</value>
+  </data>
+  <data name="User.ProfilePage.Grants" xml:space="preserve">
+    <value>ទទួលសិទ្ធិ</value>
+  </data>
+  <data name="User.ProfilePage.LastName" xml:space="preserve">
+    <value>នាមត្រកូល:</value>
+  </data>
+  <data name="User.ProfilePage.Payments" xml:space="preserve">
+    <value>ការទូទាត់</value>
+  </data>
+  <data name="User.ProfilePage.Save" xml:space="preserve">
+    <value>រក្សាទុក</value>
+  </data>
+  <data name="CommonObject.View" xml:space="preserve">
+    <value>មើល</value>
+  </data>
+  <data name="User.ProfilePage.SubmitPaymentText" xml:space="preserve">
+    <value>ដាក់ស្នើការទូទាត់ប្រាក់រហូតដល់: $ 0.00 USD [អាចបដិសេធការត្រួតពិនិត្យពីរដង]</value>
+  </data>
+  <data name="User.ProfilePage.Tab1" xml:space="preserve">
+    <value>ព័ត៌មានរបស់ខ្ញុំ</value>
+  </data>
+  <data name="User.ProfilePage.Tab2" xml:space="preserve">
+    <value>សិទ្ធិនិងដែនកំណត់</value>
+  </data>
+  <data name="User.ProfilePage.Title" xml:space="preserve">
+    <value>ព័ត៌មានរបស់ខ្ញុំ</value>
+  </data>
+  <data name="User.ProfilePage.UserInfo" xml:space="preserve">
+    <value>ព័ត៌មានអ្នកប្រើ</value>
+  </data>
+  <data name="User.ProfilePage.UserName" xml:space="preserve">
+    <value>អត្តសញ្ញាណអ្នកប្រើ</value>
+  </data>
+  <data name="Bank.BankController.AddBank.ViewBagMessage" xml:space="preserve">
+    <value>បន្ថែមធនាគារបានដោយជោគជ័យ។</value>
+  </data>
+  <data name="Bank.BankController.AddBankBankAndInstruction.Title" xml:space="preserve">
+    <value>បន្ថែមធនាគារ</value>
+  </data>
+  <data name="Bank.BankController.AddBankBankAndInstruction.ViewBagMessage" xml:space="preserve">
+    <value>បន្ថែមធនាគារបានដោយជោគជ័យ។</value>
+  </data>
+  <data name="Bank.BankController.AddCurrency.ViewBagMessage" xml:space="preserve">
+    <value>បន្ថែមរូបិយប័ណ្ណបានដោយជោគជ័យ។</value>
+  </data>
+  <data name="Bank.BankController.AddCurrencyBankAndInstruction.Title" xml:space="preserve">
+    <value>បន្ថែមរូបិយប័ណ្ណ</value>
+  </data>
+  <data name="Bank.BankController.AddCurrencyBankAndInstruction.ViewBagMessage" xml:space="preserve">
+    <value>បន្ថែមរូបិយប័ណ្ណបានដោយជោគជ័យ។</value>
+  </data>
+  <data name="Bank.BankController.DeleteBank.ViewMessageSuccess" xml:space="preserve">
+    <value>លុបធនាគារបានដោយជោគជ័យ។</value>
+  </data>
+  <data name="Bank.BankController.DeleteBank.ViewMessageUnSuccess" xml:space="preserve">
+    <value>លុបធនាគារមិនបានជោគជ័យ។</value>
+  </data>
+  <data name="Bank.BankController.DeleteCurrency.ViewMessageSuccess" xml:space="preserve">
+    <value>លុបរូបិយប័ណ្ណបានដោយជោគជ័យ។</value>
+  </data>
+  <data name="Bank.BankController.DeleteCurrency.ViewMessageUnSuccess" xml:space="preserve">
+    <value>លុបរូបិយប័ណ្ណមិនបានជោគជ័យ។</value>
+  </data>
+  <data name="Bank.BankController.EditBank.ViewMessage" xml:space="preserve">
+    <value>ធ្វើបច្ចុប្បន្នភាពព័ត៌មានធនាគារបានដោយជោគជ័យ។</value>
+  </data>
+  <data name="Bank.BankController.EditCurrency.ViewMessage" xml:space="preserve">
+    <value>ធ្វើបច្ចុប្បន្នភាពព័ត៌មានរូបិយប័ណ្ណបានដោយជោគជ័យ។</value>
+  </data>
+  <data name="Bank.BankController.UpdateCurrency.ViewBagMessage" xml:space="preserve">
+    <value>ធ្វើបច្ចុប្បន្នភាពព័ត៌មានរូបិយប័ណ្ណបានដោយជោគជ័យ។</value>
+  </data>
+  <data name="ContactUs.ContactUsController.ContactUs.DbError" xml:space="preserve">
+    <value>មានកំហុសDB។ សារបានផ្ញើ</value>
+  </data>
+  <data name="ContactUs.ContactUsController.ContactUs.MailAndDbError" xml:space="preserve">
+    <value>ការកត់ត្រាមិនត្រូវបានបន្ថែមនៅលើ DB និងសំបុត្រមិនបានផ្ញើ</value>
+  </data>
+  <data name="ContactUs.ContactUsController.ContactUs.MailSendingError" xml:space="preserve">
+    <value>ការកត់ត្រាត្រូវបានបន្ថែមនៅលើ DB ប៉ុន្តែការផ្ញើសំបុត្រមានកំហុស</value>
+  </data>
+  <data name="ContactUs.ContactUsController.ContactUs.MailToError" xml:space="preserve">
+    <value>សំបុត្រផ្ញើទៅទទេ</value>
+  </data>
+  <data name="ContactUs.ContactUsController.ContactUs.Ok" xml:space="preserve">
+    <value>យល់ព្រម</value>
+  </data>
+  <data name="ContactUs.ContactUsController.Index.ChoseCategory" xml:space="preserve">
+    <value>សូមជ្រើសរើសប្រភេទ</value>
+  </data>
+  <data name="ContactUs.ContactUsController.Index.ContactUs" xml:space="preserve">
+    <value>ទំនាក់ទំនងមកយើង</value>
+  </data>
+  <data name="ContactUs.ContactUsController.Index.MailIsNotSend" xml:space="preserve">
+    <value>សំបុត្រមិនត្រូវបានផ្ញើ</value>
+  </data>
+  <data name="ContactUs.ContactUsController.Index.MsgIsEmpty" xml:space="preserve">
+    <value>សារមិនអាចទទេបានទេ</value>
+  </data>
+  <data name="ContactUs.ContactUsController.Index.SelectCategory" xml:space="preserve">
+    <value>សូមជ្រើសរើសប្រភេទ</value>
+  </data>
+  <data name="ContactUs.ContactUsController.Index.SubjIsEmpty" xml:space="preserve">
+    <value>ប្រធានបទមិនអាចទទេបានទេ</value>
+  </data>
+  <data name="HomeAccountStatementPage.AccountText" xml:space="preserve">
+    <value>សូមជ្រើសរើសរូបិយប័ណ្ណជាមុនសិន</value>
+  </data>
+  <data name="UIHelper.PrepareAvaliableBank.SelectBank" xml:space="preserve">
+    <value>ជ្រើសរើសធនាគារ</value>
+  </data>
+  <data name="User.RegFailureNewAdminPage.BodyText" xml:space="preserve">
+    <value>គណនីមួយនេះត្រូវបានបង្កើតរួចហើយ។ សូមចូលទៅកាន់នៅផ្នែកខាងក្រោម។</value>
+  </data>
+  <data name="User.RegFailureNewAdminPage.Login" xml:space="preserve">
+    <value>ចូលទៅកាន់</value>
+  </data>
+  <data name="User.RegFailureNewAdminPage.Title" xml:space="preserve">
+    <value>ការចុះឈ្មោះបរាជ័យ</value>
+  </data>
+  <data name="User.RegNewAdminPage.CreatePassword" xml:space="preserve">
+    <value>បង្កើតលេខសំងាត់</value>
+  </data>
+  <data name="User.RegNewAdminPage.Password" xml:space="preserve">
+    <value>លេខសំងាត់អ្នកប្រើ</value>
+  </data>
+  <data name="User.RegNewAdminPage.RepeatPassword" xml:space="preserve">
+    <value>លេខសំងាត់អ្នកប្រើម្តងទៀត</value>
+  </data>
+  <data name="User.RegNewAdminPage.Title" xml:space="preserve">
+    <value>ចុះឈ្មោះអ្នកគ្រប់គ្រងថ្មី</value>
+  </data>
+  <data name="User.RegNewAdminPage.WelcomeMsgText" xml:space="preserve">
+    <value>សូមស្វាគមន៍, &lt;b&gt; {0} &lt;/b&gt;!​ &lt;br/&gt; សូមបង្កើតលេខសម្ងាត់របស់អ្នកមុនពេលចូលប្រើប្រព័ន្ធ។</value>
+  </data>
+  <data name="WelcomeMessage.AddWelcomeMessagePage.Add" xml:space="preserve">
+    <value>បន្ថែម</value>
+  </data>
+  <data name="WelcomeMessage.AddWelcomeMessagePage.BackToList" xml:space="preserve">
+    <value>ត្រលប់ទៅតារាង</value>
+  </data>
+  <data name="WelcomeMessage.AddWelcomeMessagePage.SubTitle" xml:space="preserve">
+    <value>បន្ថែមសារស្វាគមន៍ផ្ទាល់ខ្លួន</value>
+  </data>
+  <data name="WelcomeMessage.AddWelcomeMessagePage.Title" xml:space="preserve">
+    <value>សារស្វាគមន៍</value>
+  </data>
+  <data name="WelcomeMessage.AddWelcomeMessagePage.WmForUser" xml:space="preserve">
+    <value>សារស្វាគមន៍សំរាប់អ្នកប្រើប្រាស់</value>
+  </data>
+  <data name="WelcomeMessage.AddWelcomeMessagePage.WmText" xml:space="preserve">
+    <value>អត្ថបទសារស្វាគមន៍</value>
+  </data>
+  <data name="WelcomeMessage.EditWelcomeMessagePage.BackToList" xml:space="preserve">
+    <value>ត្រលប់ទៅតារាង</value>
+  </data>
+  <data name="WelcomeMessage.EditWelcomeMessagePage.Save" xml:space="preserve">
+    <value>រក្សាទុក</value>
+  </data>
+  <data name="WelcomeMessage.EditWelcomeMessagePage.SubTitle" xml:space="preserve">
+    <value>កែសម្រួលសារស្វាគមន៍</value>
+  </data>
+  <data name="WelcomeMessage.EditWelcomeMessagePage.Title" xml:space="preserve">
+    <value>សារស្វាគមន៍</value>
+  </data>
+  <data name="WelcomeMessage.EditWelcomeMessagePage.WmForUser" xml:space="preserve">
+    <value>សារស្វាគមន៍សំរាប់អ្នកប្រើប្រាស់</value>
+  </data>
+  <data name="WelcomeMessage.EditWelcomeMessagePage.WmId" xml:space="preserve">
+    <value>អត្តលេខសារស្វាគមន៍</value>
+  </data>
+  <data name="WelcomeMessage.EditWelcomeMessagePage.WmText" xml:space="preserve">
+    <value>អត្ថបទសារស្វាគមន៍</value>
+  </data>
+  <data name="WelcomeMessage.GetWelcomeMessagesPage.Action" xml:space="preserve">
+    <value>សកម្មភាព</value>
+  </data>
+  <data name="WelcomeMessage.GetWelcomeMessagesPage.DefWM" xml:space="preserve">
+    <value>សារស្វាគមន៍លំនាំដើម</value>
+  </data>
+  <data name="WelcomeMessage.GetWelcomeMessagesPage.Id" xml:space="preserve">
+    <value>អត្តលេខ</value>
+  </data>
+  <data name="WelcomeMessage.GetWelcomeMessagesPage.IsDefMsg" xml:space="preserve">
+    <value>សារលំនាំដើម?</value>
+  </data>
+  <data name="WelcomeMessage.GetWelcomeMessagesPage.MsgText" xml:space="preserve">
+    <value>អត្ថបទសារ</value>
+  </data>
+  <data name="WelcomeMessage.GetWelcomeMessagesPage.SubTitle" xml:space="preserve">
+    <value>បញ្ជីនៃសារស្វាគមន៍</value>
+  </data>
+  <data name="WelcomeMessage.GetWelcomeMessagesPage.Title" xml:space="preserve">
+    <value>សារស្វាគមន៍</value>
+  </data>
+  <data name="WireInstruction.AddWireInstructionPage.Add" xml:space="preserve">
+    <value>បន្ថែម</value>
+  </data>
+  <data name="WireInstruction.AddWireInstructionPage.BackToList" xml:space="preserve">
+    <value>ត្រលប់ទៅតារាង</value>
+  </data>
+  <data name="WireInstruction.AddWireInstructionPage.CCY" xml:space="preserve">
+    <value>រូបិយប័ណ្ណ</value>
+  </data>
+  <data name="WireInstruction.AddWireInstructionPage.CharsMax" xml:space="preserve">
+    <value>តួអក្សរអតិបរមា</value>
+  </data>
+  <data name="WireInstruction.AddWireInstructionPage.SubTitle" xml:space="preserve">
+    <value>បន្ថែមការណែនាំក្នុងការបង់ប្រាក់</value>
+  </data>
+  <data name="WireInstruction.AddWireInstructionPage.Title" xml:space="preserve">
+    <value>ការណែនាំក្នុងការបង់ប្រាក់</value>
+  </data>
+  <data name="WireInstruction.AddWireInstructionPage.WireInstr" xml:space="preserve">
+    <value>ការណែនាំក្នុងការបង់ប្រាក់</value>
+  </data>
+  <data name="WireInstruction.EditWireInstructionPage.BackToList" xml:space="preserve">
+    <value>ត្រលប់ទៅតារាង</value>
+  </data>
+  <data name="WireInstruction.EditWireInstructionPage.CharsMax" xml:space="preserve">
+    <value>តួអក្សរអតិបរមា</value>
+  </data>
+  <data name="WireInstruction.EditWireInstructionPage.Save" xml:space="preserve">
+    <value>រក្សាទុក</value>
+  </data>
+  <data name="WireInstruction.EditWireInstructionPage.SubTitle" xml:space="preserve">
+    <value>កែសម្រួលការណែនាំក្នុងការបង់ប្រាក់</value>
+  </data>
+  <data name="WireInstruction.EditWireInstructionPage.Title" xml:space="preserve">
+    <value>ការណែនាំក្នុងការបង់ប្រាក់</value>
+  </data>
+  <data name="WireInstruction.EditWireInstructionPage.WireInstr" xml:space="preserve">
+    <value>ការណែនាំក្នុងការបង់ប្រាក់</value>
+  </data>
+  <data name="WireInstruction.EditWireInstructionPage.WireInstrId" xml:space="preserve">
+    <value>អត្តលេខការណែនាំក្នុងការបង់ប្រាក់</value>
+  </data>
+  <data name="WireInstruction.GetWireInstructionsPage.Action" xml:space="preserve">
+    <value>សកម្មភាព</value>
+  </data>
+  <data name="WireInstruction.GetWireInstructionsPage.BankAndCurrency" xml:space="preserve">
+    <value>ធនាគារនិងរូបិយបណ្ណ</value>
+  </data>
+  <data name="WireInstruction.GetWireInstructionsPage.BankWireInstructions" xml:space="preserve">
+    <value>ការណែនាំក្នុងការបង់ប្រាក់ធនាគារ</value>
+  </data>
+  <data name="WireInstruction.GetWireInstructionsPage.Id" xml:space="preserve">
+    <value>អត្តលេខ</value>
+  </data>
+  <data name="WireInstruction.GetWireInstructionsPage.NewWireInstr" xml:space="preserve">
+    <value>បង្កើតការណែនាំក្នុងការបង់ប្រាក់ថ្មី</value>
+  </data>
+  <data name="WireInstruction.GetWireInstructionsPage.SubTitle" xml:space="preserve">
+    <value>បញ្ជីនៃការណែនាំក្នុងការបង់ប្រាក់</value>
+  </data>
+  <data name="WireInstruction.GetWireInstructionsPage.Title" xml:space="preserve">
+    <value>ការណែនាំក្នុងការបង់ប្រាក់</value>
+  </data>
+  <data name="Exchange.ExchangeController.CurrencyExchange.EmptyUserData" xml:space="preserve">
+    <value>លុបទិន្នន័យអ្នកប្រើ</value>
+  </data>
+  <data name="Exchange.ExchangeController.CurrencyExchange.ChangeCurrency" xml:space="preserve">
+    <value>សូមប្តូររូបិយប័ណ្ណយ៉ាងហោចណាស់មួយ</value>
+  </data>
+  <data name="Exchange.ExchangeController.CurrencyExchange.EnterAmount" xml:space="preserve">
+    <value>សូមបញ្ចូលចំនួនទឹកប្រាក់ដែលអ្នកចង់ផ្ទេរ</value>
+  </data>
+  <data name="Exchange.ExchangeController.CurrencyExchange.NoCorrectCurrency" xml:space="preserve">
+    <value>មិនមានរូបិយប័ណ្ណត្រឹមត្រូវ</value>
+  </data>
+  <data name="Exchange.ExchangeController.CurrencyExchange.EqualCurrencyError" xml:space="preserve">
+    <value>សូមប្តូររូបិយប័ណ្ណយ៉ាងហោចណាស់មួយ។ រូបិយប័ណ្ណគឺមានតំលៃស្មើគ្នា</value>
+  </data>
+  <data name="Exchange.ExchangeController.CurrencyExchange.TempDataIsNull" xml:space="preserve">
+    <value>ទិន្នន័យបណ្ដោះអាសន្នគឺគ្មានតម្លៃ</value>
+  </data>
+  <data name="FavoriteCurrencies.FavoriteCurrenciesController.AddToFavoriteCurrency.AddSuccess" xml:space="preserve">
+    <value>ឈ្មោះហៅក្រៅត្រូវបានបន្ថែមដោយជោគជ័យ។</value>
+  </data>
+  <data name="FavoriteCurrencies.FavoriteCurrenciesController.AddToFavoriteCurrency.AddNoSuccess" xml:space="preserve">
+    <value>ឈ្មោះហៅក្រៅមិនបានបន្ថែមដោយជោគជ័យ។</value>
+  </data>
+  <data name="FavoriteCurrencies.FavoriteCurrenciesController.DelToFavoriteCurrency.Success" xml:space="preserve">
+    <value>ឈ្មោះហៅក្រៅត្រូវបានលុបដោយជោគជ័យ។</value>
+  </data>
+  <data name="FavoriteCurrencies.FavoriteCurrenciesController.DelToFavoriteCurrency.NoSuccess" xml:space="preserve">
+    <value>ឈ្មោះហៅក្រៅមិនបានលុបដោយជោគជ័យ។</value>
+  </data>
+  <data name="Funding.FundingController.PrepareAvalBanks.SelectBank" xml:space="preserve">
+    <value>ជ្រើសរើសរូបិយប័ណ្ណនិងធនាគារ</value>
+  </data>
+  <data name="CommonObject.BrowseFile" xml:space="preserve">
+    <value>រកឯកសារ</value>
+  </data>
+  <data name="CommonObject.NoFile" xml:space="preserve">
+    <value>មិនមានឯកសារបានជ្រើសយក</value>
+  </data>
+  <data name="Funding.FundingController.DeleteBankDeposit.Success" xml:space="preserve">
+    <value>ការដាក់ប្រាក់ពីធនាគារត្រូវបានលុបដោយជោគជ័យ</value>
+  </data>
+  <data name="Bank.BankController.GetBankAndWireInstructions.Success" xml:space="preserve">
+    <value>ការណែនាំក្នុងការបង់ប្រាក់ត្រូវបានលុបដោយជោគជ័យ</value>
+  </data>
+  <data name="Funding.FundingController.UpdateFundsRequest.Success" xml:space="preserve">
+    <value>ស្ថានភាពសំណើថវិការត្រូវបានធ្វើបច្ចុប្បន្នភាពដោយជោគជ័យ។</value>
+  </data>
+  <data name="Home.HomeController.CheckoutIndex.ApplicationError" xml:space="preserve">
+    <value>កំហុសកម្មវិធី</value>
+  </data>
+  <data name="Payment.PaymentController.Create.NeedToSetCurrency" xml:space="preserve">
+    <value>អ្នកត្រូវកំណត់តម្លៃរូបិយប័ណ្ណ</value>
+  </data>
+  <data name="Payment.PaymentController.GetImageLink.PaymentDetails" xml:space="preserve">
+    <value>ព័ត៌មានអំពីការទូទាត់</value>
+  </data>
+  <data name="Payment.PaymentController.GetImageLink.PaymentReference" xml:space="preserve">
+    <value>សេចក្ដីយោងការទូទាត់:</value>
+  </data>
+  <data name="Payment.PaymentController.GetImageLink.Status" xml:space="preserve">
+    <value>ស្ថានភាព:</value>
+  </data>
+  <data name="Payment.PaymentController.GetImageLink.From" xml:space="preserve">
+    <value>ពី:</value>
+  </data>
+  <data name="Payment.PaymentController.GetImageLink.To" xml:space="preserve">
+    <value>ទៅ:</value>
+  </data>
+  <data name="Payment.PaymentController.GetImageLink.Date" xml:space="preserve">
+    <value>កាលបរិច្ឆេទ:</value>
+  </data>
+  <data name="Payment.PaymentController.GetImageLink.Currency" xml:space="preserve">
+    <value>រូបិយប័ណ្ណ:</value>
+  </data>
+  <data name="Payment.PaymentController.GetImageLink.Amount" xml:space="preserve">
+    <value>ចំនួន:</value>
+  </data>
+  <data name="Payment.PaymentController.GetImageLink.Invoice" xml:space="preserve">
+    <value>វិក័យប័ត្រ:</value>
+  </data>
+  <data name="Payment.PaymentController.GetImageLink.Memo" xml:space="preserve">
+    <value>ចំនាំ:</value>
+  </data>
+  <data name="ProofDoc.ProofDocController.UploadProofDoc.ErrCanntCreateBankDeposit" xml:space="preserve">
+    <value>កំហុស: មិនអាចបង្កើតប្រាក់តំកល់ធនាគារបានទេ</value>
+  </data>
+  <data name="ProofDoc.ProofDocController.UploadProofDoc.ProofDocUploadAt" xml:space="preserve">
+    <value>ឯកសារភស្តុតាងត្រូវបានបញ្ចូលនៅ</value>
+  </data>
+  <data name="ProofDoc.ProofDocController.UploadProofDoc.UploadSuccessifully" xml:space="preserve">
+    <value>ឯកសារត្រូវបានបញ្ចូលដោយជោគជ័យ។</value>
+  </data>
+  <data name="ProofDoc.ProofDocController.RemoveProofDoc.DelSuccess" xml:space="preserve">
+    <value>ឯកសារភស្តុតាងត្រូវបានលុបចោលដោយជោគជ័យ</value>
+  </data>
+  <data name="User.UserController.CreateNewAlias.AddSuccess" xml:space="preserve">
+    <value>ឈ្មោះហៅក្រៅត្រូវបានបន្ថែមដោយជោគជ័យ។</value>
+  </data>
+  <data name="User.UserController.CreateNewAlias.ErrAdded" xml:space="preserve">
+    <value>សូមអភ័យទោស ឈ្មោះហៅក្រៅមួយនោះត្រូវបានប្រើរួចហើយ។​ សូមព្យាយាមម្តងទៀត។</value>
+  </data>
+  <data name="User.UserController.Login.UpdateLastLogin" xml:space="preserve">
+    <value>កាលបរិច្ឆេទចូលចុងក្រោយរបស់អ្នកត្រូវបានធ្វើបច្ចុប្បន្នភាពដោយជោគជ័យ។</value>
+  </data>
+  <data name="User.UserController.Login.PasswordNotMatch" xml:space="preserve">
+    <value>អត្តសញ្ញាណអ្នកប្រើនិងលេខសំងាត់មិនត្រឹមត្រូវ</value>
+  </data>
+  <data name="User.UserController.CheckoutLogin.ApplicationError" xml:space="preserve">
+    <value>កំហុសកម្មវិធី:
+
+[{0}]</value>
+  </data>
+  <data name="User.UserController.CheckoutLogin.OrderError" xml:space="preserve">
+    <value>លេខកូដសញ្ញាបញ្ជាមិនត្រូវគ្នា</value>
+  </data>
+  <data name="User.UserController.CheckoutLogin.ApplicationErrorEmptyParam" xml:space="preserve">
+    <value>កំហុសកម្មវិធី</value>
+  </data>
+  <data name="User.UserController.RegisterNewAdmin.PasswordsNotMatch" xml:space="preserve">
+    <value>លេខសំងាត់មិនត្រូវគ្នា</value>
+  </data>
+  <data name="User.UserController.RegisterNewAdmin.UserUnregistredInSystem" xml:space="preserve">
+    <value>អត្តសញ្ញាណអ្នកប្រើមិនបានចុះឈ្មោះនៅក្នុងប្រព័ន្ធ</value>
+  </data>
+  <data name="User.UserController.AddAdminUser.AddSuccessifully" xml:space="preserve">
+    <value>អត្តសញ្ញាណអ្នកប្រើត្រូវបានបន្ថែមដោយជោគជ័យ។</value>
+  </data>
+  <data name="User.UserController.AddAdminUser.AddUnSuccessifully" xml:space="preserve">
+    <value>អត្តសញ្ញាណអ្នកប្រើមិនត្រូវបានបន្ថែម</value>
+  </data>
+  <data name="User.UserController.ChangePassword.PassNotMatched" xml:space="preserve">
+    <value>លេខសម្ងាត់បច្ចុប្បន្នមិនត្រឹមត្រូវទេ។ ប្រសិនបើអ្នកភ្លេចលេខសម្ងាត់របស់អ្នកសូម &lt;a href="{0}"&gt; ចាកចេញ &lt;/a&gt; និងប្រើlink "ភ្លេចលេខសម្ងាត់" នៅលើទំព័រចូល។</value>
+  </data>
+  <data name="User.UserController.ChangePassword.NeedEightCharacterLong" xml:space="preserve">
+    <value>លេខសម្ងាត់របស់អ្នកត្រូវតែមានយ៉ាងតិច 8 តួ</value>
+  </data>
+  <data name="User.UserController.ChangePassword.NeedCharacterAndCapitalLetterAndNumber" xml:space="preserve">
+    <value>លេខសម្ងាត់របស់អ្នកត្រូវតែមានយ៉ាងហោចណាស់តួលេខមួយតួឬច្រើននិងអក្សរធំមួយឬច្រើនតួ ហើយត្រូវមានតួអក្សរពិសេសមួយឬច្រើនតួ</value>
+  </data>
+  <data name="User.UserController.ChangePassword.NeedCapitalLetterAndSpecCharacter" xml:space="preserve">
+    <value>លេខសម្ងាត់របស់អ្នកត្រូវតែមានយ៉ាងហោចណាស់អក្សរធំមួយឬច្រើនតួ ហើយត្រូវមានតួអក្សរពិសេសមួយឬច្រើនតួ</value>
+  </data>
+  <data name="User.UserController.ChangePassword.NeedSpecCharacter" xml:space="preserve">
+    <value>លេខសម្ងាត់របស់អ្នកត្រូវតែមានយ៉ាងហោចណាស់តួអក្សរពិសេសមួយតួ</value>
+  </data>
+  <data name="User.UserController.ChangePassword.Success" xml:space="preserve">
+    <value>លេខសម្ងាត់បានប្តូរដោយជោគជ័យ។</value>
+  </data>
+  <data name="User.UserController.ChangePassword.UnSuccess" xml:space="preserve">
+    <value>លេខសម្ងាត់និងលេខសំងាត់ម្តងទៀតមិនត្រូវគ្នាទេ។ លេខសម្ងាត់របស់អ្នកមិនត្រូវបានផ្លាស់ប្តូរទេ។</value>
+  </data>
+  <data name="WelcomeMessage.WelcomeMessageController.AddWelcomeMessage.AddSuccessfully" xml:space="preserve">
+    <value>សារស្វាគមន៍បានបន្ថែមដោយជោគជ័យ។</value>
+  </data>
+  <data name="WelcomeMessage.WelcomeMessageController.EditWelcomeMessage.AddSuccessfully" xml:space="preserve">
+    <value>សារស្វាគមន៍បានធ្វើបច្ចុប្បន្នភាពដោយជោគជ័យ។</value>
+  </data>
+  <data name="WelcomeMessage.WelcomeMessageController.DeleteWelcomeMessage.DeletedSuccessfully" xml:space="preserve">
+    <value>សារស្វាគមន៍បានលុបដោយជោគជ័យ។</value>
+  </data>
+  <data name="WireInstruction.WireInstructionController.GetPrintFriendlyInstruction.ErrBankCurrencyIdIsNull" xml:space="preserve">
+    <value>លេខសម្គាល់រូបិយប័ណ្ណធនាគារគឺគ្មានតម្លៃ</value>
+  </data>
+  <data name="WireInstruction.WireInstructionController.PrepareAvailableBankCurrencies.SelectCurrencyAndBank" xml:space="preserve">
+    <value>ជ្រើសរើសរូបិយប័ណ្ណនិងធនាគារ</value>
+  </data>
+  <data name="WireInstruction.WireInstructionController.AddWireInstruction.CreatedSuccessfully" xml:space="preserve">
+    <value>ការណែនាំក្នុងការបង់ប្រាក់ត្រូវបានបង្កើតដោយជោគជ័យ។</value>
+  </data>
+  <data name="WireInstruction.WireInstructionController.EditWireInstruction.UpdatedSuccessfully" xml:space="preserve">
+    <value>ការណែនាំក្នុងការបង់ប្រាក់ត្រូវបានធ្វើបច្ចុប្បន្នភាពដោយជោគជ័យ។</value>
+  </data>
+  <data name="WireInstruction.WireInstructionController.DeleteWireInstruction.DeletedSuccessfully" xml:space="preserve">
+    <value>ការណែនាំក្នុងការបង់ប្រាក់ត្រូវបានលុបដោយជោគជ័យ។</value>
+  </data>
+  <data name="Bank.BankRepository.AddBank.AddSuccess" xml:space="preserve">
+    <value>បានបន្ថែមព័ត៌មានធនាគារទៅមូលដ្ឋានទិន្នន័យដោយជោគជ័យ</value>
+  </data>
+  <data name="Bank.BankRepository.AddBank.AddUnSuccess" xml:space="preserve">
+    <value>មិនបានបន្ថែមព័ត៌មានធនាគារទៅមូលដ្ឋានទិន្នន័យដោយជោគជ័យ</value>
+  </data>
+  <data name="Bank.BankRepository.AddBankCurrencies.AddSuccess" xml:space="preserve">
+    <value>បានបន្ថែមព័ត៌មានធនាគារទៅមូលដ្ឋានទិន្នន័យដោយជោគជ័យ</value>
+  </data>
+  <data name="Bank.BankRepository.AddBankCurrencies.AddUnSuccess" xml:space="preserve">
+    <value>មិនបានបន្ថែមព័ត៌មានធនាគារទៅមូលដ្ឋានទិន្នន័យដោយជោគជ័យ</value>
+  </data>
+  <data name="ContactUs.ContactUsRepository.AddContactUs.Successfull" xml:space="preserve">
+    <value>បានបន្ថែមព័ត៌មានកំណត់ត្រាទៅមូលដ្ឋានទិន្នន័យដោយជោគជ័យ</value>
+  </data>
+  <data name="ContactUs.ContactUsRepository.AddContactUs.UnSuccess" xml:space="preserve">
+    <value>មិនអាចបន្ថែមព័ត៌មានកំណត់ត្រាទៅមូលដ្ឋានទិន្នន័យ</value>
+  </data>
+  <data name="ContactUs.ContactUsRepository.UpdateContactUs.Success" xml:space="preserve">
+    <value>ព័ត៌មានទំនាក់ទំនងមកយើងត្រូវបានធ្វើបច្ចុប្បន្នភាពដោយជោគជ័យនៅក្នុងមូលដ្ឋានទិន្នន័យ</value>
+  </data>
+  <data name="Merchants.MerchantsRepository.UpdateMerchant.Success" xml:space="preserve">
+    <value>ព័ត៌មានពាណិជ្ជករបានធ្វើបច្ចុប្បន្នភាពដោយជោគជ័យនៅក្នុងមូលដ្ឋានទិន្នន័យ</value>
+  </data>
+  <data name="ContactUs.ContactUsRepository.UpdateContactUs.UnSuccess" xml:space="preserve">
+    <value>ព័ត៌មានទំនាក់ទំនងមកយើងមិនអាចធ្វើបច្ចុប្បន្នភាពបានទេ</value>
+  </data>
+  <data name="Merchants.MerchantsRepository.UpdateMerchant.UnSuccess" xml:space="preserve">
+    <value>ព័ត៌មានពាណិជ្ជករមិនអាចធ្វើបច្ចុប្បន្នភាពបានទេ</value>
+  </data>
+  <data name="ContactUs.ContactUsRepository.DeleteContactUs.Success" xml:space="preserve">
+    <value>ព័ត៌មានទំនាក់ទំនងមកយើងបានលុបដោយជោគជ័យ។</value>
+  </data>
+  <data name="ContactUs.ContactUsRepository.DeleteContactUsUnSuccess" xml:space="preserve">
+    <value>មិនអាចលុបព័ត៌មានទំនាក់ទំនងមកយើង</value>
+  </data>
+  <data name="ContactUs.ContactUsRepository.SendMail.SuccessSend" xml:space="preserve">
+    <value>សូមអរគុណអ្នកដែលបានទាក់ទង យើង ។ យើងបានទទួលសាររបស់អ្នក ហើយនឹងទាក់ទងឱ្យបានឆាប់តាមដែលអាចធ្វើទៅបាន។</value>
+  </data>
+  <data name="FavoriteCurrency.FavoriteCurrencyRepository.AddFavoriteCurrencySuccess" xml:space="preserve">
+    <value>បានបន្ថែមព័ត៌មានកំណត់ត្រាទៅមូលដ្ឋានទិន្នន័យដោយជោគជ័យ</value>
+  </data>
+  <data name="FavoriteCurrency.FavoriteCurrencyRepository.AddFavoriteCurrency.UnSuccess" xml:space="preserve">
+    <value>មិនអាចបន្ថែមព័ត៌មានកំណត់ត្រាទៅមូលដ្ឋានទិន្នន័យ</value>
+  </data>
+  <data name="FavoriteCurrency.FavoriteCurrencyRepository.DeleteFavoriteCurrency.Success" xml:space="preserve">
+    <value>ព័ត៌មានរូបិយប័ណ្ណដែលពេញនិយមត្រូវបានលុបដោយជោគជ័យ។</value>
+  </data>
+  <data name="FavoriteCurrency.FavoriteCurrencyRepository.DeleteFavoriteCurrency.UnSuccess" xml:space="preserve">
+    <value>មិនអាចលុបព័ត៌មានរូបិយប័ណ្ណដែលពេញនិយមបានទេ។</value>
+  </data>
+  <data name="Payment.PaymentRepository.Success" xml:space="preserve">
+    <value>ជោគជ័យ</value>
+  </data>
+  <data name="ReferalLink.ReferalLinkRepository.Success" xml:space="preserve">
+    <value>ការបញ្ជាបានជោគជ័យ</value>
+  </data>
+  <data name="GlobalRes.User_ResetPasswordPage_Title" xml:space="preserve">
+    <value>កំណត់លេខសម្ងាត់ឡើងវិញ</value>
+  </data>
+  <data name="Shared.Navigation.ResetPassword" xml:space="preserve">
+    <value>កំណត់លេខសម្ងាត់ឡើងវិញ</value>
+  </data>
+  <data name="User.LoginPage.Modal.InsertCorrectMail" xml:space="preserve">
+    <value>សូមសរសេរអ៊ីមែលអោយត្រឹមត្រូវនៅក្នុងក្រឡោនសំបុត្រពី</value>
+  </data>
+  <data name="User.LoginPage.Modal.InsertMailText" xml:space="preserve">
+    <value>សូមបំពេញអត្ថបទនៅក្នុងក្រឡោនសារ</value>
+  </data>
+  <data name="User.LoginPage.Modal.MailSendedSuccessifully" xml:space="preserve">
+    <value>សារបានផ្ញើដោយជោគជ័យ</value>
+  </data>
+  <data name="HomeController.CheckoutIndex.Error.NotAlias" xml:space="preserve">
+    <value>អ្នកប្រើប្រាស់មិនមានឈ្មោះហៅក្រៅ</value>
+  </data>
+  <data name="HomeController.CheckoutIndex.Error.NotExist" xml:space="preserve">
+    <value>មិនមានអតិថិជន</value>
+  </data>
+  <data name="NewInstantPaymentViewModel.PreparePriorUsedAliases.OrSelectPrior" xml:space="preserve">
+    <value>ឬជ្រើសមុន</value>
+  </data>
+  <data name="UIHelper_GetDatePeriods_Today" xml:space="preserve">
+    <value>ថ្ងៃនេះ</value>
+  </data>
+  <data name="UIHelper_GetDatePeriods_Last_Week" xml:space="preserve">
+    <value>សប្ដាហ៍​មុន</value>
+  </data>
+  <data name="UIHelper_GetDatePeriods_Last_Month" xml:space="preserve">
+    <value>ខែមុន</value>
+  </data>
+  <data name="UIHelper_GetDatePeriods_Last_3_Months" xml:space="preserve">
+    <value>៣ខែមុន</value>
+  </data>
+  <data name="UIHelper_GetDatePeriods_Last_6_Months" xml:space="preserve">
+    <value>៦ខែមុន</value>
+  </data>
+  <data name="UIHelper_GetAccountBalances_Select_a_currency" xml:space="preserve">
+    <value>ជ្រើសរើសរូបិយប័ណ្ណ</value>
+  </data>
+  <data name="UIHelper_GetAccountBalances____Available_" xml:space="preserve">
+    <value> - មាន</value>
+  </data>
+  <data name="HomeAccountsList.HideZeroAcc" xml:space="preserve">
+    <value>លាក់គណនីដែលមានសមតុល្យសូន្យ</value>
+  </data>
+  <data name="HomeAccountsList.Show" xml:space="preserve">
+    <value>បង្ហាញ</value>
+  </data>
+  <data name="HomeAccountsList.Hide" xml:space="preserve">
+    <value>លាក់</value>
+  </data>
+  <data name="HomeAccountsList.ShowFvAcc" xml:space="preserve">
+    <value>បង្ហាញសមតុល្យរូបិយប័ណ្ណដែលអ្នកពេញនិយម</value>
+  </data>
+  <data name="HomeAccountsList.HideFvAcc" xml:space="preserve">
+    <value>បង្ហាញសមតុល្យរូបិយបណ័្ណទាំងអស់</value>
+  </data>
+  <data name="HomeAccountsList.ShowAllAcc" xml:space="preserve">
+    <value>ដោះធីកដើម្បីបង្ហាញគណនីទាំងអស់</value>
+  </data>
+  <data name="CommonObject.ViewAndDownload" xml:space="preserve">
+    <value>មើលនិងទាញយក</value>
+  </data>
+  <data name="CommonObject.UploadProof" xml:space="preserve">
+    <value>បញ្ចូលភស្តុតាង</value>
+  </data>
+  <data name="OrdersList.Details" xml:space="preserve">
+    <value>លំអិត</value>
+  </data>
+  <data name="User.LoginPage.ForgotPassword.Username" xml:space="preserve">
+    <value>អត្តសញ្ញាណអ្នកប្រើ</value>
+  </data>
+  <data name="User.LoginPage.ForgotPassword.Email" xml:space="preserve">
+    <value>អ៊ីមែល</value>
+  </data>
+  <data name="ConvertHistoryPage.Details" xml:space="preserve">
+    <value>លំអិត</value>
+  </data>
+  <data name="Shared.NewInstantPaymentFormPage.InvoiceNumber" xml:space="preserve">
+    <value>លេខវិក័យប័ត្រ</value>
+  </data>
+  <data name="Shared.WebPartsAccountingPage.Balance" xml:space="preserve">
+    <value>សមតុល្យ</value>
+  </data>
+</root>

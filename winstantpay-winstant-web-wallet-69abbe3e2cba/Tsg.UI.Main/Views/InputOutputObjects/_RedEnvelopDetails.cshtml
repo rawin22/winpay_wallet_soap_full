@@ -1,0 +1,109 @@
+﻿@using Tsg.UI.Main.App_LocalResources
+@using Tsg.UI.Main.Models.Security
+@model TSG.Models.APIModels.StandartResponse<TSG.Models.ServiceModels.Transfers.RedEnvelope.RedEnvelopeSo>
+
+
+    @{ string[] crypto = { "BTC", "ETH", "XAU" }; }
+
+    @if (Model == null || !Model.Success)
+    {
+        <span class="alert alert-danger">
+            @GlobalRes.Shared_NoData
+            <br />
+            @Model?.InfoBlock?.UserMessage
+        </span>
+    }
+    @if (Model != null && Model.Obj != null)
+    {
+        
+            <table class="table table-striped table-bordered  mb-none" id="tbl_detail">
+                <tbody>
+                    <tr>
+                        <td class="pt-md pb-md text-weight-bold">
+                            @GlobalRes.ExchangeCurrencyExchangePage_To
+                        </td>
+                        <td class="pt-md pb-md">
+                            @Html.DisplayFor(model => model.Obj.RedEnvelope_WPayIdTo, new { @class = "form-control" })
+                        </td>
+                    </tr>
+                    <tr>
+
+                        <td class="pt-md pb-md text-weight-bold">
+                            @GlobalRes.ExchangeCurrencyExchangePage_From
+                        </td>
+                        <td class="pt-md pb-md">
+                            @Html.DisplayFor(model => model.Obj.RedEnvelope_WPayIdFrom, new { @class = "form-control" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="pt-md pb-md text-weight-bold">
+                            @GlobalRes.PaymentDetailsPage_Date
+                        </td>
+                        <td class="pt-md pb-md">
+                            @Html.DisplayFor(model => model.Obj.RedEnvelope_DateTransferedToRedEnvelope.Value, new { @class = "form-control" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="pt-md pb-md text-weight-bold">
+                            @GlobalRes.PaymentDetailsPage_Currency
+                        </td>
+                        <td class="pt-md pb-md">
+                            @Html.DisplayFor(model => model.Obj.RedEnvelope_CurrencyCode, new { @class = "form-control" })
+                            <img src="/Content/assets/images/onebyone.png" class="flag flag-@(Model.Obj.RedEnvelope_CurrencyCode.ToLower())" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="pt-md pb-md text-weight-bold">
+                            @GlobalRes.PaymentDetailsPage_Amount
+                        </td>
+                        <td class="pt-md pb-md">
+                            @if (crypto.Contains(Model.Obj.RedEnvelope_CurrencyCode.ToUpper()))
+                            {
+                                <label> @(Model.Obj.RedEnvelope_Amount.ToString("N8"))</label>
+                            }
+                            else
+                            {
+                                <label> @(Model.Obj.RedEnvelope_Amount.ToString("N2"))</label>
+                            }
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="pt-md pb-md text-weight-bold">
+                            @GlobalRes.Shared_Note
+                        </td>
+                        <td class="pt-md pb-md">
+                            @Html.DisplayFor(model => model.Obj.RedEnvelope_Note, new { @class = "form-control" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="pt-md pb-md text-weight-bold">
+                            @GlobalRes.ProofDocUploadProofDocPage_AttachmentFile
+                        </td>
+                        <td class="pt-md pb-md">
+
+                            @if (!String.IsNullOrEmpty(Model.Obj.RedEnvelope_FilePath) && File.Exists(Server.MapPath(Model.Obj.RedEnvelope_FilePath)))
+                            {
+                                <div>
+                                    <img id="image" src="@Model.Obj.RedEnvelope_FilePath.Replace("~", "")" class="img-rounded" style="max-width: 200px; max-height: 200px; " />
+                                </div>
+                                <script>
+                                    var viewer = new Viewer(document.getElementById('image'), { toolbar: 0, navbar: 0, rotatable: 0, fullscreen: 0, title: 0 });
+                                </script>
+                            }
+                        </td>
+                    </tr>
+                    @if (!String.IsNullOrEmpty(Model.Obj.RedEnvelope_RejectionNote))
+                    {
+                        <tr>
+                            <td class="pt-md pb-md text-weight-bold">
+                                @GlobalRes.RedEnvelope_RejectionNote
+                            </td>
+                            <td class="pt-md pb-md">
+                                @Html.DisplayFor(model => model.Obj.RedEnvelope_RejectionNote, new { @class = "form-control" })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+    }

@@ -1,0 +1,226 @@
+﻿@using System.Globalization
+@using Tsg.UI.Main.App_LocalResources
+@model Tsg.UI.Main.Models.ConvertSearchViewModel
+@{
+	ViewBag.Title = GlobalRes.ConvertHistoryPage_Title;
+	Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+
+<div class="row">
+	<section class="panel">
+		<header class="panel-heading">
+			<h2 class="panel-title">@GlobalRes.ConvertHistoryPage_Title_Converts</h2>
+			<p class="panel-subtitle">@GlobalRes.ConvertHistoryPage_Title_ConvertHistory</p>
+		</header>
+		<script src="/Content/assets/vendor/jquery/jquery.js"></script>
+
+		<div class="panel-body" style="display: block;">
+			@if (Model.Converts != null)
+			{
+				var hiddenClass = "hidden-xs";
+				string[] crypto = { "BTC", "ETH", "XAU" };
+
+				<div class="">
+					<table class="table table-bordered table-striped table-condensed mb-none" id="datatable-default-history">
+						<thead>
+							<tr>
+								<th>@GlobalRes.ConvertHistoryPage_DealID</th>
+								<th>@GlobalRes.ConvertHistoryPage_ClientBuys</th>
+								<th>@GlobalRes.ConvertHistoryPage_CCY</th>
+								<th>@GlobalRes.ConvertHistoryPage_ClientSells</th>
+								<th>@GlobalRes.ConvertHistoryPage_CCY</th>
+								<th>@GlobalRes.ConvertHistoryPage_BookedRate</th>
+								<th>@GlobalRes.ConvertHistoryPage_DealDate</th>
+								<th>@GlobalRes.ConvertHistoryPage_ValueDate</th>
+								<th>@GlobalRes.ConvertHistoryPage_Actions</th>
+							</tr>
+						</thead>
+						<tbody>
+							@foreach (var item in Model.Converts)
+							{
+								<tr>
+									<td>
+										@Html.DisplayFor(modelItem => item.FXDealReference)
+									</td>
+									<td>
+										@Html.DisplayFor(modelItem => item.BuyAmountTextBare)
+									</td>
+									<td>
+										@Html.DisplayFor(modelItem => item.BuyCurrencyCode)
+										<img src="/Content/assets/images/onebyone.png" class="flag flag-@(item.BuyCurrencyCode.ToLower())" alt="Buy currency" />
+									</td>
+									<td>
+										@Html.DisplayFor(modelItem => item.SellAmountTextBare)
+									</td>
+									<td>
+										@Html.DisplayFor(modelItem => item.SellCurrencyCode)
+										<img src="/Content/assets/images/onebyone.png" class="flag flag-@(item.SellCurrencyCode.ToLower())" alt="Sell currency" />
+									</td>
+									<td>
+										@Html.DisplayFor(modelItem => item.BookedRateTextWithCurrencyCodes)
+									</td>
+									<td>
+										@String.Format("{0:MMM dd, yyyy}", item.DealDate)
+									</td>
+									<td>
+										@String.Format("{0:MMM dd, yyyy}", item.FinalValueDate)
+									</td>
+									<td>
+										@Html.ActionLink(GlobalRes.ConvertHistoryPage_Details, "Details", "Exchange", new { id = item.FXDealId }, new { @class = "mb-xs btn btn-xs btn-primary" })
+									</td>
+								</tr>
+							}
+						</tbody>
+					</table>
+				</div>
+			}
+
+
+			<div>
+				<a class="btn btn-success" href="/Exchange/CurrencyExchange">@GlobalRes.ConvertHistoryPage_NewConvert</a>
+			</div>
+			@if (CultureInfo.CurrentCulture.Name.Contains("PH"))
+			{
+				<script type="text/javascript">
+					$(window).load(function () {
+						$('#datatable-default-history').DataTable().destroy();
+						var dt = $('#datatable-default-history').DataTable({
+							responsive: true,
+							pageLength: 100,
+							order: [[5, "desc"]],
+							"oLanguage": {
+								"sEmptyTable": "Walang impormasyon",
+								"sInfo": "_START_ ng _END_ kabuuang _TOTAL_ na mga pahina",
+								"sInfoEmpty": "0 ng kabuuang 0 mga entry",
+								"sInfoFiltered": "(natagpuan mula sa _MAX_ inskripsyon)",
+								"sInfoPostFix": "",
+								"sInfoThousands": ".",
+								"sLengthMenu": "Ipakita ang _MENU_ item sa pahina",
+								"sLoadingRecords": "Coefficient of activity...",
+								"sProcessing": "Asahan...",
+								"sSearch": "_INPUT_",
+								"sSearchPlaceholder": "Paghahanap",
+								"sZeroRecords": "Walang impormasyon.",
+								"oPaginate": {
+									"sFirst": "Ang una",
+									"sPrevious": "Ang huling",
+									"sNext": "Sumusunod",
+									"sLast": "Nakaraan"
+								}
+							}
+						});
+						$(".dataTables_filter input").attr("placeholder", "Paghahanap");
+						dt.draw();
+					});
+				</script>
+			}
+			else
+			{
+				<script type="text/javascript">
+					$(window).load(function () {
+					var lang = '@CultureInfo.CurrentCulture.TwoLetterISOLanguageName';
+					if (lang === 'ru') {
+						$('#datatable-default-history').DataTable().destroy();
+						var dt = $('#datatable-default-history').DataTable({
+							responsive: true,
+							pageLength: 100,
+							order: [[5, "desc"]],
+							"oLanguage": {
+								"sEmptyTable": "Нет данных",
+								"sInfo": "_START_ из _END_ всего _TOTAL_ страниц",
+								"sInfoEmpty": "0 из 0 всего 0 записей",
+								"sInfoFiltered": "(наидено из _MAX_ записей)",
+								"sInfoPostFix": "",
+								"sInfoThousands": ".",
+								"sLengthMenu": "Отображать _MENU_ записей на странице",
+								"sLoadingRecords": "Загрузка...",
+								"sProcessing": "Подождите...",
+								"sSearch": "_INPUT_",
+								//"searchPlaceholder": "Поиск",
+								"sSearchPlaceholder": "Поиск",
+								"sZeroRecords": "Нет данных.",
+								"oPaginate": {
+									"sFirst": "Первая",
+									"sPrevious": "Последняя",
+									"sNext": "Следующая",
+									"sLast": "Предыдущая"
+								}
+							}
+						});
+						$(".dataTables_filter input").attr("placeholder", "Поиск");
+						dt.draw();
+					}
+					else if (lang === 'fr') {
+						$('#datatable-default-history').DataTable().destroy();
+						var dt = $('#datatable-default-history').DataTable({
+							responsive: true,
+							pageLength: 100,
+							order: [[5, "desc"]],
+							"oLanguage": {
+								"sEmptyTable": "Aucune information",
+								"sInfo": "_START_ de la _END_ total _TOTAL_ pages",
+								"sInfoEmpty": "0 de la 0 total 0 inscription",
+								"sInfoFiltered": "(trouvé à partir de _MAX_ inscription)",
+								"sInfoPostFix": "",
+								"sInfoThousands": ".",
+								"sLengthMenu": "Afficher les éléments _MENU_ sur la page",
+								"sLoadingRecords": "Coefficient d'activité...",
+								"sProcessing": "Attendre...",
+								"sSearch": "_INPUT_",
+								"sSearchPlaceholder": "Rechercher",
+								"sZeroRecords": "Aucune information.",
+								"oPaginate": {
+									"sFirst": "Le premier",
+									"sPrevious": "Le dernier",
+									"sNext": "Suivant",
+									"sLast": "Précédent"
+								}
+							}
+						});
+						$(".dataTables_filter input").attr("placeholder", "Rechercher");
+						dt.draw();
+
+					} else {
+						console.log("eng");
+						var dt = $('#datatable-default-history').DataTable({
+							destroy: true,
+							retrieve: true,
+							pageLength: 100,
+							"language": {
+								"lengthMenu": "Display _MENU_ records per page",
+								"zeroRecords": "Nothing found - sorry",
+								"info": "Showing page _PAGE_ of _PAGES_",
+								"infoEmpty": "No records available",
+								"infoFiltered": "(filtered from _MAX_ total records)"
+							},
+							order: [[6, "desc"]]
+						});
+						dt.draw();
+					}
+				});
+				</script>
+			}
+		</div>
+	</section>
+</div>
+
+@section customcss {
+	<!-- Specific Page Vendor CSS -->
+	<link rel="stylesheet" href="/Content/assets/vendor/select2/css/select2.css" />
+	<link rel="stylesheet" href="/Content/assets/vendor/select2-bootstrap-theme/select2-bootstrap.css" />
+	<link rel="stylesheet" href="/Content/assets/vendor/jquery-datatables-bs3/assets/css/datatables.css" />
+}
+
+@section VendorScripts {
+
+	<script src="/Content/assets/vendor/select2/js/select2.js"></script>
+	<script src="/Content/assets/vendor/jquery-datatables/media/js/jquery.dataTables.js"></script>
+	<script src="/Content/assets/vendor/jquery-datatables/extras/TableTools/js/dataTables.tableTools.min.js"></script>
+	<script src="/Content/assets/vendor/jquery-datatables-bs3/assets/js/datatables.js"></script>
+}
+
+@section Scripts {
+
+	<!-- Examples -->
+	<script src="/Content/assets/javascripts/tables/examples.datatables.default.js"></script>
+}

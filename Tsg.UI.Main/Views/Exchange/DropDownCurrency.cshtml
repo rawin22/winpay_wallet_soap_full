@@ -1,0 +1,443 @@
+﻿@using Tsg.UI.Main.App_LocalResources
+@model Tsg.UI.Main.Models.ExchangeModel
+
+<style type="text/css">
+	.scrollable-menu {
+		height: auto;
+		max-height: 200px;
+		overflow-x: hidden;
+	}
+
+	.bs-searchbox {
+		padding: 4px 8px;
+	}
+
+	@@media only screen and (max-width: 768px) {
+		.dropdown {
+			padding-left: 15px;
+			padding-right: 15px;
+		}
+
+		.labelddl {
+			padding-left: 30px;
+		}
+	}
+</style>
+<div class="form-group">
+	<div class="form-group">
+		<label class="col-sm-3 control-label labelddl">@GlobalRes.ExchangeCurrencyExchangePage_From</label>
+		<div class="col-sm-5">
+			@{
+				var currencies = UiHelper.GetAccountBalances();
+				var availableCurrencies = UiHelper.PrepareAllAvailableCurrencies();
+				var balances = UiHelper.PrepareCustomerBalances();
+				var baseCurrency = UiHelper.GetCustomerBaseCurrencyCode();
+				var sellCurrencies = UiHelper.GetFXSellCurrencies();
+				var buyCurrencies = UiHelper.GetFXBuyCurrencies();
+			}
+			<div class="dropdown" id="currencyDdrFrom" style="width: 100%">
+				<input type="hidden" id="baseCurrency" name="baseCurrency" value="@baseCurrency" />
+				@if (Model != null && !String.IsNullOrEmpty(Model.FromAccountId))
+				{
+					var balance = balances.FirstOrDefault(b => b.AccountId == Model.FromAccountId);
+
+					if (balance != null)
+					{
+						var currency = sellCurrencies.FirstOrDefault(c => c.CurrencyCode == balance.CCY);
+						var currencyText = String.Format(" - {0} - {1} - {2}", @Math.Round(balance.BalanceAvailable, currency.CurrencyAmountScale), currency.CurrencyCode, currency.CurrencyName);
+						<button class="btn dropdown-toggle btn-default text-left dropdown" style="width: inherit; text-align: left; padding-left: 16px;" id="selectButtonFrom" data-toggle="dropdown">
+							<img src="/Content/assets/images/onebyone.png" class='@String.Format("flag flag-{0}", currency.CurrencyCode.ToLower())' /> &nbsp;
+							@currencyText
+							<span id="btnCaretTo" class="searchBtnCaret"></span>
+						</button>
+					}
+				}
+				else
+				{
+					<button class="btn dropdown-toggle btn-default text-left dropdown" style="width: inherit; text-align: left; padding-left: 16px;" id="selectButtonFrom" data-toggle="dropdown">
+						@GlobalRes.Shared_NewInstantPaymentFormPage_SelectCurrency
+						<span id="btnCaretTo" class="searchBtnCaret"></span>
+					</button>
+				}
+				<ul class="dropdown-menu scrollable-menu inner" role="listbox" id="ddlmenuFrom" data-live-search="true" style="width: inherit">
+					<li id="searchabliFrom">
+						<div class="bs-searchbox"><input type="text" class="form-control" autocomplete="off" role="textbox" aria-label="@GlobalRes.Shared_NewInstantPaymentFormPage_Search" id="searchabletextFrom"></div>
+					</li>
+					@foreach (var item in sellCurrencies)
+					{
+						var balanceAccountId = balances.Any(t => t.CCY == item.CurrencyCode) ? balances.FirstOrDefault(t => t.CCY == item.CurrencyCode).AccountId : "";
+						var balanceAvailable = balances.Any(t => t.CCY == item.CurrencyCode) ? balances.FirstOrDefault(t => t.CCY == item.CurrencyCode).BalanceAvailable : decimal.Zero;
+						var currencyText = String.Format(" {0} {1} {2}", @Math.Round(balanceAvailable, item.CurrencyAmountScale), @item.CurrencyCode, @item.CurrencyName);
+						<li id="@String.Format("{0}", item.CurrencyCode)">
+							@if (!String.IsNullOrEmpty(item.CurrencyCode))
+							{
+								<a data-pdsa-dropdown-val="@item.CurrencyCode" data-pdsa-dropdown-account-id="@balanceAccountId" data-pdsa-dropdown-text="@currencyText"><img src="/Content/assets/images/onebyone.png" class="@String.Format("flag flag-{0}", item.CurrencyCode.ToLower())" /><span class="@(balanceAvailable < 0 ? " text-danger" : "")">@String.Format(" {0}", @Math.Round(balanceAvailable, item.CurrencyAmountScale))</span> @String.Format("{0} {1}", @item.CurrencyCode, @item.CurrencyName)</a>
+							}
+							else
+							{
+								<a data-pdsa-dropdown-val="@item.CurrencyCode" data-pdsa-dropdown-text="@item.CurrencyCode">@item.CurrencyCode</a>
+							}
+						</li>
+					}
+				</ul>
+			</div>
+		</div>
+		<script type="text/javascript">
+			$('#selectButtonFrom').click(checkOpenDdlFrom);
+			$('#btnCaretFrom').click(checkOpenDdlFrom);
+
+			$('#ddlmenuFrom li a').on('click',
+				function() {
+					var id = $(this).data('pdsa-dropdown-val');
+					var fromAccountId = $(this).data('pdsa-dropdown-account-id');
+					var currencyTextFrom = $(this).data('pdsa-dropdown-text');
+					var data = $(this).text().trim();
+					var currencyTexts = currencyTextFrom.trim().split(" ");
+					console.log("currencyTexts length: " + currencyTexts.length);
+					console.log("currencyTexts[0]: " + currencyTexts[0]);
+					let amountText = currencyTexts[0];
+					let amount = parseFloat(amountText);
+
+					var buttons;
+					if (id != null && data.length > 2) {
+						buttons = document.getElementById("selectButtonFrom");
+						currencyCode = typeof id === "string" ? id.toLowerCase() : id;
+
+						if (amount < 0) {
+							console.log("amount < 0, amountText: " + amountText);
+							var newCurrencyText = currencyTexts.slice(1).join(" ");
+							buttons.innerHTML = '<img src="/Content/assets/images/onebyone.png" class="flag flag-' + currencyCode + '"/>' + '  '
+								+ '<span class="text-danger">' + currencyTexts[0] + '</span> ' + newCurrencyText
+							'&nbsp;<span class="caret" style="position: absolute; top: 45%; left: 97.5%; color: #555555 !important; border-top: 6px dashed !important; border-right: 3px solid transparent !important;border-left: 3px solid transparent !important"></span>';
+						} else {
+							console.log("else , currencyText: " + currencyTextFrom);
+							buttons.innerHTML = '<img src="/Content/assets/images/onebyone.png" class="flag flag-' + currencyCode + '"/>' + ' '
+								+ currencyTextFrom +
+								'&nbsp;<span class="caret" style="position: absolute; top: 45%; left: 97.5%; color: #555555 !important; border-top: 6px dashed !important; border-right: 3px solid transparent !important;border-left: 3px solid transparent !important"></span>';
+						}
+
+						$("#ddlmenuFrom").val(id);
+						$("#FromAccountId").val(fromAccountId);
+						$("#searchabletextFrom").val("");
+						$("#ddlmenuFrom li").show();
+						$("#ddlmenuFrom").hide();
+					} else {
+						buttons = document.getElementById("selectButtonFrom");
+						buttons.innerHTML = '@String.Format(GlobalRes.Shared_NewInstantPaymentFormPage_SelectCurrency)' +
+							'&nbsp;<span class="caret" style="position: absolute; top: 45%; left: 97.5%; color: #555555 !important; border-top: 6px dashed !important; border-right: 3px solid transparent !important;border-left: 3px solid transparent !important"></span>';
+						$("#ddlmenuFrom").val(null);
+						$("#FromAccountId").val(null);
+						$("#searchabletextFrom").val("");
+						$("#ddlmenuFrom li").show();
+						$("#ddlmenuFrom").hide();
+					}
+					setTimeout(function () { $("#FromAccountId").trigger('change'); }, 500);
+				}
+			);
+			$("#searchabletextFrom").on("input",
+				function() {
+					var selText = $(this).val();
+					var thisText = $(this).text();
+					$("#ddlmenuFrom li").hide();
+					$("#searchabliFrom").show();
+					$("#ddlmenuFrom li").each(function () {
+						var thisText = $(this).text().trim();
+						var thisTextArray = thisText.split(" ");
+						var currencyCode = thisTextArray[1];
+						var index = thisText.trim().indexOf(selText.toUpperCase())
+						if (thisText.toUpperCase().indexOf(selText.toUpperCase()) >= 0) {
+							$(this).show();
+						}
+					});
+					$("#searchabletextFrom").one("keydown",
+						function(e) {
+							if (e.which == 13 || e.which == 10) {
+								if ($("#ddlmenuFrom li:visible").first() !== null) {
+									var el = $("#ddlmenuFrom li:visible a").attr('display', 'list-item').first();
+									var id = el.data('pdsa-dropdown-val');
+									var currencyText = el.data('pdsa-dropdown-text');
+									if (id != null) {
+										var text = $("#" + id).text().trim();
+										var buttons = document.getElementById("selectButtonFrom");
+										buttons.innerHTML =
+											'<img src="/Content/assets/images/onebyone.png" class="flag flag-' +
+											text.substring(0, text.indexOf("-")).trim().toLowerCase() +
+											'"/>' +
+											'&nbsp; &nbsp;' +
+											text +
+											'&nbsp;<span class="caret" style="position: absolute; top: 45%; left: 97.5%; color: #555555 !important; border-top: 6px dashed !important; border-right: 3px solid transparent !important;border-left: 3px solid transparent !important"></span>';
+										$("#ddlmenuFrom").val(id);
+										$("#FromAccountId").val(id);
+										$("#searchabletextFrom").val("");
+										$("#ddlmenuFrom li").show();
+										$("#ddlmenuFrom").hide();
+
+										setTimeout(function () { $("#FromAccountId").trigger('change'); }, 500);
+										//setTimeout(function () { editddlcurrencies(); }, 500);
+									}
+								}
+							}
+						});
+
+				}
+			);
+
+			function checkOpenDdlFrom() {
+				if ($("#ddlmenuTo").is(':visible')) {
+					if (document.getElementById("currencyDdrTo").classList.contains('open')) {
+						document.getElementById("currencyDdrTo").classList.remove('open');
+					}
+					$("#ddlmenuTo").hide();
+				}
+				if ($("#ddlmenuFrom").is(':visible')) {
+					if (document.getElementById("currencyDdrFrom").classList.contains('open')) {
+						document.getElementById("currencyDdrFrom").classList.remove('open');
+					}
+					$("#ddlmenuFrom").hide();
+
+				} else {
+					$("#ddlmenuFrom").show();
+					setTimeout(function () { $('#searchabletextFrom').focus(); }, 100);
+
+				}
+			}
+
+			function setBaseCurrency() {
+				var baseCurrency = $("#baseCurrency").val();
+				console.log("set selected baseCurrency: " + baseCurrency);
+				var id = "";
+				var id1 = "";
+				var baseCurrency1 = baseCurrency;
+				var currencyText = "";
+				var fromAccountId = "";
+
+
+				$("#ddlmenuFrom li").each(function () {
+					var thisText = $(this).text().trim();
+					var index = thisText.trim().indexOf(baseCurrency.toUpperCase())
+					if (thisText != null && thisText.length > 0) {
+						var thisTextArray = thisText.split(" ");
+						var currencyCode = thisTextArray[1];
+						if (currencyCode != null) {
+							if (currencyCode.toUpperCase() === baseCurrency.toUpperCase()) {
+								var anchor = $(this).find('a');
+								fromAccountId = anchor.data('pdsa-dropdown-account-id');
+								id = anchor.data('pdsa-dropdown-val');
+								currencyText = thisText;
+								console.log("id: " + id);
+								id1 = id;
+								$(this).show();
+								return false;
+							}
+						}
+					}
+				});
+
+				var buttons = document.getElementById("selectButtonFrom");
+
+				try {
+					baseCurrency1 = baseCurrency.toLowerCase();
+				} catch (e) {
+
+				}
+
+				console.log("ddlmenuFrom li each baseCurrency1: " + baseCurrency1);
+
+				buttons.innerHTML = '<img src="/Content/assets/images/onebyone.png" class="flag flag-' + baseCurrency1 + '"/>' + ' ' +
+					currencyText +
+					'&nbsp;<span class="caret" style="position: absolute; top: 45%; left: 97.5%; color: #555555 !important; border-top: 6px dashed !important; border-right: 3px solid transparent !important;border-left: 3px solid transparent !important"></span>';
+
+				console.log("after id: " + id);
+				console.log("after fromAccountId: " + fromAccountId);
+				$("ddlmenuFrom").val(id);
+				$("#FromAccountId").val(fromAccountId);
+				$("#CurrencyCode").val(baseCurrency);
+				$("#searchabletextFrom").val("");
+
+				setTimeout(function () { $("#FromAccountId").trigger('change'); }, 500);
+			}
+
+			$(document).ready(function () {
+				setBaseCurrency();
+			});
+		</script>
+	</div>
+
+	<div class="form-group">
+		<label class="col-sm-3 control-label labelddl">@GlobalRes.ExchangeCurrencyExchangePage_To</label>
+		<div class="col-sm-5">
+			<div class="dropdown" id="currencyDdrTo" style="width: 100%">
+				@if (Model != null && !String.IsNullOrEmpty(Model.ToAccountId))
+				{
+					var balanceTo = balances.FirstOrDefault(b => b.AccountId == Model.ToAccountId);
+					//var currency = currencies.FirstOrDefault(f => f.Value == Model.ToAccountId);
+					if (balanceTo != null)
+					{
+						var currencyTo = buyCurrencies.FirstOrDefault(c => c.CurrencyCode == balanceTo.CCY);
+						var currencyTextTo = String.Format(" - {0} - {1} - {2}", @Math.Round(balanceTo.BalanceAvailable, currencyTo.CurrencyAmountScale), currencyTo.CurrencyCode, currencyTo.CurrencyName);
+						<button class="btn dropdown-toggle btn-default text-left dropdown" style="width: inherit; text-align: left; padding-left: 16px;" id="selectButtonTo" data-toggle="dropdown">
+							<img src="/Content/assets/images/onebyone.png" class='@String.Format("flag flag-{0}", currencyTo.CurrencyCode.ToLower())' /> &nbsp;
+							@currencyTextTo
+							<span id="btnCaretTo" class="searchBtnCaret"></span>
+						</button>
+					}
+				}
+				else
+				{
+					<button class="btn dropdown-toggle btn-default text-left dropdown" style="width: inherit; text-align: left; padding-left: 16px;" id="selectButtonTo" data-toggle="dropdown">
+						@GlobalRes.Shared_NewInstantPaymentFormPage_SelectCurrency
+						<span id="btnCaretForm" class="searchBtnCaret"></span>
+					</button>
+				}
+
+				<ul class="dropdown-menu scrollable-menu inner" role="listbox" id="ddlmenuTo" data-live-search="true" style="width: inherit">
+					<li id="searchabliTo">
+						<div class="bs-searchbox"><input type="text" class="form-control" autocomplete="off" role="textbox" aria-label="@GlobalRes.Shared_NewInstantPaymentFormPage_Search" id="searchabletextTo"></div>
+					</li>
+					@foreach (var item in buyCurrencies)
+					{
+						var balanceToAccountId = balances.Any(t => t.CCY == item.CurrencyCode) ? balances.FirstOrDefault(t => t.CCY == item.CurrencyCode).AccountId : "";
+						var balanceToAvaialale = balances.Any(t => t.CCY == item.CurrencyCode) ? balances.FirstOrDefault(t => t.CCY == item.CurrencyCode).BalanceAvailable : decimal.Zero;
+						var balance = balances.FirstOrDefault(t => t.CCY == item.CurrencyCode);
+						var currencyTextTo = String.Format(" {0} {1} {2}", @Math.Round(balanceToAvaialale, item.CurrencyAmountScale), @item.CurrencyCode, @item.CurrencyName);
+						<li id="@String.Format("liTo{0}", item.CurrencyCode)">
+							@if (!String.IsNullOrEmpty(item.CurrencyCode))
+							{
+								<a data-pdsa-dropdown-val="@item.CurrencyCode" data-pdsa-dropdown-account-id="@balanceToAccountId" data-pdsa-dropdown-text="@currencyTextTo"><img src="/Content/assets/images/onebyone.png" class="@String.Format("flag flag-{0}", item.CurrencyCode.ToLower())" /><span class="@(balanceToAvaialale < 0 ? " text-danger" : "")">@String.Format(" {0}", @Math.Round(balanceToAvaialale, item.CurrencyAmountScale))</span> @String.Format("{0} {1}", @item.CurrencyCode, @item.CurrencyName)</a>
+							}
+							else
+							{
+								<a data-pdsa-dropdown-val="@balance.AccountId">@item.CurrencyCode</a>
+							}
+						</li>
+					}
+				</ul>
+			</div>
+		</div>
+	</div>
+	<script>
+		$(document).click(function (e) {
+			if (document.getElementById("currencyDdrTo") && document.getElementById("currencyDdrFrom")) {
+				if (document.getElementById("currencyDdrTo").classList.contains('open')) {
+					document.getElementById("currencyDdrTo").classList.remove('open');
+				}
+				$("#ddlmenuTo").hide();
+				if (document.getElementById("currencyDdrFrom").classList.contains('open')) {
+					document.getElementById("currencyDdrFrom").classList.remove('open');
+				}
+				$("#ddlmenuFrom").hide();
+			}
+		});
+		$('#btnCaretForm').click(checkOpenDdlTo);
+		$('#selectButtonTo').click(checkOpenDdlTo);
+		$('#ddlmenuTo li a').on('click',
+			function() {
+				var id = $(this).data('pdsa-dropdown-val');
+				var toAccountId = $(this).data('pdsa-dropdown-account-id');
+				var selectedCurrencyToText = $(this).data('pdsa-dropdown-text');
+				var data = $(this).text().trim();
+				var currencyTexts = selectedCurrencyToText.trim().split(" ");
+				console.log("currencyTexts length: " + currencyTexts.length);
+				console.log("currencyTexts[0]: " + currencyTexts[0]);
+				let amountText = currencyTexts[0];
+				let amount = parseFloat(amountText);
+
+				var buttons;
+				currencyCode = typeof id === "string" ? id.toLowerCase() : id;
+				if (id != null && data.length > 2) {
+					buttons = document.getElementById("selectButtonTo");
+
+					if (amount < 0) {
+						console.log("amount < 0, amountText: " + amountText);
+						var newCurrencyText = currencyTexts.slice(1).join(" ");
+						buttons.innerHTML = '<img src="/Content/assets/images/onebyone.png" class="flag flag-' + currencyCode + '"/>' + '  '
+							+ '<span class="text-danger">' + currencyTexts[0] + '</span> ' + newCurrencyText
+						'&nbsp;<span class="caret" style="position: absolute; top: 45%; left: 97.5%; color: #555555 !important; border-top: 6px dashed !important; border-right: 3px solid transparent !important;border-left: 3px solid transparent !important"></span>';
+					} else {
+						buttons.innerHTML = '<img src="/Content/assets/images/onebyone.png" class="flag flag-' + currencyCode + '"/>' + ' '
+							+ selectedCurrencyToText +
+							'&nbsp;<span class="caret" style="position: absolute; top: 45%; left: 97.5%; color: #555555 !important; border-top: 6px dashed !important; border-right: 3px solid transparent !important;border-left: 3px solid transparent !important"></span>';
+					}
+
+					$("#ddlmenuTo").val(id);
+					$("#ToAccountId").val(toAccountId);
+					$("#searchabletextTo").val("");
+					$("#ddlmenuTo li").show();
+					$("#ddlmenuTo").hide();
+
+				} else {
+					buttons = document.getElementById("selectButtonTo");
+					buttons.innerHTML = '@String.Format(GlobalRes.Shared_NewInstantPaymentFormPage_SelectCurrency)' +
+						'&nbsp;<span class="caret" style="position: absolute; top: 45%; left: 97.5%; color: #555555 !important; border-top: 6px dashed !important; border-right: 3px solid transparent !important;border-left: 3px solid transparent !important"></span>';
+					$("#ddlmenuTo").val(null);
+					$("#ToAccountId").val(null);
+					$("#searchabletextTo").val("");
+					$("#ddlmenuTo li").show();
+					$("#ddlmenuTo").hide();
+				}
+				setTimeout(function() { $("#ToAccountId").trigger('change'); }, 500);
+			}
+		);
+
+		$("#searchabletextTo").on("input",
+			function() {
+				var selTextTo = $(this).val();
+				$("#ddlmenuTo li").hide();
+				$("#searchabliTo").show();
+				$("#ddlmenuTo li").each(function () {
+					var thisText = $(this).text().trim();
+					var thisTextArray = thisText.split(" ");
+					var currencyCode = thisTextArray[1];
+					var index = thisText.trim().indexOf(selTextTo.toUpperCase())
+					if (thisText.toUpperCase().indexOf(selTextTo.toUpperCase()) >= 0) {
+						$(this).show();
+					}
+				});
+				$("#searchabletextTo").one("keydown",
+					function(eTo) {
+						if (eTo.which == 13 || eTo.which == 10) {
+							if ($("#ddlmenuTo li:visible").first() !== null) {
+								var elTo = $("#ddlmenuTo li:visible a").attr('display', 'list-item').first();
+								var idTo = elTo.data('pdsa-dropdown-val');
+								if (idTo != null) {
+									var textTo = elTo.text().trim();
+									var buttonsTo = document.getElementById("selectButtonTo");
+									buttonsTo.innerHTML =
+										'<img src="/Content/assets/images/onebyone.png" class="flag flag-' +
+										textTo.substring(0, textTo.indexOf("-")).toLowerCase() +
+										'"/>' +
+										'&nbsp; &nbsp;' +
+										textTo +
+										'&nbsp;<span class="caret" style="position: absolute; top: 45%; left: 97.5%; color: #555555 !important; border-top: 6px dashed !important; border-right: 3px solid transparent !important;border-left: 3px solid transparent !important"></span>';
+									$("#ddlmenuTo").val(idTo);
+									$("#ToAccountId").val(idTo).trigger('change');
+									$("#searchabletextTo").val("");
+									$("#ddlmenuTo li").show();
+									$("#ddlmenuTo").hide();
+									setTimeout(function() { $("#ToAccountId").trigger('change'); }, 500);
+								}
+							}
+						}
+					});
+			}
+		);
+		function checkOpenDdlTo() {
+			if ($("#ddlmenuFrom").is(':visible')) {
+				if (document.getElementById("currencyDdrFrom").classList.contains('open')) {
+					document.getElementById("currencyDdrFrom").classList.remove('open');
+				}
+				$("#ddlmenuFrom").hide();
+			}
+			if ($("#ddlmenuTo").is(':visible')) {
+				if (document.getElementById("currencyDdrTo").classList.contains('open')) {
+					document.getElementById("currencyDdrTo").classList.remove('open');
+				}
+				$("#ddlmenuTo").hide();
+
+			} else {
+				setTimeout(function () { $('#searchabletextTo').focus(); }, 100);
+				$("#ddlmenuTo").show();
+			}
+		}
+	</script>
+</div>

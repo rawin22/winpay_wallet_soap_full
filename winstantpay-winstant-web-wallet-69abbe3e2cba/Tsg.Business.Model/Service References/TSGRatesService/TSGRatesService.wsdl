@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tradesolutionsgroup.com/services" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="TSGRatesService" targetNamespace="http://tradesolutionsgroup.com/services" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="BasicHttpsBinding_ITsgRatesService1_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <sp:HttpsToken RequireClientCertificate="false" />
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict />
+              </wsp:Policy>
+            </sp:Layout>
+          </wsp:Policy>
+        </sp:TransportBinding>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tradesolutionsgroup.com/services/Imports">
+      <xsd:import schemaLocation="https://www.bizcurrency1.com/TsgRatesService/TSGRatesService.svc?xsd=xsd0" namespace="http://tradesolutionsgroup.com/services" />
+      <xsd:import schemaLocation="https://www.bizcurrency1.com/TsgRatesService/TSGRatesService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="https://www.bizcurrency1.com/TsgRatesService/TSGRatesService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/TSGRatesService.DataContracts" />
+      <xsd:import schemaLocation="https://www.bizcurrency1.com/TsgRatesService/TSGRatesService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/TSGRatesService.DataTypes" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ITsgRatesService1_GetLibraryVersion_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLibraryVersion" />
+  </wsdl:message>
+  <wsdl:message name="ITsgRatesService1_GetLibraryVersion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLibraryVersionResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITsgRatesService1_UpdateCurrencyRate_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateCurrencyRate" />
+  </wsdl:message>
+  <wsdl:message name="ITsgRatesService1_UpdateCurrencyRate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateCurrencyRateResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITsgRatesService1_UpdateLiborRates_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateLiborRates" />
+  </wsdl:message>
+  <wsdl:message name="ITsgRatesService1_UpdateLiborRates_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateLiborRatesResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ITsgRatesService1">
+    <wsdl:operation name="GetLibraryVersion">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/ITsgRatesService1/GetLibraryVersion" message="tns:ITsgRatesService1_GetLibraryVersion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/ITsgRatesService1/GetLibraryVersionResponse" message="tns:ITsgRatesService1_GetLibraryVersion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCurrencyRate">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/ITsgRatesService1/UpdateCurrencyRate" message="tns:ITsgRatesService1_UpdateCurrencyRate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/ITsgRatesService1/UpdateCurrencyRateResponse" message="tns:ITsgRatesService1_UpdateCurrencyRate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateLiborRates">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/ITsgRatesService1/UpdateLiborRates" message="tns:ITsgRatesService1_UpdateLiborRates_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/ITsgRatesService1/UpdateLiborRatesResponse" message="tns:ITsgRatesService1_UpdateLiborRates_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpsBinding_ITsgRatesService1" type="tns:ITsgRatesService1">
+    <wsp:PolicyReference URI="#BasicHttpsBinding_ITsgRatesService1_policy" />
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetLibraryVersion">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/ITsgRatesService1/GetLibraryVersion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCurrencyRate">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/ITsgRatesService1/UpdateCurrencyRate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateLiborRates">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/ITsgRatesService1/UpdateLiborRates" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="TSGRatesService">
+    <wsdl:port name="BasicHttpsBinding_ITsgRatesService1" binding="tns:BasicHttpsBinding_ITsgRatesService1">
+      <soap:address location="https://www.bizcurrency1.com/TsgRatesService/TSGRatesService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

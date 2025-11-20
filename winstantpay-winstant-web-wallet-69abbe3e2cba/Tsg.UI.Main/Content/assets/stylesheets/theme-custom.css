@@ -1,0 +1,178 @@
+/* Add here all your CSS customizations */
+.my-filter {
+    position: absolute;
+    left: 250px;
+    margin-top: 5px;
+}
+
+
+.icon-spin {
+    display: inline-block;
+    animation: spin 1s infinite linear;
+}
+
+.icon-spin-search {
+    display: inline-block;
+    animation: search 2s infinite linear;
+}
+
+.spinner {
+    display: inline-block;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes search {
+    0% {
+        transform: translate(0px, 0px);
+    }
+    25% {
+        transform: translate(2px, 2px);
+    }
+    50% {
+        transform: translate(2px, -2px);
+    }
+    75% {
+        transform: translate(1px, -1px);
+    }
+    100% {
+        transform: translate(0px, 0px);
+    }
+}
+
+
+.loader-wrapper {
+    height: 8em;
+}
+
+.loader-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
+.loader-wrapper {
+    position: relative;
+}
+
+.loader-container {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+}
+
+@keyframes line-scale {
+    0% {
+        transform: scaley(1);
+    }
+
+    50% {
+        transform: scaley(0.4);
+    }
+
+    100% {
+        transform: scaley(1);
+    }
+}
+
+.line-scale > div:nth-child(1) {
+    animation: line-scale 1s -0.4s infinite cubic-bezier(0.2, 0.68, 0.18, 1.08);
+}
+
+.line-scale > div:nth-child(2) {
+    animation: line-scale 1s -0.3s infinite cubic-bezier(0.2, 0.68, 0.18, 1.08);
+}
+
+.line-scale > div:nth-child(3) {
+    animation: line-scale 1s -0.2s infinite cubic-bezier(0.2, 0.68, 0.18, 1.08);
+}
+
+.line-scale > div:nth-child(4) {
+    animation: line-scale 1s -0.1s infinite cubic-bezier(0.2, 0.68, 0.18, 1.08);
+}
+
+.line-scale > div:nth-child(5) {
+    animation: line-scale 1s 0s infinite cubic-bezier(0.2, 0.68, 0.18, 1.08);
+}
+
+.line-scale > div {
+    background-color: #6B6F82;
+    width: 4px;
+    height: 3.45rem;
+    border-radius: 2px;
+    margin: 2px;
+    animation-fill-mode: both;
+    display: inline-block;
+}
+
+
+.dashedblock {
+    background: antiquewhite;
+    min-height: 50px;
+    border: 1px dodgerblue dashed;
+}
+
+    .dashedblock > li {
+        list-style-type: none;
+        margin-left: -16px;
+    }
+
+        .dashedblock > li img {
+            margin-right: 10px;
+        }
+
+.panel-action-toggle:before {
+    font-family: 'Font Awesome 5 Free' !important;
+    content: '\f0d7';
+}
+.table-w-100 {
+    width: 100% !important;
+}
+
+.image-area {
+    position: relative;
+    display: inline-block;
+}
+
+.remove-image {
+    display: none;
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    border-radius: 10em;
+    padding: 2px 6px 3px;
+    text-decoration: none;
+    font: 700 21px/20px sans-serif;
+    background: #555;
+    border: 3px solid #fff;
+    color: #FFF;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 2px 4px rgba(0,0,0,0.3);
+    text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+    -webkit-transition: background 0.5s;
+    transition: background 0.5s;
+}
+
+.remove-image:hover {
+    background: #E54E4E;
+    padding: 3px 7px 5px;
+    top: -11px;
+    right: -11px;
+}
+
+.remove-image:active {
+    background: #E54E4E;
+    top: -10px;
+    right: -11px;
+}

@@ -1,0 +1,357 @@
+﻿@using Tsg.UI.Main.App_LocalResources
+@model IList<Tsg.UI.Main.Models.Merchants.MerchantModel>
+
+    @{
+        ViewBag.Title = GlobalRes.MerchantsIndexPage_Title;
+        Layout = "~/Views/Shared/_LayoutMain.cshtml";
+    }
+    <script src="/Content/assets/vendor/jquery/jquery.js"></script>
+    <div class="form-horizontal">
+        <section class="panel panel-featured panel-featured-info">
+            <header class="panel-heading">
+                <h2 class="panel-title">@GlobalRes.MerchantsPage_PageTitle &nbsp;&nbsp;<span class="fa fa-plus-square" style="color: green" id="addnewRecord" data-toggle="modal" data-target="#createModal"></span></h2>
+                <p class="panel-subtitle">@GlobalRes.MerchantsPage_PageSubTitle</p>
+            </header>
+            <div class="panel-body">
+                @*@{
+                        Html.RenderPartial("MessagePrintView", Model.Messages);
+                    }*@
+                <div class="validation-message">
+                    <ul></ul>
+                </div>
+
+                @{
+                    var hiddenClass = "hidden-xs";
+                }
+                <table class="table table-bordered table-striped table-condensed mb-none" id="datatable-default">
+                    <thead>
+                        <tr>
+                            <th>@GlobalRes.MerchantsIndexPage_Id</th>
+                            <th>@GlobalRes.MerchantsIndexPage_Name</th>
+                            <th class="hidden-xs">@GlobalRes.MerchantsIndexPage_Phone</th>
+                            <th class="hidden-xs">@GlobalRes.MerchantsIndexPage_Address</th>
+                            <th>@GlobalRes.User_ProfilePage_Alias</th>
+                            <th>@GlobalRes.MerchantsIndexPage_Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            var i = 0;
+                            foreach (var item in Model)
+                            {
+                                i += 1;
+                                <tr>
+                                    <td>
+                                        @i
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.MerchantName)
+                                    </td>
+                                    <td class="hidden-xs">
+                                        @Html.DisplayFor(modelItem => item.MerchantPhone)
+                                    </td>
+                                    <td class="hidden-xs">
+                                        @Html.DisplayFor(modelItem => item.MerchantAddress)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.MerchantAlias)
+                                    </td>
+                                    <td>
+                                        @if (item.MerchantIsSandbox)
+                                        {
+                                            <a href="#" data-toggle="popover" data-placement="top" data-content="This merchant set on sandbox">
+                                                <i class="fa fa-exclamation-triangle" style="color: gold; font-size: larger" aria-hidden="true"></i>
+                                            </a>
+                                        }
+                                        <a class="fas fa-pencil-alt" aria-hidden="true" style="text-decoration: none; font-size: 18px" data-toggle="modal" data-target="#editModal" onclick="tbtEdit(@item.Id);"></a>
+                                        <a class="btn btn-info" data-toggle="modal" data-target="#generateModal" onclick="tbtGenerate('@item.Id', '@item.MerchantGuid');">
+                                            @GlobalRes.MerchantsIndexPage_BtnGenerateCode
+                                        </a>
+                                        @*<a class="fas fa-trash-alt" aria-hidden="true" style="text-decoration: none; font-size: 18px" data-toggle="modal" data-target="#deleleModal" onclick="tbtTrash(@item.MerchantGuid);"
+                                               id=@String.Format("btnDelModal{0}", item.MerchantGuid)>
+                                            </a>*@
+                                        @*<button type="button" class="fas fa-trash-alt" aria-hidden="true" style="text-decoration: none; font-size: 18px" data-toggle="modal" data-target="#deleleModal"/>*@
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+
+                <!-- Modal Generate button Begin -->
+                <div class="modal fade" id="generateModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document" id="generateDialog">
+
+                    </div>
+                </div>
+                <!-- Modal windows Generate end -->
+
+            </div>
+        </section>
+    </div>
+    <!-- Modal Add record Begin -->
+    <form id="Create" action="/Merchants/CreateOrEdit" method="post" class="form-horizontal" novalidate="novalidate">
+        <div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="createModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div id='addRecordModalContent'></div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <!-- Modal Add record End -->
+    <!-- Modal Edit record Begin -->
+    <form id="Edit" action="/Merchants/CreateOrEdit" method="post" class="form-horizontal" novalidate="novalidate">
+        <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div id='editRecordModalContent'></div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <!-- Modal Edit record End -->
+    @section customcss {
+        <!-- Specific Page Vendor CSS -->
+        <link rel="stylesheet" href="/Content/assets/vendor/select2/css/select2.css" />
+        <link rel="stylesheet" href="/Content/assets/vendor/select2-bootstrap-theme/select2-bootstrap.css" />
+        <link rel="stylesheet" href="/Content/assets/vendor/jquery-datatables-bs3/assets/css/datatables.css" />
+    }
+
+    @section VendorScripts {
+
+        <script src="/Content/assets/vendor/select2/js/select2.js"></script>
+        <script src="/Content/assets/vendor/jquery-datatables/media/js/jquery.dataTables.js"></script>
+        <script src="/Content/assets/vendor/jquery-datatables/extras/TableTools/js/dataTables.tableTools.min.js"></script>
+        <script src="/Content/assets/vendor/jquery-datatables-bs3/assets/js/datatables.js"></script>
+    }
+
+    @section Scripts {
+        <script src="/Content/assets/javascripts/tables/examples.datatables.default.js"></script>
+
+        <script type="text/javascript" language="javascript">
+            $("#addnewRecord").click(function() {
+                $.ajax({
+                    type: "GET",
+                    url: '@Url.Action("CreateOrEdit", "Merchants")',
+                    data: { "Id": 0 },
+                    datatype: "json",
+                    success: function(data) {
+                        $('#addRecordModalContent').html(data);
+                        $('#createModal').modal(options);
+                        $('#createModal').modal('show');
+                    },
+                    error: function() {
+                        alert("Dynamic content load failed.");
+                    }
+                });
+                //toggle();
+            });
+            function tbtEdit(id) {
+                $.ajax({
+                    type: "GET",
+                    url: '@Url.Action("CreateOrEdit", "Merchants")',
+                    data: { "Id": id },
+                    datatype: "json",
+                    success: function(data) {
+                        $('#editRecordModalContent').html(data);
+                        $('#editModal').modal(options);
+                        $('#editModal').modal('show');
+                    },
+                    error: function() {
+                        alert("Dynamic content load failed.");
+                    }
+                });
+                setTimeout(function() { $('#successMessageBlock').css("display", "none") }, 3000);
+            }
+
+            function tbtGenerate(id, merchantGuid) {
+                $.ajaxSetup({ cache: false });
+                $.ajax({
+                    url: '@Url.Action("GetDataForMerchant", "Merchants")',
+                    type: 'GET',
+                    data: { "merchantId": id, "merchantUniqueId": merchantGuid },
+                    dataType: "HTML",
+                    success: function(data) {
+                        console.log(data);
+
+                        $('#generateDialog').html(data);
+                        $('#generateModal').modal('show');
+                        setminSize();
+                    },
+                    error: function errorFunc(jQXHR, textStatus, errorThrown) {
+                        console.log("An error occurred while trying to contact the server: " +
+                            jQXHR.status +
+                            " " +
+                            textStatus +
+                            " " +
+                            errorThrown);
+                    }
+
+                });
+            }
+
+            $(document).on('change',"#MerchantWebSiteCallBackAddress", function () {
+                $('#successGenMessageBlock').css("display", "none");
+
+                document.getElementById('MerchantWebSiteCallBackAddress').value = $(this).val();
+                if (isUrl($(this).val())) {
+                    $('#okCopyModal').prop('disabled', false);
+                    $('#errorMessageBlockGenModal').css("display", "none");
+                    $('#textAreaCode').val($('#textAreaCode').text()
+                        .replace(/MerchantWebSiteCallBackAddress:\W+[\'"]?([^\'" >]+\W)/,
+                            "MerchantWebSiteCallBackAddress: '" + $(this).val() + "'"));
+                } else {
+                    $('#okCopyModal').prop('disabled', true);
+                    $('#errorMessageBlockGenModal').css("display", "block");
+                }
+            });
+
+            function isUrl(s) {
+                var regexp =
+                    /^(https?:\/\/)?((([a-z\d]([a-z\d-]*[a-z\d])*)\.)+[a-z]{2,}|((\d{1,3}\.){3}\d{1,3}))(\:\d+)?(\/[-a-z\d%_.~+]*)*(\?[;&a-z\d%_.~+=-]*)?(\#[-a-z\d_]*)?$/i;
+                return regexp.test(s);
+            }
+
+
+            $(document).on('change', '#IntegrateJsIntoSite', function() {
+                var insertedText = "<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'><\/script>";
+                if (this.checked) {
+                    var t = $("#textAreaCode").val();
+                    $("#textAreaCode").text(insertedText+t);
+                    $("#textAreaCode").val(insertedText+t);
+                    $("#textAreaCode").html(insertedText+t);
+
+                } else {
+                    var t2 = $("#textAreaCode").val();
+                    var t2Rep = t2.replace(insertedText,'');
+
+                    $("#textAreaCode").text(t2Rep);
+                    $("#textAreaCode").val(t2Rep);
+                    $("#textAreaCode").html(t2Rep);
+                }
+            });
+
+            function setminSize() {
+                document.getElementById("buttonOnGenMin").classList.add('active');
+                document.getElementById("buttonOnGenMid").classList.remove('active');
+                document.getElementById("buttonOnGenLarge").classList.remove('active');
+                var tac = $('#textAreaCode');
+                var tacText = $('#textAreaCode').text().replace("id=\"ewallet-mid\"", "id=\"ewallet-min\"");
+                tac.val(tacText);
+                tacText = tacText.replace("id=\"ewallet\"", "id=\"ewallet-min\"");
+                tac.val(tacText);
+
+                tacText = tacText.replace("id=\"ewallet_text-mid\"", "id=\"ewallet_text-min\"");
+                tac.val(tacText);
+
+                tacText = tacText.replace("id=\"ewallet_text\"", "id=\"ewallet_text-min\"");
+                tac.val(tacText);
+
+                tacText = tacText.replace("onclick=\"callus()\"", '');
+                $('#renderedBtn').html(tacText);
+            }
+
+            function setmidSize() {
+                document.getElementById("buttonOnGenMin").classList.remove('active');
+                document.getElementById("buttonOnGenMid").classList.add('active');
+                document.getElementById("buttonOnGenLarge").classList.remove('active');
+                var tac = $('#textAreaCode');
+                var tacText = $('#textAreaCode').text().replace("id=\"ewallet-min\"", "id=\"ewallet-mid\"");
+                tac.val(tacText);
+                tacText = tacText.replace("id=\"ewallet\"", "id=\"ewallet-mid\"");
+                tac.val(tacText);
+
+                tacText = tacText.replace("id=\"ewallet_text-min\"", "id=\"ewallet_text-mid\"");
+                tac.val(tacText);
+
+                tacText = tacText.replace("id=\"ewallet_text\"", "id=\"ewallet_text-mid\"");
+                tac.val(tacText);
+
+                tacText = tacText.replace("onclick=\"callus()\"", '');
+                $('#renderedBtn').html(tacText);
+            }
+
+            function setlargeSize() {
+                document.getElementById("buttonOnGenMin").classList.remove('active');
+                document.getElementById("buttonOnGenMid").classList.remove('active');
+                document.getElementById("buttonOnGenLarge").classList.add('active');
+                var tac = $('#textAreaCode');
+                var tacText = $('#textAreaCode').text().replace("id=\"ewallet-mid\"", "id=\"ewallet\"");
+                tac.val(tacText);
+                tacText = tacText.replace("id=\"ewallet-min\"", "id=\"ewallet\"");
+                tac.val(tacText);
+                tacText = tacText.replace("id=\"ewallet_text-min\"", "id=\"ewallet_text\"");
+                tac.val(tacText);
+
+                tacText = tacText.replace("onclick=\"callus()\"", '');
+                $('#renderedBtn').html(tacText);
+            }
+
+            function copyToClipboard(elem) {
+                var target = null;
+                var targetId = "_hiddenCopyText_";
+                var isInput = elem.tagName === "INPUT" || elem.tagName === "TEXTAREA";
+                var origSelectionStart, origSelectionEnd;
+                if (isInput) {
+                    target = elem;
+                    origSelectionStart = elem.selectionStart;
+                    origSelectionEnd = elem.selectionEnd;
+                } else {
+                    target = document.getElementById(targetId);
+                    if (!target) {
+                        target = document.createElement("textarea");
+                        target.style.position = "absolute";
+                        target.style.left = "-9999px";
+                        target.style.top = "0";
+                        target.id = targetId;
+                        document.body.appendChild(target);
+                    }
+                    target.textContent = elem.textContent;
+                }
+                var currentFocus = document.activeElement;
+                target.focus();
+                target.setSelectionRange(0, target.value.length);
+                var succeed;
+                try {
+                    succeed = document.execCommand("copy");
+                } catch (e) {
+                    succeed = false;
+                }
+                if (currentFocus && typeof currentFocus.focus === "function") {
+                    currentFocus.focus();
+                }
+
+                if (isInput) {
+                    elem.setSelectionRange(origSelectionStart, origSelectionEnd);
+                } else {
+                    target.textContent = "";
+                }
+                return succeed;
+            }
+
+            function copyGeneratedButton() {
+                copyToClipboard(document.getElementById("textAreaCode"));
+                $.ajax({
+                    url: '@Url.Action("SaveNewCallBackAddress", "Merchants")',
+                    type: 'POST',
+                    data: {
+                        merchantGuid: $('#MerchantGuid').val(),
+                        callBackAddress: $('#MerchantWebSiteCallBackAddress').val()
+                    },
+                    dataType: "json",
+                    success: function() {
+
+                        $('#successGenMessageBlock').css("display", "block");
+                    }
+                });
+            }
+        </script>
+    }
+
+    <script type="text/javascript" language="javascript">
+        $(document).ready(function () {
+            setTimeout(function () { $('#successMessageBlock').css("display", "none") }, 3000);
+            setTimeout(function () { $('#errorMessageBlock').css("display", "none") }, 3000);
+        });
+    </script>

@@ -1,0 +1,167 @@
+﻿@using Tsg.UI.Main.App_LocalResources
+@model IEnumerable<Tsg.UI.Main.Models.BankModel>
+
+    @{
+        ViewBag.Title = GlobalRes.GetBanksPage_Title;
+        Layout = "~/Views/Shared/_LayoutMain.cshtml";
+    }
+
+    <div class="row">
+        <section class="panel">
+
+            <header class="panel-heading" data-panel-toggle="">
+                <div class="panel-actions">
+                    <a href="#" class="panel-action panel-action-toggle" data-panel-toggle=""></a>
+                </div>
+
+                <h2 class="panel-title">@GlobalRes.GetBanksPage_PageTitle</h2>
+                <p class="panel-subtitle">@GlobalRes.GetBanksPage_PageSubTitle</p>
+            
+            </header>
+            
+            <div class="panel-body" style="display: block;">
+                @if (ViewBag.IsError != null)
+                {
+                    <div class="alert @(ViewBag.IsError? "alert-danger":"alert-success")" style="display: block;" id="modalMessageBlock">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true" id="btn-close-message">×</button>
+                        <p class="m-none text-weight-semibold h6 text-left" id="successMesage">@ViewBag.Message</p>
+                    </div>
+                }
+
+                @if (Model != null)
+                {
+                    <table class="table table-bordered table-striped table-condensed mb-none" id="datatable-default">
+
+                        <thead>
+                        <tr>
+                            <th>@GlobalRes.GetBanksPage_Id</th>
+                            <th>@GlobalRes.GetBanksPage_BankName</th>
+                            <th>@GlobalRes.GetBanksPage_BankCountry</th>
+                            @*<th>Linked Currency</th>*@
+                            <th>@GlobalRes.GetBanksPage_Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @{
+                            int i = 0;
+                            foreach (var item in Model)
+                            {
+                                i += 1;
+                                <tr>
+                                    <td>
+                                        @i
+                                    </td>
+                                    <td id=@String.Format("bankId_{0}", item.BankId) class="hidden">
+                                        @Html.DisplayFor(modelItem => item.BankId)
+                                    </td>
+                                    <td id=@String.Format("bankName_{0}", item.BankId)>
+                                        @Html.DisplayFor(modelItem => item.BankName)
+                                    </td>
+                                    <td id=@String.Format("bankCountry_{0}", item.BankId)>
+                                        @Html.DisplayFor(modelItem => item.BankCountry)
+                                    </td>
+                                    @*<td>
+                                        @Html.DisplayFor(modelItem => item.CurrencyCode)
+                                    </td>*@
+                                    <td>
+                                        @Html.ActionLink("Edit", "EditBank", new {id = item.BankId}, new {@class = "mb-xs btn btn-xs btn-primary"})
+                                        <a class="mb-xs btn btn-xs btn-primary" onclick="getdelModalWindows('@item.BankId')" id="delBankBtn" data-toggle="modal" data-target="#deleteBank">@GlobalRes.FundingGetBankDepositsPage_Delete</a>
+
+                                        @*@Html.ActionLink("Delete", "DeleteBank", new { id = item.BankId }, new { onclick = "return confirm('Are you sure you want to delete?');", @class = "mb-xs btn btn-xs btn-info" })*@
+                                    </td>
+                                </tr>
+                            }
+                        }
+                        </tbody>
+
+
+                    </table>
+                }
+                <div class="modal fade" id="deleteBank" tabindex="-1" role="dialog" aria-labelledby="deleteBank-label" aria-hidden="true">
+                    @Html.Hidden("BankId");
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <img src="/Content/assets/images/winstantpay-logo-notag.png" height="35" alt=""/>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-top: 5px">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                @GlobalRes.GetBankList_ModalDeleteRec_DeletionRec
+                                <br/>
+                                <div class="row">
+                                    <div class="col-sm-4">@GlobalRes.GetBankAndWireInstPage_BankName</div>
+                                    <div class="col-sm-8">
+                                        <b><span id="DelModalPayInBankName"></span></b>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-4">@GlobalRes.GetBankAndWireInstPage_BankCountry</div>
+                                    <div class="col-sm-8">
+                                        <b><span id="DelModalPayInBankCountry"></span></b>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-success" onclick="deleteBankById()" id="delBankBtn">@GlobalRes.GetAllContractUsListPage_ModalDeleteRec_Ok</button>
+                                <button type="button" class="btn btn-danger" data-dismiss="modal" id="clsBtnAddBnk">@GlobalRes.GetAllContractUsListPage_ModalAddRec_Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <a class="btn btn-success" href="/Bank/AddBank">@GlobalRes.GetBanksPage_AddNew</a>
+                </div>
+
+            </div>
+
+        </section>
+    </div>
+
+    <script type="text/javascript">
+        function deleteBankById() {
+            console.log($("#BankId").val());
+            console.log($('#DelModalPayInBankName').text());
+            console.log($('#DelModalPayInBankName').val());
+            $.ajax({
+                url: '@Url.Action("DeleteBank", "Bank")',
+                type: 'POST',
+                data: { "BankId": $("#BankId").val(), "BankName": $('#DelModalPayInBankName').text()},
+                success: function () {
+                    $("#deleteBank").modal('toggle');
+                    $('#DelModalPayInBankName').text("");
+                    $('#DelModalPayInBankCountry').text("");
+                    location.reload();
+                }
+            });
+    }
+
+    function getdelModalWindows(id) {
+        $("#BankId").val(id);
+        $('#DelModalPayInBankName').text($("#bankName_" + id).text().trim());
+        $('#DelModalPayInBankCountry').text($("#bankCountry_" + id).text().trim());
+    }
+    </script>
+
+    @section customcss {
+        <!-- Specific Page Vendor CSS -->
+        <link rel="stylesheet" href="/Content/assets/vendor/select2/css/select2.css" />
+        <link rel="stylesheet" href="/Content/assets/vendor/select2-bootstrap-theme/select2-bootstrap.css" />
+        <link rel="stylesheet" href="/Content/assets/vendor/jquery-datatables-bs3/assets/css/datatables.css" />
+    }
+
+    @section VendorScripts {
+
+        <script src="/Content/assets/vendor/select2/js/select2.js"></script>
+        <script src="/Content/assets/vendor/jquery-datatables/media/js/jquery.dataTables.js"></script>
+        <script src="/Content/assets/vendor/jquery-datatables/extras/TableTools/js/dataTables.tableTools.min.js"></script>
+        <script src="/Content/assets/vendor/jquery-datatables-bs3/assets/js/datatables.js"></script>
+    }
+
+    @section Scripts {
+
+        <!-- Examples -->
+        <script src="/Content/assets/javascripts/tables/examples.datatables.default.js"></script>
+    }

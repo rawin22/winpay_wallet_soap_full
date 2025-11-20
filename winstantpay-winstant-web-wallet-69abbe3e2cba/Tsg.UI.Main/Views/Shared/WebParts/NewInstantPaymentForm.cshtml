@@ -1,0 +1,702 @@
+﻿@using System.Text.RegularExpressions
+@using Tsg.UI.Main.App_LocalResources
+@using TSG.Models.ServiceModels.AutomaticExchange
+@model Tsg.UI.Main.Models.NewInstantPaymentViewModel
+<style type="text/css">
+	.scrollable-menu {
+		height: auto;
+		max-height: 200px;
+		overflow-x: hidden;
+	}
+
+	.bs-searchbox {
+		padding: 4px 8px;
+	}
+
+	.error_btn {
+		border: 1px solid #b94a48;
+	}
+
+	.success_btn {
+		border: 1px solid #3A3A3A;
+	}
+</style>
+<script type="text/javascript" src="/Content/assets/vendor/jquery/jquery.js"></script>
+<script type="text/javascript" src="/Content/assets/vendor/qrReader/qr_packed.js"></script>
+@{
+	var currentCurrency = UiHelper.PrepareAvailableCurrenciesByService().FirstOrDefault();
+	string u = Request.ServerVariables["HTTP_USER_AGENT"];
+	Regex b = new Regex(@"(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino", RegexOptions.IgnoreCase | RegexOptions.Multiline);
+	Regex v = new Regex(@"1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-", RegexOptions.IgnoreCase | RegexOptions.Multiline);
+	bool isTablet = v.IsMatch(u.Substring(0, 4));
+	bool isMobile = b.IsMatch(u);
+}
+<form id="form" action="/Payment/Create" method="post" class="form-horizontal" @*novalidate="novalidate"*@>
+	@Html.Hidden("BaseCurrency", Model.CustomerBaseCurrencyCode, new { id = "baseCurrency" })
+	<section class="panel panel-featured panel-featured-info">
+		<header class="panel-heading" data-panel-toggle="">
+			<div class="panel-actions">
+				<a href="#" class="panel-action panel-action-toggle" data-panel-toggle=""></a>
+			</div>
+			<h2 class="panel-title">@(ViewBag.RepeatPayment == true ? GlobalRes.Shared_NewInstantPaymentFormPage_TitleRepeatInstantPayment : GlobalRes.Shared_NewInstantPaymentFormPage_TitlePayNow)</h2>
+			<p class="panel-subtitle">@GlobalRes.Shared_NewInstantPaymentFormPage_SubTitle</p>
+		</header>
+
+		<div class="panel-body">
+			<div class="validation-message">
+				<ul></ul>
+			</div>
+			@*@{
+					if (ViewBag.Liquids != null && (ViewBag.Liquids as List<DependencyLiquidForUserSo>)?.Count > 0)
+					{
+						<div class="row">
+							<div class="alert alert-info col-sm-6 col-sm-offset-3">
+								<button type="button" class="close" data-dismiss="alert" aria-hidden="true" id="btn-close-message">×</button>
+								<p class="m-none text-weight-semibold h6 text-left" id="successMesage">If you don't have sufficient funds in certain currency, you can use "Automatic Exchange" function to proceed the payment.</p>
+							</div>
+						</div>
+					}
+				}*@
+
+			@*<input type="hidden" name="CustomerID" value="@Model.CustomerID"/>*@
+			@Html.HiddenFor(m => m.InstantPaymentReceiveId)
+			<div class="form-group">
+				<label class="col-sm-3 control-label">QR CODE</label>
+				<div class="col-sm-6">
+					<a id="btn-scan-qr"><i class="fa fa-solid fa-qrcode fa-3x"></i></a>
+					@if (!isMobile && !isTablet)
+					{
+						<text> &nbsp; &nbsp;</text>
+						<a id="btn-open-qr" name="btn-open-qr" onclick="openQRCamera(this)">
+							<i class="fa fa-solid fa-upload fa-3x"></i>
+						</a>
+					}
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-3 control-label"></label>
+				<div class="col-sm-3">
+					<a id="btn-scan-qr-close" hidden="hidden">
+						Close
+					</a>
+					<canvas hidden="" id="qr-canvas"></canvas>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-3 control-label">@GlobalRes.Shared_NewInstantPaymentFormPage_To <span class="required" aria-required="true">*</span></label>
+				<div class="col-sm-6" style="text-align: right">
+					@Html.TextBoxFor(m => m.ToCustomer, new { @class = "form-control", required = "", @id = "toIdtB" })
+					<label class="qrcode-text-btn" style="">
+
+						<input type="file"
+							   accept="image/*"
+							   capture="camera" id="input-file-qr" onchange="openQRCamera(this)" tabindex=-1 />
+					</label>
+					<br />
+				</div>
+				@*@Html.HiddenFor(m=>m.ToCustomer, new {@id="checkerToCustomer"})*@
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label"></label>
+				<div class="col-sm-6">
+					@Html.DropDownListFor(m => m.ToCustomer, Model.PriorUsedAliases, new { @class = "form-control", id = "ddlPriorUsedAliases" })
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">@GlobalRes.Shared_NewInstantPaymentFormPage_Currency <span class="required" aria-required="true">*</span></label>
+				<div class="col-sm-6">
+					@*@Html.DropDownListFor(m => m.CurrencyCode, Model.AvailableCurrencies, new { @class = "form-control", id = "ddlPriorUsedAliases" })*@
+					@Html.HiddenFor(x => x.CurrencyCode, new { id = "CurrencyCode", required = "required" })
+					<div class="dropdown" id="currencyDdr" style="width: 100%">
+						<button class="btn dropdown-toggle btn-default text-left dropdown" style="width: inherit; text-align: left; padding-left: 16px;" id="selectButton" data-toggle="dropdown">
+							@GlobalRes.Shared_NewInstantPaymentFormPage_SelectCurrency
+							<span id="btnCaret" class="searchBtnCaret"></span>
+						</button>
+						@*<span class="caret" id="btnCaret" style="position: absolute; top: 45%; left: 97.5%; color: #555555 !important; border-top: 6px dashed !important; border-right: 3px solid transparent !important; border-left: 3px solid transparent !important"></span>*@
+
+						<ul class="dropdown-menu scrollable-menu inner" role="listbox" id="ddlmenu" data-live-search="true" style="width: inherit">
+							<li id="searchabli"><div class="bs-searchbox"><input type="text" class="form-control" autocomplete="off" role="textbox" aria-label="@GlobalRes.Shared_NewInstantPaymentFormPage_Search" id="searchabletext"></div></li>
+							@foreach (var item in Model.CustomerAvailableCurrencies)
+							{
+								var balance = Model.CustomerAvailableBalances.Any(t => t.CCY == item.CurrencyCode) ? Model.CustomerAvailableBalances.FirstOrDefault(t => t.CCY == item.CurrencyCode).BalanceAvailable : decimal.Zero;
+								var currencyText = String.Format(" {0} {1} {2}", @Math.Round(balance, item.CurrencyAmountScale), @item.CurrencyCode, @item.CurrencyName);
+
+								<li id="curr_@item.CurrencyCode">
+									@if (!String.IsNullOrEmpty(item.CurrencyCode))
+									{
+										<a data-pdsa-dropdown-val="@item.CurrencyCode" data-pdsa-dropdown-text="@currencyText"><img src="/Content/assets/images/onebyone.png" class="flag flag-@item.CurrencyCode.ToLower()" /> <span class="@(balance < 0 ? " text-danger" : "")">@String.Format(" {0}", @Math.Round(balance, item.CurrencyAmountScale))</span> @String.Format("{0} {1}", @item.CurrencyCode, @item.CurrencyName)</a>
+									}
+									else
+									{
+										<a>@item.CurrencyCode</a>
+									}
+								</li>
+							}
+						</ul>
+					</div>
+					<div id="notificatorCcy" style="color:#b94a48"></div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">@GlobalRes.Shared_NewInstantPaymentFormPage_Amount <span class="required" aria-required="true">*</span></label>
+				<div class="col-sm-6">
+					<input class="form-control" id="Amount" name="Amount" required="" type="text" value="@(Model.Amount != 0 ? Model.Amount.ToTrimmedString() : "")" />
+				</div>
+			</div>
+			@*@if (Model.AccountAliases.Count > 1)
+				{*@
+			<div class="form-group @(Model.AccountAliases.Count > 1? "":"hidden")">
+				<label class="col-sm-3 control-label">@GlobalRes.Shared_NewInstantPaymentFormPage_From <span class="required" aria-required="true">*</span></label>
+				<div class="col-sm-6">
+					@Html.DropDownListFor(m => m.FromCustomer, Model.AccountAliases, new { @class = "form-control", required = "" })
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">@GlobalRes.Shared_NewInstantPaymentFormPage_Invoice</label>
+				<div class="col-sm-6">
+					@Html.TextBoxFor(m => m.InstantPay, new { @class = "form-control" })
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">@GlobalRes.Shared_NewInstantPaymentFormPage_ReasonForPayments</label>
+				<div class="col-sm-6">
+					@Html.TextBoxFor(m => m.ReasonForPayment, new { @class = "form-control" })
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">@GlobalRes.Shared_NewInstantPaymentFormPage_Memo &nbsp;</label>
+				<div class="col-sm-6">
+					@Html.TextAreaFor(m => m.Memo, 5, 1, new { @class = "form-control" })
+				</div>
+			</div>
+			<div class="hidden" id="attachedFilePreView">
+				<div class="form-group">
+					<label class="col-sm-3 control-label">@GlobalRes.Shared_NewInstantPaymentFormPage_AttachedFile &nbsp;</label>
+					<div class="col-sm-6">
+						<div class="text-center">
+							<div id="attachedFile"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			@if (ViewBag.AutomaticBlock != null)
+			{
+				var automaticExchange = ViewBag.AutomaticBlock as AutomaticExchangeResponse;
+				if (automaticExchange != null)
+				{
+					if (automaticExchange.Success && automaticExchange.IsAutomaticExchange)
+					{
+						<div class="alert alert-success col-sm-6 col-sm-offset-3">
+							<div class="checkbox-custom checkbox-success">
+								<input data-val="true" id="IsAutoExchangeAvaliable" name="IsAutoExchangeAvaliable" type="checkbox" value="true">
+								<label for="IsAutoExchangeAvaliable">Confirm automatic exchange action</label>
+							</div>
+						</div>
+					}
+					else if (automaticExchange.Success && automaticExchange.IsNeedManualExchange)
+					{
+						<div class="alert alert-warning col-sm-6 col-sm-offset-3">
+							<span>@(automaticExchange.InfoBlock?.UserMessage)</span>
+						</div>
+					}
+					else if (!automaticExchange.Success)
+					{
+						<div class="alert alert-danger col-sm-6 col-sm-offset-3">
+							<span>@(automaticExchange.InfoBlock?.UserMessage ?? "Automatic exchange does not allow. Please add fund by this currency")</span>
+						</div>
+					}
+				}
+			}
+			@Html.HiddenFor(h => h.Action)
+		</div>
+		<footer class="panel-footer">
+			<div class="row">
+				<div class="col-sm-9 col-sm-offset-3">
+					<button class="btn btn-success blockuiwhenpress" id="savePaymentBtn" title="@GlobalRes.Shared_NewInstantPaymentFormPage_Create">@GlobalRes.Shared_NewInstantPaymentFormPage_Create</button>
+					<button class="btn btn-warning blockuiwhenpress" id="postPaymentBtn" title="@GlobalRes.Shared_NewInstantPaymentFormPage_PayNow">@GlobalRes.Shared_NewInstantPaymentFormPage_PayNow</button>
+					<button type="reset" class="btn btn-default">@GlobalRes.Shared_NewInstantPaymentFormPage_Reset</button>
+				</div>
+			</div>
+		</footer>
+	</section>
+</form>
+<script type="text/javascript">
+
+	const qrcode1 = window.qrcode;
+	const video = document.createElement("video");
+	const canvasElement = document.getElementById("qr-canvas");
+	const canvas = canvasElement.getContext("2d");
+	const btnScanQR = document.getElementById("btn-scan-qr");
+	const btnCloseQR = document.getElementById("btn-scan-qr-close");
+
+	const btnOpenQR = document.getElementById("btn-open-qr");
+
+	// A video's MediaStream object is available through its srcObject attribute
+	const mediaStream = video.srcObject;
+	// Through the MediaStream, you can get the MediaStreamTracks with getTracks():
+	//const tracks = mediaStream.getTracks();
+	var videoStream = '';
+	let scanning = false;
+	qrcode1.callback = res => {
+		if (res) {
+			//outputData.innerText = res;
+			scanning = false;
+
+			video.srcObject.getTracks().forEach(track => {
+				track.stop();
+			});
+
+			console.log("qrcode1.callback");
+			console.log(res);
+			var slashIndex = res.indexOf("/", 15);
+			var key = res.substring(slashIndex + 1);
+			console.log("slashIndex=" + slashIndex + ", key=" + key);
+			//var url = "http://localhost:8099/api/ShortenedUrls/" + key;
+			var url = "https://vo2.tech/api/ShortenedUrls/" + key;
+			console.log("url=" + url);
+
+			$.ajax({
+				url: url,
+				headers: {
+					'Accept': 'application/json',
+					'Content-Type': 'application/json'
+				},
+				type: "GET",
+				contentType: 'application/json; charset=utf-8',
+				success: function (result) {
+					console.log("Start Get URL by key - Success");
+					var shortUrl = result.shortUrl;
+					var longUrl = result.longUrl;
+
+					console.log("shortUrl - " + shortUrl);
+					console.log("longUrl - " + longUrl);
+					var m = longUrl.match(/^https:\/\/[^/]+/);
+					var hostName = m ? m[0] : null;
+					console.log("hostName - " + hostName);
+					var paymentIdSlashIndex = longUrl.indexOf("=", 53);
+					var receiveId = longUrl.substring(paymentIdSlashIndex + 1);
+					console.log("paymentIdSlashIndex=" + paymentIdSlashIndex + ", receiveId=" + receiveId);
+					window.location.replace(longUrl);
+				},
+				error: function (jqXhr, textStatus, errorThrown) {
+					console.log("Start ShortenedUrls - Failed");
+					console.log(jqXhr);
+					console.log(textStatus);
+					console.log(errorThrown);
+				}
+			});
+
+			canvasElement.hidden = true;
+			btnScanQR.hidden = false;
+			btnCloseQR.hidden = true;
+		}
+	};
+
+	btnScanQR.onclick = () => {
+		navigator.mediaDevices
+			.getUserMedia({ video: { facingMode: "environment" } })
+			.then(function (stream) {
+				videoStream = stream;
+				scanning = true;
+				btnScanQR.hidden = true;
+				canvasElement.hidden = false;
+				video.setAttribute("playsinline", true); // required to tell iOS safari we don't want fullscreen
+				video.srcObject = stream;
+				video.play();
+				tick();
+				scan();
+				btnCloseQR.hidden = false;
+			});
+	};
+
+
+	btnCloseQR.onclick = () => {
+		videoStream.getTracks().forEach((track) => {
+			track.stop();
+		});
+		canvasElement.hidden = true;
+		btnScanQR.hidden = false;
+		btnCloseQR.hidden = true;
+	};
+
+	function tick() {
+		canvasElement.height = video.videoHeight / 2;
+		canvasElement.width = video.videoWidth / 2;
+		canvas.drawImage(video, 0, 0, canvasElement.width, canvasElement.height);
+
+		scanning && requestAnimationFrame(tick);
+	}
+
+	function scan() {
+		try {
+			qrcode.decode();
+		} catch (e) {
+			setTimeout(scan, 300);
+		}
+	}
+
+	btnOpenQR.onclick = () => {
+		document.getElementById("input-file-qr").click();
+	};
+
+	function processForm(e) {
+		if (e != null && e.preventDefault)
+			e.preventDefault();
+		$("#notificatorCcy").empty();
+		$('#selectButton').removeClass("error_btn");
+		var ccy = $('#CurrencyCode').val();
+		if (!ccy) {
+			$("#notificatorCcy").append('<span> Please select currency </span>');
+			$('#selectButton').addClass("error_btn");
+			return false;
+		}
+		$("form").submit();
+		return true;
+	}
+
+	var form = document.getElementById('form');
+	if (form.attachEvent) {
+		form.attachEvent("submit", processForm);
+	} else {
+		form.addEventListener("submit", processForm);
+	}
+
+
+	$("#toIdtB").change(function () {
+		if ($(this).val().trim().length !== 0) {
+			$("#ToCustomer").val($(this).val());
+			$("#ddlPriorUsedAliases").attr("disabled", true);
+		}
+		else {
+			$("#ddlPriorUsedAliases").attr("disabled", false);
+		}
+	});
+	$("#ddlPriorUsedAliases").change(function () {
+		if ($(this).val().length !== 0) {
+			$("#ToCustomer").val($(this).val());
+			$("#toIdtB").val($(this).val());
+			$("#toIdtB").prop("readonly", true);
+		}
+		else {
+			$("#toIdtB").val($(this).val());
+			$("#toIdtB").prop("readonly", false);
+		}
+	});
+</script>
+
+
+<script type="text/javascript" language="javascript">
+	$('#savePaymentBtn').click(function() {
+		$("#Action").val("save");
+	});
+
+	$('#postPaymentBtn').click(function() {
+		$("#Action").val("post");
+	});
+
+	function sublitFrom() {
+		if ($('#form').valid()) {
+			$('#form').submit();
+			blockWindow();
+		}
+	}
+
+	function setBaseCurrency() {
+		console.log("setBaseCurrency");
+		console.log("setBaseCurrency, CurrencyCode: " + $("#CurrencyCode").val());
+		var baseCurrency = $("#CurrencyCode").val().length > 0 ? $("#CurrencyCode").val() : $("#baseCurrency").val();
+		console.log("set selected baseCurrency: " + baseCurrency);
+		var id = "";
+		var id1 = "";
+		var baseCurrency1 = baseCurrency;
+		var currencyText = "";
+		let amountText = "";
+		let amount = 0;
+		var thisTextArray = [];
+
+		$("#ddlmenu li").each(function () {
+			var thisText = $(this).text().trim();
+			console.log("thisText: " + thisText);
+			if (thisText != null && thisText.length > 0) {
+				thisTextArray = thisText.trim().split(" ");
+				var currencyCode = thisTextArray[1];
+				id = currencyCode;
+				console.log("currencyCode: " + currencyCode);
+				console.log("thisTextArray length: " + thisTextArray.length);
+				console.log("thisTextArray[0]: " + thisTextArray[0]);
+				amountText = thisTextArray[0];
+				amount = parseFloat(amountText);
+				if (currencyCode != null) {
+
+					var index = thisText.trim().indexOf(baseCurrency.toUpperCase())
+					if (currencyCode.toUpperCase() === baseCurrency.toUpperCase()) {
+						currencyText = thisText;
+						console.log("currencyText: " + currencyText);
+						$(this).show();
+						return false;
+					}
+				}
+			}
+		});
+
+		try {
+			id1 = id.toLowerCase();
+		} catch (e) {
+			id1 = id;
+		}
+		console.log("currencyText: " + currencyText);
+		console.log("id1: " + id1);
+
+		var buttons = document.getElementById("selectButton");
+
+		try {
+			baseCurrency1 = baseCurrency.toLowerCase();
+		} catch (e) {
+
+		}
+
+		if (amount < 0) {
+			console.log("amount < 0, amountText: " + amountText);
+			var newCurrencyText = thisTextArray.slice(1).join(" ");
+			buttons.innerHTML = '<img src="/Content/assets/images/onebyone.png" class="flag flag-' + id1 + '"/>' + '  '
+				+ '<span class="text-danger">' + thisTextArray[0] + '</span> ' + newCurrencyText
+			'&nbsp;<span class="caret" style="position: absolute; top: 45%; left: 97.5%; color: #555555 !important; border-top: 6px dashed !important; border-right: 3px solid transparent !important;border-left: 3px solid transparent !important"></span>';
+			//amountText = "<span class='text-danger'>" + amountText + "</span>";
+			//console.log("amount < 0, amountText: " + amountText);
+		} else {
+			console.log("else , currencyText: " + currencyText);
+			buttons.innerHTML = '<img src="/Content/assets/images/onebyone.png" class="flag flag-' + id1 + '"/>' + ' '
+				+ currencyText +
+				'&nbsp;<span class="caret" style="position: absolute; top: 45%; left: 97.5%; color: #555555 !important; border-top: 6px dashed !important; border-right: 3px solid transparent !important;border-left: 3px solid transparent !important"></span>';
+		}
+
+		//buttons.innerHTML = '<img src="/Content/assets/images/onebyone.png" class="flag flag-' + baseCurrency1 + '"/>' + ' ' +
+		//	currencyText +
+		//	'&nbsp;<span class="caret" style="position: absolute; top: 45%; left: 97.5%; color: #555555 !important; border-top: 6px dashed !important; border-right: 3px solid transparent !important;border-left: 3px solid transparent !important"></span>';
+		//$("ddlmenu").val(baseCurrency);
+		//$("#CurrencyCode").val(baseCurrency);
+		//$("#searchabletext").val("");
+	}
+
+
+	$(document).ready(function () {
+		setBaseCurrency();
+
+
+		var receiveId = "@Model.InstantPaymentReceiveId";
+		console.log("document.ready, receiveId: " + receiveId);
+		var currencyCode = "@Model.CurrencyCode";
+		if (currencyCode.length > 0) {
+			$("#CurrencyCode").val(currencyCode);
+		}
+		if (receiveId.length > 0 && receiveId != "00000000-0000-0000-0000-000000000000") {
+			if (currencyCode.length > 0) {
+				$("#CurrencyCode").val(currencyCode);
+			}
+
+			$.ajax({
+				url: '@Url.Action("AttachedFile", "QrGen", new { id= Model.InstantPaymentReceiveId})',
+				type: 'POST',
+				processData: false,
+				contentType: false,
+				success: function (attachedFileResult, textStatus, jqXHR) {
+					//data - response from server
+					console.log("Get attached file - Success");
+					if (attachedFileResult.attachedFileExtension.match(/\.(jpg|jpeg|png|gif)$/i)) {
+						$('#attachedFile').html('<img width="500" src="data:image/png;base64,' + attachedFileResult.attachedFileData + '" /><br /><a href="/QrGen/DownloadAttachedFile/@Model.InstantPaymentReceiveId" target="_blank">' + attachedFileResult.attachedFileName + '</a>');
+					}
+					else {
+						$('#attachedFile').html('<a href="/QrGen/DownloadAttachedFile/@Model.InstantPaymentReceiveId" target="_blank">' + attachedFileResult.attachedFileName + '</a>');
+					}
+					$("#attachedFilePreView").removeClass("hidden");
+				},
+				error: function (jqXhr, textStatus, errorThrown) {
+					console.log("Get attached file - Failed");
+					console.log(jqXhr);
+					console.log(textStatus);
+					console.log(errorThrown);
+				}
+			});
+		}
+	});
+	function showQRIntro() {
+		return confirm("Use your camera to take a picture of a QR code.");
+	}
+
+	$("#mobscanqr").click(function () {
+		$('.qrcode-text-btn').click();
+	});
+
+	function openQRCamera(node) {
+		var reader = new FileReader();
+		reader.onload = function () {
+			node.value = "";
+			qrcode.callback = function (res) {
+				if (res instanceof Error) {
+					alert("No QR code found. Please make sure the QR code is within the camera's frame and try again.");
+
+				} else {
+					console.log(res);
+					var slashIndex = res.indexOf("/", 16);
+					var key = res.substring(slashIndex + 1);
+					console.log("slashIndex=" + slashIndex + ", key=" + key);
+					//var url = "http://localhost:8099/api/ShortenedUrls/" + key;
+					var url = "https://vo2.tech/api/ShortenedUrls/" + key;
+					console.log("url=" + url);
+
+					$.ajax({
+						url: url,
+						headers: {
+							'Accept': 'application/json',
+							'Content-Type': 'application/json'
+						},
+						type: "GET",
+						contentType: 'application/json; charset=utf-8',
+						success: function (result) {
+							console.log("Start Get URL by key - Success");
+							var shortUrl = result.shortUrl;
+							var longUrl = result.longUrl;
+
+							console.log("shortUrl - " + shortUrl);
+							console.log("longUrl - " + longUrl);
+							var m = longUrl.match(/^https:\/\/[^/]+/);
+							var hostName = m ? m[0] : null;
+							console.log("hostName - " + hostName);
+							var paymentIdSlashIndex = longUrl.indexOf("=", 53);
+							var receiveId = longUrl.substring(paymentIdSlashIndex + 1);
+							console.log("paymentIdSlashIndex=" + paymentIdSlashIndex + ", receiveId=" + receiveId);
+							 window.location.replace(longUrl);
+						},
+						error: function (jqXhr, textStatus, errorThrown) {
+							console.log("Start ShortenedUrls - Failed");
+							console.log(jqXhr);
+							console.log(textStatus);
+							console.log(errorThrown);
+						}
+					});
+				}
+			};
+			console.log(reader.result);
+			qrcode.decode(reader.result);
+		};
+		reader.readAsDataURL(node.files[0]);
+	}
+
+	$('#selectButton').click(function () {
+		setTimeout(function () { $('#searchabletext').focus(); }, 100);
+	});
+	$('#ddlmenu li a').on('click',
+		function () {
+			console.log("Func work: ddlmenu li a");
+			var id = $(this).data('pdsa-dropdown-val');
+			console.log("id: " + id);
+			var currencyText = $(this).data('pdsa-dropdown-text');
+			console.log("currencyText: " + currencyText);
+			var currencyTexts = currencyText.trim().split(" ");
+			console.log("currencyTexts length: " + currencyTexts.length);
+			console.log("currencyTexts[0]: " + currencyTexts[0]);
+			let amountText = currencyTexts[0];
+			let amount = parseFloat(amountText);
+			//console.log("amount: " + amount);
+			//if (amount < 0) {
+			//    amountText = "<span class='text-danger'>" + amountText + "</span>";
+			//    console.log("amount < 0, amountText: " + amountText);
+			//}
+			//console.log("amountText: " + amountText);
+			var id1 = "";
+
+			if (id != null) {
+				console.log(id);
+				var buttons = document.getElementById("selectButton");
+
+				try {
+					id1 = id.toLowerCase();
+				} catch (e) {
+					id1 = id;
+				}
+				console.log("currencyText: " + currencyText);
+				console.log("id1: " + id1);
+
+				if (amount < 0) {
+					console.log("amount < 0, amountText: " + amountText);
+					var newCurrencyText = currencyTexts.slice(1).join(" ");
+					buttons.innerHTML = '<img src="/Content/assets/images/onebyone.png" class="flag flag-' + id1 + '"/>' + '  '
+						+ '<span class="text-danger">' + currencyTexts[0] + '</span> ' + newCurrencyText
+						'&nbsp;<span class="caret" style="position: absolute; top: 45%; left: 97.5%; color: #555555 !important; border-top: 6px dashed !important; border-right: 3px solid transparent !important;border-left: 3px solid transparent !important"></span>';
+					//amountText = "<span class='text-danger'>" + amountText + "</span>";
+					//console.log("amount < 0, amountText: " + amountText);
+				} else {
+					console.log("else , currencyText: " + currencyText);
+					buttons.innerHTML = '<img src="/Content/assets/images/onebyone.png" class="flag flag-' + id1 + '"/>' + ' '
+						+ currencyText +
+						'&nbsp;<span class="caret" style="position: absolute; top: 45%; left: 97.5%; color: #555555 !important; border-top: 6px dashed !important; border-right: 3px solid transparent !important;border-left: 3px solid transparent !important"></span>';
+				}
+				$("#ddlmenu").val(id);
+				console.log("#ddlmenu");
+				$("#CurrencyCode").val(id);
+				$("#searchabletext").val("");
+				$("#ddlmenu li").show();
+				console.log("#CurrencyCode");
+				$('#selectButton').removeClass("error_btn");
+				$("#notificatorCcy").empty();
+			}
+			else {
+				var buttons = document.getElementById("selectButton");
+				buttons.innerHTML = '@String.Format(GlobalRes.Shared_NewInstantPaymentFormPage_SelectCurrency)' + '&nbsp;<span class="caret" style="position: absolute; top: 45%; left: 97.5%; color: #555555 !important; border-top: 6px dashed !important; border-right: 3px solid transparent !important;border-left: 3px solid transparent !important"></span>';
+				$("#ddlmenu").val(null);
+				//console.log("#ddlmenu");
+				$("#CurrencyCode").val(null);
+				$("#searchabletext").val("");
+				$("#ddlmenu li").show();
+				console.log("#CurrencyCode");
+			}
+		});
+	$("#searchabletext").on("input", function () {
+		var selText = $(this).val();
+		console.log("selText: " + selText);
+
+		$("#ddlmenu li").hide();
+		$("#searchabli").show();
+		$("#ddlmenu li").each(function () {
+			var thisVal = $(this).data('pdsa-dropdown-val');
+			var thisText = $(this).text().trim();
+			var thisTextArray = thisText.split(" ");
+			var currencyCode = thisTextArray[1];
+			var index = thisText.trim().indexOf(selText.toUpperCase())
+			if (thisText.toUpperCase().indexOf(selText.toUpperCase()) >= 0) {
+				$(this).show();
+			}
+		});
+		$("#searchabletext").one("keydown", function (e) {
+			if (e.which == 13 || e.which == 10) {
+				if ($("#ddlmenu li:visible").first() !== null) {
+					var el = $("#ddlmenu li:visible a").attr('display', 'list-item').first();
+					var id = el.data('pdsa-dropdown-val');
+					var currencyText = el.data('pdsa-dropdown-text');
+					if (id != null) {
+						console.log("Entered");
+
+						console.log(id);
+						var buttons = document.getElementById("selectButton");
+						buttons.innerHTML = '<img src="/Content/assets/images/onebyone.png" class="flag flag-' + id.toLowerCase() + '"/>' + '  ' +
+							id +
+							'&nbsp;<span class="caret" style="position: absolute; top: 45%; left: 97.5%; color: #555555 !important; border-top: 6px dashed !important; border-right: 3px solid transparent !important;border-left: 3px solid transparent !important"></span>';
+						$("ddlmenu").val(id);
+						console.log("#ddlmenu");
+						$("#CurrencyCode").val(id);
+						$("#searchabletext").val("");
+						$("#ddlmenu li").show();
+						$('#selectButton').removeClass("error_btn");
+						$("#notificatorCcy").empty();
+					}
+
+					else { console.log("Not Entered"); }
+				}
+			}
+		});
+
+	});
+</script>

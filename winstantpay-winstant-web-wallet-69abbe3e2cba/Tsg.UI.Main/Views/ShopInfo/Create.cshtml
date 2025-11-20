@@ -1,0 +1,146 @@
+﻿@using Tsg.UI.Main.App_LocalResources
+@model TSG.Models.ServiceModels.Shop.ShopInfo
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+
+<link href="/Content/viewer/viewer.css" rel="stylesheet">
+<script src="/Content/viewer/viewer.js"></script>
+<div class="row">
+    <section class="panel">
+
+        <header class="panel-heading" data-panel-toggle="">
+            <div class="panel-actions">
+                <a href="#" class="panel-action panel-action-toggle" data-panel-toggle=""></a>
+            </div>
+
+            <h2 class="panel-title">Shops</h2>
+            <p class="panel-subtitle">Create new shop</p>
+        </header>
+
+        <div class="panel-body" style="display: block;">
+
+            @using (Html.BeginForm("Create", "ShopInfo", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(m=>m.ShopInfo_LogoPath)
+                <div class="form-horizontal">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ShopInfo_Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.ShopInfo_Name, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.ShopInfo_Name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ShopInfo_OwnerWpayId, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.ShopInfo_OwnerWpayId, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.ShopInfo_OwnerWpayId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    @if (Model != null && !String.IsNullOrEmpty(Model.ShopInfo_LogoPath))
+                    {
+                        if (File.Exists(Server.MapPath("~/ShopFiles/ShopInfo" + Model.ShopInfo_LogoPath)))
+                         {
+                             @Html.HiddenFor(h => h.ShopInfo_LogoPath)
+                             <div class = "form-group">
+                                 <label class = "col-sm-2 control-label">@GlobalRes.ProofDocUploadProofDocPage_AttachmentFile</label>
+                                 <div class = "col-sm-8" >
+                                     <div>
+                                         <img id = "image" src = "~/ShopFiles/ShopInfo/@Model.ShopInfo_LogoPath" class = "img-rounded" style = "max-width: 200px; max-height: 200px;"/>
+                                     </div>
+                                     <script>
+                                         var viewer = new Viewer(document.getElementById('image'),
+                                             { toolbar: 0, navbar: 0, rotatable: 0, fullscreen: 0, title: 0 });
+                                     </script>
+                                 </div>
+                             </div>
+                         }
+
+                    }
+                    
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Attach file</label>
+                        <div class="col-sm-8" id="file_load">
+                            <div class="btn btn-primary" onclick="document.getElementById('ShopInfo_PostedFile').click()">@GlobalRes.ProofDocUploadProofDocPage_AttachmentFile</div>
+                            <label> @GlobalRes.CommonObject_NoFile </label>
+                            <input type="file" name="ShopInfo_PostedFile" id="ShopInfo_PostedFile" accept="image/*" class="hidden" />
+                        </div>
+                    </div>
+
+
+                    @*<div class="form-group">
+                            @Html.LabelFor(model => model.ShopInfo_LogoPath, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.ShopInfo_LogoPath, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.ShopInfo_LogoPath, "", new { @class = "text-danger" })
+                            </div>
+                        </div>*@
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ShopInfo_IsPublished, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            <div class="checkbox">
+                                @Html.EditorFor(model => model.ShopInfo_IsPublished)
+                                @Html.ValidationMessageFor(model => model.ShopInfo_IsPublished, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+                    @*<div class="form-group">
+                        @Html.LabelFor(model => model.ShopInfo_IsDeleted, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            <div class="checkbox">
+                                @Html.EditorFor(model => model.ShopInfo_IsDeleted)
+                                @Html.ValidationMessageFor(model => model.ShopInfo_IsDeleted, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>*@
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Create" class="btn btn-default" />
+                        </div>
+                    </div>
+                </div>
+            }
+
+            <div>
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        </div>
+    </section>
+</div>
+@section Scripts {
+    @*@Scripts.Render("~/bundles/jqueryval")*@
+
+
+    <script type="text/javascript">
+        $("#ShopInfo_PostedFile").on("change",
+            function () {
+                var fileApi = (window.File && window.FileReader && window.FileList && window.Blob) ? true : false;
+
+                var wrapper = $("#file_load"),
+                    inp = wrapper.find("input"),
+                    btn = wrapper.find("button"),
+                    lbl = wrapper.find("label");
+
+                var fileName;
+                if (fileApi && inp[0].files[0])
+                    fileName = inp[0].files[0].name;
+                else
+                    fileName = inp.val().replace("C:\\fakepath\\", '');
+
+                if (!fileName.length)
+                    return;
+                if (lbl.is(":visible")) {
+                    lbl.text(fileName);
+                }
+            }).change();
+    </script>
+}

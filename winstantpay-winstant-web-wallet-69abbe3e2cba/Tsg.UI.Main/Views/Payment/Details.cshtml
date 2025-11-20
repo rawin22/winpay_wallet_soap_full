@@ -1,0 +1,80 @@
+﻿@using Tsg.UI.Main.App_LocalResources
+@model Tsg.UI.Main.Models.InstantPaymentDetailsViewModel
+
+
+@{
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+    ViewBag.Title = GlobalRes.PaymentDetailsPage_Title;
+}
+
+<script type="text/javascript" src="/Content/assets/vendor/jquery/jquery.js"></script>
+
+<!-- Modal SendMail Begin -->
+    <div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="createModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document" style="top:30%">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <img src="/Content/assets/images/winstantpay-logo-notag.png" height="35" alt="" />
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-top: 5px">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <br />
+                    <div class="row" style="padding-bottom: 5px">
+                        <div class="col-sm-4"><strong>@GlobalRes.PaymentDetailsPage_ModalSendMailFrom</strong> <span class="required" aria-required="true">*</span></div>
+                        <div class="col-sm-8">
+                            @Html.TextBoxFor(m=>m.MailModel.MailTo, "",new { @class = "form-control", id = "mailTo", required=true, type="mail"})
+                        </div>
+                    </div>
+                    <div class="row" style="padding-bottom: 5px">
+                        <div class="col-sm-4">
+                            <strong>@GlobalRes.PaymentDetailsPage_ModalSendMailNote</strong>
+                         </div>
+                        <div class="col-sm-8">
+                            @Html.TextAreaFor(n=>n.MailModel.Subject, 5, 1, new { @class = "form-control", id = "note" })
+                        </div>
+                        @Html.HiddenFor(h=>h.MailModel.MailText, new {id="hidHtml"})
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-info" id ="sendMail">@GlobalRes.PaymentDetailsPage_ModalSendMailSend</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">@GlobalRes.PaymentDetailsPage_ModalSendMailClose</button>
+                </div>
+            </div>
+            <script type="text/javascript" language="javascript">
+                $("#sendMail")
+                    .on('click',
+                        function () {
+
+                            var m1 = $("input#mailTo").val();
+                            var ta = $("textarea#note").val();
+                            var td = $($("#tbl_detail").html());
+                            $("#hidHtml").val(td);
+                            $.ajax({
+                                url: "@Url.Action("SendMail", "Payment")",
+                                type: "POST",
+                                data: $("form").serialize(),
+                                dataType: "json",
+                                success: function(result) {
+                                    console.log(result);
+                                }
+                            });
+                        });
+            </script>
+
+        </div>
+    </div>
+<!-- Modal SendMail End -->
+@{
+    Html.RenderPartial("_DetailsView", Model);
+
+    if (Model.ShopOrder != null)
+    {
+        <div class="modal fade" id="viewOrder" tabindex="-1" role="dialog" aria-labelledby="viewOrder" aria-hidden="true">
+            @{
+                Html.RenderPartial("~/Views/ShoppingCart/_ViewOrder.cshtml", Model.ShopOrder);
+            }
+        </div>
+    }
+}

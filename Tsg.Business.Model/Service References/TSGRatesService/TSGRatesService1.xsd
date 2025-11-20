@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/TSGRatesService.DataContracts" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/TSGRatesService.DataContracts" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="https://www.bizcurrency1.com/TsgRatesService/TSGRatesService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/TSGRatesService.DataTypes" />
+  <xs:complexType name="UpdateCurrencyRateRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Ask" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Bid" type="xs:decimal" />
+      <xs:element minOccurs="0" name="CCY" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LoginId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UpdateCurrencyRateRequest" nillable="true" type="tns:UpdateCurrencyRateRequest" />
+  <xs:complexType name="UpdateCurrencyRateResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ServiceResponseBase">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="UpdateCurrencyRateResponse" nillable="true" type="tns:UpdateCurrencyRateResponse" />
+  <xs:complexType name="ServiceResponseBase">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ServiceResponse" nillable="true" type="tns:ServiceResponse" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ServiceResponseBase" nillable="true" type="tns:ServiceResponseBase" />
+  <xs:complexType name="ServiceResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="HasErrors" type="xs:boolean" />
+      <xs:element minOccurs="0" name="HasWarnings" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Responses" nillable="true" type="tns:ArrayOfServiceResponseData">
+        <xs:annotation>
+          <xs:appinfo>
+            <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ServiceResponse" nillable="true" type="tns:ServiceResponse" />
+  <xs:complexType name="ArrayOfServiceResponseData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ServiceResponseData" nillable="true" type="tns:ServiceResponseData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfServiceResponseData" nillable="true" type="tns:ArrayOfServiceResponseData" />
+  <xs:complexType name="ServiceResponseData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ResponseCode" type="xs:int" />
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/TSGRatesService.DataTypes" minOccurs="0" name="ResponseType" type="q1:ServiceResponseType" />
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MessageDetails" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FieldName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FieldValue" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ServiceResponseData" nillable="true" type="tns:ServiceResponseData" />
+  <xs:complexType name="UpdateLiborRatesRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CCY" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LoginId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="M1" type="xs:decimal" />
+      <xs:element minOccurs="0" name="M12" type="xs:decimal" />
+      <xs:element minOccurs="0" name="M2" type="xs:decimal" />
+      <xs:element minOccurs="0" name="M3" type="xs:decimal" />
+      <xs:element minOccurs="0" name="M6" type="xs:decimal" />
+      <xs:element minOccurs="0" name="M9" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="W1" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UpdateLiborRatesRequest" nillable="true" type="tns:UpdateLiborRatesRequest" />
+  <xs:complexType name="UpdateLiborRatesResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ServiceResponseBase">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="UpdateLiborRatesResponse" nillable="true" type="tns:UpdateLiborRatesResponse" />
+</xs:schema>

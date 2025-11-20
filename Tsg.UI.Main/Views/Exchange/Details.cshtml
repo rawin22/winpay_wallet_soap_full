@@ -1,0 +1,13 @@
+﻿@using Tsg.UI.Main.App_LocalResources
+@model Tsg.UI.Main.Models.ConvertDetailsViewModel
+
+
+@{
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+    ViewBag.Title = "Convert Details";
+}
+
+<script type="text/javascript" src="/Content/assets/vendor/jquery/jquery.js"></script>
+@{
+    Html.RenderPartial("_DetailsView", Model);    
+}

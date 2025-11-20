@@ -1,0 +1,233 @@
+﻿@model System.Collections.Generic.List<TSG.Models.ServiceModels.Transfers.Reports.GetInboxListSo>
+
+    @using Tsg.UI.Main.App_LocalResources
+    @using TSG.Models.Enums
+    @using WinstantPay.Common.Extension
+    @{
+        ViewBag.Title = GlobalRes.Inbox_Index_Title;
+        Layout = "../Shared/_LayoutMain.cshtml";
+        int counter = 1;
+    }
+
+    <div class="row">
+        <section class="panel">
+
+            <header class="panel-heading" data-panel-toggle="">
+                <div class="panel-actions">
+                    <a href="#" class="panel-action panel-action-toggle" data-panel-toggle=""></a>
+                </div>
+                <h2 class="panel-title">@ViewBag.Title</h2>
+                <p class="panel-subtitle">@GlobalRes.Inbox_Index_SubTitle</p>
+            </header>
+
+            <div class="panel-body" style="display: block;">
+                <br />
+                <div class="row">
+
+                    <div class="col-sm-12">
+                        <table class="table table-bordered table-striped table-condensed mb-none" id="datatable-default">
+                            <thead>
+                            <tr>
+                                <th> #</th>
+                                <th> @GlobalRes.Inbox_Index_Table_Header_Topic</th>
+                                <th> @GlobalRes.Inbox_Index_Table_Header_Date</th>
+                                <th> @GlobalRes.Inbox_Index_Table_Header_Type</th>
+                                <th> @GlobalRes.Inbox_Index_Table_Header_From</th>
+                                <th> @GlobalRes.Inbox_Index_Table_Header_Info</th>
+                                <th> @GlobalRes.Inbox_Index_Table_Header_Status</th>
+                                <th> @GlobalRes.FundingGetFundRequestsPage_Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr id="transferToken_@item.GetInboxList_Id">
+                                    <td>@(counter++)</td>
+                                    <td>
+                                        @(EnumHelper<TransfersSourceTypeEnum>.GetDisplayValue(item.GetInboxList_SourceType))
+                                    </td>
+                                    <td> @Html.DisplayFor(modelItem => item.GetInboxList_CreatedDate) </td>
+                                    <td>@(EnumHelper<DelegatedAuthorirySourceLimitationTypeEnum>.GetDisplayValue(item.GetInboxList_TypeRecBySource))</td>
+                                    <td> @Html.DisplayFor(modelItem => item.GetInboxList_TransferParent) </td>
+                                    <td>
+                                        @if (item.GetInboxList_SourceType == TransfersSourceTypeEnum.TokenTransfers)
+                                        {
+                                            if (item.GetInboxList_TypeRecBySource == DelegatedAuthorirySourceLimitationTypeEnum.Qr)
+                                            {
+                                                <span><i class="fa fa-qrcode"></i></span>
+                                            }
+                                            else if (item.GetInboxList_TypeRecBySource == DelegatedAuthorirySourceLimitationTypeEnum.BarCode)
+                                            {
+                                                <span><i class="fa fa-barcode"></i></span>
+                                            }
+                                            else if ((DelegatedAuthorirySourceLimitationTypeEnum)item.GetInboxList_TypeRecBySource == DelegatedAuthorirySourceLimitationTypeEnum.Nfc)
+                                            {
+                                                <span><i class="fa fa-rss-square"></i></span>
+                                            }
+                                            else if ((DelegatedAuthorirySourceLimitationTypeEnum)item.GetInboxList_TypeRecBySource == DelegatedAuthorirySourceLimitationTypeEnum.SecretCode)
+                                            {
+                                                <span><i class="fa fa-wallet"></i></span>
+                                            }
+                                            @item.GetInboxList_MediaNameByTransferToken
+                                        }
+                                        else
+                                        {
+                                            @Html.DisplayFor(modelItem => item.GetInboxList_Info)
+                                        }
+                                    </td>
+                                    <td>
+                                        @(EnumHelper<TransferStatusesEnum>.GetDisplayValue(item.GetInboxList_Status))
+                                    </td>
+                                    <td>
+                                        @if (item.GetInboxList_SourceType == TransfersSourceTypeEnum.TokenTransfers)
+                                        {
+                                            if ((!item.GetInboxList_AcceptedDate.HasValue || !item.GetInboxList_IsRejected.HasValue))
+                                            {
+                                                <a class="btn btn-success" id="accept_token" onclick="acceptDeclineTokenEvent('@item.GetInboxList_Id', true)">@GlobalRes.CommonWords_Accept</a>
+                                                <a class="btn btn-danger" id="decline_token" onclick="acceptDeclineTokenEvent('@item.GetInboxList_Id', false)">@GlobalRes.CommonWords_Decline</a>
+                                            }
+                                            else
+                                            {
+                                                @(EnumHelper<TransfersSourceTypeEnum>.GetDisplayValue(item.GetInboxList_SourceType))
+                                            }
+                                        }
+
+                                        @if (item.GetInboxList_SourceType == TransfersSourceTypeEnum.RedEnvelope && (!item.GetInboxList_AcceptedDate.HasValue || !item.GetInboxList_IsRejected.HasValue))
+                                        {
+                                            <a class="btn btn-success" id="accept_token" onclick="acceptDeclineRedEnvelopeEvent('@item.GetInboxList_Id', true)">@GlobalRes.CommonWords_Accept</a>
+                                            <a class="btn btn-danger" id="decline_token" onclick="showDeclinedModalBox('@item.GetInboxList_Id', false)">@GlobalRes.CommonWords_Decline</a>
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+            <div class = "modal fade" id = "redEnveloreDeclineModal" tabindex = "-1" role = "dialog" aria-labelledby = "redEnveloreDeclineModalLabel" aria-hidden = "true" >
+                <div class = "modal-dialog" role = "document" >
+                    <div class = "modal-content" >
+                        <div class = "modal-header" >
+                            <img src = "/Content/assets/images/winstantpay-logo-notag.png" height = "35" alt = ""/>
+                            <button type = "button" class = "close" data-dismiss = "modal" aria-label = "Close" style = "margin-top: 5px" >
+                                <span aria-hidden = "true" >&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            @Html.TextArea("redEnveloreDeclineText")
+                            @Html.Hidden("recordId")
+                            @Html.Hidden("actionStatus")
+                            <button type="button" class="btn btn-info"> 
+                                <span aria-hidden="true" class="fa fa-close">Decline red envelope</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+<script type="text/javascript" language="javascript">
+    function acceptDeclineTokenEvent(transferId, isAccepted) {
+        var transferedTokenId = transferId;
+        blockWindow();
+        $.ajax({
+            url: "@Url.Action("Post", "ReceipTustedToken")",
+            type: "POST",
+            data: {
+                'TransferedRecordId': transferId,
+                'Action': isAccepted
+            },
+            dataType: "json",
+            charset: 'utf-8'
+        }).error(function (request, status, error) {
+            console.log(request);
+            console.log(status);
+            console.log(error);
+            $.unblockUI();
+            swal({
+                title: error,
+                timer: 3000,
+                type: 'warning',
+                showConfirmButton: false
+            });}).success(function (data) {
+                $.unblockUI();
+                if (data.Success) {
+                    swal({
+                        title: data.InfoBlock.UserMessage,
+                        timer: 3000,
+                        type: 'success',
+                        showConfirmButton: true
+                    });
+                    location.reload();
+                } else {
+                    swal({
+                        title: data.InfoBlock.UserMessage,
+                        timer: 5000,
+                        type: 'warning',
+                        showConfirmButton: true
+                    });
+
+                }
+        });
+    }
+
+    function showDeclinedModalBox(transferId, isAccepted) {
+        $('#recordId').val(transferId);
+        $('#actionStatus').val(isAccepted);
+        $('#redEnveloreDeclineModal').toggle();
+    }
+
+    function clickDeclineBtn() {
+        $('#redEnveloreDeclineModal').toggle();
+        acceptDeclineRedEnvelopeEvent($('#recordId').val(),
+            $('#actionStatus').val(),
+            $('#redEnveloreDeclineText').val());
+    }
+
+    function acceptDeclineRedEnvelopeEvent(transferId, isAccepted, rejectednote) {
+        var transferedTokenId = transferId;
+        blockWindow();
+        $.ajax({
+            url: "@Url.Action("Post", "ReceipTustedToken")",
+            type: "POST",
+            data: {
+                'TransferedRecordId': transferId,
+                'Action': isAccepted,
+                'RejectionNote': rejectednote
+            },
+            dataType: "json",
+            charset: 'utf-8'
+        }).error(function (request, status, error) {
+            console.log(request);
+            console.log(status);
+            console.log(error);
+            $.unblockUI();
+            swal({
+                title: error,
+                timer: 3000,
+                type: 'warning',
+                showConfirmButton: false
+            });}).success(function (data) {
+            $.unblockUI();
+            if (data.Success) {
+                swal({
+                    title: data.InfoBlock.UserMessage,
+                    timer: 3000,
+                    type: 'success',
+                    showConfirmButton: true
+                });
+                location.reload();
+            } else {
+                swal({
+                    title: data.InfoBlock.UserMessage,
+                    timer: 5000,
+                    type: 'warning',
+                    showConfirmButton: true
+                });
+
+            }
+        });
+    }
+</script>

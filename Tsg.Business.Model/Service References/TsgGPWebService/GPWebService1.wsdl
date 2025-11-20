@@ -1,0 +1,2023 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://tradesolutionsgroup.com/services" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" name="GPWebService" targetNamespace="http://tradesolutionsgroup.com/services" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="BasicHttpsBinding_IGPWebService1_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <sp:HttpsToken RequireClientCertificate="false" />
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict />
+              </wsp:Policy>
+            </sp:Layout>
+          </wsp:Policy>
+        </sp:TransportBinding>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tradesolutionsgroup.com/services/Imports">
+      <xsd:import schemaLocation="https://www.bizcurrency.com/GPWebServiceBetaToken/IGPWebService1.svc?xsd=xsd0" namespace="http://tradesolutionsgroup.com/services" />
+      <xsd:import schemaLocation="https://www.bizcurrency.com/GPWebServiceBetaToken/IGPWebService1.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="https://www.bizcurrency.com/GPWebServiceBetaToken/IGPWebService1.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/GPWebService.DataContracts" />
+      <xsd:import schemaLocation="https://www.bizcurrency.com/GPWebServiceBetaToken/IGPWebService1.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/GPWebService.DataTypes" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IGPWebService1_PaymentRelease_InputMessage">
+    <wsdl:part name="parameters" element="tns:PaymentRelease" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_PaymentRelease_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PaymentReleaseResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_PaymentDelete_InputMessage">
+    <wsdl:part name="parameters" element="tns:PaymentDelete" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_PaymentDelete_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PaymentDeleteResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_PaymentSearch_InputMessage">
+    <wsdl:part name="parameters" element="tns:PaymentSearch" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_PaymentSearch_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PaymentSearchResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_PaymentGetSingle_InputMessage">
+    <wsdl:part name="parameters" element="tns:PaymentGetSingle" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_PaymentGetSingle_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PaymentGetSingleResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_PaymentGetSettlementHistory_InputMessage">
+    <wsdl:part name="parameters" element="tns:PaymentGetSettlementHistory" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_PaymentGetSettlementHistory_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PaymentGetSettlementHistoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_PaymentMarkAsTransmitted_InputMessage">
+    <wsdl:part name="parameters" element="tns:PaymentMarkAsTransmitted" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_PaymentMarkAsTransmitted_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PaymentMarkAsTransmittedResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_UserAccessRightAddOrUpdate_InputMessage">
+    <wsdl:part name="parameters" element="tns:UserAccessRightAddOrUpdate" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_UserAccessRightAddOrUpdate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UserAccessRightAddOrUpdateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_UserAccessRightDelete_InputMessage">
+    <wsdl:part name="parameters" element="tns:UserAccessRightDelete" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_UserAccessRightDelete_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UserAccessRightDeleteResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_WhiteLabelProfileGetSingle_InputMessage">
+    <wsdl:part name="parameters" element="tns:WhiteLabelProfileGetSingle" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_WhiteLabelProfileGetSingle_OutputMessage">
+    <wsdl:part name="parameters" element="tns:WhiteLabelProfileGetSingleResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_WhiteLabelProfileSearch_InputMessage">
+    <wsdl:part name="parameters" element="tns:WhiteLabelProfileSearch" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_WhiteLabelProfileSearch_OutputMessage">
+    <wsdl:part name="parameters" element="tns:WhiteLabelProfileSearchResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_WKYCResultGetAllForItem_InputMessage">
+    <wsdl:part name="parameters" element="tns:WKYCResultGetAllForItem" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_WKYCResultGetAllForItem_OutputMessage">
+    <wsdl:part name="parameters" element="tns:WKYCResultGetAllForItemResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_WKYCResultDetailGetAll_InputMessage">
+    <wsdl:part name="parameters" element="tns:WKYCResultDetailGetAll" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_WKYCResultDetailGetAll_OutputMessage">
+    <wsdl:part name="parameters" element="tns:WKYCResultDetailGetAllResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_GetLibraryVersion_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLibraryVersion" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_GetLibraryVersion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLibraryVersionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_CurrencyListGetPaymentCurrencies_InputMessage">
+    <wsdl:part name="parameters" element="tns:CurrencyListGetPaymentCurrencies" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_CurrencyListGetPaymentCurrencies_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CurrencyListGetPaymentCurrenciesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_CountryListGetPaymentCountries_InputMessage">
+    <wsdl:part name="parameters" element="tns:CountryListGetPaymentCountries" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_CountryListGetPaymentCountries_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CountryListGetPaymentCountriesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_StateOrProvinceListGetAllForCountry_InputMessage">
+    <wsdl:part name="parameters" element="tns:StateOrProvinceListGetAllForCountry" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_StateOrProvinceListGetAllForCountry_OutputMessage">
+    <wsdl:part name="parameters" element="tns:StateOrProvinceListGetAllForCountryResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_NationalCodeListGetAll_InputMessage">
+    <wsdl:part name="parameters" element="tns:NationalCodeListGetAll" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_NationalCodeListGetAll_OutputMessage">
+    <wsdl:part name="parameters" element="tns:NationalCodeListGetAllResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_NationalCodeListGetAllForCurrency_InputMessage">
+    <wsdl:part name="parameters" element="tns:NationalCodeListGetAllForCurrency" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_NationalCodeListGetAllForCurrency_OutputMessage">
+    <wsdl:part name="parameters" element="tns:NationalCodeListGetAllForCurrencyResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_ReasonsForPaymentGetAllForCountry_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReasonsForPaymentGetAllForCountry" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_ReasonsForPaymentGetAllForCountry_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReasonsForPaymentGetAllForCountryResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_Authenticate_InputMessage">
+    <wsdl:part name="parameters" element="tns:Authenticate" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_Authenticate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AuthenticateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_EventNotificationGetAllForItem_InputMessage">
+    <wsdl:part name="parameters" element="tns:EventNotificationGetAllForItem" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_EventNotificationGetAllForItem_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EventNotificationGetAllForItemResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_EventNotificationAddNotification_InputMessage">
+    <wsdl:part name="parameters" element="tns:EventNotificationAddNotification" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_EventNotificationAddNotification_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EventNotificationAddNotificationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_EventNotificationDeleteNotification_InputMessage">
+    <wsdl:part name="parameters" element="tns:EventNotificationDeleteNotification" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_EventNotificationDeleteNotification_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EventNotificationDeleteNotificationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_CustomerGetSingle_InputMessage">
+    <wsdl:part name="parameters" element="tns:CustomerGetSingle" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_CustomerGetSingle_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CustomerGetSingleResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_CustomerGetSingleFromAlias_InputMessage">
+    <wsdl:part name="parameters" element="tns:CustomerGetSingleFromAlias" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_CustomerGetSingleFromAlias_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CustomerGetSingleFromAliasResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_CustomerCreate_InputMessage">
+    <wsdl:part name="parameters" element="tns:CustomerCreate" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_CustomerCreate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CustomerCreateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_CustomerCreateFromTemplate_InputMessage">
+    <wsdl:part name="parameters" element="tns:CustomerCreateFromTemplate" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_CustomerCreateFromTemplate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CustomerCreateFromTemplateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_CustomerUpdate_InputMessage">
+    <wsdl:part name="parameters" element="tns:CustomerUpdate" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_CustomerUpdate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CustomerUpdateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_CustomerAccountAliasCreate_InputMessage">
+    <wsdl:part name="parameters" element="tns:CustomerAccountAliasCreate" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_CustomerAccountAliasCreate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CustomerAccountAliasCreateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_CustomerAccountAliasListGet_InputMessage">
+    <wsdl:part name="parameters" element="tns:CustomerAccountAliasListGet" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_CustomerAccountAliasListGet_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CustomerAccountAliasListGetResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_CustomerAccountAliasDelete_InputMessage">
+    <wsdl:part name="parameters" element="tns:CustomerAccountAliasDelete" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_CustomerAccountAliasDelete_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CustomerAccountAliasDeleteResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_CustomerAccountAliasSetDefault_InputMessage">
+    <wsdl:part name="parameters" element="tns:CustomerAccountAliasSetDefault" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_CustomerAccountAliasSetDefault_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CustomerAccountAliasSetDefaultResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_CustomerAccountAliasDoesAliasExist_InputMessage">
+    <wsdl:part name="parameters" element="tns:CustomerAccountAliasDoesAliasExist" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_CustomerAccountAliasDoesAliasExist_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CustomerAccountAliasDoesAliasExistResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_GetCustomerAccountAliasList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomerAccountAliasList" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_GetCustomerAccountAliasList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomerAccountAliasListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_BankDirectorySearch_InputMessage">
+    <wsdl:part name="parameters" element="tns:BankDirectorySearch" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_BankDirectorySearch_OutputMessage">
+    <wsdl:part name="parameters" element="tns:BankDirectorySearchResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_ItemAttributeCreateOrUpdate_InputMessage">
+    <wsdl:part name="parameters" element="tns:ItemAttributeCreateOrUpdate" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_ItemAttributeCreateOrUpdate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ItemAttributeCreateOrUpdateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_ItemAttributeGetAllForItem_InputMessage">
+    <wsdl:part name="parameters" element="tns:ItemAttributeGetAllForItem" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_ItemAttributeGetAllForItem_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ItemAttributeGetAllForItemResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_ItemAttributeDelete_InputMessage">
+    <wsdl:part name="parameters" element="tns:ItemAttributeDelete" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_ItemAttributeDelete_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ItemAttributeDeleteResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_CustomerLiquidationPreferencesGetAll_InputMessage">
+    <wsdl:part name="parameters" element="tns:CustomerLiquidationPreferencesGetAll" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_CustomerLiquidationPreferencesGetAll_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CustomerLiquidationPreferencesGetAllResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_CustomerLiquidationPreferencesUpdateAll_InputMessage">
+    <wsdl:part name="parameters" element="tns:CustomerLiquidationPreferencesUpdateAll" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_CustomerLiquidationPreferencesUpdateAll_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CustomerLiquidationPreferencesUpdateAllResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_CustomerLiquidationPreferencesAddOrUpdateCurrency_InputMessage">
+    <wsdl:part name="parameters" element="tns:CustomerLiquidationPreferencesAddOrUpdateCurrency" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_CustomerLiquidationPreferencesAddOrUpdateCurrency_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CustomerLiquidationPreferencesAddOrUpdateCurrencyResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_CustomerLiquidationPreferencesRemoveCurrency_InputMessage">
+    <wsdl:part name="parameters" element="tns:CustomerLiquidationPreferencesRemoveCurrency" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_CustomerLiquidationPreferencesRemoveCurrency_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CustomerLiquidationPreferencesRemoveCurrencyResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_ItemNoteCreate_InputMessage">
+    <wsdl:part name="parameters" element="tns:ItemNoteCreate" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_ItemNoteCreate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ItemNoteCreateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_ItemNoteUpdate_InputMessage">
+    <wsdl:part name="parameters" element="tns:ItemNoteUpdate" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_ItemNoteUpdate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ItemNoteUpdateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_ItemNoteGetSingle_InputMessage">
+    <wsdl:part name="parameters" element="tns:ItemNoteGetSingle" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_ItemNoteGetSingle_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ItemNoteGetSingleResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_ItemNoteGetAllForItem_InputMessage">
+    <wsdl:part name="parameters" element="tns:ItemNoteGetAllForItem" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_ItemNoteGetAllForItem_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ItemNoteGetAllForItemResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_ItemNoteDelete_InputMessage">
+    <wsdl:part name="parameters" element="tns:ItemNoteDelete" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_ItemNoteDelete_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ItemNoteDeleteResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_IncomingPaymentCreate_InputMessage">
+    <wsdl:part name="parameters" element="tns:IncomingPaymentCreate" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_IncomingPaymentCreate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IncomingPaymentCreateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_IncomingPaymentValidate_InputMessage">
+    <wsdl:part name="parameters" element="tns:IncomingPaymentValidate" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_IncomingPaymentValidate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IncomingPaymentValidateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_IncomingPaymentGetSingle_InputMessage">
+    <wsdl:part name="parameters" element="tns:IncomingPaymentGetSingle" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_IncomingPaymentGetSingle_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IncomingPaymentGetSingleResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_IncomingPaymentPost_InputMessage">
+    <wsdl:part name="parameters" element="tns:IncomingPaymentPost" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_IncomingPaymentPost_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IncomingPaymentPostResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_IncomingPaymentVerify_InputMessage">
+    <wsdl:part name="parameters" element="tns:IncomingPaymentVerify" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_IncomingPaymentVerify_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IncomingPaymentVerifyResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_IncomingPaymentDelete_InputMessage">
+    <wsdl:part name="parameters" element="tns:IncomingPaymentDelete" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_IncomingPaymentDelete_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IncomingPaymentDeleteResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_IncomingPaymentSearch_InputMessage">
+    <wsdl:part name="parameters" element="tns:IncomingPaymentSearch" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_IncomingPaymentSearch_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IncomingPaymentSearchResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_InstantPaymentCreate_InputMessage">
+    <wsdl:part name="parameters" element="tns:InstantPaymentCreate" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_InstantPaymentCreate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InstantPaymentCreateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_InstantPaymentPost_InputMessage">
+    <wsdl:part name="parameters" element="tns:InstantPaymentPost" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_InstantPaymentPost_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InstantPaymentPostResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_InstantPaymentSearch_InputMessage">
+    <wsdl:part name="parameters" element="tns:InstantPaymentSearch" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_InstantPaymentSearch_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InstantPaymentSearchResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_InstantPaymentGetSingle_InputMessage">
+    <wsdl:part name="parameters" element="tns:InstantPaymentGetSingle" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_InstantPaymentGetSingle_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InstantPaymentGetSingleResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_DepositCreate_InputMessage">
+    <wsdl:part name="parameters" element="tns:DepositCreate" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_DepositCreate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DepositCreateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_UserSettingsGetSingle_InputMessage">
+    <wsdl:part name="parameters" element="tns:UserSettingsGetSingle" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_UserSettingsGetSingle_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UserSettingsGetSingleResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_UserPasswordReset_InputMessage">
+    <wsdl:part name="parameters" element="tns:UserPasswordReset" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_UserPasswordReset_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UserPasswordResetResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_UserPasswordChange_InputMessage">
+    <wsdl:part name="parameters" element="tns:UserPasswordChange" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_UserPasswordChange_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UserPasswordChangeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_UserUsernameChange_InputMessage">
+    <wsdl:part name="parameters" element="tns:UserUsernameChange" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_UserUsernameChange_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UserUsernameChangeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_UserAccessRightTemplateApply_InputMessage">
+    <wsdl:part name="parameters" element="tns:UserAccessRightTemplateApply" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_UserAccessRightTemplateApply_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UserAccessRightTemplateApplyResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_UserAccessRightTemplateLink_InputMessage">
+    <wsdl:part name="parameters" element="tns:UserAccessRightTemplateLink" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_UserAccessRightTemplateLink_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UserAccessRightTemplateLinkResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_UserAccessRightTemplateUnLink_InputMessage">
+    <wsdl:part name="parameters" element="tns:UserAccessRightTemplateUnLink" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_UserAccessRightTemplateUnLink_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UserAccessRightTemplateUnLinkResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_CustomerUserCreate_InputMessage">
+    <wsdl:part name="parameters" element="tns:CustomerUserCreate" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_CustomerUserCreate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CustomerUserCreateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_BankUserSearch_InputMessage">
+    <wsdl:part name="parameters" element="tns:BankUserSearch" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_BankUserSearch_OutputMessage">
+    <wsdl:part name="parameters" element="tns:BankUserSearchResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_CustomerUserSearch_InputMessage">
+    <wsdl:part name="parameters" element="tns:CustomerUserSearch" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_CustomerUserSearch_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CustomerUserSearchResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_UserDoesUsernameExist_InputMessage">
+    <wsdl:part name="parameters" element="tns:UserDoesUsernameExist" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_UserDoesUsernameExist_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UserDoesUsernameExistResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_CustomerAccountStatementGetSingle_InputMessage">
+    <wsdl:part name="parameters" element="tns:CustomerAccountStatementGetSingle" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_CustomerAccountStatementGetSingle_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CustomerAccountStatementGetSingleResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_CustomerAccountBalancesGet_InputMessage">
+    <wsdl:part name="parameters" element="tns:CustomerAccountBalancesGet" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_CustomerAccountBalancesGet_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CustomerAccountBalancesGetResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_AccountHoldCreate_InputMessage">
+    <wsdl:part name="parameters" element="tns:AccountHoldCreate" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_AccountHoldCreate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AccountHoldCreateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_AccountHoldApply_InputMessage">
+    <wsdl:part name="parameters" element="tns:AccountHoldApply" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_AccountHoldApply_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AccountHoldApplyResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_AccountHoldRelease_InputMessage">
+    <wsdl:part name="parameters" element="tns:AccountHoldRelease" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_AccountHoldRelease_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AccountHoldReleaseResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_AccountHoldDelete_InputMessage">
+    <wsdl:part name="parameters" element="tns:AccountHoldDelete" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_AccountHoldDelete_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AccountHoldDeleteResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_GetCustomerAccountBalances_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomerAccountBalances" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_GetCustomerAccountBalances_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomerAccountBalancesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_AccountHoldGetSingle_InputMessage">
+    <wsdl:part name="parameters" element="tns:AccountHoldGetSingle" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_AccountHoldGetSingle_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AccountHoldGetSingleResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_AccountHoldSearch_InputMessage">
+    <wsdl:part name="parameters" element="tns:AccountHoldSearch" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_AccountHoldSearch_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AccountHoldSearchResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_FXDealQuoteCreate_InputMessage">
+    <wsdl:part name="parameters" element="tns:FXDealQuoteCreate" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_FXDealQuoteCreate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:FXDealQuoteCreateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_FXDealQuoteBook_InputMessage">
+    <wsdl:part name="parameters" element="tns:FXDealQuoteBook" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_FXDealQuoteBook_OutputMessage">
+    <wsdl:part name="parameters" element="tns:FXDealQuoteBookResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_FXDealQuoteBookAndInstantDeposit_InputMessage">
+    <wsdl:part name="parameters" element="tns:FXDealQuoteBookAndInstantDeposit" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_FXDealQuoteBookAndInstantDeposit_OutputMessage">
+    <wsdl:part name="parameters" element="tns:FXDealQuoteBookAndInstantDepositResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_FXDealInstantDepositCreateAndPost_InputMessage">
+    <wsdl:part name="parameters" element="tns:FXDealInstantDepositCreateAndPost" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_FXDealInstantDepositCreateAndPost_OutputMessage">
+    <wsdl:part name="parameters" element="tns:FXDealInstantDepositCreateAndPostResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_FXDealQuoteSearch_InputMessage">
+    <wsdl:part name="parameters" element="tns:FXDealQuoteSearch" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_FXDealQuoteSearch_OutputMessage">
+    <wsdl:part name="parameters" element="tns:FXDealQuoteSearchResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_FXDealQuoteGetSingle_InputMessage">
+    <wsdl:part name="parameters" element="tns:FXDealQuoteGetSingle" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_FXDealQuoteGetSingle_OutputMessage">
+    <wsdl:part name="parameters" element="tns:FXDealQuoteGetSingleResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_FXRatesGetTableRate_InputMessage">
+    <wsdl:part name="parameters" element="tns:FXRatesGetTableRate" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_FXRatesGetTableRate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:FXRatesGetTableRateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_FXRatesGetTableRateFromSymbol_InputMessage">
+    <wsdl:part name="parameters" element="tns:FXRatesGetTableRateFromSymbol" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_FXRatesGetTableRateFromSymbol_OutputMessage">
+    <wsdl:part name="parameters" element="tns:FXRatesGetTableRateFromSymbolResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_FXDealSearch_InputMessage">
+    <wsdl:part name="parameters" element="tns:FXDealSearch" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_FXDealSearch_OutputMessage">
+    <wsdl:part name="parameters" element="tns:FXDealSearchResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_FXDealGetSingle_InputMessage">
+    <wsdl:part name="parameters" element="tns:FXDealGetSingle" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_FXDealGetSingle_OutputMessage">
+    <wsdl:part name="parameters" element="tns:FXDealGetSingleResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_FXDealDelete_InputMessage">
+    <wsdl:part name="parameters" element="tns:FXDealDelete" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_FXDealDelete_OutputMessage">
+    <wsdl:part name="parameters" element="tns:FXDealDeleteResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_FXDealGetInstructionList_InputMessage">
+    <wsdl:part name="parameters" element="tns:FXDealGetInstructionList" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_FXDealGetInstructionList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:FXDealGetInstructionListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_CurrencyListGetFXBuyCurrencies_InputMessage">
+    <wsdl:part name="parameters" element="tns:CurrencyListGetFXBuyCurrencies" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_CurrencyListGetFXBuyCurrencies_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CurrencyListGetFXBuyCurrenciesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_CurrencyListGetFXSellCurrencies_InputMessage">
+    <wsdl:part name="parameters" element="tns:CurrencyListGetFXSellCurrencies" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_CurrencyListGetFXSellCurrencies_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CurrencyListGetFXSellCurrenciesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_FileAttachmentAddFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:FileAttachmentAddFile" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_FileAttachmentAddFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:FileAttachmentAddFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_FileAttachmentUpdateFileInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:FileAttachmentUpdateFileInfo" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_FileAttachmentUpdateFileInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:FileAttachmentUpdateFileInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_FileAttachmentGetFileData_InputMessage">
+    <wsdl:part name="parameters" element="tns:FileAttachmentGetFileData" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_FileAttachmentGetFileData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:FileAttachmentGetFileDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_FileAttachmentGetFileListForObject_InputMessage">
+    <wsdl:part name="parameters" element="tns:FileAttachmentGetFileListForObject" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_FileAttachmentGetFileListForObject_OutputMessage">
+    <wsdl:part name="parameters" element="tns:FileAttachmentGetFileListForObjectResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_FileAttachmentDeleteFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:FileAttachmentDeleteFile" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_FileAttachmentDeleteFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:FileAttachmentDeleteFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_PaymentCreate_InputMessage">
+    <wsdl:part name="parameters" element="tns:PaymentCreate" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_PaymentCreate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PaymentCreateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_PaymentValidate_InputMessage">
+    <wsdl:part name="parameters" element="tns:PaymentValidate" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_PaymentValidate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PaymentValidateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_PaymentSubmit_InputMessage">
+    <wsdl:part name="parameters" element="tns:PaymentSubmit" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_PaymentSubmit_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PaymentSubmitResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_PaymentApproveFunds_InputMessage">
+    <wsdl:part name="parameters" element="tns:PaymentApproveFunds" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_PaymentApproveFunds_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PaymentApproveFundsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_PaymentVerify_InputMessage">
+    <wsdl:part name="parameters" element="tns:PaymentVerify" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_PaymentVerify_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PaymentVerifyResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_PaymentAcceptWKYCMatches_InputMessage">
+    <wsdl:part name="parameters" element="tns:PaymentAcceptWKYCMatches" />
+  </wsdl:message>
+  <wsdl:message name="IGPWebService1_PaymentAcceptWKYCMatches_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PaymentAcceptWKYCMatchesResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IGPWebService1">
+    <wsdl:operation name="PaymentRelease">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/PaymentRelease" message="tns:IGPWebService1_PaymentRelease_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/PaymentReleaseResponse" message="tns:IGPWebService1_PaymentRelease_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PaymentDelete">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/PaymentDelete" message="tns:IGPWebService1_PaymentDelete_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/PaymentDeleteResponse" message="tns:IGPWebService1_PaymentDelete_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PaymentSearch">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/PaymentSearch" message="tns:IGPWebService1_PaymentSearch_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/PaymentSearchResponse" message="tns:IGPWebService1_PaymentSearch_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PaymentGetSingle">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/PaymentGetSingle" message="tns:IGPWebService1_PaymentGetSingle_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/PaymentGetSingleResponse" message="tns:IGPWebService1_PaymentGetSingle_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PaymentGetSettlementHistory">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/PaymentGetSettlementHistory" message="tns:IGPWebService1_PaymentGetSettlementHistory_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/PaymentGetSettlementHistoryResponse" message="tns:IGPWebService1_PaymentGetSettlementHistory_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PaymentMarkAsTransmitted">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/PaymentMarkAsTransmitted" message="tns:IGPWebService1_PaymentMarkAsTransmitted_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/PaymentMarkAsTransmittedResponse" message="tns:IGPWebService1_PaymentMarkAsTransmitted_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UserAccessRightAddOrUpdate">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/UserAccessRightAddOrUpdate" message="tns:IGPWebService1_UserAccessRightAddOrUpdate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/UserAccessRightAddOrUpdateResponse" message="tns:IGPWebService1_UserAccessRightAddOrUpdate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UserAccessRightDelete">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/UserAccessRightDelete" message="tns:IGPWebService1_UserAccessRightDelete_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/UserAccessRightDeleteResponse" message="tns:IGPWebService1_UserAccessRightDelete_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="WhiteLabelProfileGetSingle">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/WhiteLabelProfileGetSingle" message="tns:IGPWebService1_WhiteLabelProfileGetSingle_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/WhiteLabelProfileGetSingleResponse" message="tns:IGPWebService1_WhiteLabelProfileGetSingle_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="WhiteLabelProfileSearch">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/WhiteLabelProfileSearch" message="tns:IGPWebService1_WhiteLabelProfileSearch_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/WhiteLabelProfileSearchResponse" message="tns:IGPWebService1_WhiteLabelProfileSearch_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="WKYCResultGetAllForItem">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/WKYCResultGetAllForItem" message="tns:IGPWebService1_WKYCResultGetAllForItem_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/WKYCResultGetAllForItemResponse" message="tns:IGPWebService1_WKYCResultGetAllForItem_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="WKYCResultDetailGetAll">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/WKYCResultDetailGetAll" message="tns:IGPWebService1_WKYCResultDetailGetAll_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/WKYCResultDetailGetAllResponse" message="tns:IGPWebService1_WKYCResultDetailGetAll_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLibraryVersion">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/GetLibraryVersion" message="tns:IGPWebService1_GetLibraryVersion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/GetLibraryVersionResponse" message="tns:IGPWebService1_GetLibraryVersion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CurrencyListGetPaymentCurrencies">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/CurrencyListGetPaymentCurrencies" message="tns:IGPWebService1_CurrencyListGetPaymentCurrencies_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/CurrencyListGetPaymentCurrenciesResponse" message="tns:IGPWebService1_CurrencyListGetPaymentCurrencies_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CountryListGetPaymentCountries">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/CountryListGetPaymentCountries" message="tns:IGPWebService1_CountryListGetPaymentCountries_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/CountryListGetPaymentCountriesResponse" message="tns:IGPWebService1_CountryListGetPaymentCountries_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="StateOrProvinceListGetAllForCountry">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/StateOrProvinceListGetAllForCountry" message="tns:IGPWebService1_StateOrProvinceListGetAllForCountry_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/StateOrProvinceListGetAllForCountryResponse" message="tns:IGPWebService1_StateOrProvinceListGetAllForCountry_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="NationalCodeListGetAll">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/NationalCodeListGetAll" message="tns:IGPWebService1_NationalCodeListGetAll_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/NationalCodeListGetAllResponse" message="tns:IGPWebService1_NationalCodeListGetAll_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="NationalCodeListGetAllForCurrency">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/NationalCodeListGetAllForCurrency" message="tns:IGPWebService1_NationalCodeListGetAllForCurrency_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/NationalCodeListGetAllForCurrencyResponse" message="tns:IGPWebService1_NationalCodeListGetAllForCurrency_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReasonsForPaymentGetAllForCountry">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/ReasonsForPaymentGetAllForCountry" message="tns:IGPWebService1_ReasonsForPaymentGetAllForCountry_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/ReasonsForPaymentGetAllForCountryResponse" message="tns:IGPWebService1_ReasonsForPaymentGetAllForCountry_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Authenticate">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/Authenticate" message="tns:IGPWebService1_Authenticate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/AuthenticateResponse" message="tns:IGPWebService1_Authenticate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EventNotificationGetAllForItem">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/EventNotificationGetAllForItem" message="tns:IGPWebService1_EventNotificationGetAllForItem_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/EventNotificationGetAllForItemResponse" message="tns:IGPWebService1_EventNotificationGetAllForItem_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EventNotificationAddNotification">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/EventNotificationAddNotification" message="tns:IGPWebService1_EventNotificationAddNotification_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/EventNotificationAddNotificationResponse" message="tns:IGPWebService1_EventNotificationAddNotification_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EventNotificationDeleteNotification">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/EventNotificationDeleteNotification" message="tns:IGPWebService1_EventNotificationDeleteNotification_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/EventNotificationDeleteNotificationResponse" message="tns:IGPWebService1_EventNotificationDeleteNotification_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CustomerGetSingle">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/CustomerGetSingle" message="tns:IGPWebService1_CustomerGetSingle_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/CustomerGetSingleResponse" message="tns:IGPWebService1_CustomerGetSingle_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CustomerGetSingleFromAlias">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/CustomerGetSingleFromAlias" message="tns:IGPWebService1_CustomerGetSingleFromAlias_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/CustomerGetSingleFromAliasResponse" message="tns:IGPWebService1_CustomerGetSingleFromAlias_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CustomerCreate">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/CustomerCreate" message="tns:IGPWebService1_CustomerCreate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/CustomerCreateResponse" message="tns:IGPWebService1_CustomerCreate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CustomerCreateFromTemplate">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/CustomerCreateFromTemplate" message="tns:IGPWebService1_CustomerCreateFromTemplate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/CustomerCreateFromTemplateResponse" message="tns:IGPWebService1_CustomerCreateFromTemplate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CustomerUpdate">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/CustomerUpdate" message="tns:IGPWebService1_CustomerUpdate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/CustomerUpdateResponse" message="tns:IGPWebService1_CustomerUpdate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CustomerAccountAliasCreate">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/CustomerAccountAliasCreate" message="tns:IGPWebService1_CustomerAccountAliasCreate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/CustomerAccountAliasCreateResponse" message="tns:IGPWebService1_CustomerAccountAliasCreate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CustomerAccountAliasListGet">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/CustomerAccountAliasListGet" message="tns:IGPWebService1_CustomerAccountAliasListGet_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/CustomerAccountAliasListGetResponse" message="tns:IGPWebService1_CustomerAccountAliasListGet_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CustomerAccountAliasDelete">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/CustomerAccountAliasDelete" message="tns:IGPWebService1_CustomerAccountAliasDelete_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/CustomerAccountAliasDeleteResponse" message="tns:IGPWebService1_CustomerAccountAliasDelete_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CustomerAccountAliasSetDefault">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/CustomerAccountAliasSetDefault" message="tns:IGPWebService1_CustomerAccountAliasSetDefault_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/CustomerAccountAliasSetDefaultResponse" message="tns:IGPWebService1_CustomerAccountAliasSetDefault_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CustomerAccountAliasDoesAliasExist">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/CustomerAccountAliasDoesAliasExist" message="tns:IGPWebService1_CustomerAccountAliasDoesAliasExist_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/CustomerAccountAliasDoesAliasExistResponse" message="tns:IGPWebService1_CustomerAccountAliasDoesAliasExist_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomerAccountAliasList">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/GetCustomerAccountAliasList" message="tns:IGPWebService1_GetCustomerAccountAliasList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/GetCustomerAccountAliasListResponse" message="tns:IGPWebService1_GetCustomerAccountAliasList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="BankDirectorySearch">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/BankDirectorySearch" message="tns:IGPWebService1_BankDirectorySearch_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/BankDirectorySearchResponse" message="tns:IGPWebService1_BankDirectorySearch_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ItemAttributeCreateOrUpdate">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/ItemAttributeCreateOrUpdate" message="tns:IGPWebService1_ItemAttributeCreateOrUpdate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/ItemAttributeCreateOrUpdateResponse" message="tns:IGPWebService1_ItemAttributeCreateOrUpdate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ItemAttributeGetAllForItem">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/ItemAttributeGetAllForItem" message="tns:IGPWebService1_ItemAttributeGetAllForItem_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/ItemAttributeGetAllForItemResponse" message="tns:IGPWebService1_ItemAttributeGetAllForItem_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ItemAttributeDelete">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/ItemAttributeDelete" message="tns:IGPWebService1_ItemAttributeDelete_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/ItemAttributeDeleteResponse" message="tns:IGPWebService1_ItemAttributeDelete_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CustomerLiquidationPreferencesGetAll">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/CustomerLiquidationPreferencesGetAll" message="tns:IGPWebService1_CustomerLiquidationPreferencesGetAll_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/CustomerLiquidationPreferencesGetAllResponse" message="tns:IGPWebService1_CustomerLiquidationPreferencesGetAll_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CustomerLiquidationPreferencesUpdateAll">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/CustomerLiquidationPreferencesUpdateAll" message="tns:IGPWebService1_CustomerLiquidationPreferencesUpdateAll_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/CustomerLiquidationPreferencesUpdateAllResponse" message="tns:IGPWebService1_CustomerLiquidationPreferencesUpdateAll_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CustomerLiquidationPreferencesAddOrUpdateCurrency">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/CustomerLiquidationPreferencesAddOrUpdateCurrency" message="tns:IGPWebService1_CustomerLiquidationPreferencesAddOrUpdateCurrency_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/CustomerLiquidationPreferencesAddOrUpdateCurrencyResponse" message="tns:IGPWebService1_CustomerLiquidationPreferencesAddOrUpdateCurrency_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CustomerLiquidationPreferencesRemoveCurrency">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/CustomerLiquidationPreferencesRemoveCurrency" message="tns:IGPWebService1_CustomerLiquidationPreferencesRemoveCurrency_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/CustomerLiquidationPreferencesRemoveCurrencyResponse" message="tns:IGPWebService1_CustomerLiquidationPreferencesRemoveCurrency_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ItemNoteCreate">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/ItemNoteCreate" message="tns:IGPWebService1_ItemNoteCreate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/ItemNoteCreateResponse" message="tns:IGPWebService1_ItemNoteCreate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ItemNoteUpdate">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/ItemNoteUpdate" message="tns:IGPWebService1_ItemNoteUpdate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/ItemNoteUpdateResponse" message="tns:IGPWebService1_ItemNoteUpdate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ItemNoteGetSingle">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/ItemNoteGetSingle" message="tns:IGPWebService1_ItemNoteGetSingle_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/ItemNoteGetSingleResponse" message="tns:IGPWebService1_ItemNoteGetSingle_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ItemNoteGetAllForItem">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/ItemNoteGetAllForItem" message="tns:IGPWebService1_ItemNoteGetAllForItem_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/ItemNoteGetAllForItemResponse" message="tns:IGPWebService1_ItemNoteGetAllForItem_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ItemNoteDelete">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/ItemNoteDelete" message="tns:IGPWebService1_ItemNoteDelete_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/ItemNoteDeleteResponse" message="tns:IGPWebService1_ItemNoteDelete_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="IncomingPaymentCreate">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/IncomingPaymentCreate" message="tns:IGPWebService1_IncomingPaymentCreate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/IncomingPaymentCreateResponse" message="tns:IGPWebService1_IncomingPaymentCreate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="IncomingPaymentValidate">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/IncomingPaymentValidate" message="tns:IGPWebService1_IncomingPaymentValidate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/IncomingPaymentValidateResponse" message="tns:IGPWebService1_IncomingPaymentValidate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="IncomingPaymentGetSingle">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/IncomingPaymentGetSingle" message="tns:IGPWebService1_IncomingPaymentGetSingle_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/IncomingPaymentGetSingleResponse" message="tns:IGPWebService1_IncomingPaymentGetSingle_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="IncomingPaymentPost">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/IncomingPaymentPost" message="tns:IGPWebService1_IncomingPaymentPost_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/IncomingPaymentPostResponse" message="tns:IGPWebService1_IncomingPaymentPost_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="IncomingPaymentVerify">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/IncomingPaymentVerify" message="tns:IGPWebService1_IncomingPaymentVerify_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/IncomingPaymentVerifyResponse" message="tns:IGPWebService1_IncomingPaymentVerify_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="IncomingPaymentDelete">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/IncomingPaymentDelete" message="tns:IGPWebService1_IncomingPaymentDelete_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/IncomingPaymentDeleteResponse" message="tns:IGPWebService1_IncomingPaymentDelete_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="IncomingPaymentSearch">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/IncomingPaymentSearch" message="tns:IGPWebService1_IncomingPaymentSearch_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/IncomingPaymentSearchResponse" message="tns:IGPWebService1_IncomingPaymentSearch_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InstantPaymentCreate">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/InstantPaymentCreate" message="tns:IGPWebService1_InstantPaymentCreate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/InstantPaymentCreateResponse" message="tns:IGPWebService1_InstantPaymentCreate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InstantPaymentPost">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/InstantPaymentPost" message="tns:IGPWebService1_InstantPaymentPost_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/InstantPaymentPostResponse" message="tns:IGPWebService1_InstantPaymentPost_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InstantPaymentSearch">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/InstantPaymentSearch" message="tns:IGPWebService1_InstantPaymentSearch_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/InstantPaymentSearchResponse" message="tns:IGPWebService1_InstantPaymentSearch_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InstantPaymentGetSingle">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/InstantPaymentGetSingle" message="tns:IGPWebService1_InstantPaymentGetSingle_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/InstantPaymentGetSingleResponse" message="tns:IGPWebService1_InstantPaymentGetSingle_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DepositCreate">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/DepositCreate" message="tns:IGPWebService1_DepositCreate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/DepositCreateResponse" message="tns:IGPWebService1_DepositCreate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UserSettingsGetSingle">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/UserSettingsGetSingle" message="tns:IGPWebService1_UserSettingsGetSingle_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/UserSettingsGetSingleResponse" message="tns:IGPWebService1_UserSettingsGetSingle_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UserPasswordReset">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/UserPasswordReset" message="tns:IGPWebService1_UserPasswordReset_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/UserPasswordResetResponse" message="tns:IGPWebService1_UserPasswordReset_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UserPasswordChange">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/UserPasswordChange" message="tns:IGPWebService1_UserPasswordChange_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/UserPasswordChangeResponse" message="tns:IGPWebService1_UserPasswordChange_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UserUsernameChange">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/UserUsernameChange" message="tns:IGPWebService1_UserUsernameChange_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/UserUsernameChangeResponse" message="tns:IGPWebService1_UserUsernameChange_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UserAccessRightTemplateApply">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/UserAccessRightTemplateApply" message="tns:IGPWebService1_UserAccessRightTemplateApply_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/UserAccessRightTemplateApplyResponse" message="tns:IGPWebService1_UserAccessRightTemplateApply_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UserAccessRightTemplateLink">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/UserAccessRightTemplateLink" message="tns:IGPWebService1_UserAccessRightTemplateLink_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/UserAccessRightTemplateLinkResponse" message="tns:IGPWebService1_UserAccessRightTemplateLink_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UserAccessRightTemplateUnLink">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/UserAccessRightTemplateUnLink" message="tns:IGPWebService1_UserAccessRightTemplateUnLink_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/UserAccessRightTemplateUnLinkResponse" message="tns:IGPWebService1_UserAccessRightTemplateUnLink_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CustomerUserCreate">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/CustomerUserCreate" message="tns:IGPWebService1_CustomerUserCreate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/CustomerUserCreateResponse" message="tns:IGPWebService1_CustomerUserCreate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="BankUserSearch">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/BankUserSearch" message="tns:IGPWebService1_BankUserSearch_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/BankUserSearchResponse" message="tns:IGPWebService1_BankUserSearch_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CustomerUserSearch">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/CustomerUserSearch" message="tns:IGPWebService1_CustomerUserSearch_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/CustomerUserSearchResponse" message="tns:IGPWebService1_CustomerUserSearch_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UserDoesUsernameExist">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/UserDoesUsernameExist" message="tns:IGPWebService1_UserDoesUsernameExist_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/UserDoesUsernameExistResponse" message="tns:IGPWebService1_UserDoesUsernameExist_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CustomerAccountStatementGetSingle">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/CustomerAccountStatementGetSingle" message="tns:IGPWebService1_CustomerAccountStatementGetSingle_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/CustomerAccountStatementGetSingleResponse" message="tns:IGPWebService1_CustomerAccountStatementGetSingle_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CustomerAccountBalancesGet">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/CustomerAccountBalancesGet" message="tns:IGPWebService1_CustomerAccountBalancesGet_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/CustomerAccountBalancesGetResponse" message="tns:IGPWebService1_CustomerAccountBalancesGet_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AccountHoldCreate">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/AccountHoldCreate" message="tns:IGPWebService1_AccountHoldCreate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/AccountHoldCreateResponse" message="tns:IGPWebService1_AccountHoldCreate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AccountHoldApply">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/AccountHoldApply" message="tns:IGPWebService1_AccountHoldApply_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/AccountHoldApplyResponse" message="tns:IGPWebService1_AccountHoldApply_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AccountHoldRelease">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/AccountHoldRelease" message="tns:IGPWebService1_AccountHoldRelease_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/AccountHoldReleaseResponse" message="tns:IGPWebService1_AccountHoldRelease_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AccountHoldDelete">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/AccountHoldDelete" message="tns:IGPWebService1_AccountHoldDelete_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/AccountHoldDeleteResponse" message="tns:IGPWebService1_AccountHoldDelete_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomerAccountBalances">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/GetCustomerAccountBalances" message="tns:IGPWebService1_GetCustomerAccountBalances_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/GetCustomerAccountBalancesResponse" message="tns:IGPWebService1_GetCustomerAccountBalances_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AccountHoldGetSingle">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/AccountHoldGetSingle" message="tns:IGPWebService1_AccountHoldGetSingle_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/AccountHoldGetSingleResponse" message="tns:IGPWebService1_AccountHoldGetSingle_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AccountHoldSearch">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/AccountHoldSearch" message="tns:IGPWebService1_AccountHoldSearch_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/AccountHoldSearchResponse" message="tns:IGPWebService1_AccountHoldSearch_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="FXDealQuoteCreate">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/FXDealQuoteCreate" message="tns:IGPWebService1_FXDealQuoteCreate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/FXDealQuoteCreateResponse" message="tns:IGPWebService1_FXDealQuoteCreate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="FXDealQuoteBook">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/FXDealQuoteBook" message="tns:IGPWebService1_FXDealQuoteBook_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/FXDealQuoteBookResponse" message="tns:IGPWebService1_FXDealQuoteBook_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="FXDealQuoteBookAndInstantDeposit">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/FXDealQuoteBookAndInstantDeposit" message="tns:IGPWebService1_FXDealQuoteBookAndInstantDeposit_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/FXDealQuoteBookAndInstantDepositResponse" message="tns:IGPWebService1_FXDealQuoteBookAndInstantDeposit_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="FXDealInstantDepositCreateAndPost">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/FXDealInstantDepositCreateAndPost" message="tns:IGPWebService1_FXDealInstantDepositCreateAndPost_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/FXDealInstantDepositCreateAndPostResponse" message="tns:IGPWebService1_FXDealInstantDepositCreateAndPost_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="FXDealQuoteSearch">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/FXDealQuoteSearch" message="tns:IGPWebService1_FXDealQuoteSearch_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/FXDealQuoteSearchResponse" message="tns:IGPWebService1_FXDealQuoteSearch_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="FXDealQuoteGetSingle">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/FXDealQuoteGetSingle" message="tns:IGPWebService1_FXDealQuoteGetSingle_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/FXDealQuoteGetSingleResponse" message="tns:IGPWebService1_FXDealQuoteGetSingle_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="FXRatesGetTableRate">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/FXRatesGetTableRate" message="tns:IGPWebService1_FXRatesGetTableRate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/FXRatesGetTableRateResponse" message="tns:IGPWebService1_FXRatesGetTableRate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="FXRatesGetTableRateFromSymbol">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/FXRatesGetTableRateFromSymbol" message="tns:IGPWebService1_FXRatesGetTableRateFromSymbol_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/FXRatesGetTableRateFromSymbolResponse" message="tns:IGPWebService1_FXRatesGetTableRateFromSymbol_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="FXDealSearch">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/FXDealSearch" message="tns:IGPWebService1_FXDealSearch_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/FXDealSearchResponse" message="tns:IGPWebService1_FXDealSearch_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="FXDealGetSingle">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/FXDealGetSingle" message="tns:IGPWebService1_FXDealGetSingle_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/FXDealGetSingleResponse" message="tns:IGPWebService1_FXDealGetSingle_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="FXDealDelete">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/FXDealDelete" message="tns:IGPWebService1_FXDealDelete_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/FXDealDeleteResponse" message="tns:IGPWebService1_FXDealDelete_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="FXDealGetInstructionList">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/FXDealGetInstructionList" message="tns:IGPWebService1_FXDealGetInstructionList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/FXDealGetInstructionListResponse" message="tns:IGPWebService1_FXDealGetInstructionList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CurrencyListGetFXBuyCurrencies">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/CurrencyListGetFXBuyCurrencies" message="tns:IGPWebService1_CurrencyListGetFXBuyCurrencies_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/CurrencyListGetFXBuyCurrenciesResponse" message="tns:IGPWebService1_CurrencyListGetFXBuyCurrencies_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CurrencyListGetFXSellCurrencies">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/CurrencyListGetFXSellCurrencies" message="tns:IGPWebService1_CurrencyListGetFXSellCurrencies_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/CurrencyListGetFXSellCurrenciesResponse" message="tns:IGPWebService1_CurrencyListGetFXSellCurrencies_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="FileAttachmentAddFile">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/FileAttachmentAddFile" message="tns:IGPWebService1_FileAttachmentAddFile_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/FileAttachmentAddFileResponse" message="tns:IGPWebService1_FileAttachmentAddFile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="FileAttachmentUpdateFileInfo">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/FileAttachmentUpdateFileInfo" message="tns:IGPWebService1_FileAttachmentUpdateFileInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/FileAttachmentUpdateFileInfoResponse" message="tns:IGPWebService1_FileAttachmentUpdateFileInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="FileAttachmentGetFileData">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/FileAttachmentGetFileData" message="tns:IGPWebService1_FileAttachmentGetFileData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/FileAttachmentGetFileDataResponse" message="tns:IGPWebService1_FileAttachmentGetFileData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="FileAttachmentGetFileListForObject">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/FileAttachmentGetFileListForObject" message="tns:IGPWebService1_FileAttachmentGetFileListForObject_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/FileAttachmentGetFileListForObjectResponse" message="tns:IGPWebService1_FileAttachmentGetFileListForObject_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="FileAttachmentDeleteFile">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/FileAttachmentDeleteFile" message="tns:IGPWebService1_FileAttachmentDeleteFile_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/FileAttachmentDeleteFileResponse" message="tns:IGPWebService1_FileAttachmentDeleteFile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PaymentCreate">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/PaymentCreate" message="tns:IGPWebService1_PaymentCreate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/PaymentCreateResponse" message="tns:IGPWebService1_PaymentCreate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PaymentValidate">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/PaymentValidate" message="tns:IGPWebService1_PaymentValidate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/PaymentValidateResponse" message="tns:IGPWebService1_PaymentValidate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PaymentSubmit">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/PaymentSubmit" message="tns:IGPWebService1_PaymentSubmit_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/PaymentSubmitResponse" message="tns:IGPWebService1_PaymentSubmit_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PaymentApproveFunds">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/PaymentApproveFunds" message="tns:IGPWebService1_PaymentApproveFunds_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/PaymentApproveFundsResponse" message="tns:IGPWebService1_PaymentApproveFunds_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PaymentVerify">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/PaymentVerify" message="tns:IGPWebService1_PaymentVerify_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/PaymentVerifyResponse" message="tns:IGPWebService1_PaymentVerify_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PaymentAcceptWKYCMatches">
+      <wsdl:input wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/PaymentAcceptWKYCMatches" message="tns:IGPWebService1_PaymentAcceptWKYCMatches_InputMessage" />
+      <wsdl:output wsaw:Action="http://tradesolutionsgroup.com/services/IGPWebService1/PaymentAcceptWKYCMatchesResponse" message="tns:IGPWebService1_PaymentAcceptWKYCMatches_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpsBinding_IGPWebService1" type="tns:IGPWebService1">
+    <wsp:PolicyReference URI="#BasicHttpsBinding_IGPWebService1_policy" />
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="PaymentRelease">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/PaymentRelease" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PaymentDelete">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/PaymentDelete" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PaymentSearch">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/PaymentSearch" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PaymentGetSingle">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/PaymentGetSingle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PaymentGetSettlementHistory">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/PaymentGetSettlementHistory" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PaymentMarkAsTransmitted">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/PaymentMarkAsTransmitted" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UserAccessRightAddOrUpdate">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/UserAccessRightAddOrUpdate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UserAccessRightDelete">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/UserAccessRightDelete" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WhiteLabelProfileGetSingle">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/WhiteLabelProfileGetSingle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WhiteLabelProfileSearch">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/WhiteLabelProfileSearch" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WKYCResultGetAllForItem">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/WKYCResultGetAllForItem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WKYCResultDetailGetAll">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/WKYCResultDetailGetAll" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLibraryVersion">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/GetLibraryVersion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CurrencyListGetPaymentCurrencies">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/CurrencyListGetPaymentCurrencies" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CountryListGetPaymentCountries">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/CountryListGetPaymentCountries" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StateOrProvinceListGetAllForCountry">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/StateOrProvinceListGetAllForCountry" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NationalCodeListGetAll">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/NationalCodeListGetAll" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NationalCodeListGetAllForCurrency">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/NationalCodeListGetAllForCurrency" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReasonsForPaymentGetAllForCountry">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/ReasonsForPaymentGetAllForCountry" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Authenticate">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/Authenticate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EventNotificationGetAllForItem">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/EventNotificationGetAllForItem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EventNotificationAddNotification">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/EventNotificationAddNotification" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EventNotificationDeleteNotification">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/EventNotificationDeleteNotification" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CustomerGetSingle">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/CustomerGetSingle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CustomerGetSingleFromAlias">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/CustomerGetSingleFromAlias" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CustomerCreate">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/CustomerCreate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CustomerCreateFromTemplate">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/CustomerCreateFromTemplate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CustomerUpdate">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/CustomerUpdate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CustomerAccountAliasCreate">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/CustomerAccountAliasCreate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CustomerAccountAliasListGet">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/CustomerAccountAliasListGet" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CustomerAccountAliasDelete">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/CustomerAccountAliasDelete" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CustomerAccountAliasSetDefault">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/CustomerAccountAliasSetDefault" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CustomerAccountAliasDoesAliasExist">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/CustomerAccountAliasDoesAliasExist" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomerAccountAliasList">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/GetCustomerAccountAliasList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BankDirectorySearch">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/BankDirectorySearch" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ItemAttributeCreateOrUpdate">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/ItemAttributeCreateOrUpdate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ItemAttributeGetAllForItem">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/ItemAttributeGetAllForItem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ItemAttributeDelete">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/ItemAttributeDelete" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CustomerLiquidationPreferencesGetAll">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/CustomerLiquidationPreferencesGetAll" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CustomerLiquidationPreferencesUpdateAll">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/CustomerLiquidationPreferencesUpdateAll" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CustomerLiquidationPreferencesAddOrUpdateCurrency">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/CustomerLiquidationPreferencesAddOrUpdateCurrency" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CustomerLiquidationPreferencesRemoveCurrency">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/CustomerLiquidationPreferencesRemoveCurrency" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ItemNoteCreate">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/ItemNoteCreate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ItemNoteUpdate">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/ItemNoteUpdate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ItemNoteGetSingle">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/ItemNoteGetSingle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ItemNoteGetAllForItem">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/ItemNoteGetAllForItem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ItemNoteDelete">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/ItemNoteDelete" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IncomingPaymentCreate">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/IncomingPaymentCreate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IncomingPaymentValidate">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/IncomingPaymentValidate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IncomingPaymentGetSingle">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/IncomingPaymentGetSingle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IncomingPaymentPost">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/IncomingPaymentPost" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IncomingPaymentVerify">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/IncomingPaymentVerify" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IncomingPaymentDelete">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/IncomingPaymentDelete" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IncomingPaymentSearch">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/IncomingPaymentSearch" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InstantPaymentCreate">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/InstantPaymentCreate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InstantPaymentPost">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/InstantPaymentPost" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InstantPaymentSearch">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/InstantPaymentSearch" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InstantPaymentGetSingle">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/InstantPaymentGetSingle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DepositCreate">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/DepositCreate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UserSettingsGetSingle">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/UserSettingsGetSingle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UserPasswordReset">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/UserPasswordReset" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UserPasswordChange">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/UserPasswordChange" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UserUsernameChange">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/UserUsernameChange" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UserAccessRightTemplateApply">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/UserAccessRightTemplateApply" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UserAccessRightTemplateLink">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/UserAccessRightTemplateLink" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UserAccessRightTemplateUnLink">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/UserAccessRightTemplateUnLink" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CustomerUserCreate">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/CustomerUserCreate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BankUserSearch">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/BankUserSearch" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CustomerUserSearch">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/CustomerUserSearch" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UserDoesUsernameExist">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/UserDoesUsernameExist" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CustomerAccountStatementGetSingle">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/CustomerAccountStatementGetSingle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CustomerAccountBalancesGet">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/CustomerAccountBalancesGet" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AccountHoldCreate">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/AccountHoldCreate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AccountHoldApply">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/AccountHoldApply" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AccountHoldRelease">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/AccountHoldRelease" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AccountHoldDelete">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/AccountHoldDelete" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomerAccountBalances">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/GetCustomerAccountBalances" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AccountHoldGetSingle">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/AccountHoldGetSingle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AccountHoldSearch">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/AccountHoldSearch" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FXDealQuoteCreate">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/FXDealQuoteCreate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FXDealQuoteBook">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/FXDealQuoteBook" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FXDealQuoteBookAndInstantDeposit">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/FXDealQuoteBookAndInstantDeposit" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FXDealInstantDepositCreateAndPost">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/FXDealInstantDepositCreateAndPost" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FXDealQuoteSearch">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/FXDealQuoteSearch" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FXDealQuoteGetSingle">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/FXDealQuoteGetSingle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FXRatesGetTableRate">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/FXRatesGetTableRate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FXRatesGetTableRateFromSymbol">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/FXRatesGetTableRateFromSymbol" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FXDealSearch">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/FXDealSearch" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FXDealGetSingle">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/FXDealGetSingle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FXDealDelete">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/FXDealDelete" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FXDealGetInstructionList">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/FXDealGetInstructionList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CurrencyListGetFXBuyCurrencies">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/CurrencyListGetFXBuyCurrencies" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CurrencyListGetFXSellCurrencies">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/CurrencyListGetFXSellCurrencies" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FileAttachmentAddFile">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/FileAttachmentAddFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FileAttachmentUpdateFileInfo">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/FileAttachmentUpdateFileInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FileAttachmentGetFileData">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/FileAttachmentGetFileData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FileAttachmentGetFileListForObject">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/FileAttachmentGetFileListForObject" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FileAttachmentDeleteFile">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/FileAttachmentDeleteFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PaymentCreate">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/PaymentCreate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PaymentValidate">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/PaymentValidate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PaymentSubmit">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/PaymentSubmit" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PaymentApproveFunds">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/PaymentApproveFunds" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PaymentVerify">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/PaymentVerify" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PaymentAcceptWKYCMatches">
+      <soap:operation soapAction="http://tradesolutionsgroup.com/services/IGPWebService1/PaymentAcceptWKYCMatches" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="GPWebService">
+    <wsdl:port name="BasicHttpsBinding_IGPWebService1" binding="tns:BasicHttpsBinding_IGPWebService1">
+      <soap:address location="https://www.bizcurrency.com/GPWebServiceBetaToken/IGPWebService1.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

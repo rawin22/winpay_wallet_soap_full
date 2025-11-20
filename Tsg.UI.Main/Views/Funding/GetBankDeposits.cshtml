@@ -1,0 +1,189 @@
+﻿@using System.Globalization
+@using Tsg.UI.Main.App_LocalResources
+@using Tsg.UI.Main.Models
+@using TSG.Models.Enums
+@model IEnumerable<Tsg.UI.Main.Models.BankDepositModel>
+
+    @{
+        ViewBag.Title = GlobalRes.Shared_Navigation_AddFunds;
+        Layout = "~/Views/Shared/_LayoutMain.cshtml";
+    }
+    <script type="text/javascript" src="/Content/assets/vendor/jquery/jquery.js"></script>
+
+    <div class="row">
+        <section class="panel">
+
+            <header class="panel-heading">
+                <h2 class="panel-title">@ViewBag.Title</h2>
+                <p class="panel-subtitle">@GlobalRes.FundingGetBankDepositsPage_SubTitle</p>
+            </header>
+
+            <div class="panel-body" style="display: block;">
+                @if (Model != null)
+                {
+                    string[] crypto = { "BTC", "ETH", "XAU" };
+
+                    <table class="table table-bordered table-striped table-condensed mb-none" id="datatable-default">
+
+                        <thead>
+                            <tr>
+                                <th>@GlobalRes.FundingGetBankDepositsPage_Id</th>
+                                <th>@GlobalRes.FundingGetBankDepositsPage_Status</th>
+                                <th>@GlobalRes.FundingGetBankDepositsPage_CCyAndBank</th>
+                                <th>@GlobalRes.FundingGetBankDepositsPage_Amount</th>
+                                <th>@GlobalRes.FundingGetBankDepositsPage_CreatedDate</th>
+                                <th>@GlobalRes.FundingGetBankDepositsPage_ProofOfPayment</th>
+                                <th>@GlobalRes.FundingGetBankDepositsPage_Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                var amount = item.Amount;
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.ProofDocId)
+                                    </td>
+                                    <td>
+
+                                        @if (item.Status == "In Process")
+                                        {
+                                            <span class="label btn-xs btn-default_custom">@item.Status</span>
+                                        }@if (item.Status == "Pending")
+                                        {
+                                            <span class="label btn-xs btn-warning_custom">@item.Status</span>
+                                        }@if (item.Status == "Credited")
+                                        {
+                                            <span class="label btn-xs btn-success_custom">@item.Status</span>
+                                        } @if (item.Status == "Canceled")
+                                        {
+                                            <span class="label btn-xs btn-danger_custom">@item.Status</span>
+                                        }
+
+                                    </td>
+                                    <td>
+                                        <a href="#" class="printlink" name="@item.BankCurrencyId">
+                                            <span>
+                                                @String.Format("{0} - {1}", item.Bank, item.CurrencyName)
+                                            </span>
+                                            &nbsp;<i class="fa fa-print" style="font-size: 18px; color: #565656" aria-hidden="true"></i>
+                                        </a>
+                                    </td>
+                                    <td class="text-right">
+                                        <span>@(crypto.Contains("item.CurrencyName") ? amount.ToString("N8", new CultureInfo("en-US")) : amount.ToString("N2", new CultureInfo("en-US")))</span>
+                                    </td>
+                                    <td>
+                                        @String.Format("{0:MMM dd, yyyy}", item.CreatedDate) @*at @String.Format("{0:HH:mm}", item.CreatedDate)*@
+                                    </td>
+
+                                    @if (String.IsNullOrEmpty(item.PathToFile))
+                                    {
+                                        <td>
+                                            @Html.ActionLink(GlobalRes.CommonObject_UploadProof, "UploadProofDoc", "ProofDoc", new { id = item.ProofDocId }, new { @class = "mb-xs btn btn-xs btn-primary" })
+                                        </td>
+                                    }
+                                    else
+                                    {
+                                        if (item.Status != FundingStatus.Credited.ToString())
+                                        {
+                                            <td>
+                                                @Html.ActionLink(GlobalRes.CommonObject_ViewAndDownload, "OpenProofDoc", "ProofDoc", new { id = item.ProofDocId }, new { @class = "mb-xs btn btn-xs btn-primary" })
+                                                @Html.ActionLink(GlobalRes.EditCurrencyPage_Edit, "UploadProofDoc", "ProofDoc", new { id = item.ProofDocId }, new {@*onclick = "return confirm('Are you sure you want to delete?');",*@@class = "mb-xs btn btn-xs btn-info"})
+                                            </td>
+                                        }
+                                        else
+                                        {
+                                            <td>
+                                                @Html.ActionLink(GlobalRes.CommonObject_View, "UploadProofDoc", "ProofDoc", new { id = item.ProofDocId }, new { @class = "mb-xs btn btn-xs btn-primary" })
+                                            </td>
+                                        }
+                                    }
+                                    <td>
+                                        <a class="fas fa-trash-alt" onclick="ondeleteDep('@item.DepositId')" data-toggle="modal" data-target="#deleteModal" aria-hidden="true" style="text-decoration:none; font-size:18px"></a>
+
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <!-- Modal Delete Begin -->
+                    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="createModalLabel" aria-hidden="true">
+                        @Html.Hidden("jsDepositId", new { id = "jsDepositId" })
+
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <img src="/Content/assets/images/winstantpay-logo-notag.png" height="35" alt="" />
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-top: 5px">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <br />
+                                    <div class="row">
+                                        <div class="col-sm-12">@GlobalRes.FundingGetBankDepositsPage_DeleteRecMessage</div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    @*<a href='@Url.Action("DeleteBankDeposit","Funding", new { depositId = item.DepositId })'  class="fas fa-trash-alt" aria-hidden="true" style="text-decoration:none; font-size:18px"></a>*@
+
+                                    <button type="button" class="btn btn-success" onclick="deleteDeposit();">@GlobalRes.GetBankDepositPage_Yes</button>
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">@GlobalRes.GetBankDepositPage_No</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+                <div style="padding-top: 5px">
+                    <a class="btn btn-success" href="/ProofDoc/UploadProofDoc">@GlobalRes.FundingGetBankDepositsPage_UploadProof</a>
+                </div>
+
+            </div>
+
+        </section>
+    </div>
+
+    <script type="text/javascript">
+    function ondeleteDep(depId) {
+        $("#jsDepositId").val(depId);
+        console.log(depId);
+
+    }
+
+    function deleteDeposit() {
+        var depositId = $("#jsDepositId").val();
+        console.log(depositId);
+        $.post("@Url.Action("DeleteBankDeposit", "Funding")?depositId=" + depositId);
+        $('#deleteModal').modal('toggle');
+        location.reload();
+    }
+
+    $(".printlink").click(function() {
+        var bankCcyId = $(this).attr('name');
+
+        var myWindow = window.open("@Url.Action("GetPrintFriendlyInstruction", "WireInstruction")?val=" + bankCcyId, "_blank",
+            "menubar=no, toolbar=no, resizable=no, top=100, left=200, width=500, height=500");
+    });
+    </script>
+
+    @section customcss {
+        <!-- Specific Page Vendor CSS -->
+        <link rel="stylesheet" href="/Content/assets/vendor/select2/css/select2.css" />
+        <link rel="stylesheet" href="/Content/assets/vendor/select2-bootstrap-theme/select2-bootstrap.css" />
+        <link rel="stylesheet" href="/Content/assets/vendor/jquery-datatables-bs3/assets/css/datatables.css" />
+    }
+
+    @section VendorScripts {
+
+        <script src="/Content/assets/vendor/select2/js/select2.js"></script>
+        <script src="/Content/assets/vendor/jquery-datatables/media/js/jquery.dataTables.js"></script>
+        <script src="/Content/assets/vendor/jquery-datatables/extras/TableTools/js/dataTables.tableTools.min.js"></script>
+        <script src="/Content/assets/vendor/jquery-datatables-bs3/assets/js/datatables.js"></script>
+    }
+
+    @section Scripts {
+
+        <!-- Examples -->
+        <script src="/Content/assets/javascripts/tables/examples.datatables.default.js"></script>
+    }

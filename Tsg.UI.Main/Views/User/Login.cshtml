@@ -1,0 +1,558 @@
+﻿@using System.Configuration
+@using System.Globalization
+@using Tsg.UI.Main.App_LocalResources
+@using Tsg.UI.Main.Extensions
+@model Tsg.UI.Main.Models.UserLoginModel
+
+@{
+	ViewBag.Title = GlobalRes.User_LoginPage_Title;
+	Layout = null;
+}
+
+<!doctype html>
+<html class="fixed">
+<head>
+
+	<!-- Basic -->
+	<meta charset="UTF-8">
+
+	<meta name="keywords" content="ewallet" />
+	<meta name="description" content="ewallet">
+	<meta name="author" content="WinstantPay">
+
+	<!-- Mobile Metas -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+	<!-- Web Fonts  -->
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800|Shadows+Into+Light" rel="stylesheet" type="text/css">
+
+	<!-- Vendor CSS -->
+	<link rel="stylesheet" href="/Content/assets/vendor/bootstrap/css/bootstrap.css" />
+	@if (Culture.Contains("ar"))
+	{
+		<link rel="stylesheet" href="/Content/assets/vendor/bootstrap/css/bootstrap-rtl.css" />
+	}
+	<link rel="stylesheet" href="/Content/assets/vendor/font-awesome/css/font-awesome.css" />
+	<link rel="stylesheet" href="/Content/assets/vendor/magnific-popup/magnific-popup.css" />
+	<link rel="stylesheet" href="/Content/assets/vendor/bootstrap-datepicker/css/bootstrap-datepicker3.css" />
+	<link rel="stylesheet" href="~/Content/assets/stylesheets/flags.css" />
+
+	<!-- Theme CSS -->
+	<link rel="stylesheet" href="/Content/assets/stylesheets/theme.css" />
+
+	<!-- Skin CSS -->
+	<link rel="stylesheet" href="/Content/assets/stylesheets/skins/default.css" />
+
+	<!-- Theme Custom CSS -->
+	<link rel="stylesheet" href="/Content/assets/stylesheets/theme-custom.css">
+
+	<!-- Head Libs -->
+	<script src="/Content/assets/vendor/modernizr/modernizr.js"></script>
+
+	<!--Sweet Alert-->
+	<link href="~/Content/modal/sweetalert2.min.css" rel="stylesheet" />
+
+</head>
+
+
+<body @(Culture.Contains("ar") ? "class=rtl" : "")>
+
+	@*<body {  ? "class=\"rtl\"" : ""}>*@
+
+	<style>
+		.dropdown-menu > li > a {
+			padding: 3px 10px
+		}
+
+		.dropdown-menu {
+			min-width: 130px;
+		}
+	</style>
+	<!-- start: page -->
+	<section class="body-sign">
+		<div class="center-sign">
+
+			<div class="panel panel-sign">
+				<a href="@AppSettingHelper.GetWebsiteUrl()">
+					<img src="/Content/assets/images/@AppSettingHelper.GetLoginPageLogo()" height="75" alt="Logo" />
+				</a>
+				<div class="panel-body">
+					<form action=@Url.Action("Login", new {returnUrl = Model.ReturnUrl ?? ""}) method="post">
+						@Html.HiddenFor(h => h.ReturnUrl, Model.ReturnUrl)
+						@*<input name="returnUrl" id="returnUrl" value="@ViewBag.ReturnURL" type="hidden"/>*@
+						@if (ViewBag.ErrorMessage != null)
+						{
+							<div class="alert alert-danger">
+								<p class="m-none text-weight-semibold h6">@ViewBag.ErrorMessage</p>
+							</div>
+						}
+
+						<div class="form-group mb-lg">
+							<label>@GlobalRes.User_LoginPage_Username</label>
+							<div class="input-group input-group-icon">
+								@Html.TextBoxFor(m => m.Username, new { @class = "form-control input-lg" })
+								<span class="input-group-addon">
+									<span class="icon icon-lg">
+										<i class="fa fa-user"></i>
+									</span>
+								</span>
+							</div>
+							@Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+
+						</div>
+
+						<div class="form-group mb-lg">
+							<div class="clearfix">
+								<label class="pull-left">@GlobalRes.User_LoginPage_Password</label>
+								@*<a href="pages-recover-password.html" class="pull-right">Lost Password?</a>*@
+							</div>
+							<div class="input-group input-group-icon">
+								@Html.PasswordFor(m => m.Password, new { @class = "form-control input-lg" })
+								<span class="input-group-addon">
+									<span class="icon icon-lg">
+										<i class="fa fa-lock"></i>
+									</span>
+								</span>
+							</div>
+							@Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+
+						</div>
+						<div class="row" style="padding: 14px">
+							@if (CultureInfo.CurrentCulture.Name.Contains("PH"))
+							{
+								<img src="/Content/assets/images/onebyone.png" class='flag flag-enp' />
+								@GlobalRes.Shared_Header_Lang_Filipino
+							}
+							else if (CultureInfo.CurrentCulture.Name.Contains("ar"))
+							{
+								<img src="/Content/assets/images/onebyone.png" class='flag flag-aed' />
+								@GlobalRes.Shared_Header_Lang_Arabic
+							}
+							else if (CultureInfo.CurrentCulture.Name.Contains("th"))
+							{
+								<img src="/Content/assets/images/onebyone.png" class='flag flag-thb' />
+								@GlobalRes.Shared_Header_Lang_Thai
+							}
+							else if (CultureInfo.CurrentCulture.Name.Contains("km"))
+							{
+								<img src="/Content/assets/images/onebyone.png" class='flag flag-khr' />
+								@GlobalRes.Shared_Header_Lang_Khmer
+							}
+							else if (CultureInfo.CurrentCulture.Name.Contains("cn"))
+							{
+								<img src="/Content/assets/images/onebyone.png" class='flag flag-cny' />
+								@GlobalRes.Shared_Header_Lang_Chinese
+							}
+							else
+							{
+								<img src="/Content/assets/images/onebyone.png" class='@String.Format("flag flag-{0}", CultureInfo.CurrentCulture.TwoLetterISOLanguageName)' />
+								@String.Format("{0}{1}", CultureInfo.CurrentCulture.Parent.NativeName[0].ToString().ToUpper(), String.Join("", CultureInfo.CurrentCulture.Parent.NativeName.Skip(1)))
+							}
+
+							@GlobalRes.User_LoginPage_CurrentLangText
+
+							<div class="btn-group" style="vertical-align: top">
+
+								<a class="dropdown-toggle" style="margin-top: 10px; cursor: pointer;" type="button" data-toggle="dropdown">
+									@GlobalRes.User_LoginPage_Change
+								</a>
+								<ul class="dropdown-menu">
+									<li>
+										<a href='@Url.Action("ChangeCulture", "Home", new {lang = "en"})'>
+											<img src="/Content/assets/images/onebyone.png" class="flag flag-en" /> @GlobalRes.Shared_Header_Lang_English
+										</a>
+									</li>
+									<li>
+										<a href='@Url.Action("ChangeCulture", "Home", new {lang = "ru"})'>
+											<img src="/Content/assets/images/onebyone.png" class="flag flag-ru" /> @GlobalRes.Shared_Header_Lang_Russian
+										</a>
+									</li>
+									<li>
+										<a href='@Url.Action("ChangeCulture", "Home", new {lang = "fr"})'>
+											<img src="/Content/assets/images/onebyone.png" class="flag flag-fr" /> @GlobalRes.Shared_Header_Lang_French
+										</a>
+									</li>
+									<li>
+										<a href='@Url.Action("ChangeCulture", "Home", new {lang = "ph"})'>
+											<img src="/Content/assets/images/onebyone.png" class="flag flag-enp" /> @GlobalRes.Shared_Header_Lang_Filipino
+										</a>
+									</li>
+									<li>
+										<a href='@Url.Action("ChangeCulture", "Home", new {lang = "ar"})'>
+											<img src="/Content/assets/images/onebyone.png" class="flag flag-aed" /> @GlobalRes.Shared_Header_Lang_Arabic
+										</a>
+									</li>
+									<li>
+										<a href='@Url.Action("ChangeCulture", "Home", new {lang = "th"})'>
+											<img src="/Content/assets/images/onebyone.png" class="flag flag-thb" /> @GlobalRes.Shared_Header_Lang_Thai
+										</a>
+									</li>
+									<li>
+										<a href='@Url.Action("ChangeCulture", "Home", new {lang = "km"})'>
+											<img src="/Content/assets/images/onebyone.png" class="flag flag-khr" /> @GlobalRes.Shared_Header_Lang_Khmer
+										</a>
+									</li>
+									<li>
+										<a href='@Url.Action("ChangeCulture", "Home", new {lang = "cn"})'>
+											<img src="/Content/assets/images/onebyone.png" class="flag flag-cny" /> @GlobalRes.Shared_Header_Lang_Chinese
+										</a>
+									</li>
+
+								</ul>
+							</div>
+						</div>
+						<div class="row">
+							@*<div class="col-sm-8">
+									<div class="checkbox-custom checkbox-default">
+										<input id="RememberMe" name="rememberme" type="checkbox" />
+										<label for="RememberMe">Remember Me</label>
+									</div>
+								</div>*@
+							<div class="col-sm-4 hidden-xs">
+								<button type="submit" class="btn btn-primary ">@GlobalRes.User_LoginPage_SignIn</button>
+							</div>
+							<div class="col-sm-4 visible-xs">
+								<button type="submit" class="btn btn-primary btn-block btn-lg mt-lg">@GlobalRes.User_LoginPage_SignIn</button>
+							</div>
+							<div class="col-sm-8 text-right">
+								@if (string.IsNullOrEmpty(ConfigurationManager.AppSettings["resetPasswordLink"]))
+								{
+									<a id="resetPasswordLink" data-toggle="modal" data-target="#resetPasswordModal" class="text-right" style="cursor: pointer;">@GlobalRes.User_LoginPage_ForgotPassword</a>
+								}
+								else
+								{
+									<a href="@(ConfigurationManager.AppSettings["resetPasswordLink"])" class="text-right">@GlobalRes.User_LoginPage_ForgotPassword</a>
+								}
+
+								@if (!string.IsNullOrEmpty(ConfigurationManager.AppSettings["registerEmailLink"]))
+								{
+									<span>|</span>
+									<a href="@(ConfigurationManager.AppSettings["registerEmailLink"])" class="text-right">@GlobalRes.User_LoginPage_Register</a>
+								}
+
+								|
+								@if (string.IsNullOrEmpty(ConfigurationManager.AppSettings["contactUsLink"]))
+								{
+									<a id="addnewRecord" data-toggle="modal" data-target="#createModal" class="text-right" style="cursor: pointer;">@GlobalRes.User_LoginPage_ContactUs</a>
+								}
+								else
+								{
+									<a href="@(ConfigurationManager.AppSettings["contactUsLink"])" class="text-right">@GlobalRes.User_LoginPage_ContactUs</a>
+								}
+							</div>
+						</div>
+
+						@*<span class="mt-lg mb-lg line-thru text-center text-uppercase">
+								<span>or</span>
+							</span>
+
+							<div class="mb-xs text-center">
+								<a class="btn btn-facebook mb-md ml-xs mr-xs">Connect with <i class="fa fa-facebook"></i></a>
+								<a class="btn btn-twitter mb-md ml-xs mr-xs">Connect with <i class="fa fa-twitter"></i></a>
+							</div>
+
+							<p class="text-center">Don't have an account yet? <a href="pages-signup.html">Sign Up!</a></p>*@
+
+					</form>
+				</div>
+			</div>
+
+
+			<p class="text-center text-muted mt-md mb-md">@String.Format(GlobalRes.User_CheckOutLoginPage_CopyRight, ConfigurationManager.AppSettings["StartYear"], DateTime.UtcNow.Year) </p>
+			@*<p class="text-center text-muted mt-md mb-md">@String.Format(GlobalRes.User_CheckOutLoginPage_CopyRight, ConfigurationManager.AppSettings["StartYear"], DateTime.UtcNow.Year) Powered by <a href="https://www.winstantpay.com/en/" target="_blank" class="control-label">WinstantPay</a></p>*@
+			<p class="text-center text-muted mt-md mb-md">
+				Powered by
+				<a href="@(ConfigurationManager.AppSettings["PoweredByLink"])" target="_blank" class="control-label">
+					<img src="~/Content/assets/images/@(ConfigurationManager.AppSettings["PoweredByLogo"])" height="30" alt="logo" />
+				</a>
+			</p>
+			<p class="text-center text-muted mt-md mb-md">
+				<a href="https://www.winstantpay.com/en/releasenotes" target="_blank" class="control-label">
+					v<span>@Session["UiVersion"].ToString()</span>
+				</a>
+			</p>
+		</div>
+	</section>
+	<!-- end: page -->
+	<!-- Vendor -->
+	<script src="/Content/assets/vendor/jquery/jquery.js"></script>
+	<script src="~/Content/assets/vendor/jquery-validation/jquery.validate.js"></script>
+	<script src="/Content/assets/vendor/jquery-browser-mobile/jquery.browser.mobile.js"></script>
+	<script src="/Content/assets/vendor/bootstrap/js/bootstrap.js"></script>
+	<script src="/Content/assets/vendor/nanoscroller/nanoscroller.js"></script>
+	<script src="/Content/assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+	<script src="/Content/assets/vendor/magnific-popup/jquery.magnific-popup.js"></script>
+	<script src="/Content/assets/vendor/jquery-placeholder/jquery-placeholder.js"></script>
+	<script src="~/Content/modal/sweetalert2.all.min.js"></script>
+	<script src="~/Content/modal/sweetalert2.min.js"></script>
+	<!-- Theme Base, Components and Settings -->
+	<script src="/Content/assets/javascripts/theme.js"></script>
+
+	<!-- Theme Custom -->
+	<script src="/Content/assets/javascripts/theme.custom.js"></script>
+
+	<!-- Theme Initialization Files -->
+	<script src="/Content/assets/javascripts/theme.init.js"></script>
+
+	<!-- Modal Add record Begin -->
+	<div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="createModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<img src="/Content/assets/images/winstantpay-logo-notag.png" height="35" alt="" />
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-top: 5px">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form id="Create" action="/ContactUs/ContactUs" method="post" class="form-horizontal" novalidate="novalidate">
+						<div class="panel-body">
+							<div class="alert alert-danger" style="display: none;" id="errorMessageBlock">
+								<p class="m-none text-weight-semibold h6" id="errorMesage"></p>
+							</div>
+							<div class="row">
+								<label class="col-sm-2 control-label">@GlobalRes.User_LoginPage_ModalConctactUsEmail <span class="required" aria-required="true">*</span></label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="MailFrom" name="MailFrom" required="" />
+								</div>
+							</div>
+							<div>&nbsp;</div>
+							<div class="row">
+								<label class="col-sm-2 control-label">@GlobalRes.User_LoginPage_ModalConctactUsSubject </label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="Subject" name="Subject" />
+								</div>
+							</div>
+							<div>&nbsp;</div>
+							<div class="row">
+								<label class="col-sm-2 control-label">@GlobalRes.User_LoginPage_ModalConctactUsMessage <span class="required" aria-required="true">*</span></label>
+								<div class="col-sm-10">
+									<textarea rows="5" cols="1" id="MailText" , name="MailText" class="form-control" required=""></textarea>
+								</div>
+							</div>
+						</div>
+						<footer class="panel-footer">
+							<div class="row">
+								<div class="col-sm-12 pull-left">
+									<button type="button" onclick="sendMail();" class="col-sm-4 col-sm-offset-2 btn btn-success" id="sendAnonMessageBtn">@GlobalRes.User_LoginPage_ModalConctactUsSendMessage<span class="fa fa-envelope pull-left"></span></button>
+								</div>
+							</div>
+						</footer>
+						@*</section>*@
+
+						@*</div>*@
+					</form>
+
+					@*@Scripts.Render("~/bundles/jqueryval")*@
+
+					<script language="javascript" type="text/javascript">
+					$('#MailText').change(function() {
+						$("textarea#MailText").val($(this).val());
+						$("textarea#MailText").text($(this).val());
+					});
+					$('#MailFrom').change(function() {
+						$("input#MailFrom").val($(this).val());
+						$("input#MailFrom").text($(this).val());
+					});
+					$('#Subject').change(function() {
+						$("input#Subject").val($(this).val());
+						$("input#Subject").text($(this).val());
+					});
+
+
+					function sendMail() {
+						$("#sendAnonMessageBtn").attr("disabled", true);
+						if (!validateEmail($("#MailFrom").val())) {
+							$("#errorMesage").text("@GlobalRes.User_LoginPage_Modal_InsertCorrectMail");
+							$('#errorMessageBlock').css("display", "block");
+							setTimeout(function () { $('#errorMessageBlock').css("display", "none") }, 3000);
+							$("#sendAnonMessageBtn").attr("disabled", false);
+							return false;
+						}
+						if ($("textarea#MailText").val() == null || $("textarea#MailText").text().trim().lenght < 1) {
+							$("#errorMesage").text("@GlobalRes.User_LoginPage_Modal_InsertMailText");
+							$('#errorMessageBlock').css("display", "block");
+							setTimeout(function () { $('#errorMessageBlock').css("display", "none") }, 3000);
+							$("#sendAnonMessageBtn").attr("disabled", false);
+							return false;
+						} else {
+							$.ajax({
+								url: '@Url.Action("ContactUs", "ContactUs")',
+								type: 'POST',
+								data: $("#Create").serialize(),
+								success: function(data) {
+									if (data.IsSuccessResForAction) {
+										$("textarea#MailText").val("");
+										$("textarea#MailText").text("");
+										$("input#MailFrom").val("");
+										$("input#MailFrom").text("");
+										$("input#Subject").val("");
+										$("input#Subject").text("");
+
+										@*$("#errorMessageBlock").removeClass("alert-danger")
+											.addClass("alert-success");
+
+										$("#errorMesage").text("@GlobalRes.User_LoginPage_Modal_MailSendedSuccessifully");
+										$('#errorMessageBlock').css("display", "block");*@
+										$('#createModal').modal('toggle');
+										swal({
+											type: 'success',
+											title: 'Thank you.',
+											text: 'We have received your message and will contact you shortly',
+											showConfirmButton: false,
+											timer: 3000
+										});
+									} else {
+										$("#errorMesage").text(data.ActionResultText);
+										$('#errorMessageBlock').css("display", "block");
+										//setTimeout(function () { $('#errorMessageBlock').css("display", "none") }, 3000);
+									}
+									$("#sendAnonMessageBtn").attr("disabled", false);
+								}
+
+							});
+							return true;
+						}
+					}
+
+
+					function validateEmail($email) {
+						var pattern = /^\b[A-Z0-9._%-]+@@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i;
+						return pattern.test($email);
+					}
+
+					</script>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Modal Add record End -->
+	<!-- Modal Reset Password -->
+	<div class="modal fade" id="resetPasswordModal" tabindex="-1" role="dialog" aria-labelledby="createModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<img src="/Content/assets/images/winstantpay-logo-notag.png" height="35" alt="" />
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-top: 5px">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form id="resetPasswordForm" action="/ContactUs/ContactUs" method="post" class="form-horizontal" novalidate="novalidate">
+						<div class="panel-body">
+							<div class="alert alert-danger" style="display: none;" id="forgotPasswordErrorMessageBlock">
+								<p class="m-none text-weight-semibold h6" id="forgotPasswordErrorMesage"></p>
+							</div>
+							<div class="row">
+								<label class="col-sm-3 control-label">@GlobalRes.User_LoginPage_ForgotPassword_Username <span class="required" aria-required="true">*</span></label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" id="forgotPasswordUserName" name="forgotPasswordUserName" required="" />
+								</div>
+							</div>
+							<div>&nbsp;</div>
+							<div class="row">
+								<label class="col-sm-3 control-label">@GlobalRes.User_LoginPage_ForgotPassword_Email <span class="required" aria-required="true">*</span></label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" id="forgotPasswordEmail" name="forgotPasswordEmail" />
+								</div>
+							</div>
+							<div>&nbsp;</div>
+						</div>
+						@*</section>*@
+
+						@*</div>*@
+					</form>
+
+					@*@Scripts.Render("~/bundles/jqueryval")*@
+
+					<script language="javascript" type="text/javascript">
+					$('#forgotPasswordUserName').change(function () {
+						$("input#forgotPasswordUserName").val($(this).val());
+						$("input#forgotPasswordUserName").text($(this).val());
+					});
+
+					$('#forgotPasswordEmail').change(function () {
+						$("input#forgotPasswordEmail").val($(this).val());
+						$("input#forgotPasswordEmail").text($(this).val());
+					});
+
+					function resetPassword() {
+						$("#submitForgotPassword").attr("disabled", true);
+						console.log("----- user name:'" + $("#forgotPasswordUserName").text() + "'----- length:" + $("#forgotPasswordUserName").text().trim().length);
+						console.log($("#forgotPasswordUserName").text().trim().length);
+
+						if ($("#forgotPasswordUserName").val() == null || $("#forgotPasswordUserName").val() == undefined || $("#forgotPasswordUserName").text().trim().length < 1) {
+							$("#forgotPasswordErrorMesage").text("User name is required");
+							$('#forgotPasswordErrorMessageBlock').css("display", "block");
+							setTimeout(function () { $('#forgotPasswordErrorMessageBlock').css("display", "none") }, 3000);
+							$("#submitForgotPassword").attr("disabled", false);
+							return false;
+						}
+
+						if (!validateEmail($("#forgotPasswordEmail").val())) {
+							$("#forgotPasswordErrorMesage").text("Please input valid email");
+							$('#forgotPasswordErrorMessageBlock').css("display", "block");
+							setTimeout(function () { $('#forgotPasswordErrorMessageBlock').css("display", "none") }, 3000);
+							$("#submitForgotPassword").attr("disabled", false);
+							return false;
+						}
+						console.log("Calling ForgotPassword");
+						$.ajax({
+							url: '@Url.Action("ForgotPassword", "User")',
+							type: 'POST',
+							data: $("#resetPasswordForm").serialize(),
+							success: function (data) {
+								console.log("Success");
+								console.log("resetPassword, data: " + JSON.stringify(data));
+								console.log("resetPassword, data: " + data.IsSuccess);
+								console.log("resetPassword, data: " + data.ResultText);
+								if (data.IsSuccess) {
+									$('#resetPasswordModal').modal('toggle');
+									swal({
+										type: 'success',
+										title: 'Reset Password',
+										text: 'Successfully Reset password ',
+										showConfirmButton: false,
+										timer: 3000
+									});
+								} else {
+									$("#forgotPasswordErrorMesage").text(data.ResultText);
+									$('#forgotPasswordErrorMessageBlock').css("display", "block");
+									//setTimeout(function () { $('#errorMessageBlock').css("display", "none") }, 3000);
+								}
+								$("#submitForgotPassword").attr("disabled", false);
+							}
+
+							});
+						return true;
+					}
+
+					function validateEmail($email) {
+						var pattern = /^\b[A-Z0-9._%-]+@@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i;
+						return pattern.test($email);
+					}
+
+					</script>
+				</div>
+				<div class="modal-footer">
+					<button type="button" onclick="resetPassword();" class="btn btn-primary" id="submitForgotPassword">@GlobalRes.User_LoginPage_ForgotPassword_Submit</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Modal Reset Password End -->
+
+	<script type="text/javascript" language="javascript">
+		$("#addnewRecord").click(function () {
+			//toggle();
+		});
+		$('form').find('*').filter(':input:visible:first').focus();
+		//        window.location.reload(true);
+
+		window.location.hash = "no-back-button";
+		window.location.hash = "Again-No-back-button";//again because google chrome don't insert first hash into history
+		window.onhashchange = function () { window.location.hash = "no-back-button"; }
+	</script>
+</body>
+</html>

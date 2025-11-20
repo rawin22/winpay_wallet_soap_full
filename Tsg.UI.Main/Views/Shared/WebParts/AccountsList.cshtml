@@ -1,0 +1,332 @@
+﻿@using System.ComponentModel
+@using System.Globalization
+@using Tsg.UI.Main.App_LocalResources
+@model Tsg.UI.Main.Models.AccountBalancesListViewModel
+
+<section class="panel panel-featured panel-featured-info">
+	@*<section class="panel panel-featured panel-featured-info @(ViewBag.ShowCustomFilter != null ? "" : "panel-collapsed")">*@
+	<header class="panel-heading" data-panel-toggle="">
+		<div class="panel-actions">
+			<a href="#" class="panel-action panel-action-toggle" data-panel-toggle=""></a>
+		</div>
+
+		<h2 class="panel-title">@GlobalRes.Shared_WebPartsAccountingPage_Title</h2>
+		<p class="panel-subtitle">@GlobalRes.Shared_WebPartsAccountingPage_SubTitle</p>
+	</header>
+	<!-- Specific Page Vendor CSS -->
+	<link rel="stylesheet" href="/Content/assets/vendor/select2/css/select2.css" />
+	<link rel="stylesheet" href="/Content/assets/vendor/select2-bootstrap-theme/select2-bootstrap.css" />
+	<link rel="stylesheet" href="/Content/assets/vendor/jquery-datatables-bs3/assets/css/datatables.css" />
+
+
+	<script src="/Content/assets/vendor/select2/js/select2.js"></script>
+	<script src="/Content/assets/vendor/jquery-datatables/media/js/jquery.dataTables.js"></script>
+	<script src="/Content/assets/vendor/jquery-datatables/extras/TableTools/js/dataTables.tableTools.min.js"></script>
+	<script src="/Content/assets/vendor/jquery-datatables-bs3/assets/js/datatables.js"></script>
+
+	<link href="/Content/assets/vendor/bootstrap-toggle/css/bootstrap-toggle.css" rel="stylesheet">
+	<script src="/Content/assets/vendor/bootstrap-toggle/js/bootstrap-toggle.js"></script>
+
+	<style>
+		.toggle-on {
+			color: #ffffff !important;
+		}
+	</style>
+
+	<div class="panel-body">
+		@Html.Raw(GlobalRes.Shared_WebPartsAccountingPage_AllAccText)
+		@if (Model != null)
+		{
+			var hiddenClass = "hidden-xs";
+
+			<div>
+				@if (ViewBag.ShowCustomFilter != null)
+				{
+					hiddenClass = "";
+					@*<input id="checkboxFv" type="checkbox" data-toggle="toggle" data-on='@GlobalRes.HomeAccountsList_Show' data-off='@GlobalRes.HomeAccountsList_Hide' data-size="small">*@
+
+					<div class="row" style="margin-top: -15px;">
+						<div class="col-xs-6 col-sm-6">
+							<div class="col-sm-12">
+								<div class="checkbox">
+									<div id="nullAccount">
+										<input id="checkbox" type="checkbox" data-toggle="toggle" data-on='@GlobalRes.HomeAccountsList_Show' data-off='@GlobalRes.HomeAccountsList_Hide' data-size="small">
+										<label id="nullaccountLabelText" style="padding-left: 0px; cursor: default; vertical-align: -webkit-baseline-middle;">@GlobalRes.HomeAccountsList_ShowZeroBalances</label>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-xs-6 col-sm-6">
+							<div class="col-sm-12">
+								<div class="checkbox">
+									<div id="favoriteValute">
+										<input id="checkboxFv" type="checkbox" data-toggle="toggle" data-on='@GlobalRes.HomeAccountsList_Show' data-off='@GlobalRes.HomeAccountsList_Hide' data-size="small">
+										<label id="favoriteValuteFv" style="padding-left: 0px; cursor: default; vertical-align: -webkit-baseline-middle;">@GlobalRes.HomeAccountsList_ShowOnlyFavoriteCurrency</label>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				}
+				@{
+					var enUsCur = CultureInfo.GetCultureInfo("en-US");
+				}
+
+				<table class="table table-bordered table-striped table-condensed mb-none" id="datatable-default-accounts">
+					<thead>
+						<tr>
+							@*<th class="@hiddenClass">@GlobalRes.Shared_WebPartsAccountingPage_AccNumber</th>*@
+							<th>@GlobalRes.Shared_WebPartsAccountingPage_CCY</th>
+							@*<th class="@hiddenClass td_textright">@GlobalRes.Shared_WebPartsAccountingPage_CurrentBalance</th>*@
+							<th class="td_textright">@GlobalRes.Shared_WebPartsAccountingPage_Balance</th>
+							@*<th class="@hiddenClass td_textright">@GlobalRes.Shared_WebPartsAccountingPage_ActiveHolds</th>*@
+						</tr>
+					</thead>
+					<tbody>
+						@foreach (var item in Model.Balances)
+						{
+							<tr>
+								@*<td class="@hiddenClass"><a href="/Home/AccountStatement/@item.AccountId.ToString()">@Html.DisplayFor(modelItem => item.AccountNumber)</a></td>*@
+								<td>
+									<div class="col-xs-4 col-sm-3 col-md-3 col-lg-2" style="padding: 0px">
+										@Html.DisplayFor(modelItem => item.Currency)
+									</div>
+									<div class="col-xs-3 col-sm-2 col-md-2 col-lg-2">
+										<img src="/Content/assets/images/onebyone.png" class="flag flag-@(item.Currency.ToLower())" />
+									</div>
+								</td>
+								@{
+									List<string> crypto = new List<string>();
+									crypto.Add("BTC");
+									crypto.Add("DAS");
+								}
+								<td class="td_textright @(item.BalanceAvailable < 0 ? " text-danger" : "")"><a href="/Home/AccountStatement/@item.AccountId.ToString()"><span class="@(item.Balance < 0 ? " text-danger" : "")">@item.Balance</span></a></td>
+							</tr>
+						}
+					</tbody>
+				</table>
+			</div>
+
+			<script type="text/javascript">
+				var datatableInit = function () {
+					var favoriteCurrencyList = "@Model.FavoriteCurrecy";
+					$.fn.dataTableExt.afnFiltering.push(function (oSettings, aData, iDataIndex) {
+						var checkednullAcc = !$('#checkbox').is(':checked');
+						var favoriteCurrency = $('#checkboxFv').is(':checked');
+
+						if (checkednullAcc && favoriteCurrency) {
+							if (aData[1] != 0.0 && favoriteCurrencyList.indexOf(aData[0].trim()) !== -1) {
+								return true;
+							}
+						}
+						if (checkednullAcc && !favoriteCurrency) {
+							if (aData[1] != 0.0) {
+								return true;
+							}
+						}
+						if (!checkednullAcc && favoriteCurrency) {
+							if (favoriteCurrencyList.indexOf(aData[0].trim()) !== -1) {
+								return true;
+							}
+						}
+						if (!checkednullAcc && !favoriteCurrency)
+							return true;
+						return false;
+					});
+					var oTable = $('#datatable-default-accounts').dataTable();
+
+					@*var labelText = '@GlobalRes.HomeAccountsList_HideZeroAcc';
+					var labelFvText = '@GlobalRes.HomeAccountsList_ShowFvAcc';
+					if ($('#checkbox').is(':checked')) {
+						labelText = '@GlobalRes.Shared_WebPartsAccountingPage_UncheckForAllAcc';
+					}
+					if ($('#checkboxFv').is(':checked')) {
+						labelFvText = '@GlobalRes.HomeAccountsList_HideFvAcc';
+					}
+
+					$('#nullaccountLabelText').text(labelText);
+					$('#favoriteValuteFv').text(labelFvText);*@
+
+
+					$('#checkbox').closest('div').find('label .btn btn-primary toggle-on').html("@GlobalRes.HomeAccountsList_Hide");
+					$('#checkbox').closest('div').find('label .btn btn-primary toggle-off').html("@GlobalRes.HomeAccountsList_Show");
+					$('#checkboxFv').closest('div').find('label .btn btn-primary toggle-on').html("@GlobalRes.HomeAccountsList_Hide");
+					$('#checkboxFv').closest('div').find('label .btn btn-primary toggle-off').html("@GlobalRes.HomeAccountsList_Show");
+					oTable.fnDraw();
+				};
+
+				$('#checkbox').change(function () {
+					if ($(this).prop('checked')) {
+						$('#checkbox').prop('checked', true);
+						datatableInit();
+
+					} else {
+						$('#checkbox').prop('checked', false);
+						datatableInit();
+					}
+				});
+				$('#checkboxFv').change(function () {
+					if ($(this).prop('checked')) {
+						$('#checkboxFv').prop('checked', true);
+						datatableInit();
+					} else {
+						$('#checkboxFv').prop('checked', false);
+						datatableInit();
+
+					}
+				});
+
+				$('#checkbox').on("click",
+					function (e) {
+						datatableInit();
+					});
+			</script>
+
+			if (@ViewBag.ShowCustomFilter != null)
+			{
+				if (CultureInfo.CurrentCulture.Name.Contains("PH"))
+				{
+					<script type="text/javascript">
+						$(window).load(function () {
+							$('#checkbox').attr('checked', false);
+							$('#checkboxFv').attr('checked', true);
+
+							$('#datatable-default-accounts').DataTable().destroy();
+							var dt = $('#datatable-default-accounts').DataTable({
+								responsive: true,
+								pageLength: 100,
+								order: [[0, "asc"]],
+								"oLanguage": {
+									"sEmptyTable": "Walang impormasyon",
+									"sInfo": "_START_ ng _END_ kabuuang _TOTAL_ na mga pahina",
+									"sInfoEmpty": "0 ng kabuuang 0 mga entry",
+									"sInfoFiltered": "(natagpuan mula sa _MAX_ inskripsyon)",
+									"sInfoPostFix": "",
+									"sInfoThousands": ".",
+									"sLengthMenu": "Ipakita ang _MENU_ item sa pahina",
+									"sLoadingRecords": "Coefficient of activity...",
+									"sProcessing": "Asahan...",
+									"sSearch": "_INPUT_",
+									"sSearchPlaceholder": "Paghahanap",
+									"sZeroRecords": "Walang impormasyon.",
+									"oPaginate": {
+										"sFirst": "Ang una",
+										"sPrevious": "Ang huling",
+										"sNext": "Sumusunod",
+										"sLast": "Nakaraan"
+									}
+								}
+							});
+							$(".dataTables_filter input").attr("placeholder", "Paghahanap");
+							dt.draw();
+						});
+					</script>
+				}
+				else
+				{
+					<script type="text/javascript">
+						$(window).load(function () {
+							var lang = '@CultureInfo.CurrentCulture.TwoLetterISOLanguageName';
+
+							if (lang === 'ru') {
+								$('#datatable-default-accounts').DataTable().destroy();
+
+
+								var dt = $('#datatable-default-accounts').DataTable({
+									responsive: true,
+									pageLength: 100,
+									order: [[0, "asc"]],
+									"oLanguage": {
+										"sEmptyTable": "Нет данных",
+										"sInfo": "_START_ из _END_ всего _TOTAL_ страниц",
+										"sInfoEmpty": "0 из 0 всего 0 записей",
+										"sInfoFiltered": "(наидено из _MAX_ записей)",
+										"sInfoPostFix": "",
+										"sInfoThousands": ".",
+										"sLengthMenu": "Отображать _MENU_ записей на странице",
+										"sLoadingRecords": "Загрузка...",
+										"sProcessing": "Подождите...",
+										"sSearch": "_INPUT_",
+										//"searchPlaceholder": "Поиск",
+										"sSearchPlaceholder": "Поиск",
+										"sZeroRecords": "Нет данных.",
+										"oPaginate": {
+											"sFirst": "Первая",
+											"sPrevious": "Последняя",
+											"sNext": "Следующая",
+											"sLast": "Предыдущая"
+										}
+									}
+								});
+								$(".dataTables_filter input").attr("placeholder", "Поиск");
+
+								dt.draw();
+							}
+							else if (lang === 'fr') {
+								$('#datatable-default-accounts').DataTable().destroy();
+								var dt = $('#datatable-default-accounts').DataTable({
+									responsive: true,
+									pageLength: 100,
+									order: [[0, "asc"]],
+									"oLanguage": {
+										"sEmptyTable": "Aucune information",
+										"sInfo": "_START_ de la _END_ total _TOTAL_ pages",
+										"sInfoEmpty": "0 de la 0 total 0 inscription",
+										"sInfoFiltered": "(trouvé à partir de _MAX_ inscription)",
+										"sInfoPostFix": "",
+										"sInfoThousands": ".",
+										"sLengthMenu": "Afficher les éléments _MENU_ sur la page",
+										"sLoadingRecords": "Coefficient d'activité...",
+										"sProcessing": "Attendre...",
+										"sSearch": "_INPUT_",
+										"sSearchPlaceholder": "Rechercher",
+										"sZeroRecords": "Aucune information.",
+										"oPaginate": {
+											"sFirst": "Le premier",
+											"sPrevious": "Le dernier",
+											"sNext": "Suivant",
+											"sLast": "Précédent"
+										}
+									}
+								});
+								$(".dataTables_filter input").attr("placeholder", "Rechercher");
+								dt.draw();
+
+							} else {
+								var dt = $('#datatable-default-accounts').DataTable({
+									destroy: true,
+									pageLength: 100,
+									order: [[0, "asc"]],
+									retrieve: true,
+									"language": {
+										"lengthMenu": "Display _MENU_ records per page",
+										"zeroRecords": "Nothing found - sorry",
+										"info": "Showing page _PAGE_ of _PAGES_",
+										"infoEmpty": "No records available",
+										"infoFiltered": "(filtered from _MAX_ total records)"
+									}
+								});
+								dt.draw();
+							}
+							$('#checkbox').attr('checked', false);
+							$('#checkboxFv').attr('checked', true);
+							$('#checkbox').prop('checked', false).change();
+							$('#checkboxFv').prop('checked', true).change();
+							datatableInit();
+						});
+					</script>
+				}
+			}
+		}
+		<script>
+
+			//setTimeout(function () {
+			//    $('#checkbox').attr('checked', true);
+			//    $('#checkboxFv').attr('checked', true);
+			//    $('#checkbox').prop('checked', true).change();
+			//    $('#checkboxFv').prop('checked', true).change();
+			//    datatableInit();
+			//}, 1000)
+		</script>
+	</div>
+</section>

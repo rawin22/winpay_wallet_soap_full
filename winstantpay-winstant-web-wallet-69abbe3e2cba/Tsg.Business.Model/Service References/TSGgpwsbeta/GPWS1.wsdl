@@ -1,0 +1,1605 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="https://www.bizcurrency.com" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="https://www.bizcurrency.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="https://www.bizcurrency.com">
+      <s:element name="GetFXDealQuoteBasic">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ServiceLoginID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ServicePassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CustomerReference" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BuyCurrencyCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="SellCurrencyCode" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Amount" type="s:decimal" />
+            <s:element minOccurs="0" maxOccurs="1" name="AmountCurrencyCode" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="IsForCurrencyCalculator" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFXDealQuoteBasicResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFXDealQuoteBasicResult" type="tns:GetFXDealQuoteResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="GetFXDealQuoteResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ServiceErrorList" type="tns:ServiceErrorList" />
+          <s:element minOccurs="0" maxOccurs="1" name="QuoteDetails" type="tns:QuoteDetailsInfoWS" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ServiceErrorList">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ServiceError" nillable="true" type="tns:ServiceError" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ServiceError">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ErrorCode" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorTitle" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="QuoteDetailsInfoWS">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="QuoteID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="QuoteReference" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CustomerReference" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DealType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BuyAmount" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BuyCurrencyCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SellAmount" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SellCurrencyCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ExchangeRate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RateFormat" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DealDate" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="QuoteTime" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="QuoteExpirationTime" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="FinalValueDate" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsForCurrencyCalculator" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="BookFXDeal">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ServiceLoginID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ServicePassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="QuoteID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BookFXDealResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BookFXDealResult" type="tns:BookFXDealResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="BookFXDealResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ServiceErrorList" type="tns:ServiceErrorList" />
+          <s:element minOccurs="0" maxOccurs="1" name="FXDealInfo" type="tns:BookFXDealResultWS" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="BookFXDealResultWS">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="FXDealID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FXDealReference" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetPaymentDetails">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ServiceLoginID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ServicePassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PaymentReference" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPaymentDetailsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPaymentDetailsResult" type="tns:GetPaymentDetailsResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="GetPaymentDetailsResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ServiceErrorList" type="tns:ServiceErrorList" />
+          <s:element minOccurs="0" maxOccurs="1" name="PaymentDetails" type="tns:PaymentDetailsInfoWS" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PaymentDetailsInfoWS">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="PaymentReference" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="StatusTypeID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="StatusTypeName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BranchName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CustomerReference" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Amount" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AmountCurrencyCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FXDealNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ExchangeRate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ExchangeRateFormat" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BaseAmount" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BaseAmountCurrencyCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ValueDate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CountryCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CountryName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryAddress1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryAddress2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryAddress3" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryAccountNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryInfo1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryInfo2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryInfo3" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryInfo4" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryBankName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryBankAddress1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryBankAddress2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryBankAddress3" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryBankBIC" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryBankNationalCodeType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryBankNationalCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IntermediaryBankName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IntermediaryBankAddress1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IntermediaryBankAddress2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IntermediaryBankAddress3" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IntermediaryBankBIC" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IntermediaryBankNationalCodeType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IntermediaryBankNationalCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ReasonForPayment1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ReasonForPayment2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FeeAmount" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FeeAmountCurrencyCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ChargeDetail" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ValidatePaymentInstruction">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ServiceLoginID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ServicePassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CustomerReference" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CountryCode" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Amount" type="s:decimal" />
+            <s:element minOccurs="0" maxOccurs="1" name="AmountCurrencyCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryAddress1" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryAddress2" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryAddress3" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryAccountNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryBankName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryBankAddress1" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryBankAddress2" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryBankAddress3" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryBankBIC" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryBankNationalCodeType" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryBankNationalCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryInfo1" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryInfo2" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryInfo3" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryInfo4" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReasonForPayment1" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReasonForPayment2" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="IntermediaryBankName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="IntermediaryBankAddress1" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="IntermediaryBankAddress2" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="IntermediaryBankAddress3" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="IntermediaryBankBIC" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="IntermediaryBankNationalCodeType" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="IntermediaryBankNationalCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="SettlementBankBIC" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ValidatePaymentInstructionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ValidatePaymentInstructionResult" type="tns:ServiceErrorList" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BookFXDealWithPaymentInstruction">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ServiceLoginID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ServicePassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="QuoteID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CustomerReference" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CountryCode" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="BaseAmount" type="s:decimal" />
+            <s:element minOccurs="0" maxOccurs="1" name="BaseAmountCurrencyCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryAddress1" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryAddress2" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryAddress3" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryAccountNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryBankName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryBankAddress1" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryBankAddress2" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryBankAddress3" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryBankBIC" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryBankNationalCodeType" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryBankNationalCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryInfo1" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryInfo2" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryInfo3" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryInfo4" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReasonForPayment1" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReasonForPayment2" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="IntermediaryBankName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="IntermediaryBankAddress1" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="IntermediaryBankAddress2" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="IntermediaryBankAddress3" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="IntermediaryBankBIC" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="IntermediaryBankNationalCodeType" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="IntermediaryBankNationalCode" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="FeeAmount" type="s:decimal" />
+            <s:element minOccurs="0" maxOccurs="1" name="FeeAmountCurrencyCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ChargeDetail" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="SettlementBankBIC" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BookFXDealWithPaymentInstructionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BookFXDealWithPaymentInstructionResult" type="tns:BookFXDealWithPaymentInstructionResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="BookFXDealWithPaymentInstructionResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ServiceErrorList" type="tns:ServiceErrorList" />
+          <s:element minOccurs="0" maxOccurs="1" name="PaymentInfo" type="tns:BookFXDealWithPaymentInstructionResultWS" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="BookFXDealWithPaymentInstructionResultWS">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="PaymentID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PaymentReference" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FXDealID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FXDealReference" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CreatePaymentInstructionUnderFXDeal">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ServiceLoginID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ServicePassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FXDealID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CustomerReference" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CountryCode" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="BaseAmount" type="s:decimal" />
+            <s:element minOccurs="0" maxOccurs="1" name="BaseAmountCurrencyCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryAddress1" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryAddress2" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryAddress3" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryAccountNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryBankName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryBankAddress1" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryBankAddress2" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryBankAddress3" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryBankBIC" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryBankNationalCodeType" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryBankNationalCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryInfo1" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryInfo2" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryInfo3" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryInfo4" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReasonForPayment1" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReasonForPayment2" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="IntermediaryBankName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="IntermediaryBankAddress1" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="IntermediaryBankAddress2" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="IntermediaryBankAddress3" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="IntermediaryBankBIC" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="IntermediaryBankNationalCodeType" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="IntermediaryBankNationalCode" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="FeeAmount" type="s:decimal" />
+            <s:element minOccurs="0" maxOccurs="1" name="FeeAmountCurrencyCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ChargeDetail" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="SettlementBankBIC" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreatePaymentInstructionUnderFXDealResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreatePaymentInstructionUnderFXDealResult" type="tns:CreatePaymentInstructionUnderFXDealResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="CreatePaymentInstructionUnderFXDealResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ServiceErrorList" type="tns:ServiceErrorList" />
+          <s:element minOccurs="0" maxOccurs="1" name="PaymentInfo" type="tns:CreatePaymentInstructionUnderFXDealWS" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CreatePaymentInstructionUnderFXDealWS">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="PaymentID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PaymentReference" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetBeneficiariesFromCustomerReferenceBasic">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ServiceLoginID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ServicePassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CustomerReference" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryType" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CurrencyCode" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="IncludePaymentsWithoutCountryCode" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBeneficiariesFromCustomerReferenceBasicResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetBeneficiariesFromCustomerReferenceBasicResult" type="tns:GetBeneficiariesFromCustomerReferenceBasicResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="GetBeneficiariesFromCustomerReferenceBasicResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ServiceErrorList" type="tns:ServiceErrorList" />
+          <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryBasicList" type="tns:ArrayOfBeneficiaryBasic" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfBeneficiaryBasic">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="BeneficiaryBasic" nillable="true" type="tns:BeneficiaryBasic" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="BeneficiaryBasic">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryReference" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AmountCurrencyCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CountryCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryAddress1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryAddress2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryAddress3" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryAccountNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryBankName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryBankAddress1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryBankAddress2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryBankAddress3" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryBankBIC" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryBankNationalCodeType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryBankNationalCode" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetBeneficiariesFromCustomerReferenceListBasic">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ServiceLoginID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ServicePassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CustomerReferences" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryType" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CurrencyCode" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="IncludePaymentsWithoutCountryCode" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetBeneficiariesFromCustomerReferenceListBasicResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetBeneficiariesFromCustomerReferenceListBasicResult" type="tns:GetBeneficiariesFromCustomerReferenceBasicResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBeneficiariesFromCustomerReferenceComplete">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ServiceLoginID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ServicePassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CustomerReference" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryType" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CurrencyCode" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="IncludePaymentWithoutCountryCode" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBeneficiariesFromCustomerReferenceCompleteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetBeneficiariesFromCustomerReferenceCompleteResult" type="tns:GetBeneficiariesFromCustomerReferenceCompleteResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="GetBeneficiariesFromCustomerReferenceCompleteResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ServiceErrorList" type="tns:ServiceErrorList" />
+          <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryCompleteList" type="tns:ArrayOfBeneficiaryComplete" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfBeneficiaryComplete">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="BeneficiaryComplete" nillable="true" type="tns:BeneficiaryComplete" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="BeneficiaryComplete">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryReference" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AmountCurrencyCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CountryCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryAddress1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryAddress2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryAddress3" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryAccountNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryBankName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryBankAddress1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryBankAddress2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryBankAddress3" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryBankBIC" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryBankNationalCodeType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryBankNationalCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IntermediaryBankName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IntermediaryBankAddress1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IntermediaryBankAddress2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IntermediaryBankAddress3" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IntermediaryBankBIC" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IntermediaryBankNationalCodeType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IntermediaryBankNationalCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ChargeDetail" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetBeneficiariesFromCustomerReferenceListComplete">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ServiceLoginID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ServicePassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CustomerReferences" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryType" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CurrencyCode" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="IncludePaymentsWithoutCountryCode" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBeneficiariesFromCustomerReferenceListCompleteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetBeneficiariesFromCustomerReferenceListCompleteResult" type="tns:GetBeneficiariesFromCustomerReferenceCompleteResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBeneficiary">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ServiceLoginID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ServicePassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryReference" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBeneficiaryResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetBeneficiaryResult" type="tns:GetBeneficiaryResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="GetBeneficiaryResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ServiceErrorList" type="tns:ServiceErrorList" />
+          <s:element minOccurs="0" maxOccurs="1" name="Beneficiary" type="tns:BeneficiaryComplete" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DeleteBeneficiaryIncludingDuplicates">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ServiceLoginID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ServicePassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CustomerReference" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TemplateReference" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteBeneficiaryIncludingDuplicatesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DeleteBeneficiaryIncludingDuplicatesResult" type="tns:DeleteBeneficiaryIncludingDuplicatesResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DeleteBeneficiaryIncludingDuplicatesResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ServiceErrorList" type="tns:ServiceErrorList" />
+          <s:element minOccurs="1" maxOccurs="1" name="RecordsAffected" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DeleteBeneficiaryIncludingDuplicatesFromReferenceList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ServiceLoginID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ServicePassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CustomerReferences" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="TemplateReference" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteBeneficiaryIncludingDuplicatesFromReferenceListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DeleteBeneficiaryIncludingDuplicatesFromReferenceListResult" type="tns:DeleteBeneficiaryIncludingDuplicatesResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPaymentHistoryFromCustomerReference">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ServiceLoginID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ServicePassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CustomerReference" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PaymentType" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="StartDate" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="EndDate" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="IncludePaymentsWithoutCountryCode" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="MaxPaymentsToReturn" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPaymentHistoryFromCustomerReferenceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPaymentHistoryFromCustomerReferenceResult" type="tns:GetPaymentHistoryFromCustomerReferenceResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="GetPaymentHistoryFromCustomerReferenceResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ServiceErrorList" type="tns:ServiceErrorList" />
+          <s:element minOccurs="0" maxOccurs="1" name="PaymentList" type="tns:ArrayOfPayment" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfPayment">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Payment" nillable="true" type="tns:Payment" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Payment">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="PaymentID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PaymentReference" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CustomerReference" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FXDealReference" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ValueDate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CountryCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Amount" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CurrencyCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BaseAmount" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BaseAmountCurrencyCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ExchangeRate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RateFormat" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryAccountNumber" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetPaymentHistoryFromCustomerReferenceList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ServiceLoginID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ServicePassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CustomerReferences" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="PaymentType" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="StartDate" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="EndDate" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="IncludePaymentsWithoutCountryCode" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="MaxPaymentsToReturn" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPaymentHistoryFromCustomerReferenceListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPaymentHistoryFromCustomerReferenceListResult" type="tns:GetPaymentHistoryFromCustomerReferenceResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPaymentWizardCurrencies">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ServiceLoginID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ServicePassword" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPaymentWizardCurrenciesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPaymentWizardCurrenciesResult" type="tns:GetPaymentWizardCurrenciesResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="GetPaymentWizardCurrenciesResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ServiceErrorList" type="tns:ServiceErrorList" />
+          <s:element minOccurs="0" maxOccurs="1" name="CurrencyList" type="tns:CurrencyList" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CurrencyList">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Currency" nillable="true" type="tns:Currency" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Currency">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Code" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Symbol" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetPaymentWizardCurrenciesForCustomer">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ServiceLoginID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ServicePassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CustomerReference" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPaymentWizardCurrenciesForCustomerResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPaymentWizardCurrenciesForCustomerResult" type="tns:GetPaymentWizardCurrenciesResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFXDealBuyCurrencies">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ServiceLoginID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ServicePassword" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFXDealBuyCurrenciesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFXDealBuyCurrenciesResult" type="tns:GetFXDealBuyCurrenciesResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="GetFXDealBuyCurrenciesResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ServiceErrorList" type="tns:ServiceErrorList" />
+          <s:element minOccurs="0" maxOccurs="1" name="CurrencyList" type="tns:CurrencyList" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetFXDealSellCurrencies">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ServiceLoginID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ServicePassword" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFXDealSellCurrenciesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFXDealSellCurrenciesResult" type="tns:GetFXDealSellCurrenciesResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="GetFXDealSellCurrenciesResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ServiceErrorList" type="tns:ServiceErrorList" />
+          <s:element minOccurs="0" maxOccurs="1" name="CurrencyList" type="tns:CurrencyList" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetPaymentCurrencies">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ServiceLoginID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ServicePassword" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPaymentCurrenciesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPaymentCurrenciesResult" type="tns:GetPaymentCurrenciesResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="GetPaymentCurrenciesResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ServiceErrorList" type="tns:ServiceErrorList" />
+          <s:element minOccurs="0" maxOccurs="1" name="CurrencyList" type="tns:CurrencyList" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetCountries">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ServiceLoginID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ServicePassword" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCountriesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCountriesResult" type="tns:GetCountriesResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="GetCountriesResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ServiceErrorList" type="tns:ServiceErrorList" />
+          <s:element minOccurs="0" maxOccurs="1" name="CountryList" type="tns:ArrayOfCountry" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfCountry">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Country" nillable="true" type="tns:Country" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Country">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="CountryCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CountryName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PreferredCurrency" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="BlockStatus" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetBankDetails">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ServiceLoginID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ServicePassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CountryCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CurrencyCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BankType" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BankCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BankCodeType" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBankDetailsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetBankDetailsResult" type="tns:GetBankDetailsResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="GetBankDetailsResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ServiceErrorList" type="tns:ServiceErrorList" />
+          <s:element minOccurs="0" maxOccurs="1" name="BankDetails" type="tns:BankDetailsInfoWS" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="BankDetailsInfoWS">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="BenBankName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BenBankAddress1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BenBankAddress2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BenBankAddress3" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BenBankBIC" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BenBankNationalCodeType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BenBankNationalCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IntBankName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IntBankAddress1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IntBankAddress2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IntBankAddress3" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IntBankBIC" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IntBankNationalCodeType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IntBankNationalCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SettlementBankBIC" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ServiceAvailabilityPing">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ServiceLoginID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ServicePassword" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ServiceAvailabilityPingResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ServiceAvailabilityPingResult" type="tns:ServiceAvailabilityPingResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ServiceAvailabilityPingResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ServiceErrorList" type="tns:ServiceErrorList" />
+          <s:element minOccurs="0" maxOccurs="1" name="Service" type="tns:ServiceAvailabilityPingResultWS" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ServiceAvailabilityPingResultWS">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="DomesticPaymentAvailable" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ForeignPaymentAvailable" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetCustomerInfoFromReference">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ServiceLoginID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ServicePassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CustomerReference" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCustomerInfoFromReferenceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCustomerInfoFromReferenceResult" type="tns:GetCustomerAccountInfoResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="GetCustomerAccountInfoResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ServiceErrorList" type="tns:ServiceErrorList" />
+          <s:element minOccurs="0" maxOccurs="1" name="CustomerList" type="tns:ArrayOfCustomer" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfCustomer">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Customer" nillable="true" type="tns:Customer" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Customer">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="CustomerReference" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CustomerName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Address1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Address2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Address3" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Phone" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Fax" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FeeAmount" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FeeAmountCurrencyCode" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetCustomerInfoFromReferenceList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ServiceLoginID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ServicePassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CustomerReferences" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCustomerInfoFromReferenceListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCustomerInfoFromReferenceListResult" type="tns:GetCustomerAccountInfoResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetFXDealQuoteBasicSoapIn">
+    <wsdl:part name="parameters" element="tns:GetFXDealQuoteBasic" />
+  </wsdl:message>
+  <wsdl:message name="GetFXDealQuoteBasicSoapOut">
+    <wsdl:part name="parameters" element="tns:GetFXDealQuoteBasicResponse" />
+  </wsdl:message>
+  <wsdl:message name="BookFXDealSoapIn">
+    <wsdl:part name="parameters" element="tns:BookFXDeal" />
+  </wsdl:message>
+  <wsdl:message name="BookFXDealSoapOut">
+    <wsdl:part name="parameters" element="tns:BookFXDealResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPaymentDetailsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPaymentDetails" />
+  </wsdl:message>
+  <wsdl:message name="GetPaymentDetailsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPaymentDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ValidatePaymentInstructionSoapIn">
+    <wsdl:part name="parameters" element="tns:ValidatePaymentInstruction" />
+  </wsdl:message>
+  <wsdl:message name="ValidatePaymentInstructionSoapOut">
+    <wsdl:part name="parameters" element="tns:ValidatePaymentInstructionResponse" />
+  </wsdl:message>
+  <wsdl:message name="BookFXDealWithPaymentInstructionSoapIn">
+    <wsdl:part name="parameters" element="tns:BookFXDealWithPaymentInstruction" />
+  </wsdl:message>
+  <wsdl:message name="BookFXDealWithPaymentInstructionSoapOut">
+    <wsdl:part name="parameters" element="tns:BookFXDealWithPaymentInstructionResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreatePaymentInstructionUnderFXDealSoapIn">
+    <wsdl:part name="parameters" element="tns:CreatePaymentInstructionUnderFXDeal" />
+  </wsdl:message>
+  <wsdl:message name="CreatePaymentInstructionUnderFXDealSoapOut">
+    <wsdl:part name="parameters" element="tns:CreatePaymentInstructionUnderFXDealResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetBeneficiariesFromCustomerReferenceBasicSoapIn">
+    <wsdl:part name="parameters" element="tns:GetBeneficiariesFromCustomerReferenceBasic" />
+  </wsdl:message>
+  <wsdl:message name="GetBeneficiariesFromCustomerReferenceBasicSoapOut">
+    <wsdl:part name="parameters" element="tns:GetBeneficiariesFromCustomerReferenceBasicResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetBeneficiariesFromCustomerReferenceListBasicSoapIn">
+    <wsdl:part name="parameters" element="tns:GetBeneficiariesFromCustomerReferenceListBasic" />
+  </wsdl:message>
+  <wsdl:message name="GetBeneficiariesFromCustomerReferenceListBasicSoapOut">
+    <wsdl:part name="parameters" element="tns:GetBeneficiariesFromCustomerReferenceListBasicResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetBeneficiariesFromCustomerReferenceCompleteSoapIn">
+    <wsdl:part name="parameters" element="tns:GetBeneficiariesFromCustomerReferenceComplete" />
+  </wsdl:message>
+  <wsdl:message name="GetBeneficiariesFromCustomerReferenceCompleteSoapOut">
+    <wsdl:part name="parameters" element="tns:GetBeneficiariesFromCustomerReferenceCompleteResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetBeneficiariesFromCustomerReferenceListCompleteSoapIn">
+    <wsdl:part name="parameters" element="tns:GetBeneficiariesFromCustomerReferenceListComplete" />
+  </wsdl:message>
+  <wsdl:message name="GetBeneficiariesFromCustomerReferenceListCompleteSoapOut">
+    <wsdl:part name="parameters" element="tns:GetBeneficiariesFromCustomerReferenceListCompleteResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetBeneficiarySoapIn">
+    <wsdl:part name="parameters" element="tns:GetBeneficiary" />
+  </wsdl:message>
+  <wsdl:message name="GetBeneficiarySoapOut">
+    <wsdl:part name="parameters" element="tns:GetBeneficiaryResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteBeneficiaryIncludingDuplicatesSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteBeneficiaryIncludingDuplicates" />
+  </wsdl:message>
+  <wsdl:message name="DeleteBeneficiaryIncludingDuplicatesSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteBeneficiaryIncludingDuplicatesResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteBeneficiaryIncludingDuplicatesFromReferenceListSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteBeneficiaryIncludingDuplicatesFromReferenceList" />
+  </wsdl:message>
+  <wsdl:message name="DeleteBeneficiaryIncludingDuplicatesFromReferenceListSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteBeneficiaryIncludingDuplicatesFromReferenceListResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPaymentHistoryFromCustomerReferenceSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPaymentHistoryFromCustomerReference" />
+  </wsdl:message>
+  <wsdl:message name="GetPaymentHistoryFromCustomerReferenceSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPaymentHistoryFromCustomerReferenceResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPaymentHistoryFromCustomerReferenceListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPaymentHistoryFromCustomerReferenceList" />
+  </wsdl:message>
+  <wsdl:message name="GetPaymentHistoryFromCustomerReferenceListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPaymentHistoryFromCustomerReferenceListResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPaymentWizardCurrenciesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPaymentWizardCurrencies" />
+  </wsdl:message>
+  <wsdl:message name="GetPaymentWizardCurrenciesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPaymentWizardCurrenciesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPaymentWizardCurrenciesForCustomerSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPaymentWizardCurrenciesForCustomer" />
+  </wsdl:message>
+  <wsdl:message name="GetPaymentWizardCurrenciesForCustomerSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPaymentWizardCurrenciesForCustomerResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetFXDealBuyCurrenciesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetFXDealBuyCurrencies" />
+  </wsdl:message>
+  <wsdl:message name="GetFXDealBuyCurrenciesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetFXDealBuyCurrenciesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetFXDealSellCurrenciesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetFXDealSellCurrencies" />
+  </wsdl:message>
+  <wsdl:message name="GetFXDealSellCurrenciesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetFXDealSellCurrenciesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPaymentCurrenciesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPaymentCurrencies" />
+  </wsdl:message>
+  <wsdl:message name="GetPaymentCurrenciesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPaymentCurrenciesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCountriesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCountries" />
+  </wsdl:message>
+  <wsdl:message name="GetCountriesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCountriesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetBankDetailsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetBankDetails" />
+  </wsdl:message>
+  <wsdl:message name="GetBankDetailsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetBankDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceAvailabilityPingSoapIn">
+    <wsdl:part name="parameters" element="tns:ServiceAvailabilityPing" />
+  </wsdl:message>
+  <wsdl:message name="ServiceAvailabilityPingSoapOut">
+    <wsdl:part name="parameters" element="tns:ServiceAvailabilityPingResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCustomerInfoFromReferenceSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCustomerInfoFromReference" />
+  </wsdl:message>
+  <wsdl:message name="GetCustomerInfoFromReferenceSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCustomerInfoFromReferenceResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCustomerInfoFromReferenceListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCustomerInfoFromReferenceList" />
+  </wsdl:message>
+  <wsdl:message name="GetCustomerInfoFromReferenceListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCustomerInfoFromReferenceListResponse" />
+  </wsdl:message>
+  <wsdl:portType name="GPWebServiceSoap">
+    <wsdl:operation name="GetFXDealQuoteBasic">
+      <wsdl:input message="tns:GetFXDealQuoteBasicSoapIn" />
+      <wsdl:output message="tns:GetFXDealQuoteBasicSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BookFXDeal">
+      <wsdl:input message="tns:BookFXDealSoapIn" />
+      <wsdl:output message="tns:BookFXDealSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPaymentDetails">
+      <wsdl:input message="tns:GetPaymentDetailsSoapIn" />
+      <wsdl:output message="tns:GetPaymentDetailsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ValidatePaymentInstruction">
+      <wsdl:input message="tns:ValidatePaymentInstructionSoapIn" />
+      <wsdl:output message="tns:ValidatePaymentInstructionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BookFXDealWithPaymentInstruction">
+      <wsdl:input message="tns:BookFXDealWithPaymentInstructionSoapIn" />
+      <wsdl:output message="tns:BookFXDealWithPaymentInstructionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreatePaymentInstructionUnderFXDeal">
+      <wsdl:input message="tns:CreatePaymentInstructionUnderFXDealSoapIn" />
+      <wsdl:output message="tns:CreatePaymentInstructionUnderFXDealSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBeneficiariesFromCustomerReferenceBasic">
+      <wsdl:input message="tns:GetBeneficiariesFromCustomerReferenceBasicSoapIn" />
+      <wsdl:output message="tns:GetBeneficiariesFromCustomerReferenceBasicSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBeneficiariesFromCustomerReferenceListBasic">
+      <wsdl:input message="tns:GetBeneficiariesFromCustomerReferenceListBasicSoapIn" />
+      <wsdl:output message="tns:GetBeneficiariesFromCustomerReferenceListBasicSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBeneficiariesFromCustomerReferenceComplete">
+      <wsdl:input message="tns:GetBeneficiariesFromCustomerReferenceCompleteSoapIn" />
+      <wsdl:output message="tns:GetBeneficiariesFromCustomerReferenceCompleteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBeneficiariesFromCustomerReferenceListComplete">
+      <wsdl:input message="tns:GetBeneficiariesFromCustomerReferenceListCompleteSoapIn" />
+      <wsdl:output message="tns:GetBeneficiariesFromCustomerReferenceListCompleteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBeneficiary">
+      <wsdl:input message="tns:GetBeneficiarySoapIn" />
+      <wsdl:output message="tns:GetBeneficiarySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteBeneficiaryIncludingDuplicates">
+      <wsdl:input message="tns:DeleteBeneficiaryIncludingDuplicatesSoapIn" />
+      <wsdl:output message="tns:DeleteBeneficiaryIncludingDuplicatesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteBeneficiaryIncludingDuplicatesFromReferenceList">
+      <wsdl:input message="tns:DeleteBeneficiaryIncludingDuplicatesFromReferenceListSoapIn" />
+      <wsdl:output message="tns:DeleteBeneficiaryIncludingDuplicatesFromReferenceListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPaymentHistoryFromCustomerReference">
+      <wsdl:input message="tns:GetPaymentHistoryFromCustomerReferenceSoapIn" />
+      <wsdl:output message="tns:GetPaymentHistoryFromCustomerReferenceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPaymentHistoryFromCustomerReferenceList">
+      <wsdl:input message="tns:GetPaymentHistoryFromCustomerReferenceListSoapIn" />
+      <wsdl:output message="tns:GetPaymentHistoryFromCustomerReferenceListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPaymentWizardCurrencies">
+      <wsdl:input message="tns:GetPaymentWizardCurrenciesSoapIn" />
+      <wsdl:output message="tns:GetPaymentWizardCurrenciesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPaymentWizardCurrenciesForCustomer">
+      <wsdl:input message="tns:GetPaymentWizardCurrenciesForCustomerSoapIn" />
+      <wsdl:output message="tns:GetPaymentWizardCurrenciesForCustomerSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFXDealBuyCurrencies">
+      <wsdl:input message="tns:GetFXDealBuyCurrenciesSoapIn" />
+      <wsdl:output message="tns:GetFXDealBuyCurrenciesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFXDealSellCurrencies">
+      <wsdl:input message="tns:GetFXDealSellCurrenciesSoapIn" />
+      <wsdl:output message="tns:GetFXDealSellCurrenciesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPaymentCurrencies">
+      <wsdl:input message="tns:GetPaymentCurrenciesSoapIn" />
+      <wsdl:output message="tns:GetPaymentCurrenciesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCountries">
+      <wsdl:input message="tns:GetCountriesSoapIn" />
+      <wsdl:output message="tns:GetCountriesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBankDetails">
+      <wsdl:input message="tns:GetBankDetailsSoapIn" />
+      <wsdl:output message="tns:GetBankDetailsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ServiceAvailabilityPing">
+      <wsdl:input message="tns:ServiceAvailabilityPingSoapIn" />
+      <wsdl:output message="tns:ServiceAvailabilityPingSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomerInfoFromReference">
+      <wsdl:input message="tns:GetCustomerInfoFromReferenceSoapIn" />
+      <wsdl:output message="tns:GetCustomerInfoFromReferenceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomerInfoFromReferenceList">
+      <wsdl:input message="tns:GetCustomerInfoFromReferenceListSoapIn" />
+      <wsdl:output message="tns:GetCustomerInfoFromReferenceListSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="GPWebServiceSoap" type="tns:GPWebServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetFXDealQuoteBasic">
+      <soap:operation soapAction="https://www.bizcurrency.com/GetFXDealQuoteBasic" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BookFXDeal">
+      <soap:operation soapAction="https://www.bizcurrency.com/BookFXDeal" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPaymentDetails">
+      <soap:operation soapAction="https://www.bizcurrency.com/GetPaymentDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidatePaymentInstruction">
+      <soap:operation soapAction="https://www.bizcurrency.com/ValidatePaymentInstruction" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BookFXDealWithPaymentInstruction">
+      <soap:operation soapAction="https://www.bizcurrency.com/BookFXDealWithPaymentInstruction" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreatePaymentInstructionUnderFXDeal">
+      <soap:operation soapAction="https://www.bizcurrency.com/CreatePaymentInstructionUnderFXDeal" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBeneficiariesFromCustomerReferenceBasic">
+      <soap:operation soapAction="https://www.bizcurrency.com/GetBeneficiariesFromCustomerReferenceBasic" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBeneficiariesFromCustomerReferenceListBasic">
+      <soap:operation soapAction="https://www.bizcurrency.com/GetBeneficiariesFromCustomerReferenceListBasic" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBeneficiariesFromCustomerReferenceComplete">
+      <soap:operation soapAction="https://www.bizcurrency.com/GetBeneficiariesFromCustomerReferenceComplete" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBeneficiariesFromCustomerReferenceListComplete">
+      <soap:operation soapAction="https://www.bizcurrency.com/GetBeneficiariesFromCustomerReferenceListComplete" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBeneficiary">
+      <soap:operation soapAction="https://www.bizcurrency.com/GetBeneficiary" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteBeneficiaryIncludingDuplicates">
+      <soap:operation soapAction="https://www.bizcurrency.com/DeleteBeneficiaryIncludingDuplicates" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteBeneficiaryIncludingDuplicatesFromReferenceList">
+      <soap:operation soapAction="https://www.bizcurrency.com/DeleteBeneficiaryIncludingDuplicatesFromReferenceList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPaymentHistoryFromCustomerReference">
+      <soap:operation soapAction="https://www.bizcurrency.com/GetPaymentHistoryFromCustomerReference" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPaymentHistoryFromCustomerReferenceList">
+      <soap:operation soapAction="https://www.bizcurrency.com/GetPaymentHistoryFromCustomerReferenceList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPaymentWizardCurrencies">
+      <soap:operation soapAction="https://www.bizcurrency.com/GetPaymentWizardCurrencies" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPaymentWizardCurrenciesForCustomer">
+      <soap:operation soapAction="https://www.bizcurrency.com/GetPaymentWizardCurrenciesForCustomer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFXDealBuyCurrencies">
+      <soap:operation soapAction="https://www.bizcurrency.com/GetFXDealBuyCurrencies" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFXDealSellCurrencies">
+      <soap:operation soapAction="https://www.bizcurrency.com/GetFXDealSellCurrencies" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPaymentCurrencies">
+      <soap:operation soapAction="https://www.bizcurrency.com/GetPaymentCurrencies" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCountries">
+      <soap:operation soapAction="https://www.bizcurrency.com/GetCountries" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBankDetails">
+      <soap:operation soapAction="https://www.bizcurrency.com/GetBankDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ServiceAvailabilityPing">
+      <soap:operation soapAction="https://www.bizcurrency.com/ServiceAvailabilityPing" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomerInfoFromReference">
+      <soap:operation soapAction="https://www.bizcurrency.com/GetCustomerInfoFromReference" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomerInfoFromReferenceList">
+      <soap:operation soapAction="https://www.bizcurrency.com/GetCustomerInfoFromReferenceList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="GPWebServiceSoap12" type="tns:GPWebServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetFXDealQuoteBasic">
+      <soap12:operation soapAction="https://www.bizcurrency.com/GetFXDealQuoteBasic" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BookFXDeal">
+      <soap12:operation soapAction="https://www.bizcurrency.com/BookFXDeal" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPaymentDetails">
+      <soap12:operation soapAction="https://www.bizcurrency.com/GetPaymentDetails" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidatePaymentInstruction">
+      <soap12:operation soapAction="https://www.bizcurrency.com/ValidatePaymentInstruction" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BookFXDealWithPaymentInstruction">
+      <soap12:operation soapAction="https://www.bizcurrency.com/BookFXDealWithPaymentInstruction" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreatePaymentInstructionUnderFXDeal">
+      <soap12:operation soapAction="https://www.bizcurrency.com/CreatePaymentInstructionUnderFXDeal" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBeneficiariesFromCustomerReferenceBasic">
+      <soap12:operation soapAction="https://www.bizcurrency.com/GetBeneficiariesFromCustomerReferenceBasic" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBeneficiariesFromCustomerReferenceListBasic">
+      <soap12:operation soapAction="https://www.bizcurrency.com/GetBeneficiariesFromCustomerReferenceListBasic" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBeneficiariesFromCustomerReferenceComplete">
+      <soap12:operation soapAction="https://www.bizcurrency.com/GetBeneficiariesFromCustomerReferenceComplete" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBeneficiariesFromCustomerReferenceListComplete">
+      <soap12:operation soapAction="https://www.bizcurrency.com/GetBeneficiariesFromCustomerReferenceListComplete" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBeneficiary">
+      <soap12:operation soapAction="https://www.bizcurrency.com/GetBeneficiary" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteBeneficiaryIncludingDuplicates">
+      <soap12:operation soapAction="https://www.bizcurrency.com/DeleteBeneficiaryIncludingDuplicates" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteBeneficiaryIncludingDuplicatesFromReferenceList">
+      <soap12:operation soapAction="https://www.bizcurrency.com/DeleteBeneficiaryIncludingDuplicatesFromReferenceList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPaymentHistoryFromCustomerReference">
+      <soap12:operation soapAction="https://www.bizcurrency.com/GetPaymentHistoryFromCustomerReference" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPaymentHistoryFromCustomerReferenceList">
+      <soap12:operation soapAction="https://www.bizcurrency.com/GetPaymentHistoryFromCustomerReferenceList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPaymentWizardCurrencies">
+      <soap12:operation soapAction="https://www.bizcurrency.com/GetPaymentWizardCurrencies" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPaymentWizardCurrenciesForCustomer">
+      <soap12:operation soapAction="https://www.bizcurrency.com/GetPaymentWizardCurrenciesForCustomer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFXDealBuyCurrencies">
+      <soap12:operation soapAction="https://www.bizcurrency.com/GetFXDealBuyCurrencies" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFXDealSellCurrencies">
+      <soap12:operation soapAction="https://www.bizcurrency.com/GetFXDealSellCurrencies" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPaymentCurrencies">
+      <soap12:operation soapAction="https://www.bizcurrency.com/GetPaymentCurrencies" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCountries">
+      <soap12:operation soapAction="https://www.bizcurrency.com/GetCountries" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBankDetails">
+      <soap12:operation soapAction="https://www.bizcurrency.com/GetBankDetails" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ServiceAvailabilityPing">
+      <soap12:operation soapAction="https://www.bizcurrency.com/ServiceAvailabilityPing" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomerInfoFromReference">
+      <soap12:operation soapAction="https://www.bizcurrency.com/GetCustomerInfoFromReference" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomerInfoFromReferenceList">
+      <soap12:operation soapAction="https://www.bizcurrency.com/GetCustomerInfoFromReferenceList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="GPWebService">
+    <wsdl:port name="GPWebServiceSoap" binding="tns:GPWebServiceSoap">
+      <soap:address location="http://www.bizcurrency1.com/gpwsbeta/GPWS.asmx" />
+    </wsdl:port>
+    <wsdl:port name="GPWebServiceSoap12" binding="tns:GPWebServiceSoap12">
+      <soap12:address location="http://www.bizcurrency1.com/gpwsbeta/GPWS.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

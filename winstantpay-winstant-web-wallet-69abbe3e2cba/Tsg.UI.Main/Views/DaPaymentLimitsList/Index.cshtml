@@ -1,0 +1,61 @@
+﻿@model IEnumerable<TSG.Models.ServiceModels.LimitPayment.QrForPayLimitsSo>
+
+    @{
+        ViewBag.Title = "Index";
+        Layout = "~/Views/Shared/_LayoutMain.cshtml";
+    }
+
+    <div class="row">
+        <section class="panel">
+
+            <header class="panel-heading" data-panel-toggle="">
+                <div class="panel-actions">
+                    <a href="#" class="panel-action panel-action-toggle" data-panel-toggle=""></a>
+                </div>
+
+                <h2 class="panel-title">Products</h2>
+                <p class="panel-subtitle">Products list</p>
+            </header>
+
+            <div class="panel-body" style="display: block;">
+                <p>
+                    @Html.ActionLink("Create New", "Create", "ShopProducts", new { @class = "btn btn-success" })
+                </p>
+                <table class="table table-bordered table-striped table-condensed mb-none" id="datatable-default">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.QrForPayLimits_CreationDate)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.QrForPayLimits_CcyCode)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.QrForPayLimits_DateOfExpire)
+                        </th>
+                        <th></th>
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.QrForPayLimits_CreationDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.QrForPayLimits_CcyCode)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.QrForPayLimits_DateOfExpire)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.QrForPayLimits_ID }) @*|
+                                    @Html.ActionLink("Details", "Details", new { id=item.ShopProducts_ID }) |
+                                    @Html.ActionLink("Delete", "Delete", new { id=item.ShopProducts_ID })*@
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+            </div>
+        </section>
+    </div>

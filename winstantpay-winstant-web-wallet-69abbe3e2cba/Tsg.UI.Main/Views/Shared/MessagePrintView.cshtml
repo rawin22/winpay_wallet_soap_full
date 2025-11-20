@@ -1,0 +1,26 @@
+﻿@model IList<Tsg.UI.Main.Models.MessagesObjects.MessageObject>
+
+@if (Model.Count > 0)
+{
+    if (Model.Any(w => w.IsError))
+    {
+        <div class="alert alert-danger" style="display: block;" id="errorMessageBlock">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a>
+            <p class="m-none text-weight-semibold h6" id="successMesage">@String.Join(Environment.NewLine, Model.Where(w => w.IsError).Select(s => s.Message))</p>
+        </div>
+    }
+    if (Model.Any(w => w.IsWarning))
+    {
+        <div class="alert alert-warning" style="display: block;" id="warningMessageBlock">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a>
+            <p class="m-none text-weight-semibold h6" id="successMesage">@String.Join(Environment.NewLine, Model.Where(w => w.IsWarning).Select(s => s.Message))</p>
+        </div>
+    }
+    if (Model.Any(w => w.IsSuccess))
+    {
+        <div class="alert alert-success" style="display: block;" id="successMessageBlock">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a>
+            <p class="m-none text-weight-semibold h6" id="successMesage">@String.Join(Environment.NewLine, Model.Where(w => w.IsSuccess).Select(s => s.Message))</p>
+        </div>
+    }
+}

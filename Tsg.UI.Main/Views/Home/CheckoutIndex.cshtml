@@ -1,0 +1,79 @@
+﻿@using Tsg.UI.Main.App_LocalResources
+@model Tsg.UI.Main.Models.CheckoutModel
+
+@{
+    Layout = "~/Views/Shared/_LayoutCheckout.cshtml";
+    ViewBag.Title = GlobalRes.HomeCheckoutIndexPage_Title;
+}
+<script type="text/javascript" src="/Content/assets/vendor/jquery/jquery.js"></script>
+
+
+
+@*@using (Html.BeginForm("ConfirmDetails", "Home", new { odrerToken = "test"}, FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()*@
+
+<div class="form-horizontal">
+    <section class="panel  @(ViewBag.OpenPanel != null ? "" : "panel-featured panel-featured-info")">
+        <header class="panel-heading" data-panel-toggle="">
+            <div class="panel-actions">
+                <a href="#" class="panel-action panel-action-toggle" data-panel-toggle=""></a>
+            </div>
+
+            <h2 class="panel-title">@GlobalRes.HomeCheckoutIndexPage_Title</h2>
+            <p class="panel-subtitle">@GlobalRes.HomeCheckoutIndexPage_SubTitle</p>
+        </header>
+
+        <div class="panel-body">
+            <form action="/Home/CheckoutIndex?orderToken=@Request.QueryString["orderToken"]" method="post">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">@GlobalRes.HomeCheckoutIndexPage_MerchantName</label>
+                    <div class="col-sm-6">
+                        @Html.TextBoxFor(m => m.MerchantName, new { @class = "form-control", @readonly = "readonly", required = "" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @if (@Model.AliasesList != null && @Model.AliasesList.Count > 0)
+                    {
+                        <label class="col-sm-3 control-label">@GlobalRes.HomeCheckoutIndexPage_ChooseAlias</label>
+                        <div class="col-sm-6">
+                            @Html.DropDownListFor(m => m.Alias, Model.AliasesList, "Select Alias", new { @class = "form-control", required = "" })
+                        </div>
+                    }
+                    else
+                    {
+                        <label class="col-sm-3 control-label">@GlobalRes.HomeCheckoutIndexPage_CustomerName</label>
+                        <div class="col-sm-6">
+                            @Html.TextBoxFor(m => m.CustomerName, new { @class = "form-control", @readonly = "readonly", required = "" })
+                        </div>
+                    }
+                </div>
+
+                <div class="form-group">
+
+                    <label class="col-sm-3 control-label">@GlobalRes.HomeCheckoutIndexPage_ChooseAccount</label>
+                    <div class="col-sm-6">
+                        @*@Html.TextBoxFor(m => m.Status, new { @class = "form-control", required = "" })
+                            @Html.ValidationMessageFor(m => m.Status, "", new { @class = "text-danger" })*@
+                        @Html.DropDownListFor(m => m.Account, Model.AvailableAccounts, new { @class = "form-control", required = "" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-3 col-md-10" style="color:green">
+                        @ViewBag.Message
+                    </div>
+                </div>
+                <footer class="panel-footer">
+                    <div class="row">
+                        <div class="col-sm-9 col-sm-offset-3">
+                            <input type="submit" class="btn btn-success" value="@GlobalRes.HomeCheckoutIndexPage_Confirm" />
+                        </div>
+                    </div>
+                </footer>
+            </form>
+        </div>
+    </section>
+</div>
+@* } *@

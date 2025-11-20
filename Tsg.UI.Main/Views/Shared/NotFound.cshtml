@@ -1,0 +1,27 @@
+﻿@using Tsg.UI.Main.App_LocalResources
+
+@{
+    ViewBag.Title = GlobalRes.Shared_NotFoundPage_Title;
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+
+<div class="row">
+    <section class="panel">
+
+        <header class="panel-heading" data-panel-toggle="">
+            <div class="panel-actions">
+                <a href="#" class="panel-action panel-action-toggle" data-panel-toggle=""></a>
+            </div>
+
+            <h2 class="panel-title">404</h2>
+            <p class="panel-subtitle">@GlobalRes.Shared_NotFoundPage_SubTitle</p>
+        </header>
+
+        <div class="panel-body" style="display: block; text-align:center">
+            <i class="fa fa-money" aria-hidden="true" style="font-size:1000%"></i>
+            @Html.Raw(GlobalRes.Shared_NotFoundPage_SorryMessage)
+        </div>
+
+    </section>
+</div>
+

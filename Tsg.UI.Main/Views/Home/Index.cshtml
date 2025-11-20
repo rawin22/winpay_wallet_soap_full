@@ -1,0 +1,33 @@
+﻿@using System.Globalization
+@using Tsg.UI.Main.App_LocalResources
+@using Tsg.UI.Main.Models.Attributes
+@using TSG.Models.APIModels
+@model Tsg.UI.Main.Models.DashboardViewModel
+
+@{
+	Layout = "~/Views/Shared/_LayoutMain.cshtml";
+	ViewBag.Title = GlobalRes.HomeIndexPage_Title;
+}
+<script type="text/javascript" src="/Content/assets/vendor/jquery/jquery.js"></script>
+
+@if (Tsg.UI.Main.Models.Security.AppSecurity.CurrentUser.ShowWelcomeMessage)
+{
+	<div class="alert alert-info">
+		<p>
+			@GlobalRes.HomeIndexPage_WelcomeMessage &nbsp;<b> @Tsg.UI.Main.Models.Security.AppSecurity.CurrentUser.FirstName @Tsg.UI.Main.Models.Security.AppSecurity.CurrentUser.LastName</b>! <br />
+			@GlobalRes.HomeIndexPage_LastLoginText @String.Format(CultureInfo.CurrentCulture, "{0:MMM dd, yyyy}", Tsg.UI.Main.Models.Security.AppSecurity.CurrentUser.LastLoginDate) @GlobalRes.HomeIndexPage_At @String.Format(CultureInfo.CurrentCulture, "{0:HH:mm}", Tsg.UI.Main.Models.Security.AppSecurity.CurrentUser.LastLoginDate)<br />
+			@Html.Raw(Tsg.UI.Main.Models.Security.AppSecurity.CurrentUser.BankHomePageMessage)
+		</p>
+	</div>
+}
+
+@if (Tsg.UI.Main.Models.Security.AppSecurity.CurrentUser.Role == UserRoleType.User)
+{
+	@Html.Partial("WebParts/NewInstantPaymentForm", Model.NewInstantPaymentViewModel)
+	@Html.Partial("WebParts/CreatedStatusInstantPaymentList", Model.CreatedStatusInstantPayments)
+
+	if (Model.AccountBalancesModel != null)
+	{
+		@Html.Partial("WebParts/AccountsList", Model.AccountBalancesModel)
+	}
+}

@@ -1,0 +1,59 @@
+﻿@using Tsg.UI.Main.App_LocalResources
+@model Tsg.UI.Main.Models.BankModel
+
+@{
+    ViewBag.Title = GlobalRes.AddBankPage_Title;
+}
+
+<form id="AddEditBank" action="/Bank/AddBankPartialView" method="post" class="form-horizontal">
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <div class="panel-body">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label">@GlobalRes.AddBankPage_BankName<span class="required" aria-required="true">*</span></label>
+                <div class="col-sm-6">
+                    @Html.TextBoxFor(m => m.BankName, new { @class = "form-control", required = "" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label">@GlobalRes.AddBankPage_BankCountry <span class="required" aria-required="true">*</span></label>
+                <div class="col-sm-6">
+                    @Html.TextBoxFor(m => m.BankCountry, new { @class = "form-control", required = "" })
+                </div>
+            </div>
+
+        </div>
+        <footer class="panel-footer">
+            <div class="row">
+                <div class="col-sm-9 col-sm-offset-3">
+                    <input type="button" class="btn btn-success" value="@GlobalRes.AddBankAndWireInstPage_ModalBank_Add" onclick="saveChangeByBank()" />
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">@GlobalRes.GetAllContractUsListPage_ModalAddRec_Close</button>
+                    @*<a class="btn btn-success" href="/Bank/GetBanks">@GlobalRes.AddBankPage_BackToList</a>*@
+                </div>
+            </div>
+        </footer>
+    </div>
+        <script type="text/javascript" language="javascript">
+            function saveChangeByBank() {
+                $.ajax({
+                    url: '@Url.Action("AddBankPartialView", "Bank")',
+                    type: 'POST',
+                    data: $("#AddEditBank").serialize(),
+                    success: function (data) {
+                        if (data) {
+                            $(':input', '#AddEditBank')
+                                .not(':button, :submit, :reset, :hidden')
+                                .val('')
+                                .removeAttr('checked')
+                                .removeAttr('selected');
+                        }
+                    }
+                });
+            }
+        </script>
+
+</form>

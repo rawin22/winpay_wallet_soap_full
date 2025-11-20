@@ -1,0 +1,85 @@
+﻿@using WinstantPay.Common.Extension
+@model IEnumerable<TSG.Models.ServiceModels.Shop.ShopInfo>
+
+    @{
+        ViewBag.Title = "Index";
+        Layout = "~/Views/Shared/_LayoutMain.cshtml";
+    }
+
+    <div class="row">
+        <section class="panel">
+
+            <header class="panel-heading" data-panel-toggle="">
+                <div class="panel-actions">
+                    <a href="#" class="panel-action panel-action-toggle" data-panel-toggle=""></a>
+                </div>
+
+                <h2 class="panel-title">Shops</h2>
+                <p class="panel-subtitle">Shop list</p>
+            </header>
+
+            <div class="panel-body" style="display: block;">
+
+                <p>
+                    @Html.ActionLink("Create New", "Create", "ShopInfo", new { @class = "btn btn-success" })
+                </p>
+                <table class="table table-bordered table-striped table-condensed mb-none" id="datatable-default">
+                    <tr>
+                       
+                        <th>
+                            @Html.DisplayNameFor(model => model.ShopInfo_Name)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ShopInfo_LogoPath)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ShopInfo_OwnerWpayId)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ShopInfo_IsPublished)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ShopInfo_IsDeleted)
+                        </th>
+                        <th></th>
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                    <tr>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ShopInfo_Name)
+                        </td>
+                        <td>
+                            @if (item != null && !String.IsNullOrEmpty(item.ShopInfo_LogoPath))
+                            {
+                                if (File.Exists(item.ShopInfo_LogoPath))
+                                {
+                                    <img id="@("image"+item.ShopInfo_ID)" src="@Url.Content(HtmlExtensions.MapPathReverse(item.ShopInfo_LogoPath))" class="img-rounded" style="max-width: 50px; max-height: 50px;" />
+                                    @*@Html.DisplayFor(modelItem => item.ShopInfo_LogoPath)*@
+                                }
+                            }
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ShopInfo_OwnerWpayId)
+                        </td>
+
+                        <td>
+                            @(item.ShopInfo_IsPublished ? "Yes":"No")
+                        </td>
+                        <td>
+                            @(item.ShopInfo_IsDeleted ? "Yes" : "No")
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.ShopInfo_ID }) @*|
+            @Html.ActionLink("Details", "Details", new { id=item.ShopInfo_ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ShopInfo_ID })*@
+                        </td>
+                    </tr>
+                    }
+
+                </table>
+            </div>
+        </section>
+    </div>

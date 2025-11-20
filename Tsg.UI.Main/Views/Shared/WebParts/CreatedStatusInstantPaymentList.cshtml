@@ -1,0 +1,117 @@
+﻿@using System.Globalization
+@using Tsg.UI.Main.App_LocalResources
+@model IList<Tsg.UI.Main.Models.InstantPaymentViewModel>
+<section class="panel panel-featured panel-featured-info">
+	<header class="panel-heading" data-panel-toggle="">
+		<div class="panel-actions">
+			<a href="#" class="panel-action panel-action-toggle" data-panel-toggle=""></a>
+		</div>
+
+		<h2 class="panel-title">@GlobalRes.Shared_InstantPaymentListPage_Title_InstantPayment</h2>
+		<p class="panel-subtitle">@GlobalRes.Shared_InstantPaymentListPage_Title_CreatedStatus</p>
+	</header>
+	<div class="panel-body">
+		@if (Model != null && Model.Count() > 0)
+		{
+			var hiddenClass = "hidden-xs";
+			<div class="table-responsive">
+				<table class="table table-bordered table-striped table-condensed mb-none">
+					<thead>
+						<tr>
+							<th class="@hiddenClass">@GlobalRes.Shared_InstantPaymentListPage_From</th>
+							<th class="@hiddenClass">@GlobalRes.Shared_InstantPaymentListPage_To</th>
+							<th>@GlobalRes.Shared_InstantPaymentListPage_Amount</th>
+							<th>@GlobalRes.Shared_InstantPaymentListPage_CCY</th>
+							@*<th class="@hiddenClass">Status</th>*@
+							<th>@GlobalRes.Shared_InstantPaymentListPage_CreatedDate</th>
+							<th class="@hiddenClass">@GlobalRes.Shared_InstantPaymentListPage_Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						@{
+							string[] crypto = { "BTC", "ETH", "XAU", "XRP", "LTC", "DASH", "NEO", "XEM", "XMR", "ETC" };
+
+						}
+						@foreach (var item in Model)
+						{
+							var amount = item.IsIncome ? item.Amount : (-1) * item.Amount;
+
+
+							<tr>
+								<td class="@hiddenClass">
+									@Html.DisplayFor(modelItem => item.FromCustomerAlias)
+								</td>
+								<td class="@hiddenClass">
+									@Html.DisplayFor(modelItem => item.ToCustomerAlias)
+								</td>
+								<td class='text-right @(amount < 0 ? " text-danger" : "")'>
+									@if (crypto.Contains(item.Currency))
+									{
+										@amount.ToString("N8", new CultureInfo("en-US"))
+									}
+									else
+									{
+										@amount.ToString("N2", new CultureInfo("en-US"))
+									}
+								</td>
+								<td>
+									@Html.DisplayFor(modelItem => item.Currency)
+									<img src="/Content/assets/images/onebyone.png" class="flag flag-@(item.Currency.ToLower())" />
+								</td>
+								@*<td class="@hiddenClass">
+										@if (item.Status.Equals("Posted"))
+										{
+											<i class="fa fa-check" aria-hidden="true" style="color:forestgreen" title="Sent/posted"></i>
+										}
+										else if (item.Status.Equals("Created"))
+										{
+											<i class="fa fa-check" aria-hidden="true" style="color:black" title="@item.Status"></i>
+										}
+										else if (item.Status.Equals("Voided"))
+										{
+											<i class="fa fa-check" aria-hidden="true" style="color:brown" title="@item.Status"></i>
+										}
+
+									</td>*@
+								@*<td class="@hiddenClass">
+										@Html.DisplayFor(modelItem => item.Status)
+									</td>*@
+								<td>
+									@*@Html.DisplayFor(modelItem => item.CreatedTime)*@
+									@String.Format("{0:MMM dd, yyyy}", item.CreatedTime)
+								</td>
+								<td class="@hiddenClass">
+									@Html.ActionLink(GlobalRes.Shared_InstantPaymentListPage_Details, "Details", "Payment", new { id = item.PaymentId }, new { @class = "mb-xs btn btn-xs btn-primary" })
+									@if (!item.IsIncome)
+									{
+										if (item.Status != null && item.Status.Equals("Created"))
+										{
+											@Html.ActionLink(GlobalRes.Shared_InstantPaymentListPage_Send, "Post", "Payment", new { id = item.PaymentId }, new { @class = "mb-xs btn btn-xs btn-success" })
+										}
+										else
+										{
+											@Html.ActionLink(GlobalRes.Shared_InstantPaymentListPage_Repeat, "Create", "Payment", new { id = item.PaymentId }, new { @class = "mb-xs btn btn-xs btn-info" })
+										}
+									}
+								</td>
+							</tr>
+
+
+						}
+					</tbody>
+				</table>
+			</div>
+		}
+		else
+		{
+			<p>There is no instant payment pending for approval.</p>
+		}
+	</div>
+	<footer class="panel-footer">
+		<div class="row">
+			<div class="col-sm-9">
+				<input type="submit" id="refreshPaymentsList" class="btn btn-success" value="@GlobalRes.Shared_InstantPaymentListPage_Refresh" onclick="window.location.reload()" />
+			</div>
+		</div>
+	</footer>
+</section>

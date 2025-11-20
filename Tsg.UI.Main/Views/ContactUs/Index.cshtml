@@ -1,0 +1,208 @@
+﻿@using Tsg.UI.Main.App_LocalResources
+@model Tsg.UI.Main.Models.UserMailModel
+
+@{
+    ViewBag.Title = GlobalRes.ContactUsIndexPage_Title;
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+<script src="/Content/assets/vendor/jquery/jquery.js"></script>
+<script src="~/Content/ckeditor/ckeditor.js"></script>
+@*<form method="post" action="Index" >*@
+@using (Html.BeginForm("Index", "ContactUs", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="form-horizontal">
+        <section class="panel panel-featured panel-featured-info">
+            <header class="panel-heading">
+                <h2 class="panel-title">@GlobalRes.ContactUsIndexPage_Title</h2>
+                <p class="panel-subtitle">@GlobalRes.ContactUsIndexPage_SubTitle</p>
+            </header>
+            <div class="panel-body">
+                @if (Model.IsSuccessResForAction != null && (bool)Model.IsSuccessResForAction)
+                {
+                    <div class="alert alert-success" style="display: block;" id="successMessageBlock">
+                        <p class="m-none text-weight-semibold h6" id="successMesage">@Model.ActionResultText</p>
+                    </div>
+                }
+                else if (Model.IsSuccessResForAction != null && !(bool)Model.IsSuccessResForAction)
+                {
+                    <div class="alert alert-danger" style="display: block;" id="errorMessageBlock">
+                        <p class="m-none text-weight-semibold h6" id="errorMesage">@Model.ActionResultText</p>
+                    </div>
+                }
+                <div class="row">
+                    <label class="col-sm-2 control-label">@GlobalRes.ContactUsIndexPage_Category <span class="required" aria-required="true">*</span></label>
+                    <div class="col-sm-10">
+                        @Html.DropDownListFor(m => m.MailTo, Model.ListOfContactList, @GlobalRes.ContactUs_ContactUsController_Index_ChoseCategory, new { @class = "form-control", required = "", id="category" })
+                    </div>
+                </div>
+                <div>&nbsp;</div>
+                <div class="row">
+                    <label class="col-sm-2 control-label">@GlobalRes.ContactUsIndexPage_Subject <span class="required" aria-required="true">*</span></label>
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(m => m.Subject, Model.Subject, new { @class = "form-control", required = "" })
+                    </div>
+                </div>
+                <div>&nbsp;</div>
+                <div class="row">
+                    <label class="col-sm-2 control-label">@GlobalRes.ContactUsIndexPage_Email <span class="required" aria-required="true">*</span></label>
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(m => m.MailFrom, Model.MailFrom, new { @class = "form-control", required = "", type = "email", @readonly=true})
+                    </div>
+                </div>
+                <div>&nbsp;</div>
+                <div class="row">
+                    <label class="col-sm-2 control-label">@GlobalRes.ContactUsIndexPage_EmailCopy</label>
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(m => m.MailCopy, Model.MailCopy, new { @class = "form-control", type = "email" })
+                    </div>
+                </div>
+                <div>&nbsp;</div>
+                <div class="row">
+                    <label class="col-sm-2 control-label">@GlobalRes.ContactUsIndexPage_Message <span class="required" aria-required="true">*</span></label>
+                    <div class="col-sm-10">
+                        @Html.TextAreaFor(m => m.MailText, new { @class = "form-control", required = "", id = "textEditorMessage", name = "textEditorMessage" })
+                    </div>                  
+                    @*@{Html.BeginForm();}
+                            @Html.Raw(ViewBag.uploaderhtml)
+                        @{Html.EndForm();}*@
+                </div>
+                <div class="row">
+                    <div class="col-sm-10 col-sm-offset-2" id="file_load">
+                        <div class="btn btn-primary" onclick="document.getElementById('Attachments').click()">@GlobalRes.ProofDocUploadProofDocPage_AttachmentFile</div>
+                        <label> @GlobalRes.CommonObject_NoFile </label>
+                        <input type="file" name="Attachments" id="Attachments" accept="image/*" class="hidden" @*style="display: none"*@ />
+
+                        @*<input type="file" name="" id="" accept=".jpg,.gif,.png"/>*@
+                    </div>  
+                </div>
+            </div>
+            <footer class="panel-footer">
+                <div class="row">
+                    <div class="col-sm-12 pull-left">
+                        <button type="submit" class="col-sm-2 col-sm-offset-2 btn btn-success">@GlobalRes.ContactUsIndexPage_SendMail <span class="fa fa-envelope pull-left"></span></button>
+                    </div>
+                </div>
+            </footer>
+        </section>
+
+    </div>
+}
+@if (Culture.Contains("ar"))
+{
+    <script type="text/javascript" language="javascript">
+        CKEDITOR.config.contentsLangDirection = 'rtl';
+    </script>
+}
+<script type="text/javascript" language="javascript">
+    $(document).ready(function () {
+        setTimeout(function () { $('#successMessageBlock').css("display", "none") }, 3000);
+        setTimeout(function () { $('#errorMessageBlock').css("display", "none") }, 3000);
+        CKEDITOR.replace('textEditorMessage',
+            {
+                //extraPlugins: 'uploadimage',
+                removePlugins: 'sourcearea',
+                removeButtons: 'About'
+            });
+
+        $('form').submit(function (e) {
+            console.log("form submit");
+            var subject = $("#Subject").val();
+            console.log("subject: " + subject);
+            var mailText = $("#textEditorMessage").val();
+            console.log("mailText: " + mailText);
+            var message = CKEDITOR.instances.textEditorMessage.getData().trim();
+            console.log("message: " + message);
+            if (message === '') {
+                alert("Please input mail message");
+                e.preventDefault(); // Prevent form submission
+            }
+            //$('form').submit();
+            //return true;
+        });
+    });
+    
+
+    //CKEDITOR.replace('textEditorMessage',
+    //    {
+    //        //extraPlugins: 'uploadimage',
+    //        removePlugins: 'sourcearea',
+    //        removeButtons: 'About'
+    //    });
+    $("#Attachments").on("change",
+        function () {
+            var fileApi = (window.File && window.FileReader && window.FileList && window.Blob) ? true : false;
+
+            var wrapper = $("#file_load"),
+                inp = wrapper.find("input"),
+                btn = wrapper.find("button"),
+                lbl = wrapper.find("label");
+
+            var fileName;
+            if (fileApi && inp[0].files[0])
+                fileName = inp[0].files[0].name;
+            else
+                fileName = inp.val().replace("C:\\fakepath\\", '');
+
+            if (!fileName.length)
+                return;
+            if (lbl.is(":visible")) {
+                lbl.text(fileName);
+            }
+        }).change();
+    @*var btnUpload = $("#upload");
+    var inputFiles = $('#Attachments');
+
+    btnUpload.click(function() {
+        inputFiles.trigger('click');
+    });
+
+    inputFiles.on('change',
+        function() {
+            var formData = new FormData();
+
+            for (var i = 0; i < inputFiles[0].files.length; i++) {
+                console.log();
+                formData.append("file[" + i + "]", inputFiles[0].files[i]);
+            }
+
+            console.log(formData.get('file[0]'));
+            $.ajax({
+                url: '@Url.Action("Upload", "ContactUs")',
+                type: "POST",
+                datatype:"json",
+                data: { files:formData },
+                contentType: false,            
+                processData: false,
+                success: function (result) {
+                    console.log(result);
+            }
+
+        });
+    });*@
+
+    @*btnUpload.click(function() {
+        inputFiles.trigger('click');
+    });
+
+    inputFiles.on('change',
+        function() {
+            var formData = new FormData();
+
+            for (var i = 0; i < inputFiles[0].files.length; i++) {
+                console.log(inputFiles[0].files.length);
+                formData.append("files", inputFiles[0].files[i]);
+            }
+
+            $.ajax({
+                url: '@Url.Action("Upload", "ContactUs")',
+                type: "POST",
+                contentType: false,
+                data: { files: formData},
+                //data: formData.serialize(),
+                processData: false,
+                success: function (result) {
+                    console.log("Loaded");
+                }
+            });
+        });*@
+</script>

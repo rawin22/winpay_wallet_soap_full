@@ -1,0 +1,487 @@
+﻿@using Tsg.UI.Main.App_LocalResources
+@model Tsg.UI.Main.Models.ExchangeModel
+@{
+	ViewBag.Title = GlobalRes.Shared_Navigation_Convert;
+	Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+
+<div id="currencyExchangePartView">
+	@{ Html.RenderPartial("CurrencyExchange", Model); }
+</div>
+
+
+@section Scripts
+{
+	@*@Scripts.Render("~/bundles/jqueryval")*@
+
+	<script type="text/javascript">
+
+
+		function printInfoView(isNeedToShow, textMessage) {
+			var viewInfo = $("#viewInfo").val();
+			if (viewInfo != null && isNeedToShow) {
+				if (document.getElementById("viewInfo").classList.contains('alert-success')) {
+					document.getElementById("viewInfo").classList.remove('alert-success');
+				}
+				if (document.getElementById("viewInfo").classList.contains('hidden')) {
+					document.getElementById("viewInfo").classList.remove('hidden');
+				}
+				if (!document.getElementById("viewInfo").classList.contains('alert-danger')) {
+					document.getElementById("viewInfo").classList.add('alert-danger');
+				}
+
+				$('#viewInfo').text(textMessage);
+				$("#viewInfo").show();
+				setTimeout(function() {
+						$("#viewInfo").fadeOut("slow");
+					},
+					2000);
+			}
+		}
+
+
+		function editddlcurrencies() {
+			var ddln = $('#dinamicDropDown').val();
+			var baseCurrency = $('#baseCurrency').val();
+			console.log("editddlcurrencies, baseCurrency: " + baseCurrency);
+
+			$("#dinamicDropDown").empty();
+			$("<option />", { val: "", text: "---" }).appendTo("#dinamicDropDown");
+
+			var toacccurrguid = $("#ToAccountId").val();
+			var toaccid = $('#selectButtonTo').text().trim();
+			var toArray = toaccid.split(" ");
+			var toCcy = "";
+			if (toArray.length > 2) {
+				toCcy = toArray[1];
+			}
+			var fromacccurrguid = $("#FromAccountId").val();
+			var fromaccid = $("#selectButtonFrom").text().trim();
+			var fromArray = fromaccid.split(" ");
+			var fromCcy = "";
+			if (fromArray.length > 2) {
+				fromCcy = fromArray[1];
+			}
+
+			toIndex = toaccid.indexOf(" - ");
+			fromIndex = fromaccid.indexOf(" - ")
+			toCurrencyCode = toaccid.slice(0, toIndex).trim();
+			fromCurrencyCode = fromaccid.slice(0, fromIndex).trim();
+
+			if (toaccid !== fromaccid &&
+			((toaccid != null &&
+					toaccid.indexOf('@GlobalRes.Shared_NewInstantPaymentFormPage_SelectCurrency') ===
+					-1) &&
+				(fromaccid != null &&
+					fromaccid.indexOf('@GlobalRes.Shared_NewInstantPaymentFormPage_SelectCurrency') ===
+					-1))) {
+				$("#dinamicDropDown").empty();
+				if (fromaccid != null &&
+					fromaccid.indexOf('@GlobalRes.Shared_NewInstantPaymentFormPage_SelectCurrency') === -1) {
+					$("<option />",
+						{
+							val: fromCcy,
+							text: fromCcy
+						}).appendTo("#dinamicDropDown");
+				}
+				if (!$("#dinamicDropDown").val()) {
+					if (toaccid != null &&
+						toaccid.indexOf('@GlobalRes.Shared_NewInstantPaymentFormPage_SelectCurrency') === -1) {
+						$("<option />",
+							{
+								val: toCcy,
+								text: toCcy
+							}).appendTo("#dinamicDropDown");
+					}
+				} else {
+					if (toaccid != null &&
+						toaccid.indexOf('@GlobalRes.Shared_NewInstantPaymentFormPage_SelectCurrency') === -1 &&
+						$("#dinamicDropDown").val().indexOf(toCcy) === -1) {
+						$("<option />",
+							{
+								val: toCcy,
+								text: toCcy
+							}).appendTo("#dinamicDropDown");
+					}
+				}
+
+				if (ddln !== "" && ddln === toCcy) {
+					$("#dinamicDropDown").val(toCcy);
+				} else if (ddln !== "" && ddln === fromCcy) {
+					$("#dinamicDropDown").val(fromCcy);
+				} else if (ddln !== "" && ddln !== toCcy && ddln !== fromCcy) {
+					$("#dinamicDropDown").val(toCcy);
+				}
+				//if (!($("#buy").val().length > 0 && parseFloat($("#buy").val()).toFixed(8) > 0)) {
+				//    editInputControl();
+				//}
+				return true;
+			} else if (toaccid === fromaccid &&
+				fromaccid != null &&
+				fromaccid.indexOf('@GlobalRes.Shared_NewInstantPaymentFormPage_SelectCurrency') === -1) {
+				$("#dinamicDropDown").empty();
+				$("<option />",
+					{
+						val: fromCcy,
+						text: fromCcy
+					}).appendTo("#dinamicDropDown");
+				//$("#submitNewModelData").prop('disabled', true);
+
+				return false;
+			} else if (fromaccid.indexOf('@GlobalRes.Shared_NewInstantPaymentFormPage_SelectCurrency') >= 0 ||
+				toaccid.indexOf('@GlobalRes.Shared_NewInstantPaymentFormPage_SelectCurrency') >= 0) {
+				$("#dinamicDropDown").empty();
+				if (toaccid != null &&
+					toaccid.indexOf('@GlobalRes.Shared_NewInstantPaymentFormPage_SelectCurrency') === -1 &&
+					($("#dinamicDropDown").val() === null ||
+						($("#dinamicDropDown").val() !== null &&
+							$("#dinamicDropDown").val().indexOf(toCcy)) ===
+						-1)) {
+					$("<option />",
+						{
+							val: toCcy,
+							text: toCcy
+						}).appendTo("#dinamicDropDown");
+				} else if (fromaccid != null &&
+					fromaccid.indexOf('@GlobalRes.Shared_NewInstantPaymentFormPage_SelectCurrency') === -1 &&
+					($("#dinamicDropDown").val() === null ||
+						($("#dinamicDropDown").val() !== null &&
+							$("#dinamicDropDown").val().indexOf(fromCcy)) ===
+						-1)) {
+					$("<option />",
+						{
+							val: fromCcy,
+							text: fromCcy
+						}).appendTo("#dinamicDropDown");
+				} else {
+					$("<option />", { val: "", text: "---" }).appendTo("#dinamicDropDown");
+				}
+				//$("#submitNewModelData").prop('disabled', true);
+
+			}
+			return false;
+		}
+
+		function editInputControl() {
+			//$("#submitNewModelData").prop('disabled', true);
+			var selectedCurrency = $("#dinamicDropDown").val();
+			if (($("#buy").val().length > 0 && parseFloat($("#buy").val()).toFixed(8) > 0)) {
+				if (selectedCurrency && selectedCurrency === 'BTC')
+					$("#buy").val(parseFloat($("#buy").val()).toFixed(6));
+				else $("#buy").val(parseFloat($("#buy").val()).toFixed(2));
+				return true;
+			} else {
+				return false;
+			}
+		}
+
+
+		$("#buy").keyup(function() {
+			var val = $(this).val();
+			if (isNaN(val)) {
+				val = val.replace(/[^0-9\.]/g, '');
+				if (val.split('.').length > 2)
+					val = val.replace(/\.+$/, "");
+			}
+			$(this).val(val);
+		}).on("focus",
+			function() {
+				var focused = $(':focus');
+				if (focused.val() && focused.val() == 0) {
+					focused.text("");
+					focused.val("");
+				}
+			}).on("blur",
+			function() {
+				if (this.value == '' || this.value == 0) {
+					this.value = '0.00';
+					this.text = "0.00";
+				} else {
+					editInputControl();
+					//this.value = parseFloat(this.value);
+				}
+			});
+
+
+		$(window).load(function() {
+			$("#buy").val("0.00");
+		});
+
+		function submitNewModelDataClick() {
+			var checkResCurrencies = editddlcurrencies();
+			var checkResAmount = editInputControl();
+			printInfoView(true, "Processing Please Wait...");
+
+			if (checkResAmount && checkResCurrencies) {
+				$.ajax({
+					url: '@Url.Action("JsonCreateCurrencyQuote", "Exchange")',
+					type: 'POST',
+					data: {
+						from: $('#FromAccountId').val(),
+						to: $('#ToAccountId').val(),
+						paymentCurrncyCode: $('#dinamicDropDown').val(),
+						amount: document.getElementById('buy').value
+					},
+					dataType: "html",
+					beforeSend: function() {
+						$('#LoadingOverlayApi').trigger('loading-overlay:show');
+					},
+					success: function(result) {
+						var responseJson = JSON.parse(result);
+						if (responseJson) {
+
+							if (responseJson.IsError) {
+								$('#viewInfo').empty();
+								$('#viewInfo').text(responseJson.Message);
+								$('#viewInfo').toggle();
+								setTimeout(function () { $('#viewInfo').toggle() }, 2000);
+							} else {
+								$("#SellCurrency").val(responseJson.SellCurrency);
+								$("#BuyAmount").val(responseJson.FxDealQuoteResult.Quote.BuyAmount);
+								$("#BuyAmountInput").val(responseJson.BuyAmount);
+								$("#quoteId").val(responseJson.FxDealQuoteResult.Quote.QuoteId);
+								$("#buyCurrCode").val(responseJson.FxDealQuoteResult.Quote.BuyCurrencyCode);
+								$("#textDateTimer").text(responseJson.TotalSeconds);
+								$('.progress-bar').attr('aria-valuemax', responseJson.TotalSeconds)
+									.css('width', '100%');
+								$("#labelBuyRate").text(responseJson.FxDealQuoteResult.Quote.Rate + " " + responseJson.FxDealQuoteResult.Quote.RateFormat);
+								$("#labelDealTypeSell").text(responseJson.FxDealQuoteResult.Quote.SellAmount + " " + responseJson.FxDealQuoteResult.Quote.SellCurrencyCode);
+								$("#labelDealTypeBuy").text(responseJson.FxDealQuoteResult.Quote.BuyAmount + " " + responseJson.FxDealQuoteResult.Quote.BuyCurrencyCode);
+								$("#quoteSellAmount").val(responseJson.FxDealQuoteResult.Quote.SellAmount);
+								$("#quoteSellCurrency").val(responseJson.FxDealQuoteResult.Quote.SellCurrencyCode);
+								$("#quoteBuyAmount").val(responseJson.FxDealQuoteResult.Quote.BuyAmount);
+								if (!$("#step1").hasClass("hidden"))
+									$("#step1").addClass("hidden");
+								if ($("#step2").hasClass("hidden"))
+									$("#step2").removeClass("hidden");
+
+
+								var x = document.getElementById('step2');
+								if (x && x.style.display !== 'none') {
+									countdown();
+
+									if (responseJson.Message.indexOf("FX Quote") >= 0)
+										$('#viewInfo').text("Currency Pair is not Available for this customer or Amount exceeds Customer FX Deal limit");
+
+
+								}
+							}
+						} else {
+							$('#viewInfo').empty();
+							$('#viewInfo').innerHTML = "Sorry, service temporary unavaliable";
+							$('#viewInfo').removeClass("hidden");
+							setTimeout(function() {
+									$('#information').addClass("hidden");
+								},
+								5000);
+						}
+						$('#LoadingOverlayApi').trigger('loading-overlay:hide');
+						window.timer_u23dd.start(@Session.Timeout * 60);
+					}
+				});
+			} else {
+				if (!checkResCurrencies) {
+					printInfoView(true, "@GlobalRes.Exchange_ExchangeController_CurrencyExchange_ChangeCurrency");
+				} else {
+					printInfoView(true, "@GlobalRes.Exchange_ExchangeController_CurrencyExchange_EnterAmount");
+				}
+
+			}
+		}
+
+		function bookDealButtonClick() {
+			$.ajax({
+				url: "@Url.Action("JsonCheckQouteId", "Exchange")",
+				type: "POST",
+				data: $("form").serialize(),
+				dataType: "html",
+				beforeSend: function() {
+					$('#LoadingOverlayApi').trigger('loading-overlay:show');
+				},
+				success: function(result) {
+					document.getElementById("currencyExchangePartView").innerHTML = result;
+					$('#LoadingOverlayApi').trigger('loading-overlay:hide');
+				}
+			});
+		}
+
+		function clearQuoteId() {
+			$("#quoteId").val("");
+		}
+
+		function setQuoteId(string) {
+			$("#quoteId").val(string);
+		}
+
+		var isStopTimer = false;
+		var timer = null;
+
+		function countdown() {
+			$(function() {
+				$("#bookDealButton").prop('disabled', false);
+				if (document.getElementById("textDateTimer")) {
+					var seconds = $('#textDateTimer').text();
+
+					if (seconds > 0) {
+						var currVal = seconds - 1;
+						var maxVal = $("#dateTimer").attr('aria-valuemax');
+						var percent = Math.round(100 * currVal / maxVal);
+						document.getElementById("textDateTimer").innerHTML = currVal;
+						$("#dateTimer").attr('aria-valuenow', currVal).css('width', percent + '%');
+						timer = setTimeout("countdown()", 1000);
+					} else if (parseInt(seconds) === 0 && $("#quoteId").val()) {
+						clearQuoteId();
+						if (!swal.isVisible()) {
+							$.ajax({
+								url: '@Url.Action("JsonCreateCurrencyQuote", "Exchange")',
+								type: 'POST',
+								data: {
+									from: $('#FromAccountId').val(),
+									to: $('#ToAccountId').val(),
+									paymentCurrncyCode: $('#SellCurrency').val(),
+									amount: $("#BuyAmountInput").val()
+								},
+								dataType: "html",
+								beforeSend: function() {
+									$('#LoadingOverlayApi').trigger('loading-overlay:show');
+								},
+								success: function(result) {
+									var responseJson = JSON.parse(result);
+									if (responseJson) {
+
+										if (responseJson.IsError) {
+											$('#viewInfo').empty();
+											$('#viewInfo').text(responseJson.Message);
+											$('#viewInfo').removeClass("hidden");
+											setTimeout(function() { $('#viewInfo').addClass("hidden"); }, 5000);
+										} else {
+											$("#SellCurrency").val(responseJson.SellCurrency);
+											$("#BuyAmount").val(responseJson.FxDealQuoteResult.Quote.BuyAmount);
+											$("#BuyAmountInput").val(responseJson.BuyAmount);
+											$("#quoteId").val(responseJson.FxDealQuoteResult.Quote.QuoteId);
+											$("#buyCurrCode").val(responseJson.FxDealQuoteResult.Quote.CuyCurrencyCode);
+											$("#textDateTimer").text(responseJson.TotalSeconds);
+											$('.progress-bar').attr('aria-valuemax', responseJson.TotalSeconds)
+												.css('width', '100%');
+											$("#labelBuyRate").text(responseJson.FxDealQuoteResult.Quote.Rate);
+											$("#labelDealTypeSell")
+												.text(responseJson.FxDealQuoteResult.Quote.SellAmount);
+											$("#labelDealTypeBuy").text(responseJson.FxDealQuoteResult.Quote.BuyAmount);
+
+											if (!$("#step1").hasClass("hidden"))
+												$("#step1").addClass("hidden");
+											if ($("#step2").hasClass("hidden"))
+												$("#step2").removeClass("hidden");
+
+											var x = document.getElementById('step2');
+											if (x && x.style.display !== 'none') {
+												countdown();
+											}
+										}
+									}
+
+									$('#LoadingOverlayApi').trigger('loading-overlay:hide');
+								}
+							});
+
+
+						} else {
+							timer = setTimeout("countdown()", 1000);
+						}
+						$("#bookDealButton").prop('disabled', true);
+						$("#dateTimer").css("width", "0%");
+					}
+				}
+
+			});
+		}
+
+		var x = document.getElementById('step2');
+		if (x && x.style.display !== 'none') {
+			countdown();
+		}
+
+		function closebutton() {
+			clearTimeout(timer);
+			//$('#mainContainer').toggle();
+
+			clearQuoteId();
+			editddlcurrencies();
+			editInputControl();
+			if ($('#BuyAmountInput').val())
+				document.getElementById('buy').value = parseFloat($('#BuyAmountInput').val());
+			else document.getElementById('buy').value = 0;
+
+			if (!document.getElementById("step2").classList.contains('hidden')) {
+				document.getElementById("step2").classList.add('hidden');
+			}
+			if (document.getElementById("step1").classList.contains('hidden')) {
+				document.getElementById("step1").classList.remove('hidden');
+			}
+		}
+
+		//function setBaseCurrency() {
+		//    var baseCurrency = $("#baseCurrency").val();
+		//    console.log("set selected baseCurrency: " + baseCurrency);
+		//    var id = "";
+		//    var id1 = "";
+		//    var baseCurrency1 = baseCurrency;
+		//    var currencyText = "";
+
+
+		//    $("#ddlmenuFrom li").each(function () {
+		//        id = $(this).data('pdsa-dropdown-val');
+		//        //id = $(this).id;
+		//        console.log("ddlmenuFrom li each id: " + id);
+		//        var fromAccountId = $(this).data('pdsa-dropdown-account-id');
+		//        var thisText = $(this).text().trim();
+		//        console.log("thisText.toUpperCase(): " + thisText.toUpperCase());
+		//        var thisTextArray = thisText.split(" ");
+		//        var currencyCode = thisTextArray[1];
+		//        console.log("currencyCode: " + currencyCode);
+		//        var index = thisText.trim().indexOf(baseCurrency.toUpperCase())
+		//        if (thisText.toUpperCase().indexOf(baseCurrency.toUpperCase()) >= 0) {
+		//            currencyText = thisText;
+		//            console.log("id: " + id);
+		//            id1 = id;
+		//            $(this).show();
+		//        }
+		//    });
+
+		//    var buttons = document.getElementById("selectButtonFrom");
+
+		//    try {
+		//        id1 = id.toLowerCase();
+		//        baseCurrency1 = baseCurrency.toLowerCase();
+		//    } catch (e) {
+
+		//    }
+
+		//    buttons.innerHTML = '<img src="/Content/assets/images/onebyone.png" class="flag flag-' + baseCurrency1 + '"/>' + ' ' +
+		//        currencyText +
+		//        '&nbsp;<span class="caret" style="position: absolute; top: 45%; left: 97.5%; color: #555555 !important; border-top: 6px dashed !important; border-right: 3px solid transparent !important;border-left: 3px solid transparent !important"></span>';
+		//    //$("#ddlmenuFrom").val(id);
+		//    //$("#FromAccountId").val(id);
+
+		//    $("ddlmenuFrom").val(currencyCode);
+		//    $("#FromAccountId").val(fromAccountId);
+		//    $("#CurrencyCode").val(baseCurrency);
+		//    $("#searchabletextFrom").val("");
+		//}
+
+		$(document).ready(function () {
+			//setBaseCurrency();
+			//setBaseCurrencyToAmount();
+		});
+
+		function setBaseCurrencyToAmount() {
+			var baseCurrency = $('#baseCurrency').val();
+			console.log("setBaseCurrencyToAmount, baseCurrency: " + baseCurrency);
+			var fromaccid = $("#selectButtonFrom").text().trim();
+			console.log("setBaseCurrencyToAmount, fromaccid: " + fromaccid);
+			$("#dinamicDropDown").empty();
+			$("<option />", { val: baseCurrency, text: baseCurrency }).appendTo("#dinamicDropDown");
+		}
+
+	</script>
+}

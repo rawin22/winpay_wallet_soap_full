@@ -1,0 +1,87 @@
+﻿@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Customer Create From Template</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            First Name
+            <div class="col-md-10">
+                @Html.TextBox("FirstName", String.Empty, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            Last Name
+            <div class="col-md-10">
+                @Html.TextBox("LastName", String.Empty, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            Address Line 1
+            <div class="col-md-10">
+                @Html.TextBox("AddressLine1", String.Empty, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            City
+            <div class="col-md-10">
+                @Html.TextBox("City", String.Empty, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+        <div class="form-group">
+            Country Code
+            <div class="col-md-10">
+                @Html.TextBox("CountryCode", String.Empty, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            Postal Code
+            <div class="col-md-10">
+                @Html.TextBox("PostalCode", String.Empty, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            Phone
+            <div class="col-md-10">
+                @Html.TextBox("Phone", String.Empty, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            Account Number
+            <div class="col-md-10">
+                @Html.TextBox("AccountNumber", String.Empty, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        @*<div class="form-group">
+                <div class="col-md-10">
+                    @Html.TextBox("", String.Empty, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-10">
+                    @Html.TextBox("", String.Empty, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>*@
+        <p>
+            @ViewBag.Result
+        </p>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+
+                <a href="@Url.Action("CustomerUserCreate")" target="_blank"> Customer User Create </a>
+            </div>
+        </div>
+    </div>
+}

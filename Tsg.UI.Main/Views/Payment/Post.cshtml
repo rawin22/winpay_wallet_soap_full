@@ -1,0 +1,36 @@
+﻿@using Tsg.UI.Main.App_LocalResources
+@model Tsg.UI.Main.Models.InstantPaymentPostResultViewModel
+
+@{
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+    ViewBag.Title = GlobalRes.PaymentPostPage_Title;
+}
+
+<div class="row">
+
+    
+    <section class="panel">
+        <header class="panel-heading">
+            <div class="panel-actions">
+                <a href="#" class="panel-action panel-action-toggle" data-panel-toggle=""></a>                    
+            </div>
+
+            <h2 class="panel-title">@ViewBag.Title</h2>
+        </header>
+        <div class="panel-body" style="display: block;">
+            @if (Model.Result == "Success")
+            { 
+            <p>@GlobalRes.PaymentPostPage_MessageSuccess</p>
+            @Html.ActionLink("View Instant Payment Details", "Details", "Payment", new { id = Model.PaymentId }, new { @class = "mr-xs btn btn-info" }) 
+            
+            @Html.ActionLink("View All Instant Payments", "History", "Payment", new { @class = "btn btn-info" })
+            }
+            else
+            {
+                <p>@Model.Result</p>
+            }
+        </div>
+    </section>
+    
+   
+</div>

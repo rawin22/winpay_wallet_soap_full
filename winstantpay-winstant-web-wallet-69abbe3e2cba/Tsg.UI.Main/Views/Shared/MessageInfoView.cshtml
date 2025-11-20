@@ -1,0 +1,14 @@
+﻿@if (ViewBag.IsSuccessResForAction != null && (bool)ViewBag.IsSuccessResForAction)
+{
+    <div class="alert alert-success" style="display: block;" id="successMessageBlock">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a>
+        <p class="m-none text-weight-semibold h6" id="successMesage">@ViewBag.ActionResultText</p>
+    </div>
+}
+else if (ViewBag.IsSuccessResForAction != null && !(bool)ViewBag.IsSuccessResForAction)
+{
+    <div class="alert alert-danger" style="display: block;" id="errorMessageBlock">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a>
+        <p class="m-none text-weight-semibold h6" id="errorMesage">@ViewBag.ActionResultText</p>
+    </div>
+}

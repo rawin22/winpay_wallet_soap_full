@@ -1,0 +1,9 @@
+git config --local credential.username rawin22
+git branch -M main
+git add .
+git remote set-url origin https://rawin22@github.com/rawin22/winpay_wallet_soap_full.git
+git push --set-upstream origin main
+└$ git push --set-upstream origin main
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/rawin22/winpay_wallet_soap_full.git'
+

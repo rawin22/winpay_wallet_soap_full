@@ -1,0 +1,215 @@
+﻿@using Tsg.UI.Main.App_LocalResources
+@model TSG.Models.ServiceModels.Shop.ShopProducts
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+
+<script src="~/Content/ckeditor/ckeditor.js"></script>
+<div class="row">
+    <section class="panel">
+
+        <header class="panel-heading" data-panel-toggle="">
+            <div class="panel-actions">
+                <a href="#" class="panel-action panel-action-toggle" data-panel-toggle=""></a>
+            </div>
+
+            <h2 class="panel-title">Products</h2>
+            <p class="panel-subtitle">New Product for Winstant Shop</p>
+        </header>
+
+        <div class="panel-body" style="display: block;">
+
+            <div class="row">
+
+                <div class="col-md-12">
+                    <div class="tabs">
+                        <ul class="nav nav-tabs">
+                            <li class="active">
+                                <a href="#maininfo" data-toggle="tab">Main info</a>
+                            </li>
+                            <li class="@(Model != null && Model.ShopProducts_ID != default(Guid) ? "" : "disabled")">
+                                <a href="#images" data-toggle="tab">Images</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div id="maininfo" class="tab-pane active">
+
+                                @using (Html.BeginForm())
+                                {
+                                    @Html.AntiForgeryToken()
+                                    @Html.HiddenFor(h=>h.ShopProducts_ID)
+                                    <div class="form-horizontal">
+                                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.ShopProducts_ShopID, htmlAttributes: new { @class = "control-label col-md-2" })
+                                            <div class="col-md-10">
+                                                @Html.DropDownListFor(model => model.ShopProducts_ShopID, ViewBag.ListOfShop as List<SelectListItem>, new { @data_val = false, @class = "col-md-12" })
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.ShopProducts_CategoryID, htmlAttributes: new { @class = "control-label col-md-2" })
+                                            <div class="col-md-10">
+                                                @Html.DropDownListFor(model => model.ShopProducts_CategoryID, ViewBag.ListOfCategory as List<SelectListItem>, new { @data_val = false, @class="col-md-12" })
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.ShopProducts_Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                                            <div class="col-md-10">
+                                                @Html.EditorFor(model => model.ShopProducts_Name, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.ShopProducts_Name, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.ShopProducts_ShortDescription, htmlAttributes: new { @class = "control-label col-md-2" })
+                                            <div class="col-md-10">
+                                                @Html.TextAreaFor(model => model.ShopProducts_ShortDescription, 4, 1, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.ShopProducts_ShortDescription, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.ShopProducts_FullDescription, htmlAttributes: new { @class = "control-label col-md-2" })
+                                            <div class="col-md-10">
+                                                @Html.TextAreaFor(model => model.ShopProducts_FullDescription, 8, 1, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.ShopProducts_FullDescription, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.ShopProducts_Price, htmlAttributes: new { @class = "control-label col-md-2" })
+                                            <div class="col-md-10">
+                                                @Html.EditorFor(model => model.ShopProducts_Price, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.ShopProducts_Price, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.ShopProducts_CurrencyCode, htmlAttributes: new { @class = "control-label col-md-2" })
+                                            <div class="col-md-10">
+                                                @Html.DropDownListFor(m => m.ShopProducts_CurrencyCode, ViewBag.ListOfCurrency as List<SelectListItem>, new { @class = "form-control" })
+                                                @*@Html.EditorFor(model => model.ShopProducts_CurrencyCode, new { htmlAttributes = new { @class = "form-control" } })*@
+                                                @Html.ValidationMessageFor(model => model.ShopProducts_CurrencyCode, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.ShopProducts_IsPublished, htmlAttributes: new { @class = "control-label col-md-2" })
+                                            <div class="col-md-10">
+                                                <div class="checkbox">
+                                                    @Html.EditorFor(model => model.ShopProducts_IsPublished)
+                                                    @Html.ValidationMessageFor(model => model.ShopProducts_IsPublished, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.ShopProducts_IsDeleted, htmlAttributes: new { @class = "control-label col-md-2" })
+                                            <div class="col-md-10">
+                                                <div class="checkbox">
+                                                    @Html.EditorFor(model => model.ShopProducts_IsDeleted)
+                                                    @Html.ValidationMessageFor(model => model.ShopProducts_IsDeleted, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="col-md-offset-2 col-md-10">
+                                                <input type="submit" value="Save" name="ShopingProducts_Action" class="btn btn-default" />
+                                                <input type="submit" value="Save and Continue" name="ShopingProducts_Action" class="btn btn-default" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+
+                                <div>
+                                    @Html.ActionLink("Back to List", "Index")
+                                </div>
+                            </div>
+
+                            <div id="images" class="tab-pane @(Model != null && Model.ShopProducts_ID != default(Guid) ? "" : "disabled")">
+
+                                @if (Model == null || Model.ShopProducts_ID == default(Guid))
+                                {
+                                    <div class="alert alert-danger" id="successMessageBlock">
+                                        <p class="m-none text-weight-semibold h6" id="successMesage">Please save product at first</p>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="row">
+                                        @{
+                                            Html.RenderPartial("_ProductImagesList", Model.ShopProducts_ShopProductImages);
+                                            <br />
+                                            <hr />
+                                            <br />
+                                            using (Html.BeginForm(actionName: "InsertImage", controllerName: "ShopProductImages", method: FormMethod.Post, htmlAttributes: new { enctype = "multipart/form-data" }))
+                                            {
+                                                @Html.Hidden("ShopProductImages_ProductID", Model.ShopProducts_ID)
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label">Attach file</label>
+                                                    <div class="col-sm-8" id="file_load">
+                                                        <div class="btn btn-primary" onclick="document.getElementById('ShopProductImage_PostedFile').click()">@GlobalRes.ProofDocUploadProofDocPage_AttachmentFile</div>
+                                                        <label> @GlobalRes.CommonObject_NoFile </label>
+                                                        <input type="file" name="ShopProductImage_PostedFile" id="ShopProductImage_PostedFile" accept="image/*" class="hidden" />
+                                                        <input type="submit" value="Save" class="btn btn-default" />
+                                                    </div>
+                                                </div>
+
+                                                <script type="text/javascript">
+                                                    $("#ShopProductImage_PostedFile").on("change",
+                                                        function () {
+                                                            var fileApi = (window.File && window.FileReader && window.FileList && window.Blob) ? true : false;
+
+                                                            var wrapper = $("#file_load"),
+                                                                inp = wrapper.find("input"),
+                                                                btn = wrapper.find("button"),
+                                                                lbl = wrapper.find("label");
+
+                                                            var fileName;
+                                                            if (fileApi && inp[0].files[0])
+                                                                fileName = inp[0].files[0].name;
+                                                            else
+                                                                fileName = inp.val().replace("C:\\fakepath\\", '');
+
+                                                            if (!fileName.length)
+                                                                return;
+                                                            if (lbl.is(":visible")) {
+                                                                lbl.text(fileName);
+                                                            }
+                                                        }).change();
+                                                </script>
+                                            }
+
+                                        }
+                                    </div>
+                                }
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+</div>
+
+@section Scripts {
+    @*@Scripts.Render("~/bundles/jqueryval")*@
+}
+<script type="text/javascript" language="javascript">
+    CKEDITOR.replace('ShopProducts_ShortDescription', {
+        removePlugins: 'sourcearea',
+        removeButtons: 'About'
+    });
+    CKEDITOR.replace('ShopProducts_FullDescription', {
+        removePlugins: 'sourcearea',
+        removeButtons: 'About'
+    });
+</script>

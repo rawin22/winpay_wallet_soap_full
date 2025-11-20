@@ -1,0 +1,96 @@
+﻿@model TSG.Models.ServiceModels.Shop.ShopOrders
+@using Tsg.UI.Main.App_LocalResources
+@using WinstantPay.Common.Extension
+
+@{
+    var cryptoCurrency = new[] {"BTC", "ETH"};
+}
+<link href = "/Content/shop/order-details-css.css" rel = "stylesheet"/>
+
+
+<div class = "modal-dialog" role = "document">
+    <div class = "order-details-popup" >
+        <div class = "order-details-header" >
+            <h2 class = "order-details-title" >@GlobalRes.OrdersDetails_Title</h2>
+            <i class = "fa fa-close" aria-hidden = "true" data-dismiss = "modal" aria-label = "Close" ></i>
+        </div>
+        <div class = "order-details-description" >
+            <div class = "wrapper" >
+                <p class = "date">@GlobalRes.FundingGetFundRequestsPage_Date<span>@Model.ShopOrders_CreateDate.ToString("MMM. dd yyyy")</span></p>
+                <p class = "paid-by" >@GlobalRes.OrdersDetails_PaydBy<span>@Model.ShopOrders_BuyerWpayId</span></p>
+                <p class = "reference" >@GlobalRes.OrdersDetails_Reference<span>@Model.ShopOrders_OrderCounter</span></p>
+            </div>
+        </div>
+        <div class = "content" >
+            <div class = "wrapper" >
+                <div class = "order-info" >
+                    <h2 class = "order-info-title" >@GlobalRes.OrdersDetails_OrderInfo</h2>
+                    <div class = "wrapper" >
+                        <div class = "top" >
+                            <p class="product">@GlobalRes.OrdersDetails_Product</p>
+                            <p class="solidus-username">@GlobalRes.OrdersDetails_SolidusUsername</p>
+                            <p class="price">@GlobalRes.OrdersDetails_Price</p>
+                            <p class="quantity">@GlobalRes.OrdersDetails_Quantity</p>
+                            <p class="cost">@GlobalRes.OrdersDetails_Cost</p>
+                        </div>
+                        <div class = "bottom" >
+                            @foreach (var item in Model.ShopOrders_ShopOrderItems)
+                            {
+                                <div class = "product-row" >
+                                    <div class = "product" >
+                                        <span>@item.ShopOrderItems_ShopProduct.ShopProducts_Name</span>
+                                    </div>
+                                    <div class = "solidus-username" >
+                                        <span>@item.ShopOrderItems_Position</span>
+                                    </div>
+                                    <div class = "price" >
+                                        <span>@item.ShopOrderItems_CurrencyCode @(cryptoCurrency.Contains(item.ShopOrderItems_CurrencyCode) ? item.ShopOrderItems_Price.ToString("N8") : item.ShopOrderItems_Price.ToString("N2"))</span>
+                                    </div>
+                                    <div class = "quantity" >
+                                        <span>@item.ShopOrderItems_Quantity</span>
+                                    </div>
+                                    <div class = "cost" >
+                                        <span>@item.ShopOrderItems_CurrencyCode @(cryptoCurrency.Contains(item.ShopOrderItems_CurrencyCode) ? (Convert.ToDecimal(item.ShopOrderItems_Quantity) * item.ShopOrderItems_Price).ToString("N8") : (Convert.ToDecimal(item.ShopOrderItems_Quantity) * item.ShopOrderItems_Price).ToString("N2"))</span>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class = "payment-info" >
+                    <h2 class="payment-info-title">@GlobalRes.OrdersDetails_PaymentInfo</h2>
+                    <div class = "wrapper" >
+                        <div class = "top" >
+                            <p class="cost">@GlobalRes.OrdersDetails_Cost</p>
+                            <p class="receipt">@GlobalRes.OrdersDetails_Receipt</p>
+                        </div>
+                        <div class = "bottom" >
+                            @if (ViewBag.TotalCost != null)
+                            {
+                                foreach (var item in ((List<Tuple<string, string, decimal, string>>) ViewBag.TotalCost))
+                                {
+                                    <div class = "payment-row" >
+                                        <div class = "cost" >
+                                            <span>@item.Item2 @(cryptoCurrency.Contains(Convert.ToString(item.Item2)) ? item.Item3.ToString("N8") : item.Item3.ToString("N2"))</span>
+                                        </div>
+                                        <div class = "receipt" >
+                                            @if (String.IsNullOrEmpty(item.Item4))
+                                            {
+                                                <span>@item.Item1</span>
+                                            }
+                                            else
+                                            {
+                                                <a href = "@Url.Action("Details", "Payment", new {id = item.Item4})" >@item.Item1</a>
+                                            }
+
+                                        </div>
+                                    </div>
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

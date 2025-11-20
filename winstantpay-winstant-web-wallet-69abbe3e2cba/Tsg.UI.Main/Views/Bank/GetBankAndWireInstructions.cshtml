@@ -1,0 +1,166 @@
+﻿@using Tsg.UI.Main.App_LocalResources
+@model IEnumerable<Tsg.UI.Main.Models.BankAndInstructionModel>
+@{
+    ViewBag.Title = GlobalRes.GetBankAndWireInstPage_Title;
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+
+
+<div class="row">
+    <section class="panel">
+
+        <header class="panel-heading" data-panel-toggle="">
+            <div class="panel-actions">
+                <a href="#" class="panel-action panel-action-toggle" data-panel-toggle=""></a>
+            </div>
+
+            <h2 class="panel-title">@GlobalRes.GetBankAndWireInstPage_PageTitle</h2>
+            <p class="panel-subtitle">@GlobalRes.GetBankAndWireInstPage_PageSubTitle</p>
+        </header>
+
+        <div class="panel-body" style="display: block;">
+            @if (Model != null)
+            {
+                <table class="table table-bordered table-striped table-condensed mb-none" id="datatable-default">
+
+                    <thead>
+                        <tr>
+                            @*<th>Id</th>*@
+                            <th>@GlobalRes.GetBankAndWireInstPage_BankName</th>
+                            <th>@GlobalRes.GetBankAndWireInstPage_BankCountry</th>
+                            <th>@GlobalRes.GetBankAndWireInstPage_Currency</th>
+                            <th style="max-width: 400px; width: 400px">@GlobalRes.GetBankAndWireInstPage_WireInstruction</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                int i = 0;
+                foreach (var item in Model)
+                {
+                    i = i + 1;
+                    <tr>
+                        @*    <td>@i</td>*@
+                        <td id=@String.Format("payIninstBankName_{0}", item.BankCcyId)>
+                            @Html.DisplayFor(modelItem => item.BankName)
+                        </td>
+                        <td id=@String.Format("payIninstBankCountry_{0}", item.BankCcyId)>
+                            @Html.DisplayFor(modelItem => item.BankCountry)
+                        </td>
+                        <td id=@String.Format("payIninstCurrencyName_{0}", item.BankCcyId)>
+                            @Html.DisplayFor(modelItem => item.CurrencyName)
+                        </td>
+                        <td>
+                            @if (item.WireInstructionId == null)
+                            {
+                                <a class="fa fa-plus" href="@Url.Action("AddBankAndWireInst", "Bank", new {bankCcyId = item.BankCcyId})" style="text-decoration: none; font-size: 18px" />
+                            }
+                            else
+                            {
+                                @Html.Raw(item.WireInstructionText);
+                            }
+                        </td>
+                        <td>
+                            <a href="@Url.Action("AddBankAndWireInst", "Bank", new {bankCcyId = item.BankCcyId})" class="fas fa-pencil-alt" aria-hidden="true" style="text-decoration: none; font-size: 18px" />
+                            <a class="fas fa-trash-alt" onclick="tbtTrash('@item.BankCcyId')" data-toggle="modal" data-target="#deleleModal" aria-hidden="true" style="text-decoration:none; font-size:18px"></a>
+                        </td>
+                    </tr>
+                }
+                        }
+                    </tbody>
+
+
+                </table>
+            }
+            <div>
+                <a class="btn btn-success" href="~/Bank/AddBankAndWireInst">@GlobalRes.GetBankAndWireInstPage_AddNewBNWI</a>
+            </div>
+        </div>
+
+
+
+    </section>
+</div>
+
+<!-- Modal Delete record Begin -->
+<div class="modal fade" id="deleleModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    @Html.Hidden("jsPayInId", new { id = "jsPayInId" })
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <img src="/Content/assets/images/winstantpay-logo-notag.png" height="35" alt="" />
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-top: 5px">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @GlobalRes.GetBankAndCurrencyInstructions_ModalDeleteRec_DeletionRec
+                <br />
+                <div class="row">
+                    <div class="col-sm-4">@GlobalRes.GetBankAndWireInstPage_BankName</div>
+                    <div class="col-sm-8">
+                        <b><span id="DelModalPayInBankName"></span></b>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">@GlobalRes.GetBankAndWireInstPage_BankCountry</div>
+                    <div class="col-sm-8">
+                        <b><span id="DelModalPayInBankCountry"></span></b>
+                    </div>
+                </div>
+                @*<div class="row"><br/></div>*@
+                <div class="row">
+                    <div class="col-sm-4">@GlobalRes.GetBankAndWireInstPage_Currency</div>
+                    <div class="col-sm-8">
+                        <b><span id="DelModalPayInCurrency"></span></b>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" id="okDeleteModal" onclick="deleteDeposit()" name="Delete" value="Delete">@GlobalRes.GetAllContractUsListPage_ModalDeleteRec_Ok</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">@GlobalRes.GetAllContractUsListPage_ModalAddRec_Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal Delete record End -->
+@section customcss {
+    <!-- Specific Page Vendor CSS -->
+    <link rel="stylesheet" href="/Content/assets/vendor/select2/css/select2.css" />
+    <link rel="stylesheet" href="/Content/assets/vendor/select2-bootstrap-theme/select2-bootstrap.css" />
+    <link rel="stylesheet" href="/Content/assets/vendor/jquery-datatables-bs3/assets/css/datatables.css" />
+}
+
+@section VendorScripts {
+
+    <script src="/Content/assets/vendor/select2/js/select2.js"></script>
+    <script src="/Content/assets/vendor/jquery-datatables/media/js/jquery.dataTables.js"></script>
+    <script src="/Content/assets/vendor/jquery-datatables/extras/TableTools/js/dataTables.tableTools.min.js"></script>
+    <script src="/Content/assets/vendor/jquery-datatables-bs3/assets/js/datatables.js"></script>
+}
+
+@section Scripts {
+
+    <!-- Examples -->
+    <script src="/Content/assets/javascripts/tables/examples.datatables.default.js"></script>
+}
+
+<script type="text/javascript">
+
+    function tbtTrash(id) {
+        $('#DelModalPayInBankName').text($("#payIninstBankName_" + id).text().trim());
+        $('#DelModalPayInBankCountry').text($("#payIninstBankCountry_" + id).text().trim());
+        $('#DelModalPayInCurrency').text($("#payIninstCurrencyName_" + id).text().trim());
+        $("#jsPayInId").val(id);
+        console.log(id);
+    }
+
+    function deleteDeposit() {
+        var bankccyId = $("#jsPayInId").val();
+        console.log(bankccyId);
+
+        $.post("@Url.Action("DeletePayInInstructions", "Bank")?id=" + bankccyId);
+        $('#deleteModal').modal('toggle');
+        location.reload();
+    }
+</script>

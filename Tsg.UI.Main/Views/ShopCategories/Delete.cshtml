@@ -1,0 +1,71 @@
+﻿@model TSG.Models.ServiceModels.Shop.ShopCategories
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+<div class="row">
+    <section class="panel">
+
+        <header class="panel-heading" data-panel-toggle="">
+            <div class="panel-actions">
+                <a href="#" class="panel-action panel-action-toggle" data-panel-toggle=""></a>
+            </div>
+
+            <h2 class="panel-title">Category</h2>
+            <p class="panel-subtitle">Delete category</p>
+        </header>
+        <div class="panel-body" style="display: block;">
+
+            <h3>Are you sure you want to delete this?</h3>
+            <div>
+                <h4>Shop Categories</h4>
+                <hr />
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.ShopCategories_Name)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.ShopCategories_Name)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.ShopCategories_Parent)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.ShopCategories_ParentShopCategory.ShopCategories_Name)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.ShopCategories_IsPublished)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.ShopCategories_IsPublished)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.ShopCategories_IsDeleted)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.ShopCategories_IsDeleted)
+                    </dd>
+
+                </dl>
+
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-actions no-color">
+                        <input type="submit" value="Delete" class="btn btn-default" /> |
+                        @Html.ActionLink("Back to List", "Index")
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+</div>

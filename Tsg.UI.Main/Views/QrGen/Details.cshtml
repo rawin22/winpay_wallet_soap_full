@@ -1,0 +1,641 @@
+﻿@using System.Globalization
+@using Tsg.UI.Main.App_LocalResources
+@using Tsg.UI.Main.Models.Security
+@model Tsg.UI.Main.Models.InstantPaymentReceiveDetailsViewModel
+@{
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+    ViewBag.Title = "Receive Details";
+}
+
+
+<div class="row">
+    <div class="col-md-12">
+        <section class="panel">
+            <header class="panel-heading" data-panel-toggle="">
+                <div class="panel-actions">
+                    <a href="#" class="panel-action panel-action-toggle" data-panel-toggle=""></a>
+                </div>
+
+                <h2 class="panel-title">@ViewBag.Title</h2>
+            </header>
+            <div class="panel-body" style="display: block;">
+                @if (Model.Errors.Count > 0)
+                {
+                    foreach (var modelError in Model.Errors)
+                    {
+                        @Html.Display(modelError.Message)
+                    }
+                }
+                else
+                {
+                    using (Html.BeginForm("Details", "QrGen", new { id = Model.InstantPaymentReceiveId }, FormMethod.Post, new { @id = "DetailsForm" }))
+                    {
+
+                        string[] crypto = { "BTC", "ETH", "XAU" };
+                        @*<div class="hidden">@Html.EditorForModel()</div>*@
+
+                        <input name="modid" id="modid" value="@Model.InstantPaymentReceiveId" type="hidden" />
+                        <input name="shortenedUrl" id="shortenedUrl" value="@Model.ShortenedUrl" type="hidden" />
+                        <input name="res" id="res" value="file" type="hidden" />
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="text-center">
+                                    <div id="qrcode"></div>
+                                    <br />
+                                    <div>
+                                        <a class="btn btn-link" id="downloadQRBtn"><i class="fa fa-download" download></i>&nbsp;@GlobalRes.QrGenDetails_Download</a>
+                                        |
+                                        <a class="btn btn-link" id="copyUrl"><i class="fa fa-copy"></i>&nbsp;@GlobalRes.QrGenDetails_CopyLink</a>
+                                    </div>
+                                    <br />
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <table class="table table-striped table-bordered  mb-none" id="tbl_detail">
+                                    <tbody>
+                                        @if (!string.IsNullOrEmpty(Model.Alias))
+                                        {
+                                            <tr>
+                                                <td class="pt-md pb-md text-weight-bold">
+                                                    @GlobalRes.QrGenDetails_Alias
+                                                </td>
+                                                <td class="pt-md pb-md">
+                                                    @Html.DisplayFor(model => model.Alias, new { @class = "form-control" })
+                                                </td>
+                                            </tr>
+                                        }
+                                        @if (Model.Amount>0)
+                                        {
+                                            <tr>
+                                                <td class="pt-md pb-md text-weight-bold">
+                                                    @GlobalRes.PaymentDetailsPage_Amount
+                                                </td>
+                                                <td class="pt-md pb-md">
+                                                    @if (crypto.Contains(Model.Currency.ToUpper()))
+                                                    {
+                                                        <label> @(Model.Amount.ToString("N8"))</label>
+                                                    }
+                                                    else
+                                                    {
+                                                        <label> @(Model.Amount.ToString("N2"))</label>
+                                                    }
+                                                </td>
+                                            </tr>
+                                        }
+                                        @if (!string.IsNullOrEmpty(Model.Currency))
+                                        {
+                                            <tr>
+                                                <td class="pt-md pb-md text-weight-bold">
+                                                    @GlobalRes.PaymentDetailsPage_Currency
+                                                </td>
+                                                <td class="pt-md pb-md">
+                                                    @Html.DisplayFor(model => model.Currency, new { @class = "form-control" })
+                                                    <img src="/Content/assets/images/onebyone.png" class="flag flag-@(Model.Currency.ToLower())" />
+                                                </td>
+                                            </tr>
+                                        }
+                                        @if (!string.IsNullOrEmpty(Model.Invoice))
+                                        {
+                                            <tr>
+                                                <td class="pt-md pb-md text-weight-bold">
+                                                    @GlobalRes.PaymentDetailsPage_Invoice
+                                                </td>
+                                                <td class="pt-md pb-md">
+                                                    @Html.DisplayFor(model => model.Invoice, new { @class = "form-control" })
+                                                </td>
+                                            </tr>
+                                        }
+                                        @if (!string.IsNullOrEmpty(Model.Memo))
+                                        {
+                                            <tr>
+                                                <td class="pt-md pb-md text-weight-bold">
+                                                    @GlobalRes.Shared_InstantPayment_Memo
+                                                </td>
+                                                <td class="pt-md pb-md">
+                                                    @Html.DisplayFor(model => model.Memo, new { @class = "form-control" })
+                                            </tr>
+                                        }
+                                        @if (!string.IsNullOrEmpty(Model.Name))
+                                        {
+                                            <tr>
+                                                <td class="pt-md pb-md text-weight-bold">
+                                                    @GlobalRes.Shared_InstantPayment_Name
+                                                </td>
+                                                <td class="pt-md pb-md">
+                                                    @Html.DisplayFor(model => model.Name, new { @class = "form-control" })
+                                            </tr>
+                                        }
+                                        @if (!string.IsNullOrEmpty(Model.Address))
+                                        {
+                                            <tr>
+                                                <td class="pt-md pb-md text-weight-bold">
+                                                    @GlobalRes.Shared_InstantPayment_Address
+                                                </td>
+                                                <td class="pt-md pb-md">
+                                                    @Html.DisplayFor(model => model.Address, new { @class = "form-control" })
+                                            </tr>
+                                        }
+                                        @if (!string.IsNullOrEmpty(Model.Email))
+                                        {
+                                            <tr>
+                                                <td class="pt-md pb-md text-weight-bold">
+                                                    @GlobalRes.Shared_InstantPayment_Email
+                                                </td>
+                                                <td class="pt-md pb-md">
+                                                    @Html.DisplayFor(model => model.Email, new { @class = "form-control" })
+                                            </tr>
+                                        }
+                                        @*<tr>
+            <td class="pt-md pb-md text-weight-bold">
+                Shortened URL
+            </td>
+            <td class="pt-md pb-md">
+                @Html.DisplayFor(model => model.ShortenedUrl, new { @class = "form-control" })
+        </tr>*@
+                                        @if (Model.CreatedDate != null)
+                                        {
+                                            <tr>
+                                                <td class="pt-md pb-md text-weight-bold">
+                                                    @GlobalRes.PaymentDetailsPage_Date
+                                                </td>
+                                                <td class="pt-md pb-md">
+
+                                                    @String.Format("{0:MMM dd, yyyy}", Model.CreatedDate)
+                                                </td>
+                                            </tr>
+                                        }
+                                        @if (!string.IsNullOrEmpty(Model.AttachedFileName))
+                                        {
+                                            <tr>
+                                                <td class="pt-md pb-md text-weight-bold">
+                                                    @GlobalRes.PaymentDetailsPage_AttachedFile
+                                                </td>
+                                                <td class="pt-md pb-md">
+                                                    <a href="/QrGen/DownloadAttachedFile/@Model.InstantPaymentReceiveId" target="_blank">@Html.DisplayFor(model => model.AttachedFileName, new { @class = "form-control" })</a>
+                                                </td>
+                                            </tr>
+                                        }
+                                        </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <footer class="panel-footer">
+                            <div class="row">
+                                <div class="col-sm-12 text-right">
+                                    @Html.ActionLink(GlobalRes.Shared_InstantPaymentListPage_Edit, "Index", "QrGen", new { id = Model.InstantPaymentReceiveId }, new { @class = "btn btn-primary" })
+                                    @Html.ActionLink(GlobalRes.Shared_DetailInstantPaymentPage_Delete, "Delete", "QrGen", new { id = Model.InstantPaymentReceiveId }, new { @class = "btn btn-danger" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-9">
+
+                                </div>
+                                <script type="text/javascript" language="javascript">
+                                    $("#btnMessenger").on('click',
+                                        function () {
+                                            $("#res").val("messenger");
+                                        });
+                                    $("#btnFile").on('click',
+                                        function () {
+                                            $("#res").val("file");
+                                        });
+                                    $('a#submitlink').click(function () {
+                                        console.log(".DetailsForm submit enter");
+                                        $('form#DetailsForm').submit();
+                                    });
+                                </script>
+                            </div>
+                        </footer>
+                    }
+                }
+
+
+            </div>
+                            <div class="panel-body" style="display: block;">
+                                @if (Model.InstantPayments != null && Model.InstantPayments.Count > 0)
+                                {
+                                    var hiddenClass = "hidden-xs";
+                                    string[] crypto = { "BTC", "ETH", "XAU" };
+                                    <h2 class="panel-title">Payment to this QR Code</h2>
+                                    <div class="">
+                                        <table class="table table-bordered table-striped table-condensed mb-none" id="datatable-default-history">
+                                            <thead>
+                                                <tr>
+                                                    <th class="@hiddenClass">@GlobalRes.PaymentHistoryPage_Ref</th>
+                                                    @*<th class="@hiddenClass">Status</th>*@
+                                                    <th>@GlobalRes.PaymentHistoryPage_From</th>
+                                                    <th>@GlobalRes.PaymentHistoryPage_To</th>
+                                                    <th>@GlobalRes.PaymentHistoryPage_Amount</th>
+                                                    <th>@GlobalRes.PaymentHistoryPage_CCY</th>
+                                                    @*<th>Value Date</th>*@
+                                                    <th>@GlobalRes.PaymentHistoryPage_CreatedDate</th>
+                                                    @*<th>@GlobalRes.PaymentHistoryPage_Action</th>*@
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var item in Model.InstantPayments)
+                                                {
+                                                    var amount = item.IsIncome ? item.Amount : (-1) * item.Amount;
+                                                    <tr style="@(item.Status.Equals("Voided")?"text-decoration: line-through;":"")">
+                                                        <td class="@hiddenClass">
+                                                            @Html.DisplayFor(modelItem => item.PaymentReference)
+                                                        </td>
+                                                        @*<td class="@hiddenClass">*@
+                                                        @*@Html.DisplayFor(modelItem => item.Status, new { @class = "" })*@
+                                                        @* @if (item.Status.Equals("Posted"))
+                                                    {
+                                                        <i class="fa fa-check" aria-hidden="true" style="color:forestgreen" title="Sent/posted"></i>
+                                                    }
+                                                    else if (item.Status.Equals("Created"))
+                                                    {
+                                                        <i class="fa fa-check" aria-hidden="true" style="color:black" title="@item.Status"></i>
+                                                    }
+                                                    else if(item.Status.Equals("Voided"))
+                                                    {
+                                                        <i class="fa fa-check" aria-hidden="true" style="color:brown" title="@item.Status"></i>
+                                                    }
+                                                </td>*@
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.FromCustomerAlias)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.ToCustomerAlias)
+                                                        </td>
+                                                        <td class="text-right">
+                                                            @if (crypto.Contains(item.Currency))
+                                                            {
+                                                                @amount.ToString("N8", new CultureInfo("en-US"))
+                                                            }
+                                                            else
+                                                            {
+                                                                @amount.ToString("N2", new CultureInfo("en-US"))
+                                                            }
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Currency)
+                                                            <img src="/Content/assets/images/onebyone.png" class="flag flag-@(item.Currency.ToLower())" />
+                                                        </td>
+                                                        @*<td>
+                                                    @String.Format("{0:MMM dd, yyyy}", item.ValueDate) at @String.Format("{0:HH:mm tt}", item.ValueDate)
+                                                </td>*@
+                                                        <td>
+                                                            @*@Html.DisplayFor(modelItem => item.CreatedTime)*@
+                                                            @String.Format("{0:MMM dd, yyyy}", item.CreatedTime) @*at @String.Format("{0:HH:mm}", item.CreatedTime)*@
+                                                        </td>
+                                                        @*<td>
+                                                    @Html.ActionLink(GlobalRes.Shared_InstantPaymentListPage_Details, "Details", "Payment", new { id = item.PaymentId }, new { @class = "mb-xs btn btn-xs btn-primary" })
+                                                    @if (!item.IsIncome)
+                                                    {
+                                                        if (item.Status != null && item.Status.Equals("Created"))
+                                                        {
+                                                            @Html.ActionLink(GlobalRes.Shared_InstantPaymentListPage_Send, "Post", "Payment", new { id = item.PaymentId }, new { @class = "mb-xs btn btn-xs btn-success" })
+                                                        }
+                                                        else
+                                                        {
+                                                            @Html.ActionLink(GlobalRes.Shared_InstantPaymentListPage_Repeat, "Create", "Payment", new { id = item.PaymentId }, new { @class = "mb-xs btn btn-xs btn-info" })
+                                                        }
+                                                    }
+                                                </td>*@
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                }
+
+
+                                <div>
+                                    @*<a class="btn btn-success" href="/Payment/Create">@GlobalRes.PaymentHistoryPage_NewPayment</a>*@
+                                </div>
+                                @if (CultureInfo.CurrentCulture.Name.Contains("PH"))
+                                {
+                                    <script type="text/javascript">
+                                        $(window).load(function () {
+                                            $('#datatable-default-history').DataTable().destroy();
+                                            var dt = $('#datatable-default-history').DataTable({
+                                                responsive: true,
+                                                order: [[5, "desc"]],
+                                                "oLanguage": {
+                                                    "sEmptyTable": "Walang impormasyon",
+                                                    "sInfo": "_START_ ng _END_ kabuuang _TOTAL_ na mga pahina",
+                                                    "sInfoEmpty": "0 ng kabuuang 0 mga entry",
+                                                    "sInfoFiltered": "(natagpuan mula sa _MAX_ inskripsyon)",
+                                                    "sInfoPostFix": "",
+                                                    "sInfoThousands": ".",
+                                                    "sLengthMenu": "Ipakita ang _MENU_ item sa pahina",
+                                                    "sLoadingRecords": "Coefficient of activity...",
+                                                    "sProcessing": "Asahan...",
+                                                    "sSearch": "_INPUT_",
+                                                    "sSearchPlaceholder": "Paghahanap",
+                                                    "sZeroRecords": "Walang impormasyon.",
+                                                    "oPaginate": {
+                                                        "sFirst": "Ang una",
+                                                        "sPrevious": "Ang huling",
+                                                        "sNext": "Sumusunod",
+                                                        "sLast": "Nakaraan"
+                                                    }
+                                                }
+                                            });
+                                            $(".dataTables_filter input").attr("placeholder", "Paghahanap");
+                                            dt.draw();
+                                        });
+                                    </script>
+                                }
+                                else
+                                {
+                                    <script type="text/javascript">
+                    $(window).load(function () {
+                    var lang = '@CultureInfo.CurrentCulture.TwoLetterISOLanguageName';
+                    if (lang === 'ru') {
+                        $('#datatable-default-history').DataTable().destroy();
+                        var dt = $('#datatable-default-history').DataTable({
+                            responsive: true,
+                            order: [[5, "desc"]],
+                            "oLanguage": {
+                                "sEmptyTable": "Нет данных",
+                                "sInfo": "_START_ из _END_ всего _TOTAL_ страниц",
+                                "sInfoEmpty": "0 из 0 всего 0 записей",
+                                "sInfoFiltered": "(наидено из _MAX_ записей)",
+                                "sInfoPostFix": "",
+                                "sInfoThousands": ".",
+                                "sLengthMenu": "Отображать _MENU_ записей на странице",
+                                "sLoadingRecords": "Загрузка...",
+                                "sProcessing": "Подождите...",
+                                "sSearch": "_INPUT_",
+                                //"searchPlaceholder": "Поиск",
+                                "sSearchPlaceholder": "Поиск",
+                                "sZeroRecords": "Нет данных.",
+                                "oPaginate": {
+                                    "sFirst": "Первая",
+                                    "sPrevious": "Последняя",
+                                    "sNext": "Следующая",
+                                    "sLast": "Предыдущая"
+                                }
+                            }
+                        });
+                        $(".dataTables_filter input").attr("placeholder", "Поиск");
+                        dt.draw();
+                    }
+                    else if (lang === 'fr') {
+                        $('#datatable-default-history').DataTable().destroy();
+                        var dt = $('#datatable-default-history').DataTable({
+                            responsive: true,
+                            order: [[5, "desc"]],
+                            "oLanguage": {
+                                "sEmptyTable": "Aucune information",
+                                "sInfo": "_START_ de la _END_ total _TOTAL_ pages",
+                                "sInfoEmpty": "0 de la 0 total 0 inscription",
+                                "sInfoFiltered": "(trouvé à partir de _MAX_ inscription)",
+                                "sInfoPostFix": "",
+                                "sInfoThousands": ".",
+                                "sLengthMenu": "Afficher les éléments _MENU_ sur la page",
+                                "sLoadingRecords": "Coefficient d'activité...",
+                                "sProcessing": "Attendre...",
+                                "sSearch": "_INPUT_",
+                                "sSearchPlaceholder": "Rechercher",
+                                "sZeroRecords": "Aucune information.",
+                                "oPaginate": {
+                                    "sFirst": "Le premier",
+                                    "sPrevious": "Le dernier",
+                                    "sNext": "Suivant",
+                                    "sLast": "Précédent"
+                                }
+                            }
+                        });
+                        $(".dataTables_filter input").attr("placeholder", "Rechercher");
+                        dt.draw();
+
+                    } else {
+                        console.log("eng");
+                        var dt = $('#datatable-default-history').DataTable({
+                            destroy: true,
+                            retrieve: true,
+                            "language": {
+                                "lengthMenu": "Display _MENU_ records per page",
+                                "zeroRecords": "Nothing found - sorry",
+                                "info": "Showing page _PAGE_ of _PAGES_",
+                                "infoEmpty": "No records available",
+                                "infoFiltered": "(filtered from _MAX_ total records)"
+                            },
+                            order: [[5, "desc"]]
+                        });
+                        dt.draw();
+                    }
+                });
+                                    </script>
+                                }
+                            </div>
+</section>
+    </div>
+</div>
+<script>
+    $("#downloadQRBtn").click(function () {
+        var geImage = $('#qrcode img');
+        if (geImage.length > 0) {
+            var link = document.createElement("a");
+            link.setAttribute("href", geImage[0].src);
+            link.setAttribute("download", "qrFor" + $("#ddlAlias option:selected").text() + ".jpg");
+            link.click();
+        }
+    });
+    //var qrcode = new QRCode(document.getElementById("qrcode"),
+    //    {
+    //        width: 50,
+    //        height: 50
+    //    });
+    MakeQrCode();
+
+    function MakeQrCode() {
+        var shortenedUrl = $("#shortenedUrl").val();
+        var mytext = {
+            Text: shortenedUrl,
+            LogoIndex: 0
+        };
+
+        var jsontext = JSON.stringify(mytext);
+        console.log("jsontext: " + jsontext);
+        console.log("Run ApiGenerateQrCodeAsBase64");
+        $.ajax({
+            url: "/api/ApiGenerateQrCodeAsBase64",
+            //headers: {
+            //  'Accept': 'application/json',
+            //  'Content-Type': 'application/json'
+            //},
+            type: "POST",
+            data: jsontext,
+            dataType: "json",
+            contentType: 'application/json; charset=utf-8',
+            success: function (qrcoderesult, textStatus, jqXHR) {
+                //data - response from server
+                console.log("ApiGenerateQrCodeAsBase64 - Success");
+                console.log("qrcoderesult.QrCodeAsBase64 : " + qrcoderesult.QrCodeAsBase64);
+                var binary = "";
+                var responseText = jqXHR.responseText;
+                var responseTextLen = responseText.length;
+
+                for (i = 0; i < responseTextLen; i++) {
+                    binary += String.fromCharCode(responseText.charCodeAt(i) & 255)
+                }
+                // $("#imgqrcode").attr("src", "data:image/png;base64," + btoa(binary));
+                $('#qrcode').html('<img width="300" height="300" src="data:image/png;base64,' + qrcoderesult.QrCodeAsBase64 + '" />');
+            },
+            //success: function (result) {
+            //    console.log("Run MakeQrCode - Success");
+            //    document.getElementById("Memo").innerHTML = result.shortUrl;
+            //    //document.getElementById("currencyExchangePartView").innerHTML = result;
+            //    //$('#LoadingOverlayApi').trigger('loading-overlay:hide');
+            //},
+            error: function (jqXhr, textStatus, errorThrown) {
+                console.log("ApiGenerateQrCodeAsBase64 - Failed");
+                console.log(jqXhr);
+                console.log(textStatus);
+                console.log(errorThrown);
+            }
+            //error: function (result)
+            //{
+            //    console.log("Run MakeQrCode - Failed - Result:" + result);
+            //}
+        });
+    };
+
+    document.addEventListener("DOMContentLoaded",
+        function() {
+            $.ajax({
+                url: "@Url.Action("GetImageLink", "Payment")",
+                type: "POST",
+                data: { id: "@Model.InstantPaymentReceiveId", res: "" },
+                dataType: "json",
+                success: function(result) {
+                    console.log(result);
+                    var allbuttons = $('.at-share-btn[role="button"]');
+                    allbuttons.each(function() {
+                        var value = $(this).attr('href');
+                        console.log(value);
+                        if (value != null && value != 'undefined') {
+                            $(this).attr('href',
+                                value.replace('{url}',
+                                    '@String.Format("{0}/SharedViewer/PaymentDetails/?photoId=", ((System.Web.HttpRequestWrapper) Request).Url.Authority)' +
+                                    result));
+
+                            $('#shareDiv').removeClass('hidden');
+                        }
+                    });
+                }
+            });
+        });
+
+    $("#copyUrl").click(function () {
+        // Get the text field
+        var shortenedUrl = document.getElementById("shortenedUrl");
+
+        // Select the text field
+        shortenedUrl.select();
+        //shortenedUrl.setSelectionRange(0, shortenedUrl.value.length); // For mobile devices
+
+        // Copy the text inside the text field
+        navigator.clipboard.writeText(shortenedUrl.value);
+
+        // Alert the copied text
+        alert("URL copied: " + shortenedUrl.value);
+    });
+
+    function copyUrl() {
+
+        //var shortenedUrl = $("#shortenedUrl").val();
+        // Get the text field
+        var copyText = document.getElementById("shortenedUrl");
+
+        // Select the text field
+        copyText.select();
+        copyText.setSelectionRange(0, copyText.value.length); // For mobile devices
+
+        // Copy the text inside the text field
+        navigator.clipboard.writeText(copyText.value);
+
+        // Alert the copied text
+        alert("URL copied: " + copyText.value);
+    }
+
+    //$("#attachedFilePreview").click(function () {
+    //    // Get the text field
+    //    var receiveId = document.getElementById("modid");
+
+    //    // Alert the copied text
+    //    //alert("Receive ID: " + receiveId.value);
+
+    //    // Make an AJAX request to download the file
+    //    $.ajax({
+    //        url: '/QrGen/AttachedFile/' + receiveId.value,
+    //        type: 'GET',
+    //        success: function (data) {
+    //            // Create a temporary anchor element and set the href attribute to the file's URL
+    //            var link = document.createElement('a');
+    //            link.href = data.fileUrl;
+    //            console.log(data.fileUrl);
+    //            // Set the download attribute to specify the file name
+    //            link.download = data.fileName;
+
+    //            // Simulate a click on the anchor element to trigger the file download
+    //            link.click();
+
+    //            // Remove the temporary anchor element
+    //            document.body.removeChild(link);
+    //        },
+    //        error: function () {
+    //            alert('An error occurred while downloading the file.');
+    //        }
+    //    });
+    //});
+
+    function downloadAttachedFile() {
+        var receiveId = document.getElementById("modid").value;
+        var fileName = document.getElementById("AttachedFileName").value;
+        console.log("receiveId: " + receiveId);
+        console.log("fileName: " + fileName);
+        // Make an AJAX request to download the file
+        $.ajax({
+            url: '/QrGen/DownloadAttachedFile/' + receiveId,
+            type: 'GET',
+            success: function (data) {
+                // Create a temporary anchor element and set the href attribute to the file's data
+                var link = document.createElement('a');
+                link.href = URL.createObjectURL(new Blob([data]));
+
+                // Set the download attribute to specify the file name
+                link.download = fileName;
+
+                // Simulate a click on the anchor element to trigger the file download
+                link.click();
+
+                // Remove the temporary anchor element
+                //document.body.removeChild(link);
+            },
+            error: function () {
+                alert('An error occurred while downloading the file.');
+            }
+        });
+    }
+    
+</script>
+
+@section customcss {
+    <!-- Specific Page Vendor CSS -->
+    <link rel="stylesheet" href="/Content/assets/vendor/select2/css/select2.css" />
+    <link rel="stylesheet" href="/Content/assets/vendor/select2-bootstrap-theme/select2-bootstrap.css" />
+    <link rel="stylesheet" href="/Content/assets/vendor/jquery-datatables-bs3/assets/css/datatables.css" />
+}
+
+@section VendorScripts {
+
+    <script src="/Content/assets/vendor/select2/js/select2.js"></script>
+    <script src="/Content/assets/vendor/jquery-datatables/media/js/jquery.dataTables.js"></script>
+    <script src="/Content/assets/vendor/jquery-datatables/extras/TableTools/js/dataTables.tableTools.min.js"></script>
+    <script src="/Content/assets/vendor/jquery-datatables-bs3/assets/js/datatables.js"></script>
+}
+
+@section Scripts {
+
+    <!-- Examples -->
+    <script src="/Content/assets/javascripts/tables/examples.datatables.default.js"></script>
+}

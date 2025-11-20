@@ -1,0 +1,638 @@
+﻿@using System.Configuration
+@using Tsg.UI.Main.App_LocalResources
+@model Tsg.UI.Main.Models.UserProfileViewModel
+
+@{
+	Layout = "~/Views/Shared/_LayoutMain.cshtml";
+	ViewBag.Title = GlobalRes.User_ProfilePage_Title;
+}
+<style>
+
+	.image-area {
+		position: relative;
+		display: inline-block;
+		padding: 10px;
+	}
+
+	.remove-image {
+		display: none;
+		position: absolute;
+		top: -5px;
+		right: -5px;
+		border-radius: 5em;
+		padding: 2px 6px 3px;
+		text-decoration: none;
+		font: 700 20px/20px sans-serif;
+		background: #555;
+		border: 2px solid #fff;
+		color: #FFF;
+		box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 2px 4px rgba(0,0,0,0.3);
+		text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+		-webkit-transition: background 0.5s;
+		transition: background 0.5s;
+	}
+
+		.remove-image:hover {
+			background: #E54E4E;
+			padding: 3px 7px 5px;
+			top: -6px;
+			right: -6px;
+		}
+
+		.remove-image:active {
+			background: #E54E4E;
+			top: -10px;
+			right: -11px;
+		}
+</style>
+<script type="text/javascript" src="/Content/assets/vendor/jquery/jquery.js"></script>
+<div class="row">
+	@if (Model.HasError)
+	{
+		<div class="alert alert-danger">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true" id="btn-close-message">×</button>
+			@foreach (var error in Model.Errors)
+			{
+				<p class="m-none text-weight-semibold h6">@error.MessageDetails</p>
+			}
+		</div>
+	}
+	<div class="col-md-12">
+		<div class="tabs">
+			<ul class="nav nav-tabs">
+				<li class="active">
+					<a href="#settings" data-toggle="tab">@GlobalRes.User_ProfilePage_Tab1</a>
+				</li>
+				<li>
+					<a href="#access" data-toggle="tab" class="hidden">@GlobalRes.User_ProfilePage_Tab2</a>
+				</li>
+			</ul>
+
+			<div class="tab-content" id="divSettings">
+				<div id="settings" class="tab-pane active">
+					<div class="alert alert-success" style="display: none;" id="successMessageBlock">
+						<p class="m-none text-weight-semibold h6" id="successMesage"></p>
+					</div>
+					<div class="alert alert-danger" style="display: none;" id="errorMessageBlock">
+						<p class="m-none text-weight-semibold h6" id="errorMesage"></p>
+					</div>
+					<h4 class="mb-md">@GlobalRes.User_ProfilePage_UserInfo</h4>
+					<form class="form-horizontal form-bordered" method="post" id="userProfileForm">
+						<div class="form-group">
+							<label class="col-md-3 control-label" for="inputDefault">@GlobalRes.User_ProfilePage_UserName </label>
+							<div class="col-md-6">
+								@*<input class="form-control" id="inputDisabled" type="text" value="@Model.Data.UserSettings.UserName" readonly="readonly" />*@
+								<p class="form-control-static">@Tsg.UI.Main.Models.Security.AppSecurity.CurrentUser.UserName</p>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="col-md-3 control-label" for="inputDefault">@GlobalRes.User_ProfilePage_DefaultAlias </label>
+							<div class="col-md-6">
+								@Html.DropDownList("ddlAlias", UiHelper.PrepareAccountAliases(), new { id = "ddlAlias", @class = "form-control" })
+								<a class="btn btn-success" id="setDefaultWPayId">@GlobalRes.User_ProfilePage_SetAsDefaultAlias</a>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="col-md-3 control-label" for="inputDefault">@GlobalRes.User_ProfilePage_Aliases :</label>
+							<div class="col-md-9">
+								<div class="col-md-12" id="aliases" style="padding-left:0 !important;">
+									@*@Html.HiddenFor(m => m.CcyCode)
+										@Html.HiddenFor(m => m.WPayId)*@
+
+									@foreach (var alias in UiHelper.PrepareAccountAliases())
+									{
+										<div class="image-area">
+											@*<span class="remove-image" title="Delete">&times;</span>*@
+											<a class="btn btn-info" style="margin-top: 5px;" id="@alias.Value">@alias.Value</a>
+
+											<a class="remove-image" href="#" style="display: inline;" data-toggle="modal" data-target="#exampleModal" data-whatever="@alias.Value">&#215;</a>
+										</div>
+										@*<a class="btn btn-info" style="margin-top: 5px;" id="@alias.Value" onclick="AliasClick('@alias.Value');" href="@Url.Action("Profile", "User", new { wPayId = alias.Value })">@alias.Value</a>*@
+									}
+									<a class="btn btn-success" id="addAlias" style="margin-top: 5px;" onclick="addAliasClick();">+ @GlobalRes.AddBankAndWireInstPage_AddNewCurrencyButton @GlobalRes.User_ProfilePage_Alias</a>
+								</div>
+								<div class="col-md-7" style="display: none; margin-top: 5px; padding-left:0 !important;" id="newAliasBlock">
+									<div class="col-md-6" style="padding-left: 0 !important; padding-right: 0 !important;">
+										<input type="text" class="form-control" id="newAliasName" />
+									</div>
+									<div class="col-md-6" style="padding-left: 5px !important;">
+										<input type="button" class="btn btn-success" id="saveAliasName" value="@GlobalRes.User_ProfilePage_Save" />
+										<input type="button" class="btn btn-danger" id="closeAliasBlock" onclick="cancelButton();" value="@GlobalRes.User_ProfilePage_Cancel" />
+									</div>
+								</div>
+								<script type="text/javascript" language="javascript">
+									function addAliasClick() {
+										$("#addAlias").remove();
+										$("#newAliasBlock").toggle();
+									}
+
+									function cancelButton() {
+										var t1 = document.getElementById("aliases");
+										t1.innerHTML +=
+											'<a class="btn btn-success" id="addAlias" style="margin-top: 5px;" onclick="addAliasClick();">' +
+											'+ ' + '@GlobalRes.AddBankAndWireInstPage_AddNewCurrencyButton' + '@GlobalRes.User_ProfilePage_Alias'+
+											'</a>';
+										$("#addAlias").show();
+										$("#newAliasBlock").hide();
+									}
+
+									$("#saveAliasName").on("click",
+										function() {
+											$('#errorMessageBlock').css("display", "none");
+											$('#successMessageBlock').css("display", "none");
+
+											var t = $("#newAliasName").val();
+											if (t != null && t !== 'undefined' && t.trim().length > 0) {
+												$.ajax({
+													url: "@Url.Action("CreateNewAlias", "User")",
+													type: "POST",
+													data: { newAliasName: t },
+													//data: $("form").serialize(),
+													dataType: "json",
+													success: function(result) {
+														if (result.success) {
+															var t1 = document.getElementById("aliases");
+															t1.innerHTML += '<div class="image-area"><a class="btn btn-info" style="margin-top: 5px;">' +
+																$("#newAliasName").val() +
+																'</a><a class="remove-image" href="#" style="display: inline;" data-toggle="modal" data-target="#exampleModal" data-whatever="' + $("#newAliasName").val() + '">&#215;</a></div>';
+															t1.innerHTML += '&nbsp;';
+															t1.innerHTML +=
+																'<a class="btn btn-success" id="addAlias" style="margin-top: 5px;" onclick="addAliasClick();">' +
+																'+ ' + '@GlobalRes.AddBankAndWireInstPage_AddNewCurrencyButton' + '@GlobalRes.User_ProfilePage_Alias'+
+																'</a>';
+															$("#successMesage").text("Your new alias \"" + $("#newAliasName").val() +"\" created successfully.");
+															$("#successMessageBlock").css("display", "block");
+															$("#addAlias").show();
+															$("#newAliasBlock").hide();
+															//setTimeout(function() {
+															//        $('#successMessageBlock').css("display", "none")}, 3000);
+															$("#newAliasName").val("");
+														} else {
+															$("#errorMesage").text(result.message);
+															$("#errorMessageBlock").css("display", "block");
+															//setTimeout(function() {
+															//        $('#errorMessageBlock').css("display", "none")}, 3000);
+														}
+													},
+													error: function(request, status, error) {
+														$("#errorMesage").text(result.message);
+														$("#errorMessageBlock").css("display", "block");
+														//setTimeout(function() {
+														//        $('#errorMessageBlock').css("display", "none");
+														//    },
+														//    3000);
+													}
+												});
+											} else {
+												$("#errorMesage").text("Name can not be empty");
+												$("#errorMessageBlock").css("display", "block");
+												//setTimeout(function() {$('#errorMessageBlock').css("display", "none")}, 3000);
+											}
+
+										});
+								</script>
+								@*<p class="form-control-static">@Tsg.UI.Main.Models.Security.AppSecurity.CurrentUser.FirstName</p>*@
+							</div>
+
+						</div>
+						@*<div class="form-group @(Model.WPayIds.Count > 1? "":"hidden")">
+								<label class="col-sm-3 control-label">WPayId</label>
+								<div class="col-sm-5">
+									@Html.DropDownListFor(m => m.WPayId, Model.WPayIds, new { @class = "form-control" })
+								</div>
+							</div>*@
+						@*@if (!String.IsNullOrEmpty(Model.WPayId))
+							{*@
+						<div class="form-group" id="dvLimits" @(String.IsNullOrEmpty(Model.WPayId) ? "style=display:none" : Model.WPayId)>
+							<label class="col-md-3 control-label" for="inputDisabled">Limits</label>
+							<div class="col-md-6" id="daWPayIdLimitsPartial">
+								@{
+									Html.RenderPartial("_UserDaLimits", Model);
+								}
+
+							</div>
+						</div>
+						@*}*@
+						@*<div class="form-group">
+								<label class="col-md-3 control-label">Selected WPayID</label>
+								<div class="col-md-6">
+									<p class="form-control-static">@Model.WPayId</p>
+
+								</div>
+							</div>*@
+						<div class="form-group" id="dvLimitsSave" @(String.IsNullOrEmpty(Model.WPayId) ? "style=display:none" : Model.WPayId)>
+							<label class="col-md-5 control-label"></label>
+							<div class="col-md-6">
+								<button type="submit" class="btn btn-success" id="btnSaveLimits">Save</button>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-3 control-label" for="inputDisabled">@GlobalRes.User_ProfilePage_Customer </label>
+							<div class="col-md-6">
+								@*<input class="form-control" id="inputDisabled" type="text" value="@Model.Data.UserSettings.OrganizationName" readonly="readonly" />*@
+								<p class="form-control-static">@Tsg.UI.Main.Models.Security.AppSecurity.CurrentUser.OrganisationName</p>
+
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-3 control-label" for="inputDisabled">@GlobalRes.User_ProfilePage_CustomerBaseCurrency </label>
+							<div class="col-md-6">
+								@*<input class="form-control" id="inputDisabled" type="text" value="@Model.Data.UserSettings.OrganizationName" readonly="readonly" />*@
+								<p class="form-control-static">@Model.Data.UserSettings.BaseCurrencyCode</p>
+
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class=" col-md-3 control-label">@GlobalRes.User_ProfilePage_FirstName</label>
+							<div class="col-lg-6">
+								@*<input class="form-control" id="inputDisabled" type="text" value="@Model.Data.UserSettings.FirstName" />*@
+								<p class="form-control-static">@Tsg.UI.Main.Models.Security.AppSecurity.CurrentUser.FirstName</p>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class=" col-md-3 control-label">@GlobalRes.User_ProfilePage_LastName</label>
+							<div class="col-lg-6">
+								@*<input class="form-control" id="inputDisabled" type="text" value="@Model.Data.UserSettings.LastName" />*@
+								<p class="form-control-static">@Tsg.UI.Main.Models.Security.AppSecurity.CurrentUser.LastName</p>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class=" col-md-3 control-label">@GlobalRes.User_ProfilePage_Email</label>
+							<div class="col-lg-6">
+								@*<input class="form-control" id="inputDisabled" type="text" value="@Model.Data.UserSettings.EmailAddress" />*@
+								<p class="form-control-static">@Tsg.UI.Main.Models.Security.AppSecurity.CurrentUser.EmailAddress</p>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class=" col-md-3 control-label">Message</label>
+							<div class="col-lg-6">
+								@Model.Message
+							</div>
+						</div>
+					</form>
+
+					<div class="panel-footer">
+						<div class="row">
+							<div class="col-md-9 col-md-offset-3">
+								<a href="@(ConfigurationManager.AppSettings["kycLoginLink"])" class="btn btn-success">@GlobalRes.User_ProfilePage_AccessToKYC</a>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div id="access" class="tab-pane">
+					<h4 class="mb-md">@GlobalRes.User_ProfilePage_Grants</h4>
+
+					@*<div class="list-group">
+							<div class="list-group-item list-group-item-success">
+								<h5>General Settings</h5>
+							</div>
+							<div class="list-group-item">
+								<h5><i class="fa fa-check mr-xs"></i> Manage Access Right Templates</h5>
+							</div>
+							<div class="list-group-item">
+								<h5><i class="fa fa-check mr-xs"></i> View Reports</h5>
+							</div>
+						</div>
+
+						<div class="list-group">
+							<div class="list-group-item list-group-item-success">
+								<h5>Customers</h5>
+							</div>
+							<div class="list-group-item">
+								<h5><i class="fa fa-check mr-xs"></i> Manage Customer Users</h5>
+							</div>
+						</div>*@
+
+					<div class="list-group">
+						<div class="list-group-item list-group-item-success">
+							<h5>@GlobalRes.User_ProfilePage_Payments</h5>
+						</div>
+						@*<div class="list-group-item">
+								<h5><i class="fa fa-check mr-xs"></i> View Payments</h5>
+							</div>
+							<div class="list-group-item">
+								<h5><i class="fa fa-check mr-xs"></i> Create Payment (Standard) up to: $10,000,000.00 USD</h5>
+							</div>
+							<div class="list-group-item">
+								<h5><i class="fa fa-check mr-xs"></i> Create Payment (Payment Wizard) up to: $10,000,000.00 USD</h5>
+							</div>
+							<div class="list-group-item">
+								<h5><i class="fa fa-check mr-xs"></i> Create Payment (from Template) up to: $1,000,000.00 USD</h5>
+							</div>*@
+						<div class="list-group-item">
+							<h5><i class="fa fa-check mr-xs"></i> @GlobalRes.User_ProfilePage_SubmitPaymentText</h5>
+						</div>
+						<div class="list-group-item">
+							<h5><i class="fa fa-check mr-xs"></i> @GlobalRes.User_ProfilePage_CreatePayment</h5>
+						</div>
+						@*<div class="list-group-item">
+								<h5><i class="fa fa-check mr-xs"></i> Manage Payment Templates</h5>
+							</div>
+							<div class="list-group-item">
+								<h5><i class="fa fa-check mr-xs"></i> Manage Payment Batches</h5>
+							</div>*@
+
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLongTitle">Alias Deletion</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				Are you sure to delete the following alias?
+				<p c></p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary" data-dismiss="modal" id="btn-delete">Delete</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	function processForm(e) {
+		if (e != null && e.preventDefault)
+			e.preventDefault();
+
+		var pinCode = $('#PinCode').val();
+		var exceedingAmount = $('#ExceedingAmount').val();
+
+		console.log("pinCode.length: " + pinCode.length);
+		if (pinCode.length < 4) {
+			$('#PinCode_ValidationMessage').removeClass("hidden");
+			return false
+		}
+		else {
+			$('#PinCode_ValidationMessage').addClass("hidden");
+		}
+
+		$("#userProfileForm").submit();
+		return true;
+	}
+
+	var form = document.getElementById('userProfileForm');
+	if (form.attachEvent) {
+		form.attachEvent("submit", processForm);
+	} else {
+		form.addEventListener("submit", processForm);
+	}
+
+	$(document).ready(function () {
+		//$('#userProfileForm').submit(function(e) {
+		//    e.preventDefault();
+		//    var pinCode = $('#PinCode').val();
+		//    var exceedingAmount = $('#ExceedingAmount').val();
+
+		//    console.log("pinCode.length: " + pinCode.length);
+		//    if (pinCode.length < 4) {
+		//        $('#PinCode_ValidationMessage').removeClass("hidden");
+		//        return false
+		//    }
+		//    else {
+		//        $('#PinCode_ValidationMessage').addClass("hidden");
+		//    }
+
+		//    $('#userProfileForm').submit();
+		//    return true;
+		//});
+
+		$(".disable").find('input[data-input-amount]').prop("disabled", true).on("focus", function() {
+			var focused = $(':focus');
+			if (focused.val() && focused.val() == 0) {
+				focused.text("");
+				focused.val("");
+			}
+		}).on("blur", function() {
+			if (this.value == '' || this.value == 0) {
+				this.value = '0.00';
+				this.text = "0.00";
+			}
+		});
+		$(".disable").find('a[class="btn btn-success"]').attr("disabled", "disabled").on("click", function(event){
+			if ($(this).is("[disabled]")) {
+				event.preventDefault();
+			}
+		});
+
+		//$("#alias a").click(function() {
+		//    alert(this.val());
+		//});
+		// AliasClick('@Model.WPayId');
+		SetDefaultCcy('@Model.CcyCode');
+		// $("#mydropdownlist").val("thevalue");
+		@*SetSelectedCurrency("@Model.DaPayLimits_CcyCode");*@
+
+	});
+
+
+
+	//$("#WPayId").change(function () {
+	//    alert($(this).val());
+	//    @*$("#shortlink").val("@Html.Raw(Model.LinkText)" + $(this).val());
+		$("#shortlink").text("@Html.Raw(Model.LinkText)" + $(this).val());
+		makeCode();*@
+	//});
+
+	//$("#WPayId").change(
+	//    function () {
+	//        alert($(this).val());
+	//        //$('#errorMessageBlock').css("display", "none");
+	//        //$('#successMessageBlock').css("display", "none");
+
+	//        var t = $("#newAliasName").val();
+	//        var wpayid = $(this).val();
+
+	//        if (wpayid != null && wpayid !== 'undefined' && wpayid.trim().length > 0) {
+	//            $("#daWPayIdLimitsPartial").load("/User/GetWPayIdDaLimits?wPayId="+wpayid);
+	//        } else {
+	//            alert("WPayID cannot be empty");
+	//            //$("#errorMesage").text("Name can not be empty");
+	//            //$("#errorMessageBlock").css("display", "block");
+	//            //setTimeout(function() {$('#errorMessageBlock').css("display", "none")}, 3000);
+	//        }
+
+	//    });
+
+	function SetDefaultCcy(ccycode) {
+			console.log("SetDefaultCcy");
+			var id = ccycode;
+			var id1 = "";
+
+			if (id != null) {
+				console.log(id);
+				var buttons = document.getElementById("selectButton");
+
+				try {
+					id1 = id.toLowerCase();
+				} catch (e) {
+					id1 = id;
+				}
+
+				buttons.innerHTML = '<img src="/Content/assets/images/onebyone.png" class="flag flag-' + id1 + '"/>' + '  ' +
+					id +
+					'&nbsp;<span class="caret" style="position: absolute; top: 45%; left: 97.5%; color: #555555 !important; border-top: 6px dashed !important; border-right: 3px solid transparent !important;border-left: 3px solid transparent !important"></span>';
+				$("#ddlmenu").val(id);
+				console.log("#ddlmenu");
+				$("#DaPayLimits_CcyCode").val(id);
+				$("#searchabletext").val("");
+				$("#ddlmenu li").show();
+				console.log("#DaPayLimits_CcyCode");
+				$('#selectButton').removeClass("error_btn");
+				$("#notificatorCcy").empty();
+			}
+			else {
+				var buttons = document.getElementById("selectButton");
+				buttons.innerHTML = '@String.Format(GlobalRes.Shared_NewInstantPaymentFormPage_SelectCurrency)' + '&nbsp;<span class="caret" style="position: absolute; top: 45%; left: 97.5%; color: #555555 !important; border-top: 6px dashed !important; border-right: 3px solid transparent !important;border-left: 3px solid transparent !important"></span>';
+				$("#ddlmenu").val(null);
+				//console.log("#ddlmenu");
+				$("#DaPayLimits_CcyCode").val(null);
+				$("#searchabletext").val("");
+				$("#ddlmenu li").show();
+				console.log("#DaPayLimits_CcyCode");
+			}
+	}
+
+	function AliasClick(wpayid) {
+		console.log(wpayid);
+		//$('#LoadingOverlayApi').trigger('loading-overlay:show');
+		var selectedItem = document.getElementById(wpayid);
+		var prevSelectedItem = document.getElementById("WPayId");
+		//alert(prevSelectedItem.value);
+		if (wpayid === prevSelectedItem.value) {
+			$("#aliases a").removeClass("btn-primary");
+			$("#aliases a").addClass("btn-info");
+			$("#addAlias").removeClass("btn-info");
+			$("#addAlias").addClass("btn-success");
+			prevSelectedItem.value = "";
+
+			$("#dvLimits").hide();
+			$("#dvLimitsSave").hide();
+			return;
+		}
+		$("#aliases a").removeClass("btn-primary");
+		$("#aliases a").addClass("btn-info");
+		$("#addAlias").removeClass("btn-info");
+		$("#addAlias").addClass("btn-success");
+		$('#' + wpayid).removeClass("btn-info");
+		$('#'+ wpayid).addClass("btn-primary");
+		wpayid1 = selectedItem.value;
+
+		//$('#errorMessageBlock').css("display", "none");
+		//$('#successMessageBlock').css("display", "none");
+		if (wpayid != null && wpayid !== 'undefined' && wpayid.trim().length > 0) {
+			console.log("Reload Limits");
+			//var url = "/User/GetWPayIdDaLimits?wPayId=" + wpayid;
+			//alert("URL = " + url);
+			$("#daWPayIdLimitsPartial").load("/User/GetWPayIdDaLimits?wPayId=" + wpayid);
+			//$("#divSettings").load("/User/GetWPayIdDaLimits?wPayId=" + wpayid);
+			//divSettings
+			//$("#dvLimits").removeClass("display");
+			$("#dvLimits").show();
+			// $("#dvLimitsSave").removeClass("display");
+			$("#dvLimitsSave").show();
+
+			// var ccy = $("#CcyCode").val();
+			// alert("CCCY = " + ccy);
+			//  SetDefaultCcy(ccy);
+
+		} else {
+			//alert("WPayID cannot be empty");
+			//$("#errorMesage").text("Name can not be empty");
+			//$("#errorMessageBlock").css("display", "block");
+			//setTimeout(function() {$('#errorMessageBlock').css("display", "none")}, 3000);
+		}
+
+		//$('#LoadingOverlayApi').trigger('loading-overlay:hide');
+
+	}
+
+	var recipient = "";
+	$('#exampleModal').on('show.bs.modal', function (event) {
+		var button = $(event.relatedTarget); // Button that triggered the modal
+		recipient = button.data('whatever'); // Extract info from data-* attributes
+		// If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+		// Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+		var modal = $(this);
+		// modal.find('.modal-title').text('New message to ' + recipient)
+		modal.find('.modal-body p').text(recipient);
+	});
+
+	$("#btn-delete").on("click", function () {
+
+		$.ajax({
+			url: "@Url.Action("DeleteAlias", "User")",
+			type: "POST",
+			data: { alias: recipient },
+			//data: $("form").serialize(),
+			dataType: "json",
+			success: function(result) {
+				if (result.success) {
+					console.log("result success");
+					location.reload();
+				} else {
+					console.log("result not success");
+				}
+			},
+			error: function(request, status, error) {
+				console.log("error");
+			}
+		})
+	});
+
+	$("#setDefaultWPayId").on("click",
+	function() {
+		$('#errorMessageBlock').css("display", "none");
+		$('#successMessageBlock').css("display", "none");
+
+		var selectedAlias = $("#ddlAlias").val();
+		console.log("setDefaultWPayId selectedAlias: " + selectedAlias);
+
+		if (selectedAlias != null && selectedAlias !== 'undefined' && selectedAlias.trim().length > 0) {
+			$.ajax({
+				url: "@Url.Action("SetDefaultAlias", "User")",
+				type: "POST",
+				data: { alias: selectedAlias },
+				dataType: "json",
+				success: function(result) {
+					if (result.success) {
+						$("#successMesage").text(selectedAlias + " is successfully set as default alias.");
+						$("#successMessageBlock").css("display", "block");
+					} else {
+						$("#errorMesage").text(result.message);
+						$("#errorMessageBlock").css("display", "block");
+					}
+				},
+				error: function(request, status, error) {
+					$("#errorMesage").text(result.message);
+					$("#errorMessageBlock").css("display", "block");
+				}
+			});
+		} else {
+			$("#errorMesage").text("No alias selected");
+			$("#errorMessageBlock").css("display", "block");
+		}
+
+	});
+
+</script>

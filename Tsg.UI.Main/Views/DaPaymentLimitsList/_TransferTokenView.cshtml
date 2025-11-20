@@ -1,0 +1,12 @@
+﻿@using Tsg.UI.Main.App_LocalResources
+@model TSG.Models.APIModels.TransfersApiModel.TransferTustedTokenModel
+
+<div id="transferTokenBlock">
+    @{
+        AjaxOptions options = new AjaxOptions();
+        options.OnComplete = "DaCreateCompleted";
+        options.OnBegin = "CheckForm";
+    }
+
+    
+</div>

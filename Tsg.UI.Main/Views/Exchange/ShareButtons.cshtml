@@ -1,0 +1,155 @@
+﻿<style>
+    .at-share-btn {
+        padding: 5px;
+    }
+    .at-svc-facebook { /* Customizes Facebook Messenger icon */
+        fill: #000;
+        width: 32px;
+        height: 32px;
+    }
+    .icon { /* Customizes all icons at once */
+        display: inline-block;
+    }
+    .at-share-btn {
+        display: inline-block;
+        margin: 0 2px 5px;
+        padding: 0;
+        overflow: hidden;
+        line-height: 0;
+        text-decoration: none;
+        text-transform: none;
+        color: #fff;
+        cursor: pointer;
+        -webkit-transition: all .2s ease-in-out;
+        transition: all .2s ease-in-out;
+        border: 0;
+        font-family: helvetica neue,helvetica,arial,sans-serif;
+        background-color: transparent;
+    }
+
+    .at-icon-wrapper {
+        display: inline-block;
+        overflow: hidden;
+        height: 32px !important;
+    }
+
+    .at-share-btn:focus, .at-share-btn:hover {
+        -webkit-transform: translateY(-4px);
+        transform: translateY(-4px);
+        color: #fff;
+        text-decoration: none;
+    }
+
+    .at4-visually-hidden {
+        display: none;
+    }
+</style>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/ru_RU/sdk.js#xfbml=1&version=v2.9&appId=170929060114825";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+    
+@*<a role="button" target="_blank" tabindex="1" class="at-icon-wrapper at-share-btn at-svc-facebook" style="background-color: rgb(59, 89, 152); border-radius: 12px;" href="https://www.facebook.com/sharer/sharer.php?u={url};src=sdkpreparse">
+        <span class="at4-visually-hidden">Share to Facebook</span>
+        <span class="at-icon-wrapper" style="line-height: 32px; height: 32px; width: 32px;">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 50 50" style="fill: rgb(255, 255, 255); width: 32px; height: 32px;" class="at-icon at-icon-facebook"><g><path style=" stroke:none;fill-rule:nonzero;fill-opacity:1;" d="M 25 6.25 C 14.703125 6.25 6.25 14.273438 6.25 24.21875 C 6.25 29.515625 8.703125 34.21875 12.5 37.5 L 12.5 44.726563 L 14.746094 43.601563 L 19.433594 41.257813 C 21.199219 41.792969 23.042969 42.1875 25 42.1875 C 35.296875 42.1875 43.75 34.164063 43.75 24.21875 C 43.75 14.273438 35.296875 6.25 25 6.25 Z M 25 9.375 C 33.6875 9.375 40.625 16.042969 40.625 24.21875 C 40.625 32.394531 33.6875 39.0625 25 39.0625 C 23.132813 39.0625 21.351563 38.710938 19.679688 38.132813 L 19.042969 37.9375 L 18.457031 38.230469 L 15.625 39.648438 L 15.625 36.132813 L 15.039063 35.644531 C 11.570313 32.910156 9.375 28.816406 9.375 24.21875 C 9.375 16.042969 16.3125 9.375 25 9.375 Z M 23.242188 19.289063 L 13.820313 29.25 L 22.265625 24.558594 L 26.757813 29.394531 L 36.085938 19.289063 L 27.832031 23.925781 Z"></path></g></svg>
+        </span>
+    </a>*@
+<a role="button" class="at-icon-wrapper at-share-btn at-svc-messenger" style="border-radius: 12px;">
+    <span class="at4-visually-hidden">Share Button</span>
+    <span class="at-icon-wrapper" style="line-height: 32px; height: 32px; width: 32px;">
+        <i class="fa fa-share-alt" style="vertical-align: top; font-size: 32px; color: rgb(119, 119, 119);"  aria-hidden="true"></i>
+    </span>
+</a>
+
+@*<a role="button" class="at-icon-wrapper at-share-btn at-svc-messenger" style="border-radius: 12px;" id="sendMailModalActive" data-toggle="modal" data-target="#createModal">
+    <span class="at4-visually-hidden">Mail</span>
+    <span class="at-icon-wrapper" style="line-height: 32px; height: 32px; width: 32px;">
+        <i class="fa fa-envelope" style="vertical-align: top; font-size: 32px; color: #f3cb31;" aria-hidden="true"></i>
+    </span>
+</a>*@
+@*"https://messenger.com/share/?link={url}&app_id=170929060114825"*@
+@if (!HttpContext.Current.Request.Browser.IsMobileDevice && HttpContext.Current.Request.Browser.Browser.Contains("Safari"))
+{
+    <a role="button" target="_blank" tabindex="1" class="at-icon-wrapper at-share-btn at-svc-messenger" style="background-color: rgb(0, 132, 255); border-radius: 12px;" href="https://messenger.com/">
+        <span class="at4-visually-hidden">Share to Facebook Messenger</span>
+        <span class="at-icon-wrapper" style="line-height: 32px; height: 32px; width: 32px;">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32" style="fill: rgb(255, 255, 255); width: 32px; height: 32px;" class="at-icon at-icon-messenger"><g><path d="M16 6C9.925 6 5 10.56 5 16.185c0 3.205 1.6 6.065 4.1 7.932V28l3.745-2.056c1 .277 2.058.426 3.155.426 6.075 0 11-4.56 11-10.185C27 10.56 22.075 6 16 6zm1.093 13.716l-2.8-2.988-5.467 2.988 6.013-6.383 2.868 2.988 5.398-2.987-6.013 6.383z" fill-rule="evenodd"></path></g></svg>
+        </span>
+    </a>
+}
+else
+{
+    <a role="button" target="_blank" tabindex="1" class="at-icon-wrapper at-share-btn at-svc-messenger" style="background-color: rgb(0, 132, 255); border-radius: 12px;" href="fb-messenger://share/?link={url}&app_id=170929060114825">
+        <span class="at4-visually-hidden">Share to Facebook Messenger</span>
+        <span class="at-icon-wrapper" style="line-height: 32px; height: 32px; width: 32px;">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32" style="fill: rgb(255, 255, 255); width: 32px; height: 32px;" class="at-icon at-icon-messenger"><g><path d="M16 6C9.925 6 5 10.56 5 16.185c0 3.205 1.6 6.065 4.1 7.932V28l3.745-2.056c1 .277 2.058.426 3.155.426 6.075 0 11-4.56 11-10.185C27 10.56 22.075 6 16 6zm1.093 13.716l-2.8-2.988-5.467 2.988 6.013-6.383 2.868 2.988 5.398-2.987-6.013 6.383z" fill-rule="evenodd"></path></g></svg>
+        </span>
+    </a>
+}
+@*<a role="button" target="_blank"tabindex="1" class="at-icon-wrapper at-share-btn at-svc-email" style="background-color: rgb(132, 132, 132); border-radius: 12px;">
+        <span class="at4-visually-hidden">Share to Email</span>
+        <span class="at-icon-wrapper" style="line-height: 32px; height: 32px; width: 32px;">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32" style="fill: rgb(255, 255, 255); width: 32px; height: 32px;" class="at-icon at-icon-email"><g><g fill-rule="evenodd"></g><path d="M27 22.757c0 1.24-.988 2.243-2.19 2.243H7.19C5.98 25 5 23.994 5 22.757V13.67c0-.556.39-.773.855-.496l8.78 5.238c.782.467 1.95.467 2.73 0l8.78-5.238c.472-.28.855-.063.855.495v9.087z"></path><path d="M27 9.243C27 8.006 26.02 7 24.81 7H7.19C5.988 7 5 8.004 5 9.243v.465c0 .554.385 1.232.857 1.514l9.61 5.733c.267.16.8.16 1.067 0l9.61-5.733c.473-.283.856-.96.856-1.514v-.465z"></path></g></svg>
+        </span>
+    </a>
+    <a role="button" target="_blank" tabindex="1" class="at-icon-wrapper at-share-btn at-svc-evernote" style="background-color: rgb(127, 206, 44); border-radius: 12px;">
+        <span class="at4-visually-hidden">Share to Evernote</span>
+        <span class="at-icon-wrapper" style="line-height: 32px; height: 32px; width: 32px;">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32" style="fill: rgb(255, 255, 255); width: 32px; height: 32px;" class="at-icon at-icon-evernote"><g><g fill-rule="evenodd" clip-rule="evenodd"></g><path d="M25.545 17.605c.082 1.28-.06 2.544-.23 3.81-.17 1.293-.384 2.58-.728 3.84-.22.806-.508 1.586-.908 2.322-.49.9-1.235 1.412-2.26 1.453-.962.04-1.93.055-2.894.027-.48-.013-.965-.11-1.436-.224-.9-.218-1.406-.83-1.555-1.73a6.787 6.787 0 0 1 .03-2.465c.19-.93.748-1.48 1.687-1.588.617-.068 1.246-.058 1.87-.082.155-.005.208.074.153.217-.148.4-.178.808-.074 1.226.04.156-.017.232-.196.23a5.868 5.868 0 0 0-.848.04c-.48.065-.725.356-.725.84 0 .155.02.314.05.47.078.383.34.588.713.632.848.096 1.697.104 2.545-.038.51-.086.816-.408.875-.912.115-.975.117-1.954-.172-2.904-.25-.825-.76-1.182-1.612-1.283-.85-.1-1.695-.253-2.537-.408-.8-.146-1.277-.67-1.45-1.443-.098-.432-.106-.883-.162-1.327-.01-.08-.056-.157-.084-.234-.03.082-.08.16-.088.246-.05.513-.04 1.037-.14 1.54-.12.597-.305 1.183-.506 1.76-.14.404-.465.632-.91.596a28.518 28.518 0 0 1-5.38-1.022c-.16-.05-.32-.11-.483-.156-.7-.197-1.123-.682-1.314-1.35-.275-.96-.54-1.93-.747-2.91-.227-1.07-.396-2.154-.56-3.24-.087-.57-.144-1.15-.063-1.732.116-.84.69-1.437 1.54-1.483.894-.05 1.79-.032 2.687-.047.096 0 .192.002.282-.02a.93.93 0 0 0 .763-.948c-.007-.766-.014-1.53-.037-2.293-.036-1.19.604-1.798 1.628-1.98a7.99 7.99 0 0 1 3.708.196c.705.208 1.108.697 1.295 1.382.044.167.11.22.28.217.65-.008 1.303-.037 1.95.008.843.06 1.683.162 2.517.28.518.072 1.03.188 1.535.317.88.225 1.354.84 1.482 1.704.123.84.21 1.687.27 2.534.1 1.403.17 2.808.234 4.212.03.57.007 1.146.007 1.72zm-3.424-.872c-.015-.503-.052-.957-.335-1.347-.43-.587-1.363-.642-1.865-.113-.275.294-.373.665-.426 1.05-.006.026.08.095.12.095.202-.006.403-.042.605-.04.58.005 1.15.085 1.7.297.05.02.103.03.2.058z"></path><path d="M10.02 5.775a2.89 2.89 0 0 0-.21 1.202c.015.738.024 1.478.037 2.216.004.27-.057.34-.327.34-.765.01-1.527.02-2.292.02-.44 0-.863.084-1.174.21l3.92-4.027c.016.01.03.025.045.04z"></path></g></svg>
+        </span>
+    </a>*@
+<a role="button" target="_blank" tabindex="1" class="at-icon-wrapper at-share-btn at-svc-lineme" style="background-color: rgb(0, 195, 0); border-radius: 12px;" href="http://line.me/R/msg/text/?{url}">
+    <span class="at4-visually-hidden">Share to LINE</span>
+    <span class="at-icon-wrapper" style="line-height: 32px; height: 32px; width: 32px;">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32" style="fill: rgb(255, 255, 255); width: 32px; height: 32px;" class="at-icon at-icon-lineme"><g><path d="M27 14.926C27 10.006 22.065 6 16 6S5 10.005 5 14.926c0 4.413 3.913 8.11 9.2 8.808.358.077.845.236.968.542.112.278.073.713.036.995l-.157.942c-.048.28-.22 1.088.953.593 1.174-.494 6.334-3.73 8.642-6.386C26.236 18.67 27 16.896 27 14.925zm-4.247-.41a.577.577 0 0 1 0 1.153h-1.61v1.03h1.61a.578.578 0 0 1 0 1.155h-2.186a.578.578 0 0 1-.577-.577v-4.37c0-.32.26-.578.577-.578h2.186a.578.578 0 0 1 0 1.153h-1.61v1.033h1.61zm-3.537 2.762a.575.575 0 0 1-.578.577.58.58 0 0 1-.46-.23l-2.24-3.05v2.703a.577.577 0 0 1-1.154 0v-4.37a.577.577 0 0 1 1.038-.347l2.24 3.05v-2.703a.578.578 0 0 1 1.154 0v4.37zm-5.26 0a.577.577 0 0 1-1.154 0v-4.37a.577.577 0 0 1 1.153 0v4.37zm-2.262.577H9.508a.577.577 0 0 1-.576-.577v-4.37a.577.577 0 0 1 1.153 0V16.7h1.61a.577.577 0 0 1 0 1.155z" fill-rule="evenodd"></path></g></svg>
+    </span>
+</a>
+@*<a role="button" target="_blank" tabindex="1" class="at-icon-wrapper at-share-btn at-svc-messenger" style="background-color: rgb(0, 132, 255); border-radius: 12px;">
+        <span class="at4-visually-hidden">Share to Facebook Messenger</span>
+        <span class="at-icon-wrapper" style="line-height: 32px; height: 32px; width: 32px;">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32" style="fill: rgb(255, 255, 255); width: 32px; height: 32px;" class="at-icon at-icon-messenger"><g><path d="M16 6C9.925 6 5 10.56 5 16.185c0 3.205 1.6 6.065 4.1 7.932V28l3.745-2.056c1 .277 2.058.426 3.155.426 6.075 0 11-4.56 11-10.185C27 10.56 22.075 6 16 6zm1.093 13.716l-2.8-2.988-5.467 2.988 6.013-6.383 2.868 2.988 5.398-2.987-6.013 6.383z" fill-rule="evenodd"></path></g></svg>
+        </span>
+    </a>*@
+<a role="button" target="_blank" tabindex="1" class="at-icon-wrapper at-share-btn at-svc-skype" style="background-color: rgb(0, 175, 240); border-radius: 12px;" href="https://web.skype.com/share?url={url}">
+    <span class="at4-visually-hidden">Share to Skype</span>
+    <span class="at-icon-wrapper" style="line-height: 32px; height: 32px; width: 32px;">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32" style="fill: rgb(255, 255, 255); width: 32px; height: 32px;" class="at-icon at-icon-skype"><g><path d="M22.453 19c0-.52-.1-.997-.305-1.43a3.438 3.438 0 0 0-.757-1.07 4.837 4.837 0 0 0-1.14-.766 8.692 8.692 0 0 0-1.29-.53 17.54 17.54 0 0 0-1.366-.36l-1.625-.375a49.96 49.96 0 0 1-.69-.165 5.017 5.017 0 0 1-.546-.18c-.218-.083-.375-.167-.468-.25a1.31 1.31 0 0 1-.258-.328.92.92 0 0 1-.117-.47c0-.8.75-1.202 2.25-1.202a3.6 3.6 0 0 1 1.204.188c.354.125.635.273.843.445.21.172.407.346.594.523.19.178.397.33.626.454.23.125.48.188.75.188.49 0 .883-.167 1.18-.5.297-.333.445-.734.445-1.203 0-.574-.29-1.092-.874-1.556-.583-.463-1.323-.815-2.218-1.055-.896-.24-1.844-.36-2.844-.36a8.73 8.73 0 0 0-2.063.242 7.19 7.19 0 0 0-1.866.735 3.782 3.782 0 0 0-1.39 1.36c-.35.577-.524 1.246-.524 2.007 0 .635.1 1.19.297 1.664.198.474.49.867.875 1.18.385.312.802.565 1.25.757a9.66 9.66 0 0 0 1.61.508l2.28.563c.938.23 1.52.416 1.75.562.334.208.5.52.5.938 0 .406-.208.742-.625 1.007-.416.266-.963.4-1.64.4-.53 0-1.008-.084-1.43-.25-.422-.168-.76-.368-1.015-.603a13 13 0 0 1-.71-.703 3.737 3.737 0 0 0-.72-.6 1.536 1.536 0 0 0-.844-.25c-.52 0-.914.155-1.18.467-.265.313-.398.703-.398 1.172 0 .96.635 1.78 1.906 2.46 1.27.683 2.787 1.025 4.547 1.025.76 0 1.49-.096 2.188-.288a7.115 7.115 0 0 0 1.915-.836 4.048 4.048 0 0 0 1.383-1.46c.343-.61.515-1.296.515-2.056zM28 22c0 1.656-.586 3.07-1.758 4.242C25.07 27.414 23.656 28 22 28a5.845 5.845 0 0 1-3.656-1.25c-.802.167-1.584.25-2.344.25-1.49 0-2.914-.29-4.273-.867-1.36-.578-2.532-1.36-3.516-2.344-.983-.985-1.765-2.157-2.343-3.517A10.81 10.81 0 0 1 5 16c0-.76.083-1.542.25-2.344A5.845 5.845 0 0 1 4 10c0-1.656.586-3.07 1.758-4.242C6.93 4.586 8.344 4 10 4c1.354 0 2.573.417 3.656 1.25C14.458 5.083 15.24 5 16 5c1.49 0 2.914.29 4.273.867 1.36.578 2.532 1.36 3.516 2.344.983.985 1.765 2.157 2.343 3.517A10.81 10.81 0 0 1 27 16c0 .76-.083 1.542-.25 2.344A5.845 5.845 0 0 1 28 22z" fill-rule="evenodd"></path></g></svg>
+    </span>
+</a>
+<a role="button" target="_blank" tabindex="1" class="at-icon-wrapper at-share-btn at-svc-telegram" style="background-color: rgb(0, 136, 204); border-radius: 12px;" href="https://telegram.me/share/url?url={url}">
+    <span class="at4-visually-hidden">Share to Telegram</span>
+    <span class="at-icon-wrapper" style="line-height: 32px; height: 32px; width: 32px;">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32" style="fill: rgb(255, 255, 255); width: 32px; height: 32px;" class="at-icon at-icon-telegram"><g><g fill-rule="evenodd"></g><path d="M15.02 20.814l9.31-12.48L9.554 17.24l1.92 6.42c.225.63.114.88.767.88l.344-5.22 2.436 1.494z" opacity=".6"></path><path d="M12.24 24.54c.504 0 .727-.234 1.008-.51l2.687-2.655-3.35-2.054-.344 5.22z" opacity=".3"></path><path d="M12.583 19.322l8.12 6.095c.926.52 1.595.25 1.826-.874l3.304-15.825c.338-1.378-.517-2.003-1.403-1.594L5.024 14.727c-1.325.54-1.317 1.29-.24 1.625l4.98 1.58 11.53-7.39c.543-.336 1.043-.156.633.214"></path></g></svg>
+    </span>
+</a>
+<a role="button" target="_blank" tabindex="1" class="at-icon-wrapper at-share-btn at-svc-viber" style="background-color: rgb(123, 81, 157); border-radius: 12px;" href="viber://forward?text={url}">
+    <span class="at4-visually-hidden">Share to Viber</span>
+    <span class="at-icon-wrapper" style="line-height: 32px; height: 32px; width: 32px;">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32" style="fill: rgb(255, 255, 255); width: 32px; height: 32px;" class="at-icon at-icon-viber"><g><path d="M21.176 27c-.208-.062-.618-.13-.987-.303-6.476-3.02-11.18-7.972-13.853-15.082-.897-2.383.04-4.396 2.298-5.22.405-.147.802-.157 1.2.002.964.383 3.404 4.022 3.458 5.11.042.835-.48 1.287-1 1.67-.983.722-.988 1.638-.568 2.66.948 2.308 2.567 3.895 4.663 4.925.76.374 1.488.337 2.007-.515.925-1.518 2.06-1.445 3.3-.502.62.473 1.253.936 1.844 1.45.8.702 1.816 1.285 1.336 2.754-.5 1.527-2.226 3.066-3.7 3.05zm-4.76-20.986c4.546.166 8.46 4.677 8.406 9.543-.005.478.153 1.185-.504 1.172-.628-.015-.464-.733-.52-1.21-.603-5.167-2.786-7.606-7.52-8.394-.392-.066-.99.026-.96-.535.044-.833.754-.523 1.097-.576zm6.072 8.672c-.045.356.147.968-.385 1.056-.72.118-.58-.595-.65-1.053-.48-3.144-1.5-4.297-4.423-5.005-.43-.105-1.1-.032-.99-.75.108-.685.71-.452 1.164-.393 2.92.38 5.307 3.126 5.284 6.144zm-2.222-.573c.013.398-.026.818-.46.874-.314.04-.52-.245-.553-.597-.12-1.296-.75-2.062-1.95-2.27-.36-.063-.712-.19-.544-.715.11-.352.408-.387.712-.396 1.297-.036 2.815 1.647 2.794 3.103z" fill-rule="evenodd"></path></g></svg>
+    </span>
+</a>
+<a role="button" target="_blank" tabindex="1" class="at-icon-wrapper at-share-btn at-svc-whatsapp" style="background-color: rgb(77, 194, 71); border-radius: 12px;" href="whatsapp://send?text={url}">
+    <span class="at4-visually-hidden">Share to WhatsApp</span>
+    <span class="at-icon-wrapper" style="line-height: 32px; height: 32px; width: 32px;">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32" style="fill: rgb(255, 255, 255); width: 32px; height: 32px;" class="at-icon at-icon-whatsapp"><g><path d="M19.11 17.205c-.372 0-1.088 1.39-1.518 1.39a.63.63 0 0 1-.315-.1c-.802-.402-1.504-.817-2.163-1.447-.545-.516-1.146-1.29-1.46-1.963a.426.426 0 0 1-.073-.215c0-.33.99-.945.99-1.49 0-.143-.73-2.09-.832-2.335-.143-.372-.214-.487-.6-.487-.187 0-.36-.043-.53-.043-.302 0-.53.115-.746.315-.688.645-1.032 1.318-1.06 2.264v.114c-.015.99.472 1.977 1.017 2.78 1.23 1.82 2.506 3.41 4.554 4.34.616.287 2.035.888 2.722.888.817 0 2.15-.515 2.478-1.318.13-.33.244-.73.244-1.088 0-.058 0-.144-.03-.215-.1-.172-2.434-1.39-2.678-1.39zm-2.908 7.593c-1.747 0-3.48-.53-4.942-1.49L7.793 24.41l1.132-3.337a8.955 8.955 0 0 1-1.72-5.272c0-4.955 4.04-8.995 8.997-8.995S25.2 10.845 25.2 15.8c0 4.958-4.04 8.998-8.998 8.998zm0-19.798c-5.96 0-10.8 4.842-10.8 10.8 0 1.964.53 3.898 1.546 5.574L5 27.176l5.974-1.92a10.807 10.807 0 0 0 16.03-9.455c0-5.958-4.842-10.8-10.802-10.8z" fill-rule="evenodd"></path></g></svg>
+    </span>
+</a>
+@*<a role="button" target="_blank" tabindex="1" class="at-icon-wrapper at-share-btn at-svc-wechat" style="background-color: rgb(45, 193, 0); border-radius: 12px;" href="weixin://dl/posts/?url={url}">*@
+<a role="button" target="_blank" tabindex="1" class="at-icon-wrapper at-share-btn at-svc-wechat" style="background-color: rgb(45, 193, 0); border-radius: 12px;" href="http://api.addthis.com/oexchange/0.8/forward/wechat/offer?url={url}">
+    <span class="at4-visually-hidden">Share to WeChat</span>
+    <span class="at-icon-wrapper" style="line-height: 32px; height: 32px; width: 32px;">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32" style="fill: rgb(255, 255, 255); width: 32px; height: 32px;" class="at-icon at-icon-wechat"><g><path d="M20.285 12.248c-2.042.107-3.818.727-5.26 2.128-1.457 1.415-2.122 3.15-1.94 5.3-.798-.1-1.525-.208-2.256-.27-.254-.02-.554.01-.767.13-.71.4-1.39.854-2.198 1.36.148-.67.244-1.26.414-1.823.123-.416.066-.647-.316-.917-2.452-1.734-3.485-4.328-2.712-7 .716-2.47 2.473-3.97 4.86-4.75 3.26-1.066 6.92.022 8.902 2.613a6.113 6.113 0 0 1 1.27 3.228zM24.873 25c-.647-.288-1.24-.72-1.87-.787-.63-.066-1.292.298-1.95.365-2.005.205-3.8-.354-5.282-1.726-2.816-2.61-2.414-6.61.845-8.75 2.897-1.9 7.145-1.266 9.187 1.37 1.782 2.302 1.572 5.357-.603 7.29-.63.56-.857 1.02-.453 1.757.074.136.083.308.126.48zM10.886 11.416c.02-.49-.404-.93-.906-.944a.915.915 0 0 0-.952.886.904.904 0 0 0 .895.94.93.93 0 0 0 .963-.882zm4.904-.944c-.504.01-.93.44-.92.93a.92.92 0 0 0 .944.9.903.903 0 0 0 .91-.928.91.91 0 0 0-.934-.902zm1.722 7.39c.412 0 .75-.323.766-.73a.767.767 0 0 0-.76-.794.775.775 0 0 0-.77.79.768.768 0 0 0 .764.734zm4.745-1.523a.762.762 0 0 0-.755.728.75.75 0 0 0 .745.79c.413 0 .74-.313.755-.725a.757.757 0 0 0-.745-.794z" fill-rule="evenodd"></path></g></svg>
+    </span>
+</a>
+@*<a role="button" target="_blank" tabindex="1" class="at-icon-wrapper at-share-btn" style="background-color: rgb(45, 193, 0); border-radius: 12px;" href="{url}">
+    <span class="fa fa-download"></span>
+    <span class="at-icon-wrapper" style="line-height: 32px; height: 32px; width: 32px;">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32" style="fill: rgb(255, 255, 255); width: 32px; height: 32px;" class="at-icon at-icon-wechat"><g><path d="M20.285 12.248c-2.042.107-3.818.727-5.26 2.128-1.457 1.415-2.122 3.15-1.94 5.3-.798-.1-1.525-.208-2.256-.27-.254-.02-.554.01-.767.13-.71.4-1.39.854-2.198 1.36.148-.67.244-1.26.414-1.823.123-.416.066-.647-.316-.917-2.452-1.734-3.485-4.328-2.712-7 .716-2.47 2.473-3.97 4.86-4.75 3.26-1.066 6.92.022 8.902 2.613a6.113 6.113 0 0 1 1.27 3.228zM24.873 25c-.647-.288-1.24-.72-1.87-.787-.63-.066-1.292.298-1.95.365-2.005.205-3.8-.354-5.282-1.726-2.816-2.61-2.414-6.61.845-8.75 2.897-1.9 7.145-1.266 9.187 1.37 1.782 2.302 1.572 5.357-.603 7.29-.63.56-.857 1.02-.453 1.757.074.136.083.308.126.48zM10.886 11.416c.02-.49-.404-.93-.906-.944a.915.915 0 0 0-.952.886.904.904 0 0 0 .895.94.93.93 0 0 0 .963-.882zm4.904-.944c-.504.01-.93.44-.92.93a.92.92 0 0 0 .944.9.903.903 0 0 0 .91-.928.91.91 0 0 0-.934-.902zm1.722 7.39c.412 0 .75-.323.766-.73a.767.767 0 0 0-.76-.794.775.775 0 0 0-.77.79.768.768 0 0 0 .764.734zm4.745-1.523a.762.762 0 0 0-.755.728.75.75 0 0 0 .745.79c.413 0 .74-.313.755-.725a.757.757 0 0 0-.745-.794z" fill-rule="evenodd"></path></g></svg>
+    </span>
+</a>*@

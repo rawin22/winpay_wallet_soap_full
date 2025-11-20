@@ -1,0 +1,114 @@
+﻿@model Tuple<List<TSG.Models.ServiceModels.LimitPayment.DaPaymentLimitSourceTypeSo>, List<TSG.Models.ServiceModels.LimitPayment.DaPayLimitsSo>>
+@using Tsg.UI.Main.App_LocalResources
+@using TSG.Models.Enums
+@using WinstantPay.Common.Extension
+@{
+    ViewBag.Title = GlobalRes.IslandPage_Title;
+    Layout = "../Shared/_LayoutMain.cshtml";
+    var r = EnumExtensions.GetDictionary<DelegatedAuthorirySourceLimitationTypeEnum>();
+
+    var x = EnumHelper<DelegatedAuthorirySourceLimitationTypeEnum>.GetDisplayValues(DelegatedAuthorirySourceLimitationTypeEnum.Qr);
+}
+
+<div class = "row" >
+    <section class = "panel" >
+
+        <header class = "panel-heading" data-panel-toggle = "" >
+            <div class = "panel-actions" >
+                <a href = "#" class = "panel-action panel-action-toggle" data-panel-toggle = "" ></a>
+            </div>
+            <h2 class = "panel-title" >@GlobalRes.IslandPage_PageTitle</h2>
+            @*<p class ="panel-subtitle"></p>*@ 
+        </header>
+
+        <div class = "panel-body" style = "display: block;" >
+            <div class = "row" >
+                <div class = "form-group" style="text-align: center" >
+                    <span style="padding-left: 20px">Register new device</span>
+                    <br/>
+                    @foreach (var source in Model.Item1.OrderBy(ob => ob.DaPaymentLimitSourceType_EnumNumber))
+                    {
+                        <a class = "btn btn-default" href = "@Url.Action("Create", "DaPaymentLimitsList", new {sourceType = @source.DaPaymentLimitSourceType_ID})" >
+                            <span>
+
+                                @(EnumHelper<DelegatedAuthorirySourceLimitationTypeEnum>.GetDisplayValue((DelegatedAuthorirySourceLimitationTypeEnum)source.DaPaymentLimitSourceType_EnumNumber))
+                            </span>
+                            <br/>
+                            <img src = @(String.Format("/Content/DelegatedAuthoriry/{0}.png", source.DaPaymentLimitSourceType_SysName)) width = "90px" height = "90px"/>
+                        </a>
+                    }
+                    <a class = "btn btn-default" data-toggle = "modal" data-target = "#nfcModal" >
+                        <span>
+                            @(EnumHelper<DelegatedAuthorirySourceLimitationTypeEnum>.GetDisplayValue(DelegatedAuthorirySourceLimitationTypeEnum.Nfc))
+                        </span>
+                        <br/>
+                        <img src = "/Content/DelegatedAuthoriry/NFC.png" width = "90px" height = "90px"/>
+                    </a>
+                </div>
+            </div>
+            
+            <br/>
+            <div class = "row" >
+                
+                <div class="col-sm-12">
+                    <table class = "table table-bordered table-striped table-condensed mb-none" id = "datatable-default" >
+                        <tr>
+                            <th> @GlobalRes.DelegatedAuthority_Tokens </th>
+                            <th> @GlobalRes.OrdersList_CreationDate </th>
+                            <th> @GlobalRes.GetPipItIndexPage_ExpiredDate </th>
+                            <th> @GlobalRes.GetBanksPage_Action </th>
+                        </tr>
+
+                        @foreach (var item in Model.Item2)
+                    {
+                            <tr>
+                                <td>
+                                    @if ((DelegatedAuthorirySourceLimitationTypeEnum)item.DaPaymentLimitSourceType.DaPaymentLimitSourceType_EnumNumber == DelegatedAuthorirySourceLimitationTypeEnum.Qr)
+                                    {
+                                        <span><i class="fa fa-qrcode"></i></span>
+                                    }
+                                    @if ((DelegatedAuthorirySourceLimitationTypeEnum)item.DaPaymentLimitSourceType.DaPaymentLimitSourceType_EnumNumber == DelegatedAuthorirySourceLimitationTypeEnum.BarCode)
+                                    {
+                                        <span><i class="fa fa-barcode"></i></span>
+                                    }
+                                    @if ((DelegatedAuthorirySourceLimitationTypeEnum)item.DaPaymentLimitSourceType.DaPaymentLimitSourceType_EnumNumber == DelegatedAuthorirySourceLimitationTypeEnum.Nfc)
+                                    {
+                                        <span><i class="fa fa-rss-square"></i></span>
+                                    }
+                                    @if ((DelegatedAuthorirySourceLimitationTypeEnum)item.DaPaymentLimitSourceType.DaPaymentLimitSourceType_EnumNumber == DelegatedAuthorirySourceLimitationTypeEnum.SecretCode)
+                                    {
+                                        <span><i class="fa fa-wallet"></i></span>
+                                    }
+                                        @item.DaPayLimits_MediaName
+                                    @*@(EnumHelper<DelegatedAuthorirySourceLimitationTypeEnum>.GetDisplayValue((DelegatedAuthorirySourceLimitationTypeEnum)item.DaPaymentLimitSourceType.DaPaymentLimitSourceType_EnumNumber))*@
+                                </td>
+                                <td> @Html.DisplayFor(modelItem => item.DaPayLimits_CreationDate) </td>
+                                <td> <span>@(item.DaPayLimits_DateOfExpire.HasValue ? item.DaPayLimits_DateOfExpire.Value.ToString("dd/MM/yyyy HH:mm") : GlobalRes.DelegatedAuthority_None)</span> </td>
+                                <td>
+                                    <a href="@Url.Action("Edit", "DaPaymentLimitsList", new {id = item.DaPayLimits_ID})">@GlobalRes.CommonWords_Edit</a>
+                                    @*@Html.ActionLink("Delete", "Delete", new { id = item.DaPayLimits_ID })*@
+                                </td>
+                            </tr>
+                        }
+
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class = "modal fade" id = "nfcModal" tabindex = "-1" role = "dialog" aria-labelledby = "nfcModalLabel" aria-hidden = "true" >
+            <div class = "modal-dialog" role = "document" >
+                <div class = "modal-content" >
+                    <div class = "modal-header" >
+                        <img src = "/Content/assets/images/winstantpay-logo-notag.png" height = "35" alt = ""/>
+                        <button type = "button" class = "close" data-dismiss = "modal" aria-label = "Close" style = "margin-top: 5px" >
+                            <span aria-hidden = "true" >&times;</span>
+                        </button>
+                    </div>
+                    <div class = "modal-body" >
+                        @GlobalRes.CommonObjects_FuncAvaliableOnMobApp
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

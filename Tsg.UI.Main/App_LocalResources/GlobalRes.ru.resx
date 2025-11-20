@@ -1,0 +1,2120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AddBankAndWireInstPage.Add" xml:space="preserve">
+    <value>Добавить</value>
+  </data>
+  <data name="AddBankAndWireInstPage.AddNewCurrencyButton" xml:space="preserve">
+    <value>Добавить</value>
+  </data>
+  <data name="AddBankAndWireInstPage.BackToList" xml:space="preserve">
+    <value>Назад к списку</value>
+  </data>
+  <data name="AddBankAndWireInstPage.BankCountry" xml:space="preserve">
+    <value>Страна банка</value>
+  </data>
+  <data name="AddBankAndWireInstPage.BankName" xml:space="preserve">
+    <value>Название банка</value>
+  </data>
+  <data name="AddBankAndWireInstPage.SelectBank" xml:space="preserve">
+    <value>Выберите банк</value>
+  </data>
+  <data name="AddBankAndWireInstPage.ChooseCurrency" xml:space="preserve">
+    <value>Выберите валюту</value>
+  </data>
+  <data name="AddBankAndWireInstPage.SubTitle" xml:space="preserve">
+    <value>Добавить банк</value>
+  </data>
+  <data name="AddBankAndWireInstPage.Title" xml:space="preserve">
+    <value>Add Pay-In Instructions</value>
+  </data>
+  <data name="AddBankAndWireInstPage.WireInstructions" xml:space="preserve">
+    <value>Платежные инструкции</value>
+  </data>
+  <data name="AddBankPage.Add" xml:space="preserve">
+    <value>Добавить</value>
+  </data>
+  <data name="AddBankPage.AddNewCurrencyButton" xml:space="preserve">
+    <value>Добавить</value>
+  </data>
+  <data name="AddBankPage.BackToList" xml:space="preserve">
+    <value>Назад к списку</value>
+  </data>
+  <data name="AddBankPage.BankCountry" xml:space="preserve">
+    <value>Страна банка</value>
+  </data>
+  <data name="AddBankPage.BankName" xml:space="preserve">
+    <value>Название банка</value>
+  </data>
+  <data name="AddBankPage.ChooseCurrency" xml:space="preserve">
+    <value>Выберите валюту</value>
+  </data>
+  <data name="AddBankPage.PageTitle" xml:space="preserve">
+    <value>Банк</value>
+  </data>
+  <data name="AddBankPage.SubTitle" xml:space="preserve">
+    <value>Добавить банк</value>
+  </data>
+  <data name="AddBankPage.Title" xml:space="preserve">
+    <value>Добавить Банк</value>
+  </data>
+  <data name="AddCurrencyPage.Add" xml:space="preserve">
+    <value>Добавить</value>
+  </data>
+  <data name="AddCurrencyPage.Back" xml:space="preserve">
+    <value>Назад</value>
+  </data>
+  <data name="AddCurrencyPage.CurrencyCode" xml:space="preserve">
+    <value>Код валюты</value>
+  </data>
+  <data name="AddCurrencyPage.CurrencyName" xml:space="preserve">
+    <value>Название валюты</value>
+  </data>
+  <data name="AddCurrencyPage.CurrencySymbol" xml:space="preserve">
+    <value>Символ валюты</value>
+  </data>
+  <data name="AddCurrencyPage.PageSubTitle" xml:space="preserve">
+    <value>Добавить валюту</value>
+  </data>
+  <data name="AddCurrencyPage.PageTitle" xml:space="preserve">
+    <value>Валюта</value>
+  </data>
+  <data name="AddCurrencyPage.Title" xml:space="preserve">
+    <value>Добавить валюту</value>
+  </data>
+  <data name="EditBankPage.AddNew" xml:space="preserve">
+    <value>Добавить</value>
+  </data>
+  <data name="EditBankPage.Back" xml:space="preserve">
+    <value>Назад</value>
+  </data>
+  <data name="EditBankPage.BackToList" xml:space="preserve">
+    <value>Назад к списку</value>
+  </data>
+  <data name="EditBankPage.BankCountry" xml:space="preserve">
+    <value>Страна банка</value>
+  </data>
+  <data name="EditBankPage.BankId" xml:space="preserve">
+    <value>Id Банка</value>
+  </data>
+  <data name="EditBankPage.BankName" xml:space="preserve">
+    <value>Название банка</value>
+  </data>
+  <data name="EditBankPage.ChooseCurrency" xml:space="preserve">
+    <value>Выберите валюту</value>
+  </data>
+  <data name="EditBankPage.PageSubTitle" xml:space="preserve">
+    <value>Редактирование информации о банке</value>
+  </data>
+  <data name="EditBankPage.PageTitle" xml:space="preserve">
+    <value>Банк</value>
+  </data>
+  <data name="EditBankPage.Save" xml:space="preserve">
+    <value>Сохранить</value>
+  </data>
+  <data name="EditBankPage.Title" xml:space="preserve">
+    <value>Редактировать Банк</value>
+  </data>
+  <data name="GetAllContractUsListPage.Action" xml:space="preserve">
+    <value>Действия</value>
+  </data>
+  <data name="GetAllContractUsListPage.Categories" xml:space="preserve">
+    <value>Название отдела (продажи, поддержка и т. д.)</value>
+  </data>
+  <data name="GetAllContractUsListPage.CategoryEmail" xml:space="preserve">
+    <value>Email отдела</value>
+  </data>
+  <data name="GetAllContractUsListPage.Id" xml:space="preserve">
+    <value>ИД</value>
+  </data>
+  <data name="GetAllContractUsListPage.ModalAddRec.Add" xml:space="preserve">
+    <value>Добавить</value>
+  </data>
+  <data name="GetAllContractUsListPage.ModalAddRec.Save" xml:space="preserve">
+    <value>Сохранить</value>
+  </data>
+  <data name="GetAllContractUsListPage.ModalAddRec.Category" xml:space="preserve">
+    <value>Название отдела (продажи, поддержка и т. д.)</value>
+  </data>
+  <data name="MerchantsPage.ModalAddRec.Name" xml:space="preserve">
+    <value>Имя</value>
+  </data>
+  <data name="MerchantsPage.ModalAddRec.Phone" xml:space="preserve">
+    <value>Телефон</value>
+  </data>
+  <data name="MerchantsPage.ModalAddRec.Address" xml:space="preserve">
+    <value>Адрес</value>
+  </data>
+  <data name="MerchantsPage.ModalAddRec.ButtonSize" xml:space="preserve">
+    <value>Размер кнопки</value>
+  </data>
+  <data name="MerchantsPage.ModalAddRec.CallBackAddress" xml:space="preserve">
+    <value>Обратный вызов</value>
+  </data>
+  <data name="MerchantsPage.ModalAddRec.SetCallBackAddress" xml:space="preserve">
+    <value>Пожалуйста, введите URL обратного вызова</value>
+  </data>
+  <data name="MerchantsPage.ModalAddRec.Copied" xml:space="preserve">
+    <value>Скопировано в буфер обмена</value>
+  </data>
+  <data name="GetAllContractUsListPage.ModalAddRec.CategoryMail" xml:space="preserve">
+    <value>Email отдела</value>
+  </data>
+  <data name="UserResetPasswordPage.ModalResetRec.Close" xml:space="preserve">
+    <value>Отмена</value>
+  </data>
+  <data name="GetAllContractUsListPage.ModalAddRec.Close" xml:space="preserve">
+    <value>Закрыть</value>
+  </data>
+  <data name="GetAllContractUsListPage.ModalDeleteRec.DeletionRec" xml:space="preserve">
+    <value>Вы подтверждаете удаление записи в «Свяжитесь с нами»?</value>
+  </data>
+  <data name="GetAllContractUsListPage.ModalDeleteRec.Ok" xml:space="preserve">
+    <value>ОК</value>
+  </data>
+  <data name="MerchantsIndexPage.ModalGenerate.Copy" xml:space="preserve">
+    <value>Копировать</value>
+  </data>
+  <data name="GetAllContractUsListPage.PageTitle" xml:space="preserve">
+    <value>Форма обратной связи</value>
+  </data>
+  <data name="MerchantsPage.PageTitle" xml:space="preserve">
+    <value>Форма продавца</value>
+  </data>
+  <data name="GetAllContractUsListPage.Title" xml:space="preserve">
+    <value>Форма обратной связи</value>
+  </data>
+  <data name="MerchantsIndexPage.Title" xml:space="preserve">
+    <value>Торговля</value>
+  </data>
+  <data name="MerchantsIndexPage.Id" xml:space="preserve">
+    <value>ИД</value>
+  </data>
+  <data name="MerchantsIndexPage.Name" xml:space="preserve">
+    <value>Имя продавца</value>
+  </data>
+  <data name="MerchantsIndexPage.AddMerchantModal.PlaceholderForMail" xml:space="preserve">
+    <value>Введите адрес обратного вызова для этого веб-сайта продавца</value>
+  </data>
+  <data name="MerchantsIndexPage.AddMerchantModal.PlaceholderForName" xml:space="preserve">
+    <value>Введите имя продавца</value>
+  </data>
+  <data name="MerchantsIndexPage.GenerateMerchantModal.Small" xml:space="preserve">
+    <value>Минимальная</value>
+  </data>
+  <data name="MerchantsIndexPage.GenerateMerchantModal.Medium" xml:space="preserve">
+    <value>Средняя</value>
+  </data>
+  <data name="MerchantsIndexPage.GenerateMerchantModal.Large" xml:space="preserve">
+    <value>Большая</value>
+  </data>
+  <data name="MerchantsIndexPage.Phone" xml:space="preserve">
+    <value>Имя продавца</value>
+  </data>
+  <data name="MerchantsIndexPage.Address" xml:space="preserve">
+    <value>Адрес продавца</value>
+  </data>
+  <data name="MerchantsIndexPage.CallBackAddress" xml:space="preserve">
+    <value>Ссылка возврата на сайт продавца</value>
+  </data>
+  <data name="MerchantsIndexPage.Action" xml:space="preserve">
+    <value>Действия</value>
+  </data>
+  <data name="MerchantsIndexPage.BtnGenerateCode" xml:space="preserve">
+    <value>Генерировать</value>
+  </data>
+  <data name="UsersResetPasswordPage.Id" xml:space="preserve">
+    <value>ИД</value>
+  </data>
+  <data name="UsersResetPasswordPage.UserName" xml:space="preserve">
+    <value>Имя пользователя</value>
+  </data>
+  <data name="UsersResetPasswordPage.FirstName" xml:space="preserve">
+    <value>Имя</value>
+  </data>
+  <data name="UsersResetPasswordPage.LastName" xml:space="preserve">
+    <value>Фамилия</value>
+  </data>
+  <data name="UsersResetPasswordPage.LastLogOnDate" xml:space="preserve">
+    <value>Дата последнего входа</value>
+  </data>
+  <data name="UsersResetPasswordPage.BranchOrCustomerName" xml:space="preserve">
+    <value>Название филиала или клиента</value>
+  </data>
+  <data name="UsersResetPasswordPage.UserPassword" xml:space="preserve">
+    <value>Пожалуйста, подтвердите сброс пароля для</value>
+  </data>
+  <data name="UsersResetPasswordPage.Reset" xml:space="preserve">
+    <value>Сброс</value>
+  </data>
+  <data name="GetBankDepositPage.Yes" xml:space="preserve">
+    <value>Да</value>
+  </data>
+  <data name="GetBankDepositPage.No" xml:space="preserve">
+    <value>Нет</value>
+  </data>
+  <data name="UsersResetPasswordPage.Action" xml:space="preserve">
+    <value>Действия</value>
+  </data>
+  <data name="UsersResetPasswordPage.BtnResPassword" xml:space="preserve">
+    <value>Сбросить пароль</value>
+  </data>
+  <data name="GetBankAndWireInstPage.AddNewBNWI" xml:space="preserve">
+    <value>Добавить платежное поручение</value>
+  </data>
+  <data name="GetBankAndWireInstPage.BankCountry" xml:space="preserve">
+    <value>Страна банка</value>
+  </data>
+  <data name="GetBankAndWireInstPage.BankName" xml:space="preserve">
+    <value>Название банка</value>
+  </data>
+  <data name="GetBankAndWireInstPage.Currency" xml:space="preserve">
+    <value>Валюта</value>
+  </data>
+  <data name="GetBankAndWireInstPage.PageTitle" xml:space="preserve">
+    <value>Банки и Платежные инструкции</value>
+  </data>
+  <data name="GetBankAndWireInstPage.Title" xml:space="preserve">
+    <value>Банки и Платежные инструкции</value>
+  </data>
+  <data name="GetBankAndWireInstPage.WireInstruction" xml:space="preserve">
+    <value>Платежные инструкции</value>
+  </data>
+  <data name="GetBanksPage.Action" xml:space="preserve">
+    <value>Действия</value>
+  </data>
+  <data name="GetBanksPage.AddNew" xml:space="preserve">
+    <value>Добавить банк</value>
+  </data>
+  <data name="GetBanksPage.BankCountry" xml:space="preserve">
+    <value>Страна банка</value>
+  </data>
+  <data name="GetBanksPage.BankName" xml:space="preserve">
+    <value>Название банка</value>
+  </data>
+  <data name="GetBanksPage.Id" xml:space="preserve">
+    <value>ИД</value>
+  </data>
+  <data name="GetBanksPage.PageSubTitle" xml:space="preserve">
+    <value>Список банков</value>
+  </data>
+  <data name="GetBanksPage.PageTitle" xml:space="preserve">
+    <value>Банки</value>
+  </data>
+  <data name="GetBanksPage.Title" xml:space="preserve">
+    <value>Банки</value>
+  </data>
+  <data name="GetPipItIndexPage.Id" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="GetPipItIndexPage.PageSubTitle" xml:space="preserve">
+    <value>Список платежей из системы PipIt</value>
+  </data>
+  <data name="GetPipItIndexPage.PageTitle" xml:space="preserve">
+    <value>PipIt платежи</value>
+  </data>
+  <data name="GetPipItIndexPage.Title" xml:space="preserve">
+    <value>PipIt платежи</value>
+  </data>
+  <data name="GetPipItIndexPage.BarCode" xml:space="preserve">
+    <value>Бар код</value>
+  </data>
+  <data name="GetPipItIndexPage.Status" xml:space="preserve">
+    <value>Статус</value>
+  </data>
+  <data name="GetPipItIndexPage.CreateDate" xml:space="preserve">
+    <value>Дата создания</value>
+  </data>
+  <data name="GetPipItIndexPage.ExpiredDate" xml:space="preserve">
+    <value>Дата истечения</value>
+  </data>
+  <data name="GetPipItIndexPage.CurrencyCode" xml:space="preserve">
+    <value>Код валюты</value>
+  </data>
+  <data name="GetPipItIndexPage.OrderValue" xml:space="preserve">
+    <value>Сумма заказа</value>
+  </data>
+  <data name="GetPipItIndexPage.TotalValue" xml:space="preserve">
+    <value>Общая сумма</value>
+  </data>
+  <data name="User.LoginPage.Copyright" xml:space="preserve">
+    <value>© {0} {1}-2018. Все права защищены.</value>
+  </data>
+  <data name="User.LoginPage.Password" xml:space="preserve">
+    <value>Пароль</value>
+  </data>
+  <data name="User.LoginPage.SignIn" xml:space="preserve">
+    <value>Вход</value>
+  </data>
+  <data name="User.LoginPage.Username" xml:space="preserve">
+    <value>Имя пользователя</value>
+  </data>
+  <data name="AddBankAndWireInstPage.ModalBank.Add" xml:space="preserve">
+    <value>Добавить</value>
+  </data>
+  <data name="AddBankAndWireInstPage.ModalBank.Close" xml:space="preserve">
+    <value>Закрыть</value>
+  </data>
+  <data name="AddBankAndWireInstPage.Edit" xml:space="preserve">
+    <value>Сохранить</value>
+  </data>
+  <data name="ResetUserPasswordPage.Reset" xml:space="preserve">
+    <value>Сброс</value>
+  </data>
+  <data name="AddBankAndWireInstPage.ModalCurrency.NameOfCurrency" xml:space="preserve">
+    <value>Название валюты</value>
+  </data>
+  <data name="AddBankAndWireInstPage.ModalCurrency.ShortNameOfCurrency" xml:space="preserve">
+    <value>Код валюты</value>
+  </data>
+  <data name="AddBankAndWireInstPage.ModalCurrency.SymbolOfCurrency" xml:space="preserve">
+    <value>Символ валюты</value>
+  </data>
+  <data name="AddBankAndWireInstPage.TitleEdit" xml:space="preserve">
+    <value>Редактировать Инструкцию по оплате</value>
+  </data>
+  <data name="AddBankAndWireInstPage.TitleEditPage" xml:space="preserve">
+    <value>Редактировать Инструкцию по оплате</value>
+  </data>
+  <data name="EditCurrencyPage.Back" xml:space="preserve">
+    <value>Назад</value>
+  </data>
+  <data name="EditCurrencyPage.CurrencyCode" xml:space="preserve">
+    <value>Код валюты</value>
+  </data>
+  <data name="EditCurrencyPage.CurrencyName" xml:space="preserve">
+    <value>Название валюты</value>
+  </data>
+  <data name="EditCurrencyPage.CurrencySymbol" xml:space="preserve">
+    <value>Символ валюты</value>
+  </data>
+  <data name="EditCurrencyPage.Edit" xml:space="preserve">
+    <value>Редактировать</value>
+  </data>
+  <data name="EditCurrencyPage.PageSubTitle" xml:space="preserve">
+    <value>Редактировать Валюты</value>
+  </data>
+  <data name="EditCurrencyPage.PageTitle" xml:space="preserve">
+    <value>Валюта</value>
+  </data>
+  <data name="EditCurrencyPage.Title" xml:space="preserve">
+    <value>Редактировать Валюты</value>
+  </data>
+  <data name="GetCurrencyPage.Action" xml:space="preserve">
+    <value>Действия</value>
+  </data>
+  <data name="GetCurrencyPage.AddNew" xml:space="preserve">
+    <value>Добавить валюту</value>
+  </data>
+  <data name="GetCurrencyPage.CurrencyCode" xml:space="preserve">
+    <value>Код валюты</value>
+  </data>
+  <data name="GetCurrencyPage.CurrencyName" xml:space="preserve">
+    <value>Название валюты</value>
+  </data>
+  <data name="GetCurrencyPage.CurrencySymbol" xml:space="preserve">
+    <value>Символ</value>
+  </data>
+  <data name="GetCurrencyPage.Id" xml:space="preserve">
+    <value>ИД</value>
+  </data>
+  <data name="GetCurrencyPage.PageSubTitle" xml:space="preserve">
+    <value>Список валют</value>
+  </data>
+  <data name="GetCurrencyPage.PageTitle" xml:space="preserve">
+    <value>Валюты</value>
+  </data>
+  <data name="GetCurrencyPage.Title" xml:space="preserve">
+    <value>Валюты</value>
+  </data>
+  <data name="ContactUsIndexPage.Attachment" xml:space="preserve">
+    <value>Прикрепить</value>
+  </data>
+  <data name="ContactUsIndexPage.Category" xml:space="preserve">
+    <value>Категория</value>
+  </data>
+  <data name="ContactUsIndexPage.Email" xml:space="preserve">
+    <value>Почта</value>
+  </data>
+  <data name="ContactUsIndexPage.EmailCopy" xml:space="preserve">
+    <value>Копия</value>
+  </data>
+  <data name="ContactUsIndexPage.Message" xml:space="preserve">
+    <value>Сообщение</value>
+  </data>
+  <data name="ContactUsIndexPage.SendMail" xml:space="preserve">
+    <value>Отправить сообщение</value>
+  </data>
+  <data name="ContactUsIndexPage.Subject" xml:space="preserve">
+    <value>Тема</value>
+  </data>
+  <data name="ContactUsIndexPage.SubTitle" xml:space="preserve">
+    <value>Отправьте свой отзыв о платформе и свяжитесь с нами</value>
+  </data>
+  <data name="ContactUsIndexPage.Title" xml:space="preserve">
+    <value>Форма обратной связи</value>
+  </data>
+  <data name="ContactUsSendMessageInfo.ReturnButton" xml:space="preserve">
+    <value>Вернуться на главную страницу</value>
+  </data>
+  <data name="ContactUsSendMessageInfo.SubTitle" xml:space="preserve">
+    <value>Отправьте свой отзыв о платформе и свяжитесь с нами</value>
+  </data>
+  <data name="ContactUsSendMessageInfo.Title" xml:space="preserve">
+    <value>Форма обратной связи</value>
+  </data>
+  <data name="ExchangeCurrencyExchangePage.Amount" xml:space="preserve">
+    <value>Сумма</value>
+  </data>
+  <data name="ExchangeCurrencyExchangePage.Cancel" xml:space="preserve">
+    <value>Отмена</value>
+  </data>
+  <data name="ExchangeCurrencyExchangePage.Continue" xml:space="preserve">
+    <value>Продолжить</value>
+  </data>
+  <data name="ExchangeCurrencyExchangePage.From" xml:space="preserve">
+    <value>От</value>
+  </data>
+  <data name="ExchangeCurrencyExchangePage.SubTitle" xml:space="preserve">
+    <value>Выберите две валюты, которые вы хотите конвертировать, и введите сумму. Точная ставка и комиссия за транзакцию будут предоставлены после нажатия &lt;strong&gt; Продолжить &lt;/ strong&gt;</value>
+  </data>
+  <data name="ExchangeCurrencyExchangePage.TimeRemining" xml:space="preserve">
+    <value>секунд до повторной отправки запроса</value>
+  </data>
+  <data name="ExchangeCurrencyExchangePage.Title" xml:space="preserve">
+    <value>Перевод</value>
+  </data>
+  <data name="ExchangeCurrencyExchangePage.To" xml:space="preserve">
+    <value>Кому</value>
+  </data>
+  <data name="AccountStatementPage.To" xml:space="preserve">
+    <value>до</value>
+  </data>
+  <data name="ExchangeCurrencyExchangePage.TransferButton" xml:space="preserve">
+    <value>Перевод</value>
+  </data>
+  <data name="ExchangeCurrencyExchangePage2.Title" xml:space="preserve">
+    <value>Перевод</value>
+  </data>
+  <data name="ExchangeCurrencyExchangePage3.ExchangeRate" xml:space="preserve">
+    <value>Обменный курс:</value>
+  </data>
+  <data name="ExchangeCurrencyExchangePage3.Title" xml:space="preserve">
+    <value>Перевод</value>
+  </data>
+  <data name="ExchangeCurrencyExchangePage4.MessageAcc" xml:space="preserve">
+    <value>счёт</value>
+  </data>
+  <data name="ExchangeCurrencyExchangePage4.MessageAcc2" xml:space="preserve">
+    <value>счёта</value>
+  </data>
+  <data name="ExchangeCurrencyExchangePage4.MessageFromAcc" xml:space="preserve">
+    <value>были успешно конвертированы с вашего</value>
+  </data>
+  <data name="ExchangeCurrencyExchangePage4.MessageToAcc" xml:space="preserve">
+    <value>были переведены на ваш</value>
+  </data>
+  <data name="ExchangeCurrencyExchangePage4.MessageTransferFailed" xml:space="preserve">
+    <value>Ошибка передачи</value>
+  </data>
+  <data name="ExchangeCurrencyExchangePage4.MessageUnspecError" xml:space="preserve">
+    <value>Неизвестная ошибка.</value>
+  </data>
+  <data name="ExchangeCurrencyExchangePage4.ReturnButton" xml:space="preserve">
+    <value>Вернуться на главную страницу</value>
+  </data>
+  <data name="ExchangeCurrencyExchangePage4.Title" xml:space="preserve">
+    <value>Перевод</value>
+  </data>
+  <data name="FavoriteCurrencyIndexPage.CurrencyCode" xml:space="preserve">
+    <value>Код валюты</value>
+  </data>
+  <data name="FavoriteCurrencyIndexPage.CurrencyName" xml:space="preserve">
+    <value>Название валюты</value>
+  </data>
+  <data name="FavoriteCurrencyIndexPage.CurrencySymbol" xml:space="preserve">
+    <value>Символ</value>
+  </data>
+  <data name="FavoriteCurrencyIndexPage.SubTitle" xml:space="preserve">
+    <value>Ниже вы можете выбрать валюты которые будут отображаться в разделе Мгновенные платежи. Установка или снятие выбора не приводит к удалению валют.</value>
+  </data>
+  <data name="FavoriteCurrencyIndexPage.Title" xml:space="preserve">
+    <value>Настройки валюты</value>
+  </data>
+  <data name="FundingAddBankDepositPage.CCY" xml:space="preserve">
+    <value>Валюта</value>
+  </data>
+  <data name="FundingAddBankDepositPage.Copy" xml:space="preserve">
+    <value>Копировать</value>
+  </data>
+  <data name="FundingAddBankDepositPage.DepositHistory" xml:space="preserve">
+    <value>История депозитов</value>
+  </data>
+  <data name="FundingAddBankDepositPage.Print" xml:space="preserve">
+    <value>Распечатать</value>
+  </data>
+  <data name="FundingAddBankDepositPage.SubTitle" xml:space="preserve">
+    <value>Выберите валюту и банк, чтобы распечатать платежные инструкции.</value>
+  </data>
+  <data name="FundingAddBankDepositPage.Title" xml:space="preserve">
+    <value>Платежные инструкции</value>
+  </data>
+  <data name="FundingAddBankDepositPage.UploadProof" xml:space="preserve">
+    <value>Загрузить подтверждающий документ</value>
+  </data>
+  <data name="FundingAddBankDepositPage.WireInstructions" xml:space="preserve">
+    <value>Платежные инструкции</value>
+  </data>
+  <data name="FundingGetBankDepositsPage.Amount" xml:space="preserve">
+    <value>Сумма</value>
+  </data>
+  <data name="FundingGetBankDepositsPage.CCyAndBank" xml:space="preserve">
+    <value>Валюта и банк</value>
+  </data>
+  <data name="FundingGetBankDepositsPage.CreatedDate" xml:space="preserve">
+    <value>Дата создания</value>
+  </data>
+  <data name="FundingGetBankDepositsPage.Delete" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
+  <data name="FundingGetBankDepositsPage.DeleteRecMessage" xml:space="preserve">
+    <value>Вы уверены что хотите удалить подтверждающий документ платежа?</value>
+  </data>
+  <data name="FundingGetBankDepositsPage.Id" xml:space="preserve">
+    <value>ИД</value>
+  </data>
+  <data name="FundingGetBankDepositsPage.ProofOfPayment" xml:space="preserve">
+    <value>Документ подтверждения платежа</value>
+  </data>
+  <data name="FundingGetBankDepositsPage.Status" xml:space="preserve">
+    <value>Статус</value>
+  </data>
+  <data name="FundingGetBankDepositsPage.SubTitle" xml:space="preserve">
+    <value>Список внесенных депозитов</value>
+  </data>
+  <data name="FundingGetBankDepositsPage.Title" xml:space="preserve">
+    <value>История депозитов</value>
+  </data>
+  <data name="FundingGetBankDepositsPage.UploadProof" xml:space="preserve">
+    <value>Загрузить подтверждающий документ</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.AccNumber" xml:space="preserve">
+    <value>Номер счета</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.Action" xml:space="preserve">
+    <value>Действия</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.Amount" xml:space="preserve">
+    <value>Сумма</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.Bank" xml:space="preserve">
+    <value>Банк</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.CCY" xml:space="preserve">
+    <value>Валюта</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.Date" xml:space="preserve">
+    <value>Дата</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.Id" xml:space="preserve">
+    <value>ИД</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.ModalFilterRecAccNumber" xml:space="preserve">
+    <value>Номер счета</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.ModalFilterRecAmountRange" xml:space="preserve">
+    <value>Диапазон суммы</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.ModalFilterRecBank" xml:space="preserve">
+    <value>Банк</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.ModalFilterRecClose" xml:space="preserve">
+    <value>Закрыть</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.ModalFilterRecCurrency" xml:space="preserve">
+    <value>Валюта</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.ModalFilterRecDate" xml:space="preserve">
+    <value>Дата</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.ModalFilterRecEnd" xml:space="preserve">
+    <value>Конец</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.ModalFilterRecFrom" xml:space="preserve">
+    <value>От</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.ModalFilterRecNameOfSender" xml:space="preserve">
+    <value>Имя отправителя</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.ModalFilterRecNameOfSendingBank" xml:space="preserve">
+    <value>Название банка-отправителя</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.ModalFilterRecOtherInfo" xml:space="preserve">
+    <value>Дополнительная информация</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.ModalFilterRecSearch" xml:space="preserve">
+    <value>Поиск</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.ModalFilterRecStart" xml:space="preserve">
+    <value>Начало</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.ModalFilterRecTo" xml:space="preserve">
+    <value>Кому</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.NotYetUpload" xml:space="preserve">
+    <value>Еще не загружено</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.OtherInformation" xml:space="preserve">
+    <value>Дополнительная информация</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.Proof" xml:space="preserve">
+    <value>Документ подтверждения</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.SendingBank" xml:space="preserve">
+    <value>Банк отправитель</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.Status" xml:space="preserve">
+    <value>Статус</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.SubTitle" xml:space="preserve">
+    <value>Здесь вы можете одобрять или отклонять запросы средств</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.Title" xml:space="preserve">
+    <value>Запрошенные средства</value>
+  </data>
+  <data name="FundingGetHystoryByFundingPage.AdminNotes" xml:space="preserve">
+    <value>Заметка администратора:</value>
+  </data>
+  <data name="FundingGetHystoryByFundingPage.ChangedBy" xml:space="preserve">
+    <value>Изменено:</value>
+  </data>
+  <data name="FundingGetHystoryByFundingPage.StatusChange" xml:space="preserve">
+    <value>Изменить статус:</value>
+  </data>
+  <data name="FundingGetHystoryByFundingPage.Title" xml:space="preserve">
+    <value>История изменений</value>
+  </data>
+  <data name="FundingUpdateFundRequestStatusPage.AccountNumber" xml:space="preserve">
+    <value>Номер счета</value>
+  </data>
+  <data name="FundingUpdateFundRequestStatusPage.AdminNotes" xml:space="preserve">
+    <value>Заметка администратора</value>
+  </data>
+  <data name="FundingUpdateFundRequestStatusPage.Amount" xml:space="preserve">
+    <value>Сумма</value>
+  </data>
+  <data name="FundingUpdateFundRequestStatusPage.AttachmentFile" xml:space="preserve">
+    <value>Прикрепить файл</value>
+  </data>
+  <data name="FundingUpdateFundRequestStatusPage.BackToList" xml:space="preserve">
+    <value>Назад к списку</value>
+  </data>
+  <data name="FundingUpdateFundRequestStatusPage.Bank" xml:space="preserve">
+    <value>Банк</value>
+  </data>
+  <data name="FundingUpdateFundRequestStatusPage.CCY" xml:space="preserve">
+    <value>Валюта</value>
+  </data>
+  <data name="FundingUpdateFundRequestStatusPage.DepositId" xml:space="preserve">
+    <value>Id Депозита</value>
+  </data>
+  <data name="FundingUpdateFundRequestStatusPage.NameOfSendingBank" xml:space="preserve">
+    <value>Название банка-отправителя</value>
+  </data>
+  <data name="FundingUpdateFundRequestStatusPage.OtherInformation" xml:space="preserve">
+    <value>Дополнительная информация</value>
+  </data>
+  <data name="FundingUpdateFundRequestStatusPage.PaymentDate" xml:space="preserve">
+    <value>Дата платежа</value>
+  </data>
+  <data name="FundingUpdateFundRequestStatusPage.Save" xml:space="preserve">
+    <value>Сохранить</value>
+  </data>
+  <data name="FundingUpdateFundRequestStatusPage.SenderName" xml:space="preserve">
+    <value>Имя отправителя</value>
+  </data>
+  <data name="FundingUpdateFundRequestStatusPage.Status" xml:space="preserve">
+    <value>Статус</value>
+  </data>
+  <data name="FundingUpdateFundRequestStatusPage.SubTitle" xml:space="preserve">
+    <value>Обновить статус этого запроса фонда</value>
+  </data>
+  <data name="FundingUpdateFundRequestStatusPage.Title" xml:space="preserve">
+    <value>Запрошенные средства</value>
+  </data>
+  <data name="HomeAccountsPage.Title" xml:space="preserve">
+    <value>Учетные записи клиентов</value>
+  </data>
+  <data name="HomeAccountStatementPage.Account" xml:space="preserve">
+    <value>Счёт</value>
+  </data>
+  <data name="HomeAccountStatementPage.Amount" xml:space="preserve">
+    <value>Сумма</value>
+  </data>
+  <data name="HomeAccountStatementPage.Balance" xml:space="preserve">
+    <value>Баланс</value>
+  </data>
+  <data name="HomeAccountStatementPage.BeginningBalance" xml:space="preserve">
+    <value>Минимальный баланс:</value>
+  </data>
+  <data name="HomeAccountStatementPage.ClosingBalance" xml:space="preserve">
+    <value>Закрытие баланса:</value>
+  </data>
+  <data name="HomeAccountStatementPage.Date" xml:space="preserve">
+    <value>Дата</value>
+  </data>
+  <data name="HomeAccountStatementPage.DateRange" xml:space="preserve">
+    <value>Диапазон дат</value>
+  </data>
+  <data name="HomeAccountStatementPage.Description" xml:space="preserve">
+    <value>Описание</value>
+  </data>
+  <data name="HomeAccountStatementPage.GetReport" xml:space="preserve">
+    <value>Получить отчет</value>
+  </data>
+  <data name="HomeAccountStatementPage.Period" xml:space="preserve">
+    <value>Период</value>
+  </data>
+  <data name="HomeAccountStatementPage.Reference" xml:space="preserve">
+    <value>Справка</value>
+  </data>
+  <data name="HomeAccountStatementPage.Reset" xml:space="preserve">
+    <value>Сброс</value>
+  </data>
+  <data name="HomeAccountStatementPage.SubTitle" xml:space="preserve">
+    <value>Показать/скрыть баланс аккаунта</value>
+  </data>
+  <data name="HomeAccountStatementPage.Title" xml:space="preserve">
+    <value>Состояние счета</value>
+  </data>
+  <data name="HomeCheckoutIndexPage.ChooseAccount" xml:space="preserve">
+    <value>Выберите счёт</value>
+  </data>
+  <data name="HomeCheckoutIndexPage.ChooseAlias" xml:space="preserve">
+    <value>Выберите псевдоним WpayId</value>
+  </data>
+  <data name="HomeCheckoutIndexPage.Confirm" xml:space="preserve">
+    <value>Подтвердить</value>
+  </data>
+  <data name="HomeCheckoutIndexPage.CustomerName" xml:space="preserve">
+    <value>Имя Клиента</value>
+  </data>
+  <data name="HomeCheckoutIndexPage.MerchantName" xml:space="preserve">
+    <value>Имя продавца</value>
+  </data>
+  <data name="HomeCheckoutIndexPage.SubTitle" xml:space="preserve">
+    <value>Выберите источник финансирования и подтвердите информацию о контакте и доставке</value>
+  </data>
+  <data name="HomeCheckoutIndexPage.Title" xml:space="preserve">
+    <value>Подтвердить данные</value>
+  </data>
+  <data name="HomeIndexPage.At" xml:space="preserve">
+    <value>в</value>
+  </data>
+  <data name="HomeIndexPage.LastLoginText" xml:space="preserve">
+    <value>Ваш последний вход был </value>
+  </data>
+  <data name="HomeIndexPage.Title" xml:space="preserve">
+    <value>Панель</value>
+  </data>
+  <data name="HomeIndexPage.WelcomeMessage" xml:space="preserve">
+    <value>Добро пожаловать, </value>
+  </data>
+  <data name="PaymentCreatePage.TitleNew" xml:space="preserve">
+    <value>Моментальный платеж</value>
+  </data>
+  <data name="PaymentCreatePage.TitleRepeat" xml:space="preserve">
+    <value>Повторить мгновенную оплату</value>
+  </data>
+  <data name="PaymentCurrenciesPage.CurrencyCode" xml:space="preserve">
+    <value>Код валюты</value>
+  </data>
+  <data name="PaymentCurrenciesPage.CurrencyName" xml:space="preserve">
+    <value>Название валюты</value>
+  </data>
+  <data name="PaymentCurrenciesPage.PaymentCutOffTime" xml:space="preserve">
+    <value>Время отключения платежа</value>
+  </data>
+  <data name="PaymentCurrenciesPage.SettelementDaysToAdd" xml:space="preserve">
+    <value>Расчетные дни для добавления</value>
+  </data>
+  <data name="PaymentCurrenciesPage.SubTitle" xml:space="preserve">
+    <value>Доступные валюты</value>
+  </data>
+  <data name="PaymentCurrenciesPage.Symbol" xml:space="preserve">
+    <value>Символ</value>
+  </data>
+  <data name="PaymentCurrenciesPage.Title" xml:space="preserve">
+    <value>Валюта платежа</value>
+  </data>
+  <data name="PaymentDetailsPage.Amount" xml:space="preserve">
+    <value>Сумма:</value>
+  </data>
+  <data name="PaymentDetailsPage.Currency" xml:space="preserve">
+    <value>Валюта:</value>
+  </data>
+  <data name="PaymentDetailsPage.Date" xml:space="preserve">
+    <value>Дата:</value>
+  </data>
+  <data name="PaymentDetailsPage.From" xml:space="preserve">
+    <value>От:</value>
+  </data>
+  <data name="PaymentDetailsPage.Invoice" xml:space="preserve">
+    <value>Выставленный счет:</value>
+  </data>
+  <data name="PaymentDetailsPage.Memo" xml:space="preserve">
+    <value>Заметка:</value>
+  </data>
+  <data name="PaymentDetailsPage.ModalSendMailClose" xml:space="preserve">
+    <value>Закрыть</value>
+  </data>
+  <data name="PaymentDetailsPage.ModalSendMailFrom" xml:space="preserve">
+    <value>От</value>
+  </data>
+  <data name="PaymentDetailsPage.ModalSendMailNote" xml:space="preserve">
+    <value>Заметка</value>
+  </data>
+  <data name="PaymentDetailsPage.ModalSendMailSend" xml:space="preserve">
+    <value>Отправить</value>
+  </data>
+  <data name="PaymentDetailsPage.PaymentReference" xml:space="preserve">
+    <value>Ссылка на платеж:</value>
+  </data>
+  <data name="PaymentDetailsPage.Status" xml:space="preserve">
+    <value>Статус:</value>
+  </data>
+  <data name="PaymentDetailsPage.Title" xml:space="preserve">
+    <value>Мгновенные платежи</value>
+  </data>
+  <data name="PaymentDetailsPage.To" xml:space="preserve">
+    <value>Кому:</value>
+  </data>
+  <data name="PaymentHistoryPage.Action" xml:space="preserve">
+    <value>Действия</value>
+  </data>
+  <data name="PaymentHistoryPage.Amount" xml:space="preserve">
+    <value>Сумма</value>
+  </data>
+  <data name="PaymentHistoryPage.CCY" xml:space="preserve">
+    <value>Валюта</value>
+  </data>
+  <data name="PaymentHistoryPage.CreatedDate" xml:space="preserve">
+    <value>Дата создания</value>
+  </data>
+  <data name="PaymentHistoryPage.From" xml:space="preserve">
+    <value>От</value>
+  </data>
+  <data name="PaymentHistoryPage.NewPayment" xml:space="preserve">
+    <value>Создать мгновенный платеж</value>
+  </data>
+  <data name="PaymentHistoryPage.Ref" xml:space="preserve">
+    <value>Ссылка</value>
+  </data>
+  <data name="PaymentHistoryPage.SubTitle" xml:space="preserve">
+    <value>История мгновенных платежей</value>
+  </data>
+  <data name="PaymentHistoryPage.Title" xml:space="preserve">
+    <value>История платежей</value>
+  </data>
+  <data name="PaymentHistoryPage.To" xml:space="preserve">
+    <value>Кому</value>
+  </data>
+  <data name="PaymentPostPage.MessageSuccess" xml:space="preserve">
+    <value>Мгновенный платеж был успешно отправлен.</value>
+  </data>
+  <data name="PaymentPostPage.Title" xml:space="preserve">
+    <value>Отправить мгновенный платеж</value>
+  </data>
+  <data name="ProofDocUploadProofDocPage.AccountNumber" xml:space="preserve">
+    <value>Номер счета (мин. 4 последние цифры)</value>
+  </data>
+  <data name="ProofDocUploadProofDocPage.Amount" xml:space="preserve">
+    <value>Сумма</value>
+  </data>
+  <data name="ProofDocUploadProofDocPage.AttachmentFile" xml:space="preserve">
+    <value>Прикрепить файл</value>
+  </data>
+  <data name="ProofDocUploadProofDocPage.AttachProof" xml:space="preserve">
+    <value>Прикрепить изображение</value>
+  </data>
+  <data name="ProofDocUploadProofDocPage.DepositHistory" xml:space="preserve">
+    <value>История депозитов</value>
+  </data>
+  <data name="ProofDocUploadProofDocPage.NameOfSender" xml:space="preserve">
+    <value>Имя отправителя (если не Вы отправитель)</value>
+  </data>
+  <data name="ProofDocUploadProofDocPage.NameOfSendingBank" xml:space="preserve">
+    <value>Название банка-отправителя</value>
+  </data>
+  <data name="ProofDocUploadProofDocPage.OtherInformation" xml:space="preserve">
+    <value>Дополнительная информация</value>
+  </data>
+  <data name="ProofDocUploadProofDocPage.PaymentDate" xml:space="preserve">
+    <value>Дата платежа</value>
+  </data>
+  <data name="ProofDocUploadProofDocPage.ReceivingBank" xml:space="preserve">
+    <value>Получающий банк и валюта</value>
+  </data>
+  <data name="ProofDocUploadProofDocPage.Save" xml:space="preserve">
+    <value>Сохранить</value>
+  </data>
+  <data name="ProofDocUploadProofDocPage.Status" xml:space="preserve">
+    <value>Статус</value>
+  </data>
+  <data name="ProofDocUploadProofDocPage.SubTitle" xml:space="preserve">
+    <value>Загрузить подтверждающий документ</value>
+  </data>
+  <data name="ProofDocUploadProofDocPage.Title" xml:space="preserve">
+    <value>Документ подтверждения</value>
+  </data>
+  <data name="ReferralChangeInvintationsLinkPage.Back" xml:space="preserve">
+    <value>Назад</value>
+  </data>
+  <data name="ReferralChangeInvintationsLinkPage.ReferalLink" xml:space="preserve">
+    <value>Реферальная ссылка</value>
+  </data>
+  <data name="ReferralChangeInvintationsLinkPage.SubTitle" xml:space="preserve">
+    <value>Пожалуйста введите URL адрес. Имя псевдонима пользователя добавиться автоматически в конце</value>
+  </data>
+  <data name="ReferralChangeInvintationsLinkPage.Title" xml:space="preserve">
+    <value>Обновить URL-адрес реферала</value>
+  </data>
+  <data name="ReferralChangeInvintationsLinkPage.UpdateLink" xml:space="preserve">
+    <value>Обновить ссылку</value>
+  </data>
+  <data name="ReferralReferFriendPage.Copy" xml:space="preserve">
+    <value>Копировать</value>
+  </data>
+  <data name="ReferralReferFriendPage.SelectAlias" xml:space="preserve">
+    <value>Выберите псевдоним:</value>
+  </data>
+  <data name="ReferralReferFriendPage.SubTitle" xml:space="preserve">
+    <value>Отправить сообщение другу, чтобы пригласить в нашу систему.</value>
+  </data>
+  <data name="ReferralReferFriendPage.Title" xml:space="preserve">
+    <value>Реферальная ссылка</value>
+  </data>
+  <data name="Shared.ErrorMessagePage.Action" xml:space="preserve">
+    <value>Действия:</value>
+  </data>
+  <data name="Shared.ErrorMessagePage.CallAdmin" xml:space="preserve">
+    <value>&lt;p&gt;Необработанная ошибка. Свяжитесь с администратором системы.&lt;/p&gt;</value>
+  </data>
+  <data name="Shared.ErrorMessagePage.Controller" xml:space="preserve">
+    <value>Котроллер:</value>
+  </data>
+  <data name="Shared.ErrorMessagePage.Exception" xml:space="preserve">
+    <value>Исключение:</value>
+  </data>
+  <data name="Shared.ErrorMessagePage.SubTitle" xml:space="preserve">
+    <value>Произошла общая ошибка</value>
+  </data>
+  <data name="Shared.ErrorMessagePage.Title" xml:space="preserve">
+    <value>Общая ошибка</value>
+  </data>
+  <data name="Shared.Header.LastLogin" xml:space="preserve">
+    <value>Последний вход:</value>
+  </data>
+  <data name="Shared.Header.Logout" xml:space="preserve">
+    <value>Выйти</value>
+  </data>
+  <data name="Shared.Header.MyProfile" xml:space="preserve">
+    <value>Мой профиль</value>
+  </data>
+  <data name="Shared.Header.Lang.English" xml:space="preserve">
+    <value>Английский</value>
+  </data>
+  <data name="Shared.Header.Lang.French" xml:space="preserve">
+    <value>Французский</value>
+  </data>
+  <data name="Shared.Header.Lang.Filipino" xml:space="preserve">
+    <value>Филиппинский</value>
+  </data>
+  <data name="Shared.Header.Lang.Thai" xml:space="preserve">
+    <value>Тайский</value>
+  </data>
+  <data name="Shared.Header.Lang.Russian" xml:space="preserve">
+    <value>Русский</value>
+  </data>
+  <data name="Shared.InstantPaymentListPage.Action" xml:space="preserve">
+    <value>Действия</value>
+  </data>
+  <data name="Shared.InstantPaymentListPage.Amount" xml:space="preserve">
+    <value>Сумма</value>
+  </data>
+  <data name="Shared.InstantPaymentListPage.CCY" xml:space="preserve">
+    <value>Валюта</value>
+  </data>
+  <data name="Shared.InstantPaymentListPage.CreatedDate" xml:space="preserve">
+    <value>Дата создания</value>
+  </data>
+  <data name="Shared.InstantPaymentListPage.From" xml:space="preserve">
+    <value>От</value>
+  </data>
+  <data name="Shared.InstantPaymentListPage.PaymentHistoryText" xml:space="preserve">
+    <value>&lt;p&gt;В Мнгновенных платежах отображаются последние 10 записей. &lt;a href="/Payment/History"&gt;Нажмите здесь&lt;/a&gt; для подробного отображения всех платежей.&lt;/p&gt;</value>
+  </data>
+  <data name="Shared.InstantPaymentListPage.Refresh" xml:space="preserve">
+    <value>Обновить</value>
+  </data>
+  <data name="Shared.InstantPaymentListPage.SubTitle" xml:space="preserve">
+    <value>Показать/скрыть мгновенные платежи</value>
+  </data>
+  <data name="Shared.InstantPaymentListPage.Details" xml:space="preserve">
+    <value>Детали</value>
+  </data>
+  <data name="Shared.InstantPaymentListPage.Send" xml:space="preserve">
+    <value>Отправить</value>
+  </data>
+  <data name="Shared.InstantPaymentListPage.Repeat" xml:space="preserve">
+    <value>Повторить</value>
+  </data>
+  <data name="Shared.InstantPaymentListPage.Title" xml:space="preserve">
+    <value>История</value>
+  </data>
+  <data name="Shared.InstantPaymentListPage.To" xml:space="preserve">
+    <value>Кому</value>
+  </data>
+  <data name="Shared.InternalServerErrorPage.SorryMessage" xml:space="preserve">
+    <value>&lt;p&gt;Извините, произошла ошибка. &lt;br /&gt;Пожалуйста, перейдите на стартовую страницу и повторите запрос заново.&lt;/p&gt;</value>
+  </data>
+  <data name="Shared.InternalServerErrorPage.SubTitle" xml:space="preserve">
+    <value>Внутренняя ошибка сервера</value>
+  </data>
+  <data name="Shared.InternalServerErrorPage.Title" xml:space="preserve">
+    <value>Внутренний сервер</value>
+  </data>
+  <data name="Shared.Navigation.Accounts" xml:space="preserve">
+    <value>Счета</value>
+  </data>
+  <data name="Shared.Navigation.AddFunds" xml:space="preserve">
+    <value>Пополнить счет</value>
+  </data>
+  <data name="Shared.Navigation.Admins" xml:space="preserve">
+    <value>Администраторы</value>
+  </data>
+  <data name="Shared.Navigation.Balances" xml:space="preserve">
+    <value>Сальдо</value>
+  </data>
+  <data name="Shared.Navigation.Banks" xml:space="preserve">
+    <value>Банки</value>
+  </data>
+  <data name="Shared.Navigation.ChangePassword" xml:space="preserve">
+    <value>Сменить пароль</value>
+  </data>
+  <data name="Shared.Navigation.Merchants" xml:space="preserve">
+    <value>Управление торговыми точками [Beta]</value>
+  </data>
+  <data name="Shared.Navigation.ContactUs" xml:space="preserve">
+    <value>Свяжитесь с нами</value>
+  </data>
+  <data name="Shared.Navigation.Convert" xml:space="preserve">
+    <value>Конвертация валют</value>
+  </data>
+  <data name="Shared.Navigation.ConvertAndExchange" xml:space="preserve">
+    <value>Конвертация валют</value>
+  </data>
+  <data name="Shared.Navigation.Currencies" xml:space="preserve">
+    <value>Валюты</value>
+  </data>
+  <data name="Shared.Navigation.CurrencySettings" xml:space="preserve">
+    <value>Настройки валюты</value>
+  </data>
+  <data name="Shared.Navigation.Dashboard" xml:space="preserve">
+    <value>Панель</value>
+  </data>
+  <data name="Shared.Navigation.DepositHistory" xml:space="preserve">
+    <value>История депозитов</value>
+  </data>
+  <data name="Shared.Navigation.DepositInstructions" xml:space="preserve">
+    <value>Инструкции по депозиту</value>
+  </data>
+  <data name="Shared.Navigation.FeedbackSettings" xml:space="preserve">
+    <value>Настройка формы обратной связи</value>
+  </data>
+  <data name="Shared.Navigation.History" xml:space="preserve">
+    <value>История</value>
+  </data>
+  <data name="Shared.Navigation.InstantPayment" xml:space="preserve">
+    <value>Моментальный платеж</value>
+  </data>
+  <data name="Shared.Navigation.InvintationLink" xml:space="preserve">
+    <value>Приглашение</value>
+  </data>
+  <data name="Shared.Navigation.ReferralLink" xml:space="preserve">
+    <value>Реферальная ссылка</value>
+  </data>
+  <data name="Shared.Navigation.InvitationLink" xml:space="preserve">
+    <value>Приглашение</value>
+  </data>
+  <data name="Shared.Navigation.Maintenance" xml:space="preserve">
+    <value>Обслуживание</value>
+  </data>
+  <data name="Shared.Navigation.ManageFundRequest" xml:space="preserve">
+    <value>Управление запрошенными средствами </value>
+  </data>
+  <data name="Shared.Navigation.PayInInstructions" xml:space="preserve">
+    <value>Платежные инструкции</value>
+  </data>
+  <data name="Shared.Navigation.PayNow" xml:space="preserve">
+    <value>Оплатить сейчас</value>
+  </data>
+  <data name="Shared.Navigation.SideBar" xml:space="preserve">
+    <value>Переключить боковую панель</value>
+  </data>
+  <data name="Shared.Navigation.Statements" xml:space="preserve">
+    <value>Состояние счета</value>
+  </data>
+  <data name="Shared.Navigation.SuperAdmin" xml:space="preserve">
+    <value>Суперадмины</value>
+  </data>
+  <data name="Shared.Navigation.Title" xml:space="preserve">
+    <value>Навигация</value>
+  </data>
+  <data name="Shared.Navigation.UploadDepositProof" xml:space="preserve">
+    <value>Дополнение к депозиту</value>
+  </data>
+  <data name="Shared.Navigation.UserProfile" xml:space="preserve">
+    <value>Профиль пользователя</value>
+  </data>
+  <data name="Shared.Navigation.Merchants.Integration" xml:space="preserve">
+    <value>Интеграция</value>
+  </data>
+  <data name="User.ResetPassword.SuccessChanged" xml:space="preserve">
+    <value>Пароль для {0} был сброшен и отправлен по электронной почте</value>
+  </data>
+  <data name="Shared.Navigation.View Profile" xml:space="preserve">
+    <value>Просмотр профиля / статус KYC</value>
+  </data>
+  <data name="Shared.Navigation.WelcomeMessage" xml:space="preserve">
+    <value>Приветственные сообщения</value>
+  </data>
+  <data name="Shared.NewInstantPaymentFormPage.Amount" xml:space="preserve">
+    <value>Сумма</value>
+  </data>
+  <data name="Shared.NewInstantPaymentFormPage.Create" xml:space="preserve">
+    <value>Создать</value>
+  </data>
+  <data name="Shared.NewInstantPaymentFormPage.Currency" xml:space="preserve">
+    <value>Валюта</value>
+  </data>
+  <data name="Shared.NewInstantPaymentFormPage.From" xml:space="preserve">
+    <value>От</value>
+  </data>
+  <data name="Shared.NewInstantPaymentFormPage.Invoice" xml:space="preserve">
+    <value>Выставленный счет</value>
+  </data>
+  <data name="Shared.NewInstantPaymentFormPage.Memo" xml:space="preserve">
+    <value>Заметка</value>
+  </data>
+  <data name="Shared.NewInstantPaymentFormPage.PayNow" xml:space="preserve">
+    <value>Оплатить сейчас</value>
+  </data>
+  <data name="Shared.NewInstantPaymentFormPage.Reset" xml:space="preserve">
+    <value>Сброс</value>
+  </data>
+  <data name="Shared.NewInstantPaymentFormPage.Search" xml:space="preserve">
+    <value>Поиск</value>
+  </data>
+  <data name="Shared.NewInstantPaymentFormPage.SelectCurrency" xml:space="preserve">
+    <value>Выбрать валюту</value>
+  </data>
+  <data name="Shared.NewInstantPaymentFormPage.SubTitle" xml:space="preserve">
+    <value>Создать мгновенный платеж</value>
+  </data>
+  <data name="Shared.NewInstantPaymentFormPage.TitlePayNow" xml:space="preserve">
+    <value>Оплатить сейчас</value>
+  </data>
+  <data name="Shared.NewInstantPaymentFormPage.TitleRepeatInstantPayment" xml:space="preserve">
+    <value>Повторить мгновенную оплату</value>
+  </data>
+  <data name="Shared.NewInstantPaymentFormPage.To" xml:space="preserve">
+    <value>Кому</value>
+  </data>
+  <data name="Shared.NotFoundPage.SorryMessage" xml:space="preserve">
+    <value>&lt;p&gt;Извините, запрашиваемая вами страница отсутствует или недоступна. &lt;br/&gt;Пожалуйста, перейдите на стартовую страницу и повторите запрос заново.&lt;/p&gt;</value>
+  </data>
+  <data name="Shared.NotFoundPage.SubTitle" xml:space="preserve">
+    <value>Ошибка. Страница не найдена</value>
+  </data>
+  <data name="Shared.NotFoundPage.Title" xml:space="preserve">
+    <value>Страница не найдена</value>
+  </data>
+  <data name="Shared.WebPartsAccountingPage.AccNumber" xml:space="preserve">
+    <value>Номер счета</value>
+  </data>
+  <data name="Shared.WebPartsAccountingPage.ActiveHolds" xml:space="preserve">
+    <value>Удержание</value>
+  </data>
+  <data name="Shared.WebPartsAccountingPage.AllAccText" xml:space="preserve">
+    <value>&lt;p&gt;Все счета с &lt;i&gt;&lt;b&gt;нулевым&lt;/b&gt;&lt;/i&gt; балансом скрыты по умолчанию.&lt;/p&gt;</value>
+  </data>
+  <data name="Shared.WebPartsAccountingPage.AvailableBalance" xml:space="preserve">
+    <value>Доступный баланс</value>
+  </data>
+  <data name="Shared.WebPartsAccountingPage.CCY" xml:space="preserve">
+    <value>Валюта</value>
+  </data>
+  <data name="Shared.WebPartsAccountingPage.CurrentBalance" xml:space="preserve">
+    <value>Баланс валюты</value>
+  </data>
+  <data name="Shared.WebPartsAccountingPage.SubTitle" xml:space="preserve">
+    <value>Показать/скрыть баланс аккаунта</value>
+  </data>
+  <data name="Shared.WebPartsAccountingPage.Title" xml:space="preserve">
+    <value>Сальдо</value>
+  </data>
+  <data name="Shared.WebPartsAccountingPage.UncheckForAllAcc" xml:space="preserve">
+    <value>Снимите галочку для отображения всех аккаунтов</value>
+  </data>
+  <data name="User.AddAdminUserPage.Add" xml:space="preserve">
+    <value>Добавить</value>
+  </data>
+  <data name="User.AddAdminUserPage.Back" xml:space="preserve">
+    <value>Назад</value>
+  </data>
+  <data name="User.AddAdminUserPage.Email" xml:space="preserve">
+    <value>Почта</value>
+  </data>
+  <data name="User.AddAdminUserPage.FirstName" xml:space="preserve">
+    <value>Имя</value>
+  </data>
+  <data name="User.AddAdminUserPage.LastName" xml:space="preserve">
+    <value>Фамилия</value>
+  </data>
+  <data name="User.AddAdminUserPage.SubTitle" xml:space="preserve">
+    <value>Пожалуйста, заполните нижеприведенную информацию, чтобы создать администратора</value>
+  </data>
+  <data name="User.AddAdminUserPage.Title" xml:space="preserve">
+    <value>Добавить администратора</value>
+  </data>
+  <data name="User.AddAdminUserPage.UserName" xml:space="preserve">
+    <value>Имя пользователя</value>
+  </data>
+  <data name="User.ChangePasswordPage.LogOut" xml:space="preserve">
+    <value>выйдите из системы</value>
+  </data>
+  <data name="User.ChangePasswordPage.CurrentPassword" xml:space="preserve">
+    <value>Старый пароль</value>
+  </data>
+  <data name="User.ChangePasswordPage.NewPassword" xml:space="preserve">
+    <value>Новый пароль</value>
+  </data>
+  <data name="User.ChangePasswordPage.RepeatNewPassword" xml:space="preserve">
+    <value>Повторите новый пароль</value>
+  </data>
+  <data name="User.ChangePasswordPage.ResetPasswordBtn" xml:space="preserve">
+    <value>Сменить пароль</value>
+  </data>
+  <data name="User.ChangePasswordPage.SubTitle" xml:space="preserve">
+    <value>Если вы не помните свой текущий пароль, пожалуйста, {0} и используйте ссылку «забыли пароль» на странице входа в систему</value>
+  </data>
+  <data name="User.ChangePasswordPage.Title" xml:space="preserve">
+    <value>Сменить пароль</value>
+  </data>
+  <data name="User.CheckOutLoginPage.CopyRight" xml:space="preserve">
+    <value>© {0}-{1}. Все права защищены.</value>
+  </data>
+  <data name="User.CheckOutLoginPage.Password" xml:space="preserve">
+    <value>Пароль</value>
+  </data>
+  <data name="User.CheckOutLoginPage.SignIn" xml:space="preserve">
+    <value>Вход</value>
+  </data>
+  <data name="User.CheckOutLoginPage.SignInToPay" xml:space="preserve">
+    <value>Войдите, чтобы оплатить</value>
+  </data>
+  <data name="User.CheckOutLoginPage.Title" xml:space="preserve">
+    <value>Логин</value>
+  </data>
+  <data name="User.CheckOutLoginPage.UserName" xml:space="preserve">
+    <value>Имя пользователя</value>
+  </data>
+  <data name="User.ContactUsPage.Email" xml:space="preserve">
+    <value>Ваш адрес электронной почты</value>
+  </data>
+  <data name="User.ContactUsPage.Message" xml:space="preserve">
+    <value>Сообщение</value>
+  </data>
+  <data name="User.ContactUsPage.SendMessage" xml:space="preserve">
+    <value>Отправить сообщение</value>
+  </data>
+  <data name="User.ContactUsPage.Subject" xml:space="preserve">
+    <value>Тема</value>
+  </data>
+  <data name="User.ContactUsPage.Title" xml:space="preserve">
+    <value>Свяжитесь с нами</value>
+  </data>
+  <data name="User.GetUserPage.Action" xml:space="preserve">
+    <value>Действия</value>
+  </data>
+  <data name="User.GetUserPage.AddNewAdmin" xml:space="preserve">
+    <value>Добавить администратора</value>
+  </data>
+  <data name="User.GetUserPage.ConfirmDelUser" xml:space="preserve">
+    <value>Вы уверены, что хотите удалить?</value>
+  </data>
+  <data name="User.GetUserPage.Email" xml:space="preserve">
+    <value>Почта</value>
+  </data>
+  <data name="User.GetUserPage.FirstName" xml:space="preserve">
+    <value>Имя</value>
+  </data>
+  <data name="User.GetUserPage.LastName" xml:space="preserve">
+    <value>Фамилия</value>
+  </data>
+  <data name="User.GetUserPage.SubTitle" xml:space="preserve">
+    <value>Управление администраторами</value>
+  </data>
+  <data name="User.GetUserPage.Title" xml:space="preserve">
+    <value>Администраторы</value>
+  </data>
+  <data name="User.GetUserPage.UserName" xml:space="preserve">
+    <value>Имя пользователя</value>
+  </data>
+  <data name="User.LoginPage.ForgotPassword" xml:space="preserve">
+    <value>Сбросить пароль</value>
+  </data>
+  <data name="User.LoginPage.ContactUs" xml:space="preserve">
+    <value>Свяжитесь с нами</value>
+  </data>
+  <data name="User.LoginPage.ModalConctactUsEmail" xml:space="preserve">
+    <value>Почта</value>
+  </data>
+  <data name="User.LoginPage.ModalConctactUsMessage" xml:space="preserve">
+    <value>Сообщение</value>
+  </data>
+  <data name="User.LoginPage.ModalConctactUsSendMessage" xml:space="preserve">
+    <value>Отправить сообщение</value>
+  </data>
+  <data name="User.LoginPage.ModalConctactUsSubject" xml:space="preserve">
+    <value>Тема</value>
+  </data>
+  <data name="User.LoginPage.Title" xml:space="preserve">
+    <value>Логин</value>
+  </data>
+  <data name="User.LoginPage.Change" xml:space="preserve">
+    <value>Сменить</value>
+  </data>
+  <data name="User.LoginPage.CurrentLangText" xml:space="preserve">
+    <value> был выбран языком по умолчанию.</value>
+  </data>
+  <data name="User.ProfilePage.AccessToKYC" xml:space="preserve">
+    <value>Доступ к профилю KYC</value>
+  </data>
+  <data name="User.ProfilePage.Alias" xml:space="preserve">
+    <value>Псевдоним</value>
+  </data>
+  <data name="User.ProfilePage.Aliases" xml:space="preserve">
+    <value>Псевдонимы:</value>
+  </data>
+  <data name="User.ProfilePage.Cancel" xml:space="preserve">
+    <value>Отмена</value>
+  </data>
+  <data name="User.ProfilePage.CreatePayment" xml:space="preserve">
+    <value>Создать платеж (через веб-сервис)</value>
+  </data>
+  <data name="User.ProfilePage.Customer" xml:space="preserve">
+    <value>Клиент:</value>
+  </data>
+  <data name="User.ProfilePage.Email" xml:space="preserve">
+    <value>Почтовый адрес:</value>
+  </data>
+  <data name="User.ProfilePage.FirstName" xml:space="preserve">
+    <value>Имя:</value>
+  </data>
+  <data name="User.ProfilePage.Grants" xml:space="preserve">
+    <value>Предоставленные права доступа</value>
+  </data>
+  <data name="User.ProfilePage.LastName" xml:space="preserve">
+    <value>Фамилия:</value>
+  </data>
+  <data name="User.ProfilePage.Payments" xml:space="preserve">
+    <value>Платежи</value>
+  </data>
+  <data name="User.ProfilePage.Save" xml:space="preserve">
+    <value>Сохранить</value>
+  </data>
+  <data name="CommonObject.View" xml:space="preserve">
+    <value>Просмотреть</value>
+  </data>
+  <data name="User.ProfilePage.SubmitPaymentText" xml:space="preserve">
+    <value>Подтвердить платеж выше: $0.00 USD</value>
+  </data>
+  <data name="User.ProfilePage.Tab1" xml:space="preserve">
+    <value>Моя информация</value>
+  </data>
+  <data name="User.ProfilePage.Tab2" xml:space="preserve">
+    <value>Права доступа и ограничения</value>
+  </data>
+  <data name="User.ProfilePage.Title" xml:space="preserve">
+    <value>Мой профиль</value>
+  </data>
+  <data name="User.ProfilePage.UserInfo" xml:space="preserve">
+    <value>Информация о пользователе</value>
+  </data>
+  <data name="User.ProfilePage.UserName" xml:space="preserve">
+    <value>Имя пользователя:</value>
+  </data>
+  <data name="Bank.BankController.AddBank.ViewBagMessage" xml:space="preserve">
+    <value>Вы успешно добавили новый Банк.</value>
+  </data>
+  <data name="Bank.BankController.AddBankBankAndInstruction.Title" xml:space="preserve">
+    <value>Добавить Банк</value>
+  </data>
+  <data name="Bank.BankController.AddBankBankAndInstruction.ViewBagMessage" xml:space="preserve">
+    <value>Вы успешно добавили новый Банк.</value>
+  </data>
+  <data name="Bank.BankController.AddCurrency.ViewBagMessage" xml:space="preserve">
+    <value>Вы успешно добавили валюту.</value>
+  </data>
+  <data name="Bank.BankController.AddCurrencyBankAndInstruction.Title" xml:space="preserve">
+    <value>Добавить валюту</value>
+  </data>
+  <data name="Bank.BankController.AddCurrencyBankAndInstruction.ViewBagMessage" xml:space="preserve">
+    <value>Вы успешно добавили валюту.</value>
+  </data>
+  <data name="Bank.BankController.DeleteBank.ViewMessageSuccess" xml:space="preserve">
+    <value>Вы успешно удалили Банк</value>
+  </data>
+  <data name="Bank.BankController.DeleteBank.ViewMessageUnSuccess" xml:space="preserve">
+    <value>Удаление банка не произведено</value>
+  </data>
+  <data name="Bank.BankController.DeleteCurrency.ViewMessageSuccess" xml:space="preserve">
+    <value>Вы успешно удалили валюту</value>
+  </data>
+  <data name="Bank.BankController.DeleteCurrency.ViewMessageUnSuccess" xml:space="preserve">
+    <value>Не удалось удалить запись о валюте</value>
+  </data>
+  <data name="Bank.BankController.EditBank.ViewMessage" xml:space="preserve">
+    <value>Вы успешно обновили информацию по банку.</value>
+  </data>
+  <data name="Bank.BankController.EditCurrency.ViewMessage" xml:space="preserve">
+    <value>Информация о валюте успешно обновлена.</value>
+  </data>
+  <data name="Bank.BankController.UpdateCurrency.ViewBagMessage" xml:space="preserve">
+    <value>Информация о валюте успешно обновлена.</value>
+  </data>
+  <data name="ContactUs.ContactUsController.ContactUs.DbError" xml:space="preserve">
+    <value>Ошибка БД. Сообщение отправлено</value>
+  </data>
+  <data name="ContactUs.ContactUsController.ContactUs.MailAndDbError" xml:space="preserve">
+    <value>Запись не добавлена на БД и почта не отправлена</value>
+  </data>
+  <data name="ContactUs.ContactUsController.ContactUs.MailSendingError" xml:space="preserve">
+    <value>Запись добавлена в базу, но возникла ошибка при отправке почты</value>
+  </data>
+  <data name="ContactUs.ContactUsController.ContactUs.MailToError" xml:space="preserve">
+    <value>Поле "Кому" пустое</value>
+  </data>
+  <data name="ContactUs.ContactUsController.ContactUs.Ok" xml:space="preserve">
+    <value>ОК</value>
+  </data>
+  <data name="ContactUs.ContactUsController.Index.ChoseCategory" xml:space="preserve">
+    <value>Пожалуйста, выберите категорию</value>
+  </data>
+  <data name="ContactUs.ContactUsController.Index.ContactUs" xml:space="preserve">
+    <value>Свяжитесь с нами</value>
+  </data>
+  <data name="ContactUs.ContactUsController.Index.MailIsNotSend" xml:space="preserve">
+    <value>Письмо не отправлено</value>
+  </data>
+  <data name="ContactUs.ContactUsController.Index.MsgIsEmpty" xml:space="preserve">
+    <value>Сообщение не может быть пустым</value>
+  </data>
+  <data name="ContactUs.ContactUsController.Index.SelectCategory" xml:space="preserve">
+    <value>Выберите категорию</value>
+  </data>
+  <data name="ContactUs.ContactUsController.Index.SubjIsEmpty" xml:space="preserve">
+    <value>Тема не может быть пуста</value>
+  </data>
+  <data name="HomeAccountStatementPage.AccountText" xml:space="preserve">
+    <value>Сначала выберите валюту</value>
+  </data>
+  <data name="UIHelper.PrepareAvaliableBank.SelectBank" xml:space="preserve">
+    <value>Выбрать банк</value>
+  </data>
+  <data name="User.RegFailureNewAdminPage.BodyText" xml:space="preserve">
+    <value>Эта учетная запись уже создана. Пожалуйста, войдите в систему.</value>
+  </data>
+  <data name="User.RegFailureNewAdminPage.Login" xml:space="preserve">
+    <value>Логин</value>
+  </data>
+  <data name="User.RegFailureNewAdminPage.Title" xml:space="preserve">
+    <value>Ошибка регистрации</value>
+  </data>
+  <data name="User.RegNewAdminPage.CreatePassword" xml:space="preserve">
+    <value>Создать пароль</value>
+  </data>
+  <data name="User.RegNewAdminPage.Password" xml:space="preserve">
+    <value>Пароль</value>
+  </data>
+  <data name="User.RegNewAdminPage.RepeatPassword" xml:space="preserve">
+    <value>Повторите пароль</value>
+  </data>
+  <data name="User.RegNewAdminPage.Title" xml:space="preserve">
+    <value>Регистрация нового администратора</value>
+  </data>
+  <data name="User.RegNewAdminPage.WelcomeMsgText" xml:space="preserve">
+    <value>Добро пожаловать, &lt;b&gt; {0}&lt;/b&gt;! &lt;br/&gt;Создайте свой пароль перед обращением к системе.</value>
+  </data>
+  <data name="WelcomeMessage.AddWelcomeMessagePage.Add" xml:space="preserve">
+    <value>Добавить</value>
+  </data>
+  <data name="WelcomeMessage.AddWelcomeMessagePage.BackToList" xml:space="preserve">
+    <value>Назад к списку</value>
+  </data>
+  <data name="WelcomeMessage.AddWelcomeMessagePage.SubTitle" xml:space="preserve">
+    <value>Добавить приветственное сообщение</value>
+  </data>
+  <data name="WelcomeMessage.AddWelcomeMessagePage.Title" xml:space="preserve">
+    <value>Приветственное сообщение</value>
+  </data>
+  <data name="WelcomeMessage.AddWelcomeMessagePage.WmForUser" xml:space="preserve">
+    <value>Приветственное сообщение для пользователя</value>
+  </data>
+  <data name="WelcomeMessage.AddWelcomeMessagePage.WmText" xml:space="preserve">
+    <value>Текст приветственного сообщения</value>
+  </data>
+  <data name="WelcomeMessage.AddWelcomeMessagePage.WmTextRu" xml:space="preserve">
+    <value>Текст приветственного сообщения (Русский)</value>
+  </data>
+  <data name="WelcomeMessage.AddWelcomeMessagePage.WmTextFr" xml:space="preserve">
+    <value>Текст приветственного сообщения (Французский)</value>
+  </data>
+  <data name="WelcomeMessage.AddWelcomeMessagePage.WmTextPh" xml:space="preserve">
+    <value>Текст приветственного сообщения (Филипинский)</value>
+  </data>
+  <data name="WelcomeMessage.EditWelcomeMessagePage.BackToList" xml:space="preserve">
+    <value>Назад к списку</value>
+  </data>
+  <data name="WelcomeMessage.EditWelcomeMessagePage.Save" xml:space="preserve">
+    <value>Сохранить</value>
+  </data>
+  <data name="WelcomeMessage.EditWelcomeMessagePage.SubTitle" xml:space="preserve">
+    <value>Редактировать приветственное сообщение</value>
+  </data>
+  <data name="WelcomeMessage.EditWelcomeMessagePage.Title" xml:space="preserve">
+    <value>Приветственное сообщение</value>
+  </data>
+  <data name="WelcomeMessage.EditWelcomeMessagePage.WmForUser" xml:space="preserve">
+    <value>Приветственное сообщение для пользователя</value>
+  </data>
+  <data name="WelcomeMessage.EditWelcomeMessagePage.WmId" xml:space="preserve">
+    <value>ИД Приветственного сообщения</value>
+  </data>
+  <data name="WelcomeMessage.EditWelcomeMessagePage.WmText" xml:space="preserve">
+    <value>Текст приветственного сообщения (Английский)</value>
+  </data>
+  <data name="WelcomeMessage.GetWelcomeMessagesPage.Action" xml:space="preserve">
+    <value>Действия</value>
+  </data>
+  <data name="WelcomeMessage.GetWelcomeMessagesPage.DefWM" xml:space="preserve">
+    <value>Сообщение приветствия по умолчанию</value>
+  </data>
+  <data name="WelcomeMessage.GetWelcomeMessagesPage.Id" xml:space="preserve">
+    <value>ИД</value>
+  </data>
+  <data name="WelcomeMessage.GetWelcomeMessagesPage.IsDefMsg" xml:space="preserve">
+    <value>Сообщение по умолчанию?</value>
+  </data>
+  <data name="WelcomeMessage.GetWelcomeMessagesPage.MsgText" xml:space="preserve">
+    <value>Текст сообщения</value>
+  </data>
+  <data name="WelcomeMessage.GetWelcomeMessagesPage.MsgTextRu" xml:space="preserve">
+    <value>Текст сообщения (Русский)</value>
+  </data>
+  <data name="WelcomeMessage.GetWelcomeMessagesPage.MsgTextFr" xml:space="preserve">
+    <value>Текст сообщения (Французский)</value>
+  </data>
+  <data name="WelcomeMessage.GetWelcomeMessagesPage.MsgTextPh" xml:space="preserve">
+    <value>Текст сообщения (Филипинский)</value>
+  </data>
+  <data name="WelcomeMessage.GetWelcomeMessagesPage.SubTitle" xml:space="preserve">
+    <value>Список приветственных сообщений</value>
+  </data>
+  <data name="WelcomeMessage.GetWelcomeMessagesPage.Title" xml:space="preserve">
+    <value>Приветственные сообщения</value>
+  </data>
+  <data name="WireInstruction.AddWireInstructionPage.Add" xml:space="preserve">
+    <value>Добавить</value>
+  </data>
+  <data name="WireInstruction.AddWireInstructionPage.BackToList" xml:space="preserve">
+    <value>Назад к списку</value>
+  </data>
+  <data name="WireInstruction.AddWireInstructionPage.CCY" xml:space="preserve">
+    <value>Валюта</value>
+  </data>
+  <data name="WireInstruction.AddWireInstructionPage.CharsMax" xml:space="preserve">
+    <value>символов максимально</value>
+  </data>
+  <data name="WireInstruction.AddWireInstructionPage.SubTitle" xml:space="preserve">
+    <value>Добавить платежную инструкцию</value>
+  </data>
+  <data name="WireInstruction.AddWireInstructionPage.Title" xml:space="preserve">
+    <value>Инструкция по проводке</value>
+  </data>
+  <data name="WireInstruction.AddWireInstructionPage.WireInstr" xml:space="preserve">
+    <value>Платежные инструкции</value>
+  </data>
+  <data name="WireInstruction.EditWireInstructionPage.BackToList" xml:space="preserve">
+    <value>Назад к списку</value>
+  </data>
+  <data name="WireInstruction.EditWireInstructionPage.CharsMax" xml:space="preserve">
+    <value>символов максимально</value>
+  </data>
+  <data name="WireInstruction.EditWireInstructionPage.Save" xml:space="preserve">
+    <value>Сохранить</value>
+  </data>
+  <data name="WireInstruction.EditWireInstructionPage.SubTitle" xml:space="preserve">
+    <value>Редактировать платёжную инструкцию</value>
+  </data>
+  <data name="WireInstruction.EditWireInstructionPage.Title" xml:space="preserve">
+    <value>Платежная инструкция</value>
+  </data>
+  <data name="WireInstruction.EditWireInstructionPage.WireInstr" xml:space="preserve">
+    <value>Платежные инструкции</value>
+  </data>
+  <data name="WireInstruction.EditWireInstructionPage.WireInstrId" xml:space="preserve">
+    <value>ИД Платежной инструкции</value>
+  </data>
+  <data name="WireInstruction.GetWireInstructionsPage.Action" xml:space="preserve">
+    <value>Действия</value>
+  </data>
+  <data name="WireInstruction.GetWireInstructionsPage.BankAndCurrency" xml:space="preserve">
+    <value>Банк и валюта</value>
+  </data>
+  <data name="WireInstruction.GetWireInstructionsPage.BankWireInstructions" xml:space="preserve">
+    <value>Банковские платежные инструкции</value>
+  </data>
+  <data name="WireInstruction.GetWireInstructionsPage.Id" xml:space="preserve">
+    <value>ИД</value>
+  </data>
+  <data name="WireInstruction.GetWireInstructionsPage.NewWireInstr" xml:space="preserve">
+    <value>Создать Платежную инструкцию</value>
+  </data>
+  <data name="WireInstruction.GetWireInstructionsPage.SubTitle" xml:space="preserve">
+    <value>Список платежных инструкций</value>
+  </data>
+  <data name="WireInstruction.GetWireInstructionsPage.Title" xml:space="preserve">
+    <value>Платежные инструкции</value>
+  </data>
+  <data name="Exchange.ExchangeController.CurrencyExchange.EmptyUserData" xml:space="preserve">
+    <value>Пустые пользовательские данные</value>
+  </data>
+  <data name="Exchange.ExchangeController.CurrencyExchange.ChangeCurrency" xml:space="preserve">
+    <value>Измените хотя бы одну валюту</value>
+  </data>
+  <data name="Exchange.ExchangeController.CurrencyExchange.EnterAmount" xml:space="preserve">
+    <value>Введите сумму, которую вы хотите передать</value>
+  </data>
+  <data name="Exchange.ExchangeController.CurrencyExchange.NoCorrectCurrency" xml:space="preserve">
+    <value>Нет правильной валюты</value>
+  </data>
+  <data name="Exchange.ExchangeController.CurrencyExchange.EqualCurrencyError" xml:space="preserve">
+    <value>Измените хотя бы одну валюту. Валюты одинаковы</value>
+  </data>
+  <data name="Exchange.ExchangeController.CurrencyExchange.TempDataIsNull" xml:space="preserve">
+    <value>Данные Temp пустые</value>
+  </data>
+  <data name="FavoriteCurrencies.FavoriteCurrenciesController.AddToFavoriteCurrency.AddSuccess" xml:space="preserve">
+    <value>Вы успешно добавили новый Псевдоним.</value>
+  </data>
+  <data name="FavoriteCurrencies.FavoriteCurrenciesController.AddToFavoriteCurrency.AddNoSuccess" xml:space="preserve">
+    <value>Ошибка при добавлении нового псевдонима.</value>
+  </data>
+  <data name="FavoriteCurrencies.FavoriteCurrenciesController.DelToFavoriteCurrency.Success" xml:space="preserve">
+    <value>Вы успешно удалили новый Псевдоним.</value>
+  </data>
+  <data name="FavoriteCurrencies.FavoriteCurrenciesController.DelToFavoriteCurrency.NoSuccess" xml:space="preserve">
+    <value>Ошибка при добавлении нового псевдонима.</value>
+  </data>
+  <data name="Funding.FundingController.PrepareAvalBanks.SelectBank" xml:space="preserve">
+    <value>Выбрать валюту и банк</value>
+  </data>
+  <data name="CommonObject.BrowseFile" xml:space="preserve">
+    <value>Выбрать файл</value>
+  </data>
+  <data name="CommonObject.NoFile" xml:space="preserve">
+    <value>Файл не выбран</value>
+  </data>
+  <data name="Funding.FundingController.DeleteBankDeposit.Success" xml:space="preserve">
+    <value>Вы успешно удалили Депозит</value>
+  </data>
+  <data name="Funding.FundingController.UpdateFundsRequest.Success" xml:space="preserve">
+    <value>Статус запроса на подтверждение состояния успешно обновлен.</value>
+  </data>
+  <data name="Home.HomeController.CheckoutIndex.ApplicationError" xml:space="preserve">
+    <value>Application Error</value>
+  </data>
+  <data name="Payment.PaymentController.Create.NeedToSetCurrency" xml:space="preserve">
+    <value>Вам нужно установить значение валюты</value>
+  </data>
+  <data name="Payment.PaymentController.GetImageLink.PaymentDetails" xml:space="preserve">
+    <value>Детали платежа</value>
+  </data>
+  <data name="Payment.PaymentController.GetImageLink.PaymentReference" xml:space="preserve">
+    <value>Ссылка на платеж:</value>
+  </data>
+  <data name="Payment.PaymentController.GetImageLink.Status" xml:space="preserve">
+    <value>Статус:</value>
+  </data>
+  <data name="Payment.PaymentController.GetImageLink.From" xml:space="preserve">
+    <value>От:</value>
+  </data>
+  <data name="Payment.PaymentController.GetImageLink.To" xml:space="preserve">
+    <value>Кому:</value>
+  </data>
+  <data name="Payment.PaymentController.GetImageLink.Date" xml:space="preserve">
+    <value>Дата:</value>
+  </data>
+  <data name="Payment.PaymentController.GetImageLink.Currency" xml:space="preserve">
+    <value>Валюта:</value>
+  </data>
+  <data name="Payment.PaymentController.GetImageLink.Amount" xml:space="preserve">
+    <value>Сумма:</value>
+  </data>
+  <data name="Payment.PaymentController.GetImageLink.Invoice" xml:space="preserve">
+    <value>Выставленный счет:</value>
+  </data>
+  <data name="Payment.PaymentController.GetImageLink.Memo" xml:space="preserve">
+    <value>Заметка:</value>
+  </data>
+  <data name="ProofDoc.ProofDocController.UploadProofDoc.ErrCanntCreateBankDeposit" xml:space="preserve">
+    <value>Ошибка: не удается создать банковский депозит</value>
+  </data>
+  <data name="ProofDoc.ProofDocController.UploadProofDoc.ProofDocUploadAt" xml:space="preserve">
+    <value>Документ подтверждения, загруженный в</value>
+  </data>
+  <data name="ProofDoc.ProofDocController.UploadProofDoc.UploadSuccessifully" xml:space="preserve">
+    <value>Файл загружен успешно</value>
+  </data>
+  <data name="ProofDoc.ProofDocController.RemoveProofDoc.DelSuccess" xml:space="preserve">
+    <value>Удостоверяющий документ успешно удален</value>
+  </data>
+  <data name="User.UserController.CreateNewAlias.AddSuccess" xml:space="preserve">
+    <value>Вы успешно добавили новый Псевдоним.</value>
+  </data>
+  <data name="User.UserController.CreateNewAlias.ErrAdded" xml:space="preserve">
+    <value>Извините, этот псевдоним уже используется. Попробуйте другой.</value>
+  </data>
+  <data name="User.UserController.Login.UpdateLastLogin" xml:space="preserve">
+    <value>Дата последнего входа пользователя была успешно обновлена.</value>
+  </data>
+  <data name="User.UserController.Login.PasswordNotMatch" xml:space="preserve">
+    <value>Имя пользователя и пароль не совпадают</value>
+  </data>
+  <data name="User.UserController.CheckoutLogin.ApplicationError" xml:space="preserve">
+    <value>Ошибка системы:
+
+[{0}]</value>
+  </data>
+  <data name="User.UserController.CheckoutLogin.OrderError" xml:space="preserve">
+    <value>Недействительный токен</value>
+  </data>
+  <data name="User.UserController.CheckoutLogin.ApplicationErrorEmptyParam" xml:space="preserve">
+    <value>Application Error</value>
+  </data>
+  <data name="User.UserController.RegisterNewAdmin.PasswordsNotMatch" xml:space="preserve">
+    <value>Пароли не совпадают</value>
+  </data>
+  <data name="User.UserController.RegisterNewAdmin.UserUnregistredInSystem" xml:space="preserve">
+    <value>Пользователь не зарегистрирован в системе</value>
+  </data>
+  <data name="User.UserController.AddAdminUser.AddSuccessifully" xml:space="preserve">
+    <value>Пользователь успешно добавлен.</value>
+  </data>
+  <data name="User.UserController.AddAdminUser.AddUnSuccessifully" xml:space="preserve">
+    <value>Пользователь не добавлен</value>
+  </data>
+  <data name="User.UserController.ChangePassword.PassNotMatched" xml:space="preserve">
+    <value>Вы ввели некорректный текущий пароль. Если ва забыли свой пароль, то пожалуйста восспользуйтесь ссылкой &lt;a href="{0}"&gt; выйти &lt;/a&gt; и нажмите "забыл пароль".</value>
+  </data>
+  <data name="User.UserController.ChangePassword.NeedEightCharacterLong" xml:space="preserve">
+    <value>Ваш пароль должен содержать не менее 8 символов</value>
+  </data>
+  <data name="User.UserController.ChangePassword.NeedCharacterAndCapitalLetterAndNumber" xml:space="preserve">
+    <value>В вашем пароле должно быть хотя бы одна или несколько цифр и одна или несколько заглавных букв и один или несколько специальных символов</value>
+  </data>
+  <data name="User.UserController.ChangePassword.NeedCapitalLetterAndSpecCharacter" xml:space="preserve">
+    <value>В вашем пароле должно быть хотя бы одна или несколько заглавных букв и один или несколько специальных символов</value>
+  </data>
+  <data name="User.UserController.ChangePassword.NeedSpecCharacter" xml:space="preserve">
+    <value>Ваш пароль должен иметь не менее 1 специального символа</value>
+  </data>
+  <data name="User.UserController.ChangePassword.Success" xml:space="preserve">
+    <value>Пароль успешно изменен.</value>
+  </data>
+  <data name="User.UserController.ChangePassword.UnSuccess" xml:space="preserve">
+    <value>Значения в полях Пароль и Повтор пароля не совпадают, Ваш пароль не был изменен</value>
+  </data>
+  <data name="WelcomeMessage.WelcomeMessageController.AddWelcomeMessage.AddSuccessfully" xml:space="preserve">
+    <value>Приветственное сообщение добавлено успешно.</value>
+  </data>
+  <data name="WelcomeMessage.WelcomeMessageController.EditWelcomeMessage.AddSuccessfully" xml:space="preserve">
+    <value>Приветственное сообщение успешно обновлено.</value>
+  </data>
+  <data name="WelcomeMessage.WelcomeMessageController.DeleteWelcomeMessage.DeletedSuccessfully" xml:space="preserve">
+    <value>Приветственное сообщение успешно удалено.</value>
+  </data>
+  <data name="WireInstruction.WireInstructionController.GetPrintFriendlyInstruction.ErrBankCurrencyIdIsNull" xml:space="preserve">
+    <value>Не указана валюта</value>
+  </data>
+  <data name="WireInstruction.WireInstructionController.PrepareAvailableBankCurrencies.SelectCurrencyAndBank" xml:space="preserve">
+    <value>Выбрать валюту и банк</value>
+  </data>
+  <data name="WireInstruction.WireInstructionController.AddWireInstruction.CreatedSuccessfully" xml:space="preserve">
+    <value>Платежная инструкция создана успешно.</value>
+  </data>
+  <data name="WireInstruction.WireInstructionController.EditWireInstruction.UpdatedSuccessfully" xml:space="preserve">
+    <value>Платежная инструкция успешно обновлена.</value>
+  </data>
+  <data name="WireInstruction.WireInstructionController.DeleteWireInstruction.DeletedSuccessfully" xml:space="preserve">
+    <value>Проводка успешно удалена.</value>
+  </data>
+  <data name="Bank.BankRepository.AddBank.AddSuccess" xml:space="preserve">
+    <value>Успешно добавлена информация о банке в базу данных</value>
+  </data>
+  <data name="Bank.BankRepository.AddBank.AddUnSuccess" xml:space="preserve">
+    <value>Не удалось добавить информацию о банке в базу данных</value>
+  </data>
+  <data name="Bank.BankRepository.AddBankCurrencies.AddSuccess" xml:space="preserve">
+    <value>Успешно добавлена информация о банке в базу данных</value>
+  </data>
+  <data name="Bank.BankRepository.AddBankCurrencies.AddUnSuccess" xml:space="preserve">
+    <value>Не удалось добавить информацию о банке в базу данных</value>
+  </data>
+  <data name="ContactUs.ContactUsRepository.AddContactUs.Successfull" xml:space="preserve">
+    <value>Успешно добавлена информация о банке в базу данных</value>
+  </data>
+  <data name="ContactUs.ContactUsRepository.AddContactUs.UnSuccess" xml:space="preserve">
+    <value>Невозможно добавить запись в БД</value>
+  </data>
+  <data name="ContactUs.ContactUsRepository.UpdateContactUs.Success" xml:space="preserve">
+    <value>Контактная информация успешно обновлена</value>
+  </data>
+  <data name="Merchants.MerchantsRepository.UpdateMerchant.Success" xml:space="preserve">
+    <value>Информация о продавце успешно обновлена</value>
+  </data>
+  <data name="ContactUs.ContactUsRepository.UpdateContactUs.UnSuccess" xml:space="preserve">
+    <value>Невозможно обновить контактную информацию</value>
+  </data>
+  <data name="Merchants.MerchantsRepository.UpdateMerchant.UnSuccess" xml:space="preserve">
+    <value>Информация о продавце не обновлена</value>
+  </data>
+  <data name="ContactUs.ContactUsRepository.DeleteContactUs.Success" xml:space="preserve">
+    <value>Запись в разделе Контактная информация успешно уделана</value>
+  </data>
+  <data name="ContactUs.ContactUsRepository.DeleteContactUsUnSuccess" xml:space="preserve">
+    <value>Невозможно удалить запись об Отделе в БД</value>
+  </data>
+  <data name="ContactUs.ContactUsRepository.SendMail.SuccessSend" xml:space="preserve">
+    <value>Благодарим вас за обращение. Мы получили ваше сообщение и как можно скорее свяжемся с вами.</value>
+  </data>
+  <data name="FavoriteCurrency.FavoriteCurrencyRepository.AddFavoriteCurrencySuccess" xml:space="preserve">
+    <value>Успешно добавлена запись в базу данных</value>
+  </data>
+  <data name="FavoriteCurrency.FavoriteCurrencyRepository.AddFavoriteCurrency.UnSuccess" xml:space="preserve">
+    <value>Невозможно добавить запись в БД</value>
+  </data>
+  <data name="FavoriteCurrency.FavoriteCurrencyRepository.DeleteFavoriteCurrency.Success" xml:space="preserve">
+    <value>Информация в Избранных валютах удалена успешно.</value>
+  </data>
+  <data name="FavoriteCurrency.FavoriteCurrencyRepository.DeleteFavoriteCurrency.UnSuccess" xml:space="preserve">
+    <value>Невозможно удалить запись в Избранных валютах</value>
+  </data>
+  <data name="Payment.PaymentRepository.Success" xml:space="preserve">
+    <value>Успешно</value>
+  </data>
+  <data name="ReferalLink.ReferalLinkRepository.Success" xml:space="preserve">
+    <value>Комманда успешно выполнена</value>
+  </data>
+  <data name="GlobalRes.User_ResetPasswordPage_Title" xml:space="preserve">
+    <value>Сбросить пароль</value>
+  </data>
+  <data name="Shared.Navigation.ResetPassword" xml:space="preserve">
+    <value>Сбросить пароль</value>
+  </data>
+  <data name="User.LoginPage.Modal.InsertCorrectMail" xml:space="preserve">
+    <value>Пожалуйста, напишите правильный почтовый адрес в поле "От"</value>
+  </data>
+  <data name="User.LoginPage.Modal.InsertMailText" xml:space="preserve">
+    <value>Пожалуйста, заполните текст в поле "Сообщение"</value>
+  </data>
+  <data name="User.LoginPage.Modal.MailSendedSuccessifully" xml:space="preserve">
+    <value>Письмо успешно отправлено</value>
+  </data>
+  <data name="HomeController.CheckoutIndex.Error.NotAlias" xml:space="preserve">
+    <value>Пользователь не имеет псевдонимов</value>
+  </data>
+  <data name="HomeController.CheckoutIndex.Error.NotExist" xml:space="preserve">
+    <value>Клиент не существует</value>
+  </data>
+  <data name="NewInstantPaymentViewModel.PreparePriorUsedAliases.OrSelectPrior" xml:space="preserve">
+    <value>Выбрать из списка</value>
+  </data>
+  <data name="UIHelper_GetDatePeriods_Today" xml:space="preserve">
+    <value>Сегодня</value>
+  </data>
+  <data name="UIHelper_GetDatePeriods_Last_Week" xml:space="preserve">
+    <value>Прошлая неделя</value>
+  </data>
+  <data name="UIHelper_GetDatePeriods_Last_Month" xml:space="preserve">
+    <value>Прошлый месяц</value>
+  </data>
+  <data name="UIHelper_GetDatePeriods_Last_3_Months" xml:space="preserve">
+    <value>Последние 3 месяца</value>
+  </data>
+  <data name="UIHelper_GetDatePeriods_Last_6_Months" xml:space="preserve">
+    <value>Последние 6 месяцев</value>
+  </data>
+  <data name="UIHelper_GetAccountBalances_Select_a_currency" xml:space="preserve">
+    <value>Выберите валюту</value>
+  </data>
+  <data name="UIHelper_GetAccountBalances____Available_" xml:space="preserve">
+    <value> - Доступно </value>
+  </data>
+  <data name="HomeAccountsList.HideZeroAcc" xml:space="preserve">
+    <value>Скрыть аккаунты с нулевым балансом</value>
+  </data>
+  <data name="HomeAccountsList.ShowAllAcc" xml:space="preserve">
+    <value>Снимите галочку для отображения всех аккаунтов</value>
+  </data>
+  <data name="CommonObject.ViewAndDownload" xml:space="preserve">
+    <value>Скачать и просмотреть</value>
+  </data>
+  <data name="CommonObject.UploadProof" xml:space="preserve">
+    <value>Загрузить документ</value>
+  </data>
+  <data name="OrdersList.Details" xml:space="preserve">
+    <value>Детали</value>
+  </data>
+  <data name="User.LoginPage.ForgotPassword.Username" xml:space="preserve">
+    <value>Имя пользователя</value>
+  </data>
+  <data name="User.LoginPage.ForgotPassword.Email" xml:space="preserve">
+    <value>Почта</value>
+  </data>
+  <data name="ConvertHistoryPage.Details" xml:space="preserve">
+    <value>Детали</value>
+  </data>
+  <data name="Shared.WebPartsAccountingPage.Balance" xml:space="preserve">
+    <value>Доступный баланс</value>
+  </data>
+</root>

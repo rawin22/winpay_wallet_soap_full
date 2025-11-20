@@ -1,0 +1,83 @@
+﻿@model System.Collections.Generic.List<TSG.Models.ServiceModels.Transfers.HistorycalDataByTokenSo>
+
+    @using Tsg.UI.Main.App_LocalResources
+    @using TSG.Models.Enums
+    @using WinstantPay.Common.Extension
+    @{
+        ViewBag.Title = GlobalRes.TransfersTokens_Title;
+        Layout = "../Shared/_LayoutMain.cshtml";
+        var r = EnumExtensions.GetDictionary<DelegatedAuthorirySourceLimitationTypeEnum>();
+
+        var x = EnumHelper<DelegatedAuthorirySourceLimitationTypeEnum>.GetDisplayValues(DelegatedAuthorirySourceLimitationTypeEnum.Qr);
+    }
+
+    <div class="row">
+        <section class="panel">
+
+            <header class="panel-heading" data-panel-toggle="">
+                <div class="panel-actions">
+                    <a href="#" class="panel-action panel-action-toggle" data-panel-toggle=""></a>
+                </div>
+                <h2 class="panel-title">@ViewBag.Title</h2>
+                <p class ="panel-subtitle">@GlobalRes.TransfersTokens_SubTitle</p>
+            </header>
+
+            <div class="panel-body" style="display: block;">
+                <br />
+                <div class="row">
+
+                    <div class="col-sm-12">
+                        <table class="table table-bordered table-striped table-condensed mb-none" id="datatable-default">
+                            <thead>
+                                <tr>
+                                    <th> @GlobalRes.DelegatedAuthority_TokensStatuses </th>
+                                    <th> @GlobalRes.DelegatedAuthority_Tokens </th>
+                                    <th> @GlobalRes.AccountStatementPage_To </th>
+                                    <th> @GlobalRes.OrdersList_CreationDate </th>
+                                    <th> @GlobalRes.OrdersList_TransferedDate </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr id = "transferToken_@item.Transfers_Id" >
+                                        
+                                        <td>
+                                            @(EnumHelper<TransferedTokenStatusesEnum>.GetDisplayValue(item.StatusByToken))
+                                        </td>
+                                        <td>
+                                            @if ((DelegatedAuthorirySourceLimitationTypeEnum) item.DaPaymentLimitSourceType_EnumKey == DelegatedAuthorirySourceLimitationTypeEnum.Qr)
+                                            {
+                                                <span><i class = "fa fa-qrcode" ></i></span>
+                                            }
+                                            @if ((DelegatedAuthorirySourceLimitationTypeEnum) item.DaPaymentLimitSourceType_EnumKey == DelegatedAuthorirySourceLimitationTypeEnum.BarCode)
+                                            {
+                                                <span><i class = "fa fa-barcode" ></i></span>
+                                            }
+                                            @if ((DelegatedAuthorirySourceLimitationTypeEnum) item.DaPaymentLimitSourceType_EnumKey == DelegatedAuthorirySourceLimitationTypeEnum.Nfc)
+                                            {
+                                                <span><i class = "fa fa-rss-square" ></i></span>
+                                            }
+                                            @if ((DelegatedAuthorirySourceLimitationTypeEnum) item.DaPaymentLimitSourceType_EnumKey == DelegatedAuthorirySourceLimitationTypeEnum.SecretCode)
+                                            {
+                                                <span><i class = "fa fa-wallet" ></i></span>
+                                            }
+                                            @item.DaPayLimits_MediaName
+                                        </td>
+                                        <td>@item.Transfers_TransferRecipient</td>
+                                        <td> @Html.DisplayFor(modelItem => item.Transfers_CreatedDate) </td>
+                                        <td>
+                                            @if (item.Transfers_AcceptedDate.HasValue)
+                                            {
+                                                @Html.DisplayFor(modelItem => item.Transfers_AcceptedDate.Value)
+                                            }
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>

@@ -1,0 +1,42 @@
+﻿@using Tsg.UI.Main.App_LocalResources
+@model System.Web.Mvc.HandleErrorInfo
+
+@{
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+    ViewBag.Title = GlobalRes.Shared_ErrorMessagePage_Title;
+}
+
+<div class="row">
+    <section class="panel">
+
+        <header class="panel-heading" data-panel-toggle="">
+            <div class="panel-actions">
+                <a href="#" class="panel-action panel-action-toggle" data-panel-toggle=""></a>
+            </div>
+
+            <h2 class="panel-title">@GlobalRes.Shared_ErrorMessagePage_Title</h2>
+            <p class="panel-subtitle">@GlobalRes.Shared_ErrorMessagePage_SubTitle</p>
+        </header>
+
+        <div class="panel-body" style="display: block; text-align:center">
+            <i class="fa fa-money" aria-hidden="true" style="font-size:1000%"></i>
+            @Html.Raw(GlobalRes.Shared_ErrorMessagePage_CallAdmin)
+
+            @if (Model != null && HttpContext.Current.IsDebuggingEnabled)
+            {
+                <div>
+                    <p>
+                        <b>@GlobalRes.Shared_ErrorMessagePage_Exception</b> @Model.Exception.Message<br />
+                        <b>@GlobalRes.Shared_ErrorMessagePage_Controller</b> @Model.ControllerName<br />
+                        <b>@GlobalRes.Shared_ErrorMessagePage_Action</b> @Model.ActionName
+                    </p>
+                    <div style="overflow:scroll">
+                    <pre>
+                        @Model.Exception.StackTrace
+                    </pre>
+                    </div>
+                </div>
+            }
+        </div>
+    </section>
+</div>

@@ -1,0 +1,2101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AddBankAndWireInstPage.Add" xml:space="preserve">
+    <value>增加</value>
+  </data>
+  <data name="AddBankAndWireInstPage.AddNewCurrencyButton" xml:space="preserve">
+    <value>添新</value>
+  </data>
+  <data name="AddBankAndWireInstPage.BackToList" xml:space="preserve">
+    <value>回表</value>
+  </data>
+  <data name="AddBankAndWireInstPage.BankCountry" xml:space="preserve">
+    <value>银行国</value>
+  </data>
+  <data name="AddBankAndWireInstPage.BankName" xml:space="preserve">
+    <value>银行名字</value>
+  </data>
+  <data name="AddBankAndWireInstPage.SelectBank" xml:space="preserve">
+    <value>选择银行</value>
+  </data>
+  <data name="AddBankAndWireInstPage.ChooseCurrency" xml:space="preserve">
+    <value>选择货币</value>
+  </data>
+  <data name="AddBankAndWireInstPage.SubTitle" xml:space="preserve">
+    <value>银行添加</value>
+  </data>
+  <data name="AddBankAndWireInstPage.Title" xml:space="preserve">
+    <value>增加付款指令</value>
+  </data>
+  <data name="AddBankAndWireInstPage.WireInstructions" xml:space="preserve">
+    <value>支付指令</value>
+  </data>
+  <data name="AddBankPage.Add" xml:space="preserve">
+    <value>增加</value>
+  </data>
+  <data name="AddBankPage.AddNewCurrencyButton" xml:space="preserve">
+    <value>添新</value>
+  </data>
+  <data name="AddBankPage.BackToList" xml:space="preserve">
+    <value>回表</value>
+  </data>
+  <data name="AddBankPage.BankCountry" xml:space="preserve">
+    <value>银行国</value>
+  </data>
+  <data name="AddBankPage.BankName" xml:space="preserve">
+    <value>银行名字</value>
+  </data>
+  <data name="AddBankPage.ChooseCurrency" xml:space="preserve">
+    <value>选择货币</value>
+  </data>
+  <data name="AddBankPage.PageTitle" xml:space="preserve">
+    <value>银行</value>
+  </data>
+  <data name="AddBankPage.SubTitle" xml:space="preserve">
+    <value>银行添加</value>
+  </data>
+  <data name="AddBankPage.Title" xml:space="preserve">
+    <value>银行添加</value>
+  </data>
+  <data name="AddCurrencyPage.Add" xml:space="preserve">
+    <value>增加</value>
+  </data>
+  <data name="AddCurrencyPage.Back" xml:space="preserve">
+    <value>后退</value>
+  </data>
+  <data name="AddCurrencyPage.CurrencyCode" xml:space="preserve">
+    <value>货币号码</value>
+  </data>
+  <data name="AddCurrencyPage.CurrencyName" xml:space="preserve">
+    <value>货币名字</value>
+  </data>
+  <data name="AddCurrencyPage.CurrencySymbol" xml:space="preserve">
+    <value>货币符号</value>
+  </data>
+  <data name="AddCurrencyPage.PageSubTitle" xml:space="preserve">
+    <value>增加货币</value>
+  </data>
+  <data name="AddCurrencyPage.PageTitle" xml:space="preserve">
+    <value>货币</value>
+  </data>
+  <data name="AddCurrencyPage.Title" xml:space="preserve">
+    <value>增加货币</value>
+  </data>
+  <data name="EditBankPage.AddNew" xml:space="preserve">
+    <value>添新</value>
+  </data>
+  <data name="EditBankPage.Back" xml:space="preserve">
+    <value>后退</value>
+  </data>
+  <data name="EditBankPage.BackToList" xml:space="preserve">
+    <value>回表</value>
+  </data>
+  <data name="EditBankPage.BankCountry" xml:space="preserve">
+    <value>银行国</value>
+  </data>
+  <data name="EditBankPage.BankId" xml:space="preserve">
+    <value>银行号码</value>
+  </data>
+  <data name="EditBankPage.BankName" xml:space="preserve">
+    <value>银行名字</value>
+  </data>
+  <data name="EditBankPage.ChooseCurrency" xml:space="preserve">
+    <value>选货币</value>
+  </data>
+  <data name="EditBankPage.PageSubTitle" xml:space="preserve">
+    <value>编辑银行资料</value>
+  </data>
+  <data name="EditBankPage.PageTitle" xml:space="preserve">
+    <value>银行</value>
+  </data>
+  <data name="EditBankPage.Save" xml:space="preserve">
+    <value>保存</value>
+  </data>
+  <data name="EditBankPage.Title" xml:space="preserve">
+    <value>编选银行</value>
+  </data>
+  <data name="GetAllContractUsListPage.Action" xml:space="preserve">
+    <value>行动</value>
+  </data>
+  <data name="GetAllContractUsListPage.Categories" xml:space="preserve">
+    <value>类别 （购物，服务，。。。）</value>
+  </data>
+  <data name="GetAllContractUsListPage.CategoryEmail" xml:space="preserve">
+    <value>邮件类别</value>
+  </data>
+  <data name="GetAllContractUsListPage.Id" xml:space="preserve">
+    <value>号码</value>
+  </data>
+  <data name="GetAllContractUsListPage.ModalAddRec.Add" xml:space="preserve">
+    <value>增加</value>
+  </data>
+  <data name="GetAllContractUsListPage.ModalAddRec.Save" xml:space="preserve">
+    <value>保存</value>
+  </data>
+  <data name="GetAllContractUsListPage.ModalAddRec.Category" xml:space="preserve">
+    <value>类别 （购物，服务，。。。）</value>
+  </data>
+  <data name="MerchantsPage.ModalAddRec.Name" xml:space="preserve">
+    <value>姓名</value>
+  </data>
+  <data name="MerchantsPage.ModalAddRec.Phone" xml:space="preserve">
+    <value>电话号码</value>
+  </data>
+  <data name="MerchantsPage.ModalAddRec.Address" xml:space="preserve">
+    <value>地址</value>
+  </data>
+  <data name="MerchantsPage.ModalAddRec.ButtonSize" xml:space="preserve">
+    <value>按钮尺寸</value>
+  </data>
+  <data name="MerchantsPage.ModalAddRec.CallBackAddress" xml:space="preserve">
+    <value>回收URL</value>
+  </data>
+  <data name="MerchantsPage.ModalAddRec.SetCallBackAddress" xml:space="preserve">
+    <value>请输入返回URL</value>
+  </data>
+  <data name="MerchantsPage.ModalAddRec.Copied" xml:space="preserve">
+    <value>f复制到clipboard</value>
+  </data>
+  <data name="GetAllContractUsListPage.ModalAddRec.CategoryMail" xml:space="preserve">
+    <value>邮件类别</value>
+  </data>
+  <data name="UserResetPasswordPage.ModalResetRec.Close" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="GetAllContractUsListPage.ModalAddRec.Close" xml:space="preserve">
+    <value>关闭</value>
+  </data>
+  <data name="GetAllContractUsListPage.ModalDeleteRec.DeletionRec" xml:space="preserve">
+    <value>你确认删除你记录在“联络我们” 单吗？</value>
+  </data>
+  <data name="GetBankAndCurrencyInstructions.ModalDeleteRec.DeletionRec" xml:space="preserve">
+    <value>你确认删除你记录在“付款指令” 单吗？</value>
+  </data>
+  <data name="GetAllContractUsListPage.ModalDeleteRec.Ok" xml:space="preserve">
+    <value>同意</value>
+  </data>
+  <data name="MerchantsIndexPage.ModalGenerate.Copy" xml:space="preserve">
+    <value>复制</value>
+  </data>
+  <data name="GetAllContractUsListPage.PageTitle" xml:space="preserve">
+    <value>回复意见表</value>
+  </data>
+  <data name="MerchantsPage.PageTitle" xml:space="preserve">
+    <value>商户API Integration</value>
+  </data>
+  <data name="GetAllContractUsListPage.Title" xml:space="preserve">
+    <value>回复意见表</value>
+  </data>
+  <data name="MerchantsIndexPage.Title" xml:space="preserve">
+    <value>商户中心</value>
+  </data>
+  <data name="MerchantsIndexPage.Id" xml:space="preserve">
+    <value>号码</value>
+  </data>
+  <data name="MerchantsIndexPage.Name" xml:space="preserve">
+    <value>商户名字</value>
+  </data>
+  <data name="MerchantsIndexPage.AddMerchantModal.PlaceholderForMail" xml:space="preserve">
+    <value>请输入名字在商户网站</value>
+  </data>
+  <data name="MerchantsIndexPage.AddMerchantModal.PlaceholderForName" xml:space="preserve">
+    <value>请输入名字在商户网站</value>
+  </data>
+  <data name="MerchantsIndexPage.GenerateMerchantModal.Small" xml:space="preserve">
+    <value>小型</value>
+  </data>
+  <data name="MerchantsIndexPage.GenerateMerchantModal.Medium" xml:space="preserve">
+    <value>中型</value>
+  </data>
+  <data name="MerchantsIndexPage.GenerateMerchantModal.Large" xml:space="preserve">
+    <value>大型</value>
+  </data>
+  <data name="MerchantsIndexPage.Phone" xml:space="preserve">
+    <value>商户电话号码</value>
+  </data>
+  <data name="MerchantsIndexPage.Address" xml:space="preserve">
+    <value>商户地址</value>
+  </data>
+  <data name="MerchantsIndexPage.CallBackAddress" xml:space="preserve">
+    <value>回收商户地址</value>
+  </data>
+  <data name="MerchantsIndexPage.Action" xml:space="preserve">
+    <value>行动</value>
+  </data>
+  <data name="MerchantsIndexPage.BtnGenerateCode" xml:space="preserve">
+    <value>创造商户按钮</value>
+  </data>
+  <data name="UsersResetPasswordPage.Id" xml:space="preserve">
+    <value>号码</value>
+  </data>
+  <data name="UsersResetPasswordPage.UserName" xml:space="preserve">
+    <value>用户</value>
+  </data>
+  <data name="UsersResetPasswordPage.FirstName" xml:space="preserve">
+    <value>名字</value>
+  </data>
+  <data name="UsersResetPasswordPage.LastName" xml:space="preserve">
+    <value>姓名</value>
+  </data>
+  <data name="UsersResetPasswordPage.LastLogOnDate" xml:space="preserve">
+    <value>最后注册日期</value>
+  </data>
+  <data name="UsersResetPasswordPage.BranchOrCustomerName" xml:space="preserve">
+    <value>烙印或客户名</value>
+  </data>
+  <data name="UsersResetPasswordPage.UserPassword" xml:space="preserve">
+    <value>请确认重设自用密码</value>
+  </data>
+  <data name="UsersResetPasswordPage.Reset" xml:space="preserve">
+    <value>重设</value>
+  </data>
+  <data name="GetBankDepositPage.Yes" xml:space="preserve">
+    <value>是</value>
+  </data>
+  <data name="GetBankDepositPage.No" xml:space="preserve">
+    <value>不是</value>
+  </data>
+  <data name="UsersResetPasswordPage.Action" xml:space="preserve">
+    <value>行动</value>
+  </data>
+  <data name="UsersResetPasswordPage.BtnResPassword" xml:space="preserve">
+    <value>重设密码</value>
+  </data>
+  <data name="GetBankAndWireInstPage.AddNewBNWI" xml:space="preserve">
+    <value>增加付款指令</value>
+  </data>
+  <data name="GetBankAndWireInstPage.BankCountry" xml:space="preserve">
+    <value>银行国</value>
+  </data>
+  <data name="GetBankAndWireInstPage.BankName" xml:space="preserve">
+    <value>银行名字</value>
+  </data>
+  <data name="GetBankAndWireInstPage.Currency" xml:space="preserve">
+    <value>货币</value>
+  </data>
+  <data name="GetBankAndWireInstPage.PageTitle" xml:space="preserve">
+    <value>银行和支付指令</value>
+  </data>
+  <data name="GetBankAndWireInstPage.Title" xml:space="preserve">
+    <value>银行和支付指令</value>
+  </data>
+  <data name="GetBankAndWireInstPage.WireInstruction" xml:space="preserve">
+    <value>增加付款指令</value>
+  </data>
+  <data name="GetBanksPage.Action" xml:space="preserve">
+    <value>行动</value>
+  </data>
+  <data name="GetBanksPage.AddNew" xml:space="preserve">
+    <value>增加银行</value>
+  </data>
+  <data name="GetBanksPage.BankCountry" xml:space="preserve">
+    <value>银行国</value>
+  </data>
+  <data name="GetBanksPage.BankName" xml:space="preserve">
+    <value>银行名字</value>
+  </data>
+  <data name="GetBanksPage.Id" xml:space="preserve">
+    <value>号码</value>
+  </data>
+  <data name="GetBanksPage.PageSubTitle" xml:space="preserve">
+    <value>银行表列</value>
+  </data>
+  <data name="GetBanksPage.PageTitle" xml:space="preserve">
+    <value>银行</value>
+  </data>
+  <data name="GetBanksPage.Title" xml:space="preserve">
+    <value>银行</value>
+  </data>
+  <data name="GetPipItIndexPage.Id" xml:space="preserve">
+    <value>号码</value>
+  </data>
+  <data name="GetPipItIndexPage.PageSubTitle" xml:space="preserve">
+    <value>顺序排列单在系统</value>
+  </data>
+  <data name="GetPipItIndexPage.PageTitle" xml:space="preserve">
+    <value>次序Piplt</value>
+  </data>
+  <data name="GetPipItIndexPage.Title" xml:space="preserve">
+    <value>次序Piplt</value>
+  </data>
+  <data name="GetPipItIndexPage.BarCode" xml:space="preserve">
+    <value>条形码（Bar code）</value>
+  </data>
+  <data name="GetPipItIndexPage.Status" xml:space="preserve">
+    <value>情形</value>
+  </data>
+  <data name="GetPipItIndexPage.CreateDate" xml:space="preserve">
+    <value>创造日期</value>
+  </data>
+  <data name="GetPipItIndexPage.ExpiredDate" xml:space="preserve">
+    <value>过期日子</value>
+  </data>
+  <data name="GetPipItIndexPage.CurrencyCode" xml:space="preserve">
+    <value>货币号码</value>
+  </data>
+  <data name="GetPipItIndexPage.OrderValue" xml:space="preserve">
+    <value>价格次序</value>
+  </data>
+  <data name="GetPipItIndexPage.TotalValue" xml:space="preserve">
+    <value>总共价格</value>
+  </data>
+  <data name="User.LoginPage.Copyright" xml:space="preserve">
+    <value>
+©版权2016-2018 保留所有权利</value>
+  </data>
+  <data name="User.LoginPage.Password" xml:space="preserve">
+    <value>密码</value>
+  </data>
+  <data name="User.LoginPage.SignIn" xml:space="preserve">
+    <value>进入</value>
+  </data>
+  <data name="User.LoginPage.Username" xml:space="preserve">
+    <value>用户</value>
+  </data>
+  <data name="AddBankAndWireInstPage.ModalBank.Add" xml:space="preserve">
+    <value>增加</value>
+  </data>
+  <data name="AddBankAndWireInstPage.ModalBank.Close" xml:space="preserve">
+    <value>关闭</value>
+  </data>
+  <data name="AddBankAndWireInstPage.Edit" xml:space="preserve">
+    <value>保存</value>
+  </data>
+  <data name="ResetUserPasswordPage.Reset" xml:space="preserve">
+    <value>重设</value>
+  </data>
+  <data name="AddBankAndWireInstPage.ModalCurrency.NameOfCurrency" xml:space="preserve">
+    <value>货币名字</value>
+  </data>
+  <data name="AddBankAndWireInstPage.ModalCurrency.ShortNameOfCurrency" xml:space="preserve">
+    <value>货币号码</value>
+  </data>
+  <data name="AddBankAndWireInstPage.ModalCurrency.SymbolOfCurrency" xml:space="preserve">
+    <value>货币符号</value>
+  </data>
+  <data name="AddBankAndWireInstPage.TitleEdit" xml:space="preserve">
+    <value>编辑付款指令</value>
+  </data>
+  <data name="AddBankAndWireInstPage.TitleEditPage" xml:space="preserve">
+    <value>编辑付款指令</value>
+  </data>
+  <data name="EditCurrencyPage.Back" xml:space="preserve">
+    <value>后退</value>
+  </data>
+  <data name="EditCurrencyPage.CurrencyCode" xml:space="preserve">
+    <value>货币号码</value>
+  </data>
+  <data name="EditCurrencyPage.CurrencyName" xml:space="preserve">
+    <value>货币名字</value>
+  </data>
+  <data name="EditCurrencyPage.CurrencySymbol" xml:space="preserve">
+    <value>货币符号</value>
+  </data>
+  <data name="EditCurrencyPage.Edit" xml:space="preserve">
+    <value>编辑</value>
+  </data>
+  <data name="EditCurrencyPage.PageSubTitle" xml:space="preserve">
+    <value>编辑货币</value>
+  </data>
+  <data name="EditCurrencyPage.PageTitle" xml:space="preserve">
+    <value>货币</value>
+  </data>
+  <data name="EditCurrencyPage.Title" xml:space="preserve">
+    <value>编辑货币</value>
+  </data>
+  <data name="GetCurrencyPage.Action" xml:space="preserve">
+    <value>行动</value>
+  </data>
+  <data name="GetCurrencyPage.AddNew" xml:space="preserve">
+    <value>增加货币</value>
+  </data>
+  <data name="GetCurrencyPage.CurrencyCode" xml:space="preserve">
+    <value>货币号码</value>
+  </data>
+  <data name="GetCurrencyPage.CurrencyName" xml:space="preserve">
+    <value>货币名字</value>
+  </data>
+  <data name="GetCurrencyPage.CurrencySymbol" xml:space="preserve">
+    <value>符号</value>
+  </data>
+  <data name="GetCurrencyPage.Id" xml:space="preserve">
+    <value>号码</value>
+  </data>
+  <data name="GetCurrencyPage.PageSubTitle" xml:space="preserve">
+    <value>货币表列</value>
+  </data>
+  <data name="GetCurrencyPage.PageTitle" xml:space="preserve">
+    <value>货币</value>
+  </data>
+  <data name="GetCurrencyPage.Title" xml:space="preserve">
+    <value>货币</value>
+  </data>
+  <data name="ContactUsIndexPage.Attachment" xml:space="preserve">
+    <value>附件</value>
+  </data>
+  <data name="ContactUsIndexPage.Category" xml:space="preserve">
+    <value>类别</value>
+  </data>
+  <data name="ContactUsIndexPage.Email" xml:space="preserve">
+    <value>电子邮件</value>
+  </data>
+  <data name="ContactUsIndexPage.EmailCopy" xml:space="preserve">
+    <value>复制</value>
+  </data>
+  <data name="ContactUsIndexPage.Message" xml:space="preserve">
+    <value>讯息</value>
+  </data>
+  <data name="ContactUsIndexPage.SendMail" xml:space="preserve">
+    <value>寄讯息</value>
+  </data>
+  <data name="ContactUsIndexPage.Subject" xml:space="preserve">
+    <value>主题</value>
+  </data>
+  <data name="ContactUsIndexPage.SubTitle" xml:space="preserve">
+    <value>提供回复关于平台和联络顾客</value>
+  </data>
+  <data name="ContactUsIndexPage.Title" xml:space="preserve">
+    <value>联络表</value>
+  </data>
+  <data name="ContactUsSendMessageInfo.ReturnButton" xml:space="preserve">
+    <value>返回主页</value>
+  </data>
+  <data name="ContactUsSendMessageInfo.SubTitle" xml:space="preserve">
+    <value>提供回复关于平台和联络顾客</value>
+  </data>
+  <data name="ContactUsSendMessageInfo.Title" xml:space="preserve">
+    <value>联络表</value>
+  </data>
+  <data name="ExchangeCurrencyExchangePage.Amount" xml:space="preserve">
+    <value>数量</value>
+  </data>
+  <data name="ExchangeCurrencyExchangePage.Cancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="ExchangeCurrencyExchangePage.Continue" xml:space="preserve">
+    <value>继续</value>
+  </data>
+  <data name="ExchangeCurrencyExchangePage.From" xml:space="preserve">
+    <value>来自</value>
+  </data>
+  <data name="ExchangeCurrencyExchangePage.SubTitle" xml:space="preserve">
+    <value>选两种货币你要兑换和输入钱的数字</value>
+  </data>
+  <data name="ExchangeCurrencyExchangePage.TimeRemining" xml:space="preserve">
+    <value>剩下时间</value>
+  </data>
+  <data name="ExchangeCurrencyExchangePage.Title" xml:space="preserve">
+    <value>移交</value>
+  </data>
+  <data name="ExchangeCurrencyExchangePage.To" xml:space="preserve">
+    <value>到</value>
+  </data>
+  <data name="AccountStatementPage.To" xml:space="preserve">
+    <value>到</value>
+  </data>
+  <data name="ExchangeCurrencyExchangePage.TransferButton" xml:space="preserve">
+    <value>移交</value>
+  </data>
+  <data name="ExchangeCurrencyExchangePage2.Title" xml:space="preserve">
+    <value>移交</value>
+  </data>
+  <data name="ExchangeCurrencyExchangePage3.ExchangeRate" xml:space="preserve">
+    <value>兑换率</value>
+  </data>
+  <data name="ExchangeCurrencyExchangePage3.Title" xml:space="preserve">
+    <value>移交</value>
+  </data>
+  <data name="ExchangeCurrencyExchangePage4.MessageAcc" xml:space="preserve">
+    <value>客户身份</value>
+  </data>
+  <data name="ExchangeCurrencyExchangePage4.MessageAcc2" xml:space="preserve">
+    <value>客户身份</value>
+  </data>
+  <data name="ExchangeCurrencyExchangePage4.MessageFromAcc" xml:space="preserve">
+    <value>从你移交</value>
+  </data>
+  <data name="ExchangeCurrencyExchangePage4.MessageToAcc" xml:space="preserve">
+    <value>移交到你</value>
+  </data>
+  <data name="ExchangeCurrencyExchangePage4.MessageTransferFailed" xml:space="preserve">
+    <value>移交失败</value>
+  </data>
+  <data name="ExchangeCurrencyExchangePage4.MessageUnspecError" xml:space="preserve">
+    <value>未指明错误</value>
+  </data>
+  <data name="ExchangeCurrencyExchangePage4.ReturnButton" xml:space="preserve">
+    <value>返回主页</value>
+  </data>
+  <data name="ExchangeCurrencyExchangePage4.Title" xml:space="preserve">
+    <value>移交</value>
+  </data>
+  <data name="FavoriteCurrencyIndexPage.CurrencyCode" xml:space="preserve">
+    <value>货币号码</value>
+  </data>
+  <data name="FavoriteCurrencyIndexPage.CurrencyName" xml:space="preserve">
+    <value>货币名字</value>
+  </data>
+  <data name="FavoriteCurrencyIndexPage.CurrencySymbol" xml:space="preserve">
+    <value>符号</value>
+  </data>
+  <data name="FavoriteCurrencyIndexPage.SubTitle" xml:space="preserve">
+    <value>你可以选一种货币来指示或隐藏在你支付表。这不会删除其他货币</value>
+  </data>
+  <data name="FavoriteCurrencyIndexPage.Title" xml:space="preserve">
+    <value>货币安装</value>
+  </data>
+  <data name="FundingAddBankDepositPage.CCY" xml:space="preserve">
+    <value>货币</value>
+  </data>
+  <data name="FundingAddBankDepositPage.Copy" xml:space="preserve">
+    <value>复制</value>
+  </data>
+  <data name="FundingAddBankDepositPage.DepositHistory" xml:space="preserve">
+    <value>存款历史</value>
+  </data>
+  <data name="FundingAddBankDepositPage.Print" xml:space="preserve">
+    <value>复印</value>
+  </data>
+  <data name="FundingAddBankDepositPage.SubTitle" xml:space="preserve">
+    <value>请选货币和银行你要复印支付指令</value>
+  </data>
+  <data name="FundingAddBankDepositPage.Title" xml:space="preserve">
+    <value>支付指令</value>
+  </data>
+  <data name="FundingAddBankDepositPage.UploadProof" xml:space="preserve">
+    <value>上载证据</value>
+  </data>
+  <data name="FundingAddBankDepositPage.WireInstructions" xml:space="preserve">
+    <value>支付指令</value>
+  </data>
+  <data name="FundingGetBankDepositsPage.Amount" xml:space="preserve">
+    <value>数量</value>
+  </data>
+  <data name="FundingGetBankDepositsPage.CCyAndBank" xml:space="preserve">
+    <value>货币和银行</value>
+  </data>
+  <data name="FundingGetBankDepositsPage.CreatedDate" xml:space="preserve">
+    <value>创造日期</value>
+  </data>
+  <data name="FundingGetBankDepositsPage.Delete" xml:space="preserve">
+    <value>删除</value>
+  </data>
+  <data name="FundingGetBankDepositsPage.DeleteRecMessage" xml:space="preserve">
+    <value>你确认要删除这存款证据？</value>
+  </data>
+  <data name="FundingGetBankDepositsPage.Id" xml:space="preserve">
+    <value>号码</value>
+  </data>
+  <data name="FundingGetBankDepositsPage.ProofOfPayment" xml:space="preserve">
+    <value>支付证据</value>
+  </data>
+  <data name="FundingGetBankDepositsPage.Status" xml:space="preserve">
+    <value>情形</value>
+  </data>
+  <data name="FundingGetBankDepositsPage.SubTitle" xml:space="preserve">
+    <value>存款列表</value>
+  </data>
+  <data name="FundingGetBankDepositsPage.Title" xml:space="preserve">
+    <value>存款历史</value>
+  </data>
+  <data name="FundingGetBankDepositsPage.UploadProof" xml:space="preserve">
+    <value>上载证据</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.AccNumber" xml:space="preserve">
+    <value>客户号码</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.Action" xml:space="preserve">
+    <value>行动</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.Amount" xml:space="preserve">
+    <value>数量</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.Bank" xml:space="preserve">
+    <value>银行</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.CCY" xml:space="preserve">
+    <value>货币</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.Date" xml:space="preserve">
+    <value>日期</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.Id" xml:space="preserve">
+    <value>号码</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.ModalFilterRecAccNumber" xml:space="preserve">
+    <value>客户号码</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.ModalFilterRecAmountRange" xml:space="preserve">
+    <value>数量行列</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.ModalFilterRecBank" xml:space="preserve">
+    <value>银行</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.ModalFilterRecClose" xml:space="preserve">
+    <value>关闭</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.ModalFilterRecCurrency" xml:space="preserve">
+    <value>货币</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.ModalFilterRecDate" xml:space="preserve">
+    <value>日期</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.ModalFilterRecEnd" xml:space="preserve">
+    <value>结束</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.ModalFilterRecFrom" xml:space="preserve">
+    <value>自来</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.ModalFilterRecNameOfSender" xml:space="preserve">
+    <value>寄户姓名</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.ModalFilterRecNameOfSendingBank" xml:space="preserve">
+    <value>寄户银行名字</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.ModalFilterRecOtherInfo" xml:space="preserve">
+    <value>其他资料</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.ModalFilterRecSearch" xml:space="preserve">
+    <value>搜索</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.ModalFilterRecStart" xml:space="preserve">
+    <value>开始</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.ModalFilterRecTo" xml:space="preserve">
+    <value>到</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.NotYetUpload" xml:space="preserve">
+    <value>还没上载</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.OtherInformation" xml:space="preserve">
+    <value>其他资料</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.Proof" xml:space="preserve">
+    <value>证据</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.SendingBank" xml:space="preserve">
+    <value>寄出银行</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.Status" xml:space="preserve">
+    <value>情形</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.SubTitle" xml:space="preserve">
+    <value>这里你可以同意或拒接资金请求</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.Title" xml:space="preserve">
+    <value>资金请求</value>
+  </data>
+  <data name="FundingGetHystoryByFundingPage.AdminNotes" xml:space="preserve">
+    <value>管理笔记</value>
+  </data>
+  <data name="FundingGetHystoryByFundingPage.ChangedBy" xml:space="preserve">
+    <value>被更改</value>
+  </data>
+  <data name="FundingGetHystoryByFundingPage.StatusChange" xml:space="preserve">
+    <value>情形变化</value>
+  </data>
+  <data name="FundingGetHystoryByFundingPage.Title" xml:space="preserve">
+    <value>改变历史</value>
+  </data>
+  <data name="FundingUpdateFundRequestStatusPage.AccountNumber" xml:space="preserve">
+    <value>客户号码</value>
+  </data>
+  <data name="FundingUpdateFundRequestStatusPage.AdminNotes" xml:space="preserve">
+    <value>管理笔记</value>
+  </data>
+  <data name="FundingUpdateFundRequestStatusPage.Amount" xml:space="preserve">
+    <value>数量</value>
+  </data>
+  <data name="FundingUpdateFundRequestStatusPage.AttachmentFile" xml:space="preserve">
+    <value>附件</value>
+  </data>
+  <data name="FundingUpdateFundRequestStatusPage.BackToList" xml:space="preserve">
+    <value>回表</value>
+  </data>
+  <data name="FundingUpdateFundRequestStatusPage.Bank" xml:space="preserve">
+    <value>银行</value>
+  </data>
+  <data name="FundingUpdateFundRequestStatusPage.CCY" xml:space="preserve">
+    <value>货币</value>
+  </data>
+  <data name="FundingUpdateFundRequestStatusPage.DepositId" xml:space="preserve">
+    <value>存款号码</value>
+  </data>
+  <data name="FundingUpdateFundRequestStatusPage.NameOfSendingBank" xml:space="preserve">
+    <value>寄户银行名字</value>
+  </data>
+  <data name="FundingUpdateFundRequestStatusPage.OtherInformation" xml:space="preserve">
+    <value>其他资料</value>
+  </data>
+  <data name="FundingUpdateFundRequestStatusPage.PaymentDate" xml:space="preserve">
+    <value>付款日期</value>
+  </data>
+  <data name="FundingUpdateFundRequestStatusPage.Save" xml:space="preserve">
+    <value>保存</value>
+  </data>
+  <data name="FundingUpdateFundRequestStatusPage.SenderName" xml:space="preserve">
+    <value>寄户名字</value>
+  </data>
+  <data name="FundingUpdateFundRequestStatusPage.Status" xml:space="preserve">
+    <value>情形</value>
+  </data>
+  <data name="FundingUpdateFundRequestStatusPage.SubTitle" xml:space="preserve">
+    <value>创造资金请求情形</value>
+  </data>
+  <data name="FundingUpdateFundRequestStatusPage.Title" xml:space="preserve">
+    <value>资金请求</value>
+  </data>
+  <data name="HomeAccountsPage.Title" xml:space="preserve">
+    <value>客户身份</value>
+  </data>
+  <data name="HomeAccountStatementPage.Account" xml:space="preserve">
+    <value>客户身份</value>
+  </data>
+  <data name="HomeAccountStatementPage.Amount" xml:space="preserve">
+    <value>数量</value>
+  </data>
+  <data name="HomeAccountStatementPage.Balance" xml:space="preserve">
+    <value>余额</value>
+  </data>
+  <data name="HomeAccountStatementPage.BeginningBalance" xml:space="preserve">
+    <value>开端余额</value>
+  </data>
+  <data name="HomeAccountStatementPage.ClosingBalance" xml:space="preserve">
+    <value>最后余额</value>
+  </data>
+  <data name="HomeAccountStatementPage.Date" xml:space="preserve">
+    <value>日期</value>
+  </data>
+  <data name="HomeAccountStatementPage.DateRange" xml:space="preserve">
+    <value>日期行列</value>
+  </data>
+  <data name="HomeAccountStatementPage.Description" xml:space="preserve">
+    <value>描述</value>
+  </data>
+  <data name="HomeAccountStatementPage.GetReport" xml:space="preserve">
+    <value>取报告</value>
+  </data>
+  <data name="HomeAccountStatementPage.Period" xml:space="preserve">
+    <value>时期</value>
+  </data>
+  <data name="HomeAccountStatementPage.Reference" xml:space="preserve">
+    <value>参考</value>
+  </data>
+  <data name="HomeAccountStatementPage.Reset" xml:space="preserve">
+    <value>重设</value>
+  </data>
+  <data name="HomeAccountStatementPage.SubTitle" xml:space="preserve">
+    <value>指示/隐藏账户余额</value>
+  </data>
+  <data name="HomeAccountStatementPage.Title" xml:space="preserve">
+    <value>账户指令</value>
+  </data>
+  <data name="HomeCheckoutIndexPage.ChooseAccount" xml:space="preserve">
+    <value>选账户</value>
+  </data>
+  <data name="HomeCheckoutIndexPage.ChooseAlias" xml:space="preserve">
+    <value>选外号</value>
+  </data>
+  <data name="HomeCheckoutIndexPage.Confirm" xml:space="preserve">
+    <value>确认</value>
+  </data>
+  <data name="HomeCheckoutIndexPage.CustomerName" xml:space="preserve">
+    <value>客户名</value>
+  </data>
+  <data name="HomeCheckoutIndexPage.MerchantName" xml:space="preserve">
+    <value>商户名</value>
+  </data>
+  <data name="HomeCheckoutIndexPage.SubTitle" xml:space="preserve">
+    <value>请选资金来源和确认交往和寄货资料</value>
+  </data>
+  <data name="HomeCheckoutIndexPage.Title" xml:space="preserve">
+    <value>确认细节</value>
+  </data>
+  <data name="HomeIndexPage.At" xml:space="preserve">
+    <value>在</value>
+  </data>
+  <data name="HomeIndexPage.LastLoginText" xml:space="preserve">
+    <value>最后登录在</value>
+  </data>
+  <data name="HomeIndexPage.Title" xml:space="preserve">
+    <value>仪表盘 （Dashboard）</value>
+  </data>
+  <data name="HomeIndexPage.WelcomeMessage" xml:space="preserve">
+    <value>欢迎</value>
+  </data>
+  <data name="PaymentCreatePage.TitleNew" xml:space="preserve">
+    <value>立刻支付</value>
+  </data>
+  <data name="PaymentCreatePage.TitleRepeat" xml:space="preserve">
+    <value>重复立刻支付</value>
+  </data>
+  <data name="PaymentCurrenciesPage.CurrencyCode" xml:space="preserve">
+    <value>货币号码</value>
+  </data>
+  <data name="PaymentCurrenciesPage.CurrencyName" xml:space="preserve">
+    <value>货币名字</value>
+  </data>
+  <data name="PaymentCurrenciesPage.PaymentCutOffTime" xml:space="preserve">
+    <value>支付切断时间</value>
+  </data>
+  <data name="PaymentCurrenciesPage.SettelementDaysToAdd" xml:space="preserve">
+    <value>添加支付时期</value>
+  </data>
+  <data name="PaymentCurrenciesPage.SubTitle" xml:space="preserve">
+    <value>其他货币</value>
+  </data>
+  <data name="PaymentCurrenciesPage.Symbol" xml:space="preserve">
+    <value>符号</value>
+  </data>
+  <data name="PaymentCurrenciesPage.Title" xml:space="preserve">
+    <value>支付货币</value>
+  </data>
+  <data name="PaymentDetailsPage.Amount" xml:space="preserve">
+    <value>数量</value>
+  </data>
+  <data name="PaymentDetailsPage.Currency" xml:space="preserve">
+    <value>货币</value>
+  </data>
+  <data name="PaymentDetailsPage.Date" xml:space="preserve">
+    <value>日期</value>
+  </data>
+  <data name="PaymentDetailsPage.From" xml:space="preserve">
+    <value>自来</value>
+  </data>
+  <data name="PaymentDetailsPage.Invoice" xml:space="preserve">
+    <value>发票</value>
+  </data>
+  <data name="PaymentDetailsPage.Memo" xml:space="preserve">
+    <value>便签</value>
+  </data>
+  <data name="PaymentDetailsPage.ModalSendMailClose" xml:space="preserve">
+    <value>关闭</value>
+  </data>
+  <data name="PaymentDetailsPage.ModalSendMailFrom" xml:space="preserve">
+    <value>自来</value>
+  </data>
+  <data name="PaymentDetailsPage.ModalSendMailNote" xml:space="preserve">
+    <value>便签</value>
+  </data>
+  <data name="PaymentDetailsPage.ModalSendMailSend" xml:space="preserve">
+    <value>寄</value>
+  </data>
+  <data name="PaymentDetailsPage.PaymentReference" xml:space="preserve">
+    <value>支付参考</value>
+  </data>
+  <data name="PaymentDetailsPage.Status" xml:space="preserve">
+    <value>情形</value>
+  </data>
+  <data name="PaymentDetailsPage.Title" xml:space="preserve">
+    <value>立刻支付细节</value>
+  </data>
+  <data name="PaymentDetailsPage.To" xml:space="preserve">
+    <value>到</value>
+  </data>
+  <data name="PaymentHistoryPage.Action" xml:space="preserve">
+    <value>行动</value>
+  </data>
+  <data name="PaymentHistoryPage.Amount" xml:space="preserve">
+    <value>数量</value>
+  </data>
+  <data name="PaymentHistoryPage.CCY" xml:space="preserve">
+    <value>货币</value>
+  </data>
+  <data name="PaymentHistoryPage.CreatedDate" xml:space="preserve">
+    <value>创造日期</value>
+  </data>
+  <data name="PaymentHistoryPage.From" xml:space="preserve">
+    <value>自来</value>
+  </data>
+  <data name="PaymentHistoryPage.NewPayment" xml:space="preserve">
+    <value>创造新立刻支付</value>
+  </data>
+  <data name="PaymentHistoryPage.Ref" xml:space="preserve">
+    <value>Ref:</value>
+  </data>
+  <data name="PaymentHistoryPage.SubTitle" xml:space="preserve">
+    <value>立即支付历史</value>
+  </data>
+  <data name="PaymentHistoryPage.Title" xml:space="preserve">
+    <value>支付历史</value>
+  </data>
+  <data name="PaymentHistoryPage.To" xml:space="preserve">
+    <value>到</value>
+  </data>
+  <data name="PaymentPostPage.MessageSuccess" xml:space="preserve">
+    <value>立即支付已经成功寄出</value>
+  </data>
+  <data name="PaymentPostPage.Title" xml:space="preserve">
+    <value>宣告立即支付</value>
+  </data>
+  <data name="ProofDocUploadProofDocPage.AccountNumber" xml:space="preserve">
+    <value>账户号码 （后面最少要4个数字）</value>
+  </data>
+  <data name="ProofDocUploadProofDocPage.Amount" xml:space="preserve">
+    <value>数量</value>
+  </data>
+  <data name="ProofDocUploadProofDocPage.AttachmentFile" xml:space="preserve">
+    <value>附件文件</value>
+  </data>
+  <data name="ProofDocUploadProofDocPage.AttachProof" xml:space="preserve">
+    <value>附加图片</value>
+  </data>
+  <data name="ProofDocUploadProofDocPage.DepositHistory" xml:space="preserve">
+    <value>存款历史</value>
+  </data>
+  <data name="ProofDocUploadProofDocPage.NameOfSender" xml:space="preserve">
+    <value>寄户名字如果他不是你</value>
+  </data>
+  <data name="ProofDocUploadProofDocPage.NameOfSendingBank" xml:space="preserve">
+    <value>寄件银行名字</value>
+  </data>
+  <data name="ProofDocUploadProofDocPage.OtherInformation" xml:space="preserve">
+    <value>其他资料</value>
+  </data>
+  <data name="ProofDocUploadProofDocPage.PaymentDate" xml:space="preserve">
+    <value>支付日期</value>
+  </data>
+  <data name="ProofDocUploadProofDocPage.ReceivingBank" xml:space="preserve">
+    <value>接收银行和货币</value>
+  </data>
+  <data name="ProofDocUploadProofDocPage.Save" xml:space="preserve">
+    <value>保存</value>
+  </data>
+  <data name="ProofDocUploadProofDocPage.Status" xml:space="preserve">
+    <value>情形</value>
+  </data>
+  <data name="ProofDocUploadProofDocPage.SubTitle" xml:space="preserve">
+    <value>上载证据文件</value>
+  </data>
+  <data name="ProofDocUploadProofDocPage.Title" xml:space="preserve">
+    <value>证据文件</value>
+  </data>
+  <data name="ReferralChangeInvintationsLinkPage.Back" xml:space="preserve">
+    <value>返回</value>
+  </data>
+  <data name="ReferralChangeInvintationsLinkPage.ReferalLink" xml:space="preserve">
+    <value>link 收户人员</value>
+  </data>
+  <data name="ReferralChangeInvintationsLinkPage.SubTitle" xml:space="preserve">
+    <value>请添上URL， 你名字就添入在最后电邮</value>
+  </data>
+  <data name="ReferralChangeInvintationsLinkPage.Title" xml:space="preserve">
+    <value>更新 URL 模式</value>
+  </data>
+  <data name="ReferralChangeInvintationsLinkPage.UpdateLink" xml:space="preserve">
+    <value>更新Link</value>
+  </data>
+  <data name="ReferralReferFriendPage.Copy" xml:space="preserve">
+    <value>复制</value>
+  </data>
+  <data name="ReferralReferFriendPage.SelectAlias" xml:space="preserve">
+    <value>选择别名</value>
+  </data>
+  <data name="ReferralReferFriendPage.SubTitle" xml:space="preserve">
+    <value>通过传送信息以向朋友推荐 E-Wallet 系统</value>
+  </data>
+  <data name="ReferralReferFriendPage.Title" xml:space="preserve">
+    <value>Link 邀请</value>
+  </data>
+  <data name="Shared.ErrorMessagePage.Action" xml:space="preserve">
+    <value>活动</value>
+  </data>
+  <data name="Shared.ErrorMessagePage.CallAdmin" xml:space="preserve">
+    <value>意外错误发生，请联络系统管理员</value>
+  </data>
+  <data name="Shared.ErrorMessagePage.Controller" xml:space="preserve">
+    <value>管理员</value>
+  </data>
+  <data name="Shared.ErrorMessagePage.Exception" xml:space="preserve">
+    <value>例外</value>
+  </data>
+  <data name="Shared.ErrorMessagePage.SubTitle" xml:space="preserve">
+    <value>一般错误发生</value>
+  </data>
+  <data name="Shared.ErrorMessagePage.Title" xml:space="preserve">
+    <value>一般错误</value>
+  </data>
+  <data name="Shared.Header.LastLogin" xml:space="preserve">
+    <value>最后登入</value>
+  </data>
+  <data name="Shared.Header.Logout" xml:space="preserve">
+    <value>退出</value>
+  </data>
+  <data name="Shared.Header.MyProfile" xml:space="preserve">
+    <value>个人资料</value>
+  </data>
+  <data name="Shared.Header.Lang.English" xml:space="preserve">
+    <value>英语</value>
+  </data>
+  <data name="Shared.Header.Lang.French" xml:space="preserve">
+    <value>法语</value>
+  </data>
+  <data name="Shared.Header.Lang.Russian" xml:space="preserve">
+    <value>俄语</value>
+  </data>
+  <data name="Shared.InstantPaymentListPage.Action" xml:space="preserve">
+    <value>活动</value>
+  </data>
+  <data name="Shared.InstantPaymentListPage.Amount" xml:space="preserve">
+    <value>数量</value>
+  </data>
+  <data name="Shared.InstantPaymentListPage.CCY" xml:space="preserve">
+    <value>货币</value>
+  </data>
+  <data name="Shared.InstantPaymentListPage.CreatedDate" xml:space="preserve">
+    <value>建立日期</value>
+  </data>
+  <data name="Shared.InstantPaymentListPage.From" xml:space="preserve">
+    <value>从</value>
+  </data>
+  <data name="Shared.InstantPaymentListPage.PaymentHistoryText" xml:space="preserve">
+    <value>仅显示最新10项即时付款/付款/历史，点击以详细了解所有即时付款</value>
+  </data>
+  <data name="Shared.InstantPaymentListPage.Refresh" xml:space="preserve">
+    <value>刷新</value>
+  </data>
+  <data name="Shared.InstantPaymentListPage.SubTitle" xml:space="preserve">
+    <value>显示/隐藏最新即时付款</value>
+  </data>
+  <data name="Shared.InstantPaymentListPage.Details" xml:space="preserve">
+    <value>详情</value>
+  </data>
+  <data name="Shared.InstantPaymentListPage.Send" xml:space="preserve">
+    <value>发送</value>
+  </data>
+  <data name="Shared.InstantPaymentListPage.Repeat" xml:space="preserve">
+    <value>重新操作</value>
+  </data>
+  <data name="Shared.InstantPaymentListPage.Title" xml:space="preserve">
+    <value>历史</value>
+  </data>
+  <data name="Shared.InstantPaymentListPage.To" xml:space="preserve">
+    <value>至</value>
+  </data>
+  <data name="Shared.InternalServerErrorPage.SorryMessage" xml:space="preserve">
+    <value>我们对服务器发生故障表示抱歉，敬请返回首页以重新申请服务。</value>
+  </data>
+  <data name="Shared.InternalServerErrorPage.SubTitle" xml:space="preserve">
+    <value>内部服务器故障</value>
+  </data>
+  <data name="Shared.InternalServerErrorPage.Title" xml:space="preserve">
+    <value>内部服务器</value>
+  </data>
+  <data name="Shared.Navigation.Accounts" xml:space="preserve">
+    <value>账户</value>
+  </data>
+  <data name="Shared.Navigation.AddFunds" xml:space="preserve">
+    <value>增加资金</value>
+  </data>
+  <data name="Shared.Navigation.Admins" xml:space="preserve">
+    <value>管理员</value>
+  </data>
+  <data name="Shared.Navigation.Balances" xml:space="preserve">
+    <value>余额</value>
+  </data>
+  <data name="Shared.Navigation.Banks" xml:space="preserve">
+    <value>银行</value>
+  </data>
+  <data name="Shared.Navigation.ChangePassword" xml:space="preserve">
+    <value>更改密码</value>
+  </data>
+  <data name="Shared.Navigation.Merchants" xml:space="preserve">
+    <value>商人中心 （Beta）</value>
+  </data>
+  <data name="Shared.Navigation.Pipit" xml:space="preserve">
+    <value>Pipit</value>
+  </data>
+  <data name="Shared.Navigation.ContactUs" xml:space="preserve">
+    <value>联系方式</value>
+  </data>
+  <data name="Shared.Navigation.ConvertAndExchange" xml:space="preserve">
+    <value>兑换</value>
+  </data>
+  <data name="Shared.Navigation.Currencies" xml:space="preserve">
+    <value>货币</value>
+  </data>
+  <data name="Shared.Navigation.CurrencySettings" xml:space="preserve">
+    <value>货币设置</value>
+  </data>
+  <data name="Shared.Navigation.Dashboard" xml:space="preserve">
+    <value>Dashboard</value>
+  </data>
+  <data name="Shared.Navigation.DepositHistory" xml:space="preserve">
+    <value>存款记录</value>
+  </data>
+  <data name="Shared.Navigation.DepositInstructions" xml:space="preserve">
+    <value>存款说明</value>
+  </data>
+  <data name="Shared.Navigation.FeedbackSettings" xml:space="preserve">
+    <value>反馈设置</value>
+  </data>
+  <data name="Shared.Navigation.History" xml:space="preserve">
+    <value>历史</value>
+  </data>
+  <data name="Shared.Navigation.InstantPayment" xml:space="preserve">
+    <value>即时付款</value>
+  </data>
+  <data name="Shared.Navigation.InvintationLink" xml:space="preserve">
+    <value>Link 邀请</value>
+  </data>
+  <data name="Shared.Navigation.InvitationLink" xml:space="preserve">
+    <value>Link 邀请</value>
+  </data>
+  <data name="Shared.Navigation.Maintenance" xml:space="preserve">
+    <value>保养</value>
+  </data>
+  <data name="Shared.Navigation.ManageFundRequest" xml:space="preserve">
+    <value>管理资金申请</value>
+  </data>
+  <data name="Shared.Navigation.PayInInstructions" xml:space="preserve">
+    <value>支付说明</value>
+  </data>
+  <data name="Shared.Navigation.PayNow" xml:space="preserve">
+    <value>立即付款</value>
+  </data>
+  <data name="Shared.Navigation.SideBar" xml:space="preserve">
+    <value>Toggle Sidebar</value>
+  </data>
+  <data name="Shared.Navigation.Statements" xml:space="preserve">
+    <value>账目报表</value>
+  </data>
+  <data name="Shared.Navigation.SuperAdmin" xml:space="preserve">
+    <value>超级管理员</value>
+  </data>
+  <data name="Shared.Navigation.Title" xml:space="preserve">
+    <value>Navigation</value>
+  </data>
+  <data name="Shared.Navigation.UploadDepositProof" xml:space="preserve">
+    <value>上载存款证据</value>
+  </data>
+  <data name="Shared.Navigation.UserProfile" xml:space="preserve">
+    <value>用户资料</value>
+  </data>
+  <data name="Shared.Navigation.Merchants.Integration" xml:space="preserve">
+    <value>搜查</value>
+  </data>
+  <data name="User.ResetPassword.SuccessChanged" xml:space="preserve">
+    <value>{0}密码已重新设定，并通过邮箱发送</value>
+  </data>
+  <data name="Shared.Navigation.View Profile" xml:space="preserve">
+    <value>查看个人资料/KYC情况</value>
+  </data>
+  <data name="Shared.Navigation.WelcomeMessage" xml:space="preserve">
+    <value>欢迎留言</value>
+  </data>
+  <data name="Shared.NewInstantPaymentFormPage.Amount" xml:space="preserve">
+    <value>数量</value>
+  </data>
+  <data name="Shared.NewInstantPaymentFormPage.Create" xml:space="preserve">
+    <value>建立</value>
+  </data>
+  <data name="Shared.NewInstantPaymentFormPage.Currency" xml:space="preserve">
+    <value>货币</value>
+  </data>
+  <data name="Shared.NewInstantPaymentFormPage.From" xml:space="preserve">
+    <value>从</value>
+  </data>
+  <data name="Shared.NewInstantPaymentFormPage.Invoice" xml:space="preserve">
+    <value>发票</value>
+  </data>
+  <data name="Shared.NewInstantPaymentFormPage.Memo" xml:space="preserve">
+    <value>备忘录</value>
+  </data>
+  <data name="Shared.NewInstantPaymentFormPage.PayNow" xml:space="preserve">
+    <value>立即付款</value>
+  </data>
+  <data name="Shared.NewInstantPaymentFormPage.Reset" xml:space="preserve">
+    <value>重启</value>
+  </data>
+  <data name="Shared.NewInstantPaymentFormPage.Search" xml:space="preserve">
+    <value>搜索</value>
+  </data>
+  <data name="Shared.NewInstantPaymentFormPage.SelectCurrency" xml:space="preserve">
+    <value>选择货币</value>
+  </data>
+  <data name="Shared.NewInstantPaymentFormPage.SubTitle" xml:space="preserve">
+    <value>操作新即时付款</value>
+  </data>
+  <data name="Shared.NewInstantPaymentFormPage.TitlePayNow" xml:space="preserve">
+    <value>立即付款</value>
+  </data>
+  <data name="Shared.NewInstantPaymentFormPage.TitleRepeatInstantPayment" xml:space="preserve">
+    <value>重新即时付款</value>
+  </data>
+  <data name="Shared.NewInstantPaymentFormPage.To" xml:space="preserve">
+    <value>至</value>
+  </data>
+  <data name="Shared.NotFoundPage.SorryMessage" xml:space="preserve">
+    <value>我们对搜索网页未找到表示抱歉，敬请返回首页重新搜索</value>
+  </data>
+  <data name="Shared.NotFoundPage.SubTitle" xml:space="preserve">
+    <value>Error 找不到网页</value>
+  </data>
+  <data name="Shared.NotFoundPage.Title" xml:space="preserve">
+    <value>找不到网页</value>
+  </data>
+  <data name="Shared.WebPartsAccountingPage.AccNumber" xml:space="preserve">
+    <value>账户</value>
+  </data>
+  <data name="Shared.WebPartsAccountingPage.ActiveHolds" xml:space="preserve">
+    <value>冻结金钱</value>
+  </data>
+  <data name="Shared.WebPartsAccountingPage.AllAccText" xml:space="preserve">
+    <value>所有含有i，b ，0， /b，/i，余额被隐藏</value>
+  </data>
+  <data name="Shared.WebPartsAccountingPage.AvailableBalance" xml:space="preserve">
+    <value>可用余额</value>
+  </data>
+  <data name="Shared.WebPartsAccountingPage.CCY" xml:space="preserve">
+    <value>货币</value>
+  </data>
+  <data name="Shared.WebPartsAccountingPage.CurrentBalance" xml:space="preserve">
+    <value>当前余额</value>
+  </data>
+  <data name="Shared.WebPartsAccountingPage.SubTitle" xml:space="preserve">
+    <value>显示/隐藏余额</value>
+  </data>
+  <data name="Shared.WebPartsAccountingPage.Title" xml:space="preserve">
+    <value>余额</value>
+  </data>
+  <data name="Shared.WebPartsAccountingPage.UncheckForAllAcc" xml:space="preserve">
+    <value>取消勾选以显示所有户口</value>
+  </data>
+  <data name="User.AddAdminUserPage.Add" xml:space="preserve">
+    <value>添加</value>
+  </data>
+  <data name="User.AddAdminUserPage.Back" xml:space="preserve">
+    <value>返回</value>
+  </data>
+  <data name="User.AddAdminUserPage.Email" xml:space="preserve">
+    <value>邮箱</value>
+  </data>
+  <data name="User.AddAdminUserPage.FirstName" xml:space="preserve">
+    <value>名字</value>
+  </data>
+  <data name="User.AddAdminUserPage.LastName" xml:space="preserve">
+    <value>姓</value>
+  </data>
+  <data name="User.AddAdminUserPage.SubTitle" xml:space="preserve">
+    <value>敬请填写以下详情以创建管理员</value>
+  </data>
+  <data name="User.AddAdminUserPage.Title" xml:space="preserve">
+    <value>增加管理员</value>
+  </data>
+  <data name="User.AddAdminUserPage.UserName" xml:space="preserve">
+    <value>用户</value>
+  </data>
+  <data name="User.ChangePasswordPage.LogOut" xml:space="preserve">
+    <value>退出</value>
+  </data>
+  <data name="User.ChangePasswordPage.CurrentPassword" xml:space="preserve">
+    <value>旧密码</value>
+  </data>
+  <data name="User.ChangePasswordPage.NewPassword" xml:space="preserve">
+    <value>新密码</value>
+  </data>
+  <data name="User.ChangePasswordPage.RepeatNewPassword" xml:space="preserve">
+    <value>重复输入密码</value>
+  </data>
+  <data name="User.ChangePasswordPage.ResetPasswordBtn" xml:space="preserve">
+    <value>更改密码</value>
+  </data>
+  <data name="User.ChangePasswordPage.SubTitle" xml:space="preserve">
+    <value>如忘记您的密码，敬请使用登入网页的“联络我们”link</value>
+  </data>
+  <data name="User.ChangePasswordPage.Title" xml:space="preserve">
+    <value>更改密码</value>
+  </data>
+  <data name="User.CheckOutLoginPage.CopyRight" xml:space="preserve">
+    <value>版权所有 {0}-{1}，不得转载</value>
+  </data>
+  <data name="User.CheckOutLoginPage.Password" xml:space="preserve">
+    <value>密码</value>
+  </data>
+  <data name="User.CheckOutLoginPage.SignIn" xml:space="preserve">
+    <value>登入</value>
+  </data>
+  <data name="User.CheckOutLoginPage.SignInToPay" xml:space="preserve">
+    <value>登入付款</value>
+  </data>
+  <data name="User.CheckOutLoginPage.Title" xml:space="preserve">
+    <value>登入</value>
+  </data>
+  <data name="User.CheckOutLoginPage.UserName" xml:space="preserve">
+    <value>用户</value>
+  </data>
+  <data name="User.ContactUsPage.Email" xml:space="preserve">
+    <value>您的邮箱</value>
+  </data>
+  <data name="User.ContactUsPage.Message" xml:space="preserve">
+    <value>信息</value>
+  </data>
+  <data name="User.ContactUsPage.SendMessage" xml:space="preserve">
+    <value>欢迎留言</value>
+  </data>
+  <data name="User.ContactUsPage.Subject" xml:space="preserve">
+    <value>课题</value>
+  </data>
+  <data name="User.ContactUsPage.Title" xml:space="preserve">
+    <value>联络我们</value>
+  </data>
+  <data name="User.GetUserPage.Action" xml:space="preserve">
+    <value>活动</value>
+  </data>
+  <data name="User.GetUserPage.AddNewAdmin" xml:space="preserve">
+    <value>增加管理员</value>
+  </data>
+  <data name="User.GetUserPage.ConfirmDelUser" xml:space="preserve">
+    <value>您确定删除？</value>
+  </data>
+  <data name="User.GetUserPage.Email" xml:space="preserve">
+    <value>邮箱</value>
+  </data>
+  <data name="User.GetUserPage.FirstName" xml:space="preserve">
+    <value>名字</value>
+  </data>
+  <data name="User.GetUserPage.LastName" xml:space="preserve">
+    <value>姓</value>
+  </data>
+  <data name="User.GetUserPage.SubTitle" xml:space="preserve">
+    <value>管理 系統 管理员</value>
+  </data>
+  <data name="User.GetUserPage.Title" xml:space="preserve">
+    <value>管理员</value>
+  </data>
+  <data name="User.GetUserPage.UserName" xml:space="preserve">
+    <value>用户</value>
+  </data>
+  <data name="User.LoginPage.ForgotPassword" xml:space="preserve">
+    <value>重設密碼</value>
+  </data>
+  <data name="User.LoginPage.ContactUs" xml:space="preserve">
+    <value>联络我们</value>
+  </data>
+  <data name="User.LoginPage.ModalConctactUsEmail" xml:space="preserve">
+    <value>您的邮箱</value>
+  </data>
+  <data name="User.LoginPage.ModalConctactUsMessage" xml:space="preserve">
+    <value>信息</value>
+  </data>
+  <data name="User.LoginPage.ModalConctactUsSendMessage" xml:space="preserve">
+    <value>发送信息</value>
+  </data>
+  <data name="User.LoginPage.ModalConctactUsSubject" xml:space="preserve">
+    <value>课题</value>
+  </data>
+  <data name="User.LoginPage.Title" xml:space="preserve">
+    <value>登入</value>
+  </data>
+  <data name="User.ProfilePage.AccessToKYC" xml:space="preserve">
+    <value>进入KYC资料</value>
+  </data>
+  <data name="User.ProfilePage.Alias" xml:space="preserve">
+    <value>别名</value>
+  </data>
+  <data name="User.ProfilePage.Aliases" xml:space="preserve">
+    <value>别名</value>
+  </data>
+  <data name="User.ProfilePage.Cancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="User.ProfilePage.CreatePayment" xml:space="preserve">
+    <value>建立付款（通过网站服务）</value>
+  </data>
+  <data name="User.ProfilePage.Customer" xml:space="preserve">
+    <value>客户</value>
+  </data>
+  <data name="User.ProfilePage.Email" xml:space="preserve">
+    <value>邮箱</value>
+  </data>
+  <data name="User.ProfilePage.FirstName" xml:space="preserve">
+    <value>名字</value>
+  </data>
+  <data name="User.ProfilePage.Grants" xml:space="preserve">
+    <value>获得登入权</value>
+  </data>
+  <data name="User.ProfilePage.LastName" xml:space="preserve">
+    <value>姓</value>
+  </data>
+  <data name="User.ProfilePage.Payments" xml:space="preserve">
+    <value>付款</value>
+  </data>
+  <data name="User.ProfilePage.Save" xml:space="preserve">
+    <value>保存</value>
+  </data>
+  <data name="CommonObject.View" xml:space="preserve">
+    <value>查看</value>
+  </data>
+  <data name="User.ProfilePage.SubmitPaymentText" xml:space="preserve">
+    <value>可以付款金额达到 $0.00 （可以双重控制否决）</value>
+  </data>
+  <data name="User.ProfilePage.Tab1" xml:space="preserve">
+    <value>我的个人资料</value>
+  </data>
+  <data name="User.ProfilePage.Tab2" xml:space="preserve">
+    <value>登入权与限制</value>
+  </data>
+  <data name="User.ProfilePage.Title" xml:space="preserve">
+    <value>我的个人资料</value>
+  </data>
+  <data name="User.ProfilePage.UserInfo" xml:space="preserve">
+    <value>用户资料</value>
+  </data>
+  <data name="User.ProfilePage.UserName" xml:space="preserve">
+    <value>用户</value>
+  </data>
+  <data name="Bank.BankController.AddBank.ViewBagMessage" xml:space="preserve">
+    <value>成功增加银行</value>
+  </data>
+  <data name="Bank.BankController.AddBankBankAndInstruction.Title" xml:space="preserve">
+    <value>增加银行</value>
+  </data>
+  <data name="Bank.BankController.AddBankBankAndInstruction.ViewBagMessage" xml:space="preserve">
+    <value>成功增加银行</value>
+  </data>
+  <data name="Bank.BankController.AddCurrency.ViewBagMessage" xml:space="preserve">
+    <value>成功增加货币</value>
+  </data>
+  <data name="Bank.BankController.AddCurrencyBankAndInstruction.Title" xml:space="preserve">
+    <value>增加货币</value>
+  </data>
+  <data name="Bank.BankController.AddCurrencyBankAndInstruction.ViewBagMessage" xml:space="preserve">
+    <value>成功增加货币</value>
+  </data>
+  <data name="Bank.BankController.DeleteBank.ViewMessageSuccess" xml:space="preserve">
+    <value>成功删除银行</value>
+  </data>
+  <data name="Bank.BankController.DeleteBank.ViewMessageUnSuccess" xml:space="preserve">
+    <value>成功删除银行</value>
+  </data>
+  <data name="Bank.BankController.DeleteCurrency.ViewMessageSuccess" xml:space="preserve">
+    <value>成功删除货币</value>
+  </data>
+  <data name="Bank.BankController.DeleteCurrency.ViewMessageUnSuccess" xml:space="preserve">
+    <value>成功删除货币</value>
+  </data>
+  <data name="Bank.BankController.EditBank.ViewMessage" xml:space="preserve">
+    <value>成功更新银行资讯</value>
+  </data>
+  <data name="Bank.BankController.EditCurrency.ViewMessage" xml:space="preserve">
+    <value>成功更新货币资讯</value>
+  </data>
+  <data name="Bank.BankController.UpdateCurrency.ViewBagMessage" xml:space="preserve">
+    <value>成功更新货币资讯</value>
+  </data>
+  <data name="ContactUs.ContactUsController.ContactUs.DbError" xml:space="preserve">
+    <value>DB发生故障，信息已发送</value>
+  </data>
+  <data name="ContactUs.ContactUsController.ContactUs.MailAndDbError" xml:space="preserve">
+    <value>记录未加到DB，信件无法发送</value>
+  </data>
+  <data name="ContactUs.ContactUsController.ContactUs.MailSendingError" xml:space="preserve">
+    <value>记录已加到DB，但发送信件发生故障</value>
+  </data>
+  <data name="ContactUs.ContactUsController.ContactUs.MailToError" xml:space="preserve">
+    <value>发送信息是空白</value>
+  </data>
+  <data name="ContactUs.ContactUsController.ContactUs.Ok" xml:space="preserve">
+    <value>ok</value>
+  </data>
+  <data name="ContactUs.ContactUsController.Index.ChoseCategory" xml:space="preserve">
+    <value>请选择类型</value>
+  </data>
+  <data name="ContactUs.ContactUsController.Index.ContactUs" xml:space="preserve">
+    <value>联络我们</value>
+  </data>
+  <data name="ContactUs.ContactUsController.Index.MailIsNotSend" xml:space="preserve">
+    <value>信件无法发送</value>
+  </data>
+  <data name="ContactUs.ContactUsController.Index.MsgIsEmpty" xml:space="preserve">
+    <value>信件不能空白</value>
+  </data>
+  <data name="ContactUs.ContactUsController.Index.SelectCategory" xml:space="preserve">
+    <value>请选择类型</value>
+  </data>
+  <data name="ContactUs.ContactUsController.Index.SubjIsEmpty" xml:space="preserve">
+    <value>课题不能空白</value>
+  </data>
+  <data name="HomeAccountStatementPage.AccountText" xml:space="preserve">
+    <value>请预先选择货币</value>
+  </data>
+  <data name="UIHelper.PrepareAvaliableBank.SelectBank" xml:space="preserve">
+    <value>选择银行</value>
+  </data>
+  <data name="User.RegFailureNewAdminPage.BodyText" xml:space="preserve">
+    <value>此账户已建立，敬请登入以下</value>
+  </data>
+  <data name="User.RegFailureNewAdminPage.Login" xml:space="preserve">
+    <value>登入</value>
+  </data>
+  <data name="User.RegFailureNewAdminPage.Title" xml:space="preserve">
+    <value>注册失败</value>
+  </data>
+  <data name="User.RegNewAdminPage.CreatePassword" xml:space="preserve">
+    <value>建立密码</value>
+  </data>
+  <data name="User.RegNewAdminPage.Password" xml:space="preserve">
+    <value>密码</value>
+  </data>
+  <data name="User.RegNewAdminPage.RepeatPassword" xml:space="preserve">
+    <value>重新输入密码</value>
+  </data>
+  <data name="User.RegNewAdminPage.Title" xml:space="preserve">
+    <value>注册新管理员</value>
+  </data>
+  <data name="User.RegNewAdminPage.WelcomeMsgText" xml:space="preserve">
+    <value>欢迎，b，{0}，/b，br，请在使用系统之前建立密码</value>
+  </data>
+  <data name="WelcomeMessage.AddWelcomeMessagePage.Add" xml:space="preserve">
+    <value>添加</value>
+  </data>
+  <data name="WelcomeMessage.AddWelcomeMessagePage.BackToList" xml:space="preserve">
+    <value>返回名单</value>
+  </data>
+  <data name="WelcomeMessage.AddWelcomeMessagePage.SubTitle" xml:space="preserve">
+    <value>添加个人欢迎留言</value>
+  </data>
+  <data name="WelcomeMessage.AddWelcomeMessagePage.Title" xml:space="preserve">
+    <value>欢迎留言</value>
+  </data>
+  <data name="WelcomeMessage.AddWelcomeMessagePage.WmForUser" xml:space="preserve">
+    <value>用户欢迎留言</value>
+  </data>
+  <data name="WelcomeMessage.AddWelcomeMessagePage.WmText" xml:space="preserve">
+    <value>欢迎短信</value>
+  </data>
+  <data name="WelcomeMessage.EditWelcomeMessagePage.BackToList" xml:space="preserve">
+    <value>返回名单</value>
+  </data>
+  <data name="WelcomeMessage.EditWelcomeMessagePage.Save" xml:space="preserve">
+    <value>保存</value>
+  </data>
+  <data name="WelcomeMessage.EditWelcomeMessagePage.SubTitle" xml:space="preserve">
+    <value>设置欢迎留言</value>
+  </data>
+  <data name="WelcomeMessage.EditWelcomeMessagePage.Title" xml:space="preserve">
+    <value>欢迎留言</value>
+  </data>
+  <data name="WelcomeMessage.EditWelcomeMessagePage.WmForUser" xml:space="preserve">
+    <value>用户欢迎留言</value>
+  </data>
+  <data name="WelcomeMessage.EditWelcomeMessagePage.WmId" xml:space="preserve">
+    <value>欢迎留言证号码</value>
+  </data>
+  <data name="WelcomeMessage.EditWelcomeMessagePage.WmText" xml:space="preserve">
+    <value>欢迎短信</value>
+  </data>
+  <data name="WelcomeMessage.GetWelcomeMessagesPage.Action" xml:space="preserve">
+    <value>活动</value>
+  </data>
+  <data name="WelcomeMessage.GetWelcomeMessagesPage.DefWM" xml:space="preserve">
+    <value>默认欢迎留言</value>
+  </data>
+  <data name="WelcomeMessage.GetWelcomeMessagesPage.Id" xml:space="preserve">
+    <value>号码</value>
+  </data>
+  <data name="WelcomeMessage.GetWelcomeMessagesPage.IsDefMsg" xml:space="preserve">
+    <value>默认短信？</value>
+  </data>
+  <data name="WelcomeMessage.GetWelcomeMessagesPage.MsgText" xml:space="preserve">
+    <value>短信</value>
+  </data>
+  <data name="WelcomeMessage.GetWelcomeMessagesPage.SubTitle" xml:space="preserve">
+    <value>欢迎留言名单</value>
+  </data>
+  <data name="WelcomeMessage.GetWelcomeMessagesPage.Title" xml:space="preserve">
+    <value>欢迎留言</value>
+  </data>
+  <data name="WireInstruction.AddWireInstructionPage.Add" xml:space="preserve">
+    <value>添加</value>
+  </data>
+  <data name="WireInstruction.AddWireInstructionPage.BackToList" xml:space="preserve">
+    <value>返回名单</value>
+  </data>
+  <data name="WireInstruction.AddWireInstructionPage.CCY" xml:space="preserve">
+    <value>货币</value>
+  </data>
+  <data name="WireInstruction.AddWireInstructionPage.CharsMax" xml:space="preserve">
+    <value>最多数字</value>
+  </data>
+  <data name="WireInstruction.AddWireInstructionPage.SubTitle" xml:space="preserve">
+    <value>添加支付说明</value>
+  </data>
+  <data name="WireInstruction.AddWireInstructionPage.Title" xml:space="preserve">
+    <value>支付说明</value>
+  </data>
+  <data name="WireInstruction.AddWireInstructionPage.WireInstr" xml:space="preserve">
+    <value>支付说明</value>
+  </data>
+  <data name="WireInstruction.EditWireInstructionPage.BackToList" xml:space="preserve">
+    <value>返回名单</value>
+  </data>
+  <data name="WireInstruction.EditWireInstructionPage.CharsMax" xml:space="preserve">
+    <value>最多数字</value>
+  </data>
+  <data name="WireInstruction.EditWireInstructionPage.Save" xml:space="preserve">
+    <value>保存</value>
+  </data>
+  <data name="WireInstruction.EditWireInstructionPage.SubTitle" xml:space="preserve">
+    <value>设置支付说明</value>
+  </data>
+  <data name="WireInstruction.EditWireInstructionPage.Title" xml:space="preserve">
+    <value>支付说明</value>
+  </data>
+  <data name="WireInstruction.EditWireInstructionPage.WireInstr" xml:space="preserve">
+    <value>支付说明</value>
+  </data>
+  <data name="WireInstruction.EditWireInstructionPage.WireInstrId" xml:space="preserve">
+    <value>支付说明</value>
+  </data>
+  <data name="WireInstruction.GetWireInstructionsPage.Action" xml:space="preserve">
+    <value>活动</value>
+  </data>
+  <data name="WireInstruction.GetWireInstructionsPage.BankAndCurrency" xml:space="preserve">
+    <value>银行与货币</value>
+  </data>
+  <data name="WireInstruction.GetWireInstructionsPage.BankWireInstructions" xml:space="preserve">
+    <value>银行支付说明</value>
+  </data>
+  <data name="WireInstruction.GetWireInstructionsPage.Id" xml:space="preserve">
+    <value>号码</value>
+  </data>
+  <data name="WireInstruction.GetWireInstructionsPage.NewWireInstr" xml:space="preserve">
+    <value>建立新支付说明</value>
+  </data>
+  <data name="WireInstruction.GetWireInstructionsPage.SubTitle" xml:space="preserve">
+    <value>支付说明名单</value>
+  </data>
+  <data name="WireInstruction.GetWireInstructionsPage.Title" xml:space="preserve">
+    <value>支付说明</value>
+  </data>
+  <data name="Exchange.ExchangeController.CurrencyExchange.EmptyUserData" xml:space="preserve">
+    <value>删除用户资料</value>
+  </data>
+  <data name="Exchange.ExchangeController.CurrencyExchange.ChangeCurrency" xml:space="preserve">
+    <value>最少兑换一种货币</value>
+  </data>
+  <data name="Exchange.ExchangeController.CurrencyExchange.EnterAmount" xml:space="preserve">
+    <value>请输入预想转账的金额</value>
+  </data>
+  <data name="Exchange.ExchangeController.CurrencyExchange.NoCorrectCurrency" xml:space="preserve">
+    <value>无正确货币</value>
+  </data>
+  <data name="Exchange.ExchangeController.CurrencyExchange.EqualCurrencyError" xml:space="preserve">
+    <value>最少兑换一种货币，货币价格同等</value>
+  </data>
+  <data name="Exchange.ExchangeController.CurrencyExchange.TempDataIsNull" xml:space="preserve">
+    <value>暂时数据无效</value>
+  </data>
+  <data name="FavoriteCurrencies.FavoriteCurrenciesController.AddToFavoriteCurrency.AddSuccess" xml:space="preserve">
+    <value>成功添加别名</value>
+  </data>
+  <data name="FavoriteCurrencies.FavoriteCurrenciesController.AddToFavoriteCurrency.AddNoSuccess" xml:space="preserve">
+    <value>未成功添加别名</value>
+  </data>
+  <data name="FavoriteCurrencies.FavoriteCurrenciesController.DelToFavoriteCurrency.Success" xml:space="preserve">
+    <value>成功删除别名</value>
+  </data>
+  <data name="FavoriteCurrencies.FavoriteCurrenciesController.DelToFavoriteCurrency.NoSuccess" xml:space="preserve">
+    <value>未成功删除别名</value>
+  </data>
+  <data name="Funding.FundingController.PrepareAvalBanks.SelectBank" xml:space="preserve">
+    <value>选择货币与银行</value>
+  </data>
+  <data name="CommonObject.BrowseFile" xml:space="preserve">
+    <value>浏览器文件</value>
+  </data>
+  <data name="CommonObject.NoFile" xml:space="preserve">
+    <value>无文件选择</value>
+  </data>
+  <data name="Funding.FundingController.DeleteBankDeposit.Success" xml:space="preserve">
+    <value>成功删除银行存款</value>
+  </data>
+  <data name="Bank.BankController.GetBankAndWireInstructions.Success" xml:space="preserve">
+    <value>成功删除支付说明</value>
+  </data>
+  <data name="Funding.FundingController.UpdateFundsRequest.Success" xml:space="preserve">
+    <value>成功更新资金申请状况</value>
+  </data>
+  <data name="Home.HomeController.CheckoutIndex.ApplicationError" xml:space="preserve">
+    <value>申请发生故障</value>
+  </data>
+  <data name="Payment.PaymentController.Create.NeedToSetCurrency" xml:space="preserve">
+    <value>您必须设置货币价值</value>
+  </data>
+  <data name="Payment.PaymentController.GetImageLink.PaymentDetails" xml:space="preserve">
+    <value>付款资料</value>
+  </data>
+  <data name="Payment.PaymentController.GetImageLink.PaymentReference" xml:space="preserve">
+    <value>支付参考</value>
+  </data>
+  <data name="Payment.PaymentController.GetImageLink.Status" xml:space="preserve">
+    <value>现状</value>
+  </data>
+  <data name="Payment.PaymentController.GetImageLink.From" xml:space="preserve">
+    <value>从</value>
+  </data>
+  <data name="Payment.PaymentController.GetImageLink.To" xml:space="preserve">
+    <value>至</value>
+  </data>
+  <data name="Payment.PaymentController.GetImageLink.Date" xml:space="preserve">
+    <value>日期</value>
+  </data>
+  <data name="Payment.PaymentController.GetImageLink.Currency" xml:space="preserve">
+    <value>货币</value>
+  </data>
+  <data name="Payment.PaymentController.GetImageLink.Amount" xml:space="preserve">
+    <value>数量</value>
+  </data>
+  <data name="Payment.PaymentController.GetImageLink.Invoice" xml:space="preserve">
+    <value>发票</value>
+  </data>
+  <data name="Payment.PaymentController.GetImageLink.Memo" xml:space="preserve">
+    <value>备忘录</value>
+  </data>
+  <data name="ProofDoc.ProofDocController.UploadProofDoc.ErrCanntCreateBankDeposit" xml:space="preserve">
+    <value>错误：无法建立银行存款</value>
+  </data>
+  <data name="ProofDoc.ProofDocController.UploadProofDoc.ProofDocUploadAt" xml:space="preserve">
+    <value>上载证据资料至</value>
+  </data>
+  <data name="ProofDoc.ProofDocController.UploadProofDoc.UploadSuccessifully" xml:space="preserve">
+    <value>成功上载资料</value>
+  </data>
+  <data name="ProofDoc.ProofDocController.RemoveProofDoc.DelSuccess" xml:space="preserve">
+    <value>成功删除证据资料</value>
+  </data>
+  <data name="User.UserController.CreateNewAlias.AddSuccess" xml:space="preserve">
+    <value>成功添加别名</value>
+  </data>
+  <data name="User.UserController.CreateNewAlias.ErrAdded" xml:space="preserve">
+    <value>抱歉，您建立的别名已被取用，敬请选择另外别名</value>
+  </data>
+  <data name="User.UserController.Login.UpdateLastLogin" xml:space="preserve">
+    <value>成功更新用户最新登入日期</value>
+  </data>
+  <data name="User.UserController.Login.PasswordNotMatch" xml:space="preserve">
+    <value>用户名与密码不匹配</value>
+  </data>
+  <data name="User.UserController.CheckoutLogin.ApplicationError" xml:space="preserve">
+    <value>应用程序发生故障</value>
+  </data>
+  <data name="User.UserController.CheckoutLogin.OrderError" xml:space="preserve">
+    <value>订购令牌不匹配</value>
+  </data>
+  <data name="User.UserController.CheckoutLogin.ApplicationErrorEmptyParam" xml:space="preserve">
+    <value>应用程序发生故障</value>
+  </data>
+  <data name="User.UserController.RegisterNewAdmin.PasswordsNotMatch" xml:space="preserve">
+    <value>密码不匹配</value>
+  </data>
+  <data name="User.UserController.RegisterNewAdmin.UserUnregistredInSystem" xml:space="preserve">
+    <value>用户没有在系统登记</value>
+  </data>
+  <data name="User.UserController.AddAdminUser.AddSuccessifully" xml:space="preserve">
+    <value>成功添加用户</value>
+  </data>
+  <data name="User.UserController.AddAdminUser.AddUnSuccessifully" xml:space="preserve">
+    <value>用户未添加</value>
+  </data>
+  <data name="User.UserController.ChangePassword.PassNotMatched" xml:space="preserve">
+    <value>当前密码不正确，如您忘记密码，敬请{0} 退出{/a} 并在登入网页使用“忘记密码”的link</value>
+  </data>
+  <data name="User.UserController.ChangePassword.NeedEightCharacterLong" xml:space="preserve">
+    <value>您的密码必须最少有8位数</value>
+  </data>
+  <data name="User.UserController.ChangePassword.NeedCharacterAndCapitalLetterAndNumber" xml:space="preserve">
+    <value>您的密码必须含有一个或多个号码，一个或多个大写字母，一个或多个文字</value>
+  </data>
+  <data name="User.UserController.ChangePassword.NeedCapitalLetterAndSpecCharacter" xml:space="preserve">
+    <value>您的密码必须含有一个或多个大写字母与一个或多个文字</value>
+  </data>
+  <data name="User.UserController.ChangePassword.NeedSpecCharacter" xml:space="preserve">
+    <value>您的密码必须最少含有一个文字</value>
+  </data>
+  <data name="User.UserController.ChangePassword.Success" xml:space="preserve">
+    <value>成功更改密码</value>
+  </data>
+  <data name="User.UserController.ChangePassword.UnSuccess" xml:space="preserve">
+    <value>密码与重置密码不匹配，您的密码未更改</value>
+  </data>
+  <data name="WelcomeMessage.WelcomeMessageController.AddWelcomeMessage.AddSuccessfully" xml:space="preserve">
+    <value>成功添加欢迎留言</value>
+  </data>
+  <data name="WelcomeMessage.WelcomeMessageController.EditWelcomeMessage.AddSuccessfully" xml:space="preserve">
+    <value>成功更新欢迎留言</value>
+  </data>
+  <data name="WelcomeMessage.WelcomeMessageController.DeleteWelcomeMessage.DeletedSuccessfully" xml:space="preserve">
+    <value>成功删除欢迎留言</value>
+  </data>
+  <data name="WireInstruction.WireInstructionController.GetPrintFriendlyInstruction.ErrBankCurrencyIdIsNull" xml:space="preserve">
+    <value>银行货币编号无效</value>
+  </data>
+  <data name="WireInstruction.WireInstructionController.PrepareAvailableBankCurrencies.SelectCurrencyAndBank" xml:space="preserve">
+    <value>选择货币与银行</value>
+  </data>
+  <data name="WireInstruction.WireInstructionController.AddWireInstruction.CreatedSuccessfully" xml:space="preserve">
+    <value>成功建立支付说明</value>
+  </data>
+  <data name="WireInstruction.WireInstructionController.EditWireInstruction.UpdatedSuccessfully" xml:space="preserve">
+    <value>成功更新支付说明</value>
+  </data>
+  <data name="WireInstruction.WireInstructionController.DeleteWireInstruction.DeletedSuccessfully" xml:space="preserve">
+    <value>成功删除支付说明</value>
+  </data>
+  <data name="Bank.BankRepository.AddBank.AddSuccess" xml:space="preserve">
+    <value>在资料库成功添加银行资讯</value>
+  </data>
+  <data name="Bank.BankRepository.AddBank.AddUnSuccess" xml:space="preserve">
+    <value>在资料库添加银行资讯失败</value>
+  </data>
+  <data name="Bank.BankRepository.AddBankCurrencies.AddSuccess" xml:space="preserve">
+    <value>在资料库成功添加银行资讯</value>
+  </data>
+  <data name="Bank.BankRepository.AddBankCurrencies.AddUnSuccess" xml:space="preserve">
+    <value>在资料库添加银行资讯失败</value>
+  </data>
+  <data name="ContactUs.ContactUsRepository.AddContactUs.Successfull" xml:space="preserve">
+    <value>在资料库成功添加记录资讯</value>
+  </data>
+  <data name="ContactUs.ContactUsRepository.AddContactUs.UnSuccess" xml:space="preserve">
+    <value>在资料库无法添加记录资讯</value>
+  </data>
+  <data name="ContactUs.ContactUsRepository.UpdateContactUs.Success" xml:space="preserve">
+    <value>在资料库成功更新联络我们资讯</value>
+  </data>
+  <data name="Merchants.MerchantsRepository.UpdateMerchant.Success" xml:space="preserve">
+    <value>在资料库成功更新商人资讯</value>
+  </data>
+  <data name="ContactUs.ContactUsRepository.UpdateContactUs.UnSuccess" xml:space="preserve">
+    <value>无法更新联络我们资讯</value>
+  </data>
+  <data name="Merchants.MerchantsRepository.UpdateMerchant.UnSuccess" xml:space="preserve">
+    <value>无法更新商人资讯</value>
+  </data>
+  <data name="ContactUs.ContactUsRepository.DeleteContactUs.Success" xml:space="preserve">
+    <value>成功删除联络我们资讯</value>
+  </data>
+  <data name="ContactUs.ContactUsRepository.DeleteContactUsUnSuccess" xml:space="preserve">
+    <value>无法删除联络我们资讯</value>
+  </data>
+  <data name="ContactUs.ContactUsRepository.SendMail.SuccessSend" xml:space="preserve">
+    <value>感谢您联络 我們，我们已收到您的信息，然后会尽快回复您</value>
+  </data>
+  <data name="FavoriteCurrency.FavoriteCurrencyRepository.AddFavoriteCurrencySuccess" xml:space="preserve">
+    <value>成功添加记录资讯至资料库</value>
+  </data>
+  <data name="FavoriteCurrency.FavoriteCurrencyRepository.AddFavoriteCurrency.UnSuccess" xml:space="preserve">
+    <value>无法添加记录资讯至资料库</value>
+  </data>
+  <data name="FavoriteCurrency.FavoriteCurrencyRepository.DeleteFavoriteCurrency.Success" xml:space="preserve">
+    <value>成功删除受欢迎货币资讯</value>
+  </data>
+  <data name="FavoriteCurrency.FavoriteCurrencyRepository.DeleteFavoriteCurrency.UnSuccess" xml:space="preserve">
+    <value>无法删除受欢迎货币资讯</value>
+  </data>
+  <data name="Payment.PaymentRepository.Success" xml:space="preserve">
+    <value>成功</value>
+  </data>
+  <data name="ReferalLink.ReferalLinkRepository.Success" xml:space="preserve">
+    <value>成功指令</value>
+  </data>
+  <data name="GlobalRes.User_ResetPasswordPage_Title" xml:space="preserve">
+    <value>重置密码</value>
+  </data>
+  <data name="Shared.Navigation.ResetPassword" xml:space="preserve">
+    <value>重置密码</value>
+  </data>
+  <data name="User.LoginPage.Modal.InsertCorrectMail" xml:space="preserve">
+    <value>敬请在信件栏位填写正确信件</value>
+  </data>
+  <data name="User.LoginPage.Modal.InsertMailText" xml:space="preserve">
+    <value>敬请在信息栏位填写</value>
+  </data>
+  <data name="User.LoginPage.Modal.MailSendedSuccessifully" xml:space="preserve">
+    <value>信件成功发送</value>
+  </data>
+  <data name="HomeController.CheckoutIndex.Error.NotAlias" xml:space="preserve">
+    <value>用户未有别名</value>
+  </data>
+  <data name="HomeController.CheckoutIndex.Error.NotExist" xml:space="preserve">
+    <value>客户未存在</value>
+  </data>
+  <data name="NewInstantPaymentViewModel.PreparePriorUsedAliases.OrSelectPrior" xml:space="preserve">
+    <value>或预选</value>
+  </data>
+  <data name="UIHelper_GetDatePeriods_Today" xml:space="preserve">
+    <value>今天</value>
+  </data>
+  <data name="UIHelper_GetDatePeriods_Last_Week" xml:space="preserve">
+    <value>上周</value>
+  </data>
+  <data name="UIHelper_GetDatePeriods_Last_Month" xml:space="preserve">
+    <value>上个月</value>
+  </data>
+  <data name="UIHelper_GetDatePeriods_Last_3_Months" xml:space="preserve">
+    <value>前3个月</value>
+  </data>
+  <data name="UIHelper_GetDatePeriods_Last_6_Months" xml:space="preserve">
+    <value>前6个月</value>
+  </data>
+  <data name="UIHelper_GetAccountBalances_Select_a_currency" xml:space="preserve">
+    <value>选择货币</value>
+  </data>
+  <data name="UIHelper_GetAccountBalances____Available_" xml:space="preserve">
+    <value>可用</value>
+  </data>
+  <data name="HomeAccountsList.HideZeroAcc" xml:space="preserve">
+    <value>隐藏0余额的账户</value>
+  </data>
+  <data name="HomeAccountsList.Show" xml:space="preserve">
+    <value>显示</value>
+  </data>
+  <data name="HomeAccountsList.Hide" xml:space="preserve">
+    <value>隐藏</value>
+  </data>
+  <data name="HomeAccountsList.ShowFvAcc" xml:space="preserve">
+    <value>显示隐藏货币余额</value>
+  </data>
+  <data name="HomeAccountsList.HideFvAcc" xml:space="preserve">
+    <value>显示所有货币余额</value>
+  </data>
+  <data name="HomeAccountsList.ShowAllAcc" xml:space="preserve">
+    <value>取消勾选以显示所有户口</value>
+  </data>
+  <data name="CommonObject.ViewAndDownload" xml:space="preserve">
+    <value>查看与下载</value>
+  </data>
+  <data name="CommonObject.UploadProof" xml:space="preserve">
+    <value>上载证据</value>
+  </data>
+  <data name="User.LoginPage.ForgotPassword.Email" xml:space="preserve">
+    <value>邮箱</value>
+  </data>
+  <data name="User.LoginPage.ForgotPassword.Username" xml:space="preserve">
+    <value>用户</value>
+  </data>
+  <data name="ConvertHistoryPage.Details" xml:space="preserve">
+    <value>详情</value>
+  </data>
+  <data name="OrdersList.Details" xml:space="preserve">
+    <value>详情</value>
+  </data>
+</root>

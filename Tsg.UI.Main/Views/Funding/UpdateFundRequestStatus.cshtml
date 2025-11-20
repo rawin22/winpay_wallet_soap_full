@@ -1,0 +1,190 @@
+﻿@using Tsg.UI.Main.App_LocalResources
+@model Tsg.UI.Main.Models.BankDepositModel
+
+@{
+    ViewBag.Title = GlobalRes.FundingUpdateFundRequestStatusPage_Title;
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+
+
+<link href="/Content/viewer/viewer.css" rel="stylesheet">
+<script src="/Content/viewer/viewer.js"></script>
+<script src="/Content/assets/vendor/jquery/jquery.js"></script>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <section class="panel  @(ViewBag.OpenPanel != null ? "" : "panel-featured panel-featured-info")">
+            <header class="panel-heading" data-panel-toggle="">
+                <div class="panel-actions">
+                    <a href="#" class="panel-action panel-action-toggle" data-panel-toggle=""></a>
+                </div>
+
+                <h2 class="panel-title">@GlobalRes.FundingUpdateFundRequestStatusPage_Title</h2>
+                <p class="panel-subtitle">@GlobalRes.FundingUpdateFundRequestStatusPage_SubTitle</p>
+            </header>
+
+            <div class="panel-body">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                <div class="form-group" hidden="hidden">
+                    <label class="col-sm-3 control-label">@GlobalRes.FundingUpdateFundRequestStatusPage_DepositId</label>
+                    <div class="col-sm-6">
+                        @Html.TextBoxFor(m => m.DepositId, new { @class = "form-control", @readonly = "readonly", required = "" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">@GlobalRes.FundingUpdateFundRequestStatusPage_Status</label>
+                    <div class="col-sm-6">
+                        @*@Html.TextBoxFor(m => m.Status, new { @class = "form-control", required = "" })
+                            @Html.ValidationMessageFor(m => m.Status, "", new { @class = "text-danger" })*@
+                        @Html.DropDownListFor(m => m.Status, Model.AvailableStatuses, new { @class = "form-control", required = "" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">@GlobalRes.FundingUpdateFundRequestStatusPage_CCY</label>
+                    <div class="col-sm-6">
+                        @Html.TextBoxFor(m => m.CurrencyName, new { @class = "form-control", @readonly = "readonly", required = "" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Bank</label>
+                    <div class="col-sm-6">
+                        @Html.TextBoxFor(m => m.Bank, new { @class = "form-control", @readonly = "readonly", required = "" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">@GlobalRes.FundingUpdateFundRequestStatusPage_Amount</label>
+                    <div class="col-sm-6">
+                        @Html.TextBoxFor(m => m.Amount, new { @class = "form-control", @readonly = "readonly", required = "" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">@GlobalRes.FundingUpdateFundRequestStatusPage_SenderName</label>
+                    <div class="col-sm-6">
+                        @Html.TextBoxFor(m => m.CustomerName, new { @class = "form-control", @readonly = "readonly", required = "" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">@GlobalRes.FundingUpdateFundRequestStatusPage_PaymentDate</label>
+                    <div class="col-sm-6">
+                        @Html.TextBoxFor(m => m.CreatedDate, new { @class = "form-control", @readonly = "readonly", required = "" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">@GlobalRes.FundingUpdateFundRequestStatusPage_NameOfSendingBank</label>
+                    <div class="col-sm-6">
+                        @Html.TextBoxFor(m => m.ClientSendingBankName, new { @class = "form-control", @readonly = "readonly", required = "" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">@GlobalRes.FundingUpdateFundRequestStatusPage_AccountNumber </label>
+                    <div class="col-sm-6">
+                        @Html.TextBoxFor(m => m.ClientAccountNumber, new { @class = "form-control", @readonly = "readonly", required = "" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">@GlobalRes.FundingUpdateFundRequestStatusPage_OtherInformation</label>
+                    <div class="col-sm-6">
+                        @Html.TextBoxFor(m => m.ClientOtherInfo, new { @class = "form-control", @readonly = "readonly", required = "" })
+                    </div>
+                </div>
+
+                @if (!String.IsNullOrEmpty(Model.PathToFile) && File.Exists(Server.MapPath("~/Uploads/" + Path.GetFileName(Model.PathToFile))))
+                {
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">@GlobalRes.FundingUpdateFundRequestStatusPage_AttachmentFile</label>
+                        <div class="col-sm-8">
+                            <div>
+                                <img id="image" src="~/Uploads/@Path.GetFileName(Model.PathToFile)" class="img-rounded" style="max-width: 200px; max-height: 200px; " />
+                            </div>
+                            <script>
+                                var viewer = new Viewer(document.getElementById('image'), { toolbar: 0, navbar: 0, rotatable: 0, fullscreen: 0, title: 0 });
+
+                            </script>
+                        </div>
+                    </div>
+                }
+                
+                @if (Model.Status == "Canceled")
+                {
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">@GlobalRes.FundingUpdateFundRequestStatusPage_AdminNotes <span class="required" aria-required="true">*</span></label>
+                        <div class="col-sm-6">
+                            @Html.TextAreaFor(m => m.Notes, 5, 1, new {@class = "form-control", required = ""})
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">@GlobalRes.FundingUpdateFundRequestStatusPage_AdminNotes <span class="required" aria-required="true" style="display: none" id="spReqNotes">*</span></label>
+                        <div class="col-sm-6">
+                            @Html.TextAreaFor(m => m.Notes, 5, 1, new { @class = "form-control"})
+                        </div>
+                    </div>
+                }
+                <div class="form-group">
+                    <div class="col-md-offset-3 col-md-10" style="color:green">
+                        @ViewBag.Message
+                    </div>
+                </div>
+
+            </div>
+
+            <footer class="panel-footer">
+                <div class="row">
+                    <div class="col-sm-9 col-sm-offset-3">
+                        <input type="submit" class="btn btn-success" value="@GlobalRes.FundingUpdateFundRequestStatusPage_Save" />
+                        <a class="btn btn-success" href="/Funding/GetFundRequests">@GlobalRes.FundingUpdateFundRequestStatusPage_BackToList</a>
+                    </div>
+                </div>
+            </footer>
+        </section>
+    </div>
+}
+<script type="text/javascript" language="javascript">
+    $("#Status").change(function ()
+    {
+        if ($(this).val() === "Canceled") {
+            $("#Notes").attr('required', true);
+            $("#spReqNotes").css("display", "inline");
+        } else {
+            $("#Notes").removeAttr('required');
+            $("#spReqNotes").css("display", "none");
+
+        }
+        console.log($(this).val());
+    });
+
+
+</script>
+
+<div class="form-horizontal">
+    <section class="panel panel-featured panel-featured-info">
+        <header class="panel-heading" data-panel-toggle="">
+            <div class="panel-actions">
+                <a href="#" class="panel-action panel-action-toggle" data-panel-toggle=""></a>
+            </div>
+
+            <h2 class="panel-title">@GlobalRes.FundingGetHystoryByFundingPage_Title</h2>
+        </header>
+
+        <div class="panel-body">
+            @{
+                Html.RenderAction("GetHystoryByFunding", "Funding", new {id = Model.DepositId});
+            }
+        </div>
+    </section>
+</div>
+
+@section Scripts {
+    @*@Scripts.Render("~/bundles/jqueryval")*@
+}

@@ -1,0 +1,203 @@
+﻿@using System.Globalization
+@using Tsg.UI.Main.App_LocalResources
+@using Tsg.UI.Main.Models
+@using TSG.Models.Enums
+@using WinstantPay.Common.Extension
+@model TSG.Models.ServiceModels.AddFundsWire
+
+@{
+    ViewBag.Title = GlobalRes.Shared_Navigation_AddFunds;
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+<link href="/Content/viewer/viewer.css" rel="stylesheet">
+<script src="/Content/viewer/viewer.js"></script>
+@using (Html.BeginForm("UpdateFundRequestStatus", "Funding", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    string[] crypto = { "BTC", "ETH", "XAU" };
+    <div class="form-horizontal">
+        <section class="panel  @(ViewBag.OpenPanel != null ? "" : "panel-featured panel-featured-info")">
+
+            <header class="panel-heading" data-panel-toggle="">
+                <div class="panel-actions">
+                    <a href="#" class="panel-action panel-action-toggle" data-panel-toggle=""></a>
+                </div>
+
+                <h2 class="panel-title">@GlobalRes.ProofDocUploadProofDocPage_Title</h2>
+                <p class="panel-subtitle">@GlobalRes.ProofDocUploadProofDocPage_SubTitle</p>
+            </header>
+            <div class="panel-body">
+                <div class="col-md-6">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.Hidden("fundId", Model.AddFundsWire_ParentId)
+                    @Html.Hidden("sourceId", Model.AddFundsWire_ProofDocId)
+
+                    @if (Model.AddFundsWire_Fundings != null)
+                    {
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">@GlobalRes.ProofDocUploadProofDocPage_Status <span class="required" aria-required="true">*</span></label>
+                            <div class="col-sm-9">
+                                @{
+                                    var description = EnumHelper<FundingStatus>.GetValues((FundingStatus)Model.AddFundsWire_Fundings.Fundings_StatusByFund).Select(s => new SelectListItem()
+                                    {
+                                        Value = (Convert.ToInt32(s)).ToString(),
+                                        Text = EnumHelper<FundingStatus>.GetDisplayValue(s),
+                                        Selected = EnumHelper<FundingStatus>.GetValues((FundingStatus)Model.AddFundsWire_Fundings.Fundings_StatusByFund).Any()
+                                    });
+                                }
+                                @Html.DropDownListFor(m => m.Status, description, new { @class = "form-control", required = "" })
+                            </div>
+                        </div>
+                    }
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">@GlobalRes.FundingUpdateFundRequestStatusPage_AdminNotes <span class="required" aria-required="true">*</span></label>
+                        <div class="col-sm-9">
+                            @Html.TextArea("memo", rows: 5, columns: 1, value: "", htmlAttributes: new { @class = "form-control", required = "" })
+                        </div>
+                    </div>
+                    <br />
+
+
+                    <table class="table table-striped table-bordered  mb-none" id="tbl_detail">
+                        <tbody>
+                        <tr>
+                            <td class="pt-md pb-md text-weight-bold">
+                                @GlobalRes.ProofDocUploadProofDocPage_ReceivingBank
+                            </td>
+                            <td class="pt-md pb-md">
+                                @{
+                                    var bname = UiHelper.PrepareAvailableBankCurrencies().FirstOrDefault(f => f.Value == Model.AddFundsWire_BankCcyId.ToString());
+                                }
+                                @if (bname != null)
+                                {
+                                    @bname.Text
+                                }
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="pt-md pb-md text-weight-bold">
+                                @GlobalRes.PaymentDetailsPage_Amount
+                            </td>
+                            <td class="pt-md pb-md">
+                                @if (Model.AddFundsWire_Fundings != null && crypto.Contains(Model.AddFundsWire_Fundings.Fundings_Currency.Currency_CcyCode.ToUpper()))
+                                {
+                                    <label>
+                                        @(Model.AddFundsWire_Fundings.Fundings_Amount.ToString("N8"))
+
+                                    </label>
+                                }
+                                else
+                                {
+                                    <label>
+                                        @(Model.AddFundsWire_Fundings.Fundings_Amount.ToString("N2"))
+                                    </label>
+                                }
+                                @Model.AddFundsWire_Fundings.Fundings_Currency.Currency_CcyCode
+                                <img src="/Content/assets/images/onebyone.png" class="flag flag-@(Model.AddFundsWire_Fundings.Fundings_Currency.Currency_CcyCode.ToLower())" />
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="pt-md pb-md text-weight-bold">
+                                @GlobalRes.ProofDocUploadProofDocPage_PaymentDate
+                            </td>
+                            <td class="pt-md pb-md">
+                                @Model.AddFundsWire_PaymentDate.ToString("dd/MM/yyyy", CultureInfo.CreateSpecificCulture("en-US"))
+                            </td>
+                        </tr>
+
+
+                        <tr>
+
+                            <td class="pt-md pb-md text-weight-bold">
+                                @GlobalRes.ProofDocUploadProofDocPage_NameOfSender
+                            </td>
+                            <td class="pt-md pb-md">
+                                @Html.DisplayFor(model => model.AddFundsWire_CustName, new { @class = "form-control" })
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="pt-md pb-md text-weight-bold">
+                                @GlobalRes.ProofDocUploadProofDocPage_NameOfSendingBank
+                            </td>
+                            <td class="pt-md pb-md">
+                                @Html.DisplayFor(model => model.AddFundsWire_BankName, new { @class = "form-control" })
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="pt-md pb-md text-weight-bold">
+                                @GlobalRes.ProofDocUploadProofDocPage_AccountNumber
+                            </td>
+                            <td class="pt-md pb-md">
+                                @Html.DisplayFor(model => model.AddFundsWire_LastFourDigits, new { @class = "form-control" })
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="pt-md pb-md text-weight-bold">
+                                @GlobalRes.ProofDocUploadProofDocPage_OtherInformation
+                            </td>
+                            <td class="pt-md pb-md">
+                                @Html.DisplayFor(model => model.AddFundsWire_Other, new { @class = "form-control" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="pt-md pb-md text-weight-bold">
+                                @GlobalRes.ProofDocUploadProofDocPage_AttachmentFile
+                            </td>
+                            <td class="pt-md pb-md">
+                                @if (File.Exists(Server.MapPath("~/Uploads/" + Model.AddFundsWire_FileName)))
+                                {
+                                    @Html.HiddenFor(h => h.AddFundsWire_FileName)
+                                    @Html.HiddenFor(h => h.AddFundsWire_FilePath)
+                                    <img id="image" src="~/Uploads/@Model.AddFundsWire_FileName" class="img-rounded" style="max-width: 200px; max-height: 200px; " />
+                                    <script>
+                                        var viewer = new Viewer(document.getElementById('image'), { toolbar: 0, navbar: 0, rotatable: 0, fullscreen: 0, title: 0 });
+                                    </script>
+                                }
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <footer class="panel-footer">
+                        <div class="row">
+                            <div class="col-sm-9 col-sm-offset-3">
+                                <input type="submit" class="btn btn-success col-sm-6" value="@GlobalRes.ProofDocUploadProofDocPage_Save" />
+                            </div>
+                        </div>
+                    </footer>
+                </div>
+                <div class = "col-md-6" >
+                    @{
+                        Html.RenderAction("GetHystoryByFunding", "Funding", new { id = Model.AddFundsWire_ParentId });
+                    }
+                </div>
+            </div>
+            </section>
+    </div>
+
+}
+
+@section Scripts {
+    @*@Scripts.Render("~/bundles/jqueryval")*@
+
+    <script type="text/javascript" language="javascript">
+        $("#Status").change(function ()
+        {
+            if ($(this).val() === "Canceled") {
+                $("#Commentaries").attr('required', true);
+                $("#spReqNotes").css("display", "inline");
+            } else {
+                $("#Commentaries").removeAttr('required');
+                $("#spReqNotes").css("display", "none");
+
+            }
+            console.log($(this).val());
+        });
+
+
+    </script>
+}

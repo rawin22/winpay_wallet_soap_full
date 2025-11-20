@@ -1,0 +1,33 @@
+﻿@using WinstantPay.Common.Extension
+@model IEnumerable<TSG.Models.ServiceModels.Shop.ShopProductImages>
+
+<table class="table table-bordered table-striped table-condensed mb-none" id="datatable-default">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ShopProductImages_Path)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @if (item != null && !String.IsNullOrEmpty(item.ShopProductImages_Path))
+            {
+                if (File.Exists(Server.MapPath(item.ShopProductImages_Path)))
+                {
+                    <img id="@("image"+item.ShopProductImages_ID)" src="@(item.ShopProductImages_Path.TrimStart('~'))" class="img-rounded" style="max-width: 100px; max-height: 100px;" />
+                }
+            }
+        </td>
+        <td>
+            @if (item != null)
+            {
+                <a href="@Url.Action("DeleteImage", "ShopProductImages", new {productId = item.ShopProductImages_ProductID, id = item.ShopProductImages_ID})">Delete</a>
+
+                @*@Html.ActionLink("Delete", "Delete", "ShopProductImages", )*@
+            }
+        </td>
+    </tr>
+}
+</table>

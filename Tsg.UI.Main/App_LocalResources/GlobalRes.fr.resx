@@ -1,0 +1,2278 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AddBankAndWireInstPage.Add" xml:space="preserve">
+    <value>Ajouter</value>
+  </data>
+  <data name="AddBankAndWireInstPage.AddNewCurrencyButton" xml:space="preserve">
+    <value>Ajouter autre devise</value>
+  </data>
+  <data name="AddBankAndWireInstPage.BackToList" xml:space="preserve">
+    <value>Retour à la liste</value>
+  </data>
+  <data name="AddBankAndWireInstPage.BankCountry" xml:space="preserve">
+    <value>Pays de la banque</value>
+  </data>
+  <data name="AddBankAndWireInstPage.BankName" xml:space="preserve">
+    <value>Nom de la banque</value>
+  </data>
+  <data name="AddBankAndWireInstPage.SelectBank" xml:space="preserve">
+    <value>Choisir une banque</value>
+  </data>
+  <data name="AddBankAndWireInstPage.ChooseCurrency" xml:space="preserve">
+    <value>Choisir une devise</value>
+  </data>
+  <data name="AddBankAndWireInstPage.SubTitle" xml:space="preserve">
+    <value>Ajouter une banque</value>
+  </data>
+  <data name="AddBankAndWireInstPage.Title" xml:space="preserve">
+    <value>Ajouter vos instructions de paiment</value>
+  </data>
+  <data name="HomeQRcodeGenPage.Title" xml:space="preserve">
+    <value>Recevoir</value>
+  </data>
+  <data name="QrCodeInfo.ShareQr.Title" xml:space="preserve">
+    <value>Partagez un code QR ou un lien pour être payé</value>
+  </data>
+  <data name="QrGenPage.SelectAlias" xml:space="preserve">
+    <value>Sélectionnez Alias</value>
+  </data>
+  <data name="AddBankAndWireInstPage.WireInstructions" xml:space="preserve">
+    <value>Instructions de paiement</value>
+  </data>
+  <data name="AddBankPage.Add" xml:space="preserve">
+    <value>Ajouter</value>
+  </data>
+  <data name="AddBankPage.AddNewCurrencyButton" xml:space="preserve">
+    <value>Nouvel ajout</value>
+  </data>
+  <data name="AddBankPage.BackToList" xml:space="preserve">
+    <value>Retour à la liste</value>
+  </data>
+  <data name="AddBankPage.BankCountry" xml:space="preserve">
+    <value>Pays de la banque</value>
+  </data>
+  <data name="AddBankPage.BankName" xml:space="preserve">
+    <value>Pays de la banque</value>
+  </data>
+  <data name="AddBankPage.ChooseCurrency" xml:space="preserve">
+    <value>Choisir une devise</value>
+  </data>
+  <data name="AddBankPage.PageTitle" xml:space="preserve">
+    <value>Banque</value>
+  </data>
+  <data name="AddBankPage.SubTitle" xml:space="preserve">
+    <value>Ajouter une banque</value>
+  </data>
+  <data name="AddBankPage.Title" xml:space="preserve">
+    <value>Ajouter une banque</value>
+  </data>
+  <data name="AddCurrencyPage.Add" xml:space="preserve">
+    <value>Ajouter</value>
+  </data>
+  <data name="AddCurrencyPage.Back" xml:space="preserve">
+    <value>Retour</value>
+  </data>
+  <data name="AddCurrencyPage.CurrencyCode" xml:space="preserve">
+    <value>Code devise</value>
+  </data>
+  <data name="AddCurrencyPage.CurrencyName" xml:space="preserve">
+    <value>Nom de la devise</value>
+  </data>
+  <data name="AddCurrencyPage.CurrencySymbol" xml:space="preserve">
+    <value>Symbole de la devise</value>
+  </data>
+  <data name="AddCurrencyPage.PageSubTitle" xml:space="preserve">
+    <value>Ajouter une devise</value>
+  </data>
+  <data name="AddCurrencyPage.PageTitle" xml:space="preserve">
+    <value>Devise</value>
+  </data>
+  <data name="AddCurrencyPage.Title" xml:space="preserve">
+    <value>Ajouter une devise</value>
+  </data>
+  <data name="EditBankPage.AddNew" xml:space="preserve">
+    <value>Nouvel ajout</value>
+  </data>
+  <data name="EditBankPage.Back" xml:space="preserve">
+    <value>Retour</value>
+  </data>
+  <data name="EditBankPage.BackToList" xml:space="preserve">
+    <value>Retour à la liste</value>
+  </data>
+  <data name="EditBankPage.BankCountry" xml:space="preserve">
+    <value>Pays de la banque</value>
+  </data>
+  <data name="EditBankPage.BankId" xml:space="preserve">
+    <value>Code Banque</value>
+  </data>
+  <data name="EditBankPage.BankName" xml:space="preserve">
+    <value>Nom de la banque</value>
+  </data>
+  <data name="EditBankPage.ChooseCurrency" xml:space="preserve">
+    <value>Choisir une devise</value>
+  </data>
+  <data name="EditBankPage.PageSubTitle" xml:space="preserve">
+    <value>Editer les informations bancaires</value>
+  </data>
+  <data name="EditBankPage.PageTitle" xml:space="preserve">
+    <value>Banque</value>
+  </data>
+  <data name="EditBankPage.Save" xml:space="preserve">
+    <value>Enregistrer</value>
+  </data>
+  <data name="EditBankPage.Title" xml:space="preserve">
+    <value>Editer la banque</value>
+  </data>
+  <data name="GetAllContractUsListPage.Action" xml:space="preserve">
+    <value>Action</value>
+  </data>
+  <data name="GetAllContractUsListPage.Categories" xml:space="preserve">
+    <value>Catégorie (Ventes, service client etc ..)</value>
+  </data>
+  <data name="GetAllContractUsListPage.CategoryEmail" xml:space="preserve">
+    <value>Catégorie email</value>
+  </data>
+  <data name="GetAllContractUsListPage.Id" xml:space="preserve">
+    <value>Identifiant</value>
+  </data>
+  <data name="GetAllContractUsListPage.ModalAddRec.Add" xml:space="preserve">
+    <value>Ajouter</value>
+  </data>
+  <data name="GetAllContractUsListPage.ModalAddRec.Save" xml:space="preserve">
+    <value>Enregistrer</value>
+  </data>
+  <data name="GetAllContractUsListPage.ModalAddRec.Category" xml:space="preserve">
+    <value>Catégorie (Ventes, service client etc ..)</value>
+  </data>
+  <data name="MerchantsPage.ModalAddRec.Name" xml:space="preserve">
+    <value>Nom</value>
+  </data>
+  <data name="MerchantsPage.ModalAddRec.Phone" xml:space="preserve">
+    <value>Téléphone</value>
+  </data>
+  <data name="MerchantsPage.ModalAddRec.Address" xml:space="preserve">
+    <value>Adresse</value>
+  </data>
+  <data name="MerchantsPage.ModalAddRec.ButtonSize" xml:space="preserve">
+    <value>Taille de bouton</value>
+  </data>
+  <data name="MerchantsPage.ModalAddRec.CallBackAddress" xml:space="preserve">
+    <value>URL de rappel</value>
+  </data>
+  <data name="MerchantsPage.ModalAddRec.SetCallBackAddress" xml:space="preserve">
+    <value>Entrez votre URL de rappel</value>
+  </data>
+  <data name="MerchantsPage.ModalAddRec.Copied" xml:space="preserve">
+    <value>Copié dans le bloc note</value>
+  </data>
+  <data name="GetAllContractUsListPage.ModalAddRec.CategoryMail" xml:space="preserve">
+    <value>Catégorie email</value>
+  </data>
+  <data name="UserResetPasswordPage.ModalResetRec.Close" xml:space="preserve">
+    <value>Annuler</value>
+  </data>
+  <data name="GetAllContractUsListPage.ModalAddRec.Close" xml:space="preserve">
+    <value>Fermer</value>
+  </data>
+  <data name="GetAllContractUsListPage.ModalDeleteRec.DeletionRec" xml:space="preserve">
+    <value>Etes vous sûr de vouloir annuler votre inscription?</value>
+  </data>
+  <data name="GetBankAndCurrencyInstructions.ModalDeleteRec.DeletionRec" xml:space="preserve">
+    <value>Voulez vous effacer vos instructions de paiement?</value>
+  </data>
+  <data name="GetAllContractUsListPage.ModalDeleteRec.Ok" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="MerchantsIndexPage.ModalGenerate.Copy" xml:space="preserve">
+    <value>Copier</value>
+  </data>
+  <data name="GetAllContractUsListPage.PageTitle" xml:space="preserve">
+    <value>Formulaire de commentaires</value>
+  </data>
+  <data name="MerchantsPage.PageTitle" xml:space="preserve">
+    <value>Integration de l'API marchands</value>
+  </data>
+  <data name="GetAllContractUsListPage.Title" xml:space="preserve">
+    <value>Formulaire de commentaires</value>
+  </data>
+  <data name="MerchantsIndexPage.Title" xml:space="preserve">
+    <value>Centre marchand</value>
+  </data>
+  <data name="MerchantsIndexPage.Id" xml:space="preserve">
+    <value>Identifiant</value>
+  </data>
+  <data name="MerchantsIndexPage.Name" xml:space="preserve">
+    <value>Nom commercial</value>
+  </data>
+  <data name="MerchantsIndexPage.AddMerchantModal.PlaceholderForMail" xml:space="preserve">
+    <value>Veuillez entrer un nom pour ce site commercial</value>
+  </data>
+  <data name="MerchantsIndexPage.AddMerchantModal.PlaceholderForName" xml:space="preserve">
+    <value>Veuillez entrer un nom pour ce site commercial</value>
+  </data>
+  <data name="MerchantsIndexPage.GenerateMerchantModal.Small" xml:space="preserve">
+    <value>Petit</value>
+  </data>
+  <data name="MerchantsIndexPage.GenerateMerchantModal.Medium" xml:space="preserve">
+    <value>Moyen</value>
+  </data>
+  <data name="MerchantsIndexPage.GenerateMerchantModal.Large" xml:space="preserve">
+    <value>Grand</value>
+  </data>
+  <data name="MerchantsIndexPage.Phone" xml:space="preserve">
+    <value>Téléphone du marchand</value>
+  </data>
+  <data name="MerchantsIndexPage.Address" xml:space="preserve">
+    <value>Adresse du marchand</value>
+  </data>
+  <data name="MerchantsIndexPage.CallBackAddress" xml:space="preserve">
+    <value>Adresse de rappel du marchand</value>
+  </data>
+  <data name="MerchantsIndexPage.Action" xml:space="preserve">
+    <value>Action</value>
+  </data>
+  <data name="MerchantsIndexPage.BtnGenerateCode" xml:space="preserve">
+    <value>Generer le bouton marchand</value>
+  </data>
+  <data name="UsersResetPasswordPage.Id" xml:space="preserve">
+    <value>Identifiant</value>
+  </data>
+  <data name="UsersResetPasswordPage.UserName" xml:space="preserve">
+    <value>Nom utilisateur</value>
+  </data>
+  <data name="UsersResetPasswordPage.FirstName" xml:space="preserve">
+    <value>Prénom</value>
+  </data>
+  <data name="UsersResetPasswordPage.LastName" xml:space="preserve">
+    <value>Nom de famille</value>
+  </data>
+  <data name="UsersResetPasswordPage.LastLogOnDate" xml:space="preserve">
+    <value>Date de la dernière connection</value>
+  </data>
+  <data name="UsersResetPasswordPage.BranchOrCustomerName" xml:space="preserve">
+    <value>Agence ou nom du client</value>
+  </data>
+  <data name="UsersResetPasswordPage.UserPassword" xml:space="preserve">
+    <value>Merci de confirmer votre mot de passe pour réinitialiser</value>
+  </data>
+  <data name="UsersResetPasswordPage.Reset" xml:space="preserve">
+    <value>Réinitialiser</value>
+  </data>
+  <data name="GetBankDepositPage.Yes" xml:space="preserve">
+    <value>Oui</value>
+  </data>
+  <data name="GetBankDepositPage.No" xml:space="preserve">
+    <value>Non</value>
+  </data>
+  <data name="UsersResetPasswordPage.Action" xml:space="preserve">
+    <value>Action</value>
+  </data>
+  <data name="UsersResetPasswordPage.BtnResPassword" xml:space="preserve">
+    <value>Réinitialiser le mot de passe</value>
+  </data>
+  <data name="GetBankAndWireInstPage.AddNewBNWI" xml:space="preserve">
+    <value>Ajouter les instructions de paiement</value>
+  </data>
+  <data name="GetBankAndWireInstPage.BankCountry" xml:space="preserve">
+    <value>Pays de la banque</value>
+  </data>
+  <data name="GetBankAndWireInstPage.BankName" xml:space="preserve">
+    <value>Nom de la banque</value>
+  </data>
+  <data name="GetBankAndWireInstPage.Currency" xml:space="preserve">
+    <value>Devise</value>
+  </data>
+  <data name="GetBankAndWireInstPage.PageTitle" xml:space="preserve">
+    <value>Banque et instructions de paiement</value>
+  </data>
+  <data name="GetBankAndWireInstPage.Title" xml:space="preserve">
+    <value>Banque et instructions de paiement</value>
+  </data>
+  <data name="GetBankAndWireInstPage.WireInstruction" xml:space="preserve">
+    <value>Instructions de paiement</value>
+  </data>
+  <data name="GetBanksPage.Action" xml:space="preserve">
+    <value>Action</value>
+  </data>
+  <data name="GetBanksPage.AddNew" xml:space="preserve">
+    <value>Ajouter une banque</value>
+  </data>
+  <data name="GetBanksPage.BankCountry" xml:space="preserve">
+    <value>Pays de la banque</value>
+  </data>
+  <data name="GetBanksPage.BankName" xml:space="preserve">
+    <value>Nom de la banque</value>
+  </data>
+  <data name="GetBanksPage.Id" xml:space="preserve">
+    <value>Identifiant</value>
+  </data>
+  <data name="GetBanksPage.PageSubTitle" xml:space="preserve">
+    <value>Liste de banques</value>
+  </data>
+  <data name="GetBanksPage.PageTitle" xml:space="preserve">
+    <value>Banques</value>
+  </data>
+  <data name="GetBanksPage.Title" xml:space="preserve">
+    <value>Banques</value>
+  </data>
+  <data name="GetPipItIndexPage.Id" xml:space="preserve">
+    <value>Identifiant</value>
+  </data>
+  <data name="GetPipItIndexPage.PageSubTitle" xml:space="preserve">
+    <value>Liste des commandes du PIP système</value>
+  </data>
+  <data name="GetPipItIndexPage.PageTitle" xml:space="preserve">
+    <value>Commandes PIP</value>
+  </data>
+  <data name="GetPipItIndexPage.Title" xml:space="preserve">
+    <value>Commandes PIP</value>
+  </data>
+  <data name="GetPipItIndexPage.BarCode" xml:space="preserve">
+    <value>Code à barres</value>
+  </data>
+  <data name="GetPipItIndexPage.Status" xml:space="preserve">
+    <value>Etat</value>
+  </data>
+  <data name="GetPipItIndexPage.CreateDate" xml:space="preserve">
+    <value>Date de création</value>
+  </data>
+  <data name="GetPipItIndexPage.ExpiredDate" xml:space="preserve">
+    <value>Date d'expiration</value>
+  </data>
+  <data name="GetPipItIndexPage.CurrencyCode" xml:space="preserve">
+    <value>Code devise</value>
+  </data>
+  <data name="GetPipItIndexPage.OrderValue" xml:space="preserve">
+    <value>Valeur de la commande</value>
+  </data>
+  <data name="GetPipItIndexPage.TotalValue" xml:space="preserve">
+    <value>Valeur totale</value>
+  </data>
+  <data name="User.LoginPage.Copyright" xml:space="preserve">
+    <value>© Copyright 2016-2018. Tous droits réservés</value>
+  </data>
+  <data name="User.LoginPage.Password" xml:space="preserve">
+    <value>Mot de passe</value>
+  </data>
+  <data name="User.LoginPage.SignIn" xml:space="preserve">
+    <value>s'inscrire</value>
+  </data>
+  <data name="User.LoginPage.Username" xml:space="preserve">
+    <value>Nom d'utilisateur</value>
+  </data>
+  <data name="AddBankAndWireInstPage.ModalBank.Add" xml:space="preserve">
+    <value>Ajouter</value>
+  </data>
+  <data name="AddBankAndWireInstPage.ModalBank.Close" xml:space="preserve">
+    <value>Fermer</value>
+  </data>
+  <data name="AddBankAndWireInstPage.Edit" xml:space="preserve">
+    <value>Enregistrer</value>
+  </data>
+  <data name="ResetUserPasswordPage.Reset" xml:space="preserve">
+    <value>Réinitialiser</value>
+  </data>
+  <data name="AddBankAndWireInstPage.ModalCurrency.NameOfCurrency" xml:space="preserve">
+    <value>Nom de la devise</value>
+  </data>
+  <data name="AddBankAndWireInstPage.ModalCurrency.ShortNameOfCurrency" xml:space="preserve">
+    <value>Code de la devise</value>
+  </data>
+  <data name="AddBankAndWireInstPage.ModalCurrency.SymbolOfCurrency" xml:space="preserve">
+    <value>Symbole de la devise</value>
+  </data>
+  <data name="AddBankAndWireInstPage.TitleEdit" xml:space="preserve">
+    <value>Editer les instructions de paiement</value>
+  </data>
+  <data name="AddBankAndWireInstPage.TitleEditPage" xml:space="preserve">
+    <value>Editer les instructions de paiement</value>
+  </data>
+  <data name="EditCurrencyPage.Back" xml:space="preserve">
+    <value>Retour</value>
+  </data>
+  <data name="EditCurrencyPage.CurrencyCode" xml:space="preserve">
+    <value>Code de la devise</value>
+  </data>
+  <data name="EditCurrencyPage.CurrencyName" xml:space="preserve">
+    <value>Nom de la devise</value>
+  </data>
+  <data name="EditCurrencyPage.CurrencySymbol" xml:space="preserve">
+    <value>Symbole de la devise</value>
+  </data>
+  <data name="EditCurrencyPage.Edit" xml:space="preserve">
+    <value>Editer</value>
+  </data>
+  <data name="EditCurrencyPage.PageSubTitle" xml:space="preserve">
+    <value>Editer la devise</value>
+  </data>
+  <data name="EditCurrencyPage.PageTitle" xml:space="preserve">
+    <value>Devise</value>
+  </data>
+  <data name="EditCurrencyPage.Title" xml:space="preserve">
+    <value>Editer la devise</value>
+  </data>
+  <data name="GetCurrencyPage.Action" xml:space="preserve">
+    <value>Action</value>
+  </data>
+  <data name="GetCurrencyPage.AddNew" xml:space="preserve">
+    <value>Ajouter une devise</value>
+  </data>
+  <data name="GetCurrencyPage.CurrencyCode" xml:space="preserve">
+    <value>Code de la devise</value>
+  </data>
+  <data name="GetCurrencyPage.CurrencyName" xml:space="preserve">
+    <value>Nom de la devise</value>
+  </data>
+  <data name="GetCurrencyPage.CurrencySymbol" xml:space="preserve">
+    <value>Symbole</value>
+  </data>
+  <data name="GetCurrencyPage.Id" xml:space="preserve">
+    <value>Identifiant</value>
+  </data>
+  <data name="GetCurrencyPage.PageSubTitle" xml:space="preserve">
+    <value>Liste des devises</value>
+  </data>
+  <data name="GetCurrencyPage.PageTitle" xml:space="preserve">
+    <value>Devises</value>
+  </data>
+  <data name="GetCurrencyPage.Title" xml:space="preserve">
+    <value>Devises</value>
+  </data>
+  <data name="ContactUsIndexPage.Attachment" xml:space="preserve">
+    <value>Dossier attaché</value>
+  </data>
+  <data name="ContactUsIndexPage.Category" xml:space="preserve">
+    <value>Catégorie</value>
+  </data>
+  <data name="ContactUsIndexPage.Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="ContactUsIndexPage.EmailCopy" xml:space="preserve">
+    <value>Copie Cachée</value>
+  </data>
+  <data name="ContactUsIndexPage.Message" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="ContactUsIndexPage.SendMail" xml:space="preserve">
+    <value>Envoyer un message</value>
+  </data>
+  <data name="ContactUsIndexPage.Subject" xml:space="preserve">
+    <value>Sujet</value>
+  </data>
+  <data name="ContactUsIndexPage.SubTitle" xml:space="preserve">
+    <value>Donner un commentaire à propos de la plateforme et connectez nous</value>
+  </data>
+  <data name="ContactUsIndexPage.Title" xml:space="preserve">
+    <value>Formulaire de contact</value>
+  </data>
+  <data name="ContactUsSendMessageInfo.ReturnButton" xml:space="preserve">
+    <value>Retour à la page d'accueil</value>
+  </data>
+  <data name="ContactUsSendMessageInfo.SubTitle" xml:space="preserve">
+    <value>Donner un commentaire à propos de la plateforme et connectez nous</value>
+  </data>
+  <data name="ContactUsSendMessageInfo.Title" xml:space="preserve">
+    <value>Formulaire de contact</value>
+  </data>
+  <data name="ExchangeCurrencyExchangePage.Amount" xml:space="preserve">
+    <value>Montant</value>
+  </data>
+  <data name="ExchangeCurrencyExchangePage.Cancel" xml:space="preserve">
+    <value>Annuler</value>
+  </data>
+  <data name="ExchangeCurrencyExchangePage.Continue" xml:space="preserve">
+    <value>Continuer</value>
+  </data>
+  <data name="ExchangeCurrencyExchangePage.From" xml:space="preserve">
+    <value>De</value>
+  </data>
+  <data name="ExchangeCurrencyExchangePage.SubTitle" xml:space="preserve">
+    <value>Veuillez sélectionner les 2 devises que vous voulez convertir et entrez le montant. Cliquer sur la touche &lt;strong&gt;continuer&lt;/strong&gt; pour connaitre le taux exact et les frais de votre opération.</value>
+  </data>
+  <data name="ExchangeCurrencyExchangePage.TimeRemining" xml:space="preserve">
+    <value>Deuxième rappel</value>
+  </data>
+  <data name="ExchangeCurrencyExchangePage.Title" xml:space="preserve">
+    <value>Transférer</value>
+  </data>
+  <data name="ExchangeCurrencyExchangePage.To" xml:space="preserve">
+    <value>A</value>
+  </data>
+  <data name="AccountStatementPage.To" xml:space="preserve">
+    <value>à</value>
+  </data>
+  <data name="ExchangeCurrencyExchangePage.TransferButton" xml:space="preserve">
+    <value>Transférer</value>
+  </data>
+  <data name="ExchangeCurrencyExchangePage2.Title" xml:space="preserve">
+    <value>Transférer</value>
+  </data>
+  <data name="ExchangeCurrencyExchangePage3.ExchangeRate" xml:space="preserve">
+    <value>Taux du change</value>
+  </data>
+  <data name="ExchangeCurrencyExchangePage3.Title" xml:space="preserve">
+    <value>Transférer</value>
+  </data>
+  <data name="ExchangeCurrencyExchangePage4.MessageAcc" xml:space="preserve">
+    <value>Compte</value>
+  </data>
+  <data name="ExchangeCurrencyExchangePage4.MessageAcc2" xml:space="preserve">
+    <value>Compte</value>
+  </data>
+  <data name="ExchangeCurrencyExchangePage4.MessageFromAcc" xml:space="preserve">
+    <value>A été envoyé de votre</value>
+  </data>
+  <data name="ExchangeCurrencyExchangePage4.MessageToAcc" xml:space="preserve">
+    <value>A été envoyé vers votre</value>
+  </data>
+  <data name="ExchangeCurrencyExchangePage4.MessageTransferFailed" xml:space="preserve">
+    <value>Echec transfert</value>
+  </data>
+  <data name="ExchangeCurrencyExchangePage4.MessageUnspecError" xml:space="preserve">
+    <value>erreur non spécifiée</value>
+  </data>
+  <data name="ExchangeCurrencyExchangePage4.ReturnButton" xml:space="preserve">
+    <value>Retour à la page d'accueil</value>
+  </data>
+  <data name="ExchangeCurrencyExchangePage4.Title" xml:space="preserve">
+    <value>Transfert</value>
+  </data>
+  <data name="FavoriteCurrencyIndexPage.CurrencyCode" xml:space="preserve">
+    <value>Code devise</value>
+  </data>
+  <data name="FavoriteCurrencyIndexPage.CurrencyName" xml:space="preserve">
+    <value>Nom de la devise</value>
+  </data>
+  <data name="FavoriteCurrencyIndexPage.CurrencySymbol" xml:space="preserve">
+    <value>Symbole</value>
+  </data>
+  <data name="FavoriteCurrencyIndexPage.SubTitle" xml:space="preserve">
+    <value>Ci-dessous vous pouvez afficher ou masquer les devises dans le formulaire de paiement sans les supprimer.</value>
+  </data>
+  <data name="FavoriteCurrencyIndexPage.Title" xml:space="preserve">
+    <value>Paramètres de la devise</value>
+  </data>
+  <data name="FundingAddBankDepositPage.CCY" xml:space="preserve">
+    <value>Code devise CCY</value>
+  </data>
+  <data name="FundingAddBankDepositPage.Copy" xml:space="preserve">
+    <value>Copier</value>
+  </data>
+  <data name="FundingAddBankDepositPage.DepositHistory" xml:space="preserve">
+    <value>Historique de dépôts</value>
+  </data>
+  <data name="FundingAddBankDepositPage.Print" xml:space="preserve">
+    <value>Imprimer</value>
+  </data>
+  <data name="FundingAddBankDepositPage.SubTitle" xml:space="preserve">
+    <value>Merci de sélectionner la devise et la Banque pour imprimer les instructions de paiement</value>
+  </data>
+  <data name="FundingAddBankDepositPage.Title" xml:space="preserve">
+    <value>Instructions de paiement</value>
+  </data>
+  <data name="FundingAddBankDepositPage.UploadProof" xml:space="preserve">
+    <value>Télécharger la confirmation</value>
+  </data>
+  <data name="FundingAddBankDepositPage.WireInstructions" xml:space="preserve">
+    <value>Instructions de paiement</value>
+  </data>
+  <data name="FundingGetBankDepositsPage.Amount" xml:space="preserve">
+    <value>Montant</value>
+  </data>
+  <data name="FundingGetBankDepositsPage.CCyAndBank" xml:space="preserve">
+    <value>Code devise et Banque</value>
+  </data>
+  <data name="FundingGetBankDepositsPage.CreatedDate" xml:space="preserve">
+    <value>Date de création</value>
+  </data>
+  <data name="FundingGetBankDepositsPage.Delete" xml:space="preserve">
+    <value>Supprimer</value>
+  </data>
+  <data name="FundingGetBankDepositsPage.DeleteRecMessage" xml:space="preserve">
+    <value>Etes vous sûr de vouloir effacer cette preuve de dépôt ?</value>
+  </data>
+  <data name="FundingGetBankDepositsPage.Id" xml:space="preserve">
+    <value>Identifiant</value>
+  </data>
+  <data name="FundingGetBankDepositsPage.ProofOfPayment" xml:space="preserve">
+    <value>Confirmation de paiement</value>
+  </data>
+  <data name="FundingGetBankDepositsPage.Status" xml:space="preserve">
+    <value>Etat</value>
+  </data>
+  <data name="FundingGetBankDepositsPage.SubTitle" xml:space="preserve">
+    <value>Liste des dépots effectués</value>
+  </data>
+  <data name="FundingGetBankDepositsPage.Title" xml:space="preserve">
+    <value>Historique des dépots</value>
+  </data>
+  <data name="FundingGetBankDepositsPage.UploadProof" xml:space="preserve">
+    <value>Télécharger la confirmation</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.AccNumber" xml:space="preserve">
+    <value>Numéro de compte</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.Action" xml:space="preserve">
+    <value>Action</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.Amount" xml:space="preserve">
+    <value>Montant</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.Bank" xml:space="preserve">
+    <value>Banque</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.CCY" xml:space="preserve">
+    <value>Code devise</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.Date" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.Id" xml:space="preserve">
+    <value>Identifiant</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.ModalFilterRecAccNumber" xml:space="preserve">
+    <value>Numéro de compte</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.ModalFilterRecAmountRange" xml:space="preserve">
+    <value>Fourchette de montant</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.ModalFilterRecBank" xml:space="preserve">
+    <value>Banque</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.ModalFilterRecClose" xml:space="preserve">
+    <value>Fermer</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.ModalFilterRecCurrency" xml:space="preserve">
+    <value>Devise</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.ModalFilterRecDate" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.ModalFilterRecEnd" xml:space="preserve">
+    <value>Fin</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.ModalFilterRecFrom" xml:space="preserve">
+    <value>De</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.ModalFilterRecNameOfSender" xml:space="preserve">
+    <value>Nom de l'expéditeur</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.ModalFilterRecNameOfSendingBank" xml:space="preserve">
+    <value>Nom de la banque émettrice</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.ModalFilterRecOtherInfo" xml:space="preserve">
+    <value>Autre information</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.ModalFilterRecSearch" xml:space="preserve">
+    <value>Recherche</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.ModalFilterRecStart" xml:space="preserve">
+    <value>Démarrer</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.ModalFilterRecTo" xml:space="preserve">
+    <value>A</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.NotYetUpload" xml:space="preserve">
+    <value>N'a pas été téléchargé</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.OtherInformation" xml:space="preserve">
+    <value>Autre information</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.Proof" xml:space="preserve">
+    <value>Preuve</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.SendingBank" xml:space="preserve">
+    <value>Banque émettrice</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.Status" xml:space="preserve">
+    <value>Statut</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.SubTitle" xml:space="preserve">
+    <value>Ici vous pouvez accepter ou refuser les fonds</value>
+  </data>
+  <data name="FundingGetFundRequestsPage.Title" xml:space="preserve">
+    <value>Demande de fonds</value>
+  </data>
+  <data name="FundingGetHystoryByFundingPage.AdminNotes" xml:space="preserve">
+    <value>Notes Administratives:</value>
+  </data>
+  <data name="FundingGetHystoryByFundingPage.ChangedBy" xml:space="preserve">
+    <value>Modifier par :</value>
+  </data>
+  <data name="FundingGetHystoryByFundingPage.StatusChange" xml:space="preserve">
+    <value>Changement de statut</value>
+  </data>
+  <data name="FundingGetHystoryByFundingPage.Title" xml:space="preserve">
+    <value>Historique des changements</value>
+  </data>
+  <data name="FundingUpdateFundRequestStatusPage.AccountNumber" xml:space="preserve">
+    <value>Numéro de compte</value>
+  </data>
+  <data name="FundingUpdateFundRequestStatusPage.AdminNotes" xml:space="preserve">
+    <value>Notes Administratives</value>
+  </data>
+  <data name="FundingUpdateFundRequestStatusPage.Amount" xml:space="preserve">
+    <value>Montant</value>
+  </data>
+  <data name="FundingUpdateFundRequestStatusPage.AttachmentFile" xml:space="preserve">
+    <value>Fichier joint</value>
+  </data>
+  <data name="FundingUpdateFundRequestStatusPage.BackToList" xml:space="preserve">
+    <value>Retour à la liste</value>
+  </data>
+  <data name="FundingUpdateFundRequestStatusPage.Bank" xml:space="preserve">
+    <value>Banque</value>
+  </data>
+  <data name="FundingUpdateFundRequestStatusPage.CCY" xml:space="preserve">
+    <value>Code devise</value>
+  </data>
+  <data name="FundingUpdateFundRequestStatusPage.DepositId" xml:space="preserve">
+    <value>Identifiant du dépôt</value>
+  </data>
+  <data name="FundingUpdateFundRequestStatusPage.NameOfSendingBank" xml:space="preserve">
+    <value>Nom de la banque émettrice</value>
+  </data>
+  <data name="FundingUpdateFundRequestStatusPage.OtherInformation" xml:space="preserve">
+    <value>Autre information</value>
+  </data>
+  <data name="FundingUpdateFundRequestStatusPage.PaymentDate" xml:space="preserve">
+    <value>Date de paiement</value>
+  </data>
+  <data name="FundingUpdateFundRequestStatusPage.Save" xml:space="preserve">
+    <value>Enregistrer</value>
+  </data>
+  <data name="FundingUpdateFundRequestStatusPage.SenderName" xml:space="preserve">
+    <value>Nom de l'expéditeur</value>
+  </data>
+  <data name="FundingUpdateFundRequestStatusPage.Status" xml:space="preserve">
+    <value>Etat</value>
+  </data>
+  <data name="FundingUpdateFundRequestStatusPage.SubTitle" xml:space="preserve">
+    <value>Mettre à jour le statut de cette demande de fonds</value>
+  </data>
+  <data name="FundingUpdateFundRequestStatusPage.Title" xml:space="preserve">
+    <value>Demande de fonds</value>
+  </data>
+  <data name="HomeAccountsPage.Title" xml:space="preserve">
+    <value>Comptes client</value>
+  </data>
+  <data name="HomeAccountStatementPage.Account" xml:space="preserve">
+    <value>Compte</value>
+  </data>
+  <data name="HomeAccountStatementPage.Amount" xml:space="preserve">
+    <value>Montant</value>
+  </data>
+  <data name="HomeAccountStatementPage.Balance" xml:space="preserve">
+    <value>solde</value>
+  </data>
+  <data name="HomeAccountStatementPage.BeginningBalance" xml:space="preserve">
+    <value>Solde d'ouverture</value>
+  </data>
+  <data name="HomeAccountStatementPage.ClosingBalance" xml:space="preserve">
+    <value>Solde de clotûre</value>
+  </data>
+  <data name="HomeAccountStatementPage.Date" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="HomeAccountStatementPage.DateRange" xml:space="preserve">
+    <value>Fourchette de dates</value>
+  </data>
+  <data name="HomeAccountStatementPage.Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="HomeAccountStatementPage.GetReport" xml:space="preserve">
+    <value>Demander rapport</value>
+  </data>
+  <data name="HomeAccountStatementPage.Period" xml:space="preserve">
+    <value>Période</value>
+  </data>
+  <data name="HomeAccountStatementPage.Reference" xml:space="preserve">
+    <value>Référence</value>
+  </data>
+  <data name="HomeAccountStatementPage.Reset" xml:space="preserve">
+    <value>Réinitialiser</value>
+  </data>
+  <data name="HomeAccountStatementPage.SubTitle" xml:space="preserve">
+    <value>Afficher/Masquer les soldes</value>
+  </data>
+  <data name="HomeAccountStatementPage.Title" xml:space="preserve">
+    <value>Relevé de compte</value>
+  </data>
+  <data name="HomeCheckoutIndexPage.ChooseAccount" xml:space="preserve">
+    <value>Choisir un compte</value>
+  </data>
+  <data name="HomeCheckoutIndexPage.ChooseAlias" xml:space="preserve">
+    <value>Choisir un Pseudo</value>
+  </data>
+  <data name="HomeCheckoutIndexPage.Confirm" xml:space="preserve">
+    <value>Confirmer</value>
+  </data>
+  <data name="HomeCheckoutIndexPage.CustomerName" xml:space="preserve">
+    <value>Nom du client</value>
+  </data>
+  <data name="HomeCheckoutIndexPage.MerchantName" xml:space="preserve">
+    <value>Nom de l'entreprise</value>
+  </data>
+  <data name="HomeCheckoutIndexPage.SubTitle" xml:space="preserve">
+    <value>Veuillez sélectionner une souce de fonds et confirmez les informations de contact et d'expédition</value>
+  </data>
+  <data name="HomeCheckoutIndexPage.Title" xml:space="preserve">
+    <value>Confirmer les détails</value>
+  </data>
+  <data name="HomeIndexPage.At" xml:space="preserve">
+    <value>A</value>
+  </data>
+  <data name="HomeIndexPage.LastLoginText" xml:space="preserve">
+    <value>Votre dernière connexion était le</value>
+  </data>
+  <data name="HomeIndexPage.Title" xml:space="preserve">
+    <value>Tableau de bord</value>
+  </data>
+  <data name="HomeIndexPage.WelcomeMessage" xml:space="preserve">
+    <value>Bienvenu(es)</value>
+  </data>
+  <data name="PaymentCreatePage.TitleNew" xml:space="preserve">
+    <value>Paiement instantané</value>
+  </data>
+  <data name="PaymentCreatePage.TitleRepeat" xml:space="preserve">
+    <value>Répéter le paiement</value>
+  </data>
+  <data name="PaymentCurrenciesPage.CurrencyCode" xml:space="preserve">
+    <value>Code de la devise</value>
+  </data>
+  <data name="PaymentCurrenciesPage.CurrencyName" xml:space="preserve">
+    <value>Nom de la devise</value>
+  </data>
+  <data name="PaymentCurrenciesPage.PaymentCutOffTime" xml:space="preserve">
+    <value>Heure limite de paiement</value>
+  </data>
+  <data name="PaymentCurrenciesPage.SettelementDaysToAdd" xml:space="preserve">
+    <value>Jour de règlement à ajouter</value>
+  </data>
+  <data name="PaymentCurrenciesPage.SubTitle" xml:space="preserve">
+    <value>Toutes les devises disponibles</value>
+  </data>
+  <data name="PaymentCurrenciesPage.Symbol" xml:space="preserve">
+    <value>Symbole</value>
+  </data>
+  <data name="PaymentCurrenciesPage.Title" xml:space="preserve">
+    <value>devises de paiement</value>
+  </data>
+  <data name="PaymentDetailsPage.Amount" xml:space="preserve">
+    <value>Montant : </value>
+  </data>
+  <data name="PaymentDetailsPage.Currency" xml:space="preserve">
+    <value>Devise :</value>
+  </data>
+  <data name="PaymentDetailsPage.Date" xml:space="preserve">
+    <value>Date : </value>
+  </data>
+  <data name="PaymentDetailsPage.From" xml:space="preserve">
+    <value>De : </value>
+  </data>
+  <data name="PaymentDetailsPage.Invoice" xml:space="preserve">
+    <value>Facture :</value>
+  </data>
+  <data name="PaymentDetailsPage.Memo" xml:space="preserve">
+    <value>Mémo : </value>
+  </data>
+  <data name="PaymentDetailsPage.ReasonForPayment" xml:space="preserve">
+    <value>Raisons des paiement:</value>
+  </data>
+  <data name="PaymentDetailsPage.ModalSendMailClose" xml:space="preserve">
+    <value>Fermer</value>
+  </data>
+  <data name="PaymentDetailsPage.ModalSendMailFrom" xml:space="preserve">
+    <value>De</value>
+  </data>
+  <data name="PaymentDetailsPage.ModalSendMailNote" xml:space="preserve">
+    <value>Note</value>
+  </data>
+  <data name="PaymentDetailsPage.ModalSendMailSend" xml:space="preserve">
+    <value>Envoi</value>
+  </data>
+  <data name="PaymentDetailsPage.PaymentReference" xml:space="preserve">
+    <value>Référence de Paiement:</value>
+  </data>
+  <data name="PaymentDetailsPage.Status" xml:space="preserve">
+    <value>Statut :</value>
+  </data>
+  <data name="PaymentDetailsPage.Title" xml:space="preserve">
+    <value>Détails du Paiement Instantané</value>
+  </data>
+  <data name="PaymentDetailsPage.To" xml:space="preserve">
+    <value>A : </value>
+  </data>
+  <data name="PaymentHistoryPage.Action" xml:space="preserve">
+    <value>Action</value>
+  </data>
+  <data name="PaymentHistoryPage.Amount" xml:space="preserve">
+    <value>Montant</value>
+  </data>
+  <data name="PaymentHistoryPage.CCY" xml:space="preserve">
+    <value>Code devise</value>
+  </data>
+  <data name="PaymentHistoryPage.CreatedDate" xml:space="preserve">
+    <value>Date de création</value>
+  </data>
+  <data name="PaymentHistoryPage.Date" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="PaymentHistoryPage.From" xml:space="preserve">
+    <value>De</value>
+  </data>
+  <data name="PaymentHistoryPage.NewPayment" xml:space="preserve">
+    <value>Effectuer un nouveau paiement instantané</value>
+  </data>
+  <data name="PaymentHistoryPage.Ref" xml:space="preserve">
+    <value>Ref</value>
+  </data>
+  <data name="PaymentHistoryPage.SubTitle" xml:space="preserve">
+    <value>Historique des Paiements Instantanés</value>
+  </data>
+  <data name="PaymentHistoryPage.Title" xml:space="preserve">
+    <value>Historique des Paiements</value>
+  </data>
+  <data name="PaymentHistoryPage.To" xml:space="preserve">
+    <value>A</value>
+  </data>
+  <data name="PaymentPostPage.MessageSuccess" xml:space="preserve">
+    <value>Le Paiement Instantanné a été envoyé avec succès</value>
+  </data>
+  <data name="PaymentPostPage.Title" xml:space="preserve">
+    <value>Expédier le Paiement Instantanné</value>
+  </data>
+  <data name="ProofDocUploadProofDocPage.AccountNumber" xml:space="preserve">
+    <value>Numéro de compte (au minimum les 4 derniers chiffres)</value>
+  </data>
+  <data name="ProofDocUploadProofDocPage.Amount" xml:space="preserve">
+    <value>Montant</value>
+  </data>
+  <data name="ProofDocUploadProofDocPage.AttachmentFile" xml:space="preserve">
+    <value>Fichier joint</value>
+  </data>
+  <data name="ProofDocUploadProofDocPage.AttachProof" xml:space="preserve">
+    <value>Joindre une image</value>
+  </data>
+  <data name="ProofDocUploadProofDocPage.DepositHistory" xml:space="preserve">
+    <value>Historique des Dépots</value>
+  </data>
+  <data name="ProofDocUploadProofDocPage.NameOfSender" xml:space="preserve">
+    <value>Nom de l'Expéditeur (si différent du vôtre)</value>
+  </data>
+  <data name="ProofDocUploadProofDocPage.NameOfSendingBank" xml:space="preserve">
+    <value>Nom de la banque émettrice</value>
+  </data>
+  <data name="ProofDocUploadProofDocPage.OtherInformation" xml:space="preserve">
+    <value>Autre information</value>
+  </data>
+  <data name="ProofDocUploadProofDocPage.PaymentDate" xml:space="preserve">
+    <value>Date de paiement</value>
+  </data>
+  <data name="ProofDocUploadProofDocPage.ReceivingBank" xml:space="preserve">
+    <value>Banque bénéficiaire et devises</value>
+  </data>
+  <data name="ProofDocUploadProofDocPage.Save" xml:space="preserve">
+    <value>Enregistrer</value>
+  </data>
+  <data name="ProofDocUploadProofDocPage.Status" xml:space="preserve">
+    <value>Etat</value>
+  </data>
+  <data name="ProofDocUploadProofDocPage.SubTitle" xml:space="preserve">
+    <value>Télécharger la confirmation</value>
+  </data>
+  <data name="ProofDocUploadProofDocPage.Title" xml:space="preserve">
+    <value>Document justificatif</value>
+  </data>
+  <data name="ReferralChangeInvintationsLinkPage.Back" xml:space="preserve">
+    <value>Retour</value>
+  </data>
+  <data name="ReferralChangeInvintationsLinkPage.ReferalLink" xml:space="preserve">
+    <value>Lien du référent</value>
+  </data>
+  <data name="ReferralChangeInvintationsLinkPage.SubTitle" xml:space="preserve">
+    <value>Entrez s'il vous plait le début de l'url, et le nom du Pseudo sera rajouté à la fin de l'email</value>
+  </data>
+  <data name="ReferralChangeInvintationsLinkPage.Title" xml:space="preserve">
+    <value>Mettre à jour le format de l'url du Référent</value>
+  </data>
+  <data name="ReferralChangeInvintationsLinkPage.UpdateLink" xml:space="preserve">
+    <value>Mettre à jour le lien</value>
+  </data>
+  <data name="ReferralReferFriendPage.Copy" xml:space="preserve">
+    <value>Copier</value>
+  </data>
+  <data name="ReferralReferFriendPage.SelectAlias" xml:space="preserve">
+    <value>Sélectionnez Alias :</value>
+  </data>
+  <data name="ReferralReferFriendPage.SubTitle" xml:space="preserve">
+    <value>Envoyer message à un ami pour lui présenter le système du E-wallet</value>
+  </data>
+  <data name="ReferralReferFriendPage.Title" xml:space="preserve">
+    <value>Lien de Parrainage</value>
+  </data>
+  <data name="Shared.ErrorMessagePage.Action" xml:space="preserve">
+    <value>Action :</value>
+  </data>
+  <data name="Shared.ErrorMessagePage.CallAdmin" xml:space="preserve">
+    <value>Erreur inattendue, s'il vous plait contactez l'Administrateur</value>
+  </data>
+  <data name="Shared.ErrorMessagePage.Controller" xml:space="preserve">
+    <value>Régulateur: </value>
+  </data>
+  <data name="Shared.ErrorMessagePage.Exception" xml:space="preserve">
+    <value>Exception : </value>
+  </data>
+  <data name="Shared.ErrorMessagePage.SubTitle" xml:space="preserve">
+    <value>Erreur générique : </value>
+  </data>
+  <data name="Shared.ErrorMessagePage.Title" xml:space="preserve">
+    <value>Erreur générique : </value>
+  </data>
+  <data name="Shared.Header.LastLogin" xml:space="preserve">
+    <value>Denière connection :</value>
+  </data>
+  <data name="Shared.Header.Logout" xml:space="preserve">
+    <value>Déconnection</value>
+  </data>
+  <data name="Shared.Header.MyProfile" xml:space="preserve">
+    <value>Mon Profil</value>
+  </data>
+  <data name="Shared.Header.Lang.English" xml:space="preserve">
+    <value>Anglais</value>
+  </data>
+  <data name="Shared.Header.Lang.French" xml:space="preserve">
+    <value>Français</value>
+  </data>
+  <data name="Shared.Header.Lang.Filipino" xml:space="preserve">
+    <value>Philippin</value>
+  </data>
+  <data name="Shared.Header.Lang.Thai" xml:space="preserve">
+    <value>Thaïlandais</value>
+  </data>
+  <data name="Shared.Header.Lang.Russian" xml:space="preserve">
+    <value>Russe</value>
+  </data>
+  <data name="Shared.InstantPaymentListPage.Action" xml:space="preserve">
+    <value>Action</value>
+  </data>
+  <data name="Shared.InstantPaymentListPage.Amount" xml:space="preserve">
+    <value>Montant</value>
+  </data>
+  <data name="Shared.InstantPaymentListPage.CCY" xml:space="preserve">
+    <value>Code devise</value>
+  </data>
+  <data name="Shared.InstantPaymentListPage.CreatedDate" xml:space="preserve">
+    <value>Date de création</value>
+  </data>
+  <data name="Shared.InstantPaymentListPage.From" xml:space="preserve">
+    <value>De</value>
+  </data>
+  <data name="Shared.InstantPaymentListPage.PaymentHistoryText" xml:space="preserve">
+    <value>&lt;p&gt;Seulement les 10 derniers paiement instantanés sont affichés. &lt;a href="/Payment/History"&gt;Cliquer ici pour voir tout&lt;/a&gt;.&lt;/p&gt;</value>
+  </data>
+  <data name="Shared.InstantPaymentListPage.Refresh" xml:space="preserve">
+    <value>Actualiser</value>
+  </data>
+  <data name="Shared.InstantPaymentListPage.SubTitle" xml:space="preserve">
+    <value>Afficher/Masquer les derniers paiements instantanés</value>
+  </data>
+  <data name="Shared.InstantPaymentListPage.Details" xml:space="preserve">
+    <value>Détails</value>
+  </data>
+  <data name="Shared.InstantPaymentListPage.Send" xml:space="preserve">
+    <value>Envoyé</value>
+  </data>
+  <data name="Shared.InstantPaymentListPage.Repeat" xml:space="preserve">
+    <value>Répéter</value>
+  </data>
+  <data name="Shared.InstantPaymentListPage.Title" xml:space="preserve">
+    <value>Histoire</value>
+  </data>
+  <data name="Shared.InstantPaymentListPage.To" xml:space="preserve">
+    <value>A</value>
+  </data>
+  <data name="Shared.InternalServerErrorPage.SorryMessage" xml:space="preserve">
+    <value>&lt;p&gt;Nous sommes désolés mais une erreur interne est apparue, revenez à la page d'accueil pour effectuer à nouveau votre demande.&lt;/p&gt;</value>
+  </data>
+  <data name="Shared.InternalServerErrorPage.SubTitle" xml:space="preserve">
+    <value>Erreur du Serveur interne</value>
+  </data>
+  <data name="Shared.InternalServerErrorPage.Title" xml:space="preserve">
+    <value>Serveur Interne</value>
+  </data>
+  <data name="Shared.Navigation.Accounts" xml:space="preserve">
+    <value>Comptes</value>
+  </data>
+  <data name="Shared.Navigation.AddFunds" xml:space="preserve">
+    <value>Ajouter des fonds</value>
+  </data>
+  <data name="Shared.Navigation.Admins" xml:space="preserve">
+    <value>Administrateurs</value>
+  </data>
+  <data name="Shared.Navigation.Balances" xml:space="preserve">
+    <value>Soldes</value>
+  </data>
+  <data name="Shared.Navigation.Banks" xml:space="preserve">
+    <value>Banques</value>
+  </data>
+  <data name="Shared.Navigation.ChangePassword" xml:space="preserve">
+    <value>Changer de mot de masse</value>
+  </data>
+  <data name="Shared.Navigation.Merchants" xml:space="preserve">
+    <value>Centre Marchand </value>
+  </data>
+  <data name="Shared.Navigation.Pipit" xml:space="preserve">
+    <value>Pipit</value>
+  </data>
+  <data name="Shared.Navigation.ContactUs" xml:space="preserve">
+    <value>Contactez nous</value>
+  </data>
+  <data name="Shared.Navigation.Convert" xml:space="preserve">
+    <value>Convertir</value>
+  </data>
+  <data name="Shared.Navigation.ConvertAndExchange" xml:space="preserve">
+    <value>Convertir</value>
+  </data>
+  <data name="Shared.Navigation.Currencies" xml:space="preserve">
+    <value>Devises</value>
+  </data>
+  <data name="Shared.Navigation.CurrencySettings" xml:space="preserve">
+    <value>Paramètres de la devise</value>
+  </data>
+  <data name="Shared.Navigation.Dashboard" xml:space="preserve">
+    <value>Tableau de bord</value>
+  </data>
+  <data name="Shared.Navigation.DepositHistory" xml:space="preserve">
+    <value>Historique des dépôts</value>
+  </data>
+  <data name="Shared.Navigation.DepositInstructions" xml:space="preserve">
+    <value>Instructions de dépôts</value>
+  </data>
+  <data name="Shared.Navigation.FeedbackSettings" xml:space="preserve">
+    <value>Retour Paramètres</value>
+  </data>
+  <data name="Shared.Navigation.History" xml:space="preserve">
+    <value>Histoire</value>
+  </data>
+  <data name="Shared.Navigation.InstantPayment" xml:space="preserve">
+    <value>Paiement instantané</value>
+  </data>
+  <data name="Shared.Navigation.InvintationLink" xml:space="preserve">
+    <value>Lien d'invitation</value>
+  </data>
+  <data name="Shared.Navigation.ReferralLink" xml:space="preserve">
+    <value>Lien de Parrainage</value>
+  </data>
+  <data name="Shared.Navigation.InvitationLink" xml:space="preserve">
+    <value>Lien d'Invitation</value>
+  </data>
+  <data name="Shared.Navigation.Maintenance" xml:space="preserve">
+    <value>Maintenance</value>
+  </data>
+  <data name="Shared.Navigation.ManageFundRequest" xml:space="preserve">
+    <value>Gérer les demandes de fonds</value>
+  </data>
+  <data name="Shared.Navigation.PayInInstructions" xml:space="preserve">
+    <value>Instructions de paiement</value>
+  </data>
+  <data name="Shared.Navigation.PayNow" xml:space="preserve">
+    <value>Payer maintenant</value>
+  </data>
+  <data name="Shared.Navigation.SideBar" xml:space="preserve">
+    <value>basculer à côté</value>
+  </data>
+  <data name="Shared.Navigation.Statements" xml:space="preserve">
+    <value>Relevés</value>
+  </data>
+  <data name="Shared.Navigation.SuperAdmin" xml:space="preserve">
+    <value>Super administrateurs</value>
+  </data>
+  <data name="Shared.Navigation.Title" xml:space="preserve">
+    <value>La navigation</value>
+  </data>
+  <data name="Shared.Navigation.UploadDepositProof" xml:space="preserve">
+    <value>Télécharger la preuve de dépôt</value>
+  </data>
+  <data name="Shared.Navigation.UserProfile" xml:space="preserve">
+    <value>Profil utilisateur</value>
+  </data>
+  <data name="Navigation.LiquidationPreferences" xml:space="preserve">
+    <value>Préférences en matière de liquidation</value>
+  </data>
+  <data name="Shared.Navigation.Merchants.Integration" xml:space="preserve">
+    <value>Intégration</value>
+  </data>
+  <data name="User.ResetPassword.SuccessChanged" xml:space="preserve">
+    <value>Le mot de passe pour (0) a été réinitialisé et envoyé par email</value>
+  </data>
+  <data name="Shared.Navigation.View Profile" xml:space="preserve">
+    <value>Voir Profil / KYC statut</value>
+  </data>
+  <data name="Shared.Navigation.WelcomeMessage" xml:space="preserve">
+    <value>Messages de bienvenue</value>
+  </data>
+  <data name="Shared.NewInstantPaymentFormPage.Amount" xml:space="preserve">
+    <value>Montant</value>
+  </data>
+  <data name="Shared.NewInstantPaymentFormPage.Create" xml:space="preserve">
+    <value>Crééer</value>
+  </data>
+  <data name="Shared.NewInstantPaymentFormPage.Currency" xml:space="preserve">
+    <value>Devise</value>
+  </data>
+  <data name="Shared.NewInstantPaymentFormPage.From" xml:space="preserve">
+    <value>De</value>
+  </data>
+  <data name="Shared.NewInstantPaymentFormPage.Invoice" xml:space="preserve">
+    <value>Facture</value>
+  </data>
+  <data name="Shared.NewInstantPaymentFormPage.ReasonForPayments" xml:space="preserve">
+    <value>Raisons des paiements</value>
+  </data>
+  <data name="Shared.NewInstantPaymentFormPage.Memo" xml:space="preserve">
+    <value>Mémo</value>
+  </data>
+  <data name="Shared.NewInstantPaymentFormPage.PayNow" xml:space="preserve">
+    <value>Payer maintenant</value>
+  </data>
+  <data name="Shared.NewInstantPaymentFormPage.Reset" xml:space="preserve">
+    <value>Réinitialiser</value>
+  </data>
+  <data name="Shared.NewInstantPaymentFormPage.Search" xml:space="preserve">
+    <value>Recherche</value>
+  </data>
+  <data name="Shared.NewInstantPaymentFormPage.SelectCurrency" xml:space="preserve">
+    <value>sélectionner une devise</value>
+  </data>
+  <data name="Shared.NewInstantPaymentFormPage.SubTitle" xml:space="preserve">
+    <value>Faire un nouveau Paiement Instantané</value>
+  </data>
+  <data name="Shared.NewInstantPaymentFormPage.TitlePayNow" xml:space="preserve">
+    <value>Payer maintenant</value>
+  </data>
+  <data name="Shared.NewInstantPaymentFormPage.TitleRepeatInstantPayment" xml:space="preserve">
+    <value>Répéter  le paiement instantané</value>
+  </data>
+  <data name="Shared.NewInstantPaymentFormPage.To" xml:space="preserve">
+    <value>A</value>
+  </data>
+  <data name="Shared.NotFoundPage.SorryMessage" xml:space="preserve">
+    <value>&lt;p&gt;Désolé mais la page que vous avez demandée n'est pas accessible. Veuillez retourner à la page d'accueil.&lt;/p&gt;</value>
+  </data>
+  <data name="Shared.NotFoundPage.SubTitle" xml:space="preserve">
+    <value>Erreur / Page introuvable</value>
+  </data>
+  <data name="Shared.NotFoundPage.Title" xml:space="preserve">
+    <value>Page introuvable</value>
+  </data>
+  <data name="Shared.WebPartsAccountingPage.AccNumber" xml:space="preserve">
+    <value>Numéro de compte</value>
+  </data>
+  <data name="Shared.WebPartsAccountingPage.ActiveHolds" xml:space="preserve">
+    <value>En attente</value>
+  </data>
+  <data name="Shared.WebPartsAccountingPage.AllAccText" xml:space="preserve">
+    <value>&lt;p&gt;Tous les comptes non approvisionné sont cachés par défaut&lt;/p&gt;</value>
+  </data>
+  <data name="Shared.WebPartsAccountingPage.AvailableBalance" xml:space="preserve">
+    <value>Balance disponible</value>
+  </data>
+  <data name="Shared.WebPartsAccountingPage.CCY" xml:space="preserve">
+    <value>Code devise</value>
+  </data>
+  <data name="Shared.WebPartsAccountingPage.CurrentBalance" xml:space="preserve">
+    <value>Solde en cours</value>
+  </data>
+  <data name="Shared.WebPartsAccountingPage.SubTitle" xml:space="preserve">
+    <value>Voir/Masquer solde du compte</value>
+  </data>
+  <data name="Shared.WebPartsAccountingPage.Title" xml:space="preserve">
+    <value>Soldes</value>
+  </data>
+  <data name="Shared.WebPartsAccountingPage.UncheckForAllAcc" xml:space="preserve">
+    <value>Déselectionnez pour voir tous les comptes</value>
+  </data>
+  <data name="User.AddAdminUserPage.Add" xml:space="preserve">
+    <value>Ajouter</value>
+  </data>
+  <data name="User.AddAdminUserPage.Back" xml:space="preserve">
+    <value>Retour</value>
+  </data>
+  <data name="User.AddAdminUserPage.Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="User.AddAdminUserPage.FirstName" xml:space="preserve">
+    <value>Prénom</value>
+  </data>
+  <data name="User.AddAdminUserPage.LastName" xml:space="preserve">
+    <value>Nom de famille</value>
+  </data>
+  <data name="User.AddAdminUserPage.SubTitle" xml:space="preserve">
+    <value>Veuillez remplir les informations ci-dessous pour ajouter un admin</value>
+  </data>
+  <data name="User.AddAdminUserPage.Title" xml:space="preserve">
+    <value>Ajouter un Administrateur</value>
+  </data>
+  <data name="User.AddAdminUserPage.UserName" xml:space="preserve">
+    <value>Nom d'utilisateur</value>
+  </data>
+  <data name="User.ChangePasswordPage.LogOut" xml:space="preserve">
+    <value>Se déconnecter</value>
+  </data>
+  <data name="User.ChangePasswordPage.CurrentPassword" xml:space="preserve">
+    <value>Ancien mot de passe</value>
+  </data>
+  <data name="User.ChangePasswordPage.NewPassword" xml:space="preserve">
+    <value>Nouveau mot de passe</value>
+  </data>
+  <data name="User.ChangePasswordPage.RepeatNewPassword" xml:space="preserve">
+    <value>Resaisir le nouveau mot de passe</value>
+  </data>
+  <data name="User.ChangePasswordPage.ResetPasswordBtn" xml:space="preserve">
+    <value>Changer de mot de passe</value>
+  </data>
+  <data name="User.ChangePasswordPage.SubTitle" xml:space="preserve">
+    <value>Si vous ne vous rappelez pas de votre mot de passe actuel, s'il vous plait {0} utilisez le bouton "Contact" dans la page d'accueil</value>
+  </data>
+  <data name="User.ChangePasswordPage.Title" xml:space="preserve">
+    <value>Changez le mot de passe</value>
+  </data>
+  <data name="User.CheckOutLoginPage.CopyRight" xml:space="preserve">
+    <value>© Copyright {0}-{1}. Tous droits réservés.</value>
+  </data>
+  <data name="User.CheckOutLoginPage.Password" xml:space="preserve">
+    <value>Mot de passe</value>
+  </data>
+  <data name="User.CheckOutLoginPage.SignIn" xml:space="preserve">
+    <value>S'identifier</value>
+  </data>
+  <data name="User.CheckOutLoginPage.SignInToPay" xml:space="preserve">
+    <value>s'identifier pour payer</value>
+  </data>
+  <data name="User.CheckOutLoginPage.Title" xml:space="preserve">
+    <value>Se connecter</value>
+  </data>
+  <data name="User.CheckOutLoginPage.UserName" xml:space="preserve">
+    <value>Nom utilisateur</value>
+  </data>
+  <data name="User.ContactUsPage.Email" xml:space="preserve">
+    <value>Votre email</value>
+  </data>
+  <data name="User.ContactUsPage.Message" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="User.ContactUsPage.SendMessage" xml:space="preserve">
+    <value>Envoyer un message</value>
+  </data>
+  <data name="User.ContactUsPage.Subject" xml:space="preserve">
+    <value>Sujet</value>
+  </data>
+  <data name="User.ContactUsPage.Title" xml:space="preserve">
+    <value>Contactez nous</value>
+  </data>
+  <data name="User.GetUserPage.Action" xml:space="preserve">
+    <value>Action</value>
+  </data>
+  <data name="User.GetUserPage.AddNewAdmin" xml:space="preserve">
+    <value>Ajouter un Administrateur</value>
+  </data>
+  <data name="User.GetUserPage.ConfirmDelUser" xml:space="preserve">
+    <value>Etes vous sûr de vouloir supprimer ?</value>
+  </data>
+  <data name="User.GetUserPage.Email" xml:space="preserve">
+    <value>Email/Courriel</value>
+  </data>
+  <data name="User.GetUserPage.FirstName" xml:space="preserve">
+    <value>Prénom</value>
+  </data>
+  <data name="User.GetUserPage.LastName" xml:space="preserve">
+    <value>Nom de Famille</value>
+  </data>
+  <data name="User.GetUserPage.SubTitle" xml:space="preserve">
+    <value>Gérer les system Administrateurs</value>
+  </data>
+  <data name="User.GetUserPage.Title" xml:space="preserve">
+    <value>Administrateurs</value>
+  </data>
+  <data name="User.GetUserPage.UserName" xml:space="preserve">
+    <value>Nom d'utilisateur</value>
+  </data>
+  <data name="User.LoginPage.ForgotPassword" xml:space="preserve">
+    <value>Réinitialiser le mot de passe
+</value>
+  </data>
+  <data name="User.LoginPage.ContactUs" xml:space="preserve">
+    <value>Nous contacter</value>
+  </data>
+  <data name="User.LoginPage.ModalConctactUsEmail" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="User.LoginPage.ModalConctactUsMessage" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="User.LoginPage.ModalConctactUsSendMessage" xml:space="preserve">
+    <value>Envoyer un message</value>
+  </data>
+  <data name="User.LoginPage.ModalConctactUsSubject" xml:space="preserve">
+    <value>Sujet</value>
+  </data>
+  <data name="User.LoginPage.Title" xml:space="preserve">
+    <value>Se connecter</value>
+  </data>
+  <data name="User.LoginPage.Change" xml:space="preserve">
+    <value>Changement</value>
+  </data>
+  <data name="User.LoginPage.CurrentLangText" xml:space="preserve">
+    <value> a été sélectionné comme langue par défaut.</value>
+  </data>
+  <data name="User.ProfilePage.AccessToKYC" xml:space="preserve">
+    <value>Acces au profil KYC</value>
+  </data>
+  <data name="User.ProfilePage.Alias" xml:space="preserve">
+    <value>Alias</value>
+  </data>
+  <data name="User.ProfilePage.Aliases" xml:space="preserve">
+    <value>Pseudo</value>
+  </data>
+  <data name="User.ProfilePage.Cancel" xml:space="preserve">
+    <value>Annuler</value>
+  </data>
+  <data name="User.ProfilePage.CreatePayment" xml:space="preserve">
+    <value>Créer un Paiement (via Web Service)</value>
+  </data>
+  <data name="User.ProfilePage.Customer" xml:space="preserve">
+    <value>Client:</value>
+  </data>
+  <data name="User.ProfilePage.Email" xml:space="preserve">
+    <value>Adresse email :</value>
+  </data>
+  <data name="User.ProfilePage.FirstName" xml:space="preserve">
+    <value>Prénom :</value>
+  </data>
+  <data name="User.ProfilePage.Grants" xml:space="preserve">
+    <value>Droits d'accès garantis</value>
+  </data>
+  <data name="User.ProfilePage.LastName" xml:space="preserve">
+    <value>Nom de famille:</value>
+  </data>
+  <data name="User.ProfilePage.Payments" xml:space="preserve">
+    <value>Paiements</value>
+  </data>
+  <data name="User.ProfilePage.Save" xml:space="preserve">
+    <value>Enregistrer</value>
+  </data>
+  <data name="CommonObject.View" xml:space="preserve">
+    <value>Voir</value>
+  </data>
+  <data name="User.ProfilePage.SubmitPaymentText" xml:space="preserve">
+    <value>Soumettre un paiement supérieur à 0,00 USD [peut éviter un double contrôle]</value>
+  </data>
+  <data name="User.ProfilePage.Tab1" xml:space="preserve">
+    <value>Mes informations</value>
+  </data>
+  <data name="User.ProfilePage.Tab2" xml:space="preserve">
+    <value>Droits d'accès et limites</value>
+  </data>
+  <data name="User.ProfilePage.Title" xml:space="preserve">
+    <value>Mon Profil</value>
+  </data>
+  <data name="User.ProfilePage.UserInfo" xml:space="preserve">
+    <value>Information utilisateur</value>
+  </data>
+  <data name="User.ProfilePage.UserName" xml:space="preserve">
+    <value>Nom d'utilisateur</value>
+  </data>
+  <data name="Bank.BankController.AddBank.ViewBagMessage" xml:space="preserve">
+    <value>Banque ajoutée avec succès</value>
+  </data>
+  <data name="Bank.BankController.AddBankBankAndInstruction.Title" xml:space="preserve">
+    <value>Ajouter une banque</value>
+  </data>
+  <data name="Bank.BankController.AddBankBankAndInstruction.ViewBagMessage" xml:space="preserve">
+    <value>Banque ajoutée vec succès</value>
+  </data>
+  <data name="Bank.BankController.AddCurrency.ViewBagMessage" xml:space="preserve">
+    <value>Devise ajoutée avec succès</value>
+  </data>
+  <data name="Bank.BankController.AddCurrencyBankAndInstruction.Title" xml:space="preserve">
+    <value>Ajouter une devise</value>
+  </data>
+  <data name="Bank.BankController.AddCurrencyBankAndInstruction.ViewBagMessage" xml:space="preserve">
+    <value>Devise ajoutée avec succès</value>
+  </data>
+  <data name="Bank.BankController.DeleteBank.ViewMessageSuccess" xml:space="preserve">
+    <value>Banque supprimée avec succès</value>
+  </data>
+  <data name="Bank.BankController.DeleteBank.ViewMessageUnSuccess" xml:space="preserve">
+    <value>Banque non supprimée</value>
+  </data>
+  <data name="Bank.BankController.DeleteCurrency.ViewMessageSuccess" xml:space="preserve">
+    <value>devise supprimée avec succès</value>
+  </data>
+  <data name="Bank.BankController.DeleteCurrency.ViewMessageUnSuccess" xml:space="preserve">
+    <value>devise non supprimée</value>
+  </data>
+  <data name="Bank.BankController.EditBank.ViewMessage" xml:space="preserve">
+    <value>Information bancaire mises à jour avec succès</value>
+  </data>
+  <data name="Bank.BankController.EditCurrency.ViewMessage" xml:space="preserve">
+    <value>Information sur la devise mise à jour avec succès</value>
+  </data>
+  <data name="Bank.BankController.UpdateCurrency.ViewBagMessage" xml:space="preserve">
+    <value>Information sur la devise mise à jour avec succès</value>
+  </data>
+  <data name="ContactUs.ContactUsController.ContactUs.DbError" xml:space="preserve">
+    <value>Erreur base de données. Message envoyé</value>
+  </data>
+  <data name="ContactUs.ContactUsController.ContactUs.MailAndDbError" xml:space="preserve">
+    <value>Enregistrement non envoyé à la base de données et message non envoyé</value>
+  </data>
+  <data name="ContactUs.ContactUsController.ContactUs.MailSendingError" xml:space="preserve">
+    <value>Enregistrement ajouté à la base de données mais erreur du courrier expéditeur</value>
+  </data>
+  <data name="ContactUs.ContactUsController.ContactUs.MailToError" xml:space="preserve">
+    <value>"Courrier à" est vide</value>
+  </data>
+  <data name="ContactUs.ContactUsController.ContactUs.Ok" xml:space="preserve">
+    <value>ok</value>
+  </data>
+  <data name="ContactUs.ContactUsController.Index.ChoseCategory" xml:space="preserve">
+    <value>Veuillez choisir une rubrique</value>
+  </data>
+  <data name="ContactUs.ContactUsController.Index.ContactUs" xml:space="preserve">
+    <value>Contactez nous</value>
+  </data>
+  <data name="ContactUs.ContactUsController.Index.MailIsNotSend" xml:space="preserve">
+    <value>Le mail n'a pas été envoyé</value>
+  </data>
+  <data name="ContactUs.ContactUsController.Index.MsgIsEmpty" xml:space="preserve">
+    <value>Le message ne peut pas être vide</value>
+  </data>
+  <data name="ContactUs.ContactUsController.Index.SelectCategory" xml:space="preserve">
+    <value>Veuillez sélectionner une rubrique</value>
+  </data>
+  <data name="ContactUs.ContactUsController.Index.SubjIsEmpty" xml:space="preserve">
+    <value>Le sujet ne peut pas être vide</value>
+  </data>
+  <data name="HomeAccountStatementPage.AccountText" xml:space="preserve">
+    <value>Choisissez une devise d'abord</value>
+  </data>
+  <data name="UIHelper.PrepareAvaliableBank.SelectBank" xml:space="preserve">
+    <value>Choisissez une banque</value>
+  </data>
+  <data name="User.RegFailureNewAdminPage.BodyText" xml:space="preserve">
+    <value>Ce compte a déjà été créé. S'il vous plait connectez vous ci dessous</value>
+  </data>
+  <data name="User.RegFailureNewAdminPage.Login" xml:space="preserve">
+    <value>Se connecter</value>
+  </data>
+  <data name="User.RegFailureNewAdminPage.Title" xml:space="preserve">
+    <value>Erreur d'inscription</value>
+  </data>
+  <data name="User.RegNewAdminPage.CreatePassword" xml:space="preserve">
+    <value>Créer un mot de passe</value>
+  </data>
+  <data name="User.RegNewAdminPage.Password" xml:space="preserve">
+    <value>Mot de passe</value>
+  </data>
+  <data name="User.RegNewAdminPage.RepeatPassword" xml:space="preserve">
+    <value>Répéter le mot de passe</value>
+  </data>
+  <data name="User.RegNewAdminPage.Title" xml:space="preserve">
+    <value>Inscrire un nouvel administrateur</value>
+  </data>
+  <data name="User.RegNewAdminPage.WelcomeMsgText" xml:space="preserve">
+    <value>Bienvenue,  &lt;b&gt; {0}&lt;/b&gt;! &lt;br/&gt; S'il vous plait, créez votre mot de passe avent de vous connecter au sevice.</value>
+  </data>
+  <data name="WelcomeMessage.AddWelcomeMessagePage.Add" xml:space="preserve">
+    <value>Ajouter</value>
+  </data>
+  <data name="WelcomeMessage.AddWelcomeMessagePage.BackToList" xml:space="preserve">
+    <value>Retour à la liste</value>
+  </data>
+  <data name="WelcomeMessage.AddWelcomeMessagePage.SubTitle" xml:space="preserve">
+    <value>Ajouter un message de bienvenue personnalisé</value>
+  </data>
+  <data name="WelcomeMessage.AddWelcomeMessagePage.Title" xml:space="preserve">
+    <value>Message de Bienvenue</value>
+  </data>
+  <data name="WelcomeMessage.AddWelcomeMessagePage.WmForUser" xml:space="preserve">
+    <value>Message de Bienvenue pour Utilisateur</value>
+  </data>
+  <data name="WelcomeMessage.AddWelcomeMessagePage.WmText" xml:space="preserve">
+    <value>Texte de message de Bienvenue </value>
+  </data>
+  <data name="WelcomeMessage.AddWelcomeMessagePage.WmTextRu" xml:space="preserve">
+    <value>Texte de message de Bienvenue (Russe)</value>
+  </data>
+  <data name="WelcomeMessage.AddWelcomeMessagePage.WmTextFr" xml:space="preserve">
+    <value>Texte de message de Bienvenue (Français)</value>
+  </data>
+  <data name="WelcomeMessage.AddWelcomeMessagePage.WmTextPh" xml:space="preserve">
+    <value>Texte de message de Bienvenue (Philippin)</value>
+  </data>
+  <data name="WelcomeMessage.EditWelcomeMessagePage.BackToList" xml:space="preserve">
+    <value>Retour à la liste</value>
+  </data>
+  <data name="WelcomeMessage.EditWelcomeMessagePage.Save" xml:space="preserve">
+    <value>Enregistrer</value>
+  </data>
+  <data name="WelcomeMessage.EditWelcomeMessagePage.SubTitle" xml:space="preserve">
+    <value>Editer le message de bienvenue</value>
+  </data>
+  <data name="WelcomeMessage.EditWelcomeMessagePage.Title" xml:space="preserve">
+    <value>Message de Bienvenue</value>
+  </data>
+  <data name="WelcomeMessage.EditWelcomeMessagePage.WmForUser" xml:space="preserve">
+    <value>Message de Bienvenue pour Utilisateur</value>
+  </data>
+  <data name="WelcomeMessage.EditWelcomeMessagePage.WmId" xml:space="preserve">
+    <value>Message de bienvenue Identifiant</value>
+  </data>
+  <data name="WelcomeMessage.EditWelcomeMessagePage.WmText" xml:space="preserve">
+    <value>Texte de message de Bienvenue (Anglais)</value>
+  </data>
+  <data name="WelcomeMessage.GetWelcomeMessagesPage.Action" xml:space="preserve">
+    <value>Action</value>
+  </data>
+  <data name="WelcomeMessage.GetWelcomeMessagesPage.DefWM" xml:space="preserve">
+    <value>Message de bienvenue par défaut</value>
+  </data>
+  <data name="WelcomeMessage.GetWelcomeMessagesPage.Id" xml:space="preserve">
+    <value>Identifiant</value>
+  </data>
+  <data name="WelcomeMessage.GetWelcomeMessagesPage.IsDefMsg" xml:space="preserve">
+    <value>Message par défaut ?</value>
+  </data>
+  <data name="WelcomeMessage.GetWelcomeMessagesPage.MsgText" xml:space="preserve">
+    <value>Texte du message</value>
+  </data>
+  <data name="WelcomeMessage.GetWelcomeMessagesPage.MsgTextRu" xml:space="preserve">
+    <value>Texte du message (Russe)</value>
+  </data>
+  <data name="WelcomeMessage.GetWelcomeMessagesPage.MsgTextFr" xml:space="preserve">
+    <value>Texte du message (Français)</value>
+  </data>
+  <data name="WelcomeMessage.GetWelcomeMessagesPage.MsgTextPh" xml:space="preserve">
+    <value>Texte du message (Philippin)</value>
+  </data>
+  <data name="WelcomeMessage.GetWelcomeMessagesPage.SubTitle" xml:space="preserve">
+    <value>Liste des messages de bienvenue</value>
+  </data>
+  <data name="WelcomeMessage.GetWelcomeMessagesPage.Title" xml:space="preserve">
+    <value>Messages de Bienvenue</value>
+  </data>
+  <data name="WireInstruction.AddWireInstructionPage.Add" xml:space="preserve">
+    <value>Ajouter</value>
+  </data>
+  <data name="WireInstruction.AddWireInstructionPage.BackToList" xml:space="preserve">
+    <value>Retour à la liste</value>
+  </data>
+  <data name="WireInstruction.AddWireInstructionPage.CCY" xml:space="preserve">
+    <value>Code devise</value>
+  </data>
+  <data name="WireInstruction.AddWireInstructionPage.CharsMax" xml:space="preserve">
+    <value>Caractères maximum</value>
+  </data>
+  <data name="WireInstruction.AddWireInstructionPage.SubTitle" xml:space="preserve">
+    <value>Ajouter les instructions de paiement</value>
+  </data>
+  <data name="WireInstruction.AddWireInstructionPage.Title" xml:space="preserve">
+    <value>Ordre de paiement</value>
+  </data>
+  <data name="WireInstruction.AddWireInstructionPage.WireInstr" xml:space="preserve">
+    <value>Ordre de paiement</value>
+  </data>
+  <data name="WireInstruction.EditWireInstructionPage.BackToList" xml:space="preserve">
+    <value>Retour à la liste</value>
+  </data>
+  <data name="WireInstruction.EditWireInstructionPage.CharsMax" xml:space="preserve">
+    <value>Caractères maximum</value>
+  </data>
+  <data name="WireInstruction.EditWireInstructionPage.Save" xml:space="preserve">
+    <value>Enregistrer</value>
+  </data>
+  <data name="WireInstruction.EditWireInstructionPage.SubTitle" xml:space="preserve">
+    <value>Editer les instructions de paiement</value>
+  </data>
+  <data name="WireInstruction.EditWireInstructionPage.Title" xml:space="preserve">
+    <value>Instruction de paiement</value>
+  </data>
+  <data name="WireInstruction.EditWireInstructionPage.WireInstr" xml:space="preserve">
+    <value>Instructions de paiement</value>
+  </data>
+  <data name="WireInstruction.EditWireInstructionPage.WireInstrId" xml:space="preserve">
+    <value> Identité instruction de paiement</value>
+  </data>
+  <data name="WireInstruction.GetWireInstructionsPage.Action" xml:space="preserve">
+    <value>Action</value>
+  </data>
+  <data name="WireInstruction.GetWireInstructionsPage.BankAndCurrency" xml:space="preserve">
+    <value>Banque et devise</value>
+  </data>
+  <data name="WireInstruction.GetWireInstructionsPage.BankWireInstructions" xml:space="preserve">
+    <value>Instructions de paiement banque</value>
+  </data>
+  <data name="WireInstruction.GetWireInstructionsPage.Id" xml:space="preserve">
+    <value>Identifiant</value>
+  </data>
+  <data name="WireInstruction.GetWireInstructionsPage.NewWireInstr" xml:space="preserve">
+    <value>Créer une nouvelle instruction de paiement</value>
+  </data>
+  <data name="WireInstruction.GetWireInstructionsPage.SubTitle" xml:space="preserve">
+    <value>Liste des instructions de paiement</value>
+  </data>
+  <data name="WireInstruction.GetWireInstructionsPage.Title" xml:space="preserve">
+    <value>Instructions de paiement</value>
+  </data>
+  <data name="Exchange.ExchangeController.CurrencyExchange.EmptyUserData" xml:space="preserve">
+    <value>Données utilisateur vides</value>
+  </data>
+  <data name="Exchange.ExchangeController.CurrencyExchange.ChangeCurrency" xml:space="preserve">
+    <value>Veuillez changer au moins une devise</value>
+  </data>
+  <data name="Exchange.ExchangeController.CurrencyExchange.EnterAmount" xml:space="preserve">
+    <value>Veuillez insérer le montant du virement</value>
+  </data>
+  <data name="Exchange.ExchangeController.CurrencyExchange.NoCorrectCurrency" xml:space="preserve">
+    <value>Devise incorrecte</value>
+  </data>
+  <data name="Exchange.ExchangeController.CurrencyExchange.EqualCurrencyError" xml:space="preserve">
+    <value>Veuillez changer au moins une devise, vous avez choisi la même devise</value>
+  </data>
+  <data name="Exchange.ExchangeController.CurrencyExchange.TempDataIsNull" xml:space="preserve">
+    <value>Donnée temporaire nulle</value>
+  </data>
+  <data name="FavoriteCurrencies.FavoriteCurrenciesController.AddToFavoriteCurrency.AddSuccess" xml:space="preserve">
+    <value>Votre pseudo a bien été ajouté</value>
+  </data>
+  <data name="FavoriteCurrencies.FavoriteCurrenciesController.AddToFavoriteCurrency.AddNoSuccess" xml:space="preserve">
+    <value>Votre pseudo a bien été ajouté</value>
+  </data>
+  <data name="FavoriteCurrencies.FavoriteCurrenciesController.DelToFavoriteCurrency.Success" xml:space="preserve">
+    <value>Votre pseudo a bien été supprimé</value>
+  </data>
+  <data name="FavoriteCurrencies.FavoriteCurrenciesController.DelToFavoriteCurrency.NoSuccess" xml:space="preserve">
+    <value>Votre pseudo n' a pas été supprimé</value>
+  </data>
+  <data name="Funding.FundingController.PrepareAvalBanks.SelectBank" xml:space="preserve">
+    <value>Sélectionner une  devise et une Banque </value>
+  </data>
+  <data name="CommonObject.BrowseFile" xml:space="preserve">
+    <value>Rechercher un fichier</value>
+  </data>
+  <data name="CommonObject.NoFile" xml:space="preserve">
+    <value>Vous n'avez pas choisi de fichier</value>
+  </data>
+  <data name="Funding.FundingController.DeleteBankDeposit.Success" xml:space="preserve">
+    <value>Le Dépôt bancaire a été effacé avec succès</value>
+  </data>
+  <data name="Bank.BankController.GetBankAndWireInstructions.Success" xml:space="preserve">
+    <value>Les instructions de paiement ont été effacées avec succès</value>
+  </data>
+  <data name="Funding.FundingController.UpdateFundsRequest.Success" xml:space="preserve">
+    <value>Le statut de demande de fonds a été mis à jour avec succès</value>
+  </data>
+  <data name="Home.HomeController.CheckoutIndex.ApplicationError" xml:space="preserve">
+    <value>Erreur d'application</value>
+  </data>
+  <data name="Payment.PaymentController.Create.NeedToSetCurrency" xml:space="preserve">
+    <value>Vous devez choisir une  valeur pour  la devise</value>
+  </data>
+  <data name="Payment.PaymentController.GetImageLink.PaymentDetails" xml:space="preserve">
+    <value>Détails de paiement</value>
+  </data>
+  <data name="Payment.PaymentController.GetImageLink.PaymentReference" xml:space="preserve">
+    <value>Référence du paiement</value>
+  </data>
+  <data name="Payment.PaymentController.GetImageLink.Status" xml:space="preserve">
+    <value>Satut :</value>
+  </data>
+  <data name="Payment.PaymentController.GetImageLink.From" xml:space="preserve">
+    <value>De:</value>
+  </data>
+  <data name="Payment.PaymentController.GetImageLink.To" xml:space="preserve">
+    <value>A :</value>
+  </data>
+  <data name="Payment.PaymentController.GetImageLink.Date" xml:space="preserve">
+    <value>Date :</value>
+  </data>
+  <data name="Payment.PaymentController.GetImageLink.Currency" xml:space="preserve">
+    <value>devise :</value>
+  </data>
+  <data name="Payment.PaymentController.GetImageLink.Amount" xml:space="preserve">
+    <value>Montant : </value>
+  </data>
+  <data name="Payment.PaymentController.GetImageLink.Invoice" xml:space="preserve">
+    <value>Facture : </value>
+  </data>
+  <data name="Payment.PaymentController.GetImageLink.Memo" xml:space="preserve">
+    <value>Mémo : </value>
+  </data>
+  <data name="Payment.PaymentController.GetImageLink.ReasonForPayment" xml:space="preserve">
+    <value>Raisons des paiement:</value>
+  </data>
+  <data name="ProofDoc.ProofDocController.UploadProofDoc.ErrCanntCreateBankDeposit" xml:space="preserve">
+    <value>Erreur : On ne peut pas créer un dépôt bancaire</value>
+  </data>
+  <data name="ProofDoc.ProofDocController.UploadProofDoc.ProofDocUploadAt" xml:space="preserve">
+    <value>Justificatif téléchargé avec succès</value>
+  </data>
+  <data name="ProofDoc.ProofDocController.UploadProofDoc.UploadSuccessifully" xml:space="preserve">
+    <value>Fichier téléchargé avec succès</value>
+  </data>
+  <data name="ProofDoc.ProofDocController.RemoveProofDoc.DelSuccess" xml:space="preserve">
+    <value>Votre justificatif a bien été supprimé</value>
+  </data>
+  <data name="User.UserController.CreateNewAlias.AddSuccess" xml:space="preserve">
+    <value>Votre pseudo a bien été ajouté</value>
+  </data>
+  <data name="User.UserController.CreateNewAlias.ErrAdded" xml:space="preserve">
+    <value>Désolé ce pseudo est déjà utilisé, merci de réessayer</value>
+  </data>
+  <data name="User.UserController.Login.UpdateLastLogin" xml:space="preserve">
+    <value>La dernière connexion de l'utilisateur a bien été mise à jour</value>
+  </data>
+  <data name="User.UserController.Login.PasswordNotMatch" xml:space="preserve">
+    <value>Identifiant et mot de passe incorrects</value>
+  </data>
+  <data name="User.UserController.CheckoutLogin.ApplicationError" xml:space="preserve">
+    <value>Erreur Application: [{0}]</value>
+  </data>
+  <data name="User.UserController.CheckoutLogin.OrderError" xml:space="preserve">
+    <value>LA commande du Token ne correspond pas</value>
+  </data>
+  <data name="User.UserController.CheckoutLogin.ApplicationErrorEmptyParam" xml:space="preserve">
+    <value>Erreur Application</value>
+  </data>
+  <data name="User.UserController.RegisterNewAdmin.PasswordsNotMatch" xml:space="preserve">
+    <value>Les mots de passe ne correspondent pas</value>
+  </data>
+  <data name="User.UserController.RegisterNewAdmin.UserUnregistredInSystem" xml:space="preserve">
+    <value>Utilisateur non  enregistré dans le système</value>
+  </data>
+  <data name="User.UserController.AddAdminUser.AddSuccessifully" xml:space="preserve">
+    <value>Utilisateur ajouté avec succès</value>
+  </data>
+  <data name="User.UserController.AddAdminUser.AddUnSuccessifully" xml:space="preserve">
+    <value>Utilisateur n'a pas été ajouté</value>
+  </data>
+  <data name="User.UserController.ChangePassword.PassNotMatched" xml:space="preserve">
+    <value>Le mot de passe actuel est incorrect. Si vous avez oublié votre mot de passe, utilisé le lien "mot de passe oublié" dans la page de connexion. &lt;a href="{0}"&gt; log out &lt;/a&gt;</value>
+  </data>
+  <data name="User.UserController.ChangePassword.NeedEightCharacterLong" xml:space="preserve">
+    <value>Votre mot de passe doit contenir au moins 8 caractères</value>
+  </data>
+  <data name="User.UserController.ChangePassword.NeedCharacterAndCapitalLetterAndNumber" xml:space="preserve">
+    <value>Votre mot de passe doit contenir au moins un chiffre, au moins une lettre capitale et au moins un caractère spécial</value>
+  </data>
+  <data name="User.UserController.ChangePassword.NeedCapitalLetterAndSpecCharacter" xml:space="preserve">
+    <value>Votre mot de passe doit contenir au moins une lettre capitale et au moins un caractère spécial</value>
+  </data>
+  <data name="User.UserController.ChangePassword.NeedSpecCharacter" xml:space="preserve">
+    <value>Votre mot de passe doit contenir au moins un caractère spécial</value>
+  </data>
+  <data name="User.UserController.ChangePassword.Success" xml:space="preserve">
+    <value>Le mot de passe  a été changé avec succès</value>
+  </data>
+  <data name="User.UserController.ChangePassword.UnSuccess" xml:space="preserve">
+    <value>Les mots de passe ne correspondent pas. Votre mot de passe n'a pas pu être modifié.</value>
+  </data>
+  <data name="WelcomeMessage.WelcomeMessageController.AddWelcomeMessage.AddSuccessfully" xml:space="preserve">
+    <value>Message de bienvenue ajouté avec succès</value>
+  </data>
+  <data name="WelcomeMessage.WelcomeMessageController.EditWelcomeMessage.AddSuccessfully" xml:space="preserve">
+    <value>Message de bienvenue mis à jour avec succès</value>
+  </data>
+  <data name="WelcomeMessage.WelcomeMessageController.DeleteWelcomeMessage.DeletedSuccessfully" xml:space="preserve">
+    <value>Message de bienvenue effacé avec succès</value>
+  </data>
+  <data name="WireInstruction.WireInstructionController.GetPrintFriendlyInstruction.ErrBankCurrencyIdIsNull" xml:space="preserve">
+    <value>Identifiant Banque devise nul</value>
+  </data>
+  <data name="WireInstruction.WireInstructionController.PrepareAvailableBankCurrencies.SelectCurrencyAndBank" xml:space="preserve">
+    <value>Choisir une devise et une banque</value>
+  </data>
+  <data name="WireInstruction.WireInstructionController.AddWireInstruction.CreatedSuccessfully" xml:space="preserve">
+    <value>Instructions de paiement créées avec succès</value>
+  </data>
+  <data name="WireInstruction.WireInstructionController.EditWireInstruction.UpdatedSuccessfully" xml:space="preserve">
+    <value>Instructions de paiement mises à jour avec succès</value>
+  </data>
+  <data name="WireInstruction.WireInstructionController.DeleteWireInstruction.DeletedSuccessfully" xml:space="preserve">
+    <value>Instructions de paiement effacées avec succès</value>
+  </data>
+  <data name="Bank.BankRepository.AddBank.AddSuccess" xml:space="preserve">
+    <value>Information banque ajoutée  à la base de données avec succès</value>
+  </data>
+  <data name="Bank.BankRepository.AddBank.AddUnSuccess" xml:space="preserve">
+    <value>Echec, Information banque ajoutée à la base de données sans succès</value>
+  </data>
+  <data name="Bank.BankRepository.AddBankCurrencies.AddSuccess" xml:space="preserve">
+    <value>Information banque ajoutée  à la base de données avec succès</value>
+  </data>
+  <data name="Bank.BankRepository.AddBankCurrencies.AddUnSuccess" xml:space="preserve">
+    <value>Echec, Information banque ajoutée à la base de données sans succès</value>
+  </data>
+  <data name="ContactUs.ContactUsRepository.AddContactUs.Successfull" xml:space="preserve">
+    <value>Information d'enregistrement ajoutée à la base de donnée avec succès</value>
+  </data>
+  <data name="ContactUs.ContactUsRepository.AddContactUs.UnSuccess" xml:space="preserve">
+    <value>Echec, Information d'enregistrement ne peut pas être ajoutée à la base de données</value>
+  </data>
+  <data name="ContactUs.ContactUsRepository.UpdateContactUs.Success" xml:space="preserve">
+    <value>L'information "nous contacter" est mise à jour avec succès</value>
+  </data>
+  <data name="Merchants.MerchantsRepository.UpdateMerchant.Success" xml:space="preserve">
+    <value>L'information Marchands est mise à jour avec succès</value>
+  </data>
+  <data name="ContactUs.ContactUsRepository.UpdateContactUs.UnSuccess" xml:space="preserve">
+    <value>Echec, L'information "Nous contacter" ne peut pas être mise à jour</value>
+  </data>
+  <data name="Merchants.MerchantsRepository.UpdateMerchant.UnSuccess" xml:space="preserve">
+    <value>Echec, L'information Marchands ne peut pas être emise à jour</value>
+  </data>
+  <data name="ContactUs.ContactUsRepository.DeleteContactUs.Success" xml:space="preserve">
+    <value>L'information "Nous contacter" est efffacée avec succès</value>
+  </data>
+  <data name="ContactUs.ContactUsRepository.DeleteContactUsUnSuccess" xml:space="preserve">
+    <value>Ne peut pas effacer l'information "Nous contacter"</value>
+  </data>
+  <data name="ContactUs.ContactUsRepository.SendMail.SuccessSend" xml:space="preserve">
+    <value>Merci d'avoir contacter us. Nous avons bien reçu votre message et vous contacterons au plus vite </value>
+  </data>
+  <data name="FavoriteCurrency.FavoriteCurrencyRepository.AddFavoriteCurrencySuccess" xml:space="preserve">
+    <value>Enregistrement ajouté à la base de données avec succès</value>
+  </data>
+  <data name="FavoriteCurrency.FavoriteCurrencyRepository.AddFavoriteCurrency.UnSuccess" xml:space="preserve">
+    <value>Echec, Ne peut pas ajouter l'information d'enregistrement dans la base de données</value>
+  </data>
+  <data name="FavoriteCurrency.FavoriteCurrencyRepository.DeleteFavoriteCurrency.Success" xml:space="preserve">
+    <value>L'information d'enregistrement de devise favorite est effacée avec succès</value>
+  </data>
+  <data name="FavoriteCurrency.FavoriteCurrencyRepository.DeleteFavoriteCurrency.UnSuccess" xml:space="preserve">
+    <value>Echec, Ne peut pas effacer l'info de devise favorite</value>
+  </data>
+  <data name="Payment.PaymentRepository.Success" xml:space="preserve">
+    <value>Succès</value>
+  </data>
+  <data name="ReferalLink.ReferalLinkRepository.Success" xml:space="preserve">
+    <value>Commande validée</value>
+  </data>
+  <data name="GlobalRes.User_ResetPasswordPage_Title" xml:space="preserve">
+    <value>Réinitialiser le mot de passe</value>
+  </data>
+  <data name="Shared.Navigation.ResetPassword" xml:space="preserve">
+    <value>Réinitialiser le mot de passe</value>
+  </data>
+  <data name="User.LoginPage.Modal.InsertCorrectMail" xml:space="preserve">
+    <value>Merci d'insérer une adresse mail valide</value>
+  </data>
+  <data name="User.LoginPage.Modal.InsertMailText" xml:space="preserve">
+    <value>Merci de remplir le champs message</value>
+  </data>
+  <data name="User.LoginPage.Modal.MailSendedSuccessifully" xml:space="preserve">
+    <value>Votre mail a bien été envoyé</value>
+  </data>
+  <data name="HomeController.CheckoutIndex.Error.NotAlias" xml:space="preserve">
+    <value>L'utilisateur n'a pas de pseudo</value>
+  </data>
+  <data name="HomeController.CheckoutIndex.Error.NotExist" xml:space="preserve">
+    <value>Le Client n'existe pas</value>
+  </data>
+  <data name="NewInstantPaymentViewModel.PreparePriorUsedAliases.OrSelectPrior" xml:space="preserve">
+    <value>Ou sélectionnez d'abord</value>
+  </data>
+  <data name="UIHelper_GetDatePeriods_Today" xml:space="preserve">
+    <value>Aujourd'hui</value>
+  </data>
+  <data name="UIHelper_GetDatePeriods_Last_Week" xml:space="preserve">
+    <value>La semaine dernière</value>
+  </data>
+  <data name="UIHelper_GetDatePeriods_Last_Month" xml:space="preserve">
+    <value>Le mois dernier</value>
+  </data>
+  <data name="UIHelper_GetDatePeriods_Last_3_Months" xml:space="preserve">
+    <value>Les trois derniers mois</value>
+  </data>
+  <data name="UIHelper_GetDatePeriods_Last_6_Months" xml:space="preserve">
+    <value>Les six derniers mois</value>
+  </data>
+  <data name="UIHelper_GetAccountBalances_Select_a_currency" xml:space="preserve">
+    <value>Choisir une devise</value>
+  </data>
+  <data name="UIHelper_GetAccountBalances____Available_" xml:space="preserve">
+    <value> - Disponible </value>
+  </data>
+  <data name="HomeAccountsList.HideZeroAcc" xml:space="preserve">
+    <value>Masquer les comptes sans solde</value>
+  </data>
+  <data name="HomeAccountsList.Show" xml:space="preserve">
+    <value>Voir</value>
+  </data>
+  <data name="HomeAccountsList.Hide" xml:space="preserve">
+    <value>masquer</value>
+  </data>
+  <data name="HomeAccountsList.ShowFvAcc" xml:space="preserve">
+    <value>Voir le solde de vos devises favorites</value>
+  </data>
+  <data name="HomeAccountsList.HideFvAcc" xml:space="preserve">
+    <value>Voir le solde de toutes les devises</value>
+  </data>
+  <data name="HomeAccountsList.ShowAllAcc" xml:space="preserve">
+    <value>Déselectionnez pour voir tous les comptes</value>
+  </data>
+  <data name="CommonObject.ViewAndDownload" xml:space="preserve">
+    <value>Voir et télécharger</value>
+  </data>
+  <data name="CommonObject.UploadProof" xml:space="preserve">
+    <value>Télécharger le justificatif</value>
+  </data>
+  <data name="TransfersTokens.SubTitle" xml:space="preserve">
+    <value>Historique des paiements reçus</value>
+  </data>
+  <data name="OrdersList.Details" xml:space="preserve">
+    <value>Détails</value>
+  </data>
+  <data name="User.LoginPage.ForgotPassword.Username" xml:space="preserve">
+    <value>Nom utilisateur</value>
+  </data>
+  <data name="User.LoginPage.ForgotPassword.Email" xml:space="preserve">
+    <value>Email/Courriel</value>
+  </data>
+  <data name="ConvertHistoryPage.Title" xml:space="preserve">
+    <value>Convertit</value>
+  </data>
+  <data name="ConvertHistoryPage.DealID" xml:space="preserve">
+    <value>ID de l’offre</value>
+  </data>
+  <data name="ConvertHistoryPage.ClientBuys" xml:space="preserve">
+    <value>Achats des clients</value>
+  </data>
+  <data name="ConvertHistoryPage.ClientSells" xml:space="preserve">
+    <value>Le client vend</value>
+  </data>
+  <data name="ConvertHistoryPage.BookedRate" xml:space="preserve">
+    <value>Tarif réservé</value>
+  </data>
+  <data name="ConvertHistoryPage.DealDate" xml:space="preserve">
+    <value>Date de l’accord</value>
+  </data>
+  <data name="ConvertHistoryPage.ValueDate" xml:space="preserve">
+    <value>Date de valeur</value>
+  </data>
+  <data name="ConvertHistoryPage.Actions" xml:space="preserve">
+    <value>Actions</value>
+  </data>
+  <data name="ConvertHistoryPage.Details" xml:space="preserve">
+    <value>Détails</value>
+  </data>
+  <data name="ConvertDetailsPage.ClientBuys" xml:space="preserve">
+    <value>Achats des clients</value>
+  </data>
+  <data name="ConvertDetailsPage.ClientSells" xml:space="preserve">
+    <value>Le client vend</value>
+  </data>
+  <data name="ConvertDetailsPage.DealDate" xml:space="preserve">
+    <value>Date de l’accord</value>
+  </data>
+  <data name="ConvertDetailsPage.BookedRate" xml:space="preserve">
+    <value>Tarif réservé</value>
+  </data>
+  <data name="Shared.NewInstantPaymentFormPage.InvoiceNumber" xml:space="preserve">
+    <value>Numéro de facture</value>
+  </data>
+  <data name="Shared.InstantPayment.Name" xml:space="preserve">
+    <value>Nom</value>
+  </data>
+  <data name="Shared.InstantPayment.Address" xml:space="preserve">
+    <value>Adresse</value>
+  </data>
+  <data name="Shared.NewInstantPaymentFormPage.AttachedFile" xml:space="preserve">
+    <value>Fichier joint</value>
+  </data>
+  <data name="PaymentDetailsPage.AttachedFile" xml:space="preserve">
+    <value>Fichier joint</value>
+  </data>
+  <data name="Shared.Navigation.Withdraw" xml:space="preserve">
+    <value>Retirer</value>
+  </data>
+  <data name="WithdrawIndexPage.Title" xml:space="preserve">
+    <value>Retirer</value>
+  </data>
+  <data name="WithdrawIndexPage.Subtitle" xml:space="preserve">
+    <value>Veuillez scanner le code de retrait du commerçant</value>
+  </data>
+  <data name="DepositIndexPage.Title" xml:space="preserve">
+    <value>Dépôt</value>
+  </data>
+  <data name="DepositIndexPage.Subtitle" xml:space="preserve">
+    <value>Montrer le code QR à l’agent</value>
+  </data>
+  <data name="Shared.InstantPaymentListPage.Title.InstantPayment" xml:space="preserve">
+    <value>Paiement Instantané</value>
+  </data>
+  <data name="Shared.InstantPaymentListPage.Title.CreatedStatus" xml:space="preserve">
+    <value>Statut Créé</value>
+  </data>
+  <data name="DepositIndexPage.GenerateQRCode" xml:space="preserve">
+    <value>Générer un code QR</value>
+  </data>
+  <data name="DepositIndexPage.Update" xml:space="preserve">
+    <value>Mettre à jour</value>
+  </data>
+  <data name="Shared.NewInstantPaymentFormPage.QRCode" xml:space="preserve">
+    <value>Code QR</value>
+  </data>
+  <data name="Shared.Navigation.History.Pay" xml:space="preserve">
+    <value>Payer</value>
+  </data>
+  <data name="Shared.Navigation.History.Receive" xml:space="preserve">
+    <value>Recevoir</value>
+  </data>
+  <data name="Shared.Navigation.History.Convert" xml:space="preserve">
+    <value>Convertir</value>
+  </data>
+  <data name="ConvertHistoryPage.Title.Converts" xml:space="preserve">
+    <value>Convertit</value>
+  </data>
+  <data name="ConvertHistoryPage.Title.ConvertHistory" xml:space="preserve">
+    <value>Convertir l’historique</value>
+  </data>
+  <data name="ConvertHistoryPage.NewConvert" xml:space="preserve">
+    <value>Nouveau converti</value>
+  </data>
+  <data name="LiquidationPreferences.Title" xml:space="preserve">
+    <value>Liste d’utilisateurs en rupture de stock</value>
+  </data>
+  <data name="LiquidationPreferences.Subtitle" xml:space="preserve">
+    <value>Liste d’utilisateurs en rupture de stock</value>
+  </data>
+  <data name="LiquidationPreferences.AutoExchangeCurrencies" xml:space="preserve">
+    <value>Devises utilisées dans l’échange automatique</value>
+  </data>
+  <data name="LiquidationPreferences.NotAutoExchangeCurrencies" xml:space="preserve">
+    <value>Devises non utilisées dans l’échange automatique</value>
+  </data>
+  <data name="Shared.WebPartsAccountingPage.Balance" xml:space="preserve">
+    <value>Balance</value>
+  </data>
+</root>

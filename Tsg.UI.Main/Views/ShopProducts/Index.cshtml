@@ -1,0 +1,97 @@
+﻿@model IEnumerable<TSG.Models.ServiceModels.Shop.ShopProducts>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+
+<div class="row">
+    <section class="panel">
+
+        <header class="panel-heading" data-panel-toggle="">
+            <div class="panel-actions">
+                <a href="#" class="panel-action panel-action-toggle" data-panel-toggle=""></a>
+            </div>
+
+            <h2 class="panel-title">Products</h2>
+            <p class="panel-subtitle">Products list</p>
+        </header>
+
+        <div class="panel-body" style="display: block;">
+            <p>
+                @Html.ActionLink("Create New", "Create", "ShopProducts", new {@class = "btn btn-success"})
+            </p>
+            <table class="table table-bordered table-striped table-condensed mb-none" id="datatable-default">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ShopProducts_ShopCategory.ShopCategories_Name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ShopProducts_ShopInfo.ShopInfo_Name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ShopProducts_Name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ShopProducts_ShortDescription)
+                    </th>
+                    @*<th>
+                @Html.DisplayNameFor(model => model.ShopProducts_FullDescription)
+            </th>*@
+                    <th>
+                        @Html.DisplayNameFor(model => model.ShopProducts_Price)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ShopProducts_CurrencyCode)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ShopProducts_IsPublished)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ShopProducts_IsDeleted)
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ShopProducts_ShopCategory.ShopCategories_Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ShopProducts_ShopInfo.ShopInfo_Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ShopProducts_Name)
+                        </td>
+                        <td>
+                            @Html.Raw(item.ShopProducts_ShortDescription)
+                        </td>
+                        @*<td>
+                    @Html.DisplayFor(modelItem => item.ShopProducts_FullDescription)
+                </td>*@
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ShopProducts_Price)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ShopProducts_CurrencyCode)
+                        </td>
+                        <td>
+                            @(item.ShopProducts_IsPublished ? "Yes":"No")
+                        </td>
+                        <td>
+                            @(item.ShopProducts_IsDeleted ? "Yes":"No")
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.ShopProducts_ID }) @*|
+                    @Html.ActionLink("Details", "Details", new { id=item.ShopProducts_ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id=item.ShopProducts_ID })*@
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+    </section>
+</div>

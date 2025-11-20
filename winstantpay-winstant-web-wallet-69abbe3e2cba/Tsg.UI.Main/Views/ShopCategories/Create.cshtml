@@ -1,0 +1,66 @@
+﻿@using Tsg.UI.Main.App_LocalResources
+@model TSG.Models.ServiceModels.Shop.ShopCategories
+
+@{
+    ViewBag.Title = GlobalRes.ShopCategories_Title;
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+
+
+<div class="row">
+<section class="panel">
+
+    <header class="panel-heading" data-panel-toggle="">
+        <div class="panel-actions">
+            <a href="#" class="panel-action panel-action-toggle" data-panel-toggle=""></a>
+        </div>
+
+        <h2 class="panel-title">@GlobalRes.ShopCategories_Title</h2>
+        <p class="panel-subtitle">@GlobalRes.ShopCategories_SubTitle</p>
+    </header>
+
+    <div class="panel-body" style="display: block;">
+        @using (Html.BeginForm()) 
+        {
+            @Html.AntiForgeryToken()
+    
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ShopCategories_Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.ShopCategories_Name, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ShopCategories_Name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ShopCategories_Parent, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class = "col-md-10">
+                        @Html.DropDownListFor(model=>model.ShopCategories_Parent, ViewBag.ListOfCategory as List<SelectListItem>, new {data_val = false, @class = "col-md-12" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ShopCategories_IsPublished, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <div class="checkbox">
+                            @Html.EditorFor(model => model.ShopCategories_IsPublished)
+                            @Html.ValidationMessageFor(model => model.ShopCategories_IsPublished, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Create" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+        }
+
+        <div>
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    </div>
+</section>
+</div>

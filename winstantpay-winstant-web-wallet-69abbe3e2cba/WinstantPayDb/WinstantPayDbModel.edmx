@@ -1,0 +1,2658 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="WinstantPayModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AnonimMail">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MailFrom" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="MailSubject" Type="nvarchar" MaxLength="500" />
+          <Property Name="MailNotes" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="UserIpInRequest" Type="nvarchar" MaxLength="100" />
+          <Property Name="DateSending" Type="datetime" Nullable="false" />
+          <Property Name="BrowserName" Type="nvarchar" MaxLength="100" />
+          <Property Name="BrowserVersion" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsMobile" Type="bit" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ewalletdb.dbo.ApiTokens' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ApiTokens">
+          <Key>
+            <PropertyRef Name="UserName" />
+            <PropertyRef Name="Password" />
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="TokenId" />
+          </Key>
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="TokenKey" Type="nvarchar" MaxLength="500" />
+          <Property Name="CreationDate" Type="datetime" />
+          <Property Name="ExpiredDate" Type="datetime" />
+          <Property Name="TokenId" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Bank">
+          <Key>
+            <PropertyRef Name="bankId" />
+          </Key>
+          <Property Name="bankId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="bankName" Type="nvarchar" MaxLength="100" />
+          <Property Name="bankCountry" Type="int" />
+          <Property Name="IsDeleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="BankCurrency">
+          <Key>
+            <PropertyRef Name="bankCcyId" />
+          </Key>
+          <Property Name="bankCcyId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="bankId" Type="int" />
+          <Property Name="ccyId" Type="int" />
+          <Property Name="wireInstId" Type="int" />
+          <Property Name="IsDeleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="Conversion">
+          <Key>
+            <PropertyRef Name="convId" />
+          </Key>
+          <Property Name="convId" Type="int" Nullable="false" />
+          <Property Name="fromCcyId" Type="int" />
+          <Property Name="toCcyId" Type="int" />
+          <Property Name="convAmt" Type="money" />
+          <Property Name="convDate" Type="date" />
+          <Property Name="exchangeRate" Type="decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ISO" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="80" Nullable="false" />
+          <Property Name="Fullname" Type="nvarchar" MaxLength="80" Nullable="false" />
+          <Property Name="ISO3" Type="char" MaxLength="3" />
+          <Property Name="numcode" Type="smallint" />
+          <Property Name="phonecode" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Currency">
+          <Key>
+            <PropertyRef Name="ccyId" />
+          </Key>
+          <Property Name="ccyId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ccyCode" Type="nvarchar" MaxLength="5" />
+          <Property Name="ccyName" Type="nvarchar" MaxLength="50" />
+          <Property Name="ccySymbol" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="DepartmentMails">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DepartmentName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="DepartmentMail" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="DepartmentWeight" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EnumOfOrderStatuses">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StatusName" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="StatusDesignName" Type="nvarchar" MaxLength="500" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ewalletdb.dbo.FavoritesCurrencies' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="FavoritesCurrencies">
+          <Key>
+            <PropertyRef Name="IDUser" />
+            <PropertyRef Name="IDCurrency" />
+          </Key>
+          <Property Name="IDUser" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="IDCurrency" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FundChanges">
+          <Key>
+            <PropertyRef Name="fndStatChangeId" />
+          </Key>
+          <Property Name="fndStatChangeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fndId" Type="int" />
+          <Property Name="fromStatus" Type="nvarchar" MaxLength="50" />
+          <Property Name="toStatus" Type="nvarchar" MaxLength="50" />
+          <Property Name="changedDate" Type="datetime" />
+          <Property Name="changedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="notes" Type="nvarchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="Funding">
+          <Key>
+            <PropertyRef Name="fndId" />
+          </Key>
+          <Property Name="fndId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fndAmt" Type="decimal" Precision="25" Scale="2" />
+          <Property Name="fndCreateDate" Type="datetime" />
+          <Property Name="username" Type="nvarchar" MaxLength="50" />
+          <Property Name="fndStatus" Type="nvarchar" MaxLength="50" />
+          <Property Name="bankCcyId" Type="int" />
+          <Property Name="fndApprovedDate" Type="datetime" />
+          <Property Name="proofDocId" Type="int" />
+          <Property Name="fundChangeId" Type="int" />
+          <Property Name="IsDeleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="Merchants">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UniqueID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+          <Property Name="Address" Type="nvarchar" MaxLength="500" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="100" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="UserGuid" Type="nvarchar" MaxLength="500" />
+          <Property Name="CreationDate" Type="datetime" />
+          <Property Name="CallBackAddress" Type="nvarchar" MaxLength="500" />
+          <Property Name="IsSandBox" Type="bit" />
+          <Property Name="PublicTokenKey" Type="nvarchar" MaxLength="50" />
+          <Property Name="PrivateToken" Type="nvarchar" MaxLength="50" />
+          <Property Name="MerchantAlias" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="OrdersHistory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TokenKey" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="DateOfChanging" Type="datetime" Nullable="false" />
+          <Property Name="StatusState" Type="int" Nullable="false" />
+          <Property Name="Comment" Type="nvarchar(max)" />
+          <Property Name="MerchantId" Type="int" Nullable="false" />
+          <Property Name="AliasForUser" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="ProofDoc">
+          <Key>
+            <PropertyRef Name="proofDocId" />
+          </Key>
+          <Property Name="proofDocId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="custName" Type="nvarchar" MaxLength="100" />
+          <Property Name="bankName" Type="nvarchar" MaxLength="100" />
+          <Property Name="lastFourDigits" Type="nvarchar" MaxLength="50" />
+          <Property Name="other" Type="nvarchar" MaxLength="500" />
+          <Property Name="fileName" Type="nvarchar" MaxLength="100" />
+          <Property Name="filePath" Type="nvarchar" MaxLength="500" />
+          <Property Name="bankCcyId" Type="int" />
+          <Property Name="paymentDate" Type="datetime" />
+          <Property Name="amount" Type="decimal" Precision="25" Scale="2" />
+          <Property Name="IsDeleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="ReferalLinksList">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LinkText" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="IsDefault" Type="bit" Nullable="false" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="ExpiredDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="roleId" />
+          </Key>
+          <Property Name="roleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="roleName" Type="nvarchar" MaxLength="50" />
+          <Property Name="roleDesc" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="SendedMails">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DepID" Type="int" Nullable="false" />
+          <Property Name="MailFrom" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="MailText" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="MailSubject" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="MailAttachment" Type="varbinary(max)" />
+          <Property Name="SiteCategory" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="SharedAdminLink">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
+          <Property Name="CreationDate" Type="datetime" />
+          <Property Name="LinkAddress" Type="nvarchar" MaxLength="150" />
+          <Property Name="StatusLink" Type="int" />
+          <Property Name="ActivationDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="SharedPhoto">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PaymentId" Type="nvarchar" MaxLength="100" />
+          <Property Name="CreationDate" Type="datetime" />
+          <Property Name="ExpiredDate" Type="datetime" />
+          <Property Name="IsViewed" Type="bit" Nullable="false" />
+          <Property Name="SharedPhotoId" Type="nvarchar" MaxLength="100" />
+          <Property Name="Comment" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="SystemProperty">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameOfProperty" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TokenKeysForOrders">
+          <Key>
+            <PropertyRef Name="CustomerOrderId" />
+          </Key>
+          <Property Name="CustomerOrderId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CustomerOrderStatus" Type="int" Nullable="false" />
+          <Property Name="MerchantId" Type="int" />
+          <Property Name="CustomerId" Type="uniqueidentifier" />
+          <Property Name="Currency" Type="nvarchar" MaxLength="50" />
+          <Property Name="Quantity" Type="decimal" Precision="30" Scale="8" />
+          <Property Name="MerchantWebSite" Type="nvarchar" MaxLength="500" />
+          <Property Name="CustomerAccounting" Type="int" />
+          <Property Name="OrderExpiredDate" Type="datetime" />
+          <Property Name="Stoke" Type="nvarchar" MaxLength="1000" />
+          <Property Name="PaymentGuid" Type="uniqueidentifier" />
+          <Property Name="IsSanboxOrder" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="username" />
+          </Key>
+          <Property Name="username" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="nvarchar" MaxLength="50" />
+          <Property Name="KYCLink" Type="nvarchar" MaxLength="100" />
+          <Property Name="wlcMsgId" Type="int" />
+          <Property Name="lastLoginDate" Type="datetime" />
+          <Property Name="isLocal" Type="bit" />
+          <Property Name="curLoginDate" Type="datetime" />
+          <Property Name="roleId" Type="int" />
+          <Property Name="userIdByTSG" Type="uniqueidentifier" />
+          <Property Name="firstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="lastName" Type="nvarchar" MaxLength="50" />
+          <Property Name="userMail" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="WelcomeMessage">
+          <Key>
+            <PropertyRef Name="wlcMsgId" />
+          </Key>
+          <Property Name="wlcMsgId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="wlcMsgText" Type="nvarchar(max)" />
+          <Property Name="isDefault" Type="bit" />
+          <Property Name="wlcMsgTextRu" Type="nvarchar(max)" />
+          <Property Name="wlcMsgTextFr" Type="nvarchar(max)" />
+          <Property Name="wlcMsgTextPh" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="WireInstruction">
+          <Key>
+            <PropertyRef Name="wireInstId" />
+          </Key>
+          <Property Name="wireInstId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="wireInstText" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <Association Name="FK_Bank_Country">
+          <End Role="Country" Type="Self.Country" Multiplicity="1" />
+          <End Role="Bank" Type="Self.Bank" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Bank">
+              <PropertyRef Name="bankId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BankCurrency_Bank">
+          <End Role="Bank" Type="Self.Bank" Multiplicity="0..1" />
+          <End Role="BankCurrency" Type="Self.BankCurrency" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bank">
+              <PropertyRef Name="bankId" />
+            </Principal>
+            <Dependent Role="BankCurrency">
+              <PropertyRef Name="bankId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BankCurrency_Currency">
+          <End Role="Currency" Type="Self.Currency" Multiplicity="0..1" />
+          <End Role="BankCurrency" Type="Self.BankCurrency" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currency">
+              <PropertyRef Name="ccyId" />
+            </Principal>
+            <Dependent Role="BankCurrency">
+              <PropertyRef Name="ccyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BankCurrency_WireInstruction">
+          <End Role="WireInstruction" Type="Self.WireInstruction" Multiplicity="0..1" />
+          <End Role="BankCurrency" Type="Self.BankCurrency" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WireInstruction">
+              <PropertyRef Name="wireInstId" />
+            </Principal>
+            <Dependent Role="BankCurrency">
+              <PropertyRef Name="wireInstId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Conversion_FromCurrency">
+          <End Role="Currency" Type="Self.Currency" Multiplicity="0..1" />
+          <End Role="Conversion" Type="Self.Conversion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currency">
+              <PropertyRef Name="ccyId" />
+            </Principal>
+            <Dependent Role="Conversion">
+              <PropertyRef Name="fromCcyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Conversion_ToCurrency">
+          <End Role="Currency" Type="Self.Currency" Multiplicity="0..1" />
+          <End Role="Conversion" Type="Self.Conversion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currency">
+              <PropertyRef Name="ccyId" />
+            </Principal>
+            <Dependent Role="Conversion">
+              <PropertyRef Name="toCcyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Funding_BankCurrency">
+          <End Role="BankCurrency" Type="Self.BankCurrency" Multiplicity="0..1" />
+          <End Role="Funding" Type="Self.Funding" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BankCurrency">
+              <PropertyRef Name="bankCcyId" />
+            </Principal>
+            <Dependent Role="Funding">
+              <PropertyRef Name="bankCcyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Funding_ProofDoc">
+          <End Role="ProofDoc" Type="Self.ProofDoc" Multiplicity="0..1" />
+          <End Role="Funding" Type="Self.Funding" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProofDoc">
+              <PropertyRef Name="proofDocId" />
+            </Principal>
+            <Dependent Role="Funding">
+              <PropertyRef Name="proofDocId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Funding_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Funding" Type="Self.Funding" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="username" />
+            </Principal>
+            <Dependent Role="Funding">
+              <PropertyRef Name="username" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrdersHistory_EnumOfOrderStatuses">
+          <End Role="EnumOfOrderStatuses" Type="Self.EnumOfOrderStatuses" Multiplicity="1" />
+          <End Role="OrdersHistory" Type="Self.OrdersHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EnumOfOrderStatuses">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OrdersHistory">
+              <PropertyRef Name="StatusState" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrdersHistory_Merchants">
+          <End Role="Merchants" Type="Self.Merchants" Multiplicity="1" />
+          <End Role="OrdersHistory" Type="Self.OrdersHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Merchants">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OrdersHistory">
+              <PropertyRef Name="MerchantId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrdersHistory_TokenKeysForOrders">
+          <End Role="TokenKeysForOrders" Type="Self.TokenKeysForOrders" Multiplicity="1" />
+          <End Role="OrdersHistory" Type="Self.OrdersHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TokenKeysForOrders">
+              <PropertyRef Name="CustomerOrderId" />
+            </Principal>
+            <Dependent Role="OrdersHistory">
+              <PropertyRef Name="TokenKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StatusChangeHistory_User">
+          <End Role="Funding" Type="Self.Funding" Multiplicity="0..1" />
+          <End Role="FundChanges" Type="Self.FundChanges" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Funding">
+              <PropertyRef Name="fndId" />
+            </Principal>
+            <Dependent Role="FundChanges">
+              <PropertyRef Name="fndId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TokenKeysForOrders_EnumOfOrderStatuses">
+          <End Role="EnumOfOrderStatuses" Type="Self.EnumOfOrderStatuses" Multiplicity="1" />
+          <End Role="TokenKeysForOrders" Type="Self.TokenKeysForOrders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EnumOfOrderStatuses">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TokenKeysForOrders">
+              <PropertyRef Name="CustomerOrderStatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TokenKeysForOrders_Merchants">
+          <End Role="Merchants" Type="Self.Merchants" Multiplicity="0..1" />
+          <End Role="TokenKeysForOrders" Type="Self.TokenKeysForOrders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Merchants">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TokenKeysForOrders">
+              <PropertyRef Name="MerchantId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="roleId" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="roleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_WelcomeMessage">
+          <End Role="WelcomeMessage" Type="Self.WelcomeMessage" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WelcomeMessage">
+              <PropertyRef Name="wlcMsgId" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="wlcMsgId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="AddAnonimMailRec" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MailFrom" Type="nvarchar" Mode="In" />
+          <Parameter Name="MailSubject" Type="nvarchar" Mode="In" />
+          <Parameter Name="MailNotes" Type="nvarchar" Mode="In" />
+          <Parameter Name="UserIpInRequest" Type="nvarchar" Mode="In" />
+          <Parameter Name="BrowserName" Type="nvarchar" Mode="In" />
+          <Parameter Name="BrowserVersion" Type="nvarchar" Mode="In" />
+          <Parameter Name="IsMobile" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="AddBank" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="bankName" Type="nvarchar" Mode="In" />
+          <Parameter Name="bankCountry" Type="int" Mode="In" />
+          <Parameter Name="bankId" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="AddBankCurrency" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="bankId" Type="int" Mode="In" />
+          <Parameter Name="ccyId" Type="int" Mode="In" />
+          <Parameter Name="wireInstId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="AddBankCurrencyGetId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="bankId" Type="int" Mode="In" />
+          <Parameter Name="ccyId" Type="int" Mode="In" />
+          <Parameter Name="wireInstId" Type="int" Mode="In" />
+          <Parameter Name="bankCcyId" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="AddBankDeposit" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="fndAmt" Type="decimal" Mode="In" />
+          <Parameter Name="username" Type="nvarchar" Mode="In" />
+          <Parameter Name="bankCcyId" Type="int" Mode="In" />
+          <Parameter Name="insId" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="AddContactUsRec" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="DepartmentName" Type="nvarchar" Mode="In" />
+          <Parameter Name="DepartmentMail" Type="nvarchar" Mode="In" />
+          <Parameter Name="DepartmentWeight" Type="int" Mode="In" />
+        </Function>
+        <Function Name="AddCurrency" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ccyId" Type="int" Mode="In" />
+          <Parameter Name="ccyCode" Type="nvarchar" Mode="In" />
+          <Parameter Name="ccyName" Type="nvarchar" Mode="In" />
+          <Parameter Name="ccySymbol" Type="nvarchar" Mode="In" />
+          <Parameter Name="ccyOutId" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="AddFavoritesCurrency" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IDUser" Type="nvarchar" Mode="In" />
+          <Parameter Name="IDCurrencies" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="AddFundHistoryRec" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="fundId" Type="int" Mode="In" />
+          <Parameter Name="userId" Type="int" Mode="In" />
+          <Parameter Name="changingDate" Type="datetime" Mode="In" />
+          <Parameter Name="oldStatus" Type="nvarchar" Mode="In" />
+          <Parameter Name="newStatus" Type="nvarchar" Mode="In" />
+          <Parameter Name="adminNote" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="AddHistorycalDataFromOrders" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MerchantId" Type="int" Mode="In" />
+          <Parameter Name="OrderToken" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="Status" Type="int" Mode="In" />
+          <Parameter Name="Comment" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="AddMerchant" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MerchantName" Type="nvarchar" Mode="In" />
+          <Parameter Name="MerchantPhone" Type="nvarchar" Mode="In" />
+          <Parameter Name="MerchantAddress" Type="nvarchar" Mode="In" />
+          <Parameter Name="MerchantCallBackAddress" Type="nvarchar" Mode="In" />
+          <Parameter Name="UserId" Type="nvarchar" Mode="In" />
+          <Parameter Name="UserGuid" Type="nvarchar" Mode="In" />
+          <Parameter Name="IsSandingBox" Type="bit" Mode="In" />
+          <Parameter Name="PublicTokenKey" Type="nvarchar" Mode="In" />
+          <Parameter Name="PrivateToken" Type="nvarchar" Mode="In" />
+          <Parameter Name="MerchantAlias" Type="nvarchar" Mode="In" />
+          <Parameter Name="ID" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="AddOrderHistoryRecs" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="OrderToken" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="StatusState" Type="int" Mode="In" />
+          <Parameter Name="Comment" Type="nvarchar" Mode="In" />
+          <Parameter Name="MerchantId" Type="int" Mode="In" />
+          <Parameter Name="AliasName" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="AddOrUpdateAdmin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="admLinkId" Type="int" Mode="In" />
+          <Parameter Name="admUserName" Type="nvarchar" Mode="In" />
+          <Parameter Name="admFirstName" Type="nvarchar" Mode="In" />
+          <Parameter Name="admLastName" Type="nvarchar" Mode="In" />
+          <Parameter Name="admEmail" Type="nvarchar" Mode="In" />
+          <Parameter Name="admLinkAddress" Type="nvarchar" Mode="In" />
+          <Parameter Name="admLinkPassword" Type="nvarchar" Mode="In" />
+          <Parameter Name="admLinkOutId" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="AddOrUpdateReferalLink" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="refLinkId" Type="int" Mode="In" />
+          <Parameter Name="refLinkText" Type="nvarchar" Mode="In" />
+          <Parameter Name="refLinkOutId" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="AddOrUpdateSharedPhoto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PaymentId" Type="nvarchar" Mode="In" />
+          <Parameter Name="Comment" Type="nvarchar" Mode="In" />
+          <Parameter Name="PhotoId" Type="uniqueidentifier" Mode="InOut" />
+        </Function>
+        <Function Name="AddProofDoc" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="custName" Type="nvarchar" Mode="In" />
+          <Parameter Name="bankName" Type="nvarchar" Mode="In" />
+          <Parameter Name="lastFourDigits" Type="nvarchar" Mode="In" />
+          <Parameter Name="other" Type="nvarchar" Mode="In" />
+          <Parameter Name="fileName" Type="nvarchar" Mode="In" />
+          <Parameter Name="filePath" Type="nvarchar" Mode="In" />
+          <Parameter Name="bankCcyId" Type="int" Mode="In" />
+          <Parameter Name="paymentDate" Type="datetime" Mode="In" />
+          <Parameter Name="amount" Type="decimal" Mode="In" />
+          <Parameter Name="depositId" Type="int" Mode="In" />
+          <Parameter Name="proofDocId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="AddSendedMail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="DepID" Type="int" Mode="In" />
+          <Parameter Name="MailFrom" Type="nvarchar" Mode="In" />
+          <Parameter Name="MailText" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="MailSubject" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="MailAttachment" Type="varbinary(max)" Mode="In" />
+          <Parameter Name="SiteCategory" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="AddUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="username" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="AddUserToken" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+          <Parameter Name="Password" Type="nvarchar" Mode="In" />
+          <Parameter Name="UserId" Type="nvarchar" Mode="In" />
+          <Parameter Name="TokenKey" Type="nvarchar" Mode="In" />
+          <Parameter Name="TokenId" Type="nvarchar" Mode="In" />
+          <Parameter Name="CreationDate" Type="datetime" Mode="In" />
+          <Parameter Name="ExpiredDate" Type="datetime" Mode="InOut" />
+        </Function>
+        <Function Name="AddWelcomeMessage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="wlcMsgText" Type="nvarchar" Mode="In" />
+          <Parameter Name="username" Type="nvarchar" Mode="In" />
+          <Parameter Name="wlcMsgTextRu" Type="nvarchar" Mode="In" />
+          <Parameter Name="wlcMsgTextFr" Type="nvarchar" Mode="In" />
+          <Parameter Name="wlcMsgTextPh" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="AddWireInstruction" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="wireInstText" Type="nvarchar" Mode="In" />
+          <Parameter Name="bankCcyId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ChangePassword" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="username" Type="nvarchar" Mode="In" />
+          <Parameter Name="hashedPassword" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="CheckMerchantIfExist" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="merchantSecKey" Type="nvarchar" Mode="In" />
+          <Parameter Name="merchantTokenKey" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="CheckOrderIfExist" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="orderToken" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="DeleteBank" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="bankId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="DeleteBankDeposit" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="depositId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="DeleteContactUsRec" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ContactUsId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="DeleteCurrency" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="currId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="DeleteFavoriteCurrency" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IDCurrencies" Type="nvarchar" Mode="In" />
+          <Parameter Name="IDUser" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="DeletePayInInstruction" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="bankCurrencyId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="DeleteProofDoc" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="proofDocId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="DeleteWelcomeMessage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="wlcMsgId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="DeleteWireInstruction" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="wireInstId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GenerateOrderToken" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MerchantId" Type="int" Mode="In" />
+          <Parameter Name="MerchantWebSite" Type="nvarchar" Mode="In" />
+          <Parameter Name="TokenKeysForOrders" Type="nvarchar" Mode="In" />
+          <Parameter Name="OrderToken" Type="uniqueidentifier" Mode="InOut" />
+        </Function>
+        <Function Name="GetAdminLink" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetApiUserById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TokenKey" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="GetBankAndInstruction" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetBankAndInstructionById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="bankCcyId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetBankCurrencies" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetBankDeposits" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="username" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="GetBanks" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetContactUsList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetCountries" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetCurrencies" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetFavoriteCurrencyList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IDUser" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="GetFundChanges" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetFundRequests" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetListOfMerchants" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserId" Type="nvarchar" Mode="In" />
+          <Parameter Name="UserGuid" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="GetMerchantName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="merchantId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetProofDocById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetProofDocName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar">
+          <Parameter Name="docId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetReferalLinksList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetSharedPhoto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PaymentId" Type="nvarchar" Mode="In" />
+          <Parameter Name="PhotoId" Type="uniqueidentifier" Mode="InOut" />
+          <Parameter Name="ExpiredDate" Type="datetime" Mode="InOut" />
+        </Function>
+        <Function Name="GetStatusChangeHistory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetUserHashedPassword" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar">
+          <Parameter Name="username" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="GetUserLastLoginDate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="datetime">
+          <Parameter Name="username" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="GetUsers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetUserWelcomeMessage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar(max)">
+          <Parameter Name="username" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="lang" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="GetWelcomeMessages" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetWireInstruction" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar">
+          <Parameter Name="bankCcyId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetWireInstructions" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="UpdateBank" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="bankId" Type="int" Mode="In" />
+          <Parameter Name="bankName" Type="nvarchar" Mode="In" />
+          <Parameter Name="bankCountry" Type="int" Mode="In" />
+        </Function>
+        <Function Name="UpdateBankCurrency" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="bankId" Type="int" Mode="In" />
+          <Parameter Name="bCcyId" Type="int" Mode="In" />
+          <Parameter Name="ccyId" Type="int" Mode="In" />
+          <Parameter Name="wireInstId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="UpdateContactUsRec" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cuID" Type="int" Mode="In" />
+          <Parameter Name="cuName" Type="nvarchar" Mode="In" />
+          <Parameter Name="cuMail" Type="nvarchar" Mode="In" />
+          <Parameter Name="cuWeight" Type="int" Mode="In" />
+        </Function>
+        <Function Name="UpdateCurrency" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="currId" Type="int" Mode="In" />
+          <Parameter Name="ccyName" Type="nvarchar" Mode="In" />
+          <Parameter Name="ccyCode" Type="nvarchar" Mode="In" />
+          <Parameter Name="ccySymbol" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="UpdateFundRequest" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="fndId" Type="int" Mode="In" />
+          <Parameter Name="newStatus" Type="nvarchar" Mode="In" />
+          <Parameter Name="username" Type="nvarchar" Mode="In" />
+          <Parameter Name="notes" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="UpdateMerchantCallBackAddress" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MerchantGuid" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="MerchantCallBackAddress" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="UpdateMerchantsRec" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MerchantId" Type="int" Mode="In" />
+          <Parameter Name="MerchantGuid" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="MerchantName" Type="nvarchar" Mode="In" />
+          <Parameter Name="MerchantPhone" Type="nvarchar" Mode="In" />
+          <Parameter Name="MerchantAddress" Type="nvarchar" Mode="In" />
+          <Parameter Name="MerchantCallBackAddress" Type="nvarchar" Mode="In" />
+          <Parameter Name="IsSandingBox" Type="bit" Mode="In" />
+          <Parameter Name="MerchantAlias" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="UpdateTsgIdViaTsgService" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userLogin" Type="nvarchar" Mode="In" />
+          <Parameter Name="userTokenByTSG" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="UpdateUserLastLoginDate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="username" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="UpdateWelcomeMessage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="wlcMsgId" Type="int" Mode="In" />
+          <Parameter Name="wlcMsgText" Type="nvarchar" Mode="In" />
+          <Parameter Name="wlcMsgTextRu" Type="nvarchar" Mode="In" />
+          <Parameter Name="wlcMsgTextFr" Type="nvarchar" Mode="In" />
+          <Parameter Name="wlcMsgTextPh" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="UpdateWireInstruction" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="wireInstId" Type="int" Mode="In" />
+          <Parameter Name="wireInstText" Type="nvarchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="WinstantPayModelStoreContainer">
+          <EntitySet Name="AnonimMail" EntityType="Self.AnonimMail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Bank" EntityType="Self.Bank" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BankCurrency" EntityType="Self.BankCurrency" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Conversion" EntityType="Self.Conversion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Currency" EntityType="Self.Currency" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DepartmentMails" EntityType="Self.DepartmentMails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EnumOfOrderStatuses" EntityType="Self.EnumOfOrderStatuses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FundChanges" EntityType="Self.FundChanges" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Funding" EntityType="Self.Funding" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Merchants" EntityType="Self.Merchants" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrdersHistory" EntityType="Self.OrdersHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProofDoc" EntityType="Self.ProofDoc" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ReferalLinksList" EntityType="Self.ReferalLinksList" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SendedMails" EntityType="Self.SendedMails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SharedAdminLink" EntityType="Self.SharedAdminLink" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SharedPhoto" EntityType="Self.SharedPhoto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SystemProperty" EntityType="Self.SystemProperty" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TokenKeysForOrders" EntityType="Self.TokenKeysForOrders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WelcomeMessage" EntityType="Self.WelcomeMessage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WireInstruction" EntityType="Self.WireInstruction" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ApiTokens" EntityType="Self.ApiTokens" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ApiTokens].[UserName] AS [UserName], 
+    [ApiTokens].[Password] AS [Password], 
+    [ApiTokens].[UserId] AS [UserId], 
+    [ApiTokens].[TokenKey] AS [TokenKey], 
+    [ApiTokens].[CreationDate] AS [CreationDate], 
+    [ApiTokens].[ExpiredDate] AS [ExpiredDate], 
+    [ApiTokens].[TokenId] AS [TokenId]
+    FROM [dbo].[ApiTokens] AS [ApiTokens]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="FavoritesCurrencies" EntityType="Self.FavoritesCurrencies" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [FavoritesCurrencies].[IDUser] AS [IDUser], 
+    [FavoritesCurrencies].[IDCurrency] AS [IDCurrency]
+    FROM [dbo].[FavoritesCurrencies] AS [FavoritesCurrencies]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Bank_Country" Association="Self.FK_Bank_Country">
+            <End Role="Country" EntitySet="Country" />
+            <End Role="Bank" EntitySet="Bank" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BankCurrency_Bank" Association="Self.FK_BankCurrency_Bank">
+            <End Role="Bank" EntitySet="Bank" />
+            <End Role="BankCurrency" EntitySet="BankCurrency" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BankCurrency_Currency" Association="Self.FK_BankCurrency_Currency">
+            <End Role="Currency" EntitySet="Currency" />
+            <End Role="BankCurrency" EntitySet="BankCurrency" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BankCurrency_WireInstruction" Association="Self.FK_BankCurrency_WireInstruction">
+            <End Role="WireInstruction" EntitySet="WireInstruction" />
+            <End Role="BankCurrency" EntitySet="BankCurrency" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Conversion_FromCurrency" Association="Self.FK_Conversion_FromCurrency">
+            <End Role="Currency" EntitySet="Currency" />
+            <End Role="Conversion" EntitySet="Conversion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Conversion_ToCurrency" Association="Self.FK_Conversion_ToCurrency">
+            <End Role="Currency" EntitySet="Currency" />
+            <End Role="Conversion" EntitySet="Conversion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Funding_BankCurrency" Association="Self.FK_Funding_BankCurrency">
+            <End Role="BankCurrency" EntitySet="BankCurrency" />
+            <End Role="Funding" EntitySet="Funding" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Funding_ProofDoc" Association="Self.FK_Funding_ProofDoc">
+            <End Role="ProofDoc" EntitySet="ProofDoc" />
+            <End Role="Funding" EntitySet="Funding" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Funding_User" Association="Self.FK_Funding_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Funding" EntitySet="Funding" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrdersHistory_EnumOfOrderStatuses" Association="Self.FK_OrdersHistory_EnumOfOrderStatuses">
+            <End Role="EnumOfOrderStatuses" EntitySet="EnumOfOrderStatuses" />
+            <End Role="OrdersHistory" EntitySet="OrdersHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrdersHistory_Merchants" Association="Self.FK_OrdersHistory_Merchants">
+            <End Role="Merchants" EntitySet="Merchants" />
+            <End Role="OrdersHistory" EntitySet="OrdersHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrdersHistory_TokenKeysForOrders" Association="Self.FK_OrdersHistory_TokenKeysForOrders">
+            <End Role="TokenKeysForOrders" EntitySet="TokenKeysForOrders" />
+            <End Role="OrdersHistory" EntitySet="OrdersHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StatusChangeHistory_User" Association="Self.FK_StatusChangeHistory_User">
+            <End Role="Funding" EntitySet="Funding" />
+            <End Role="FundChanges" EntitySet="FundChanges" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TokenKeysForOrders_EnumOfOrderStatuses" Association="Self.FK_TokenKeysForOrders_EnumOfOrderStatuses">
+            <End Role="EnumOfOrderStatuses" EntitySet="EnumOfOrderStatuses" />
+            <End Role="TokenKeysForOrders" EntitySet="TokenKeysForOrders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TokenKeysForOrders_Merchants" Association="Self.FK_TokenKeysForOrders_Merchants">
+            <End Role="Merchants" EntitySet="Merchants" />
+            <End Role="TokenKeysForOrders" EntitySet="TokenKeysForOrders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_WelcomeMessage" Association="Self.FK_User_WelcomeMessage">
+            <End Role="WelcomeMessage" EntitySet="WelcomeMessage" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="WinstantPayModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AnonimMail">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MailFrom" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MailSubject" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="MailNotes" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserIpInRequest" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DateSending" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="BrowserName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="BrowserVersion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsMobile" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Bank">
+          <Key>
+            <PropertyRef Name="bankId" />
+          </Key>
+          <Property Name="bankId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="bankName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="bankCountry" Type="Int32" />
+          <NavigationProperty Name="Country" Relationship="Self.FK_Bank_Country" FromRole="Bank" ToRole="Country" />
+          <NavigationProperty Name="BankCurrency" Relationship="Self.FK_BankCurrency_Bank" FromRole="Bank" ToRole="BankCurrency" />
+          <Property Name="IsDeleted" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="BankCurrency">
+          <Key>
+            <PropertyRef Name="bankCcyId" />
+          </Key>
+          <Property Name="bankCcyId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="bankId" Type="Int32" />
+          <Property Name="ccyId" Type="Int32" />
+          <Property Name="wireInstId" Type="Int32" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <NavigationProperty Name="Bank" Relationship="Self.FK_BankCurrency_Bank" FromRole="BankCurrency" ToRole="Bank" />
+          <NavigationProperty Name="Currency" Relationship="Self.FK_BankCurrency_Currency" FromRole="BankCurrency" ToRole="Currency" />
+          <NavigationProperty Name="WireInstruction" Relationship="Self.FK_BankCurrency_WireInstruction" FromRole="BankCurrency" ToRole="WireInstruction" />
+          <NavigationProperty Name="Funding" Relationship="Self.FK_Funding_BankCurrency" FromRole="BankCurrency" ToRole="Funding" />
+        </EntityType>
+        <EntityType Name="Conversion">
+          <Key>
+            <PropertyRef Name="convId" />
+          </Key>
+          <Property Name="convId" Type="Int32" Nullable="false" />
+          <Property Name="fromCcyId" Type="Int32" />
+          <Property Name="toCcyId" Type="Int32" />
+          <Property Name="convAmt" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="convDate" Type="DateTime" Precision="0" />
+          <Property Name="exchangeRate" Type="Decimal" Precision="18" Scale="0" />
+          <NavigationProperty Name="Currency" Relationship="Self.FK_Conversion_FromCurrency" FromRole="Conversion" ToRole="Currency" />
+          <NavigationProperty Name="Currency1" Relationship="Self.FK_Conversion_ToCurrency" FromRole="Conversion" ToRole="Currency" />
+        </EntityType>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ISO" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Fullname" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ISO3" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="numcode" Type="Int16" />
+          <Property Name="phonecode" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Bank" Relationship="Self.FK_Bank_Country" FromRole="Country" ToRole="Bank" />
+        </EntityType>
+        <EntityType Name="Currency">
+          <Key>
+            <PropertyRef Name="ccyId" />
+          </Key>
+          <Property Name="ccyId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ccyCode" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="ccyName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ccySymbol" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BankCurrency" Relationship="Self.FK_BankCurrency_Currency" FromRole="Currency" ToRole="BankCurrency" />
+          <NavigationProperty Name="Conversion" Relationship="Self.FK_Conversion_FromCurrency" FromRole="Currency" ToRole="Conversion" />
+          <NavigationProperty Name="Conversion1" Relationship="Self.FK_Conversion_ToCurrency" FromRole="Currency" ToRole="Conversion" />
+        </EntityType>
+        <EntityType Name="DepartmentMails">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DepartmentName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DepartmentMail" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DepartmentWeight" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EnumOfOrderStatuses">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StatusName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="StatusDesignName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="OrdersHistory" Relationship="Self.FK_OrdersHistory_EnumOfOrderStatuses" FromRole="EnumOfOrderStatuses" ToRole="OrdersHistory" />
+          <NavigationProperty Name="TokenKeysForOrders" Relationship="Self.FK_TokenKeysForOrders_EnumOfOrderStatuses" FromRole="EnumOfOrderStatuses" ToRole="TokenKeysForOrders" />
+        </EntityType>
+        <EntityType Name="FundChanges">
+          <Key>
+            <PropertyRef Name="fndStatChangeId" />
+          </Key>
+          <Property Name="fndStatChangeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fndId" Type="Int32" />
+          <Property Name="fromStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="toStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="changedDate" Type="DateTime" Precision="3" />
+          <Property Name="changedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="notes" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Funding" Relationship="Self.FK_StatusChangeHistory_User" FromRole="FundChanges" ToRole="Funding" />
+        </EntityType>
+        <EntityType Name="Funding">
+          <Key>
+            <PropertyRef Name="fndId" />
+          </Key>
+          <Property Name="fndId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fndAmt" Type="Decimal" Precision="25" Scale="2" />
+          <Property Name="fndCreateDate" Type="DateTime" Precision="3" />
+          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fndStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="bankCcyId" Type="Int32" />
+          <Property Name="fndApprovedDate" Type="DateTime" Precision="3" />
+          <Property Name="proofDocId" Type="Int32" />
+          <Property Name="fundChangeId" Type="Int32" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <NavigationProperty Name="BankCurrency" Relationship="Self.FK_Funding_BankCurrency" FromRole="Funding" ToRole="BankCurrency" />
+          <NavigationProperty Name="FundChanges" Relationship="Self.FK_StatusChangeHistory_User" FromRole="Funding" ToRole="FundChanges" />
+          <NavigationProperty Name="ProofDoc" Relationship="Self.FK_Funding_ProofDoc" FromRole="Funding" ToRole="ProofDoc" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Funding_User" FromRole="Funding" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Merchants">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UniqueID" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserGuid" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <Property Name="CallBackAddress" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="IsSandBox" Type="Boolean" />
+          <Property Name="PublicTokenKey" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PrivateToken" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="OrdersHistory" Relationship="Self.FK_OrdersHistory_Merchants" FromRole="Merchants" ToRole="OrdersHistory" />
+          <NavigationProperty Name="TokenKeysForOrders" Relationship="Self.FK_TokenKeysForOrders_Merchants" FromRole="Merchants" ToRole="TokenKeysForOrders" />
+          <Property Name="MerchantAlias" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="OrdersHistory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TokenKey" Type="Guid" Nullable="false" />
+          <Property Name="DateOfChanging" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="StatusState" Type="Int32" Nullable="false" />
+          <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MerchantId" Type="Int32" Nullable="false" />
+          <Property Name="AliasForUser" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="EnumOfOrderStatuses" Relationship="Self.FK_OrdersHistory_EnumOfOrderStatuses" FromRole="OrdersHistory" ToRole="EnumOfOrderStatuses" />
+          <NavigationProperty Name="Merchants" Relationship="Self.FK_OrdersHistory_Merchants" FromRole="OrdersHistory" ToRole="Merchants" />
+          <NavigationProperty Name="TokenKeysForOrders" Relationship="Self.FK_OrdersHistory_TokenKeysForOrders" FromRole="OrdersHistory" ToRole="TokenKeysForOrders" />
+        </EntityType>
+        <EntityType Name="ProofDoc">
+          <Key>
+            <PropertyRef Name="proofDocId" />
+          </Key>
+          <Property Name="proofDocId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="custName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="bankName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="lastFourDigits" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="other" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="fileName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="filePath" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="bankCcyId" Type="Int32" />
+          <Property Name="paymentDate" Type="DateTime" Precision="3" />
+          <Property Name="amount" Type="Decimal" Precision="25" Scale="2" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <NavigationProperty Name="Funding" Relationship="Self.FK_Funding_ProofDoc" FromRole="ProofDoc" ToRole="Funding" />
+        </EntityType>
+        <EntityType Name="ReferalLinksList">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LinkText" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsDefault" Type="Boolean" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="ExpiredDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="roleId" />
+          </Key>
+          <Property Name="roleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="roleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="roleDesc" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="User" Relationship="Self.FK_User_Role" FromRole="Role" ToRole="User" />
+        </EntityType>
+        <EntityType Name="SendedMails">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DepID" Type="Int32" Nullable="false" />
+          <Property Name="MailFrom" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MailText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MailSubject" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MailAttachment" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="SiteCategory" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="SharedAdminLink">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <Property Name="LinkAddress" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="StatusLink" Type="Int32" />
+          <Property Name="ActivationDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="SharedPhoto">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PaymentId" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <Property Name="ExpiredDate" Type="DateTime" Precision="3" />
+          <Property Name="IsViewed" Type="Boolean" Nullable="false" />
+          <Property Name="SharedPhotoId" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Comment" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="SystemProperty">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameOfProperty" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TokenKeysForOrders">
+          <Key>
+            <PropertyRef Name="CustomerOrderId" />
+          </Key>
+          <Property Name="CustomerOrderId" Type="Guid" Nullable="false" />
+          <Property Name="CustomerOrderStatus" Type="Int32" Nullable="false" />
+          <Property Name="MerchantId" Type="Int32" />
+          <Property Name="CustomerId" Type="Guid" />
+          <Property Name="Currency" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Quantity" Type="Decimal" Precision="30" Scale="8" />
+          <Property Name="MerchantWebSite" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerAccounting" Type="Int32" />
+          <Property Name="OrderExpiredDate" Type="DateTime" Precision="3" />
+          <Property Name="Stoke" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="EnumOfOrderStatuses" Relationship="Self.FK_TokenKeysForOrders_EnumOfOrderStatuses" FromRole="TokenKeysForOrders" ToRole="EnumOfOrderStatuses" />
+          <NavigationProperty Name="Merchants" Relationship="Self.FK_TokenKeysForOrders_Merchants" FromRole="TokenKeysForOrders" ToRole="Merchants" />
+          <NavigationProperty Name="OrdersHistory" Relationship="Self.FK_OrdersHistory_TokenKeysForOrders" FromRole="TokenKeysForOrders" ToRole="OrdersHistory" />
+          <Property Name="PaymentGuid" Type="Guid" />
+          <Property Name="IsSanboxOrder" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="username" />
+          </Key>
+          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KYCLink" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="wlcMsgId" Type="Int32" />
+          <Property Name="lastLoginDate" Type="DateTime" Precision="3" />
+          <Property Name="isLocal" Type="Boolean" />
+          <Property Name="curLoginDate" Type="DateTime" Precision="3" />
+          <Property Name="roleId" Type="Int32" />
+          <Property Name="userIdByTSG" Type="Guid" />
+          <Property Name="firstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="lastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="userMail" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Funding" Relationship="Self.FK_Funding_User" FromRole="User" ToRole="Funding" />
+          <NavigationProperty Name="Role" Relationship="Self.FK_User_Role" FromRole="User" ToRole="Role" />
+          <NavigationProperty Name="WelcomeMessage" Relationship="Self.FK_User_WelcomeMessage" FromRole="User" ToRole="WelcomeMessage" />
+        </EntityType>
+        <EntityType Name="WelcomeMessage">
+          <Key>
+            <PropertyRef Name="wlcMsgId" />
+          </Key>
+          <Property Name="wlcMsgId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="wlcMsgText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="isDefault" Type="Boolean" />
+          <Property Name="wlcMsgTextRu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="wlcMsgTextFr" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="wlcMsgTextPh" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="User" Relationship="Self.FK_User_WelcomeMessage" FromRole="WelcomeMessage" ToRole="User" />
+        </EntityType>
+        <EntityType Name="WireInstruction">
+          <Key>
+            <PropertyRef Name="wireInstId" />
+          </Key>
+          <Property Name="wireInstId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="wireInstText" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BankCurrency" Relationship="Self.FK_BankCurrency_WireInstruction" FromRole="WireInstruction" ToRole="BankCurrency" />
+        </EntityType>
+        <EntityType Name="ApiTokens">
+          <Key>
+            <PropertyRef Name="UserName" />
+            <PropertyRef Name="Password" />
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="TokenId" />
+          </Key>
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TokenKey" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <Property Name="ExpiredDate" Type="DateTime" Precision="3" />
+          <Property Name="TokenId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FavoritesCurrencies">
+          <Key>
+            <PropertyRef Name="IDUser" />
+            <PropertyRef Name="IDCurrency" />
+          </Key>
+          <Property Name="IDUser" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IDCurrency" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Bank_Country">
+          <End Role="Country" Type="Self.Country" Multiplicity="1" />
+          <End Role="Bank" Type="Self.Bank" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Bank">
+              <PropertyRef Name="bankId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BankCurrency_Bank">
+          <End Role="Bank" Type="Self.Bank" Multiplicity="0..1" />
+          <End Role="BankCurrency" Type="Self.BankCurrency" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bank">
+              <PropertyRef Name="bankId" />
+            </Principal>
+            <Dependent Role="BankCurrency">
+              <PropertyRef Name="bankId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BankCurrency_Currency">
+          <End Role="Currency" Type="Self.Currency" Multiplicity="0..1" />
+          <End Role="BankCurrency" Type="Self.BankCurrency" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currency">
+              <PropertyRef Name="ccyId" />
+            </Principal>
+            <Dependent Role="BankCurrency">
+              <PropertyRef Name="ccyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BankCurrency_WireInstruction">
+          <End Role="WireInstruction" Type="Self.WireInstruction" Multiplicity="0..1" />
+          <End Role="BankCurrency" Type="Self.BankCurrency" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WireInstruction">
+              <PropertyRef Name="wireInstId" />
+            </Principal>
+            <Dependent Role="BankCurrency">
+              <PropertyRef Name="wireInstId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Funding_BankCurrency">
+          <End Role="BankCurrency" Type="Self.BankCurrency" Multiplicity="0..1" />
+          <End Role="Funding" Type="Self.Funding" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BankCurrency">
+              <PropertyRef Name="bankCcyId" />
+            </Principal>
+            <Dependent Role="Funding">
+              <PropertyRef Name="bankCcyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Conversion_FromCurrency">
+          <End Role="Currency" Type="Self.Currency" Multiplicity="0..1" />
+          <End Role="Conversion" Type="Self.Conversion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currency">
+              <PropertyRef Name="ccyId" />
+            </Principal>
+            <Dependent Role="Conversion">
+              <PropertyRef Name="fromCcyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Conversion_ToCurrency">
+          <End Role="Currency" Type="Self.Currency" Multiplicity="0..1" />
+          <End Role="Conversion" Type="Self.Conversion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currency">
+              <PropertyRef Name="ccyId" />
+            </Principal>
+            <Dependent Role="Conversion">
+              <PropertyRef Name="toCcyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrdersHistory_EnumOfOrderStatuses">
+          <End Role="EnumOfOrderStatuses" Type="Self.EnumOfOrderStatuses" Multiplicity="1" />
+          <End Role="OrdersHistory" Type="Self.OrdersHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EnumOfOrderStatuses">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OrdersHistory">
+              <PropertyRef Name="StatusState" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TokenKeysForOrders_EnumOfOrderStatuses">
+          <End Role="EnumOfOrderStatuses" Type="Self.EnumOfOrderStatuses" Multiplicity="1" />
+          <End Role="TokenKeysForOrders" Type="Self.TokenKeysForOrders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EnumOfOrderStatuses">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TokenKeysForOrders">
+              <PropertyRef Name="CustomerOrderStatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StatusChangeHistory_User">
+          <End Role="Funding" Type="Self.Funding" Multiplicity="0..1" />
+          <End Role="FundChanges" Type="Self.FundChanges" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Funding">
+              <PropertyRef Name="fndId" />
+            </Principal>
+            <Dependent Role="FundChanges">
+              <PropertyRef Name="fndId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Funding_ProofDoc">
+          <End Role="ProofDoc" Type="Self.ProofDoc" Multiplicity="0..1" />
+          <End Role="Funding" Type="Self.Funding" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProofDoc">
+              <PropertyRef Name="proofDocId" />
+            </Principal>
+            <Dependent Role="Funding">
+              <PropertyRef Name="proofDocId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Funding_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Funding" Type="Self.Funding" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="username" />
+            </Principal>
+            <Dependent Role="Funding">
+              <PropertyRef Name="username" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrdersHistory_Merchants">
+          <End Role="Merchants" Type="Self.Merchants" Multiplicity="1" />
+          <End Role="OrdersHistory" Type="Self.OrdersHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Merchants">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OrdersHistory">
+              <PropertyRef Name="MerchantId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TokenKeysForOrders_Merchants">
+          <End Role="Merchants" Type="Self.Merchants" Multiplicity="0..1" />
+          <End Role="TokenKeysForOrders" Type="Self.TokenKeysForOrders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Merchants">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TokenKeysForOrders">
+              <PropertyRef Name="MerchantId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrdersHistory_TokenKeysForOrders">
+          <End Role="TokenKeysForOrders" Type="Self.TokenKeysForOrders" Multiplicity="1" />
+          <End Role="OrdersHistory" Type="Self.OrdersHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TokenKeysForOrders">
+              <PropertyRef Name="CustomerOrderId" />
+            </Principal>
+            <Dependent Role="OrdersHistory">
+              <PropertyRef Name="TokenKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="roleId" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="roleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_WelcomeMessage">
+          <End Role="WelcomeMessage" Type="Self.WelcomeMessage" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WelcomeMessage">
+              <PropertyRef Name="wlcMsgId" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="wlcMsgId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="WinstantPayEntitiesEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AnonimMail" EntityType="Self.AnonimMail" />
+          <EntitySet Name="Bank" EntityType="Self.Bank" />
+          <EntitySet Name="BankCurrency" EntityType="Self.BankCurrency" />
+          <EntitySet Name="Conversion" EntityType="Self.Conversion" />
+          <EntitySet Name="Country" EntityType="Self.Country" />
+          <EntitySet Name="Currency" EntityType="Self.Currency" />
+          <EntitySet Name="DepartmentMails" EntityType="Self.DepartmentMails" />
+          <EntitySet Name="EnumOfOrderStatuses" EntityType="Self.EnumOfOrderStatuses" />
+          <EntitySet Name="FundChanges" EntityType="Self.FundChanges" />
+          <EntitySet Name="Funding" EntityType="Self.Funding" />
+          <EntitySet Name="Merchants" EntityType="Self.Merchants" />
+          <EntitySet Name="OrdersHistory" EntityType="Self.OrdersHistory" />
+          <EntitySet Name="ProofDoc" EntityType="Self.ProofDoc" />
+          <EntitySet Name="ReferalLinksList" EntityType="Self.ReferalLinksList" />
+          <EntitySet Name="Role" EntityType="Self.Role" />
+          <EntitySet Name="SendedMails" EntityType="Self.SendedMails" />
+          <EntitySet Name="SharedAdminLink" EntityType="Self.SharedAdminLink" />
+          <EntitySet Name="SharedPhoto" EntityType="Self.SharedPhoto" />
+          <EntitySet Name="SystemProperty" EntityType="Self.SystemProperty" />
+          <EntitySet Name="TokenKeysForOrders" EntityType="Self.TokenKeysForOrders" />
+          <EntitySet Name="User" EntityType="Self.User" />
+          <EntitySet Name="WelcomeMessage" EntityType="Self.WelcomeMessage" />
+          <EntitySet Name="WireInstruction" EntityType="Self.WireInstruction" />
+          <EntitySet Name="ApiTokens" EntityType="Self.ApiTokens" />
+          <EntitySet Name="FavoritesCurrencies" EntityType="Self.FavoritesCurrencies" />
+          <AssociationSet Name="FK_Bank_Country" Association="Self.FK_Bank_Country">
+            <End Role="Country" EntitySet="Country" />
+            <End Role="Bank" EntitySet="Bank" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BankCurrency_Bank" Association="Self.FK_BankCurrency_Bank">
+            <End Role="Bank" EntitySet="Bank" />
+            <End Role="BankCurrency" EntitySet="BankCurrency" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BankCurrency_Currency" Association="Self.FK_BankCurrency_Currency">
+            <End Role="Currency" EntitySet="Currency" />
+            <End Role="BankCurrency" EntitySet="BankCurrency" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BankCurrency_WireInstruction" Association="Self.FK_BankCurrency_WireInstruction">
+            <End Role="WireInstruction" EntitySet="WireInstruction" />
+            <End Role="BankCurrency" EntitySet="BankCurrency" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Funding_BankCurrency" Association="Self.FK_Funding_BankCurrency">
+            <End Role="BankCurrency" EntitySet="BankCurrency" />
+            <End Role="Funding" EntitySet="Funding" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Conversion_FromCurrency" Association="Self.FK_Conversion_FromCurrency">
+            <End Role="Currency" EntitySet="Currency" />
+            <End Role="Conversion" EntitySet="Conversion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Conversion_ToCurrency" Association="Self.FK_Conversion_ToCurrency">
+            <End Role="Currency" EntitySet="Currency" />
+            <End Role="Conversion" EntitySet="Conversion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrdersHistory_EnumOfOrderStatuses" Association="Self.FK_OrdersHistory_EnumOfOrderStatuses">
+            <End Role="EnumOfOrderStatuses" EntitySet="EnumOfOrderStatuses" />
+            <End Role="OrdersHistory" EntitySet="OrdersHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TokenKeysForOrders_EnumOfOrderStatuses" Association="Self.FK_TokenKeysForOrders_EnumOfOrderStatuses">
+            <End Role="EnumOfOrderStatuses" EntitySet="EnumOfOrderStatuses" />
+            <End Role="TokenKeysForOrders" EntitySet="TokenKeysForOrders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StatusChangeHistory_User" Association="Self.FK_StatusChangeHistory_User">
+            <End Role="Funding" EntitySet="Funding" />
+            <End Role="FundChanges" EntitySet="FundChanges" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Funding_ProofDoc" Association="Self.FK_Funding_ProofDoc">
+            <End Role="ProofDoc" EntitySet="ProofDoc" />
+            <End Role="Funding" EntitySet="Funding" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Funding_User" Association="Self.FK_Funding_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Funding" EntitySet="Funding" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrdersHistory_Merchants" Association="Self.FK_OrdersHistory_Merchants">
+            <End Role="Merchants" EntitySet="Merchants" />
+            <End Role="OrdersHistory" EntitySet="OrdersHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TokenKeysForOrders_Merchants" Association="Self.FK_TokenKeysForOrders_Merchants">
+            <End Role="Merchants" EntitySet="Merchants" />
+            <End Role="TokenKeysForOrders" EntitySet="TokenKeysForOrders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrdersHistory_TokenKeysForOrders" Association="Self.FK_OrdersHistory_TokenKeysForOrders">
+            <End Role="TokenKeysForOrders" EntitySet="TokenKeysForOrders" />
+            <End Role="OrdersHistory" EntitySet="OrdersHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_WelcomeMessage" Association="Self.FK_User_WelcomeMessage">
+            <End Role="WelcomeMessage" EntitySet="WelcomeMessage" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <FunctionImport Name="AddAnonimMailRec">
+            <Parameter Name="MailFrom" Mode="In" Type="String" />
+            <Parameter Name="MailSubject" Mode="In" Type="String" />
+            <Parameter Name="MailNotes" Mode="In" Type="String" />
+            <Parameter Name="UserIpInRequest" Mode="In" Type="String" />
+            <Parameter Name="BrowserName" Mode="In" Type="String" />
+            <Parameter Name="BrowserVersion" Mode="In" Type="String" />
+            <Parameter Name="IsMobile" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="AddBank">
+            <Parameter Name="bankName" Mode="In" Type="String" />
+            <Parameter Name="bankCountry" Mode="In" Type="Int32" />
+            <Parameter Name="bankId" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="AddBankCurrency">
+            <Parameter Name="bankId" Mode="In" Type="Int32" />
+            <Parameter Name="ccyId" Mode="In" Type="Int32" />
+            <Parameter Name="wireInstId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="AddBankCurrencyGetId">
+            <Parameter Name="bankId" Mode="In" Type="Int32" />
+            <Parameter Name="ccyId" Mode="In" Type="Int32" />
+            <Parameter Name="wireInstId" Mode="In" Type="Int32" />
+            <Parameter Name="bankCcyId" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="AddBankDeposit">
+            <Parameter Name="fndAmt" Mode="In" Type="Decimal" />
+            <Parameter Name="username" Mode="In" Type="String" />
+            <Parameter Name="bankCcyId" Mode="In" Type="Int32" />
+            <Parameter Name="insId" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="AddContactUsRec">
+            <Parameter Name="DepartmentName" Mode="In" Type="String" />
+            <Parameter Name="DepartmentMail" Mode="In" Type="String" />
+            <Parameter Name="DepartmentWeight" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="AddCurrency">
+            <Parameter Name="ccyId" Mode="In" Type="Int32" />
+            <Parameter Name="ccyCode" Mode="In" Type="String" />
+            <Parameter Name="ccyName" Mode="In" Type="String" />
+            <Parameter Name="ccySymbol" Mode="In" Type="String" />
+            <Parameter Name="ccyOutId" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="AddFavoritesCurrency">
+            <Parameter Name="IDUser" Mode="In" Type="String" />
+            <Parameter Name="IDCurrencies" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="AddFundHistoryRec">
+            <Parameter Name="fundId" Mode="In" Type="Int32" />
+            <Parameter Name="userId" Mode="In" Type="Int32" />
+            <Parameter Name="changingDate" Mode="In" Type="DateTime" />
+            <Parameter Name="oldStatus" Mode="In" Type="String" />
+            <Parameter Name="newStatus" Mode="In" Type="String" />
+            <Parameter Name="adminNote" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="AddHistorycalDataFromOrders">
+            <Parameter Name="MerchantId" Mode="In" Type="Int32" />
+            <Parameter Name="OrderToken" Mode="In" Type="Guid" />
+            <Parameter Name="Status" Mode="In" Type="Int32" />
+            <Parameter Name="Comment" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="AddMerchant">
+            <Parameter Name="MerchantName" Mode="In" Type="String" />
+            <Parameter Name="MerchantPhone" Mode="In" Type="String" />
+            <Parameter Name="MerchantAddress" Mode="In" Type="String" />
+            <Parameter Name="MerchantCallBackAddress" Mode="In" Type="String" />
+            <Parameter Name="UserId" Mode="In" Type="String" />
+            <Parameter Name="UserGuid" Mode="In" Type="String" />
+            <Parameter Name="IsSandingBox" Mode="In" Type="Boolean" />
+            <Parameter Name="PublicTokenKey" Mode="In" Type="String" />
+            <Parameter Name="PrivateToken" Mode="In" Type="String" />
+            <Parameter Name="MerchantAlias" Mode="In" Type="String" />
+            <Parameter Name="ID" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="AddOrderHistoryRecs">
+            <Parameter Name="OrderToken" Mode="In" Type="Guid" />
+            <Parameter Name="StatusState" Mode="In" Type="Int32" />
+            <Parameter Name="Comment" Mode="In" Type="String" />
+            <Parameter Name="MerchantId" Mode="In" Type="Int32" />
+            <Parameter Name="AliasName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="AddOrUpdateAdmin">
+            <Parameter Name="admLinkId" Mode="In" Type="Int32" />
+            <Parameter Name="admUserName" Mode="In" Type="String" />
+            <Parameter Name="admFirstName" Mode="In" Type="String" />
+            <Parameter Name="admLastName" Mode="In" Type="String" />
+            <Parameter Name="admEmail" Mode="In" Type="String" />
+            <Parameter Name="admLinkAddress" Mode="In" Type="String" />
+            <Parameter Name="admLinkPassword" Mode="In" Type="String" />
+            <Parameter Name="admLinkOutId" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="AddOrUpdateReferalLink">
+            <Parameter Name="refLinkId" Mode="In" Type="Int32" />
+            <Parameter Name="refLinkText" Mode="In" Type="String" />
+            <Parameter Name="refLinkOutId" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="AddOrUpdateSharedPhoto">
+            <Parameter Name="PaymentId" Mode="In" Type="String" />
+            <Parameter Name="Comment" Mode="In" Type="String" />
+            <Parameter Name="PhotoId" Mode="InOut" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="AddProofDoc">
+            <Parameter Name="custName" Mode="In" Type="String" />
+            <Parameter Name="bankName" Mode="In" Type="String" />
+            <Parameter Name="lastFourDigits" Mode="In" Type="String" />
+            <Parameter Name="other" Mode="In" Type="String" />
+            <Parameter Name="fileName" Mode="In" Type="String" />
+            <Parameter Name="filePath" Mode="In" Type="String" />
+            <Parameter Name="bankCcyId" Mode="In" Type="Int32" />
+            <Parameter Name="paymentDate" Mode="In" Type="DateTime" />
+            <Parameter Name="amount" Mode="In" Type="Decimal" />
+            <Parameter Name="depositId" Mode="In" Type="Int32" />
+            <Parameter Name="proofDocId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="AddSendedMail">
+            <Parameter Name="DepID" Mode="In" Type="Int32" />
+            <Parameter Name="MailFrom" Mode="In" Type="String" />
+            <Parameter Name="MailText" Mode="In" Type="String" />
+            <Parameter Name="MailSubject" Mode="In" Type="String" />
+            <Parameter Name="MailAttachment" Mode="In" Type="Binary" />
+            <Parameter Name="SiteCategory" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="AddUser">
+          <Parameter Name="username" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="AddUserToken" ReturnType="Collection(DateTime)">
+            <Parameter Name="UserName" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+            <Parameter Name="UserId" Mode="In" Type="String" />
+            <Parameter Name="TokenKey" Mode="In" Type="String" />
+            <Parameter Name="TokenId" Mode="In" Type="String" />
+            <Parameter Name="CreationDate" Mode="In" Type="DateTime" />
+            <Parameter Name="ExpiredDate" Mode="InOut" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="AddWelcomeMessage">
+            <Parameter Name="wlcMsgText" Mode="In" Type="String" />
+            <Parameter Name="username" Mode="In" Type="String" />
+            <Parameter Name="wlcMsgTextRu" Mode="In" Type="String" />
+            <Parameter Name="wlcMsgTextFr" Mode="In" Type="String" />
+            <Parameter Name="wlcMsgTextPh" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="AddWireInstruction">
+            <Parameter Name="wireInstText" Mode="In" Type="String" />
+            <Parameter Name="bankCcyId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ChangePassword">
+            <Parameter Name="username" Mode="In" Type="String" />
+            <Parameter Name="hashedPassword" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="CheckMerchantIfExist" ReturnType="Collection(Int32)">
+            <Parameter Name="merchantSecKey" Mode="In" Type="String" />
+            <Parameter Name="merchantTokenKey" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="CheckOrderIfExist" ReturnType="Collection(Int32)">
+          <Parameter Name="orderToken" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="DeleteBank">
+          <Parameter Name="bankId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="DeleteBankDeposit">
+          <Parameter Name="depositId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="DeleteContactUsRec">
+          <Parameter Name="ContactUsId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="DeleteCurrency">
+          <Parameter Name="currId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="DeleteFavoriteCurrency">
+            <Parameter Name="IDCurrencies" Mode="In" Type="String" />
+            <Parameter Name="IDUser" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="DeletePayInInstruction">
+          <Parameter Name="bankCurrencyId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="DeleteProofDoc">
+          <Parameter Name="proofDocId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="DeleteWelcomeMessage">
+          <Parameter Name="wlcMsgId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="DeleteWireInstruction">
+          <Parameter Name="wireInstId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GenerateOrderToken">
+            <Parameter Name="MerchantId" Mode="In" Type="Int32" />
+            <Parameter Name="MerchantWebSite" Mode="In" Type="String" />
+            <Parameter Name="TokenKeysForOrders" Mode="In" Type="String" />
+            <Parameter Name="OrderToken" Mode="InOut" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="GetAdminLink" ReturnType="Collection(WinstantPayModel.GetAdminLink_Result)" />
+          <FunctionImport Name="GetApiUserById" ReturnType="Collection(WinstantPayModel.GetApiUserById_Result)">
+          <Parameter Name="TokenKey" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetBankAndInstruction" ReturnType="Collection(WinstantPayModel.GetBankAndInstruction_Result)" />
+          <FunctionImport Name="GetBankAndInstructionById" ReturnType="Collection(WinstantPayModel.GetBankAndInstructionById_Result)">
+          <Parameter Name="bankCcyId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetBankCurrencies" ReturnType="Collection(WinstantPayModel.GetBankCurrencies_Result)" />
+          <FunctionImport Name="GetBankDeposits" ReturnType="Collection(WinstantPayModel.GetBankDeposits_Result)">
+          <Parameter Name="username" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetBanks" ReturnType="Collection(WinstantPayModel.GetBanks_Result)" />
+          <FunctionImport Name="GetContactUsList" ReturnType="Collection(WinstantPayModel.GetContactUsList_Result)" />
+          <FunctionImport Name="GetCountries" ReturnType="Collection(WinstantPayModel.GetCountries_Result)" />
+          <FunctionImport Name="GetCurrencies" ReturnType="Collection(WinstantPayModel.GetCurrencies_Result)" />
+          <FunctionImport Name="GetFavoriteCurrencyList" ReturnType="Collection(WinstantPayModel.GetFavoriteCurrencyList_Result)">
+          <Parameter Name="IDUser" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetFundChanges" ReturnType="Collection(WinstantPayModel.GetFundChanges_Result)" />
+          <FunctionImport Name="GetFundRequests" ReturnType="Collection(WinstantPayModel.GetFundRequests_Result)" />
+          <FunctionImport Name="GetListOfMerchants" ReturnType="Collection(WinstantPayModel.GetListOfMerchants_Result)">
+            <Parameter Name="UserId" Mode="In" Type="String" />
+            <Parameter Name="UserGuid" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetMerchantName" ReturnType="Collection(String)">
+          <Parameter Name="merchantId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetProofDocById" ReturnType="Collection(WinstantPayModel.GetProofDocById_Result)">
+          <Parameter Name="ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetReferalLinksList" ReturnType="Collection(WinstantPayModel.GetReferalLinksList_Result)" />
+          <FunctionImport Name="GetSharedPhoto">
+            <Parameter Name="PaymentId" Mode="In" Type="String" />
+            <Parameter Name="PhotoId" Mode="InOut" Type="Guid" />
+            <Parameter Name="ExpiredDate" Mode="InOut" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="GetStatusChangeHistory" />
+          <FunctionImport Name="GetUsers" ReturnType="Collection(WinstantPayModel.GetUsers_Result)" />
+          <FunctionImport Name="GetWelcomeMessages" ReturnType="Collection(WinstantPayModel.GetWelcomeMessages_Result)" />
+          <FunctionImport Name="GetWireInstructions" ReturnType="Collection(WinstantPayModel.GetWireInstructions_Result)" />
+          <FunctionImport Name="UpdateBank">
+            <Parameter Name="bankId" Mode="In" Type="Int32" />
+            <Parameter Name="bankName" Mode="In" Type="String" />
+            <Parameter Name="bankCountry" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UpdateBankCurrency">
+            <Parameter Name="bankId" Mode="In" Type="Int32" />
+            <Parameter Name="bCcyId" Mode="In" Type="Int32" />
+            <Parameter Name="ccyId" Mode="In" Type="Int32" />
+            <Parameter Name="wireInstId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UpdateContactUsRec">
+            <Parameter Name="cuID" Mode="In" Type="Int32" />
+            <Parameter Name="cuName" Mode="In" Type="String" />
+            <Parameter Name="cuMail" Mode="In" Type="String" />
+            <Parameter Name="cuWeight" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UpdateCurrency">
+            <Parameter Name="currId" Mode="In" Type="Int32" />
+            <Parameter Name="ccyName" Mode="In" Type="String" />
+            <Parameter Name="ccyCode" Mode="In" Type="String" />
+            <Parameter Name="ccySymbol" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UpdateFundRequest">
+            <Parameter Name="fndId" Mode="In" Type="Int32" />
+            <Parameter Name="newStatus" Mode="In" Type="String" />
+            <Parameter Name="username" Mode="In" Type="String" />
+            <Parameter Name="notes" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UpdateMerchantCallBackAddress">
+            <Parameter Name="MerchantGuid" Mode="In" Type="Guid" />
+            <Parameter Name="MerchantCallBackAddress" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UpdateMerchantsRec">
+            <Parameter Name="MerchantId" Mode="In" Type="Int32" />
+            <Parameter Name="MerchantGuid" Mode="In" Type="Guid" />
+            <Parameter Name="MerchantName" Mode="In" Type="String" />
+            <Parameter Name="MerchantPhone" Mode="In" Type="String" />
+            <Parameter Name="MerchantAddress" Mode="In" Type="String" />
+            <Parameter Name="MerchantCallBackAddress" Mode="In" Type="String" />
+            <Parameter Name="IsSandingBox" Mode="In" Type="Boolean" />
+            <Parameter Name="MerchantAlias" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UpdateTsgIdViaTsgService">
+            <Parameter Name="userLogin" Mode="In" Type="String" />
+            <Parameter Name="userTokenByTSG" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="UpdateUserLastLoginDate">
+          <Parameter Name="username" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UpdateWelcomeMessage">
+            <Parameter Name="wlcMsgId" Mode="In" Type="Int32" />
+            <Parameter Name="wlcMsgText" Mode="In" Type="String" />
+            <Parameter Name="wlcMsgTextRu" Mode="In" Type="String" />
+            <Parameter Name="wlcMsgTextFr" Mode="In" Type="String" />
+            <Parameter Name="wlcMsgTextPh" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UpdateWireInstruction">
+            <Parameter Name="wireInstId" Mode="In" Type="Int32" />
+            <Parameter Name="wireInstText" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="GetAdminLink_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="UserName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="FirstName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="LastName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="CreationDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="LinkAddress" Nullable="true" MaxLength="150" />
+          <Property Type="Int32" Name="StatusLink" Nullable="true" />
+          <Property Type="DateTime" Name="ActivationDate" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="GetApiUserById_Result">
+          <Property Type="String" Name="UserName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Password" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="UserId" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="TokenKey" Nullable="true" MaxLength="500" />
+          <Property Type="DateTime" Name="CreationDate" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="ExpiredDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="TokenId" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="GetBankAndInstruction_Result">
+          <Property Type="Int32" Name="BankId" Nullable="false" />
+          <Property Type="String" Name="BankName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="BankCountry" Nullable="false" MaxLength="80" />
+          <Property Type="Int32" Name="CurrencyId" Nullable="false" />
+          <Property Type="String" Name="CurrencyName" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="WireId" Nullable="true" />
+          <Property Type="String" Name="WireText" Nullable="true" MaxLength="500" />
+          <Property Type="Int32" Name="BcId" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="GetBankAndInstructionById_Result">
+          <Property Type="Int32" Name="BankId" Nullable="false" />
+          <Property Type="String" Name="BankName" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="BankCountry" Nullable="true" />
+          <Property Type="String" Name="BankCountryName" Nullable="true" MaxLength="80" />
+          <Property Type="Int32" Name="CurrencyId" Nullable="false" />
+          <Property Type="String" Name="CurrencyName" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="WireId" Nullable="true" />
+          <Property Type="String" Name="WireText" Nullable="true" MaxLength="500" />
+          <Property Type="Int32" Name="BcId" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="GetBankCurrencies_Result">
+          <Property Type="Int32" Name="bankCcyId" Nullable="false" />
+          <Property Type="String" Name="bankCcyName" Nullable="true" MaxLength="108" />
+        </ComplexType>
+        <ComplexType Name="GetBankDeposits_Result">
+          <Property Type="Int32" Name="proofDocId" Nullable="false" />
+          <Property Type="String" Name="fndStatus" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ccyCode" Nullable="true" MaxLength="5" />
+          <Property Type="String" Name="bankName" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="bankCcyId" Nullable="true" />
+          <Property Type="Decimal" Name="amount" Nullable="true" Precision="25" Scale="2" />
+          <Property Type="DateTime" Name="paymentDate" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="fndId" Nullable="false" />
+          <Property Type="String" Name="filePath" Nullable="true" MaxLength="500" />
+        </ComplexType>
+        <ComplexType Name="GetBanks_Result">
+          <Property Type="Int32" Name="bankId" Nullable="false" />
+          <Property Type="String" Name="bankName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="bankCountry" Nullable="false" MaxLength="80" />
+          <Property Type="Int32" Name="bankCountryId" Nullable="true" />
+          <Property Type="Int32" Name="ccyId" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GetContactUsList_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="DepartmentName" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="DepartmentMail" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="DepartmentWeight" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="GetCountries_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="name" Nullable="false" MaxLength="80" />
+        </ComplexType>
+        <ComplexType Name="GetCurrencies_Result">
+          <Property Type="Int32" Name="ccyId" Nullable="false" />
+          <Property Type="String" Name="ccyCode" Nullable="true" MaxLength="5" />
+          <Property Type="String" Name="ccyName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ccySymbol" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="GetFavoriteCurrencyList_Result">
+          <Property Type="String" Name="IDUser" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="IDCurrency" Nullable="false" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="GetFundChanges_Result">
+          <Property Type="Int32" Name="fndStatChangeId" Nullable="false" />
+          <Property Type="Int32" Name="fndId" Nullable="true" />
+          <Property Type="String" Name="fromStatus" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="toStatus" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="changedDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="changedBy" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="notes" Nullable="true" MaxLength="1000" />
+        </ComplexType>
+        <ComplexType Name="GetFundRequests_Result">
+          <Property Type="Int32" Name="fndId" Nullable="false" />
+          <Property Type="String" Name="fndStatus" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="ccyId" Nullable="false" />
+          <Property Type="String" Name="ccyCode" Nullable="true" MaxLength="5" />
+          <Property Type="Int32" Name="bankId" Nullable="false" />
+          <Property Type="String" Name="bankName" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="paymentDate" Nullable="true" Precision="23" />
+          <Property Type="Decimal" Name="fndAmt" Nullable="true" Precision="25" Scale="2" />
+          <Property Type="Int32" Name="proofDocId" Nullable="true" />
+          <Property Type="String" Name="custName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="sendingBank" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="lastFourDigits" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="other" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="fileName" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="fundChangeId" Nullable="true" />
+          <Property Type="String" Name="notes" Nullable="true" MaxLength="1000" />
+        </ComplexType>
+        <ComplexType Name="GetListOfMerchants_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="Guid" Name="UniqueID" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="Address" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="Phone" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="UserId" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="UserGuid" Nullable="true" MaxLength="500" />
+          <Property Type="DateTime" Name="CreationDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="CallBackAddress" Nullable="true" MaxLength="500" />
+          <Property Type="Boolean" Name="IsSandBox" Nullable="true" />
+          <Property Type="String" Name="PublicTokenKey" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="PrivateToken" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="GetProofDocById_Result">
+          <Property Type="Int32" Name="proofDocId" Nullable="false" />
+          <Property Type="String" Name="custName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="bankName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="lastFourDigits" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="other" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="fileName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="filePath" Nullable="true" MaxLength="500" />
+          <Property Type="Int32" Name="bankCcyId" Nullable="true" />
+          <Property Type="DateTime" Name="paymentDate" Nullable="true" Precision="23" />
+          <Property Type="Decimal" Name="amount" Nullable="true" Precision="25" Scale="2" />
+          <Property Type="Boolean" Name="IsDeleted" Nullable="true" />
+          <Property Type="String" Name="fndStatus" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="GetReferalLinksList_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="LinkText" Nullable="false" MaxLength="500" />
+          <Property Type="Boolean" Name="IsDefault" Nullable="false" />
+          <Property Type="Boolean" Name="IsActive" Nullable="true" />
+          <Property Type="DateTime" Name="ExpiredDate" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="GetUsers_Result">
+          <Property Type="String" Name="username" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="password" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="firstName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="lastName" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="wlcMsgId" Nullable="true" />
+          <Property Type="Boolean" Name="isLocal" Nullable="true" />
+          <Property Type="DateTime" Name="lastLoginDate" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="roleId" Nullable="true" />
+          <Property Type="String" Name="roleName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="userMail" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="wlcMsgText" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GetWelcomeMessages_Result">
+          <Property Type="Int32" Name="wlcMsgId" Nullable="false" />
+          <Property Type="String" Name="wlcMsgText" Nullable="true" />
+          <Property Type="Boolean" Name="isDefault" Nullable="true" />
+          <Property Type="String" Name="wlcMsgTextRu" Nullable="true" />
+          <Property Type="String" Name="wlcMsgTextFr" Nullable="true" />
+          <Property Type="String" Name="wlcMsgTextPh" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GetWireInstructions_Result">
+          <Property Type="Int32" Name="wireInstId" Nullable="false" />
+          <Property Type="String" Name="wireInstText" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="bankCcyName" Nullable="true" MaxLength="108" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="WinstantPayModelStoreContainer" CdmEntityContainer="WinstantPayEntitiesEntities">
+          <EntitySetMapping Name="AnonimMail">
+            <EntityTypeMapping TypeName="WinstantPayModel.AnonimMail">
+              <MappingFragment StoreEntitySet="AnonimMail">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="MailFrom" ColumnName="MailFrom" />
+                <ScalarProperty Name="MailSubject" ColumnName="MailSubject" />
+                <ScalarProperty Name="MailNotes" ColumnName="MailNotes" />
+                <ScalarProperty Name="UserIpInRequest" ColumnName="UserIpInRequest" />
+                <ScalarProperty Name="DateSending" ColumnName="DateSending" />
+                <ScalarProperty Name="BrowserName" ColumnName="BrowserName" />
+                <ScalarProperty Name="BrowserVersion" ColumnName="BrowserVersion" />
+                <ScalarProperty Name="IsMobile" ColumnName="IsMobile" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Bank">
+            <EntityTypeMapping TypeName="WinstantPayModel.Bank">
+              <MappingFragment StoreEntitySet="Bank">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="bankId" ColumnName="bankId" />
+                <ScalarProperty Name="bankName" ColumnName="bankName" />
+                <ScalarProperty Name="bankCountry" ColumnName="bankCountry" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BankCurrency">
+            <EntityTypeMapping TypeName="WinstantPayModel.BankCurrency">
+              <MappingFragment StoreEntitySet="BankCurrency">
+                <ScalarProperty Name="bankCcyId" ColumnName="bankCcyId" />
+                <ScalarProperty Name="bankId" ColumnName="bankId" />
+                <ScalarProperty Name="ccyId" ColumnName="ccyId" />
+                <ScalarProperty Name="wireInstId" ColumnName="wireInstId" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Conversion">
+            <EntityTypeMapping TypeName="WinstantPayModel.Conversion">
+              <MappingFragment StoreEntitySet="Conversion">
+                <ScalarProperty Name="convId" ColumnName="convId" />
+                <ScalarProperty Name="fromCcyId" ColumnName="fromCcyId" />
+                <ScalarProperty Name="toCcyId" ColumnName="toCcyId" />
+                <ScalarProperty Name="convAmt" ColumnName="convAmt" />
+                <ScalarProperty Name="convDate" ColumnName="convDate" />
+                <ScalarProperty Name="exchangeRate" ColumnName="exchangeRate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Country">
+            <EntityTypeMapping TypeName="WinstantPayModel.Country">
+              <MappingFragment StoreEntitySet="Country">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ISO" ColumnName="ISO" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Fullname" ColumnName="Fullname" />
+                <ScalarProperty Name="ISO3" ColumnName="ISO3" />
+                <ScalarProperty Name="numcode" ColumnName="numcode" />
+                <ScalarProperty Name="phonecode" ColumnName="phonecode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Currency">
+            <EntityTypeMapping TypeName="WinstantPayModel.Currency">
+              <MappingFragment StoreEntitySet="Currency">
+                <ScalarProperty Name="ccyId" ColumnName="ccyId" />
+                <ScalarProperty Name="ccyCode" ColumnName="ccyCode" />
+                <ScalarProperty Name="ccyName" ColumnName="ccyName" />
+                <ScalarProperty Name="ccySymbol" ColumnName="ccySymbol" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DepartmentMails">
+            <EntityTypeMapping TypeName="WinstantPayModel.DepartmentMails">
+              <MappingFragment StoreEntitySet="DepartmentMails">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="DepartmentMail" ColumnName="DepartmentMail" />
+                <ScalarProperty Name="DepartmentWeight" ColumnName="DepartmentWeight" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EnumOfOrderStatuses">
+            <EntityTypeMapping TypeName="WinstantPayModel.EnumOfOrderStatuses">
+              <MappingFragment StoreEntitySet="EnumOfOrderStatuses">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="StatusName" ColumnName="StatusName" />
+                <ScalarProperty Name="StatusDesignName" ColumnName="StatusDesignName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FundChanges">
+            <EntityTypeMapping TypeName="WinstantPayModel.FundChanges">
+              <MappingFragment StoreEntitySet="FundChanges">
+                <ScalarProperty Name="fndStatChangeId" ColumnName="fndStatChangeId" />
+                <ScalarProperty Name="fndId" ColumnName="fndId" />
+                <ScalarProperty Name="fromStatus" ColumnName="fromStatus" />
+                <ScalarProperty Name="toStatus" ColumnName="toStatus" />
+                <ScalarProperty Name="changedDate" ColumnName="changedDate" />
+                <ScalarProperty Name="changedBy" ColumnName="changedBy" />
+                <ScalarProperty Name="notes" ColumnName="notes" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Funding">
+            <EntityTypeMapping TypeName="WinstantPayModel.Funding">
+              <MappingFragment StoreEntitySet="Funding">
+                <ScalarProperty Name="fndId" ColumnName="fndId" />
+                <ScalarProperty Name="fndAmt" ColumnName="fndAmt" />
+                <ScalarProperty Name="fndCreateDate" ColumnName="fndCreateDate" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="fndStatus" ColumnName="fndStatus" />
+                <ScalarProperty Name="bankCcyId" ColumnName="bankCcyId" />
+                <ScalarProperty Name="fndApprovedDate" ColumnName="fndApprovedDate" />
+                <ScalarProperty Name="proofDocId" ColumnName="proofDocId" />
+                <ScalarProperty Name="fundChangeId" ColumnName="fundChangeId" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Merchants">
+            <EntityTypeMapping TypeName="WinstantPayModel.Merchants">
+              <MappingFragment StoreEntitySet="Merchants">
+                <ScalarProperty Name="MerchantAlias" ColumnName="MerchantAlias" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="UniqueID" ColumnName="UniqueID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UserGuid" ColumnName="UserGuid" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="CallBackAddress" ColumnName="CallBackAddress" />
+                <ScalarProperty Name="IsSandBox" ColumnName="IsSandBox" />
+                <ScalarProperty Name="PublicTokenKey" ColumnName="PublicTokenKey" />
+                <ScalarProperty Name="PrivateToken" ColumnName="PrivateToken" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrdersHistory">
+            <EntityTypeMapping TypeName="WinstantPayModel.OrdersHistory">
+              <MappingFragment StoreEntitySet="OrdersHistory">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TokenKey" ColumnName="TokenKey" />
+                <ScalarProperty Name="DateOfChanging" ColumnName="DateOfChanging" />
+                <ScalarProperty Name="StatusState" ColumnName="StatusState" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="MerchantId" ColumnName="MerchantId" />
+                <ScalarProperty Name="AliasForUser" ColumnName="AliasForUser" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProofDoc">
+            <EntityTypeMapping TypeName="WinstantPayModel.ProofDoc">
+              <MappingFragment StoreEntitySet="ProofDoc">
+                <ScalarProperty Name="proofDocId" ColumnName="proofDocId" />
+                <ScalarProperty Name="custName" ColumnName="custName" />
+                <ScalarProperty Name="bankName" ColumnName="bankName" />
+                <ScalarProperty Name="lastFourDigits" ColumnName="lastFourDigits" />
+                <ScalarProperty Name="other" ColumnName="other" />
+                <ScalarProperty Name="fileName" ColumnName="fileName" />
+                <ScalarProperty Name="filePath" ColumnName="filePath" />
+                <ScalarProperty Name="bankCcyId" ColumnName="bankCcyId" />
+                <ScalarProperty Name="paymentDate" ColumnName="paymentDate" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReferalLinksList">
+            <EntityTypeMapping TypeName="WinstantPayModel.ReferalLinksList">
+              <MappingFragment StoreEntitySet="ReferalLinksList">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="LinkText" ColumnName="LinkText" />
+                <ScalarProperty Name="IsDefault" ColumnName="IsDefault" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ExpiredDate" ColumnName="ExpiredDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Role">
+            <EntityTypeMapping TypeName="WinstantPayModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="roleId" ColumnName="roleId" />
+                <ScalarProperty Name="roleName" ColumnName="roleName" />
+                <ScalarProperty Name="roleDesc" ColumnName="roleDesc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SendedMails">
+            <EntityTypeMapping TypeName="WinstantPayModel.SendedMails">
+              <MappingFragment StoreEntitySet="SendedMails">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="DepID" ColumnName="DepID" />
+                <ScalarProperty Name="MailFrom" ColumnName="MailFrom" />
+                <ScalarProperty Name="MailText" ColumnName="MailText" />
+                <ScalarProperty Name="MailSubject" ColumnName="MailSubject" />
+                <ScalarProperty Name="MailAttachment" ColumnName="MailAttachment" />
+                <ScalarProperty Name="SiteCategory" ColumnName="SiteCategory" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SharedAdminLink">
+            <EntityTypeMapping TypeName="WinstantPayModel.SharedAdminLink">
+              <MappingFragment StoreEntitySet="SharedAdminLink">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="LinkAddress" ColumnName="LinkAddress" />
+                <ScalarProperty Name="StatusLink" ColumnName="StatusLink" />
+                <ScalarProperty Name="ActivationDate" ColumnName="ActivationDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SharedPhoto">
+            <EntityTypeMapping TypeName="WinstantPayModel.SharedPhoto">
+              <MappingFragment StoreEntitySet="SharedPhoto">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="PaymentId" ColumnName="PaymentId" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="ExpiredDate" ColumnName="ExpiredDate" />
+                <ScalarProperty Name="IsViewed" ColumnName="IsViewed" />
+                <ScalarProperty Name="SharedPhotoId" ColumnName="SharedPhotoId" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SystemProperty">
+            <EntityTypeMapping TypeName="WinstantPayModel.SystemProperty">
+              <MappingFragment StoreEntitySet="SystemProperty">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NameOfProperty" ColumnName="NameOfProperty" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TokenKeysForOrders">
+            <EntityTypeMapping TypeName="WinstantPayModel.TokenKeysForOrders">
+              <MappingFragment StoreEntitySet="TokenKeysForOrders">
+                <ScalarProperty Name="IsSanboxOrder" ColumnName="IsSanboxOrder" />
+                <ScalarProperty Name="PaymentGuid" ColumnName="PaymentGuid" />
+                <ScalarProperty Name="CustomerOrderId" ColumnName="CustomerOrderId" />
+                <ScalarProperty Name="CustomerOrderStatus" ColumnName="CustomerOrderStatus" />
+                <ScalarProperty Name="MerchantId" ColumnName="MerchantId" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="Currency" ColumnName="Currency" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="MerchantWebSite" ColumnName="MerchantWebSite" />
+                <ScalarProperty Name="CustomerAccounting" ColumnName="CustomerAccounting" />
+                <ScalarProperty Name="OrderExpiredDate" ColumnName="OrderExpiredDate" />
+                <ScalarProperty Name="Stoke" ColumnName="Stoke" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="WinstantPayModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="KYCLink" ColumnName="KYCLink" />
+                <ScalarProperty Name="wlcMsgId" ColumnName="wlcMsgId" />
+                <ScalarProperty Name="lastLoginDate" ColumnName="lastLoginDate" />
+                <ScalarProperty Name="isLocal" ColumnName="isLocal" />
+                <ScalarProperty Name="curLoginDate" ColumnName="curLoginDate" />
+                <ScalarProperty Name="roleId" ColumnName="roleId" />
+                <ScalarProperty Name="userIdByTSG" ColumnName="userIdByTSG" />
+                <ScalarProperty Name="firstName" ColumnName="firstName" />
+                <ScalarProperty Name="lastName" ColumnName="lastName" />
+                <ScalarProperty Name="userMail" ColumnName="userMail" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WelcomeMessage">
+            <EntityTypeMapping TypeName="WinstantPayModel.WelcomeMessage">
+              <MappingFragment StoreEntitySet="WelcomeMessage">
+                <ScalarProperty Name="wlcMsgId" ColumnName="wlcMsgId" />
+                <ScalarProperty Name="wlcMsgText" ColumnName="wlcMsgText" />
+                <ScalarProperty Name="isDefault" ColumnName="isDefault" />
+                <ScalarProperty Name="wlcMsgTextRu" ColumnName="wlcMsgTextRu" />
+                <ScalarProperty Name="wlcMsgTextFr" ColumnName="wlcMsgTextFr" />
+                <ScalarProperty Name="wlcMsgTextPh" ColumnName="wlcMsgTextPh" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WireInstruction">
+            <EntityTypeMapping TypeName="WinstantPayModel.WireInstruction">
+              <MappingFragment StoreEntitySet="WireInstruction">
+                <ScalarProperty Name="wireInstId" ColumnName="wireInstId" />
+                <ScalarProperty Name="wireInstText" ColumnName="wireInstText" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ApiTokens">
+            <EntityTypeMapping TypeName="WinstantPayModel.ApiTokens">
+              <MappingFragment StoreEntitySet="ApiTokens">
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="TokenKey" ColumnName="TokenKey" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="ExpiredDate" ColumnName="ExpiredDate" />
+                <ScalarProperty Name="TokenId" ColumnName="TokenId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FavoritesCurrencies">
+            <EntityTypeMapping TypeName="WinstantPayModel.FavoritesCurrencies">
+              <MappingFragment StoreEntitySet="FavoritesCurrencies">
+                <ScalarProperty Name="IDUser" ColumnName="IDUser" />
+                <ScalarProperty Name="IDCurrency" ColumnName="IDCurrency" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="AddAnonimMailRec" FunctionName="WinstantPayModel.Store.AddAnonimMailRec" />
+          <FunctionImportMapping FunctionImportName="AddBank" FunctionName="WinstantPayModel.Store.AddBank" />
+          <FunctionImportMapping FunctionImportName="AddBankCurrency" FunctionName="WinstantPayModel.Store.AddBankCurrency" />
+          <FunctionImportMapping FunctionImportName="AddBankCurrencyGetId" FunctionName="WinstantPayModel.Store.AddBankCurrencyGetId" />
+          <FunctionImportMapping FunctionImportName="AddBankDeposit" FunctionName="WinstantPayModel.Store.AddBankDeposit" />
+          <FunctionImportMapping FunctionImportName="AddContactUsRec" FunctionName="WinstantPayModel.Store.AddContactUsRec" />
+          <FunctionImportMapping FunctionImportName="AddCurrency" FunctionName="WinstantPayModel.Store.AddCurrency" />
+          <FunctionImportMapping FunctionImportName="AddFavoritesCurrency" FunctionName="WinstantPayModel.Store.AddFavoritesCurrency" />
+          <FunctionImportMapping FunctionImportName="AddFundHistoryRec" FunctionName="WinstantPayModel.Store.AddFundHistoryRec" />
+          <FunctionImportMapping FunctionImportName="AddHistorycalDataFromOrders" FunctionName="WinstantPayModel.Store.AddHistorycalDataFromOrders" />
+          <FunctionImportMapping FunctionImportName="AddMerchant" FunctionName="WinstantPayModel.Store.AddMerchant" />
+          <FunctionImportMapping FunctionImportName="AddOrderHistoryRecs" FunctionName="WinstantPayModel.Store.AddOrderHistoryRecs" />
+          <FunctionImportMapping FunctionImportName="AddOrUpdateAdmin" FunctionName="WinstantPayModel.Store.AddOrUpdateAdmin" />
+          <FunctionImportMapping FunctionImportName="AddOrUpdateReferalLink" FunctionName="WinstantPayModel.Store.AddOrUpdateReferalLink" />
+          <FunctionImportMapping FunctionImportName="AddOrUpdateSharedPhoto" FunctionName="WinstantPayModel.Store.AddOrUpdateSharedPhoto" />
+          <FunctionImportMapping FunctionImportName="AddProofDoc" FunctionName="WinstantPayModel.Store.AddProofDoc" />
+          <FunctionImportMapping FunctionImportName="AddSendedMail" FunctionName="WinstantPayModel.Store.AddSendedMail" />
+          <FunctionImportMapping FunctionImportName="AddUser" FunctionName="WinstantPayModel.Store.AddUser" />
+          <FunctionImportMapping FunctionImportName="AddUserToken" FunctionName="WinstantPayModel.Store.AddUserToken" />
+          <FunctionImportMapping FunctionImportName="AddWelcomeMessage" FunctionName="WinstantPayModel.Store.AddWelcomeMessage" />
+          <FunctionImportMapping FunctionImportName="AddWireInstruction" FunctionName="WinstantPayModel.Store.AddWireInstruction" />
+          <FunctionImportMapping FunctionImportName="ChangePassword" FunctionName="WinstantPayModel.Store.ChangePassword" />
+          <FunctionImportMapping FunctionImportName="CheckMerchantIfExist" FunctionName="WinstantPayModel.Store.CheckMerchantIfExist" />
+          <FunctionImportMapping FunctionImportName="CheckOrderIfExist" FunctionName="WinstantPayModel.Store.CheckOrderIfExist" />
+          <FunctionImportMapping FunctionImportName="DeleteBank" FunctionName="WinstantPayModel.Store.DeleteBank" />
+          <FunctionImportMapping FunctionImportName="DeleteBankDeposit" FunctionName="WinstantPayModel.Store.DeleteBankDeposit" />
+          <FunctionImportMapping FunctionImportName="DeleteContactUsRec" FunctionName="WinstantPayModel.Store.DeleteContactUsRec" />
+          <FunctionImportMapping FunctionImportName="DeleteCurrency" FunctionName="WinstantPayModel.Store.DeleteCurrency" />
+          <FunctionImportMapping FunctionImportName="DeleteFavoriteCurrency" FunctionName="WinstantPayModel.Store.DeleteFavoriteCurrency" />
+          <FunctionImportMapping FunctionImportName="DeletePayInInstruction" FunctionName="WinstantPayModel.Store.DeletePayInInstruction" />
+          <FunctionImportMapping FunctionImportName="DeleteProofDoc" FunctionName="WinstantPayModel.Store.DeleteProofDoc" />
+          <FunctionImportMapping FunctionImportName="DeleteWelcomeMessage" FunctionName="WinstantPayModel.Store.DeleteWelcomeMessage" />
+          <FunctionImportMapping FunctionImportName="DeleteWireInstruction" FunctionName="WinstantPayModel.Store.DeleteWireInstruction" />
+          <FunctionImportMapping FunctionImportName="GenerateOrderToken" FunctionName="WinstantPayModel.Store.GenerateOrderToken" />
+          <FunctionImportMapping FunctionImportName="GetAdminLink" FunctionName="WinstantPayModel.Store.GetAdminLink">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="WinstantPayModel.GetAdminLink_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="LinkAddress" ColumnName="LinkAddress" />
+                <ScalarProperty Name="StatusLink" ColumnName="StatusLink" />
+                <ScalarProperty Name="ActivationDate" ColumnName="ActivationDate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetApiUserById" FunctionName="WinstantPayModel.Store.GetApiUserById">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="WinstantPayModel.GetApiUserById_Result">
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="TokenKey" ColumnName="TokenKey" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="ExpiredDate" ColumnName="ExpiredDate" />
+                <ScalarProperty Name="TokenId" ColumnName="TokenId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetBankAndInstruction" FunctionName="WinstantPayModel.Store.GetBankAndInstruction">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="WinstantPayModel.GetBankAndInstruction_Result">
+                <ScalarProperty Name="BankId" ColumnName="BankId" />
+                <ScalarProperty Name="BankName" ColumnName="BankName" />
+                <ScalarProperty Name="BankCountry" ColumnName="BankCountry" />
+                <ScalarProperty Name="CurrencyId" ColumnName="CurrencyId" />
+                <ScalarProperty Name="CurrencyName" ColumnName="CurrencyName" />
+                <ScalarProperty Name="WireId" ColumnName="WireId" />
+                <ScalarProperty Name="WireText" ColumnName="WireText" />
+                <ScalarProperty Name="BcId" ColumnName="BcId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetBankAndInstructionById" FunctionName="WinstantPayModel.Store.GetBankAndInstructionById">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="WinstantPayModel.GetBankAndInstructionById_Result">
+                <ScalarProperty Name="BankId" ColumnName="BankId" />
+                <ScalarProperty Name="BankName" ColumnName="BankName" />
+                <ScalarProperty Name="BankCountry" ColumnName="BankCountry" />
+                <ScalarProperty Name="BankCountryName" ColumnName="BankCountryName" />
+                <ScalarProperty Name="CurrencyId" ColumnName="CurrencyId" />
+                <ScalarProperty Name="CurrencyName" ColumnName="CurrencyName" />
+                <ScalarProperty Name="WireId" ColumnName="WireId" />
+                <ScalarProperty Name="WireText" ColumnName="WireText" />
+                <ScalarProperty Name="BcId" ColumnName="BcId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetBankCurrencies" FunctionName="WinstantPayModel.Store.GetBankCurrencies">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="WinstantPayModel.GetBankCurrencies_Result">
+                <ScalarProperty Name="bankCcyId" ColumnName="bankCcyId" />
+                <ScalarProperty Name="bankCcyName" ColumnName="bankCcyName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetBankDeposits" FunctionName="WinstantPayModel.Store.GetBankDeposits">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="WinstantPayModel.GetBankDeposits_Result">
+                <ScalarProperty Name="proofDocId" ColumnName="proofDocId" />
+                <ScalarProperty Name="fndStatus" ColumnName="fndStatus" />
+                <ScalarProperty Name="ccyCode" ColumnName="ccyCode" />
+                <ScalarProperty Name="bankName" ColumnName="bankName" />
+                <ScalarProperty Name="bankCcyId" ColumnName="bankCcyId" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="paymentDate" ColumnName="paymentDate" />
+                <ScalarProperty Name="fndId" ColumnName="fndId" />
+                <ScalarProperty Name="filePath" ColumnName="filePath" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetBanks" FunctionName="WinstantPayModel.Store.GetBanks">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="WinstantPayModel.GetBanks_Result">
+                <ScalarProperty Name="bankId" ColumnName="bankId" />
+                <ScalarProperty Name="bankName" ColumnName="bankName" />
+                <ScalarProperty Name="bankCountry" ColumnName="bankCountry" />
+                <ScalarProperty Name="bankCountryId" ColumnName="bankCountryId" />
+                <ScalarProperty Name="ccyId" ColumnName="ccyId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetContactUsList" FunctionName="WinstantPayModel.Store.GetContactUsList">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="WinstantPayModel.GetContactUsList_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="DepartmentMail" ColumnName="DepartmentMail" />
+                <ScalarProperty Name="DepartmentWeight" ColumnName="DepartmentWeight" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetCountries" FunctionName="WinstantPayModel.Store.GetCountries">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="WinstantPayModel.GetCountries_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetCurrencies" FunctionName="WinstantPayModel.Store.GetCurrencies">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="WinstantPayModel.GetCurrencies_Result">
+                <ScalarProperty Name="ccyId" ColumnName="ccyId" />
+                <ScalarProperty Name="ccyCode" ColumnName="ccyCode" />
+                <ScalarProperty Name="ccyName" ColumnName="ccyName" />
+                <ScalarProperty Name="ccySymbol" ColumnName="ccySymbol" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetFavoriteCurrencyList" FunctionName="WinstantPayModel.Store.GetFavoriteCurrencyList">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="WinstantPayModel.GetFavoriteCurrencyList_Result">
+                <ScalarProperty Name="IDUser" ColumnName="IDUser" />
+                <ScalarProperty Name="IDCurrency" ColumnName="IDCurrency" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetFundChanges" FunctionName="WinstantPayModel.Store.GetFundChanges">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="WinstantPayModel.GetFundChanges_Result">
+                <ScalarProperty Name="fndStatChangeId" ColumnName="fndStatChangeId" />
+                <ScalarProperty Name="fndId" ColumnName="fndId" />
+                <ScalarProperty Name="fromStatus" ColumnName="fromStatus" />
+                <ScalarProperty Name="toStatus" ColumnName="toStatus" />
+                <ScalarProperty Name="changedDate" ColumnName="changedDate" />
+                <ScalarProperty Name="changedBy" ColumnName="changedBy" />
+                <ScalarProperty Name="notes" ColumnName="notes" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetFundRequests" FunctionName="WinstantPayModel.Store.GetFundRequests">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="WinstantPayModel.GetFundRequests_Result">
+                <ScalarProperty Name="fndId" ColumnName="fndId" />
+                <ScalarProperty Name="fndStatus" ColumnName="fndStatus" />
+                <ScalarProperty Name="ccyId" ColumnName="ccyId" />
+                <ScalarProperty Name="ccyCode" ColumnName="ccyCode" />
+                <ScalarProperty Name="bankId" ColumnName="bankId" />
+                <ScalarProperty Name="bankName" ColumnName="bankName" />
+                <ScalarProperty Name="paymentDate" ColumnName="paymentDate" />
+                <ScalarProperty Name="fndAmt" ColumnName="fndAmt" />
+                <ScalarProperty Name="proofDocId" ColumnName="proofDocId" />
+                <ScalarProperty Name="custName" ColumnName="custName" />
+                <ScalarProperty Name="sendingBank" ColumnName="sendingBank" />
+                <ScalarProperty Name="lastFourDigits" ColumnName="lastFourDigits" />
+                <ScalarProperty Name="other" ColumnName="other" />
+                <ScalarProperty Name="fileName" ColumnName="fileName" />
+                <ScalarProperty Name="fundChangeId" ColumnName="fundChangeId" />
+                <ScalarProperty Name="notes" ColumnName="notes" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetListOfMerchants" FunctionName="WinstantPayModel.Store.GetListOfMerchants">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="WinstantPayModel.GetListOfMerchants_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="UniqueID" ColumnName="UniqueID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UserGuid" ColumnName="UserGuid" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="CallBackAddress" ColumnName="CallBackAddress" />
+                <ScalarProperty Name="IsSandBox" ColumnName="IsSandBox" />
+                <ScalarProperty Name="PublicTokenKey" ColumnName="PublicTokenKey" />
+                <ScalarProperty Name="PrivateToken" ColumnName="PrivateToken" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetMerchantName" FunctionName="WinstantPayModel.Store.GetMerchantName" />
+          <FunctionImportMapping FunctionImportName="GetProofDocById" FunctionName="WinstantPayModel.Store.GetProofDocById">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="WinstantPayModel.GetProofDocById_Result">
+                <ScalarProperty Name="proofDocId" ColumnName="proofDocId" />
+                <ScalarProperty Name="custName" ColumnName="custName" />
+                <ScalarProperty Name="bankName" ColumnName="bankName" />
+                <ScalarProperty Name="lastFourDigits" ColumnName="lastFourDigits" />
+                <ScalarProperty Name="other" ColumnName="other" />
+                <ScalarProperty Name="fileName" ColumnName="fileName" />
+                <ScalarProperty Name="filePath" ColumnName="filePath" />
+                <ScalarProperty Name="bankCcyId" ColumnName="bankCcyId" />
+                <ScalarProperty Name="paymentDate" ColumnName="paymentDate" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="fndStatus" ColumnName="fndStatus" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetReferalLinksList" FunctionName="WinstantPayModel.Store.GetReferalLinksList">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="WinstantPayModel.GetReferalLinksList_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="LinkText" ColumnName="LinkText" />
+                <ScalarProperty Name="IsDefault" ColumnName="IsDefault" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ExpiredDate" ColumnName="ExpiredDate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetSharedPhoto" FunctionName="WinstantPayModel.Store.GetSharedPhoto" />
+          <FunctionImportMapping FunctionImportName="GetStatusChangeHistory" FunctionName="WinstantPayModel.Store.GetStatusChangeHistory" />
+          <FunctionImportMapping FunctionImportName="GetUsers" FunctionName="WinstantPayModel.Store.GetUsers">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="WinstantPayModel.GetUsers_Result">
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="firstName" ColumnName="firstName" />
+                <ScalarProperty Name="lastName" ColumnName="lastName" />
+                <ScalarProperty Name="wlcMsgId" ColumnName="wlcMsgId" />
+                <ScalarProperty Name="isLocal" ColumnName="isLocal" />
+                <ScalarProperty Name="lastLoginDate" ColumnName="lastLoginDate" />
+                <ScalarProperty Name="roleId" ColumnName="roleId" />
+                <ScalarProperty Name="roleName" ColumnName="roleName" />
+                <ScalarProperty Name="userMail" ColumnName="userMail" />
+                <ScalarProperty Name="wlcMsgText" ColumnName="wlcMsgText" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetWelcomeMessages" FunctionName="WinstantPayModel.Store.GetWelcomeMessages">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="WinstantPayModel.GetWelcomeMessages_Result">
+                <ScalarProperty Name="wlcMsgId" ColumnName="wlcMsgId" />
+                <ScalarProperty Name="wlcMsgText" ColumnName="wlcMsgText" />
+                <ScalarProperty Name="isDefault" ColumnName="isDefault" />
+                <ScalarProperty Name="wlcMsgTextRu" ColumnName="wlcMsgTextRu" />
+                <ScalarProperty Name="wlcMsgTextFr" ColumnName="wlcMsgTextFr" />
+                <ScalarProperty Name="wlcMsgTextPh" ColumnName="wlcMsgTextPh" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetWireInstructions" FunctionName="WinstantPayModel.Store.GetWireInstructions">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="WinstantPayModel.GetWireInstructions_Result">
+                <ScalarProperty Name="wireInstId" ColumnName="wireInstId" />
+                <ScalarProperty Name="wireInstText" ColumnName="wireInstText" />
+                <ScalarProperty Name="bankCcyName" ColumnName="bankCcyName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UpdateBank" FunctionName="WinstantPayModel.Store.UpdateBank" />
+          <FunctionImportMapping FunctionImportName="UpdateBankCurrency" FunctionName="WinstantPayModel.Store.UpdateBankCurrency" />
+          <FunctionImportMapping FunctionImportName="UpdateContactUsRec" FunctionName="WinstantPayModel.Store.UpdateContactUsRec" />
+          <FunctionImportMapping FunctionImportName="UpdateCurrency" FunctionName="WinstantPayModel.Store.UpdateCurrency" />
+          <FunctionImportMapping FunctionImportName="UpdateFundRequest" FunctionName="WinstantPayModel.Store.UpdateFundRequest" />
+          <FunctionImportMapping FunctionImportName="UpdateMerchantCallBackAddress" FunctionName="WinstantPayModel.Store.UpdateMerchantCallBackAddress" />
+          <FunctionImportMapping FunctionImportName="UpdateMerchantsRec" FunctionName="WinstantPayModel.Store.UpdateMerchantsRec" />
+          <FunctionImportMapping FunctionImportName="UpdateTsgIdViaTsgService" FunctionName="WinstantPayModel.Store.UpdateTsgIdViaTsgService" />
+          <FunctionImportMapping FunctionImportName="UpdateUserLastLoginDate" FunctionName="WinstantPayModel.Store.UpdateUserLastLoginDate" />
+          <FunctionImportMapping FunctionImportName="UpdateWelcomeMessage" FunctionName="WinstantPayModel.Store.UpdateWelcomeMessage" />
+          <FunctionImportMapping FunctionImportName="UpdateWireInstruction" FunctionName="WinstantPayModel.Store.UpdateWireInstruction" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

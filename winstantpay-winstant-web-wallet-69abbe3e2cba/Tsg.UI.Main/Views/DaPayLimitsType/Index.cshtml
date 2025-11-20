@@ -1,0 +1,46 @@
+﻿@model IEnumerable<TSG.Models.ServiceModels.LimitPayment.DaPayLimitsTypeSo>
+
+@{
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DaPayLimitsType_NameOfPaymentLimit)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DaPayLimitsType_SysNameOfPaymentLimit)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DaPayLimitsType_LimitType)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.DaPayLimitsType_NameOfPaymentLimit)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DaPayLimitsType_SysNameOfPaymentLimit)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DaPayLimitsType_LimitType)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.DaPayLimitsType_ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.DaPayLimitsType_ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.DaPayLimitsType_ID })
+        </td>
+    </tr>
+}
+
+</table>

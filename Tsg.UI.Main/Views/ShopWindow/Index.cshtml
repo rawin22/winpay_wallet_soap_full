@@ -1,0 +1,114 @@
+﻿@using Tsg.UI.Main.App_LocalResources
+@using WinstantPay.Common.Extension
+@model System.Collections.Generic.List<TSG.Models.ServiceModels.Shop.ShopProducts>
+
+    @{
+        ViewBag.Title = GlobalRes.ShopWindow_Title;
+        Layout = "~/Views/Shared/_LayoutMain.cshtml";
+        string[] crypto = { "BTC", "ETH", "XAU" };
+    }
+
+    <link href="~/Content/shop/product-cart-css.css" rel="stylesheet" />
+    <div class=" mg-main">
+        <div class="inner-toolbar clearfix" style="z-index: 9">
+            @{
+                var allCategoriesWithoutParent = Model.Where(w=>!w.ShopProducts_IsDeleted).Select(s => s.ShopProducts_ShopCategory).Where(w => w.ShopCategories_Parent == null).OrderBy(ob => ob.ShopCategories_Order);
+                var allCategories = Model.Where(w => !w.ShopProducts_IsDeleted).Select(s => s.ShopProducts_ShopCategory);
+                var groupedCategory = Model.Where(w => w.ShopProducts_ShopCategory.ShopCategories_Parent == null).Where(w => !w.ShopProducts_IsDeleted).Select(s => s.ShopProducts_CategoryID).GroupBy(gb => gb);
+                <ul>
+                    <li class="right" data-sort-source data-sort-id="media-gallery">
+                        <ul class="nav nav-pills nav-pills-primary">
+                            <li>
+                                <label>@GlobalRes.ShopWindow_Filter</label>
+                            </li>
+                            <li class="active">
+                                <a data-option-value="*" href="#all">@GlobalRes.ShopWindow_All</a>
+                            </li>
+                            @foreach (var item in groupedCategory)
+                            {
+                                <li>
+                                    <a data-option-value=".@(item.Key)" href="#@(item.Key)">@allCategoriesWithoutParent.FirstOrDefault(f => f.ShopCategories_ID == item.Key).ShopCategories_Name</a>
+                                </li>
+                            }
+                        </ul>
+                    </li>
+                </ul>
+
+            }
+        </div>
+        <div class="row mg-files" data-sort-destination data-sort-id="media-gallery">
+            @foreach (var item in Model.Where(w => !w.ShopProducts_IsDeleted).ToList())
+            {
+                <div class="isotope-item @item.ShopProducts_CategoryID product-cart col-xs-12 col-sm-6 col-md-4 col-lg-3" id="@item.ShopProducts_ID">
+
+                    <div class="preview-image">
+                        @if (item.ShopProducts_ShopProductImages.Count > 0)
+                        {
+                            var firstImg = item.ShopProducts_ShopProductImages.FirstOrDefault();
+                            if (firstImg != null)
+                            {
+                                <img src="@(Url.Content(firstImg.ShopProductImages_Path))">
+                            }
+                        }
+                        else
+                        {
+                            <img src="@Url.Content("~/Content/assets/images/no_photo.png")">
+                        }
+                    </div>
+                    <div class="specs">
+                        <div class="left" style="max-height: 110px;overflow: hidden;">
+                            <h2 class="product-title">@item.ShopProducts_Name</h2>
+                            <span class="category-name">@Html.Raw(item.ShopProducts_ShopCategory.ShopCategories_Name)</span>
+                            <div class="short-description">
+                                @Html.Raw(item.ShopProducts_ShortDescription)
+                            </div>
+                        </div>
+                        <div class="right">
+                            <p class="price">Price:<strong class="value">@(crypto.Contains(item.ShopProducts_CurrencyCode) ? item.ShopProducts_Price.ToString("N8") : item.ShopProducts_Price.ToString("N2"))</strong><span class="currency">@item.ShopProducts_CurrencyCode</span></p>
+                        </div>
+                    </div>
+                    <button class="preview-button" data-toggle="modal" data-target="#addNewProductShop" id=@(String.Format("callModalBtn{0}", item.ShopProducts_ID)) @*onclick = "AddProductToBasket('@item.ShopProducts_ID')"*@>add to cart<i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
+                </div>
+            }
+
+        </div>
+        <script type="text/javascript" language="javascript">
+        function AddProductToBasket(id) {
+            console.log(id);
+            $.ajax({
+                url: '@Url.Action("GetProductDetailsModal", "ShopProducts")',
+                type: 'POST',
+                data: { "productId": id },
+                success: function(data) {
+                    //$("#callModalBtn" + id).click();
+                    $("#addNewProductShop").modal();
+                    $("#addNewProductShop").html(data);
+                    updateBasket();
+                }
+            });
+        }
+        </script>
+        <!-- Modal Add New Product record Begin -->
+        <form id="addProductToBasket" method="post" class="form-horizontal" novalidate="novalidate">
+            <div class="modal fade" id="addNewProductShop" tabindex="-1" role="dialog" aria-labelledby="addNewProductShop" aria-hidden="true">
+
+            </div>
+        </form>
+    </div>
+    <script language="javascript" type="text/javascript">
+        $(document).ready(function () {
+            $(".product-cart").each(function (e) {
+                $(this).children().each(function (f) {
+                    $(this).click(function () {
+                        var id = $(this).parent().parent().prevObject[0].id;
+                        AddProductToBasket(id);
+                    });
+                });
+            });
+        });
+    </script>
+    @section Scripts
+    {
+        <script src="~/Content/assets/vendor/isotope/isotope.js"></script>
+        <script src="~/Content/assets/javascripts/pages/examples.mediagallery.js"></script>
+    }

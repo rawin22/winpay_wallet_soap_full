@@ -1,0 +1,226 @@
+﻿@using Tsg.UI.Main.App_LocalResources
+@using Tsg.UI.Main.Models.Security
+@model Tsg.UI.Main.Models.ConvertDetailsViewModel
+
+<div class="row">
+	<div class="col-md-12">
+		<section class="panel">
+			<header class="panel-heading" data-panel-toggle="">
+				<div class="panel-actions">
+					<a href="#" class="panel-action panel-action-toggle" data-panel-toggle=""></a>
+				</div>
+
+				<h2 class="panel-title">@ViewBag.Title</h2>
+			</header>
+			<div class="panel-body" style="display: block;">
+				@if (Model.Errors.Count > 0)
+				{
+					foreach (var modelError in Model.Errors)
+					{
+						@Html.Display(modelError.Message)
+					}
+				}
+				else
+				{
+					using (Html.BeginForm("Details", "Exchange", new { id = Model.FXDealId }, FormMethod.Post, new { @id = "DetailsForm" }))
+					{
+						<input name="modid" id="modid" value="@Model.FXDealId" type="hidden" />
+						<input name="res" id="res" value="file" type="hidden" />
+						<div class="row">
+							<div class="col-sm-6">
+								<table class="table table-striped table-bordered  mb-none" id="tbl_detail">
+									<tbody>
+										<tr>
+											<th colspan="2">
+												@GlobalRes.ConvertDetailsPage_ConvertInformation
+											</th>
+										</tr>
+										<tr>
+											<td class="pt-md pb-md text-weight-bold">
+												@GlobalRes.ConvertDetailsPage_ClientBuys
+											</td>
+											<td class="pt-md pb-md">
+												@Html.DisplayFor(model => model.BuyAmountTextWithCurrencyCode, new { @class = "form-control" })
+											</td>
+										</tr>
+										<tr>
+											<td class="pt-md pb-md text-weight-bold">
+												@GlobalRes.ConvertDetailsPage_ClientSells
+											</td>
+											<td class="pt-md pb-md">
+												@Html.DisplayFor(model => model.SellAmountTextWithCurrencyCode, new { @class = "form-control" })
+											</td>
+										</tr>
+										<tr>
+											<td class="pt-md pb-md text-weight-bold">
+												@GlobalRes.ConvertDetailsPage_FinalValueDate
+											</td>
+											<td class="pt-md pb-md">
+												@Html.DisplayFor(model => model.FinalValueDate, new { @class = "form-control" })
+											</td>
+										</tr>
+										<tr>
+											<td class="pt-md pb-md text-weight-bold">
+												@GlobalRes.ConvertDetailsPage_DealDate
+											</td>
+											<td class="pt-md pb-md">
+												@Html.DisplayFor(model => model.DealDate, new { @class = "form-control" })
+											</td>
+										</tr>
+										<tr>
+											<td class="pt-md pb-md text-weight-bold">
+												@GlobalRes.ConvertDetailsPage_BookedRate
+											</td>
+											<td class="pt-md pb-md">
+												@Html.DisplayFor(model => model.BookedRateTextWithCurrencyCodes, new { @class = "form-control" })
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<div class="col-sm-6">
+								<table class="table table-striped table-bordered  mb-none" id="tbl_detail">
+									<tbody>
+										<tr>
+											<th colspan="2">
+												@GlobalRes.ConvertDetailsPage_BookingInformation
+											</th>
+										</tr>
+										<tr>
+											<td class="pt-md pb-md text-weight-bold">
+												@GlobalRes.ConvertDetailsPage_FXDealReference
+											</td>
+											<td class="pt-md pb-md">
+												@Html.DisplayFor(model => model.FXDealReference, new { @class = "form-control" })
+											</td>
+										</tr>
+										<tr>
+
+											<td class="pt-md pb-md text-weight-bold">
+												@GlobalRes.ConvertDetailsPage_DealType
+											</td>
+											<td class="pt-md pb-md">
+												@Html.DisplayFor(model => model.FXDealTypeName, new { @class = "form-control" })
+											</td>
+										</tr>
+										<tr>
+											<td class="pt-md pb-md text-weight-bold">
+												@GlobalRes.ConvertDetailsPage_BookedFor
+											</td>
+											<td class="pt-md pb-md">
+												@Html.DisplayFor(model => model.BookedForCustomerName, new { @class = "form-control" })
+											</td>
+										</tr>
+										<tr>
+											<td class="pt-md pb-md text-weight-bold">
+												@GlobalRes.ConvertDetailsPage_Branch
+											</td>
+											<td class="pt-md pb-md">
+												@Html.DisplayFor(model => model.BranchName, new { @class = "form-control" })
+											</td>
+										</tr>
+										<tr>
+											<td class="pt-md pb-md text-weight-bold">
+												@GlobalRes.ConvertDetailsPage_BookedBy
+											</td>
+											<td class="pt-md pb-md">
+												@Html.DisplayFor(model => model.BookedByUserName, new { @class = "form-control" })
+											</td>
+										</tr>
+										<tr>
+											<td class="pt-md pb-md text-weight-bold">
+												@GlobalRes.ConvertDetailsPage_FXDealFee
+											</td>
+											<td class="pt-md pb-md">
+												@Html.DisplayFor(model => model.FeeTemplateFeeAmountTextWithCurrencyCode, new { @class = "form-control" })
+											</td>
+										</tr>
+										<tr>
+											<td class="pt-md pb-md text-weight-bold">
+												@GlobalRes.ConvertDetailsPage_PricingTemplateFee
+											</td>
+											<td class="pt-md pb-md">
+												@Html.DisplayFor(model => model.PricingTemplateFeeAmountTextWithCurrencyCode, new { @class = "form-control" })
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+
+						<div class="panel-footer">
+							@Html.Partial("ShareButtons")
+							<a id="submitlink" tabindex="1" class="btn btn-warning" style="border-radius: 12px; vertical-align: top">
+								<span class="fa fa-download"></span>
+							</a>
+							<script type="text/javascript" language="javascript">
+								$("#btnMessenger").on('click',
+									function () {
+										$("#res").val("messenger");
+									});
+								$("#btnFile").on('click',
+									function () {
+										$("#res").val("file");
+									});
+								$('a#submitlink').click(function () {
+									//$.unblockUI();
+									console.log(".DetailsForm submit enter");
+									//$('form#DetailsForm').submit();
+									//if (document.readyState == "loading") {
+									//    $.unblockUI();
+									//}
+									//$.unblockUI();
+									$('form#DetailsForm').submit();
+									var url = '@String.Format(((System.Web.HttpRequestWrapper)Request).Url.Scheme + "://{0}", ((System.Web.HttpRequestWrapper) Request).Url.Authority)' + '@Url.Action("Details", "Exchange", new { id=Model.FXDealId})';
+									console.log("url: " + url);
+									$.ajax(
+									{
+										url : url,
+										contentType: 'application/json; charset=utf-8',
+										datatype: 'json',
+										type: "POST",
+										success: function (data) {
+											$.unblockUI();
+
+										}
+									});
+								});
+							</script>
+						</div>
+					}
+				}
+			</div>
+
+		</section>
+	</div>
+</div>
+<script>
+	document.addEventListener("DOMContentLoaded",
+		function() {
+			$.ajax({
+				url: "@Url.Action("GetImageLink", "Exchange")",
+				type: "POST",
+				data: { id: "@Model.FXDealId", res: "" },
+				dataType: "json",
+				success: function (result) {
+					console.log("GetImageLink success, result:");
+					console.log("result");
+					console.log(result);
+					var allbuttons = $('.at-share-btn[role="button"]');
+					allbuttons.each(function() {
+						var value = $(this).attr('href');
+						console.log("value");
+						console.log(value);
+						if (value != null && value != 'undefined') {
+							$(this).attr('href',
+								value.replace('{url}',
+									'@String.Format("http://{0}/SharedViewer/ConvertDetails?photoId=", ((System.Web.HttpRequestWrapper) Request).Url.Authority)' +
+									result));
+
+							$('#shareDiv').removeClass('hidden');
+						}
+					});
+				}
+			});
+		});
+</script>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="648abbe8401c4c29981ec598ebc73419" Name="Diagram1" ZoomLevel="61">
+        <EntityTypeShape EntityType="WinstantPayModel.AnonimMail" Width="1.5" PointX="7.75" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="WinstantPayModel.Bank" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WinstantPayModel.BankCurrency" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WinstantPayModel.Conversion" Width="1.5" PointX="3" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="WinstantPayModel.Country" Width="1.5" PointX="1.5" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="WinstantPayModel.Currency" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WinstantPayModel.DepartmentMails" Width="1.5" PointX="7.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="WinstantPayModel.EnumOfOrderStatuses" Width="1.5" PointX="5.75" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="WinstantPayModel.FundChanges" Width="1.5" PointX="7.5" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="WinstantPayModel.Funding" Width="1.5" PointX="5.25" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="WinstantPayModel.Merchants" Width="1.5" PointX="5.75" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="WinstantPayModel.OrdersHistory" Width="1.5" PointX="8" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WinstantPayModel.ProofDoc" Width="1.5" PointX="3" PointY="16" IsExpanded="true" />
+        <EntityTypeShape EntityType="WinstantPayModel.ReferalLinksList" Width="1.5" PointX="9.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="WinstantPayModel.Role" Width="1.5" PointX="0.75" PointY="20.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="WinstantPayModel.SendedMails" Width="1.5" PointX="9.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WinstantPayModel.SharedAdminLink" Width="1.5" PointX="11.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="WinstantPayModel.SharedPhoto" Width="1.5" PointX="11.75" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="WinstantPayModel.SystemProperty" Width="1.5" PointX="13.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="WinstantPayModel.TokenKeysForOrders" Width="1.5" PointX="11" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="WinstantPayModel.User" Width="1.5" PointX="3" PointY="20.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="WinstantPayModel.WelcomeMessage" Width="1.5" PointX="0.75" PointY="22.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="WinstantPayModel.WireInstruction" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WinstantPayModel.ApiTokens" Width="1.5" PointX="13.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WinstantPayModel.FavoritesCurrencies" Width="1.5" PointX="13.75" PointY="9" IsExpanded="true" />
+        <AssociationConnector Association="WinstantPayModel.FK_Bank_Country" ManuallyRouted="false" />
+        <AssociationConnector Association="WinstantPayModel.FK_BankCurrency_Bank" ManuallyRouted="false" />
+        <AssociationConnector Association="WinstantPayModel.FK_BankCurrency_Currency" ManuallyRouted="false" />
+        <AssociationConnector Association="WinstantPayModel.FK_BankCurrency_WireInstruction" ManuallyRouted="false" />
+        <AssociationConnector Association="WinstantPayModel.FK_Funding_BankCurrency" ManuallyRouted="false" />
+        <AssociationConnector Association="WinstantPayModel.FK_Conversion_FromCurrency" ManuallyRouted="false" />
+        <AssociationConnector Association="WinstantPayModel.FK_Conversion_ToCurrency" ManuallyRouted="false" />
+        <AssociationConnector Association="WinstantPayModel.FK_OrdersHistory_EnumOfOrderStatuses" ManuallyRouted="false" />
+        <AssociationConnector Association="WinstantPayModel.FK_TokenKeysForOrders_EnumOfOrderStatuses" ManuallyRouted="false" />
+        <AssociationConnector Association="WinstantPayModel.FK_StatusChangeHistory_User" ManuallyRouted="false" />
+        <AssociationConnector Association="WinstantPayModel.FK_Funding_ProofDoc" ManuallyRouted="false" />
+        <AssociationConnector Association="WinstantPayModel.FK_Funding_User" ManuallyRouted="false" />
+        <AssociationConnector Association="WinstantPayModel.FK_OrdersHistory_Merchants" ManuallyRouted="false" />
+        <AssociationConnector Association="WinstantPayModel.FK_TokenKeysForOrders_Merchants" ManuallyRouted="false" />
+        <AssociationConnector Association="WinstantPayModel.FK_OrdersHistory_TokenKeysForOrders" ManuallyRouted="false" />
+        <AssociationConnector Association="WinstantPayModel.FK_User_Role" ManuallyRouted="false" />
+        <AssociationConnector Association="WinstantPayModel.FK_User_WelcomeMessage" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

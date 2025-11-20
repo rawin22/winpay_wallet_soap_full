@@ -1,0 +1,91 @@
+﻿@using Tsg.UI.Main.App_LocalResources
+@model IEnumerable<Tsg.UI.Main.Models.CurrencyViewModel>
+
+@{
+    ViewBag.Title = GlobalRes.GetCurrencyPage_Title;
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+
+<div class="row">
+    <section class="panel">
+
+        <header class="panel-heading" data-panel-toggle="">
+            <div class="panel-actions">
+                <a href="#" class="panel-action panel-action-toggle" data-panel-toggle=""></a>
+            </div>
+
+            <h2 class="panel-title">@GlobalRes.GetCurrencyPage_PageTitle</h2>
+            <p class="panel-subtitle">@GlobalRes.GetCurrencyPage_PageSubTitle</p>
+        </header>
+
+        <div class="panel-body" style="display: block;">
+            @if (Model != null)
+            {
+                <table class="table table-bordered table-striped table-condensed mb-none" id="datatable-default">
+
+                    <thead>
+                        <tr>
+                            <th>@GlobalRes.GetCurrencyPage_Id</th>
+                            <th>@GlobalRes.GetCurrencyPage_CurrencyName</th>
+                            <th>@GlobalRes.GetCurrencyPage_CurrencyCode</th>
+                            <th>@GlobalRes.GetCurrencyPage_CurrencySymbol</th>
+                            <th>@GlobalRes.GetCurrencyPage_Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CurrencyId)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CurrencyName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CurrencyCode)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Symbol)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Edit", "EditCurrency", new { id = item.CurrencyId }, new { @class = "mb-xs btn btn-xs btn-primary" })
+                               @*     @Html.ActionLink("Delete", "DeleteCurrency", new { id = item.CurrencyId }, new { onclick = "return confirm('Are you sure you want to delete?');", @class = "mb-xs btn btn-xs btn-info" })*@
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+
+
+                </table>
+            }
+
+            <div>
+                <a class="btn btn-success" href="/Bank/AddCurrency">@GlobalRes.GetCurrencyPage_AddNew</a>
+            </div>
+
+        </div>
+
+    </section>
+</div>
+
+@section customcss {
+    <!-- Specific Page Vendor CSS -->
+    <link rel="stylesheet" href="/Content/assets/vendor/select2/css/select2.css" />
+    <link rel="stylesheet" href="/Content/assets/vendor/select2-bootstrap-theme/select2-bootstrap.css" />
+    <link rel="stylesheet" href="/Content/assets/vendor/jquery-datatables-bs3/assets/css/datatables.css" />
+}
+
+@section VendorScripts {
+
+    <script src="/Content/assets/vendor/select2/js/select2.js"></script>
+    <script src="/Content/assets/vendor/jquery-datatables/media/js/jquery.dataTables.js"></script>
+    <script src="/Content/assets/vendor/jquery-datatables/extras/TableTools/js/dataTables.tableTools.min.js"></script>
+    <script src="/Content/assets/vendor/jquery-datatables-bs3/assets/js/datatables.js"></script>
+}
+
+@section Scripts {
+
+    <!-- Examples -->
+    <script src="/Content/assets/javascripts/tables/examples.datatables.default.js"></script>
+}

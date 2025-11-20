@@ -1,0 +1,305 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+  For more information on how to configure your ASP.NET application, please visit
+  http://go.microsoft.com/fwlink/?LinkId=169433
+  -->
+<configuration>
+  <configSections>
+    <section name="entityFramework" type="System.Data.Entity.Internal.ConfigFile.EntityFrameworkSection, EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" requirePermission="false" />
+    <section name="log4net" type="log4net.Config.Log4NetConfigurationSectionHandler, log4net" />
+    <!-- For more information on Entity Framework configuration, visit http://go.microsoft.com/fwlink/?LinkID=237468 -->
+  </configSections>
+  <log4net debug="true">
+    <appender name="RollingLogFileAppender" type="log4net.Appender.RollingFileAppender">
+      <file value="logs\ewallet.log" />
+      <appendToFile value="true" />
+      <rollingStyle value="Size" />
+      <maxSizeRollBackups value="10" />
+      <maximumFileSize value="10MB" />
+      <staticLogFileName value="true" />
+      <layout type="log4net.Layout.PatternLayout">
+        <conversionPattern value="%-5p %d %5rms %-22.22c{1} %-18.18M - %m%n" />
+      </layout>
+    </appender>
+    <root>
+      <level value="ALL" />
+      <appender-ref ref="RollingLogFileAppender" />
+    </root>
+  </log4net>
+   <connectionStrings>
+       <add name="ewalletDbCon" connectionString="Data Source=(local);Initial Catalog=ewalletdb-beta-v22;User Id=sa;Password=C#fg%sd23S;" />
+    <add name="WinstantPayEntitiesEntities" connectionString="metadata=res://*/WinstantPayDbModel.csdl|res://*/WinstantPayDbModel.ssdl|res://*/WinstantPayDbModel.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=localhost;initial catalog=ewalletdb-beta-v22;User Id=sa;Password=C#fg%sd23S;MultipleActiveResultSets=True;App=EntityFramework&quot;" providerName="System.Data.EntityClient" />
+  </connectionStrings>
+  <appSettings>
+  
+  
+  
+  <!-- Internal settings -->
+  <add key="x-api-key" value="FA6EC979-2B16-4103-BE65-FF986E4C9425" />
+    <add key="lastAppVersion" value="alpha-v.2.3.4" />
+
+
+    <!-- KYC default data for new user -->
+    <add key="kycLogin" value="ralfbankuser4IOU" />
+    <add key="kycPassword" value="Letmein123" />
+    <add key="kycServiceCallerId" value="773B3EBA-D4FC-4853-A32F-06FD23A5C902" />
+    <add key="kycAccountRepresentativeId" value="7D099C0A-1C8F-E811-BCA9-002590067F61"/>
+    <add key="kycCustomerTemplateId" value="80839e82-2427-e811-b9ba-002590067f61"/>
+    <add key="kycAccessRightTemplateId" value="096e445f-9e0f-4a2f-b66c-a9819fade04b"/>
+
+    <add key="kycDefaultCity" value="city"/>
+    <add key="kycDefaultAddress1" value="address1"/>
+    <add key="kycDefaultTelephone1" value="telephone1"/>
+    <add key="kycDefaultPostalCode" value="postal_code"/>
+    <add key="kycDefaultCountryNationality" value="10"/>
+    
+  <!-- Red envelope block -->
+    <add key="redEnvelopeWPayIdInTheMiddle" value="Red Envelope"/>
+    <add key="redEnvelopeLogin" value="winstantpayredenvelope" />
+    <add key="redEnvelopePassword" value="H8AVhqMmD" />
+    <add key="redEnvelopeCallerId" value="f7d0297c-031b-e911-9109-3ee1a118192f " />
+	
+	
+    <add key="ClientValidationEnabled" value="true" />
+    <add key="UnobtrusiveJavaScriptEnabled" value="true" />
+    <!--Begin Changeable system variables-->
+    <add key="anonMailTo" value="help@winstantpay.com" />
+    <add key="callerId" value="773B3EBA-D4FC-4853-A32F-06FD23A5C902" />
+    <add key="merchantApi" value="https://beta.winstantpay.com" />
+    <add key="merchantPathForJs" value="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" />
+    <add key="pipitLogin" value="TSGroup" />
+    <add key="pipitPassword" value="tsgroup123" />
+    <add key="pipitAddress" value="https://servers.pip-it.net" />
+    <add key="pipitApiKeyIntegration" value="zG45kRItzEvM" />
+    <add key="smtpPort" value="25" />
+    <add key="smtpHost" value="mail.winstantpay.com" />
+    <add key="smtpUserName" value="help@winstantpay.com" />
+    <add key="smtpPassword" value="helpwinstantp@ssword" />
+    <add key="registerEmailLink" value="https://winstantpay.worldkyc.com/Customer/Register" />
+    <add key="resetPasswordLink" value="https://demo.worldkyc.com/User/SendingPasswordResetLink" />
+    <add key="kycLoginLink" value="https://demo.worldkyc.com/" />
+    <!--End Changeable system variables-->
+    <add key="webpages:Version" value="2.0.0.0" />
+    <add key="webpages:Enabled" value="false" />
+    <add key="PreserveLoginUrl" value="true" />
+    <add key="StartYear" value="2016" />
+    <add key="NoReplyMail" value="noreply@winstantpay.com" />
+    <add key="systemMail" value="help@winstantpay.com" />
+    <!--Blockchain Settings-->
+    <add key="blockChainInfoApiAddress" value="https://api.blockchain.info/v2" />
+    <add key="xPubKey" value="xpub6CnQvyLwYsuk73xkkfSoQjeNsqjNKpmcV8rEFDAUBFPSMxYETN6K2vUbzNhVDbBf1vr8mpxZgSos23bE85KLcNxwi6pMKzit1HiGhJc6eVB" />
+    <add key="apiKey" value="6cdbf88f-e0c6-46ff-9c40-85be7b679372" />
+    <add key="senderAliasBlockchainInfo" value="CryptoCreditor" />
+    <add key="cryptoUser" value="leapfrog" />
+    <add key="cryptoPassword" value="password" />
+    <add key="cryptoCallerId" value="f0918bc5-ad72-dd11-aa82-001a4bd2c57e" />
+    <add key="criptoaddress" value="1L6RzhjkZMsJ8i2teaPhnwyzJkFjeDMe4V" />
+    <!--Cypto Manager Settings-->
+    <add key="bitcoinManagerSenderUrl" value="https://switch.winstantpay.com/api/v1/senders/new_address?secret=a2367de326f5n23hs7j86d5fbdb" />
+    <!--Blocked currencies-->
+    <add key="blockedCurrencies" value="" />
+    <!--Shop setting-->
+    <!--*** Note "Blocked currencies have prioritize for all users" ***-->
+    <add key="shopGetCurrencyUserLogin" value="leapfrog" />
+    <add key="shopGetCurrencyUserPassword" value="password" />
+    <add key="isShopAvaliavble" value="true" />
+    <!--WalletName-->
+    <add key="OrganizationName" value="WinstantPay" />
+    <!--FCM Google server notification-->
+    <add key="senderFcmToken" value="cKqxEsuiaic:APA91bEdo-etGrVAtwweIn21TsSdXXhna9XysGWjJs1VTHAVeGvQPtZa3tpCCp2sXwhnZu7vivLkugVQc9b-s2EZt5ml3yWdV-EBG1Xv5iZlj2ZFBcrSYcCt6zODghwGJFXTcVwlaPs0doiYZdTrm9euyE-F-ltOog" />
+    <add key="senderFcmKey" value="520999458506" />
+    <!--Auto exchange Settings-->
+    <add key="automaticExchangeCcys" value="USD,EUR,GBP,CAD,NZD,SFR,AUD,JPY" />
+    <add key="cryptoCurrencies" value="BTC,ETH,XRP,LTC,DASH,NEO,XEM,XMR,ETC" />
+    <!--<add key="AccountRepresentativeId" value="7D099C0A-1C8F-E811-BCA9-002590067F61" />
+    <add key="AccessRightTemplateId" value="096E445F-9E0F-4A2F-B66C-A9819FADE04B" />
+    <add key="CustomerTemplateId " value="0E592C9D-BF76-E811-8DD4-002590067F61" />
+    <add key="CallerId " value="773B3EBA-D4FC-4853-A32F-06FD23A5C902" />-->
+	
+	
+	
+	
+	
+	
+  </appSettings>
+  <!--
+    For a description of web.config changes see http://go.microsoft.com/fwlink/?LinkId=235367.
+
+    The following attributes can be set on the <httpRuntime> tag.
+      <system.Web>
+        <httpRuntime targetFramework="4.5.1" />
+      </system.Web>
+  -->
+  <system.web>
+    <globalization uiCulture="en-US" culture="en-US" />
+    <customErrors mode="On" defaultRedirect="~/Error">
+      <error redirect="~/Error/NotFound" statusCode="404" />
+      <error redirect="~/Error/InternalServer" statusCode="500" />
+    </customErrors>
+    <!--<compilation debug="true" targetFramework="4.5.1" />-->
+    <compilation targetFramework="4.5">
+      <assemblies>
+        <add assembly="System.Runtime, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+      </assemblies>
+    </compilation>
+    <httpRuntime targetFramework="4.5" maxQueryStringLength="32768" maxUrlLength="65536" requestValidationMode="2.0" />
+    <pages>
+      <namespaces>
+        <add namespace="System.Web.Helpers" />
+        <add namespace="System.Web.Mvc" />
+        <add namespace="System.Web.Mvc.Ajax" />
+        <add namespace="System.Web.Mvc.Html" />
+        <add namespace="System.Web.Optimization" />
+        <add namespace="System.Web.Routing" />
+        <add namespace="System.Web.WebPages" />
+        <add namespace="Tsg.UI.Main.App_LocalResources" />
+      </namespaces>
+    </pages>
+    <authentication mode="Forms">
+      <forms loginUrl="~/User/Login" name=".ASPNETAUTH" protection="None" path="/" timeout="20" />
+    </authentication>
+    <sessionState mode="InProc" cookieless="false" timeout="200" />
+    <authorization>
+      <!--<deny users="?" />-->
+      <allow roles="Admin" />
+      <allow roles="SuperUser" />
+      <allow roles="User" />
+    </authorization>
+  </system.web>
+  <system.webServer>
+    <security>
+      <requestFiltering>
+        <requestLimits maxQueryString="32768" />
+      </requestFiltering>
+    </security>
+    <validation validateIntegratedModeConfiguration="false" />
+    <handlers>
+      <remove name="ExtensionlessUrlHandler-ISAPI-4.0_32bit" />
+      <remove name="ExtensionlessUrlHandler-ISAPI-4.0_64bit" />
+      <add name="ExtensionlessUrlHandler-ISAPI-4.0_32bit" path="*." verb="GET,HEAD,POST,DEBUG,PUT,DELETE,PATCH,OPTIONS" modules="IsapiModule" scriptProcessor="%windir%\Microsoft.NET\Framework\v4.0.30319\aspnet_isapi.dll" preCondition="classicMode,runtimeVersionv4.0,bitness32" responseBufferLimit="0" />
+      <add name="ExtensionlessUrlHandler-ISAPI-4.0_64bit" path="*." verb="GET,HEAD,POST,DEBUG,PUT,DELETE,PATCH,OPTIONS" modules="IsapiModule" scriptProcessor="%windir%\Microsoft.NET\Framework64\v4.0.30319\aspnet_isapi.dll" preCondition="classicMode,runtimeVersionv4.0,bitness64" responseBufferLimit="0" />
+      <!--add name="ExtensionlessUrlHandler-Integrated-4.0" path="*." verb="GET,HEAD,POST,DEBUG,PUT,DELETE,PATCH,OPTIONS" type="System.Web.Handlers.TransferRequestHandler" preCondition="integratedMode,runtimeVersionv4.0" /-->
+      <!--<add name="ExtensionlessUrlHandler-Integrated-4.0" path="*." verb="*" type="System.Web.Handlers.TransferRequestHandler" preCondition="integratedMode,runtimeVersionv4.0" />-->
+      <remove name="ExtensionlessUrlHandler-Integrated-4.0" />
+      <remove name="OPTIONSVerbHandler" />
+      <remove name="TRACEVerbHandler" />
+      <add name="ExtensionlessUrlHandler-Integrated-4.0" path="*." verb="*" type="System.Web.Handlers.TransferRequestHandler" preCondition="integratedMode,runtimeVersionv4.0" />
+    </handlers>
+    <httpProtocol>
+      <customHeaders>
+        <add name="Access-Control-Allow-Origin" value="*" />
+        <add name="Access-Control-Allow-Methods" value="GET, POST, DELETE" />
+        <add name="Access-Control-Allow-Credentials" value="true" />
+        <add name="Access-Control-Allow-Headers" value="X-Requested-With, origin, content-type, accept" />
+      </customHeaders>
+    </httpProtocol>
+	  <rewrite>  
+	    <rules> 
+	     <rule name="https redirect">      
+		    <match url="(.*)" ignoreCase="false" />     
+			   <conditions>        
+				  <add input="{HTTPS}" pattern="off" ignoreCase="false" />      
+			   </conditions>      
+		    <action type="Redirect" redirectType="Found" url="https://{HTTP_HOST}{REQUEST_URI}" />    
+	     </rule>  
+	    </rules>
+	  </rewrite>
+	  <httpErrors errorMode="Detailed" />
+  </system.webServer>
+  <runtime>
+    <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
+      <dependentAssembly>
+        <assemblyIdentity name="System.Web.Razor" publicKeyToken="31bf3856ad364e35" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-3.0.0.0" newVersion="3.0.0.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.Web.WebPages.Razor" publicKeyToken="31bf3856ad364e35" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-3.0.0.0" newVersion="3.0.0.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Newtonsoft.Json" publicKeyToken="30ad4fe6b2a6aeed" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-11.0.0.0" newVersion="11.0.0.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.Net.Http.Formatting" publicKeyToken="31bf3856ad364e35" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-5.2.6.0" newVersion="5.2.6.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.Web.Http" publicKeyToken="31bf3856ad364e35" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-5.2.6.0" newVersion="5.2.6.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="WebMatrix.Data" publicKeyToken="31bf3856ad364e35" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-3.0.0.0" newVersion="3.0.0.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Microsoft.Data.Edm" publicKeyToken="31bf3856ad364e35" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-5.8.3.0" newVersion="5.8.3.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Microsoft.Data.OData" publicKeyToken="31bf3856ad364e35" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-5.8.3.0" newVersion="5.8.3.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.Spatial" publicKeyToken="31bf3856ad364e35" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-5.8.3.0" newVersion="5.8.3.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="log4net" publicKeyToken="669e0ddf0bb1aa2a" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-2.0.8.0" newVersion="2.0.8.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.Web.Http.WebHost" publicKeyToken="31bf3856ad364e35" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-5.2.3.0" newVersion="5.2.3.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Autofac" publicKeyToken="17863af14b0044da" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-4.8.1.0" newVersion="4.8.1.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.Web.Helpers" publicKeyToken="31bf3856ad364e35" />
+        <bindingRedirect oldVersion="1.0.0.0-3.0.0.0" newVersion="3.0.0.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.Web.WebPages" publicKeyToken="31bf3856ad364e35" />
+        <bindingRedirect oldVersion="1.0.0.0-3.0.0.0" newVersion="3.0.0.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.Web.Mvc" publicKeyToken="31bf3856ad364e35" />
+        <bindingRedirect oldVersion="0.0.0.0-5.2.6.0" newVersion="5.2.6.0" />
+      </dependentAssembly>
+    </assemblyBinding>
+  </runtime>
+  <entityFramework>
+    <defaultConnectionFactory type="System.Data.Entity.Infrastructure.LocalDbConnectionFactory, EntityFramework">
+      <parameters>
+        <parameter value="v11.0" />
+      </parameters>
+    </defaultConnectionFactory>
+    <providers>
+      <provider invariantName="System.Data.SqlClient" type="System.Data.Entity.SqlServer.SqlProviderServices, EntityFramework.SqlServer" />
+    </providers>
+  </entityFramework>
+  <system.serviceModel>
+    <bindings>
+      <basicHttpBinding>
+        <binding name="BasicHttpsBinding_IGPWebService1" maxReceivedMessageSize="2147483647" maxBufferSize="2147483647" maxBufferPoolSize="2147483647">
+          <security mode="Transport" />
+          <readerQuotas maxDepth="32" maxArrayLength="2147483647" maxStringContentLength="2147483647" />
+        </binding>
+        <binding name="GPWebServiceSoap" />
+      </basicHttpBinding>
+    </bindings>
+    <client>
+      <endpoint address="https://www.bizcurrency1.com/GPWebServiceBeta/IGPWebService1.svc" binding="basicHttpBinding" bindingConfiguration="BasicHttpsBinding_IGPWebService1" contract="TsgGPWebService.IGPWebService1" name="BasicHttpsBinding_IGPWebService1" />
+      <endpoint address="http://www.bizcurrency1.com/gpwsbeta/GPWS.asmx" binding="basicHttpBinding" bindingConfiguration="GPWebServiceSoap" contract="TSGgpwsbeta.GPWebServiceSoap" name="GPWebServiceSoap" />
+    </client>
+  </system.serviceModel>
+  <system.codedom>
+    <compilers>
+      <compiler language="c#;cs;csharp" extension=".cs" type="Microsoft.CodeDom.Providers.DotNetCompilerPlatform.CSharpCodeProvider, Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" warningLevel="4" compilerOptions="/langversion:6 /nowarn:1659;1699;1701" />
+      <compiler language="vb;vbs;visualbasic;vbscript" extension=".vb" type="Microsoft.CodeDom.Providers.DotNetCompilerPlatform.VBCodeProvider, Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" warningLevel="4" compilerOptions="/langversion:14 /nowarn:41008 /define:_MYTYPE=\&quot;Web\&quot; /optionInfer+" />
+    </compilers>
+  </system.codedom>
+</configuration>
+<!--ProjectGuid: 1D9905EC-6AB1-4910-A1A9-63BA3CE43CD6-->

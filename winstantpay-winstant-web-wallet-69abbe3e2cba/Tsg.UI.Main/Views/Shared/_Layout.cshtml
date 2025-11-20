@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        @*<link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />*@
+        @*<meta name="viewport" content="width=device-width" />*@
+    </head>
+    <body>
+    @*<header>
+            <div class="content-wrapper">
+                <div class="float-left">
+                    <p class="site-title">@Html.ActionLink("your logo here", "Index", "Home")</p>
+                </div>
+                <div class="float-right">                    
+                    <nav>
+                        <ul id="menu">
+                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                            <li>@Html.ActionLink("About", "About", "Home")</li>
+                            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>*@
+        @*<header>
+            <a href="/" class="logo pull-left">
+                <img src="/Content/assets/images/winstantpay-logo-notag.png" height="54" alt="Porto Admin" />
+            </a>    
+        </header>*@
+        @*<div id="body">
+            @RenderSection("featured", required: false)
+            <section class="content-wrapper main-content clear-fix">*@
+                @RenderBody()
+            @*</section>
+        </div>*@
+        @*<footer>
+            <div class="content-wrapper">
+                <div class="float-left">
+                    <p>&copy; @DateTime.Now.Year - My ASP.NET MVC Application</p>
+                </div>
+            </div>
+        </footer>*@
+
+        @*@Scripts.Render("~/bundles/jquery")
+        @RenderSection("scripts", required: false)*@
+    </body>
+</html>

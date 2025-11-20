@@ -1,0 +1,40 @@
+﻿@using Tsg.UI.Main.App_LocalResources
+@model Tsg.UI.Main.Models.UserMailModel
+@{
+    ViewBag.Title = "Feedback";
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+<script src="/Content/assets/vendor/jquery/jquery.js"></script>
+<script src="~/Content/ckeditor/ckeditor.js"></script>
+<div class="form-horizontal">
+    <section class="panel panel-featured panel-featured-info">
+        <header class="panel-heading">
+            <h2 class="panel-title">@GlobalRes.ContactUsSendMessageInfo_Title</h2>
+            <p class="panel-subtitle">@GlobalRes.ContactUsSendMessageInfo_SubTitle</p>
+        </header>
+        <div class="panel-body">
+            @if (Model.IsSuccessResForAction != null && (bool)Model.IsSuccessResForAction)
+            {
+                <div class="alert alert-success" style="display: block;" id="successMessageBlock">
+                    <p class="m-none text-weight-semibold h6" id="successMesage">@Model.ActionResultText</p>
+                </div>
+            }
+            else if (Model.IsSuccessResForAction != null && !(bool)Model.IsSuccessResForAction)
+            {
+                <div class="alert alert-danger" style="display: block;" id="errorMessageBlock">
+                    <p class="m-none text-weight-semibold h6" id="errorMesage">@Model.ActionResultText</p>
+                </div>
+            }
+            <div class="validation-message">
+                <ul></ul>
+            </div>
+        </div>
+        <footer class="panel-footer">
+            <div class="row">
+                <div class="col-sm-12 text-center">
+                    <a class="btn btn-success" href="/">@GlobalRes.ContactUsSendMessageInfo_ReturnButton</a>
+                </div>
+            </div>
+        </footer>
+    </section>
+</div>

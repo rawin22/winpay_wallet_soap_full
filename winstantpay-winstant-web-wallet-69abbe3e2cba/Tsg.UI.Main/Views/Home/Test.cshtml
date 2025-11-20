@@ -1,0 +1,85 @@
+﻿@model Tsg.UI.Main.Models.DashboardViewModel
+
+@{
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+    ViewBag.Title = "Dashboard";
+}
+
+<div class="alert alert-info">
+    <div class="col-md-6">
+        <div class="input-daterange input-group" data-plugin-datepicker="">
+            <span class="input-group-addon">
+                <i class="fa fa-calendar"></i>
+            </span>
+            <input type="text" id="StartDate" name="StartDate" value="" class="form-control" />
+            <span class="input-group-addon">to</span>
+            <input type="text" id="EndDate" name="EndDate" value="" class="form-control" />
+        </div>
+    </div>
+    <select id="Period">
+        <option value="Today">Today</option>
+        <option value="LastWeek">Last Week</option>
+        <option value="LastMonth">Last Month</option>        
+        <option value="Last3Months">Last 3 Months</option>        
+        <option value="Last6Months">Last 6 Months</option>                
+    </select>
+    
+</div>
+
+
+
+@section Scripts {
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#Period").change(function () {
+                var periodDate = new Date();
+                var selVal = $(this).val();
+                if (selVal == 'Today') {
+                    periodDate = new Date();
+                } else if (selVal == 'LastWeek') {
+                    periodDate.setDate(periodDate.getDate() - 7);
+                } else if (selVal == 'LastMonth') {
+                    periodDate.setMonth(periodDate.getMonth() - 1);                    
+                } else if (selVal == 'Last3Months') {
+                    periodDate.setMonth(periodDate.getMonth() - 3);                    
+                } else if (selVal == 'Last6Months') {
+                    periodDate.setMonth(periodDate.getMonth() - 6);                    
+                }               
+
+                $('.input-daterange input[name="StartDate"').datepicker('setDate', periodDate);
+                $('.input-daterange input[name="EndDate"').datepicker('setDate', new Date());
+                $('.input-daterange').datepicker('updateDates');
+
+
+                //$(".input-daterange").data('daterangepicker').setStartDate(periodDate);
+                //$(".input-daterange").data().datepicker.startDate = new Date();// moment('2013-12-24', datepicker.data().daterangepicker.format);
+                //$("#reportrange").data().datepicker.endDate = moment('2013-12-25', datepicker.data().daterangepicker.format);
+                //$(".input-daterange").data().datepicker.updateDates();
+                //$(".input-daterange").data('daterangepicker').setDate(periodDate);
+                //$('.input-daterange input').each(function () {
+                //    //$(this).datepicker().setStartDate(periodDate);
+                //    $(this).datepicker({
+                //        minDate: periodDate,
+                //        maxDate: new Date(),
+                //        setStartDate: periodDate
+                //    });
+                //});
+                //$('.input-daterange input[name="StartDate"]').datepicker({ startDate: periodDate });
+
+                //$('.input-daterange').data({ date: periodDate }).datepicker('update', periodDate).datepicker({ format: "dd/MM/yyyy" }).children("input").val(periodDate);
+
+
+                //$(".input-daterange").datepicker().setStartDate(periodDate);
+                //$(".input-daterange").datepicker({
+                //    minDate: periodDate,
+                //    maxDate: new Date(),
+                //    setStartDate: periodDate
+                //});
+            });
+
+        });
+    </script>
+}

@@ -1,0 +1,489 @@
+﻿@using System.Configuration
+@using System.Web.UI.WebControls
+@using Tsg.UI.Main.App_LocalResources
+@using Tsg.UI.Main.Models
+@using Tsg.UI.Main.Models.Attributes
+@using TSG.Models.APIModels
+@using RedirectResult = System.Web.Http.Results.RedirectResult
+@using Tsg.UI.Main.Extensions
+<!-- start: sidebar -->
+<aside id="sidebar-left" class="sidebar-left">
+	<div class="sidebar-header">
+		<div class="sidebar-title">
+			@GlobalRes.Shared_Navigation_Title
+		</div>
+		<div class="sidebar-toggle hidden-xs" data-toggle-class="sidebar-left-collapsed" data-target="html" data-fire-event="sidebar-left-toggle">
+			<i class="fa fa-bars" aria-label="Toggle sidebar"></i>
+		</div>
+	</div>
+
+	<div class="nano">
+		<div class="nano-content nano-content-correction">
+			<nav id="menu" class="nav-main" role="navigation">
+				<ul class="nav nav-main">
+					@if (Tsg.UI.Main.Models.Security.AppSecurity.CurrentUser != null && Tsg.UI.Main.Models.Security.AppSecurity.CurrentUser.Role == UserRoleType.Admin)
+					{
+						<li class="nav-parent nav-active nav-expanded">
+							<a>
+								<i class="fa fa-wrench" aria-hidden="true"></i>
+								<span>@GlobalRes.Shared_Navigation_Maintenance</span>
+							</a>
+							<ul class="nav nav-children">
+								<li class="@Html.IsSelected(controller: "Bank", action: "GetBankAndWireInstructions")">
+									<a class="child-link" href="/Bank/GetBankAndWireInstructions">@GlobalRes.Shared_Navigation_PayInInstructions</a>
+								</li>
+								<li class="@Html.IsSelected(controller: "Bank", action: "GetBanks")">
+									<a class="child-link" href="/Bank/GetBanks">@GlobalRes.Shared_Navigation_Banks</a>
+								</li>
+								<li class="@Html.IsSelected(controller: "Bank", action: "GetCurrencies")">
+									<a class="child-link" href="/Bank/GetCurrencies">@GlobalRes.Shared_Navigation_Currencies</a>
+								</li>
+								@*<li class="@Html.IsSelected(controller: "WireInstruction", action: "GetWireInstructions")"><a class="child-link" href="/WireInstruction/GetWireInstructions">Wire Instructions</a></li>*@
+								<li class="@Html.IsSelected(controller: "WelcomeMessage", action: "GetWelcomeMessages")">
+									<a class="child-link" href="/WelcomeMessage/GetWelcomeMessages">@GlobalRes.Shared_Navigation_WelcomeMessage</a>
+								</li>
+								@*<li class="@Html.IsSelected(controller: "User", action: "GetUsers")"><a class="child-link" href="/User/GetUsers">Users</a></li>*@
+								<li class="@Html.IsSelected(controller: "Funding", action: "GetFundRequests")">
+									<a class="child-link" href="/Funding/GetFundRequests">@GlobalRes.Shared_Navigation_ManageFundRequest</a>
+								</li>
+								<li class="@Html.IsSelected(controller: "ContactUs", action: "GetAllContactUsList")">
+									<a class="child-link" href="/ContactUs/GetAllContactUsList">
+										<span>@GlobalRes.Shared_Navigation_FeedbackSettings</span>
+									</a>
+								</li>
+								<li class="@Html.IsSelected(controller: "Referral", action: "ChangeInvintationsLink")">
+									<a class="child-link" href="/Referral/ChangeInvintationsLink">
+										<span>@GlobalRes.Shared_Navigation_ReferralLink</span>
+									</a>
+								</li>
+								<li class="@Html.IsSelected(controller: "User", action: "ChangePassword")">
+									<a class="child-link" href="/User/ChangePassword">@GlobalRes.Shared_Navigation_ChangePassword</a>
+								</li>
+								<li class="@Html.IsSelected(controller: "Merchants", action: "Index")">
+									<a class="child-link" href="/Merchants/Index">@GlobalRes.Shared_Navigation_Merchants</a>
+								</li>
+								<li class="@Html.IsSelected(controller: "Pipit", action: "Index")">
+									<a class="child-link" href="/Pipit/Index">@GlobalRes.Shared_Navigation_Pipit</a>
+								</li>
+								<li class="nav-parent @Html.IsSelected(controller: "AeLiquidListSettings", action: "Index") @Html.IsSelected(controller: "AeOverdraftUsers", action: "Index")">
+									<a>
+										<span>Liquidation Preferences</span>
+									</a>
+									<ul class="nav nav-children">
+										<li class="@Html.IsSelected(controller: "AeLiquidListSettings", action: "Index")">
+											<a class="child-link" href="@Url.Action("Index", "AeLiquidListSettings")">Permissible CCY</a>
+										</li>
+										<li class="@Html.IsSelected(controller: "AeOverdraftUsers", action: "Index")@Html.IsSelected(controller: "ShopCategories", action: "Create") @Html.IsSelected(controller: "ShopCategories", action: "Edit")">
+											<a class="child-link" href="@Url.Action("Index", "AeOverdraftUsers")">Overdraft Customer</a>
+										</li>
+									</ul>
+								</li>
+
+
+
+
+								@if (!String.IsNullOrEmpty(ConfigurationManager.AppSettings["isShopAvaliavble"]) && Convert.ToBoolean(ConfigurationManager.AppSettings["isShopAvaliavble"]))
+								{
+									<li class="nav-parent @Html.IsSelected(controller: "ShopCategories", action: "Index") @Html.IsSelected(controller: "ShopInfo", action: "Index") @Html.IsSelected(controller: "ShopProducts", action: "Index")
+									@Html.IsSelected(controller: "ShopCategories", action: "Create")
+									@Html.IsSelected(controller: "ShopInfo", action: "Create")
+									@Html.IsSelected(controller: "ShopProducts", action: "Create")
+									@Html.IsSelected(controller: "ShopCategories", action: "Edit")
+									@Html.IsSelected(controller: "ShopInfo", action: "Edit")
+									@Html.IsSelected(controller: "ShopProducts", action: "Edit")">
+										<a>
+											<span>@GlobalRes.OrdersItems_Shop</span>
+										</a>
+										<ul class="nav nav-children">
+											<li class="@Html.IsSelected(controller: "ShopInfo", action: "Index")@Html.IsSelected(controller: "ShopInfo", action: "Create")@Html.IsSelected(controller: "ShopInfo", action: "Edit")">
+												<a class="child-link" href="/ShopInfo/Index">Shops</a>
+											</li>
+											<li class="@Html.IsSelected(controller: "ShopCategories", action: "Index")@Html.IsSelected(controller: "ShopCategories", action: "Create") @Html.IsSelected(controller: "ShopCategories", action: "Edit")">
+												<a class="child-link" href="/ShopCategories/Index">Categories</a>
+											</li>
+											<li class="@Html.IsSelected(controller: "ShopProducts", action: "Index")@Html.IsSelected(controller: "ShopProducts", action: "Create")@Html.IsSelected(controller: "ShopProducts", action: "Edit")">
+												<a class="child-link" href="/ShopProducts/Index">Products</a>
+											</li>
+										</ul>
+									</li>
+								}
+							</ul>
+						</li>
+					}
+					else if (Tsg.UI.Main.Models.Security.AppSecurity.CurrentUser != null && Tsg.UI.Main.Models.Security.AppSecurity.CurrentUser.Role == UserRoleType.User)
+					{
+						<li class="@Html.IsSelected(controller: "Home", action: "Dashboard") @Html.IsSelected(controller: "Home", action: "Index")">
+							<a class="child-link" href="/">
+								<i class="fa fa-home" aria-hidden="true"></i>
+								<span>@GlobalRes.Shared_Navigation_Dashboard</span>
+							</a>
+						</li>
+
+						if (AppSettingHelper.IsWithdrawWhiteListed())
+						{
+							<li class="@Html.IsSelected(controller: "Withdraw", action: "Index")">
+								<a class="child-link" href="/Withdraw/Index">
+									<i class="fa fa-usd" aria-hidden="true"></i>
+									<span>@GlobalRes.Shared_Navigation_Withdraw</span>
+								</a>
+							</li>
+						}
+
+						if (AppSettingHelper.IsDepositWhiteListed())
+						{
+							<li class="@Html.IsSelected(controller: "Deposit", action: "Index")">
+								<a class="child-link" href="/Deposit/Index">
+									<i class="fa fa-money-bill" aria-hidden="true"></i>
+									<span>@GlobalRes.Shared_Navigation_Deposit</span>
+								</a>
+							</li>
+						}
+
+						if (AppSettingHelper.IsPayNowWhiteListed())
+						{
+							<li class="@Html.IsSelected(controller: "Payment", action: "Create")">
+								<a class="child-link" href="/Payment/Create">
+									<i class="fa fa-bolt" aria-hidden="true"></i>
+									<span>@GlobalRes.Shared_Navigation_PayNow</span>
+								</a>
+							</li>
+						}
+
+						if (AppSettingHelper.IsReceiveWhiteListed())
+						{
+							<li class="@Html.IsSelected(controller: "QrGen", action: "Index")">
+								<a class="child-link" href="/QrGen/Index">
+									<i class="fa fa-qrcode" aria-hidden="true"></i>
+									<span>@GlobalRes.Shared_Navigation_Receive</span>
+								</a>
+							</li>
+						}
+
+						if (AppSettingHelper.IsHistoryWhiteListed() || AppSettingHelper.IsReceiveHistoryWhiteListed() || AppSettingHelper.IsConvertHistoryWhiteListed())
+						{
+							<li class="nav-parent @Html.IsSelected(controller: "Payment", action: "History") @Html.IsSelected(controller: "QrGen", action: "History") @Html.IsSelected(controller: "Exchange", action: "History")">
+								<a>
+									<i class="fa fa-history" aria-hidden="true"></i>
+									<span>@GlobalRes.Shared_Navigation_History</span>
+								</a>
+								<ul class="nav nav-children">
+									@if (AppSettingHelper.IsHistoryWhiteListed())
+									{
+										<li class="@Html.IsSelected(controller: "Payment", action: "History")">
+											<a class="child-link" href="/Payment/History">@GlobalRes.Shared_Navigation_History_Pay</a>
+										</li>
+									}
+
+									@if (AppSettingHelper.IsReceiveHistoryWhiteListed())
+									{
+										<li class="@Html.IsSelected(controller: "QrGen", action: "History")">
+											<a class="child-link" href="/QrGen/History">@GlobalRes.Shared_Navigation_History_Receive</a>
+										</li>
+									}
+
+									@if (AppSettingHelper.IsConvertHistoryWhiteListed())
+									{
+										<li class="@Html.IsSelected(controller: "Exchange", action: "History")">
+											<a class="child-link" href="/Exchange/History">@GlobalRes.Shared_Navigation_History_Convert</a>
+										</li>
+									}
+								</ul>
+							</li>
+						}
+
+						if (AppSettingHelper.IsPayoutWhiteListed())
+						{
+							<li class="nav-parent @Html.IsSelected(controller: "Payout", action: "Create") @Html.IsSelected(controller: "Payout", action: "History") @Html.IsSelected(controller: "Payout", action: "Details")">
+								<a>
+									<i class="fa fa-sign-out-alt" aria-hidden="true"></i>
+									<span>Payment</span>
+								</a>
+								<ul class="nav nav-children">
+									@if (AppSettingHelper.IsPayoutNewWhiteListed())
+									{
+										<li class="@Html.IsSelected(controller: "Payout", action: "Create")">
+											<a class="child-link" href="/Payout/Create">New</a>
+										</li>
+									}
+
+									@if (AppSettingHelper.IsPayoutHistoryWhiteListed())
+									{
+										<li class="@Html.IsSelected(controller: "Payout", action: "History")">
+											<a class="child-link" href="/Payout/History">History</a>
+										</li>
+									}
+									@*@if (AppSettingHelper.IsPayoutDetailsWhiteListed())
+										{
+											<li class="@Html.IsSelected(controller: "Payout", action: "Details")">
+												<a class="child-link" href="/Payout/Details/4A7C0A7A-898A-EA11-9131-3EE1A118192F">Details</a>
+											</li>
+										}*@
+
+									@*@if (AppSettingHelper.IsHistoryWhiteListed())
+										{
+											<li class="@Html.IsSelected(controller: "Payment", action: "History")">
+												<a class="child-link" href="/Payment/History">@GlobalRes.Shared_Navigation_History</a>
+											</li>
+										}*@
+									@*<li class="@Html.IsSelected(controller: "Payment", action: "Currencies")"><a class="child-link" href="/Payment/Currencies">@GlobalRes.Shared_Navigation_Currencies</a></li>*@
+								</ul>
+							</li>
+						}
+
+						if (AppSettingHelper.IsBalancesWhiteListed())
+						{
+							<li class="@Html.IsSelected(controller: "Home", action: "Accounts")">
+								<a class="child-link" href="/Home/Accounts">
+									<i class="fa fa-columns" aria-hidden="true"></i>
+									<span>@GlobalRes.Shared_Navigation_Balances</span>
+								</a>
+							</li>
+						}
+
+						if (AppSettingHelper.IsAddFundsWhiteListed())
+						{
+							@*@Html.IsSelected(controller: "Pipit", action: "CreateOrder")*@
+							<li class="nav-parent @Html.IsSelected(controller: "Funding", action: "AddBankDeposit") @Html.IsSelected(controller: "Funding", action: "AddFundsWire") @Html.IsSelected(controller: "Funding", action: "AddBlockChainInfoFunds")
+							@Html.IsSelected(controller: "Funding", action: "UpdateWireInstruction") @Html.IsSelected(controller: "Funding", action: "GetAllFundings") @Html.IsSelected(controller: "Funding", action: "InfoByFunds")">
+								<a>
+									<i class="fa fa-sign-in-alt" aria-hidden="true"></i>
+									<span>@GlobalRes.Shared_Navigation_AddFunds</span>
+								</a>
+								<ul class="nav nav-children">
+									@if (AppSettingHelper.IsWireTransferWhiteListed())
+									{
+										<li class="@Html.IsSelected(controller: "Funding", action: "AddBankDeposit")">
+											<a class="child-link" href="/Funding/AddBankDeposit">
+												<i class="fa fa-sticky-note" aria-hidden="true"></i>
+												@GlobalRes.Shared_Navigation_DepositInstructions
+											</a>
+										</li>
+									}
+
+									@if (AppSettingHelper.IsLoadCryptoWhiteListed())
+									{
+										<li class="@Html.IsSelected(controller: "Funding", action: "AddBlockChainInfoFunds")">
+											<a class="child-link" href="/Funding/AddBlockChainInfoFunds">
+												<i class="fab fa-btc" aria-hidden="true"></i>
+												@GlobalRes.Shared_Navigation_BlockchainInfo
+											</a>
+										</li>
+									}
+
+									@if (AppSettingHelper.IsPIPWhiteListed())
+									{
+										<li class="@Html.IsSelected(controller: "Pipit", action: "CreateOrder")">
+											<a class="child-link" href="/Pipit/CreateOrder">
+												<i class="fa fa-users" aria-hidden="true"></i>
+												@GlobalRes.Shared_Navigation_PipitCreateOrder
+											</a>
+										</li>
+									}
+
+									@if (AppSettingHelper.IsUploadDepositProofWhiteListed())
+									{
+										<li class="@Html.IsSelected(controller: "Funding", action: "AddFundsWire") @Html.IsSelected(controller: "Funding", action: "UpdateWireInstruction") @Html.IsSelected(controller: "Funding", action: "InfoByFunds")">
+											<a class="child-link" href="@Url.Action("AddFundsWire", "Funding")">
+												<i class="fas fa-cloud-upload-alt" aria-hidden="true"></i>
+												@GlobalRes.Shared_Navigation_UploadDepositProof
+											</a>
+										</li>
+									}
+
+									@if (AppSettingHelper.IsDepositHistoryWhiteListed())
+									{
+										<li class="@Html.IsSelected(controller: "Funding", action: "GetAllFundings")">
+											<a class="child-link" href="@Url.Action("GetAllFundings", "Funding")">
+												<i class="fa fa-history" aria-hidden="true"></i>
+												@GlobalRes.Shared_Navigation_DepositHistory
+											</a>
+										</li>
+									}
+								</ul>
+							</li>
+						}
+
+						if (AppSettingHelper.IsConvertExchangeWhiteListed())
+						{
+							<li class="@Html.IsSelected(controller: "Exchange", action: "CurrencyExchange")">
+								<a class="child-link" href="/Exchange/CurrencyExchange">
+									<i class="fa fa-exchange-alt" aria-hidden="true"></i>
+									<span>@Html.Raw(GlobalRes.Shared_Navigation_Convert)</span>
+								</a>
+							</li>
+						}
+
+						if (AppSettingHelper.IsUserProfileWhiteListed())
+						{
+							<li class="nav-parent @Html.IsSelected(controller: "User", action: "Profile") @Html.IsSelected(controller: "DependencyAutomaticExchange", action: "Index")
+							@Html.IsSelected(controller: "User", action: "ChangePassword") @Html.IsSelected(controller: "FavoriteCurrencies", action: "Index") @Html.IsSelected(controller: "User", action: "ResetPassword")">
+								<a>
+									<i class="fa fa-user" aria-hidden="true"></i>
+									<span>@GlobalRes.Shared_Navigation_UserProfile</span>
+								</a>
+								<ul class="nav nav-children">
+									@if (AppSettingHelper.IsLiquidationPreferencesWhiteListed())
+									{
+										<li class="@Html.IsSelected(controller: "DependencyAutomaticExchange", action: "Index")">
+											<a class="child-link" href="@Url.Action("Index", "DependencyAutomaticExchange")">@GlobalRes.Navigation_LiquidationPreferences</a>
+										</li>
+									}
+
+									@if (AppSettingHelper.IsViewProfileWhiteListed())
+									{
+										<li class="@Html.IsSelected(controller: "User", action: "Profile")">
+											<a class="child-link" href="/User/Profile">@GlobalRes.Shared_Navigation_View_Profile</a>
+										</li>
+									}
+
+									@if (AppSettingHelper.IsChangePasswordWhiteListed())
+									{
+										<li class="@Html.IsSelected(controller: "User", action: "ChangePassword")">
+											<a class="child-link" href="/User/ChangePassword">@GlobalRes.Shared_Navigation_ChangePassword</a>
+										</li>
+									}
+
+									@if (AppSettingHelper.IsResetPasswordWhiteListed())
+									{
+										<li class="@Html.IsSelected(controller: "User", action: "ResetPassword")">
+											<a class="child-link" href="/User/ResetPassword">@GlobalRes.Shared_Navigation_ResetPassword</a>
+										</li>
+									}
+
+									@if (AppSettingHelper.IsCurrencySettingsWhiteListed())
+									{
+										<li class="@Html.IsSelected(controller: "FavoriteCurrencies", action: "Index")">
+											<a class="child-link" href="/FavoriteCurrencies/Index">
+												@*<i class="fa fa-wrench"></i>*@<span>@GlobalRes.Shared_Navigation_CurrencySettings</span>
+											</a>
+										</li>
+									}
+								</ul>
+							</li>
+						}
+
+						if (AppSettingHelper.IsInvitationLinkWhiteListed())
+						{
+							<li class="@Html.IsSelected(controller: "Referral", action: "ReferFriend")">
+								<a class="child-link" href="/Referral/ReferFriend">
+									<i class="fa fa-share" aria-hidden="true"></i>
+									<span>@GlobalRes.Shared_Navigation_ReferralLink</span>
+								</a>
+							</li>
+						}
+
+						if (AppSettingHelper.IsContactFormWhiteListed())
+						{
+							<li class="@Html.IsSelected(controller: "ContactUs", action: "Index")">
+								<a class="child-link" href="/ContactUs/Index">
+									<i class="fa fa-send"></i><span>@GlobalRes.Shared_Navigation_ContactUs</span>
+								</a>
+							</li>
+						}
+
+
+
+						@*<li class="nav-parent @Html.IsSelected(controller: "Merchants", action: "Index")">
+								<a>
+									<i class="fa fa-shopping-cart" aria-hidden="true"></i>
+									<span>@GlobalRes.Shared_Navigation_Merchants</span>
+								</a>
+								<ul class="nav nav-children">
+									<li class="@Html.IsSelected(controller: "Merchants", action: "Index")">
+										<a class="child-link" href="/Merchants/Index">@GlobalRes.Shared_Navigation_Merchants_Integration</a>
+									</li>
+								</ul>
+							</li>*@
+						if (AppSettingHelper.IsMarketPlaceMainWhiteListed())
+						{
+							if (!String.IsNullOrEmpty(ConfigurationManager.AppSettings["isShopAvaliavble"]) && Convert.ToBoolean(ConfigurationManager.AppSettings["isShopAvaliavble"]))
+							{
+								<li class="nav-parent @Html.IsSelected(controller: "ShopWindow", action: "Index")
+								 @Html.IsSelected(controller: "ShoppingCart", action: "GetListOrdersByUser")">
+									<a>
+										<i class="fa fa-shopping-cart" aria-hidden="true"></i>
+										<span>@(GlobalRes.ProductModal_MarketPlace.ToUpper())</span>
+									</a>
+									<ul class="nav nav-children">
+										@if (AppSettingHelper.IsMarketPlaceWhiteListed())
+										{
+											<li class="@Html.IsSelected(controller: "ShopWindow", action: "Index")">
+												<a href="/ShopWindow/Index">
+													<i class="fa fa-shopping-cart"></i><span>@(GlobalRes.ProductModal_MarketPlace.ToUpper())</span>
+												</a>
+											</li>
+										}
+										@if (AppSettingHelper.IsMarketplaceOrdersWhiteListed())
+										{
+											<li class="@Html.IsSelected(controller: "ShoppingCart", action: "GetListOrdersByUser")">
+												<a href="/ShoppingCart/GetListOrdersByUser">
+													<i class="fas fa-money-check-alt"></i><span>@(GlobalRes.CommonObjects_Orders.ToUpper())</span>
+												</a>
+											</li>
+										}
+									</ul>
+								</li>
+							}
+						}
+						if (AppSettingHelper.IsTrustedTokenWhiteListed())
+						{
+
+							<li class="@Html.IsSelected(controller: "DelegatedAuthority", action: "Index")">
+								<a class="child-link" href="@Url.Action("Index", "DelegatedAuthority")">
+									<i class="fa fa-qrcode" aria-hidden="true"></i>
+									<span>@GlobalRes.DelegatedAuthority_Title</span>
+								</a>
+							</li>
+						}
+
+						if (AppSettingHelper.IsRedEnvelopeWhiteListed())
+						{
+							<li class="@Html.IsSelected(controller: "AddNewRedEnvelope", action: "NewEnvelope")">
+								<a class="child-link" href="@Url.Action("NewEnvelope", "AddNewRedEnvelope")">
+									<i class="fa fa-envelope text-danger"></i><span>@GlobalRes.Shared_Navigation_RedEnvelope</span>
+								</a>
+							</li>
+						}
+
+						@*<li class="@Html.IsSelected(controller: "Inbox", action: "Index")">
+								<a class="child-link" href="@Url.Action("Index", "Inbox")">
+									<i class="fa fa-arrow-alt-circle-down"></i><span>@GlobalRes.Inbox_Index_Title</span>
+								</a>
+							</li>*@
+					}
+					else if (Tsg.UI.Main.Models.Security.AppSecurity.CurrentUser != null && Tsg.UI.Main.Models.Security.AppSecurity.CurrentUser.Role == UserRoleType.SuperUser)
+					{
+						<li class="nav-parent nav-active nav-expanded">
+							<a>
+								<i class="fa fa-wrench" aria-hidden="true"></i>
+								<span>@GlobalRes.Shared_Navigation_SuperAdmin</span>
+							</a>
+							<ul class="nav nav-children">
+								<li class="@Html.IsSelected(controller: "User", action: "GetUsers")">
+									<a class="child-link" href="/User/GetUsers">@GlobalRes.Shared_Navigation_Admins</a>
+								</li>
+								@*<li class="@Html.IsSelected(controller: "User", action: "ChangePassword")"><a class="child-link" href="/User/ChangePassword">Change Password</a></li>*@
+							</ul>
+						</li>
+					}
+				</ul>
+			</nav>
+
+		</div>
+
+		<script>
+			// Preserve Scroll Position
+			if (typeof localStorage !== 'undefined') {
+				if (localStorage.getItem('sidebar-left-position') !== null) {
+					var initialPosition = localStorage.getItem('sidebar-left-position'),
+						sidebarLeft = document.querySelector('#sidebar-left .nano-content');
+
+					sidebarLeft.scrollTop = initialPosition;
+				}
+			}
+		</script>
+
+	</div>
+
+</aside>
+<!-- end: sidebar -->

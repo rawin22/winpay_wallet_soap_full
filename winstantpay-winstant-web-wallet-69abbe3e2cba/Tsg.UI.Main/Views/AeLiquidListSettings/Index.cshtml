@@ -1,0 +1,127 @@
+﻿@using Tsg.UI.Main.App_LocalResources
+@model IEnumerable<TSG.Models.ServiceModels.AutomaticExchange.LiquidCcyListSo>
+    @{
+        ViewBag.Title = "Liquid curency settings";
+        Layout = "~/Views/Shared/_LayoutMain.cshtml";
+    }
+    <link rel="stylesheet" href="/Content/assets/vendor/select2/css/select2.css" />
+    <link rel="stylesheet" href="/Content/assets/vendor/select2-bootstrap-theme/select2-bootstrap.css" />
+    <link href="~/Content/dragula/dragula.min.css" rel="stylesheet" />
+    <script src="~/Content/dragula/dragula.min.js"></script>
+    <script src="/Content/assets/vendor/jquery/jquery.js"></script>
+    <link href="~/Content/assets/vendor/bootstrap-toggle/css/bootstrap-toggle.css" rel="stylesheet">
+    <script src="~/Content/assets/vendor/bootstrap-toggle/js/bootstrap-toggle.js"></script>
+    <div class="row">
+        <section class="panel">
+            <header class="panel-heading" data-panel-toggle="">
+                <div class="panel-actions">
+                    <a href="#" class="panel-action panel-action-toggle" data-panel-toggle=""></a>
+                </div>
+
+                <h2 class="panel-title">Set liquid currency order</h2>
+                <p class="panel-subtitle"></p>
+            </header>
+            <div class="panel-body" style="display: block;">
+                @if (Model != null)
+                {
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped table-condensed mb-none">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>@GlobalRes.FavoriteCurrencyIndexPage_CurrencyCode</th>
+                                </tr>
+                            </thead>
+                            <tbody id="drag-elements">
+                                @foreach (var item in Model.OrderBy(ob => ob.LiquidCcyList_LiquidOrder))
+                                {
+                                    <tr id="@item.LiquidCcyList_Id">
+                                        <td class="text-right">
+                                            @if (item.LiquidCcyList_IsLiquidCurrency)
+                                            {
+                                                <input type="checkbox" data-toggle="toggle" data-on='@GlobalRes.HomeAccountsList_Show' onchange="changeFavorite('@item.LiquidCcyList_Id');" id="ccy_@item.LiquidCcyList_Id" checked="checked" data-off='@GlobalRes.HomeAccountsList_Hide' data-size="small">
+                                            }
+                                            else
+                                            {
+                                                <input type="checkbox" data-toggle="toggle" data-on='@GlobalRes.HomeAccountsList_Show' onchange="changeFavorite('@item.LiquidCcyList_Id');" id="ccy_@item.LiquidCcyList_Id" data-off='@GlobalRes.HomeAccountsList_Hide' data-size="small">
+                                            }
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.LiquidCcyList_CurrencyCode)
+                                            <img src="/Content/assets/images/onebyone.png" class="flag flag-@(item.LiquidCcyList_CurrencyCode.ToLower())" />
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+            </div>
+            <script type="text/javascript" language="javascript">
+                function changeFavorite(id) {
+                    $.ajax({ url: '@Url.Action("SwitchLiquidCcy", "AeLiquidListSettings")', type: "POST",
+                        dataType: "json",
+                        traditional: true,
+                        data: {
+                            "liquidId": id,
+                            "state": $('#ccy_'+ id).prop('checked')
+                        },
+                        beforeSend: function() {
+                            blockWindow();
+                        },
+                        success: function (result) {
+                            $('#checkbox').prop('checked', result.success);
+                            $.unblockUI();
+                        }
+                    });
+                }
+
+                dragula([document.getElementById('drag-elements'), document.getElementById('drag-elements')],
+                    {
+                        direction: 'vertical',             // Y axis is considered when determining where an element would be dropped
+                        copy: false,                       // elements are moved by default, not copied
+                        copySortSource: false,             // elements in copy-source containers can be reordered
+                        revertOnSpill: false,              // spilling will put the element back where it was dragged from, if this is true
+                        removeOnSpill: false,              // spilling will `.remove` the element, if this is
+                        ignoreInputTextSelection: true     // allows users to select input text, see details below
+                    }).on('drop', function (el) {
+                    var positionIndex = 0;
+                    try {
+                        positionIndex = [].slice.call(el.parentElement.children).indexOf(el);
+                        var idsList = [];
+                        $.each([].slice.call(el.parentElement.children), function(idx, elem) {
+                            idsList.push(elem.id);
+
+                        });
+
+                        $.ajax({
+                            url: '@Url.Action("SaveOrderForLiquid", "AeLiquidListSettings")',
+                            type: "POST",
+                            traditional: true,
+                            beforeSend: function() {
+                                blockWindow();
+                            },
+                            //contentType: 'application/json; charset=utf-8',
+                            dataType: "json",
+                            data: { "liquidId": idsList },
+                            success: function (result) {
+                                console.log(result);
+                                //if (result.success) {
+                                //    $("#" + result.ccyid).children().toggleClass("far fa-star");
+                                //    $("#" + result.ccyid).children().toggleClass("fa fa-star");
+                                //}
+                                $.unblockUI();
+
+                            }
+                        });
+
+
+                    } catch(e){
+
+                    }
+                    });
+
+
+            </script>
+        </section>
+    </div>

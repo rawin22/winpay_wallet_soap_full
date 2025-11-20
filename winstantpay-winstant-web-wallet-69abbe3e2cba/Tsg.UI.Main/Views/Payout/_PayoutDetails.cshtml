@@ -1,0 +1,360 @@
+﻿@using Tsg.UI.Main.App_LocalResources
+@using Tsg.UI.Main.Models.Security
+@model Tsg.UI.Main.Models.PayoutDetailsViewModel
+
+
+<div class="row">
+    <div class="col-md-12">
+        <section class="panel">
+            <header class="panel-heading" data-panel-toggle="">
+                <div class="panel-actions">
+                    <a href="#" class="panel-action panel-action-toggle" data-panel-toggle=""></a>
+                </div>
+
+                <h2 class="panel-title">@ViewBag.Title</h2>                
+            </header>
+            <div class="panel-body" style="display: block;">
+                @if (Model.Errors.Count > 0)
+                {
+                    foreach (var modelError in Model.Errors)
+                    {
+                        @Html.Display(modelError.Message)
+                    }
+                }
+                else
+                {
+                    using (Html.BeginForm("Details", "Payment", new { id = Model.PaymentId }, FormMethod.Post, new { @id = "DetailsForm" }))
+                    {
+                        <input name="modid" id="modid" value="@Model.PaymentId" type="hidden" />
+                        <input name="res" id="res" value="file" type="hidden" />
+                        <table class="table table-striped table-bordered  mb-none" id="tbl_detail">
+                            <tbody>
+                                <tr>
+                                    <td class="pt-md pb-md text-weight-bold">
+                                        @GlobalRes.PaymentDetailsPage_PaymentReference                                        
+                                    </td>
+                                    <td class="pt-md pb-md">
+                                        @Html.DisplayFor(model => model.PaymentReference, new { @class = "form-control" })
+                                        @if (Model.PaymentStatusTypeName != null && Model.PaymentStatusTypeName.Equals("Created"))
+                                        {
+                                            @Html.ActionLink("Approve", "Submit", "Payout", new { id = Model.PaymentId }, new { @class = "mb-xs btn btn-xs btn-success" })
+                                        }
+                                        @Html.ActionLink("Copy", "Create", "Payout", new { id = Model.PaymentId }, new { @class = "mb-xs btn btn-xs btn-info" })
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="pt-md pb-md text-weight-bold">
+                                        @GlobalRes.PaymentDetailsPage_Status
+                                    </td>
+                                    <td class="pt-md pb-md">
+                                        @Html.DisplayFor(model => model.PaymentStatusTypeName, new { @class = "form-control" }) &nbsp;&nbsp;
+                                        @*@if (!Model.PaymentStatusTypeName.Equals("Created") && Model.cus == AppSecurity.CurrentUser.OrganisationName)
+                {
+                    <a class="btn btn-success" href="@Url.Action("Post", "Payment", new {id = Model.PaymentId})">@GlobalRes.Shared_Navigation_PayNow</a>
+                }*@
+                                    </td>
+                                </tr>
+
+                                @*Created Time*@
+                                <tr>
+                                    <td class="pt-md pb-md text-weight-bold">
+                                        @GlobalRes.PaymentDetailsPage_Date
+                                    </td>
+                                    <td class="pt-md pb-md">
+                                        @Html.DisplayFor(model => model.CreatedTime, new { @class = "form-control" })
+                                    </td>
+                                </tr>
+
+                                @*Payment Amount*@
+                                <tr>
+                                    <td class="pt-md pb-md text-weight-bold">
+                                        @GlobalRes.PaymentDetailsPage_Amount
+                                    </td>
+                                    <td class="pt-md pb-md">
+                                        @Html.DisplayFor(model => model.AmountTextWithCurrencyCode, new { @class = "form-control" })
+                                    </td>
+                                </tr>
+
+                                @*Reason for Payment*@
+                                <tr>
+                                    <td class="pt-md pb-md text-weight-bold">
+                                        @GlobalRes.Shared_NewInstantPaymentFormPage_ReasonForPayments
+                                    </td>
+                                    <td class="pt-md pb-md">
+                                        @Html.DisplayFor(model => model.ReasonForPayment, new { @class = "form-control" })
+                                    </td>
+                                </tr>
+
+                                @*Beneficiary Information*@
+                                <tr>
+                                    <td class="pt-md pb-md text-weight-bold" colspan="2">
+                                        Beneficiary Information
+                                    </td>
+                                </tr>
+
+                                @*Beneficiary Type*@
+                                <tr>
+                                    <td class="pt-md pb-md text-weight-bold">
+                                        Beneficiary Type
+                                    </td>
+                                    <td class="pt-md pb-md">
+                                        @Html.DisplayFor(model => model.BeneficiaryAccountTypeName, new { @class = "form-control" })
+                                    </td>
+                                </tr>
+
+                                @*Beneficiary Name*@
+                                <tr>
+                                    <td class="pt-md pb-md text-weight-bold">
+                                        Beneficiary Name
+                                    </td>
+                                    <td class="pt-md pb-md">
+                                        @Html.DisplayFor(model => model.BeneficiaryName, new { @class = "form-control" })
+                                    </td>
+                                </tr>
+
+                                @*Beneficiary Email*@
+                                <tr>
+                                    <td class="pt-md pb-md text-weight-bold">
+                                        Email
+                                    </td>
+                                    <td class="pt-md pb-md">
+                                        @Html.DisplayFor(model => model.BeneficiaryEmail, new { @class = "form-control" })
+                                    </td>
+                                </tr>
+
+                                @*Beneficiary Account # / IBAN*@
+                                <tr>
+                                    <td class="pt-md pb-md text-weight-bold">
+                                        Account # / IBAN
+                                    </td>
+                                    <td class="pt-md pb-md">
+                                        @Html.DisplayFor(model => model.BeneficiaryAccountNumber, new { @class = "form-control" })
+                                    </td>
+                                </tr>
+                                @*Beneficiary Country of Residence*@
+                                <tr>
+                                    <td class="pt-md pb-md text-weight-bold">
+                                        Country of Residence
+                                    </td>
+                                    <td class="pt-md pb-md">
+                                        @Html.DisplayFor(model => model.BeneficiaryCountryName, new { @class = "form-control" })
+                                    </td>
+                                </tr>
+                                @*Beneficiary Street Address*@
+                                <tr>
+                                    <td class="pt-md pb-md text-weight-bold">
+                                        Street Address
+                                    </td>
+                                    <td class="pt-md pb-md">
+                                        @Html.DisplayFor(model => model.BeneficiaryStreetAddress1, new { @class = "form-control" })
+                                        <br />@Html.DisplayFor(model => model.BeneficiaryStreetAddress2, new { @class = "form-control" })
+                                    </td>
+                                </tr>
+
+                                @*Beneficiary City*@
+                                <tr>
+                                    <td class="pt-md pb-md text-weight-bold">
+                                        City
+                                    </td>
+                                    <td class="pt-md pb-md">
+                                        @Html.DisplayFor(model => model.BeneficiaryCity, new { @class = "form-control" })
+                                    </td>
+                                </tr>
+
+                                @*Beneficiary State / Province*@
+                                <tr>
+                                    <td class="pt-md pb-md text-weight-bold">
+                                        Beneficiary State / Province
+                                    </td>
+                                    <td class="pt-md pb-md">
+                                        @Html.DisplayFor(model => model.BeneficiaryStateOrProvince, new { @class = "form-control" })
+                                    </td>
+                                </tr>
+
+                                @*Beneficiary ZIP / Postal Code*@
+                                <tr>
+                                    <td class="pt-md pb-md text-weight-bold">
+                                        ZIP / Postal Code
+                                    </td>
+                                    <td class="pt-md pb-md">
+                                        @Html.DisplayFor(model => model.BeneficiaryPostalCode, new { @class = "form-control" })
+                                    </td>
+                                </tr>
+
+                                @*Beneficiary Cell Phone*@
+                                <tr>
+                                    <td class="pt-md pb-md text-weight-bold">
+                                        Cell Phone
+                                    </td>
+                                    <td class="pt-md pb-md">
+                                        @Html.DisplayFor(model => model.BeneficiaryCellPhone, new { @class = "form-control" })
+                                    </td>
+                                </tr>
+
+                                @*Beneficiary Bank Information*@
+                                <tr>
+                                    <td class="pt-md pb-md text-weight-bold" colspan="2">
+                                        Beneficiary Bank Information
+                                    </td>
+                                </tr>
+
+                                @*Beneficiary Bank Name*@
+                                <tr>
+                                    <td class="pt-md pb-md text-weight-bold">
+                                        Beneficiary Name
+                                    </td>
+                                    <td class="pt-md pb-md">
+                                        @Html.DisplayFor(model => model.BeneficiaryBankName, new { @class = "form-control" })
+                                    </td>
+                                </tr>
+
+                                @*Beneficiary Bank BIC*@
+                                <tr>
+                                    <td class="pt-md pb-md text-weight-bold">
+                                        BIC
+                                    </td>
+                                    <td class="pt-md pb-md">
+                                        @Html.DisplayFor(model => model.BeneficiaryBankBIC, new { @class = "form-control" })
+                                    </td>
+                                </tr>
+
+                                @*Beneficiary BankNational Code*@
+                                <tr>
+                                    <td class="pt-md pb-md text-weight-bold">
+                                        National Code
+                                    </td>
+                                    <td class="pt-md pb-md">
+                                        @Html.DisplayFor(model => model.BeneficiaryBankNationalCode, new { @class = "form-control" })
+                                    </td>
+                                </tr>
+                                @*Beneficiary Bank National Code Type*@
+                                <tr>
+                                    <td class="pt-md pb-md text-weight-bold">
+                                        National Code Type
+                                    </td>
+                                    <td class="pt-md pb-md">
+                                        @Html.DisplayFor(model => model.BeneficiaryBankNationalCodeType, new { @class = "form-control" })
+                                    </td>
+                                </tr>
+
+                                @*Beneficiary Bank Branch Name*@
+                                <tr>
+                                    <td class="pt-md pb-md text-weight-bold">
+                                        Branch Name
+                                    </td>
+                                    <td class="pt-md pb-md">
+                                        @Html.DisplayFor(model => model.BeneficiaryBranchName, new { @class = "form-control" })
+                                    </td>
+                                </tr>
+
+                                @*Beneficiary Bank Street Address*@
+                                <tr>
+                                    <td class="pt-md pb-md text-weight-bold">
+                                        Street Address
+                                    </td>
+                                    <td class="pt-md pb-md">
+                                        @Html.DisplayFor(model => model.BeneficiaryBankAddress1, new { @class = "form-control" })
+                                        <br />@Html.DisplayFor(model => model.BeneficiaryBankAddress2, new { @class = "form-control" })
+                                    </td>
+                                </tr>
+
+                                @*Beneficiary Bank City / Suburb*@
+                                <tr>
+                                    <td class="pt-md pb-md text-weight-bold">
+                                        City / Suburb
+                                    </td>
+                                    <td class="pt-md pb-md">
+                                        @Html.DisplayFor(model => model.BeneficiaryBankCity, new { @class = "form-control" })
+                                    </td>
+                                </tr>
+
+                                @*Beneficiary Bank State / Province*@
+                                <tr>
+                                    <td class="pt-md pb-md text-weight-bold">
+                                        State / Province
+                                    </td>
+                                    <td class="pt-md pb-md">
+                                        @Html.DisplayFor(model => model.BeneficiaryBankStateOrProvince, new { @class = "form-control" })
+                                    </td>
+                                </tr>
+
+                                @*Beneficiary Bank ZIP / Postal Code*@
+                                <tr>
+                                    <td class="pt-md pb-md text-weight-bold">
+                                        ZIP / Postal Code
+                                    </td>
+                                    <td class="pt-md pb-md">
+                                        @Html.DisplayFor(model => model.BeneficiaryBankPostalCode, new { @class = "form-control" })
+                                    </td>
+                                </tr>
+
+                                @*Beneficiary Bank Country*@
+                                <tr>
+                                    <td class="pt-md pb-md text-weight-bold">
+                                        Beneficiary Bank Country
+                                    </td>
+                                    <td class="pt-md pb-md">
+                                        @Html.DisplayFor(model => model.BeneficiaryBankCountryName, new { @class = "form-control" })
+                                    </td>
+                                </tr>
+                                
+                            </tbody>
+                        </table>
+
+
+                        <footer class="panel-footer">
+                            <div class="row">
+                                <div class="col-sm-9">
+                                    
+                                </div>
+                                <script type="text/javascript" language="javascript">
+                                    $("#btnMessenger").on('click',
+                                        function () {
+                                            $("#res").val("messenger");
+                                        });
+                                    $("#btnFile").on('click',
+                                        function () {
+                                            $("#res").val("file");
+                                        });
+                                    $('a#submitlink').click(function () {
+                                        console.log(".DetailsForm submit enter");
+                                        $('form#DetailsForm').submit();
+                                    });
+                                </script>
+                            </div>
+                        </footer>
+                    }
+                }
+
+
+            </div>
+        </section>
+    </div>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded",
+        function() {
+            $.ajax({
+                url: "@Url.Action("GetImageLink", "Payment")",
+                type: "POST",
+                data: { id: "@Model.PaymentId", res: "" },
+                dataType: "json",
+                success: function(result) {
+                    console.log(result);
+                    var allbuttons = $('.at-share-btn[role="button"]');
+                    allbuttons.each(function() {
+                        var value = $(this).attr('href');
+                        console.log(value);
+                        if (value != null && value != 'undefined') {
+                            $(this).attr('href',
+                                value.replace('{url}',
+                                    '@String.Format("{0}/SharedViewer/PaymentDetails/?photoId=", ((System.Web.HttpRequestWrapper) Request).Url.Authority)' +
+                                    result));
+
+                            $('#shareDiv').removeClass('hidden');
+                        }
+                    });
+                }
+            });
+        });
+</script>

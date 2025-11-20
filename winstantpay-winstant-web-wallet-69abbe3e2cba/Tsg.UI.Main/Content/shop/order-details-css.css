@@ -1,0 +1,373 @@
+.modal-open .modal {
+    overflow: hidden;
+}
+
+.modal-dialog {
+    width: 100% !important;
+    top: auto;
+    bottom: auto;
+    margin: 10% auto;
+    min-height: max-content;
+}
+
+.order-details-popup {
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    max-height: 69vh;
+}
+
+.order-details-title {
+    margin: 18px;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.order-details-header .fa.fa-close {
+    position: absolute;
+    right: 25px;
+    top: 14px;
+    font-size: 25px;
+}
+
+.order-details-popup .order-details-description {
+    padding: 10px 0;
+    background: #eee;
+}
+
+    .order-details-popup .order-details-description .wrapper {
+        margin: 0 8%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+        .order-details-popup .order-details-description .wrapper .reference span,
+        .order-details-popup .order-details-description .wrapper .paid-by span {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            max-width: 180px;
+        }
+
+    .order-details-popup .order-details-description p {
+        display: flex;
+        flex-direction: column;
+        color: #777;
+    }
+
+        .order-details-popup .order-details-description p span {
+            color: #707070;
+            font-weight: 700;
+        }
+
+.order-details-popup .order-info {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 0;
+    margin: 0 8%;
+    min-height: 186px;
+}
+
+.order-details-popup .order-info-title {
+    margin: 10px 0;
+    font-size: 22px;
+}
+
+.order-details-popup .order-info .top,
+.order-details-popup .order-info .bottom .product-row {
+    display: flex;
+}
+
+    .order-details-popup .order-info .top p {
+        width: 20%;
+        padding: 20px;
+        background: #eee;
+        color: #777;
+        border-right: 1px solid #ccc;
+        border-bottom: 1px solid #ccc;
+        margin: 0 !important;
+    }
+
+        .order-details-popup .order-info .top p:last-child {
+            border-right: 0;
+        }
+
+.order-details-popup .order-info .bottom {
+    min-height: 57px;
+}
+
+    .order-details-popup .order-info .bottom .product-row div {
+        width: 20%;
+        padding: 20px;
+        border-right: 1px solid #ccc;
+        border-bottom: 1px solid #ccc;
+    }
+
+    .order-details-popup .order-info .bottom .product-row:last-child div {
+        border-bottom: 0;
+    }
+
+    .order-details-popup .order-info .bottom .product-row div:last-child {
+        border-right: 0;
+    }
+
+    .order-details-popup .order-info .bottom .product-row div span {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        max-width: 200px;
+        display: inline-block;
+        font-weight: 600;
+    }
+
+.order-details-popup .payment-info {
+    align-self: flex-end;
+    padding: 10px 0;
+    min-height: 186px;
+}
+
+/*.order-details-popup .payment-info .wrapper { width: 700px; }*/
+
+.order-details-popup .payment-info-title {
+    margin: 10px 0;
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.order-details-popup .payment-info .top, .order-details-popup .payment-info .bottom .payment-row {
+    display: flex;
+}
+
+    .order-details-popup .payment-info .top p {
+        width: 50%;
+        padding: 20px;
+        color: #777;
+        background: #eee;
+        border-right: 1px solid #ccc;
+        border-bottom: 1px solid #ccc;
+        margin: 0 !important;
+    }
+
+        .order-details-popup .payment-info .top p:last-child {
+            border-right: 0;
+        }
+
+.order-details-popup .payment-info .bottom {
+    min-height: 57px;
+}
+
+    .order-details-popup .payment-info .bottom .payment-row div {
+        width: 50%;
+        padding: 20px;
+        border-right: 1px solid #ccc;
+        border-bottom: 1px solid #ccc;
+    }
+
+    .order-details-popup .payment-info .bottom .payment-row:last-child div {
+        border-bottom: none;
+    }
+
+    .order-details-popup .payment-info .bottom .payment-row div:last-child {
+        border-right: 0;
+    }
+
+    .order-details-popup .payment-info .bottom .payment-row div span {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        max-width: 200px;
+        display: inline-block;
+        font-weight: 600;
+    }
+
+.order-details-popup .order-info .wrapper, .order-details-popup .payment-info .wrapper {
+    border: 1px solid #ccc;
+}
+
+.order-details-popup .header .fa-close {
+    position: absolute;
+    right: 25px;
+    top: 20px;
+    font-size: 32px;
+    z-index: 10;
+    color: #aaa;
+    transition: .3s;
+}
+
+    .order-details-popup .header .fa-close:hover {
+        cursor: pointer;
+        color: #000;
+        transition: .3s;
+    }
+
+.order-details-popup .content {
+    overflow-y: scroll;
+    height: auto
+}
+
+    .order-details-popup .content .wrapper {
+        display: flex;
+        flex-direction: column;
+    }
+
+.order-details-popup .header .order-details-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #707070;
+    font-weight: 600;
+}
+
+.order-details-popup .order-info-title,
+.order-details-popup .payment-info-title {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.order-details-popup .payment-info {
+    margin-right: 8%;
+    margin-bottom: 20px;
+    min-width: 34%;
+}
+
+    .order-details-popup .payment-info a {
+        text-decoration: none;
+    }
+
+.order-info .wrapper,
+.payment-info .wrapper {
+    font-size: 14px;
+}
+
+@media(max-width: 1024px) {
+    .modal-dialog {
+        min-height: 100%;
+    }
+
+    .order-details-popup {
+        /*min-height: 90vh;*/
+        max-height: 80vh;
+    }
+
+        .order-details-popup .order-details-description p:nth-child(2) {
+            display: none;
+        }
+
+        .order-details-popup .order-info .bottom {
+            min-height: 49px;
+        }
+
+        .order-details-popup .payment-info .bottom {
+            min-height: 49px;
+        }
+
+        .order-details-popup .order-info .bottom .product-row div:nth-of-type(2),
+        .order-details-popup .order-info .bottom .product-row div:nth-of-type(3),
+        .order-details-popup .order-info .bottom .product-row div:nth-of-type(4),
+        .order-details-popup .order-info .top p:nth-of-type(2),
+        .order-details-popup .order-info .top p:nth-of-type(3),
+        .order-details-popup .order-info .top p:nth-of-type(4) {
+            display: none;
+        }
+
+        .order-details-popup .order-info .bottom .product-row div,
+        .order-details-popup .order-info .top p {
+            width: 50%;
+        }
+        /*.order-details-popup .order-details-description .wrapper{
+        width: 600px;
+    }
+    .order-details-popup .order-info{
+        width: 600px;
+    }
+    .order-details-popup .content .wrapper{
+        width: 600px;
+    }
+    .order-details-popup .payment-info .wrapper{
+        width: 600px;
+    }*/
+        .order-details-popup .header {
+            min-height: 40px;
+        }
+
+            .order-details-popup .header .order-details-title {
+                font-size: 16px;
+            }
+
+        .order-details-popup .order-info-title,
+        .order-details-popup .payment-info-title {
+            font-size: 14px;
+        }
+
+    .order-info .wrapper,
+    .payment-info .wrapper {
+        font-size: 12px;
+    }
+
+    .order-details-popup .order-info .top p,
+    .order-details-popup .order-info .bottom .product-row div,
+    .order-details-popup .payment-info .top p,
+    .order-details-popup .payment-info .bottom .payment-row div {
+        padding: 10px;
+    }
+
+    .order-details-popup .header .fa-close {
+        right: 20px;
+        top: 10px;
+        font-size: 20px;
+    }
+
+    .order-details-popup .payment-info {
+        margin-right: 8%;
+        margin-bottom: 20px;
+        min-width: 84%;
+    }
+
+    .order-details-popup .order-details-description p, .order-details-popup .order-details-description span {
+        font-size: 12px;
+        font-weight: 500;
+    }
+}
+
+@media(max-width: 767px) {
+    .order-details-popup .order-details-description {
+        padding: 15px 0px 10px 0;
+    }
+}
+
+
+@media(max-width: 600px) {
+    .order-details-popup .order-details-description .wrapper .reference {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        max-width: 95%;
+    }
+
+    .order-details-popup .order-info .bottom .product-row div span {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        max-width: 95%;
+    }
+
+    .order-details-popup .payment-info .bottom .payment-row div span {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        max-width: 95%;
+    }
+}
+
+@media (max-width: 500px) {
+
+    .order-details-popup .order-info .bottom .product-row div span {
+        max-width: 110%;
+    }
+
+    .order-details-popup .payment-info .bottom .payment-row div span {
+        max-width: 110%;
+    }
+}

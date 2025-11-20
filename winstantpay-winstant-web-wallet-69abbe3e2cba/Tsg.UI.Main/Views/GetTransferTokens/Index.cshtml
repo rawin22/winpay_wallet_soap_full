@@ -1,0 +1,119 @@
+﻿@model IEnumerable<TSG.Models.ServiceModels.Transfers.TransfersTokenSo>
+    @using Tsg.UI.Main.App_LocalResources
+    @using TSG.Models.Enums
+    @using WinstantPay.Common.Extension
+    @{
+        ViewBag.Title = GlobalRes.TransfersTokens_Title;
+        Layout = "../Shared/_LayoutMain.cshtml";
+        var r = EnumExtensions.GetDictionary<DelegatedAuthorirySourceLimitationTypeEnum>();
+
+        var x = EnumHelper<DelegatedAuthorirySourceLimitationTypeEnum>.GetDisplayValues(DelegatedAuthorirySourceLimitationTypeEnum.Qr);
+    }
+
+
+    <div class="row">
+        <section class="panel">
+
+            <header class="panel-heading" data-panel-toggle="">
+                <div class="panel-actions">
+                    <a href="#" class="panel-action panel-action-toggle" data-panel-toggle=""></a>
+                </div>
+                <h2 class="panel-title">@ViewBag.Title</h2>
+                @*<p class ="panel-subtitle"></p>*@
+            </header>
+
+            <div class="panel-body" style="display: block;">
+                <br />
+                <div class="row">
+
+                    <div class="col-sm-12">
+                        <table class="table table-bordered table-striped table-condensed mb-none" id="datatable-default">
+                            <thead>
+                                <tr>
+                                    <th> @GlobalRes.DelegatedAuthority_Tokens </th>
+                                    <th> @GlobalRes.OrdersList_CreationDate </th>
+                                    <th> @GlobalRes.GetBanksPage_Action </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr id="transferToken_@item.Transfers_Id">
+                                        <td>
+                                            @if ((DelegatedAuthorirySourceLimitationTypeEnum)item.DaPaymentLimitSourceType_EnumKey == DelegatedAuthorirySourceLimitationTypeEnum.Qr)
+                                            {
+                                                <span><i class="fa fa-qrcode"></i></span>
+                                            }
+                                            @if ((DelegatedAuthorirySourceLimitationTypeEnum)item.DaPaymentLimitSourceType_EnumKey == DelegatedAuthorirySourceLimitationTypeEnum.BarCode)
+                                            {
+                                                <span><i class="fa fa-barcode"></i></span>
+                                            }
+                                            @if ((DelegatedAuthorirySourceLimitationTypeEnum)item.DaPaymentLimitSourceType_EnumKey == DelegatedAuthorirySourceLimitationTypeEnum.Nfc)
+                                            {
+                                                <span><i class="fa fa-rss-square"></i></span>
+                                            }
+                                            @if ((DelegatedAuthorirySourceLimitationTypeEnum)item.DaPaymentLimitSourceType_EnumKey == DelegatedAuthorirySourceLimitationTypeEnum.SecretCode)
+                                            {
+                                                <span><i class="fa fa-wallet"></i></span>
+                                            }
+                                            @item.DaPayLimits_MediaName
+                                        </td>
+                                        <td> @Html.DisplayFor(modelItem => item.Transfers_CreatedDate) </td>
+                                        <td>
+                                            <a class="btn btn-success" id="accept_token" onclick="acceptDeclineTokenEvent('@item.Transfers_Id', true)">@GlobalRes.CommonWords_Accept</a>
+                                            <a class="btn btn-danger" id="decline_token" onclick="acceptDeclineTokenEvent('@item.Transfers_Id', false)">@GlobalRes.CommonWords_Decline</a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+<script type="text/javascript" language="javascript">
+    function acceptDeclineTokenEvent(transferId, isAccepted) {
+        var transferedTokenId = transferId;
+        blockWindow();
+        $.ajax({
+            url: "@Url.Action("Post", "ReceipTustedToken")",
+            type: "POST",
+            data: {
+                'TransferedRecordId': transferId,
+                'Action': isAccepted
+            },
+            dataType: "json",
+            charset: 'utf-8'
+        }).error(function (request, status, error) {
+            console.log(request);
+            console.log(status);
+            console.log(error);
+            $.unblockUI();
+            swal({
+                title: error,
+                timer: 3000,
+                type: 'warning',
+                showConfirmButton: false
+            });}).success(function (data) {
+                $.unblockUI();
+                if (data.Success) {
+                    swal({
+                        title: data.InfoBlock.UserMessage,
+                        timer: 3000,
+                        type: 'success',
+                        showConfirmButton: true
+                    });
+                    $('#transferToken_' + transferedTokenId).remove();
+                } else {
+                    swal({
+                        title: data.InfoBlock.UserMessage,
+                        timer: 5000,
+                        type: 'warning',
+                        showConfirmButton: true
+                    });
+
+                }
+        });
+    }
+</script>

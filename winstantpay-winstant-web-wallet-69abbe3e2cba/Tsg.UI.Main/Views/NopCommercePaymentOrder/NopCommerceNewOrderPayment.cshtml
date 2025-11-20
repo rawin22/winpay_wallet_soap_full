@@ -1,0 +1,91 @@
+﻿@using Tsg.UI.Main.App_LocalResources
+@model Tsg.UI.Main.Models.NopCommerce.NopCommerceModel
+
+@{
+    ViewBag.Title = GlobalRes.HomeCheckoutIndexPage_Title;
+    Layout = "../Shared/_LayoutMain.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <section class="panel  @(ViewBag.OpenPanel != null ? "" : "panel-featured panel-featured-info")">
+
+            <header class="panel-heading" data-panel-toggle="">
+                <div class="panel-actions">
+                    <a href="#" class="panel-action panel-action-toggle" data-panel-toggle=""></a>
+                </div>
+
+                <h2 class="panel-title">@GlobalRes.HomeCheckoutIndexPage_Title</h2>
+                <p class="panel-subtitle">@GlobalRes.HomeCheckoutIndexPage_SubTitle</p>
+            </header>
+            
+            <div class="panel-body">
+                <div class="form-group">
+                    <div class="col-md-12 alert @(Model.IsSandbox ? "alert-warning" : "hidden")" id="sandboxInfo" style="margin: 5px 0px">
+                        @Html.Raw("This merchant set on sandbox.")
+                    </div>
+                    <div class="col-md-12 alert @(Model.IsSuccess != null ? Model.IsSuccess == true ? "alert-success" : "alert-danger" : "hidden")" id="errorInfo">
+                        @Html.Raw(Model.Message)
+                    </div>
+                </div>
+
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">@GlobalRes.MerchantsControllerNopMerchantPayment_ItemName<span class="required" aria-required="true">*</span></label>
+                    <div class="col-sm-6">
+                        @Html.TextBoxFor(m => m.ItemName, Model.ItemName, new { @class = "form-control", required = "", @readonly = "readonly" })
+                        @Html.HiddenFor(m => m.Items, new { @class = "form-control", required = "", @readonly = "readonly" })
+                    </div>
+                </div>                
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">@GlobalRes.FavoriteCurrencyIndexPage_CurrencyCode<span class="required" aria-required="true">*</span></label>
+                    <div class="col-sm-6">
+                        @Html.TextBoxFor(m => m.CurrencyCode, new { @class = "form-control", required = "", @readonly = "readonly" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">@GlobalRes.ExchangeCurrencyExchangePage_Amount<span class="required" aria-required="true">*</span></label>
+                    <div class="col-sm-6">
+                        @Html.TextBoxFor(m => m.Amount, new { @class = "form-control", required = "", @readonly = "readonly" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">@GlobalRes.HomeCheckoutIndexPage_ChooseAlias<span class="required" aria-required="true">*</span></label>
+                    <div class="col-sm-6">
+                        @Html.DropDownListFor(m => m.Alias, UiHelper.PrepareAccountAliases(), new { @class = "form-control", required = "" })
+                        @Html.ValidationMessageFor(m => m.Alias)
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">@GlobalRes.HomeCheckoutIndexPage_ChooseAccount<span class="required" aria-required="true">*</span></label>
+                    <div class="col-sm-6">
+                        @Html.TextBoxFor(m => m.Account, new { @class = "form-control", required = "", @readonly = "readonly" })
+                        @Html.ValidationMessageFor(m => m.Account)
+                    </div>
+                </div>
+
+                @Html.HiddenFor(m => m.OrderTokenInEwalletSystem, Model.OrderTokenInEwalletSystem)
+            </div>
+
+            <footer class="panel-footer">
+                <div class="row">
+                    <div class="col-sm-9 col-sm-offset-3">
+                        <input type="submit" class="btn btn-success" value="@GlobalRes.NopcommercePlugin_PaymentConfirmPage_Confirm" />
+                        <a class="btn btn-danger" href="@Url.Action("DeclineNopcommerceOrder", new {declineUrl = String.Format(Model.CancelReturn), orderId=Model.OrderTokenInEwalletSystem})">@GlobalRes.NopcommercePlugin_PaymentConfirmPage_Decline</a>
+                    </div>
+                </div>
+            </footer>
+
+        </section>
+    </div>
+}
+
+@section Scripts {
+    @*@Scripts.Render("~/bundles/jqueryval")*@
+}
+
+

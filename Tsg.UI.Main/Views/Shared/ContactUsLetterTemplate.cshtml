@@ -1,0 +1,308 @@
+﻿@using System.Drawing
+@model Tsg.UI.Main.Models.UserTaskModel
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WinstantPay Info Message</title>
+    <style type="text/css">
+        div, p, a, li, td {
+            -webkit-text-size-adjust: none;
+        }
+
+        #outlook a {
+            padding: 0;
+        }
+
+        html {
+            width: 100%;
+        }
+
+        body {
+            width: 100% !important;
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+        }
+
+        .ExternalClass {
+            width: 100%;
+        }
+
+            .ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div {
+                line-height: 100%;
+            }
+
+        .backgroundTable {
+            margin: 0;
+            padding: 0;
+            width: 100% !important;
+            line-height: 100% !important;
+        }
+
+        img {
+            outline: none;
+            text-decoration: none;
+            border: none;
+            -ms-interpolation-mode: bicubic;
+        }
+
+        a img {
+            border: none;
+        }
+
+        .image_fix {
+            display: block;
+        }
+
+        p {
+            margin: 0px 0px !important;
+        }
+
+        table td {
+            border-collapse: collapse;
+        }
+
+        table {
+            border-collapse: collapse;
+            mso-table-lspace: 0pt;
+            mso-table-rspace: 0pt;
+        }
+
+        a {
+            color: #003366;
+            text-decoration: none;
+            text-decoration: none !important;
+        }
+
+        table td a {
+            font-weight: 300
+        }
+
+        table[class=full] {
+            width: 100%;
+            clear: both;
+        }
+        /*IPAD STYLES*/
+        @@media only screen and (max-width: 640px) {
+            a[href^="tel"], a[href^="sms"] {
+                text-decoration: none;
+                color: #33b9ff; /* or whatever your want */
+                pointer-events: none;
+                cursor: default;
+            }
+
+            .mobile_link a[href^="tel"], .mobile_link a[href^="sms"] {
+                /*text-decoration: default;*/
+                color: #33b9ff !important;
+                pointer-events: auto;
+                cursor: default;
+            }
+
+            table[class=devicewidth] {
+                width: 440px !important;
+                text-align: left !important;
+                padding-left: 10px;
+            }
+
+            table[class=devicewidthinner] {
+                width: 420px !important;
+                text-align: center !important;
+            }
+
+            img[class=banner] {
+                width: 440px !important;
+                height: 220px !important;
+            }
+
+            img[class=col2img] {
+                width: 440px !important;
+                height: 220px !important;
+            }
+        }
+        /*IPHONE STYLES*/
+        @@media only screen and (max-width: 480px) {
+            a[href^="tel"], a[href^="sms"] {
+                text-decoration: none;
+                color: #33b9ff; /* or whatever your want */
+                pointer-events: none;
+                cursor: default;
+            }
+
+            .mobile_link a[href^="tel"], .mobile_link a[href^="sms"] {
+                /*text-decoration: default;*/
+                color: #33b9ff !important;
+                pointer-events: auto;
+                cursor: default;
+            }
+
+            table[class=devicewidth] {
+                width: 280px !important;
+                text-align: center !important;
+            }
+
+            table[class=devicewidthinner] {
+                width: 260px !important;
+                text-align: left !important;
+                padding-left: 10px;
+            }
+
+            img[class=banner] {
+                width: 280px !important;
+                height: 140px !important;
+            }
+
+            img[class=col2img] {
+                width: 280px !important;
+                height: 140px !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <table width="100%" bgcolor="#fcfcfc" cellpadding="0" cellspacing="0" border="0" class="backgroundTable"
+           st-sortable="header">
+        <tbody>
+            <tr>
+                <td>
+                    <table width="600" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth">
+                        <tbody>
+                            <tr>
+                                <td width="100%">
+                                    <table width="600" bgcolor="#003366" cellpadding="0" cellspacing="0" border="0" align="center"
+                                           class="devicewidth">
+                                        <tbody>
+                                            <tr>
+                                                <td width="100%" height="85" align="center">
+                                                    <div>
+                                                        <a target="_blank" href="@(HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority) + Url.Content("~"))">
+                                                            <img src="@String.Format(HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority) + Url.Content("~")+"/Content/assets/images/winstantpay-logo-notag-white.png")"
+                                                                 alt="WinstantPay" border="0" width="200" height="75"
+                                                                 style="border:none; outline:none; text-decoration:none;" />
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <!-- end of menu -->
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table width="100%" bgcolor="#fcfcfc" cellpadding="0" cellspacing="0" border="0" class="backgroundTable"
+           st-sortable="full-text">
+        <tbody>
+            <tr>
+                <td>
+                    <table width="600" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth">
+                        <tbody>
+                            <tr>
+                                <td width="100%">
+                                    <table width="600" cellpadding="0" cellspacing="0" border="0" align="center"
+                                           class="devicewidth">
+                                        <tbody>
+                                            <!-- Spacing -->
+                                            <tr>
+                                                <td width="100%" height="20"></td>
+                                            </tr>
+                                            <!-- Spacing -->
+                                            <tr>
+                                                <td width="100%" align="center" valign="middle"
+                                                    style="font-family: Helvetica, arial, sans-serif; font-size: 13px;color: #282828; line-height: 30px;"
+                                                    st-content="full-text">
+                                                    <h1>We received new feedback.</h1>
+                                                    <h2>
+                                                        Ticket number is:
+                                                        <span style="text-decoration: none; color: #0a00ff; font-weight: 600"># @(Model.UserTaskNumber)</span>
+                                                    </h2>
+                                                    <hr />
+                                                </td>
+                                            </tr>
+                                            <!-- Spacing -->
+                                            <tr>
+                                                <td width="100%" height="20"></td>
+                                            </tr>
+                                            <!-- Spacing -->
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table width="100%" bgcolor="#fcfcfc" cellpadding="0" cellspacing="0" border="0" class="backgroundTable"
+           st-sortable="mail-info">
+        <tbody>
+            <tr>
+                <td>
+                    <table width="600" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth">
+                        <tbody>
+                            <tr style="height: 25px">
+                                <td width="20%">
+                                    <b>Department </b>
+                                </td>
+                                <td width="80%">
+                                    @(Model.DepartmentName)
+                                </td>
+                            </tr>
+                            <tr style="height: 25px">
+                                <td width="20%">
+                                    <b>Subject</b>
+                                </td>
+                                <td width="80%">
+                                    @(Model.Subject)
+                                </td>
+                            </tr>
+                            <tr style="height: auto">
+                                <td width="20%" style="vertical-align: top;">
+                                    <b>Message</b>
+                                </td>
+                                <td width="80%">
+                                    @Html.Raw(Model.MailText)
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table width="100%" bgcolor="#fcfcfc" cellpadding="0" cellspacing="0" border="0" class="backgroundTable" style="height: 65px"
+           st-sortable="footer">
+        <tbody>
+            <tr>
+                <td>
+                    <table width="600" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth">
+                        <tbody>
+                            <tr>
+                                <td><hr /></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span>© @(Model.CompanyName) Copyright 2016-2018. All Rights Reserved.</span>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

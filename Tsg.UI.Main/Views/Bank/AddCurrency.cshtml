@@ -1,0 +1,74 @@
+﻿@using Tsg.UI.Main.App_LocalResources
+@model Tsg.UI.Main.Models.CurrencyViewModel
+
+@{
+    ViewBag.Title = Model.CurrencyId != 0 ? GlobalRes.EditCurrencyPage_Title : GlobalRes.AddCurrencyPage_Title;
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+
+@using (Html.BeginForm("AddCurrency", "Bank", FormMethod.Post, new {cId = Model.CurrencyId, Model}))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <section class="panel  @(ViewBag.OpenPanel != null ? "" : "panel-featured panel-featured-info")">
+
+            <header class="panel-heading" data-panel-toggle="">
+                <div class="panel-actions">
+                    <a href="#" class="panel-action panel-action-toggle" data-panel-toggle=""></a>
+                </div>
+
+                <h2 class="panel-title">@ViewBag.Title</h2>
+                <p class="panel-subtitle">@(Model.CurrencyId != 0 ? GlobalRes.EditCurrencyPage_PageSubTitle : GlobalRes.AddCurrencyPage_PageSubTitle)</p>
+            </header>
+
+            <div class="panel-body">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(h=>h.CurrencyId)
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">@GlobalRes.AddCurrencyPage_CurrencyName <span class="required" aria-required="true">*</span></label>
+                    <div class="col-sm-6">
+                        @Html.TextBoxFor(m => m.CurrencyName, new { @class = "form-control", required = "" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">@GlobalRes.AddCurrencyPage_CurrencyCode <span class="required" aria-required="true">*</span></label>
+                    <div class="col-sm-3">
+                        @Html.TextBoxFor(m => m.CurrencyCode, new { @class = "form-control", required = "" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">@GlobalRes.AddCurrencyPage_CurrencyCode <span class="required" aria-required="true">*</span></label>
+                    <div class="col-sm-3">
+                        @Html.TextBoxFor(m => m.Symbol, new { @class = "form-control", required = "" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-3 col-md-10" style="color: green">
+                        @ViewBag.Message
+                    </div>
+                </div>
+
+            </div>
+
+            <footer class="panel-footer">
+                <div class="row">
+                    <div class="col-sm-9 col-sm-offset-3">
+                        <input type="submit" class="btn btn-success" value="@(Model.CurrencyId != 0 ? GlobalRes.EditCurrencyPage_Edit : GlobalRes.AddCurrencyPage_Add)" />
+                       
+                    <a class="btn btn-success" href="/Bank/GetCurrencies">@GlobalRes.AddCurrencyPage_Back</a>
+                       
+                    </div>
+                </div>
+            </footer>
+
+        </section>
+    </div>
+}
+
+@section Scripts {
+    @*@Scripts.Render("~/bundles/jqueryval")*@
+}

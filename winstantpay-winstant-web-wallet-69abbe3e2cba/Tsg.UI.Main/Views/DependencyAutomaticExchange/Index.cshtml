@@ -1,0 +1,124 @@
+﻿@model System.Collections.Generic.IEnumerable<TSG.Models.ServiceModels.AutomaticExchange.DependencyLiquidForUserSo>
+
+@{
+	ViewBag.Title = "Liquidation Preferences";
+	Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+<link href="~/Content/dragula/dragula.min.css" rel="stylesheet" />
+<script src="~/Content/dragula/dragula.min.js"></script>
+
+<section class="panel panel-featured panel-featured-info">
+	<header class="panel-heading">
+		<h2 class="panel-title">@ViewBag.Title</h2>
+		<p class="panel-subtitle">Overdraft user list</p>
+	</header>
+
+
+	<div class="panel-body">
+
+		<div class="col-sm-6">
+			<h4>Currencies Used in Auto-Exchange</h4>
+
+			<ul id="left1" class="cont-dragula dashedblock">
+				@*@{
+						var orderedList = Model.OrderBy(ob => ob.DependencyLiquidForUser_LiquidOrder).ToList();
+					}
+					@foreach (var forUserSo in orderedList)
+					{
+						<li id="@forUserSo.DependencyLiquidForUser_LiquidCcyId">
+							<img src="/Content/assets/images/onebyone.png" class="flag flag-@(forUserSo.DependencyLiquidForUser_LiquidCcyList.LiquidCcyList_CurrencyCode.ToLower())" />
+
+							@forUserSo.DependencyLiquidForUser_LiquidCcyList.LiquidCcyList_CurrencyCode
+						</li>
+					}*@
+			</ul>
+		</div>
+		<div class="col-sm-6">
+			<h4>Currencies Not Used in Auto-Exchange</h4>
+
+			<ul id="right1" class="cont-dragula dashedblock" style=""></ul>
+		</div>
+
+	</div>
+</section>
+<script type="text/javascript" language="javascript">
+
+		drake = dragula([left1, right1]).on('drop',
+			function(el, source) {
+
+				var positionIndex = 0;
+				try {
+					let idsList = [];
+					$('#left1 > li').each(function () { idsList.push(this.id); });
+					console.log("dragula idsList:");
+					console.log(idsList);
+					regenOrdering(idsList.join(","));
+				} catch (e) {
+
+				}
+			});
+
+
+	function regenOrdering(ids) {
+		console.log("regenOrdering ids:");
+		console.log(ids);
+			$.ajax({
+				//url: '@Url.Action("ReorganizationLiquidList", "DependencyAutomaticExchange")',
+				url: '@Url.Action("UpdateCustomerLiquidationPreferences", "DependencyAutomaticExchange")',
+				type: "POST",
+				dataType: "json",
+				traditional: true,
+				data: {
+					"currencyList": ids
+				},
+				beforeSend: function () {
+					blockWindow();
+				},
+				success: function (result) {
+					$.unblockUI();
+					console.log("regenOrdering, UpdateCustomerLiquidationPreferences result:");
+					console.log(result);
+				}
+			});
+		}
+
+		$(document).ready(function() {
+			$.ajax({
+				//url: '@Url.Action("GetAllAvaliableAutomaticExchangeLiquidCcy", "DependencyAutomaticExchange")',
+				url: '@Url.Action("GetCustomerLiquidationPreferences", "DependencyAutomaticExchange")',
+				type: "POST",
+				dataType: "json",
+				success: function (result) {
+					console.log("GetCustomerLiquidationPreferences result:");
+					console.log(result);
+					$('#right1').empty();
+					$.each(result,
+						function (key, val) {
+							console.log("each val");
+							console.log(val);
+							if (val.IsActiveForAutoExchange === true) {
+								$('#left1').append('<li id="' +
+									val.CurrencyCode +
+									'"><img src="/Content/assets/images/onebyone.png" class="flag flag-' +
+									val.CurrencyCode.toLowerCase() +
+									'"/>' +
+									val.CurrencyCode +
+									'</li>');
+							}
+							else {
+								$('#right1').append('<li id="' +
+									val.CurrencyCode +
+									'"><img src="/Content/assets/images/onebyone.png" class="flag flag-' +
+									val.CurrencyCode.toLowerCase() +
+									'"/>' +
+									val.CurrencyCode +
+									'</li>');
+							}
+						});
+
+					//$('#checkbox').prop('checked', result.success);
+					//$.unblockUI();
+				}
+			});
+		});
+</script>

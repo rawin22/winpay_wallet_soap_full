@@ -1,0 +1,54 @@
+﻿@using Tsg.UI.Main.App_LocalResources
+@model Tsg.UI.Main.Models.Merchants.MerchantModel
+
+<div class="modal-content">
+    <div class="modal-header">
+        <img src="/Content/assets/images/winstantpay-logo-notag.png" height="35" alt="" />
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-top: 5px">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="alert alert-danger" style="display: none; margin-top: 2px;" id="errorMessageBlockGenModal">
+            <p class="m-none text-weight-semibold h6" id="errorMesageGenModal">@GlobalRes.MerchantsPage_ModalAddRec_SetCallBackAddress</p>
+        </div>
+        @Html.HiddenFor(h=>h.MerchantGuid)
+
+        <div class="row" style="margin-bottom: 3px">
+            <div class="col-sm-4">@GlobalRes.MerchantsPage_ModalAddRec_ButtonSize</div>
+            <div class="col-sm-8">
+                <div class="btn-group">
+                    <button type="button" id="buttonOnGenMin" class="btn btn-default" onclick="setminSize()">@GlobalRes.MerchantsIndexPage_GenerateMerchantModal_Small</button>
+                    <button type="button" id="buttonOnGenMid" class="btn btn-default" onclick="setmidSize()">@GlobalRes.MerchantsIndexPage_GenerateMerchantModal_Medium</button>
+                    <button type="button" id="buttonOnGenLarge" class="btn btn-default" onclick="setlargeSize()">@GlobalRes.MerchantsIndexPage_GenerateMerchantModal_Large</button>
+                </div>
+                <label> Integrate jquery into button? <input class="form-control" data-val="true" data-val-required="The IntegrateJsIntoSite field is required." id="IntegrateJsIntoSite" name="IntegrateJsIntoSite" style="text-align: left; width: 16px;" type="checkbox">
+                </label>
+            </div>
+        </div>
+        <div class="row" style="margin-bottom: 3px">
+
+            <div class="col-sm-4">@GlobalRes.MerchantsPage_ModalAddRec_CallBackAddress</div>
+            <div class="col-sm-8">
+                @Html.TextBoxFor(m => m.MerchantWebSiteCallBackAddress, new { @class = "form-control" })
+                @*<input type = "text" class = "form-control" id = "MerchantGenerateCallbackAddress"/>*@
+            </div>
+        </div>
+
+
+        <textarea class="codeview form-control" readonly="" rows="15" id="textAreaCode">
+            @{ Html.RenderPartial("PayButton", Model); }                  
+        </textarea>
+        <br />
+    </div>
+    <div class="modal-footer">
+
+        <div class="col-sm-3 col-sm-offset-6 alert alert-success" style="display: none; padding:10px!important" id="successGenMessageBlock">
+            <p class="m-none text-weight-semibold h6" id="successGenMesage">@GlobalRes.MerchantsPage_ModalAddRec_Copied</p>
+        </div>
+
+        <button type="submit" class="btn btn-info" id="okCopyModal" name="Delete" value="Delete" onclick="copyGeneratedButton()">@GlobalRes.MerchantsIndexPage_ModalGenerate_Copy</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">@GlobalRes.GetAllContractUsListPage_ModalAddRec_Close</button>
+    </div>
+</div>
+

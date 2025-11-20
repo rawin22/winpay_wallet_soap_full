@@ -1,0 +1,1907 @@
+﻿@using Tsg.UI.Main.App_LocalResources
+@model Tsg.UI.Main.Models.NewInstantPaymentReceiveViewModel
+
+@{
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+    ViewBag.Title = GlobalRes.DepositIndexPage_Title;
+}
+
+<style type="text/css">
+    .scrollable-menu {
+        height: auto;
+        max-height: 200px;
+        overflow-x: hidden;
+    }
+
+    .bs-searchbox {
+        padding: 4px 8px;
+    }
+</style>
+
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+@using (Html.BeginForm("Index", "Deposit", FormMethod.Post, new { enctype = "multipart/form-data", id = "fileUploadForm" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.Hidden("InstantPaymentReceiveId", Model.InstantPaymentReceiveId, new { id = "InstantPaymentReceiveId" })
+    //@Html.Hidden("ShortenedUrl", Model.ShortenedUrl, new { id = "ShortenedUrl" })
+    @Html.Hidden("alias", Model.Alias, new { id = "alias" })
+    @Html.Hidden("KycId", "", new { id = "KycId" })
+    @Html.Hidden("AuthToken", "", new { id = "AuthToken" })
+    @Html.Hidden("BaseCurrency", Model.CustomerBaseCurrencyCode, new { id = "baseCurrency" })
+
+    <div class="row" style="margin-bottom: -35px;">
+        <section class="panel panel-featured panel-featured-info">
+            <header class="panel-heading hidden-xs">
+                <h3 class="panel-title">@GlobalRes.DepositIndexPage_Subtitle</h3>
+            </header>
+            @{
+                var aliases = UiHelper.PrepareAccountAliases();
+            }
+            <div class="panel-body text-left qrgenpage">
+                <div class="tabs" style="margin-bottom: 0px !important">
+                    <ul class="nav nav-tabs nav-justified d-flex">
+                        @*@if (ViewBag.CurrTabName != null && ViewBag.CurrTabName.Equals("scanqr"))
+                            {*@
+                        <li class='active w-100 hidden'>
+                            <a href="#scanqr" data-toggle="tab" class="text-center" aria-expanded="True" id="tabScanQrCode">
+                                <img src="~/Content/assets/images/focus.png" /> <br /> @GlobalRes.QrPaymentNow_ScanQrCode
+                            </a>
+                        </li>
+                        <li class='w-100 disabled hidden'>
+                            <a href="#manualent" data-toggle="tab" class="text-center" aria-expanded="false" id="tabSetManual"><img src="~/Content/assets/images/sketch.png" /> <br />&nbsp;@GlobalRes.QrGen_RequestPaymentSoon</a>
+                        </li>
+                        @*}
+                            else
+                            {
+                                <li class='w-100'>
+                                    <a href="#scanqr" data-toggle="tab" class="text-center" aria-expanded="False" id="tabScanQrCode"><img src="~/Content/assets/images/focus.png" /> <br /> @GlobalRes.QrPaymentNow_ScanQrCode</a>
+                                </li>
+                                <li class='active w-100'>
+                                    <a href="#manualent" data-toggle="tab" class="text-center" aria-expanded="True" id="tabSetManual"><img src="~/Content/assets/images/sketch.png" /> <br />&nbsp;@GlobalRes.PaynowMobile_TypeManually</a>
+                                </li>
+                            }*@
+
+                    </ul>
+                    <div class="col-sm-12" style="font-size: 16px">
+                        <div class="hidden-sm hidden-md hidden-lg" style=" padding-top: 20%">
+                            <span style="padding-left: 25px">@GlobalRes.QrCodeInfo_ShareQr_Title</span>
+                            <hr />
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label" style="text-align: right">
+                                    @GlobalRes.QrGenPage_SelectAlias  <span class="required" aria-required="true">*</span>
+                                </label>
+                                <div class="col-sm-6">
+                                    @Html.DropDownList("ddlAlias", aliases, new { style = "width:100%", id = "ddlAlias", @class = "form-control ibc" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label text-right">@GlobalRes.Shared_NewInstantPaymentFormPage_Currency</label>
+                                <div class="col-sm-6">
+                                    @*@Html.DropDownListFor(m => m.CurrencyCode, Model.AvailableCurrencies, new { @class = "form-control", id = "ddlPriorUsedAliases" })*@
+                                    @Html.Hidden("CurrencyCode", Model.Currency, new { id = "CurrencyCode" })
+                                    <div class="dropdown" id="currencyDdr" style="width: 100%">
+                                        <button class="btn dropdown-toggle btn-default text-left dropdown" style="width: inherit; text-align: left; padding-left: 16px;" id="selectButton" data-toggle="dropdown">
+                                            @GlobalRes.Shared_NewInstantPaymentFormPage_SelectCurrency
+                                            <span id="btnCaret" class="searchBtnCaret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu scrollable-menu inner" role="listbox" id="ddlmenu" data-live-search="true" style="width: inherit">
+                                            <li id="searchabli"><div class="bs-searchbox"><input type="text" class="form-control" autocomplete="off" role="textbox" aria-label="@GlobalRes.Shared_NewInstantPaymentFormPage_Search" id="searchabletext"></div></li>
+
+                                            @{
+                                                var balances = UiHelper.PrepareCustomerBalances();
+
+                                                foreach (var item in UiHelper.PrepareAllAvailableCurrencies())
+                                                {
+                                                    var balance = balances.Any(t => t.CCY == item.CurrencyCode) ? balances.FirstOrDefault(t => t.CCY == item.CurrencyCode).BalanceAvailable : decimal.Zero;
+                                                    var currencyText = String.Format(" {0} {1} {2}", @Math.Round(balance, item.CurrencyAmountScale), @item.CurrencyCode, @item.CurrencyName);
+                                                    <li id="curr_@item.CurrencyCode">
+                                                        @if (!String.IsNullOrEmpty(item.CurrencyCode))
+                                                        {
+                                                            <a data-pdsa-dropdown-val="@item.CurrencyCode" data-pdsa-dropdown-text="@currencyText"><img src="/Content/assets/images/onebyone.png" class="flag flag-@item.CurrencyCode.ToLower()" /> <span class="@(balance < 0 ? " text-danger" : "")">@String.Format(" {0}", @Math.Round(balance, item.CurrencyAmountScale))</span> @String.Format("{0} {1}", @item.CurrencyCode, @item.CurrencyName)</a>
+                                                        }
+                                                        else
+                                                        {
+                                                            <a>@item.CurrencyCode</a>
+                                                        }
+                                                    </li>
+                                                }
+                                            }
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label text-right">@GlobalRes.Shared_NewInstantPaymentFormPage_Amount</label>
+                                <div class="col-sm-6">
+                                    <input class="form-control" id="Amount" name="Amount" required="" type="number" step="0.01" value="@Model.Amount" />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label text-right"></label>
+                                <div class="col-sm-6">
+                                    @if (Model.InstantPaymentReceiveId != Guid.Empty)
+                                    {
+                                        <button type="submit" class="btn btn-primary" name="submitButton" value="Update">Update</button>
+                                    }
+                                    else
+                                    {
+                                        <button type="submit" class="btn btn-primary" name="submitButton" value="GenerateQRCode">Generate QR Code</button>
+                                    }
+                                </div>
+
+                            </div>
+                            <div class="hidden" id="qrPreView">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="text-center">
+                                            @*                                        <h4>Preview</h4>*@
+                                            <div id="qrcode"></div>
+                                            @*<img id="imgqrcode" alt="No QR generated" style="width: 150px; height: 150px;" />*@
+                                        </div>
+                                    </div>
+                                    <div class="row" style="padding: 30px; text-align: center">
+                                        <div>
+                                            <a class="btn btn-default" id="downloadQRBtn"><i class="fa fa-download" download></i> &nbsp; Download</a>
+                                        </div>
+                                    </div>
+                                    <span class="col-sm-12 control-label" style="text-align: center">@GlobalRes.QrCodeInfo_ShareQr_Text</span>
+                                    <div class="row" id="divShortenedUrl">
+                                        <div class="text-center">
+                                            <input type="text" class="form-control col-sm-6" id="ShortenedUrl" name="ShortenedUrl" placeholder="Shortened URL" aria-label="Shortened URL" aria-describedby="basic-addon2" value="@Model.ShortenedUrl" readonly>
+                                            <div class="input-group-append">
+                                                <a class="btn btn-info" id="copyUrl"><i class="fa fa-copy"></i> &nbsp; Copy</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    @*<div id="modal-container" class="modal fade" tabindex="-1" role="dialog">*@
+    <div id="modal-container" role="dialog" class="modal fade" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    @*<div class="">*@
+                    <table class="table table-bordered table-striped table-condensed mb-none" id="datatable-default-history">
+                        <thead>
+                            <tr>
+                                <th>Email</th>
+                                <th>Name</th>
+                                <th>Address</th>
+                                <th>@GlobalRes.PaymentHistoryPage_Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                    @*</div>  *@
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<script type="text/javascript" src="~/Content/assets/vendor/jquery/jquery.js"></script>
+<script type="text/javascript" src="~/Content/assets/vendor/qrcode/qrcode.js"></script>
+
+<script>
+    var root = document.location.hostname;
+    var currentURL = window.location.href
+    // $("#example").load(root + path + file);
+    var getUrl = window.location;
+    var baseUrl = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
+    var host = getUrl.protocol + "//" + getUrl.host;
+    console.log("root: " + root);
+    console.log("currentURL: " + currentURL);
+    console.log("getUrl: " + getUrl);
+    console.log("baseUrl: " + baseUrl);
+    console.log("host: " + host);
+
+    var qrcode = new QRCode(document.getElementById("qrcode"),
+        {
+            width: 50,
+            height: 50
+        });
+
+    function makeCode() {
+        // MakeQrCode();
+        //var alias = $("#ddlAlias").val();
+        //var curr = $("#CurrencyCode").val();
+        //var amount = $("#Amount").val();
+        //var invoice = $("#Invoice").val();
+        //qrcode.makeCode('{"ToAlias":"' + alias + '","Currency" : "' + curr + '", "Amount" : "' + amount + '", "Invoice" : "' + invoice +'"}');
+    }
+
+    function GetQRCode(text) {
+        console.log("GetQRCode");
+        console.log("text: " + text);
+        var mytext = {
+            Text: text,
+            LogoIndex: 0
+        };
+        var jsontext = JSON.stringify(mytext);
+        console.log("GetQRCode-jsontext: " + jsontext);
+        console.log("Run ApiGenerateQrCodeAsBase64");
+
+        $.ajax({
+            url: "/api/ApiGenerateQrCodeAsBase64",
+            type: "POST",
+            data: jsontext,
+            dataType: "json",
+            contentType: 'application/json; charset=utf-8',
+            success: function (qrcoderesult, textStatus, jqXHR) {
+                //data - response from server
+                console.log("ApiGenerateQrCodeAsBase64 - Success");
+                console.log("qrcoderesult.QrCodeAsBase64 : " + qrcoderesult.QrCodeAsBase64);
+                var binary = "";
+                var responseText = jqXHR.responseText;
+                var responseTextLen = responseText.length;
+
+                for (i = 0; i < responseTextLen; i++) {
+                    binary += String.fromCharCode(responseText.charCodeAt(i) & 255)
+                }
+                $('#qrcode').html('<img width="300" height="300" src="data:image/png;base64,' + qrcoderesult.QrCodeAsBase64 + '" />');
+                $("#qrPreView").removeClass("hidden");
+            },
+            error: function (jqXhr, textStatus, errorThrown) {
+                console.log("ApiGenerateQrCodeAsBase64 - Failed");
+                console.log(jqXhr);
+                console.log(textStatus);
+                console.log(errorThrown);
+            }
+        });
+    }
+
+    function ShortenUrl() {
+        console.log("Run ShortenUrl");
+        var alias = $("#ddlAlias").val();
+        var ccy = $("#CurrencyCode").val();
+        var amount = $("#Amount").val();
+        var invoice = $("#Invoice").val();
+        var memo = $("#Memo").val();
+        var myurl = {
+            longUrl: "http://beta.winstantpay.com?toalias=" + alias  + "&ccy=" + ccy + "&amount=" + amount + "&invoice=" + invoice + "&memo=" + memo,
+            //longUrl: "http://beta.winstantpay.com"
+        };
+
+        console.log("data: " + JSON.stringify(myurl));
+        var jsondata =  JSON.stringify(myurl);
+        console.log("jsondata: " + jsondata);
+        $.ajax({
+            url: "http://vo2.tech/api/ShortenedUrls",
+            //url: "http://localhost:57688/api/ShortenedUrls",
+            //http://vo2.tech/api/ShortenedUrls
+            // url: "http://localhost/UrlShortening/api/ShortenedUrls",
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            },
+            //crossDomain: true,
+            type: "POST",
+            data: jsondata,
+            // data: JSON.stringify({ "longUrl": "http://beta.winstantpay.com?invoice=" + invoice }),
+            // data: { longUrl: 'http://beta.winstantpay.com'},
+            //data: {"longUrl":"http://beta.winstantpay.com"},
+            dataType: "json",
+            contentType: 'application/json; charset=utf-8',
+            //beforeSend: function() {
+            //    $('#LoadingOverlayApi').trigger('loading-overlay:show');
+            //},
+            success: function(result)
+            {
+                //data - response from server
+                console.log("Run ShortenUrl - Success");
+                console.log("shortUrl - " + result.shortUrl);
+            },
+            //success: function (result) {
+            //    console.log("Run MakeQrCode - Success");
+            //    document.getElementById("Memo").innerHTML = result.shortUrl;
+            //    //document.getElementById("currencyExchangePartView").innerHTML = result;
+            //    //$('#LoadingOverlayApi').trigger('loading-overlay:hide');
+            //},
+            error: function (jqXhr, textStatus, errorThrown) {
+                console.log("Run ShortenUrl - Failed");
+                console.log( jqXhr );
+                console.log( textStatus );
+                console.log( errorThrown );
+            }
+            //error: function (result)
+            //{
+            //    console.log("Run MakeQrCode - Failed - Result:" + result);
+            //}
+        });
+    }
+
+    function MakeQrCode() {
+        console.log("Run MakeQrCode");
+        // console.log("Run ShortenUrl");
+        var alias = $("#ddlAlias").val();
+        console.log("Alias = " + alias);
+        var ccy = $("#CurrencyCode").val();
+        var amount = $("#Amount").val();
+        var invoice = $("#Invoice").val();
+        var memo = $("#Memo").val();
+        var name = $("#Name").val();
+        var address = $("#Address").val();
+        var email = $("#Email").val();
+        var kycId = $("#KycId").val();
+        var instantPaymentReceiveId = $("#InstantPaymentReceiveId").val();
+        var shortenedUrl = $("#ShortenedUrl").val();
+
+        var fileUpload = $("#attachedFile").get(0);
+        var files = fileUpload.files;
+        if (files.length > 0) {
+        }
+
+        var token = $('input[name=__RequestVerificationToken]').val();
+        console.log(token);
+        var pageObj = {};
+        //var memoObj = {};
+        //var modelObj = {
+        //    Alias: alias,
+        //    Currency: ccy,
+        //    Amount: amount,
+        //    Invoice: invoice,
+        //    //Memo: {
+        //    //    Memo: memo,
+        //    //    Name: "Name",
+        //    //    Address: "Address",
+        //    //    Email: "Email"
+        //    //}
+        //}
+
+        // var modelJson =  JSON.stringify(modelObj);
+        pageObj.Alias = alias;
+        pageObj.Currency = ccy;
+        pageObj.Amount = amount;
+        pageObj.Invoice = invoice;
+        pageObj.Memo = memo;
+        pageObj.Name = name;
+        pageObj.Address = address;
+        pageObj.Email = email;
+
+        // pageObj.Memo = {};
+        //pageObj.Memo.Memo = memo;
+        //pageObj.Memo.Name = "Name";
+        //pageObj.Memo.Address = "Address";
+        //pageObj.Memo.Email = "Email";
+        //pageObj.Memo = memoObj;
+        //memoObj.Memo = memo;
+        //memoObj.Name = "";
+        //memoObj.Address = "";
+        //memoObj.Email = "";
+        //pageObj.Memo = memoObj;
+        //if (kycId.length == 0) {
+        //    CreateKyc(email, name, address);
+        //}
+
+        kycId = $("#KycId").val();
+        pageObj.KycId = kycId;
+        console.log("pageObj = " + JSON.stringify(pageObj));
+        /*if (instantPaymentReceiveId.length > 0) {*/
+        if (instantPaymentReceiveId.length === "00000000-0000-0000-0000-000000000000") {
+            //value = "00000000-0000-0000-0000-000000000000"
+            console.log("Updating Receive");
+            console.log("Run Post QrGen/Edit");
+            pageObj.InstantPaymentReceiveId = instantPaymentReceiveId;
+
+            $.ajax({
+                url: "/QrGen/Edit",
+                type: "POST",
+                data: {
+                    __RequestVerificationToken: token,
+                    model: pageObj,
+                    attachedFile: files[0]
+                },
+                success: function (response, textStatus, jqXHR) {
+                    console.log("/QrGen/Edit - Success");
+
+                },
+                error: function (jqXhr, textStatus, errorThrown) {
+                    console.log("/QrGen/Edit - Failed");
+                    console.log(jqXhr);
+                    console.log(textStatus);
+                    console.log(errorThrown);
+                }
+            });
+        }
+        else {
+            console.log("Create New Receive");
+            console.log("Run Post QrGen/Index");
+            //console.log("QrGen/Index - modelJson: " + modelJson);
+            $.ajax({
+                url: "/QrGen/Index",
+                type: "POST",
+                //datatype: "json",
+                data: {
+                    __RequestVerificationToken: token,
+                    model: pageObj
+                },
+                success: function (response, textStatus, jqXHR) {
+                    //data - response from server
+                    console.log("QrGen/Index - Success");
+                    //console.log("QrGen/Index - model: " + model);
+                    var instantPaymentReceiveId = response.InstantPaymentReceiveId;
+                    console.log("QrGen/Index - InstantPaymentReceiveId: " + response.InstantPaymentReceiveId);
+                    $("#InstantPaymentReceiveId").val(instantPaymentReceiveId);
+                    //var myurl = {
+                    //    longUrl: host + "/Payment/Create?alias=" + alias  + "&ccy=" + ccy + "&amount=" + amount + "&invoice=" + invoice + "&memo=" + memo,
+                    //};
+
+                    var myurl = {
+                        longUrl: host + "/Payment/Create?receiveId=" + instantPaymentReceiveId,
+                    };
+
+                    var jsondata = JSON.stringify(myurl);
+                    console.log("jsondata: " + jsondata);
+                    console.log("Start ShortenedUrls");
+
+                    $.ajax({
+                        url: "https://vo2.tech/api/ShortenedUrls",
+                        // url: "http://localhost/UrlShortening/api/ShortenedUrls",
+                        // url: "http://vo2.tech/api/ShortenedUrls",
+                        //http://vo2.tech/api/ShortenedUrls
+                        headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json'
+                        },
+                        //crossDomain: true,
+                        type: "POST",
+                        data: jsondata,
+                        // data: JSON.stringify({ "longUrl": "http://beta.winstantpay.com?invoice=" + invoice }),
+                        // data: { longUrl: 'http://beta.winstantpay.com'},
+                        //data: {"longUrl":"http://beta.winstantpay.com"},
+                        dataType: "json",
+                        contentType: 'application/json; charset=utf-8',
+                        //beforeSend: function() {
+                        //    $('#LoadingOverlayApi').trigger('loading-overlay:show');
+                        //},
+                        success: function (result) {
+                            //data - response from server
+                            console.log("Start ShortenedUrls - Success");
+                            console.log("shortUrl - " + result.shortUrl);
+
+
+                            var mytext = {
+                                Text: result.shortUrl,
+                                LogoIndex: 0
+                            };
+
+                            $("#ShortenedUrl").val(result.shortUrl);
+
+                            pageObj.ShortenedUrl = result.shortUrl;
+                            pageObj.InstantPaymentReceiveId = instantPaymentReceiveId;
+                            console.log("pageObj.ShortenedUrl - " + pageObj.ShortenedUrl);
+                            console.log("/QrGen/Edit - Update with ShortenedUrl");
+
+                            $.ajax({
+
+                                url: "/QrGen/Edit",
+                                type: "POST",
+                                data: {
+                                    __RequestVerificationToken: token,
+                                    model: pageObj
+                                },
+                                success: function (response, textStatus, jqXHR) {
+                                    console.log("/QrGen/Edit - Update with ShortenedUrl- Success");
+
+                                },
+                                error: function (jqXhr, textStatus, errorThrown) {
+                                    console.log("/QrGen/Edit - Update with ShortenedUrl- Failed");
+                                    console.log(jqXhr);
+                                    console.log(textStatus);
+                                    console.log(errorThrown);
+                                }
+                            });
+
+                            var jsontext = JSON.stringify(mytext);
+                            console.log("jsontext: " + jsontext);
+                            console.log("Run ApiGenerateQrCodeAsBase64");
+                            $.ajax({
+                                // url: "https://beta.winstantpay.com/api/ApiGenerateQrCodeAsBase64",
+                                url: "/api/ApiGenerateQrCodeAsBase64",
+                                //headers: {
+                                //    'Access-Control-Allow-Origin': '*',
+                                //    'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, DELETE, PUT',
+                                //    'Access-Control-Allow-Headers': 'X-Requested-With',
+                                //    'Access-Control-Allow-Credentials': 'true'
+                                //},
+                                type: "POST",
+                                data: jsontext,
+                                dataType: "json",
+                                contentType: 'application/json; charset=utf-8',
+                                success: function (qrcoderesult, textStatus, jqXHR) {
+                                    //data - response from server
+                                    console.log("ApiGenerateQrCodeAsBase64 - Success");
+                                    console.log("qrcoderesult.QrCodeAsBase64 : " + qrcoderesult.QrCodeAsBase64);
+                                    var binary = "";
+                                    var responseText = jqXHR.responseText;
+                                    var responseTextLen = responseText.length;
+
+                                    for (i = 0; i < responseTextLen; i++) {
+                                        binary += String.fromCharCode(responseText.charCodeAt(i) & 255)
+                                    }
+                                    // $("#imgqrcode").attr("src", "data:image/png;base64," + btoa(binary));
+                                    $('#qrcode').html('<img width="300" height="300" src="data:image/png;base64,' + qrcoderesult.QrCodeAsBase64 + '" />');
+                                },
+                                //success: function (result) {
+                                //    console.log("Run MakeQrCode - Success");
+                                //    document.getElementById("Memo").innerHTML = result.shortUrl;
+                                //    //document.getElementById("currencyExchangePartView").innerHTML = result;
+                                //    //$('#LoadingOverlayApi').trigger('loading-overlay:hide');
+                                //},
+                                error: function (jqXhr, textStatus, errorThrown) {
+                                    console.log("ApiGenerateQrCodeAsBase64 - Failed");
+                                    console.log(jqXhr);
+                                    console.log(textStatus);
+                                    console.log(errorThrown);
+                                }
+                                //error: function (result)
+                                //{
+                                //    console.log("Run MakeQrCode - Failed - Result:" + result);
+                                //}
+                            });
+
+
+                        },
+                        //success: function (result) {
+                        //    console.log("Run MakeQrCode - Success");
+                        //    document.getElementById("Memo").innerHTML = result.shortUrl;
+                        //    //document.getElementById("currencyExchangePartView").innerHTML = result;
+                        //    //$('#LoadingOverlayApi').trigger('loading-overlay:hide');
+                        //},
+                        error: function (jqXhr, textStatus, errorThrown) {
+                            console.log("Start ShortenedUrls - Failed");
+                            console.log(jqXhr);
+                            console.log(textStatus);
+                            console.log(errorThrown);
+                        }
+                        //error: function (result)
+                        //{
+                        //    console.log("Run MakeQrCode - Failed - Result:" + result);
+                        //}
+                    });
+                    //var binary = "";
+                    //var responseText = jqXHR.responseText;
+                    //var responseTextLen = responseText.length;
+
+                    //for ( i = 0; i < responseTextLen; i++ ) {
+                    //    binary += String.fromCharCode(responseText.charCodeAt(i) & 255)
+                    //}
+                    //// $("#imgqrcode").attr("src", "data:image/png;base64," + btoa(binary));
+                    //$('#qrcode').html('<img width="300" height="300" src="data:image/png;base64,' + qrcoderesult.QrCodeAsBase64 + '" />');
+                },
+                //success: function (result) {
+                //    console.log("Run MakeQrCode - Success");
+                //    document.getElementById("Memo").innerHTML = result.shortUrl;
+                //    //document.getElementById("currencyExchangePartView").innerHTML = result;
+                //    //$('#LoadingOverlayApi').trigger('loading-overlay:hide');
+                //},
+                error: function (jqXhr, textStatus, errorThrown) {
+                    console.log("QrGen/Index - Failed");
+                    console.log(jqXhr);
+                    console.log(textStatus);
+                    console.log(errorThrown);
+                }
+                //error: function (result)
+                //{
+                //    console.log("Run MakeQrCode - Failed - Result:" + result);
+                //}
+            });
+        }
+
+    }
+    makeCode();
+
+    $("#downloadQRBtn").click(function() {
+        var geImage = $('#qrcode img');
+        if (geImage.length > 0) {
+            var link = document.createElement("a");
+            link.setAttribute("href", geImage[0].src);
+            link.setAttribute("download", "qrFor" + $("#ddlAlias option:selected").text()+".jpg");
+            link.click();
+        }
+    });
+        
+    $(document).ready(function () {
+        //Set select alias
+        setSelectedAlias();
+        setBaseCurrency();
+
+        var code = $("#CurrencyCode").val();
+        console.log("currency code:" + code);
+        var codeSmallCase = code;
+        if ($.trim(code).length !== 0) {
+            var buttons = document.getElementById("selectButton");
+
+            try {
+                codeSmallCase = code.toLowerCase();
+            } catch (e) {
+            }
+            console.log("code:" + code);
+            var itemName = "curr_" + code;
+            console.log("itemName:" + itemName);
+            var listItem = $('#ddlmenu li[id="' + itemName + '"]');
+            console.log("list item text: " + listItem.text());
+            var itemText = listItem.text();
+            console.log("itemText:" + itemText);
+            buttons.innerHTML = '<img src="/Content/assets/images/onebyone.png" class="flag flag-' + codeSmallCase + '"/>' + '  ' + itemText
+        }
+
+        var instantPaymentReceiveId = $("#InstantPaymentReceiveId").val();
+        console.log("instantPaymentReceiveId: " + instantPaymentReceiveId);
+        var shortenedUrl = $("#ShortenedUrl").val();
+        console.log("before shortenedUrl: " + shortenedUrl + ", length: " + shortenedUrl.length);
+        if (instantPaymentReceiveId != "00000000-0000-0000-0000-000000000000" && shortenedUrl.length == 0) {
+            SaveShortenedUrl();
+            shortenedUrl = $("#ShortenedUrl").val();
+        }
+
+        console.log("after shortenedUrl: " + shortenedUrl + ", length: " + shortenedUrl.length);
+        if (instantPaymentReceiveId != "00000000-0000-0000-0000-000000000000" && shortenedUrl.length > 10) {
+            console.log("Get QR Code");
+            GetQRCode(shortenedUrl);
+        }
+
+        $('form').submit(function (e) {
+            e.preventDefault(); // Prevent the form from submitting
+
+            console.log("Form submit");
+
+            //var fileUpload = $("#attachedFile").get(0);
+            // Create FormData object
+            var formData = new FormData();
+
+            var alias = $("#ddlAlias").val();
+            var ccy = $("#CurrencyCode").val();
+            var amount = $("#Amount").val();
+            //var invoice = $("#Invoice").val();
+            //var memo = $("#Memo").val();
+            //var name = $("#Name").val();
+            //var address = $("#Address").val();
+            //var email = $("#Email").val();
+            var instantPaymentReceiveId = $("#InstantPaymentReceiveId").val();
+            var shortenedUrl = $("#ShortenedUrl").val();
+
+            console.log("alias:" + alias + ", currency code = " + ccy + ", amount:" + amount + ", shorted URL:" + shortenedUrl);
+
+            // Retrieve embedded form verification token
+            var token = $('input[name=__RequestVerificationToken]').val();
+            formData.set("__RequestVerificationToken", token);
+            // Added data to form data
+            formData.set("InstantPaymentReceiveId", instantPaymentReceiveId);
+            formData.set("Alias", alias);
+            formData.set("Currency", ccy);
+            formData.set("Amount", amount);
+            formData.set("ShortenedUrl", shortenedUrl);
+            console.log("formData: " + JSON.stringify(formData));
+
+            var submitButtonValue = $('button[type="submit"][clicked=true]').val(); // Get the value of the clicked submit button
+            console.log("submitButtonValue: " + submitButtonValue);
+
+            if (submitButtonValue === 'Update') {
+                console.log("Update click");
+                $.ajax({
+                    url: '@Url.Action("Edit", "Deposit")',
+                    type: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function (data) {
+                        // Handle the success response
+                        var url = '/QrGen/Details/' + instantPaymentReceiveId;
+                        console.log("Successfully updated. url: " + url);
+                        window.location.replace(url);
+                    },
+                    error: function (xhr, textStatus, errorThrown) {
+                        // Handle the error response
+                    }
+                });
+            } else if (submitButtonValue === 'GenerateQRCode') {
+                // Handle the Generate QR Code action
+                console.log("Generate QR Code click");
+                console.log("Create Deposit QR code");
+                console.log("Run Post Deposit/Index");
+                $.ajax({
+                    url: "/Deposit/Index",
+                    type: "POST",
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function (response, textStatus, jqXHR) {
+                        //data - response from server
+                        console.log("Deposit/Index - Success");
+                        var instantPaymentReceiveId = response.InstantPaymentReceiveId;
+                        console.log("Deposit/Index - InstantPaymentReceiveId: " + response.InstantPaymentReceiveId);
+                        formData.set("InstantPaymentReceiveId", instantPaymentReceiveId);
+                        $("#InstantPaymentReceiveId").val(instantPaymentReceiveId);
+
+                        var myurl = {
+                            longUrl: host + "/Payment/Create?receiveId=" + instantPaymentReceiveId,
+                        };
+
+                        var jsondata = JSON.stringify(myurl);
+                        console.log("jsondata: " + jsondata);
+                        console.log("Start ShortenedUrls");
+
+                        $.ajax({
+                            url: "https://vo2.tech/api/ShortenedUrls",
+                            headers: {
+                                'Accept': 'application/json',
+                                'Content-Type': 'application/json'
+                            },
+                            type: "POST",
+                            data: jsondata,
+                            dataType: "json",
+                            contentType: 'application/json; charset=utf-8',
+                            success: function (result) {
+                                //data - response from server
+                                console.log("Start ShortenedUrls - Success");
+                                console.log("shortUrl - " + result.shortUrl);
+
+                                var mytext = {
+                                    Text: result.shortUrl,
+                                    LogoIndex: 0
+                                };
+
+                                $("#ShortenedUrl").val(result.shortUrl);
+                                formData.set("ShortenedUrl", result.shortUrl);
+                                console.log("ShortenedUrl - " + result.shortUrl);
+                                formData.set("ShortenedUrl", result.shortUrl);
+                                console.log("/Deposity/Edit - Update with ShortenedUrl");
+
+                                $.ajax({
+
+                                    url: "/Deposit/Edit",
+                                    type: "POST",
+                                    data: formData,
+                                    processData: false,
+                                    contentType: false,
+
+                                    //data: {
+                                    //    __RequestVerificationToken: token,
+                                    //    model: formData
+                                    //},
+                                    success: function (response, textStatus, jqXHR) {
+                                        console.log("/Deposit/Edit - Update with ShortenedUrl- Success");
+                                        var url = '/Deposit/Details/' + instantPaymentReceiveId;
+                                        console.log("Successfully updated. url: " + url);
+                                        window.location.replace(url);
+
+                                    },
+                                    error: function (jqXhr, textStatus, errorThrown) {
+                                        console.log("/Deposit/Edit - Update with ShortenedUrl- Failed");
+                                        console.log(jqXhr);
+                                        console.log(textStatus);
+                                        console.log(errorThrown);
+                                    }
+                                });
+
+                                var jsontext = JSON.stringify(mytext);
+                                console.log("jsontext: " + jsontext);
+                                console.log("Run ApiGenerateQrCodeAsBase64");
+                                $.ajax({
+                                    url: "/api/ApiGenerateQrCodeAsBase64",
+                                    type: "POST",
+                                    data: jsontext,
+                                    dataType: "json",
+                                    contentType: 'application/json; charset=utf-8',
+                                    success: function (qrcoderesult, textStatus, jqXHR) {
+                                        //data - response from server
+                                        console.log("ApiGenerateQrCodeAsBase64 - Success");
+                                        console.log("qrcoderesult.QrCodeAsBase64 : " + qrcoderesult.QrCodeAsBase64);
+                                        var binary = "";
+                                        var responseText = jqXHR.responseText;
+                                        var responseTextLen = responseText.length;
+
+                                        for (i = 0; i < responseTextLen; i++) {
+                                            binary += String.fromCharCode(responseText.charCodeAt(i) & 255)
+                                        }
+                                        $('#qrcode').html('<img width="300" height="300" src="data:image/png;base64,' + qrcoderesult.QrCodeAsBase64 + '" />');
+                                        $("#qrPreView").removeClass("hidden");
+                                    },
+                                    error: function (jqXhr, textStatus, errorThrown) {
+                                        console.log("ApiGenerateQrCodeAsBase64 - Failed");
+                                        console.log(jqXhr);
+                                        console.log(textStatus);
+                                        console.log(errorThrown);
+                                    }
+                                });
+                            },
+                            error: function (jqXhr, textStatus, errorThrown) {
+                                console.log("Start ShortenedUrls - Failed");
+                                console.log(jqXhr);
+                                console.log(textStatus);
+                                console.log(errorThrown);
+                            }
+                        });
+                    },
+                    error: function (jqXhr, textStatus, errorThrown) {
+                        console.log("QrGen/Index - Failed");
+                        console.log(jqXhr);
+                        console.log(textStatus);
+                        console.log(errorThrown);
+                    }
+                });
+            }
+        });
+
+        // Set the clicked attribute when a submit button is clicked
+        $('button[type="submit"]').click(function () {
+            $('button[type="submit"]').removeAttr('clicked');
+            $(this).attr('clicked', 'true');
+        });
+    });
+
+    function setSelectedAlias(alias) {
+        var alias = $("#alias").val();
+        console.log("set selected alias: " + alias);
+        // Get reference to the alias drop down
+        var aliases = document.getElementById("ddlAlias");
+
+        // Iterate through the options
+        for (var i = 0; i < aliases.options.length; i++) {
+            var option = aliases.options[i];
+
+            // Set the selected option
+            if (option.value === alias) {
+                option.selected = true;
+                break;
+            }
+        }
+    }
+
+    function setBaseCurrency() {
+        var baseCurrency = $("#baseCurrency").val();
+        console.log("set selected baseCurrency: " + baseCurrency);
+        var id = "";
+        var id1 = "";
+        var baseCurrency1 = baseCurrency;
+        var currencyText = "";
+
+        $("#ddlmenu li").each(function () {
+            var thisText = $(this).text().trim();
+            console.log("thisText.toUpperCase(): " + thisText.toUpperCase());
+            var thisTextArray = thisText.split(" ");
+            var currencyCode = thisTextArray[1];
+            var index = thisText.trim().indexOf(baseCurrency.toUpperCase())
+            if (thisText.toUpperCase().indexOf(baseCurrency.toUpperCase()) >= 0) {
+                currencyText = thisText;
+                console.log("id: " + id);
+                id1 = id; 
+                $(this).show();
+            }
+        });
+
+        var buttons = document.getElementById("selectButton");
+
+        try {
+            id1 = id.toLowerCase();
+            baseCurrency1 = baseCurrency.toLowerCase();
+        } catch (e) {
+
+        }
+
+        buttons.innerHTML = '<img src="/Content/assets/images/onebyone.png" class="flag flag-' + baseCurrency1 + '"/>' + ' ' +
+            currencyText +
+            '&nbsp;<span class="caret" style="position: absolute; top: 45%; left: 97.5%; color: #555555 !important; border-top: 6px dashed !important; border-right: 3px solid transparent !important;border-left: 3px solid transparent !important"></span>';
+        $("ddlmenu").val(baseCurrency);
+        $("#CurrencyCode").val(baseCurrency);
+        $("#searchabletext").val("");
+        //$("#ddlmenu li").show();
+
+        //// Get reference to the alias drop down
+        //var aliases = document.getElementById("ddlAlias");
+
+        //// Iterate through the options
+        //for (var i = 0; i < aliases.options.length; i++) {
+        //    var option = aliases.options[i];
+
+        //    // Set the selected option
+        //    if (option.value === alias) {
+        //        option.selected = true;
+        //        break;
+        //    }
+        //}
+    }
+
+    function showQRIntro() {
+        return confirm("Use your camera to take a picture of a QR code.");
+    }
+
+    $("#mobscanqr").click(function () {
+        $('.qrcode-text-btn').click();
+    });
+
+    function openQRCamera(node) {
+        var reader = new FileReader();
+        reader.onload = function () {
+            node.value = "";
+            qrcode.callback = function (res) {
+                if (res instanceof Error) {
+                    alert("No QR code found. Please make sure the QR code is within the camera's frame and try again.");
+
+                } else {
+                    document.getElementById("toIdtB").value = res;
+                    $("#ToCustomer").val(res);
+                }
+            };
+            console.log(reader.result);
+            qrcode.decode(reader.result);
+        };
+        reader.readAsDataURL(node.files[0]);
+    }
+
+    $('#selectButton').click(function () {
+        setTimeout(function () { $('#searchabletext').focus(); }, 100);
+    });
+    $('#ddlmenu li a').on('click',
+        function () {
+            var id = $(this).data('pdsa-dropdown-val');
+            var currencyText = $(this).data('pdsa-dropdown-text');
+            var id1 = id;
+            var currencyTexts = currencyText.trim().split(" ");
+            console.log("currencyTexts length: " + currencyTexts.length);
+            console.log("currencyTexts[0]: " + currencyTexts[0]);
+            let amountText = currencyTexts[0];
+            let amount = parseFloat(amountText);
+
+            if (id != null) {
+                var buttons = document.getElementById("selectButton");
+
+                try {
+                    id1 = id.toLowerCase();
+                } catch (e) {
+
+                }
+
+                if (amount < 0) {
+                    console.log("amount < 0, amountText: " + amountText);
+                    var newCurrencyText = currencyTexts.slice(1).join(" ");
+                    buttons.innerHTML = '<img src="/Content/assets/images/onebyone.png" class="flag flag-' + id1 + '"/>' + '  '
+                        + '<span class="text-danger">' + currencyTexts[0] + '</span> ' + newCurrencyText
+                    '&nbsp;<span class="caret" style="position: absolute; top: 45%; left: 97.5%; color: #555555 !important; border-top: 6px dashed !important; border-right: 3px solid transparent !important;border-left: 3px solid transparent !important"></span>';
+                } else {
+                    console.log("else , currencyText: " + currencyText);
+                    buttons.innerHTML = '<img src="/Content/assets/images/onebyone.png" class="flag flag-' + id1 + '"/>' + ' '
+                        + currencyText +
+                        '&nbsp;<span class="caret" style="position: absolute; top: 45%; left: 97.5%; color: #555555 !important; border-top: 6px dashed !important; border-right: 3px solid transparent !important;border-left: 3px solid transparent !important"></span>';
+                }
+
+                $("ddlmenu").val(id);
+                $("#CurrencyCode").val(id);
+                $("#searchabletext").val("");
+                $("#ddlmenu li").show();
+                makeCode();
+                if (id === "BTC" || id === "ETH") {
+                    $('#Amount').attr('step', 0.00001);
+                } else {
+                    $('#Amount').attr('step', 0.01);
+                    var v = Math.round($('#Amount').val() * 100) / 100;
+                    $('#Amount').val(v);
+                }
+            }
+            else {
+                var buttons = document.getElementById("selectButton");
+                buttons.innerHTML = '@String.Format(GlobalRes.Shared_NewInstantPaymentFormPage_SelectCurrency)' + '&nbsp;<span class="caret" style="position: absolute; top: 45%; left: 97.5%; color: #555555 !important; border-top: 6px dashed !important; border-right: 3px solid transparent !important;border-left: 3px solid transparent !important"></span>';
+                $("#ddlmenu").val(null);
+                $("#CurrencyCode").val(null);
+                $("#searchabletext").val("");
+                $("#ddlmenu li").show();
+                $('#Amount').attr('step', 0.01);
+            }
+        });
+    $("#searchabletext").on("input", function () {
+        var selText = $(this).val();
+        $("#ddlmenu li").hide();
+        $("#searchabli").show();
+        $("#ddlmenu li").each(function () {
+            var thisText = $(this).text().trim();
+            var thisTextArray = thisText.split(" ");
+            var currencyCode = thisTextArray[1];
+            var index = thisText.trim().indexOf(selText.toUpperCase())
+            if (thisText.toUpperCase().indexOf(selText.toUpperCase()) >= 0) {
+                $(this).show();
+            }
+        });
+        $("#searchabletext").one("keydown", function (e) {
+            if (e.which == 13 || e.which == 10) {
+                if ($("#ddlmenu li:visible").first() !== null) {
+                    var el = $("#ddlmenu li:visible a").attr('display', 'list-item').first();
+                    var id = el.data('pdsa-dropdown-val');
+                    //var id1 = "";
+
+                    if (id != null) {
+                        console.log("Entered");
+
+                        console.log(id);
+                        var buttons = document.getElementById("selectButton");
+
+                        //try {
+                        //    id1 = id.toLowerCase();
+                        //} catch (e) {
+
+                        //        }
+
+                        buttons.innerHTML = '<img src="/Content/assets/images/onebyone.png" class="flag flag-' + id1 + '"/>' + '  ' +
+                            id +
+                            '&nbsp;<span class="caret" style="position: absolute; top: 45%; left: 97.5%; color: #555555 !important; border-top: 6px dashed !important; border-right: 3px solid transparent !important;border-left: 3px solid transparent !important"></span>';
+                        $("#ddlmenu").val(id);
+                        console.log("#ddlmenu");
+                        $("#CurrencyCode").val(id);
+                        makeCode();
+                        if (id === "BTC" || id === "ETH") {
+                            $('#Amount').attr('step', 0.00001);
+                        } else {
+                            $('#Amount').attr('step', 0.01);
+                            var v = Math.round($('#Amount').val() * 100) / 100;
+                            $('#Amount').val(v);
+                        }
+
+
+                        $("#searchabletext").val("");
+                        $("#ddlmenu li").show();
+                        if (document.getElementById("currencyDdr").classList.contains('open')) {
+                            document.getElementById("currencyDdr").classList.remove('open');
+                        }
+                    }
+
+                    else { console.log("Not Entered"); }
+                }
+            }
+        });
+
+    });
+
+    //function SearchKyc() {
+    //    console.log("Run SearchKyc");
+
+    //    var alias = $("#ddlAlias").val();
+    //    var ccy = $("#CurrencyCode").val();
+    //    var amount = $("#Amount").val();
+    //    var invoice = $("#Invoice").val();
+    //    var memo = $("#Memo").val();
+    //    var name = $("#Name").val();
+    //    var address = $("#Address").val();
+    //    var email = $("#Email").val();
+    //    var instantPaymentReceiveId = $("#InstantPaymentReceiveId").val();
+    //    var shortenedUrl = $("#ShortenedUrl").val();
+    //    KycSearchClear();
+    //    console.log("Run auth/token");
+    //    //console.log("QrGen/Index - modelJson: " + modelJson);
+    //    $.ajax({
+    //        url: "https://kyctest.worldkyc.com/auth/token",
+    //        type: "POST",
+    //        //datatype: "json",
+    //        data: {
+    //            //__RequestVerificationToken: token,
+    //            //model: pageObj
+    //            "username": "Channthoeun Customer User",
+    //            "password": "Thoeun051182",
+    //            "institution_id": "9F472EDF-197F-4DDC-AEA2-AA5BEFAC0321",
+    //        },
+    //        success: function (response, textStatus, jqXHR) {
+    //            //data - response from server
+    //            console.log("auth/token - Success");
+    //            //console.log("QrGen/Index - model: " + model);
+    //            var token = response.access_token;
+    //            // $("#Name").value(response.access_token);
+    //            //$("#AuthToken").value(response.access_token);
+    //            // $("#Name").val(result.response[0].first_name + " " + result.response[0].last_name);
+    //            console.log("auth/token - token : " + token);
+
+    //            console.log("getUser search=" + email);
+
+    //            $.ajax({
+    //                url: "https://kyctest.worldkyc.com/api/platform/getUser?search=" + email,
+    //                headers: {
+    //                    'Accept': 'application/json',
+    //                    'Content-Type': 'application/json',
+    //                    'Authorization': 'Bearer ' + token,
+    //                },
+    //                type: "GET",
+    //                contentType: 'application/json; charset=utf-8',
+    //                success: function (result) {
+    //                    //data - response from server
+    //                    console.log("getUser search - Success");
+
+    //                    console.log("KYC Id : " + result.response[0].id);
+    //                    //$("#Name").val(result.response[0].first_name + " " + result.response[0].last_name);
+    //                    LoadKycSearchResult(result.response);
+    //                    $("#modal-container").modal("show");
+    //                },
+    //                error: function (jqXhr, textStatus, errorThrown) {
+    //                    console.log("getUser search - Failed");
+    //                    console.log(jqXhr);
+    //                    console.log(textStatus);
+    //                    console.log(errorThrown);
+    //                }
+    //            });
+    //        },
+    //        error: function (jqXhr, textStatus, errorThrown) {
+    //            console.log("Auth Token - Failed");
+    //            console.log(jqXhr);
+    //            console.log(textStatus);
+    //            console.log(errorThrown);
+    //        }
+    //    });
+
+    //}
+
+    //function LoadKycSearchResult(result) {
+    //    $('#datatable-default-history').DataTable().destroy();
+    //    var dt = $('#datatable-default-history').DataTable({
+    //        "data": result,
+    //        searching: false, paging: false, info: false,
+    //        "columns": [
+    //            //{ "data": "id" },
+    //            { "data": "email" },
+			 //   // { "data": "first_name"} + " " + { "data": "last_name"},
+    //            {
+    //                "data": null,
+    //                    render: function (data, type, row)
+    //                    {
+    //                        //return "<a href='#' class='btn btn-danger' onclick=DeleteData('" + row.id + "'); >Delete</a>";
+    //                        // return row.first_name + " " + row.last_name;
+    //                        var kycName = "";
+    //                        if (row.first_name != null) {
+    //                            kycName += row.first_name;
+
+    //                        }
+
+    //                        if (row.last_name != null) {
+    //                            kycName += " " + row.last_name;
+
+    //                        }
+
+    //                        return kycName;
+    //                    }
+    //                },
+    //            { "data": "address1" },
+    //            {
+    //                "data": null,
+    //                render: function (data, type, row)
+    //                {
+    //                        return "<a class='mb-xs btn btn-xs btn-primary' id='btnSelectKyc' onclick='SelectKyc(\"" + row.id + "\");' >Select</a>"
+
+    //                }
+    //            }
+    //        ],
+    //        responsive: true,
+    //        });
+    //        //$(".dataTables_filter input").attr("placeholder", "Paghahanap");
+    //        dt.draw();
+    //}
+
+    //function SelectKycOLD(id) {
+    //    console.log("Run SelectKyc");
+    //    console.log("id : " + id);
+    //    $.ajax({
+    //        url: "https://kyctest.worldkyc.com/api/platform?id=" + id,
+    //        type: "GET",
+    //        headers: {
+    //                    'Authorization': 'Bearer ' + token,
+    //                },
+    //        success: function (response, textStatus, jqXHR) {
+    //            //data - response from server
+    //            console.log("SelectKyc - Success");
+    //            var token = response.access_token;
+    //            console.log("Name : " + response.first_name + " " + response.last_name);
+
+    //            $("#Name").val(response.first_name + " " + response.last_name);
+    //            // $("#Name").val(response.first_name + " " + response.last_name);
+
+    //        },
+    //        error: function (jqXhr, textStatus, errorThrown) {
+    //            console.log("SelectKyc - Failed");
+    //            console.log(jqXhr);
+    //            console.log(textStatus);
+    //            console.log(errorThrown);
+    //        }
+    //    });
+    //}
+
+    //function SelectKyc(id) {
+    //    console.log("Run SelectKyc");
+
+    //    console.log("Run auth token");
+    //    $.ajax({
+    //        url: "https://kyctest.worldkyc.com/auth/token",
+    //        type: "POST",
+    //        data: {
+    //            "username": "Channthoeun Customer User",
+    //            "password": "Thoeun051182",
+    //            "institution_id": "9F472EDF-197F-4DDC-AEA2-AA5BEFAC0321",
+    //        },
+    //        success: function (response, textStatus, jqXHR) {
+    //            //data - response from server
+    //            console.log("auth/token - Success");
+    //            //console.log("QrGen/Index - model: " + model);
+    //            var token = response.access_token;
+    //            var ApiUrl = "https://kyctest.worldkyc.com/api/platform?id=" + id;
+    //            console.log("auth token - token : " + token);
+
+    //            console.log("Get KYC id=" + id);
+    //            console.log("ApiUrl=" + ApiUrl);
+
+    //            $.ajax({
+    //                // url: "https://kyctest.worldkyc.com/api/platform?id=" + id,
+    //                url: ApiUrl,
+    //                headers: {
+    //                    'Authorization': 'Bearer ' + token,
+    //                },
+    //                type: "GET",
+    //                contentType: 'application/json; charset=utf-8',
+    //                success: function (result) {
+    //                    //data - response from server
+    //                    console.log("Get KYC search - Success");
+
+
+    //                    console.log("KYC Id : " + result.response.id);
+    //                    console.log("KYC Name : " + result.response.first_name + " " + result.response.last_name);
+    //                    var kycName = "";
+    //                    if (result.response.first_name != null) {
+    //                        kycName += result.response.first_name;
+
+    //                    }
+
+    //                    if (result.response.last_name != null) {
+    //                        kycName += " " + result.response.last_name;
+
+    //                    }
+
+    //                    $("#Name").val(kycName);
+    //                    $("#Address").val(result.response.address1);
+    //                    $("#KycId").val(result.response.id);
+    //                    $("#modal-container").modal("hide");
+    //                },
+    //                error: function (jqXhr, textStatus, errorThrown) {
+    //                    console.log("Get KYC - Failed");
+    //                    console.log(jqXhr);
+    //                    console.log(textStatus);
+    //                    console.log(errorThrown);
+    //                }
+    //            });
+    //        },
+    //        error: function (jqXhr, textStatus, errorThrown) {
+    //            console.log("Select KYC auth token - Failed");
+    //            console.log(jqXhr);
+    //            console.log(textStatus);
+    //            console.log(errorThrown);
+    //        }
+    //    });
+
+    //}
+
+    //function CreateKyc(email, name, address) {
+    //    console.log("Run CreateKyc");
+
+    //    console.log("CreateKyc - Run auth token");
+    //    $.ajax({
+    //        url: "https://kyctest.worldkyc.com/auth/token",
+    //        type: "POST",
+    //        data: {
+    //            "username": "Channthoeun Customer User",
+    //            "password": "Thoeun051182",
+    //            "institution_id": "9F472EDF-197F-4DDC-AEA2-AA5BEFAC0321",
+    //        },
+    //        success: function (response, textStatus, jqXHR) {
+    //            //data - response from server
+    //            console.log("auth/token - Success");
+    //            //console.log("QrGen/Index - model: " + model);
+    //            var token = response.access_token;
+    //            var ApiUrl = "https://kyctest.worldkyc.com/api/platform";
+    //            console.log("auth token - token : " + token);
+
+    //            console.log("Create KYC");
+
+    //            $.ajax({
+    //                url: ApiUrl,
+    //                headers: {
+    //                    'Authorization': 'Bearer ' + token,
+    //                },
+    //                type: "POST",
+    //                data: {
+    //                    "email": email,
+    //                    "first_name": name,
+    //                    "last_name": "",
+    //                    "address1": address,
+    //                },
+
+    //                success: function (result) {
+    //                    //data - response from server
+    //                    console.log("Create KYC - Success");
+    //                    $("#KycId").val(result.id);
+
+    //                    console.log("KYC Id : " + result.id);
+    //                },
+    //                error: function (jqXhr, textStatus, errorThrown) {
+    //                    console.log("Create KYC - Failed");
+    //                    console.log(jqXhr);
+    //                    console.log(textStatus);
+    //                    console.log(errorThrown);
+    //                }
+    //            });
+    //        },
+    //        error: function (jqXhr, textStatus, errorThrown) {
+    //            console.log("Create KYC auth token - Failed");
+    //            console.log(jqXhr);
+    //            console.log(textStatus);
+    //            console.log(errorThrown);
+    //        }
+    //    });
+
+    //}
+
+    //function GetKycName(first_name, last_name) {
+    //    var kycName = "";
+    //    if (result.response.first_name != null) {
+    //        kycName += result.response.first_name;
+
+    //    }
+
+    //    if (result.response.last_name != null) {
+    //        kycName += " " + result.response.last_name;
+
+    //    }
+
+    //    return kycName;
+    //}
+
+    //function KycSearchClear() {
+    //    $("#Name").val('');
+    //    $("#Address").val('');
+    //    $("#KycId").val('');
+    //}
+
+    $("#btnUpdate").click(function () {
+
+        console.log("Update clicked");
+
+        $('#fileUploadForm').submit(function(e) {
+            e.preventDefault();
+
+            //var formData = new FormData($(this)[0]);
+
+            console.log("Form submit");
+            var instantPaymentReceiveId = $("#InstantPaymentReceiveId").val();
+            var alias = $("#ddlAlias").val();
+            console.log("Alias = " + alias);
+            var ccy = $("#CurrencyCode").val();
+            var amount = $("#Amount").val();
+            var invoice = $("#Invoice").val();
+            var memo = $("#Memo").val();
+            var name = $("#Name").val();
+            var address = $("#Address").val();
+            var email = $("#Email").val();
+            var kycId = $("#KycId").val();
+
+            var fileUpload = $("#attachedFile").get(0);
+            // Create FormData object
+            //var fileData = new FormData();
+
+            //var fileData = new FormData($('#fileUploadForm')[0]);
+            var fileData = new FormData($(this)[0]);
+            var files = fileUpload.files;
+            console.log("files length: " + files.length);
+
+            //if (files.length > 0) {
+            //    console.log(" File attached")
+            //}
+
+
+            // Looping over all files and add it to FormData object
+            for (var i = 0; i < files.length; i++) {
+                fileData.append(files[i].name, files[i]);
+            }
+
+            var shortenedUrl = $("#ShortenedUrl").val();
+            console.log("instantPaymentReceiveId:" + instantPaymentReceiveId + ", currency code = " + ccy + ", amount:" + amount + ", invoice:" + invoice + ", memo:" + memo + ", name:" + name + ", address:" + address + ", email:" + email + ", shorted URL:" + shortenedUrl);
+
+            var pageObj = {};
+            //pageObj.InstantPaymentReceiveId = instantPaymentReceiveId;
+            //pageObj.Alias = alias;
+            //pageObj.Currency = ccy;
+            //pageObj.Amount = amount;
+            //pageObj.Invoice = invoice;
+            //pageObj.Memo = memo;
+            //pageObj.Name = name;
+            //pageObj.Address = address;
+            //pageObj.Email = email;
+            //pageObj.ShortenedUrl = shortenedUrl;
+
+            pageObj.InstantPaymentReceiveId = instantPaymentReceiveId;
+            pageObj.Alias = alias;
+            pageObj.Currency = ccy;
+            pageObj.Amount = amount;
+            pageObj.Invoice = invoice;
+            pageObj.Memo = memo;
+            pageObj.Name = name;
+            pageObj.Address = address;
+            pageObj.Email = email;
+            pageObj.ShortenedUrl = shortenedUrl;
+
+            var token = $('input[name=__RequestVerificationToken]').val();
+            console.log("token: " + token);
+            $.ajax({
+                url: "/QrGen/Edit",
+                type: "POST",
+                contentType: false, // Not to set any content header
+                processData: false, // Not to process data
+                data: {
+                    __RequestVerificationToken: token,
+                    model: pageObj,
+                    attachedFile: fileData
+                },
+                success: function (response, textStatus, jqXHR) {
+                    console.log("Invoice - Update Success");
+                },
+                error: function (jqXhr, textStatus, errorThrown) {
+                    console.log("Invoice - Update Failed");
+                    console.log(jqXhr);
+                    console.log(textStatus);
+                    console.log(errorThrown);
+                }
+            });
+
+
+            @*$.ajax({
+                url: '@Url.Action("Upload", "ControllerName")',
+                type: 'POST',
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function(response) {
+                    // Handle the successful upload
+                    console.log(response);
+                },
+                error: function(error) {
+                    // Handle the error
+                    console.log(error);
+                }
+            });*@
+        });
+
+        //$('#fileUploadForm').submit(function (e) {
+        //    e.preventDefault();
+
+        //    console.log("Update clicked");
+        //    var instantPaymentReceiveId = $("#InstantPaymentReceiveId").val();
+        //    var alias = $("#ddlAlias").val();
+        //    console.log("Alias = " + alias);
+        //    var ccy = $("#CurrencyCode").val();
+        //    var amount = $("#Amount").val();
+        //    var invoice = $("#Invoice").val();
+        //    var memo = $("#Memo").val();
+        //    var name = $("#Name").val();
+        //    var address = $("#Address").val();
+        //    var email = $("#Email").val();
+        //    var kycId = $("#KycId").val();
+
+        //    var fileUpload = $("#attachedFile").get(0);
+        //    // Create FormData object
+        //    //var fileData = new FormData();
+
+        //    //var fileData = new FormData($('#fileUploadForm')[0]);
+        //    var fileData = new FormData($(this)[0]);
+        //    var files = fileUpload.files;
+        //    console.log("files length: " + files.length);
+
+        //    //if (files.length > 0) {
+        //    //    console.log(" File attached")
+        //    //}
+
+
+        //    // Looping over all files and add it to FormData object
+        //    for (var i = 0; i < files.length; i++) {
+        //        fileData.append(files[i].name, files[i]);
+        //    }
+
+        //    var shortenedUrl = $("#ShortenedUrl").val();
+        //    console.log("instantPaymentReceiveId:" + instantPaymentReceiveId + ", currency code = " + ccy + ", amount:" + amount + ", invoice:" + invoice + ", memo:" + memo + ", name:" + name + ", address:" + address + ", email:" + email + ", shorted URL:" + shortenedUrl);
+
+        //    var pageObj = {};
+        //    //pageObj.InstantPaymentReceiveId = instantPaymentReceiveId;
+        //    //pageObj.Alias = alias;
+        //    //pageObj.Currency = ccy;
+        //    //pageObj.Amount = amount;
+        //    //pageObj.Invoice = invoice;
+        //    //pageObj.Memo = memo;
+        //    //pageObj.Name = name;
+        //    //pageObj.Address = address;
+        //    //pageObj.Email = email;
+        //    //pageObj.ShortenedUrl = shortenedUrl;
+
+        //    pageObj.InstantPaymentReceiveId = instantPaymentReceiveId;
+        //    pageObj.Alias = alias;
+        //    pageObj.Currency = ccy;
+        //    pageObj.Amount = amount;
+        //    pageObj.Invoice = invoice;
+        //    pageObj.Memo = memo;
+        //    pageObj.Name = name;
+        //    pageObj.Address = address;
+        //    pageObj.Email = email;
+        //    pageObj.ShortenedUrl = shortenedUrl;
+
+        //    var token = $('input[name=__RequestVerificationToken]').val();
+        //    console.log("token: " + token);
+        //    $.ajax({
+        //        url: "/QrGen/Edit",
+        //        type: "POST",
+        //        contentType: false, // Not to set any content header
+        //        processData: false, // Not to process data
+        //        data: {
+        //            __RequestVerificationToken: token,
+        //            model: pageObj,
+        //            attachedFile: fileData
+        //        },
+        //        success: function (response, textStatus, jqXHR) {
+        //            console.log("Invoice - Update Success");
+        //        },
+        //        error: function (jqXhr, textStatus, errorThrown) {
+        //            console.log("Invoice - Update Failed");
+        //            console.log(jqXhr);
+        //            console.log(textStatus);
+        //            console.log(errorThrown);
+        //        }
+        //    });
+        //});
+
+    });
+
+    function updateReceive() {
+
+        console.log("updateReceive");
+
+        var instantPaymentReceiveId = $("#InstantPaymentReceiveId").val();
+        var alias = $("#ddlAlias").val();
+        console.log("Alias = " + alias);
+        var ccy = $("#CurrencyCode").val();
+        var amount = $("#Amount").val();
+        var invoice = $("#Invoice").val();
+        var memo = $("#Memo").val();
+        var name = $("#Name").val();
+        var address = $("#Address").val();
+        var email = $("#Email").val();
+        var kycId = $("#KycId").val();
+
+        var fileUpload = $("#attachedFile").get(0);
+        // Create FormData object
+        //var fileData = new FormData();
+
+        //var fileData = new FormData($('#fileUploadForm')[0]);
+        var fileData = new FormData($(this)[0]);
+        var files = fileUpload.files;
+        console.log("files length: " + files.length);
+
+        // Looping over all files and add it to FormData object
+        for (var i = 0; i < files.length; i++) {
+            fileData.append(files[i].name, files[i]);
+        }
+
+        var shortenedUrl = $("#ShortenedUrl").val();
+        console.log("instantPaymentReceiveId:" + instantPaymentReceiveId + ", currency code = " + ccy + ", amount:" + amount + ", invoice:" + invoice + ", memo:" + memo + ", name:" + name + ", address:" + address + ", email:" + email + ", shorted URL:" + shortenedUrl);
+
+        var pageObj = {};
+        //pageObj.InstantPaymentReceiveId = instantPaymentReceiveId;
+        //pageObj.Alias = alias;
+        //pageObj.Currency = ccy;
+        //pageObj.Amount = amount;
+        //pageObj.Invoice = invoice;
+        //pageObj.Memo = memo;
+        //pageObj.Name = name;
+        //pageObj.Address = address;
+        //pageObj.Email = email;
+        //pageObj.ShortenedUrl = shortenedUrl;
+
+        pageObj.InstantPaymentReceiveId = instantPaymentReceiveId;
+        pageObj.Alias = alias;
+        pageObj.Currency = ccy;
+        pageObj.Amount = amount;
+        pageObj.Invoice = invoice;
+        pageObj.Memo = memo;
+        pageObj.Name = name;
+        pageObj.Address = address;
+        pageObj.Email = email;
+        pageObj.ShortenedUrl = shortenedUrl;
+
+        var token = $('input[name=__RequestVerificationToken]').val();
+        console.log("token: " + token);
+        $.ajax({
+            url: "/QrGen/Edit",
+            type: "POST",
+            contentType: false, // Not to set any content header
+            processData: false, // Not to process data
+            data: {
+                __RequestVerificationToken: token,
+                model: pageObj,
+                attachedFile: fileData
+            },
+            success: function (response, textStatus, jqXHR) {
+                console.log("Invoice - Update Success");
+            },
+            error: function (jqXhr, textStatus, errorThrown) {
+                console.log("Invoice - Update Failed");
+                console.log(jqXhr);
+                console.log(textStatus);
+                console.log(errorThrown);
+            }
+        });
+
+
+        @* $.ajax({
+            url: '@Url.Action("Upload", "ControllerName")',
+            type: 'POST',
+            data: formData,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                // Handle the successful upload
+                console.log(response);
+            },
+            error: function (error) {
+                // Handle the error
+                console.log(error);
+            }
+        });*@
+
+        //$('#fileUploadForm').submit(function (e) {
+        //    e.preventDefault();
+
+        //    console.log("Update clicked");
+        //    var instantPaymentReceiveId = $("#InstantPaymentReceiveId").val();
+        //    var alias = $("#ddlAlias").val();
+        //    console.log("Alias = " + alias);
+        //    var ccy = $("#CurrencyCode").val();
+        //    var amount = $("#Amount").val();
+        //    var invoice = $("#Invoice").val();
+        //    var memo = $("#Memo").val();
+        //    var name = $("#Name").val();
+        //    var address = $("#Address").val();
+        //    var email = $("#Email").val();
+        //    var kycId = $("#KycId").val();
+
+        //    var fileUpload = $("#attachedFile").get(0);
+        //    // Create FormData object
+        //    //var fileData = new FormData();
+
+        //    //var fileData = new FormData($('#fileUploadForm')[0]);
+        //    var fileData = new FormData($(this)[0]);
+        //    var files = fileUpload.files;
+        //    console.log("files length: " + files.length);
+
+        //    //if (files.length > 0) {
+        //    //    console.log(" File attached")
+        //    //}
+
+
+        //    // Looping over all files and add it to FormData object
+        //    for (var i = 0; i < files.length; i++) {
+        //        fileData.append(files[i].name, files[i]);
+        //    }
+
+        //    var shortenedUrl = $("#ShortenedUrl").val();
+        //    console.log("instantPaymentReceiveId:" + instantPaymentReceiveId + ", currency code = " + ccy + ", amount:" + amount + ", invoice:" + invoice + ", memo:" + memo + ", name:" + name + ", address:" + address + ", email:" + email + ", shorted URL:" + shortenedUrl);
+
+        //    var pageObj = {};
+        //    //pageObj.InstantPaymentReceiveId = instantPaymentReceiveId;
+        //    //pageObj.Alias = alias;
+        //    //pageObj.Currency = ccy;
+        //    //pageObj.Amount = amount;
+        //    //pageObj.Invoice = invoice;
+        //    //pageObj.Memo = memo;
+        //    //pageObj.Name = name;
+        //    //pageObj.Address = address;
+        //    //pageObj.Email = email;
+        //    //pageObj.ShortenedUrl = shortenedUrl;
+
+        //    pageObj.InstantPaymentReceiveId = instantPaymentReceiveId;
+        //    pageObj.Alias = alias;
+        //    pageObj.Currency = ccy;
+        //    pageObj.Amount = amount;
+        //    pageObj.Invoice = invoice;
+        //    pageObj.Memo = memo;
+        //    pageObj.Name = name;
+        //    pageObj.Address = address;
+        //    pageObj.Email = email;
+        //    pageObj.ShortenedUrl = shortenedUrl;
+
+        //    var token = $('input[name=__RequestVerificationToken]').val();
+        //    console.log("token: " + token);
+        //    $.ajax({
+        //        url: "/QrGen/Edit",
+        //        type: "POST",
+        //        contentType: false, // Not to set any content header
+        //        processData: false, // Not to process data
+        //        data: {
+        //            __RequestVerificationToken: token,
+        //            model: pageObj,
+        //            attachedFile: fileData
+        //        },
+        //        success: function (response, textStatus, jqXHR) {
+        //            console.log("Invoice - Update Success");
+        //        },
+        //        error: function (jqXhr, textStatus, errorThrown) {
+        //            console.log("Invoice - Update Failed");
+        //            console.log(jqXhr);
+        //            console.log(textStatus);
+        //            console.log(errorThrown);
+        //        }
+        //    });
+        //});
+
+    }
+
+    function SaveShortenedUrl() {
+        console.log("SaveShortenedUrl");
+        var instantPaymentReceiveId = $("#InstantPaymentReceiveId").val();
+        var alias = $("#ddlAlias").val();
+        console.log("Alias = " + alias);
+        var ccy = $("#CurrencyCode").val();
+        var amount = $("#Amount").val();
+        var invoice = $("#Invoice").val();
+        var memo = $("#Memo").val();
+        var name = $("#Name").val();
+        var address = $("#Address").val();
+        var email = $("#Email").val();
+        var kycId = $("#KycId").val();
+        console.log("instantPaymentReceiveId:" + instantPaymentReceiveId + ", currency code = " + ccy + ", amount:" + amount + ", invoice:" + invoice + ", memo:" + memo + ", name:" + name + ", address:" + address + ", email:" + email);
+
+        var token = $('input[name=__RequestVerificationToken]').val();
+        console.log(token);
+        var pageObj = {};
+        pageObj.InstantPaymentReceiveId = instantPaymentReceiveId;
+        pageObj.Alias = alias;
+        pageObj.Currency = ccy;
+        pageObj.Amount = amount;
+        pageObj.Invoice = invoice;
+        pageObj.Memo = memo;
+        pageObj.Name = name;
+        pageObj.Address = address;
+        pageObj.Email = email;
+        //pageObj.ShortenedUrl = shortenedUrl
+
+        var myurl = {
+            longUrl: host + "/Payment/Create?receiveId=" + instantPaymentReceiveId,
+        };
+
+        var jsondata = JSON.stringify(myurl);
+        console.log("jsondata: " + jsondata);
+        console.log("Start ShortenedUrls");
+
+        $.ajax({
+            url: "https://vo2.tech/api/ShortenedUrls",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+
+            type: "POST",
+            data: jsondata,
+            dataType: "json",
+            contentType: 'application/json; charset=utf-8',
+            success: function (result) {
+                //data - response from server
+                console.log("Start ShortenedUrls - Success");
+                console.log("shortUrl - " + result.shortUrl);
+
+                var mytext = {
+                    Text: result.shortUrl,
+                    LogoIndex: 0
+                };
+
+                $("#ShortenedUrl").val(result.shortUrl);
+
+                pageObj.ShortenedUrl = result.shortUrl;
+                console.log("pageObj.ShortenedUrl - " + pageObj.ShortenedUrl);
+                console.log("/QrGen/Edit - Update with ShortenedUrl");
+
+                $.ajax({
+                    url: "/QrGen/Edit",
+                    type: "POST",
+                    data: {
+                        __RequestVerificationToken: token,
+                        model: pageObj
+                    },
+                    success: function (response, textStatus, jqXHR) {
+                        console.log("/QrGen/Edit - Update with ShortenedUrl- Success");
+
+                    },
+                    error: function (jqXhr, textStatus, errorThrown) {
+                        console.log("/QrGen/Edit - Update with ShortenedUrl- Failed");
+                        console.log(jqXhr);
+                        console.log(textStatus);
+                        console.log(errorThrown);
+                    }
+                });
+
+                var jsontext = JSON.stringify(mytext);
+                console.log("jsontext: " + jsontext);
+                console.log("Run ApiGenerateQrCodeAsBase64");
+                $.ajax({
+                    url: "/api/ApiGenerateQrCodeAsBase64",
+                    type: "POST",
+                    data: jsontext,
+                    dataType: "json",
+                    contentType: 'application/json; charset=utf-8',
+                    success: function (qrcoderesult, textStatus, jqXHR) {
+                        //data - response from server
+                        console.log("ApiGenerateQrCodeAsBase64 - Success");
+                        console.log("qrcoderesult.QrCodeAsBase64 : " + qrcoderesult.QrCodeAsBase64);
+                        var binary = "";
+                        var responseText = jqXHR.responseText;
+                        var responseTextLen = responseText.length;
+
+                        for (i = 0; i < responseTextLen; i++) {
+                            binary += String.fromCharCode(responseText.charCodeAt(i) & 255)
+                        }
+
+                        $('#qrcode').html('<img width="300" height="300" src="data:image/png;base64,' + qrcoderesult.QrCodeAsBase64 + '" />');
+                        $("#qrPreView").removeClass("hidden");
+                    },
+                    error: function (jqXhr, textStatus, errorThrown) {
+                        console.log("ApiGenerateQrCodeAsBase64 - Failed");
+                        console.log(jqXhr);
+                        console.log(textStatus);
+                        console.log(errorThrown);
+                    }
+                });
+
+
+            },
+            error: function (jqXhr, textStatus, errorThrown) {
+                console.log("Start ShortenedUrls - Failed");
+                console.log(jqXhr);
+                console.log(textStatus);
+                console.log(errorThrown);
+            }
+        });
+    }
+
+    $("#copyUrl").click(function () {
+        // Get the text field
+        var shortenedUrl = document.getElementById("ShortenedUrl");
+
+        // Select the text field
+        shortenedUrl.select();
+        //shortenedUrl.setSelectionRange(0, shortenedUrl.value.length); // For mobile devices
+
+        // Copy the text inside the text field
+        navigator.clipboard.writeText(shortenedUrl.value);
+
+        // Alert the copied text
+        alert("URL copied: " + shortenedUrl.value);
+    });
+
+</script>
+
+@section customcss {
+    <!-- Specific Page Vendor CSS -->
+    <link rel="stylesheet" href="/Content/assets/vendor/select2/css/select2.css" />
+    <link rel="stylesheet" href="/Content/assets/vendor/select2-bootstrap-theme/select2-bootstrap.css" />
+    <link rel="stylesheet" href="/Content/assets/vendor/jquery-datatables-bs3/assets/css/datatables.css" />
+}
+
+@section VendorScripts {
+
+    <script src="/Content/assets/vendor/select2/js/select2.js"></script>
+    <script src="/Content/assets/vendor/jquery-datatables/media/js/jquery.dataTables.js"></script>
+    <script src="/Content/assets/vendor/jquery-datatables/extras/TableTools/js/dataTables.tableTools.min.js"></script>
+    <script src="/Content/assets/vendor/jquery-datatables-bs3/assets/js/datatables.js"></script>
+}
+
+@section Scripts {
+
+    <!-- Examples -->
+    <script src="/Content/assets/javascripts/tables/examples.datatables.default.js"></script>
+}

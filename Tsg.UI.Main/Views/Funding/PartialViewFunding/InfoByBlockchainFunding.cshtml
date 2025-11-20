@@ -1,0 +1,387 @@
+﻿@using System.Globalization
+@using Tsg.UI.Main.App_LocalResources
+@using Tsg.UI.Main.Models
+@using TSG.Models.Enums
+@using WinstantPay.Common.Extension
+@model TSG.Models.ServiceModels.AddFunds_BlockChainInfo
+
+@{
+    ViewBag.Title = GlobalRes.Shared_Navigation_AddFunds;
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+
+<link href="/Content/viewer/viewer.css" rel="stylesheet">
+<script src="/Content/viewer/viewer.js"></script>
+<script type="text/javascript" src="/Content/assets/vendor/jquery/jquery.js"></script>
+
+<script type="text/javascript" src="~/Content/assets/vendor/qrcode/qrcode.js"></script>
+
+@using (Html.BeginForm("AddBlockChainInfoFunds", "Funding", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    string[] crypto = { "BTC", "DASH"};
+
+    <div class="form-horizontal">
+        <section class="panel  @(ViewBag.OpenPanel != null ? "" : "panel-featured panel-featured-info")">
+
+            <header class="panel-heading" data-panel-toggle="">
+                <div class="panel-actions">
+                    <a href="#" class="panel-action panel-action-toggle" data-panel-toggle=""></a>
+                </div>
+                @*@if (Model.AddFundsWire_Fundings != null)
+                    {*@
+                <h2 class="panel-title">@GlobalRes.ProofDocUploadProofDocPage_BlockChainTitle</h2>
+                <p class="panel-subtitle">@GlobalRes.ProofDocUploadProofDocPage_BlockChainSubTitle</p>
+                @*}
+                    else
+                    {
+                        <h2 class="panel-title">@GlobalRes.ProofDocUploadProofDocPage_Title</h2>
+                        <p class="panel-subtitle">@GlobalRes.ProofDocUploadProofDocPage_SubTitle</p>
+                    }*@
+            </header>
+            <div class="panel-body">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(h => h.AddFundsWire_Fundings.Fundings_Id)
+                @Html.HiddenFor(h => h.AddFundsWire_Fundings.Fundings_SourceType)
+                @Html.HiddenFor(h => h.AddFundsBlockChainInfo_TimeStampPayment)
+                @* @Html.Hidden("alias", Model.AddFundsBlockChainInfo_Alias, new {id="message"})*@
+                @Html.Hidden("ccy", Model.AddFundsBlockChainInfo_CurrencyCode)
+                @if (Model.AddFundsWire_Fundings == null || Model.AddFundsWire_Fundings.Fundings_StatusByFund == (int)FundingStatus.Pending)
+                {
+
+                    if (Model.AddFundsBlockChainInfo_DestinatedBitcoinAddress != null)
+                    {
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">@GlobalRes.ProofDocUploadProofDocPage_Status </label>
+                            <div class="col-sm-6">
+                                @{
+                                    var description = EnumHelper<FundingStatus>.GetDisplayValue((FundingStatus)Model.AddFundsWire_Fundings.Fundings_StatusByFund);
+                                }
+                                @Html.TextBox("status", description, new { @class = "form-control", required = "", disabled = "disabled" })
+                            </div>
+                        </div>
+                    }
+
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">@GlobalRes.ProofDocUploadProofDocPage_ChooseReceivingAlias <span class="required" aria-required="true">*</span></label>
+                        <div class="col-sm-6">
+                            @if (Model.AddFundsWire_Fundings == null)
+                            {
+                                try
+                                {
+                                    if (Model.AddFundsBlockChainInfo_Message.Equals("No Available Wallet", StringComparison.OrdinalIgnoreCase))
+                                    {
+                                        <p style="color:red">@GlobalRes.AddFundsThruBtc_FundingController_NoWalletAvailable</p>
+                                    }
+                                    else if (Model.AddFundsBlockChainInfo_Message.Equals("BTC Manager Error", StringComparison.OrdinalIgnoreCase))
+                                    {
+                                        <p style="color:red">@GlobalRes.AddFundsThruBtc_FundingController_BtcManagerError</p>
+                                    }
+                                }
+                                catch (Exception)
+                                {
+
+                                }
+
+                                @Html.DropDownListFor(m => m.AddFundsBlockChainInfo_Alias, UiHelper.PrepareAccountAliases(), new { @class = "form-control", required = "" })
+                            }
+                            @if (Model.AddFundsWire_Fundings != null && Model.AddFundsWire_Fundings.Fundings_StatusByFund != (int)FundingStatus.Credited && Model.AddFundsBlockChainInfo_DestinatedBitcoinAddress != null)
+                            {
+                                @Html.TextBoxFor(m => m.AddFundsBlockChainInfo_Alias, new { @class = "form-control", @readonly = "readonly" })
+                            }
+                        </div>
+
+                    </div>
+
+                    if (Model.AddFundsWire_Fundings == null)
+                    {
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">@GlobalRes.ProofDocUploadProofDocPage_ChooseCryptoCurrency <span class="required" aria-required="true">*</span></label>
+                            <div class="col-sm-6">
+                                @Html.DropDownListFor(m => m.AddFundsBlockChainInfo_CCY, UiHelper.ListOfCryptoCurrency(), new { @class = "form-control", required = "" })
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">@GlobalRes.ProofDocUploadProofDocPage_ChooseCryptoCurrency <span class="required" aria-required="true">*</span></label>
+                            <div class="col-sm-6">
+                                @Html.TextBoxFor(m => m.AddFundsBlockChainInfo_CCY, new { @class = "form-control", @readonly = "readonly", @id = "choseCCY" })
+                            </div>
+                        </div>
+                    }
+
+
+
+                    <div class="hidden" id="qrPreView">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="text-center">
+                                    <div id="qrcode"></div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @if (string.Equals(Model.AddFundsBlockChainInfo_CCY, "BTC"))
+                                {
+                                    <div class="col-sm-offset-3 col-xs-12 col-sm-6">
+                                        <p style="color:red">@GlobalRes.AddFundsThruBtc_FundingController_Note</p>
+                                    </div>
+                                }
+                                <div class="col-sm-offset-3 col-xs-12 col-sm-6">
+                                    <div class="col-sm-10 dis_left_pad">
+                                        <input id="AddFundsBlockChainInfo_DestinatedBitcoinAddress" type="text" class="form-control disabled" name="AddFundsBlockChainInfo_DestinatedBitcoinAddress" value="@Model.AddFundsBlockChainInfo_DestinatedBitcoinAddress" />
+                                    </div>
+                                    <div class="col-sm-2 dis_right_pad">
+                                        <a class="btn btn-info col-xs-12 col-sm-12" id="copy_shortlink">Copy</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                else if (Model.AddFundsWire_Fundings != null && Model.AddFundsWire_Fundings.Fundings_StatusByFund > (int)FundingStatus.Pending)
+                {
+
+                    <div class="col-md-8 col-md-offset-2">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                        @Html.HiddenFor(m => m.AddFundsBlockChainInfo_TimeStampPayment)
+                        @Html.HiddenFor(m => m.AddFundsBlockChainInfo_ParentId)
+                        @Html.HiddenFor(m => m.AddFundsWire_Fundings.Fundings_FundingSource)
+
+                        <table class="table table-striped table-bordered  mb-none" id="tbl_detail">
+                            <tbody>
+                                <tr>
+                                    <td class="pt-md pb-md text-weight-bold">
+                                        @GlobalRes.ProofDocUploadProofDocPage_Status
+                                    </td>
+                                    <td class="pt-md pb-md">
+                                        @{
+                                            var description = EnumHelper<FundingStatus>.GetDisplayValue((FundingStatus)Model.AddFundsWire_Fundings.Fundings_StatusByFund);
+                                        }
+                                        @if (Model.AddFundsWire_Fundings.Fundings_StatusByFund == (int)FundingStatus.InProcess)
+                                        {
+                                            <span class="label btn-xs btn-default_custom">@description</span>
+                                        }
+                                        @if (Model.AddFundsWire_Fundings.Fundings_StatusByFund == (int)FundingStatus.Pending)
+                                        {
+                                            <span class="label btn-xs btn-warning_custom">@description</span>
+                                        }
+                                        @if (Model.AddFundsWire_Fundings.Fundings_StatusByFund == (int)FundingStatus.Credited)
+                                        {
+                                            <span class="label btn-xs btn-success_custom">@description</span>
+                                        }
+                                        @if (Model.AddFundsWire_Fundings.Fundings_StatusByFund == (int)FundingStatus.Canceled)
+                                        {
+                                            <span class="label btn-xs btn-danger_custom">@description</span>
+                                        }
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="pt-md pb-md text-weight-bold">
+                                        @GlobalRes.PaymentDetailsPage_Amount
+                                    </td>
+                                    <td class="pt-md pb-md">
+                                        @if (Model.AddFundsWire_Fundings != null && crypto.Contains(Model.AddFundsWire_Fundings.Fundings_Currency.Currency_CcyCode.ToUpper()))
+                                        {
+                                            <label>
+                                                @(Convert.ToDecimal(Model.AddFundsBlockChainInfo_ValueInSatoshi).ToString("N8")))
+                                            </label>
+                                        }
+                                        else
+                                        {
+                                            <label>
+                                                @(Model.AddFundsWire_Fundings.Fundings_Amount.ToString("N2"))
+                                            </label>
+                                        }
+                                        @Model.AddFundsWire_Fundings.Fundings_Currency.Currency_CcyCode
+                                        <img src="/Content/assets/images/onebyone.png" class="flag flag-@(Model.AddFundsWire_Fundings.Fundings_Currency.Currency_CcyCode.ToLower())" />
+
+                                    </td>
+                                </tr>
+                                <tr>
+
+                                    <td class="pt-md pb-md text-weight-bold">
+                                        @GlobalRes.ProofDocUploadProofDocPage_ChooseReceivingAlias
+                                    </td>
+                                    <td class="pt-md pb-md">
+                                        @Html.DisplayFor(model => model.AddFundsBlockChainInfo_Alias, new { @class = "form-control" })
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                }
+
+                <div class="form-group">
+                    <div class="col-md-offset-3 col-md-10" style="color:green">
+                        @ViewBag.Message
+                    </div>
+                </div>
+
+
+            </div>
+            <script type="text/javascript"></script>
+
+            <footer class="panel-footer">
+                <div class="row">
+                    <div class="col-sm-12 text-center">
+                        @if (Model.AddFundsWire_Fundings == null)
+                        {
+                            <input type="submit" class="btn btn-info" value="@GlobalRes.ProofDocUploadProofDocPage_CreateRequest" />
+                        }
+                        @*if (Model.AddFundsWire_Fundings != null && Model.AddFundsWire_Fundings.Fundings_StatusByFund != (int)FundingStatus.Credited && Model.AddFundsBlockChainInfo_DestinatedBitcoinAddress != null)
+                        {
+                            <a class="btn btn-success" href="@Model.AddFundsBlockChainInfo_UserUrl" target="_blank">@GlobalRes.ProofDocUploadProofDocPage_PayViaBlockChain</a>
+                        }*@
+                        
+                    </div>
+                </div>
+            </footer>
+
+        </section>
+    </div>
+}
+
+
+
+@section Scripts {
+    @*@Scripts.Render("~/bundles/jqueryval")*@
+
+    <script type="text/javascript">
+
+        var qrcode = new QRCode(document.getElementById("qrcode"),
+            {
+                width: 200,
+                height: 200
+            });
+
+        function makeCode() {
+            var ccy = $("#choseCCY").val();
+            if (ccy === "BTC") {
+                qrcode.makeCode('bitcoin:' +
+                    $("#AddFundsBlockChainInfo_DestinatedBitcoinAddress").val() +
+                    '?message=' +
+                    $("#AddFundsBlockChainInfo_Alias").val() +
+                    '&amount=0');
+            } else if (ccy === "DASH") {
+                console.log("Dash")
+                qrcode.makeCode('dash:' +
+                    $("#AddFundsBlockChainInfo_DestinatedBitcoinAddress").val() +
+                    '?IS=1');
+            }
+           
+        }
+
+        $(document).ready(function () {
+            if ($("#ccy").val()) {
+                makeCode();
+                $("#qrPreView").removeClass("hidden");
+            }
+
+
+        });
+        document.getElementById("copy_shortlink").addEventListener("click", function () { copyToClipboard(document.getElementById("AddFundsBlockChainInfo_DestinatedBitcoinAddress")) });
+
+        function copyToClipboard(elem) {
+            console.log(elem.textContent);
+            var targetId = "_hiddenCopyText_";
+            var isInput = elem.tagName === "INPUT" || elem.tagName === "TEXTAREA";
+            var origSelectionStart, origSelectionEnd;
+            if (isInput) {
+                target = elem;
+                origSelectionStart = elem.selectionStart;
+                origSelectionEnd = elem.selectionEnd;
+            } else {
+                target = document.getElementById(targetId);
+                if (!target) {
+                    var target = document.createElement("textarea");
+                    target.style.position = "absolute";
+                    target.style.left = "-9999px";
+                    target.style.top = "0";
+                    target.id = targetId;
+                    document.body.appendChild(target);
+                }
+                target.textContent = elem.textContent;
+            }
+            var currentFocus = document.activeElement;
+            target.focus();
+            target.setSelectionRange(0, target.value.length);
+            console.log(target);
+            var succeed;
+            try {
+                succeed = document.execCommand("copy");
+            } catch (e) {
+                console.log(e);
+                succeed = false;
+            }
+            if (currentFocus && typeof currentFocus.focus === "function") {
+                currentFocus.focus();
+            }
+
+            if (isInput) {
+                elem.setSelectionRange(origSelectionStart, origSelectionEnd);
+            } else {
+                target.textContent = "";
+            }
+            return succeed;
+        }
+        $("#copy_shortlink").click(function () {
+
+            if (copyToClipboard($("#AddFundsBlockChainInfo_DestinatedBitcoinAddress"))) {
+
+                var animEl = $("#AddFundsBlockChainInfo_DestinatedBitcoinAddress");
+                animEl.toggle(function () {
+                    $("#AddFundsBlockChainInfo_DestinatedBitcoinAddress").animate({ top: '-=100px' }, 1000);
+                });
+                animEl.toggle(function () {
+                    $("#AddFundsBlockChainInfo_DestinatedBitcoinAddress").animate({ top: '+=100px' }, 800);
+                });
+                if ($("#copy_shortlink").hasClass("btn-info")) {
+                    $("#copy_shortlink").removeClass("btn-info");
+                    $("#copy_shortlink").addClass("btn-success");
+                    $("#copy_shortlink").text("Copied!");
+                }
+                setTimeout()
+            }
+        });
+
+        Number.prototype.noExponents = function () {
+            var data = String(this).split(/[eE]/);
+            if (data.length == 1) return data[0];
+
+            var z = '',
+                sign = this < 0 ? '-' : '',
+                str = data[0].replace('.', ''),
+                mag = Number(data[1]) + 1;
+
+            if (mag < 0) {
+                z = sign + '0.';
+                while (mag++) z += '0';
+                return z + str.replace(/^\-/, '');
+            }
+            mag -= str.length;
+            while (mag--) z += '0';
+            return str + z;
+        };
+
+        $("#AddFundsBlockChainInfo_CurrencyIndex").on("change",
+            function () {
+                var currencyName = $('#AddFundsBlockChainInfo_CurrencyIndex :selected').text();
+                $('#AddFundsBlockChainInfo_CurrencyCode').val(currencyName);
+
+                if (currencyName === "BTC" || currencyName === "ETH") {
+                    $('#AddFundsBlockChainInfo_TotalValue').attr('step', 0.00001);
+                } else {
+                    $('#AddFundsBlockChainInfo_TotalValue').attr('step', 0.01);
+                    var v = Math.round($('#AddFundsBlockChainInfo_TotalValue').val() * 100) / 100;
+                    $('#AddFundsBlockChainInfo_TotalValue').val(v);
+                }
+            });
+
+
+    </script>
+}

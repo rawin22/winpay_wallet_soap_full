@@ -1,0 +1,78 @@
+﻿@using Tsg.UI.Main.App_LocalResources
+@model Tsg.UI.Main.Models.Merchants.MerchantModel
+
+
+<div class="modal-header">
+    <img src="/Content/assets/images/winstantpay-logo-notag.png" height="35" alt="" />
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-top: 5px">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <br />
+    <div class="row">
+        <div class="col-sm-4" style="margin-top: 3px">@GlobalRes.MerchantsPage_ModalAddRec_Name</div>
+        <div class="col-sm-8">
+            @Html.TextBoxFor(m => m.MerchantName, new { @class = "form-control", placeholder = GlobalRes.MerchantsIndexPage_AddMerchantModal_PlaceholderForName })
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4" style="margin-top: 3px">@GlobalRes.MerchantsPage_ModalAddRec_Name</div>
+        <div class="col-sm-8">
+            @Html.DropDownListFor(m => m.MerchantAlias, UiHelper.PrepareAccountAliases(), new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="row" style="margin-top: 3px">
+        <div class="col-sm-4">@GlobalRes.MerchantsPage_ModalAddRec_Phone</div>
+        <div class="col-sm-8">
+            @Html.TextBoxFor(m => m.MerchantPhone, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="row" style="margin-top: 3px">
+        <div class="col-sm-4">@GlobalRes.MerchantsPage_ModalAddRec_Address</div>
+        <div class="col-sm-8">
+            @Html.TextBoxFor(m => m.MerchantAddress, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="row" style="margin-top: 3px">
+        <div class="col-sm-4">@GlobalRes.MerchantsPage_ModalAddRec_CallBackAddress</div>
+        <div class="col-sm-8">
+            @Html.TextBoxFor(m => m.MerchantWebSiteCallBackAddress, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="row" style="margin-top: 3px">
+        <div class="col-sm-4">Is sandbox</div>
+        <div class="col-sm-8">
+            @Html.CheckBoxFor(c => c.MerchantIsSandbox, new { id = "MerchantAddIsSandbox" })
+        </div>
+    </div>
+    <div class="row" style="margin-top: 3px">
+        <div class="col-sm-4">Public Token Key</div>
+        <div class="col-sm-8">
+            @Html.TextBoxFor(c => c.MerchantPublicTokenKey, new { @readonly = "readonly", @class = "form-control" })
+        </div>
+    </div>
+    <div class="row" style="margin-top: 3px">
+        <div class="col-sm-4">Private Token Key</div>
+        <div class="col-sm-8">
+            @Html.TextBoxFor(c => c.MerchantPrivateTokenKey, new { @readonly = "readonly", @class = "form-control" })
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    @if (Model.Id == 0)
+    {
+        <button type="submit" class="btn btn-success"> @GlobalRes.GetAllContractUsListPage_ModalAddRec_Add</button>
+    }
+    else
+    {
+        <button type="submit" class="btn btn-success">@GlobalRes.GetAllContractUsListPage_ModalAddRec_Save</button>
+    }
+    <button type="button" class="btn btn-danger" data-dismiss="modal">@GlobalRes.GetAllContractUsListPage_ModalAddRec_Close</button>
+</div>
+@Html.HiddenFor(h => h.Id)
+@Html.HiddenFor(h => h.MerchantApi)
+@Html.HiddenFor(h => h.MerchantGuid)
+@Html.HiddenFor(h => h.MerchantUserGuid)
+@Html.HiddenFor(h => h.MerchantUserId)
+@Html.HiddenFor(h => h.MerchantPathForJs)

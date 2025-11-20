@@ -1,0 +1,94 @@
+﻿@model Tsg.UI.Main.Models.ExchangeModel
+@using Tsg.UI.Main.App_LocalResources
+
+<style>
+    .currenySelector {
+        padding-bottom: 10px;
+        padding-left: 7px;
+    }
+
+    .currenyAmount { padding-right: 9px; }
+
+    .labelAmount { padding-right: 21px; }
+
+    @@media only screen and (max-width: 768px) {
+        .currenySelector {
+            padding-bottom: 10px;
+            padding-left: 15px;
+        }
+
+        .currenyAmount { padding-right: 15px; }
+    }
+</style>
+<script type = "text/javascript" src = "/Content/assets/vendor/jquery/jquery.js" ></script>
+
+@if (Model != null)
+{
+    <div class = "form-horizontal" >
+        <section class = "panel  @(ViewBag.OpenPanel != null ? "" : "panel-featured panel-featured-info")" >
+
+            <header class = "panel-heading" data-panel-toggle = "" >
+                <div class = "panel-actions" >
+                    <a href = "#" class = "panel-action panel-action-toggle" data-panel-toggle = "" ></a>
+                </div>
+
+                <h2 class = "panel-title" >@GlobalRes.ExchangeCurrencyExchangePage_Title</h2>
+                @if (!(Model != null && Model.FxDealQuoteResult != null && Model.FxDealQuoteResult.Quote != null && Model.FxDealQuoteBookResult != null))
+                {
+                    <p class = "panel-subtitle" >
+                        @Html.Raw(GlobalRes.ExchangeCurrencyExchangePage_SubTitle)
+                    </p>
+                }
+            </header>
+
+            <div class = "panel-body" >
+                <div id = "step3" class = "form-group" >
+                    <div class = "col-sm-12" >
+                        @if (Model != null && Model.FxDealQuoteResult != null && Model.FxDealQuoteResult.Quote != null && Model.FxDealQuoteBookResult != null)
+                        {
+                            if (Model.FxDealQuoteBookResult.ServiceResponse != null && !Model.FxDealQuoteBookResult.ServiceResponse.HasErrors)
+                            {
+                                <label class = "col-sm-12 text-center" id = "bookRes" >
+                                    <strong>
+                                        @String.Format("{0} {1} {2} {3}.", Model.FxDealQuoteResult.Quote.SellAmount, GlobalRes.ExchangeCurrencyExchangePage4_MessageFromAcc, Model.FxDealQuoteResult.Quote.SellCurrencyCode, GlobalRes.ExchangeCurrencyExchangePage4_MessageAcc2)
+                                        <br/>
+                                        @String.Format("{0} {1} {2} {3}.", Model.FxDealQuoteResult.Quote.BuyAmount, GlobalRes.ExchangeCurrencyExchangePage4_MessageToAcc, Model.FxDealQuoteResult.Quote.BuyCurrencyCode, GlobalRes.ExchangeCurrencyExchangePage4_MessageAcc)
+                                    </strong>
+                                </label>
+                            }
+                            else if (Model.FxDealQuoteBookResult.ServiceResponse != null && Model.FxDealQuoteBookResult.ServiceResponse.HasErrors && Model.FxDealQuoteBookResult.ServiceResponse.Responses.Length > 0)
+                            {
+                                <label class = "col-sm-12 text-center" id = "bookRes" >
+                                    <strong style = "color: red" >
+                                        @String.Format("{0}. {1}", GlobalRes.ExchangeCurrencyExchangePage4_MessageTransferFailed, Model.FxDealQuoteBookResult.ServiceResponse.Responses[0].Message)
+                                    </strong>
+                                </label>
+                            }
+                            else if (Model.FxDealQuoteBookResult.ServiceResponse != null && Model.FxDealQuoteBookResult.ServiceResponse.HasErrors)
+                            {
+                                <label class = "col-sm-12 text-center" id = "bookRes" >
+                                    <strong style = "color: red" >
+                                        @GlobalRes.ExchangeCurrencyExchangePage4_MessageUnspecError
+                                    </strong>
+                                </label>
+                            }
+                        }
+                    </div>
+                </div>
+                <footer class="panel-footer">
+                    <div class="row">
+                        <div class="col-sm-12 text-center">
+                            <a class="btn btn-success" href="/Exchange/CurrencyExchange">@GlobalRes.ExchangeCurrencyExchangePage4_New</a>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-sm-12 text-center">
+                            <a class="btn btn-info" href="/Exchange/History">@GlobalRes.ExchangeCurrencyExchangePage4_GoToHistory</a>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </section>
+    </div>
+}

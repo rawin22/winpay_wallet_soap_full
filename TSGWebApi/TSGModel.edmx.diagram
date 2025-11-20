@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="78254ceec1734c89a4606644e861d3a4" Name="Diagram1">
+        <EntityTypeShape EntityType="ewalletdbModel.EnumOfOrderStatuses" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ewalletdbModel.Merchants" Width="1.5" PointX="0.75" PointY="4.5" />
+        <EntityTypeShape EntityType="ewalletdbModel.OrdersHistory" Width="1.5" PointX="3" PointY="4.25" />
+        <EntityTypeShape EntityType="ewalletdbModel.TokenKeysForOrders" Width="1.5" PointX="6" PointY="4" />
+        <EntityTypeShape EntityType="ewalletdbModel.User" Width="1.5" PointX="0.75" PointY="8.75" />
+        <AssociationConnector Association="ewalletdbModel.FK_OrdersHistory_EnumOfOrderStatuses" />
+        <AssociationConnector Association="ewalletdbModel.FK_TokenKeysForOrders_EnumOfOrderStatuses" />
+        <AssociationConnector Association="ewalletdbModel.FK_OrdersHistory_Merchants" />
+        <AssociationConnector Association="ewalletdbModel.FK_TokenKeysForOrders_Merchants" />
+        <AssociationConnector Association="ewalletdbModel.FK_OrdersHistory_TokenKeysForOrders" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

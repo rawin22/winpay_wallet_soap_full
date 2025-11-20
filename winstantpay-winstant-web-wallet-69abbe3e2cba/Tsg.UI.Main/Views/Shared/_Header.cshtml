@@ -1,0 +1,425 @@
+﻿@using System.Configuration
+@using System.Diagnostics
+@using System.Globalization
+@using Tsg.UI.Main.App_LocalResources
+@using TSG.Models.APIModels
+@if (Tsg.UI.Main.Models.Security.AppSecurity.CurrentUser == null)
+{
+    Response.Redirect("~/User/Login");
+}
+else
+{
+    string headerLogoUrl = string.Empty;
+    try
+    {
+
+        HttpCookie headerLogoCookie = new HttpCookie("headerLogoUrl");
+        headerLogoCookie = Request.Cookies["headerLogoUrl"];
+
+        // Read the cookie information and display it.
+        if (headerLogoCookie != null)
+        {
+            headerLogoUrl = headerLogoCookie.Value;
+        }
+    }
+    catch (Exception _e)
+    {
+        //Failed to read cookie?
+        throw _e;
+    }
+
+
+    <style>
+        @@media only screen and (max-width: 767px) {
+            .userbox:after {
+                width: 0px !important;
+            }
+        }
+
+        @@media only screen and (max-width: 352px) {
+            #imgLogo {
+                height: 28px !important
+            }
+        }
+
+        .dropdown-menu > li > a {
+            padding: 3px 10px
+        }
+
+        .dropdown-menu {
+            min-width: 130px;
+        }
+    </style>
+
+    <!-- start: header -->
+    <header class="header">
+
+        <div class="logo-container">
+            <div class="col-xs-4" style="padding: 0px">
+                @if (!string.IsNullOrEmpty(headerLogoUrl))
+                {
+                    <a href="/" class="logo">
+                        <img src="@headerLogoUrl" id="imgLogo" style="height: 35px" alt="" />
+                    </a>
+                }                
+                else
+                {
+                    <a href="/" class="logo">
+                        <img src="/Content/assets/images/header-logo.png" id="imgLogo" style="height: 35px" alt="" />
+                    </a>
+                }
+
+            </div>            
+            <div class="col-xs-8 hidden-sm hidden-md hidden-lg header_padding50px">
+
+                <div class="header-right header_right_pad">
+                    <div class="btn-group">
+
+                        <button class="btn btn-default dropdown-toggle" style="margin-top: 10px" type="button" data-toggle="dropdown">
+                            @if (CultureInfo.CurrentCulture.Name.Contains("PH"))
+                            {
+                                <img src="/Content/assets/images/onebyone.png" class='flag flag-enp' /><span class="caret" style="margin-left: 10px;"></span>
+                            }
+                            else if (CultureInfo.CurrentCulture.Name.Contains("ar"))
+                            {
+                                <img src="/Content/assets/images/onebyone.png" class='flag flag-aed' />
+                                <span class="caret caret_ml"></span>
+                            }
+                            else if (CultureInfo.CurrentCulture.Name.Contains("th"))
+                            {
+                                <img src="/Content/assets/images/onebyone.png" class='flag flag-thb' />
+                                <span class="caret"></span>
+                            }
+                            else if (CultureInfo.CurrentCulture.Name.Contains("km"))
+                            {
+                                <img src="/Content/assets/images/onebyone.png" class='flag flag-khr' />
+                                <span class="caret"></span>
+                            }
+                            else if (CultureInfo.CurrentCulture.Name.Contains("zh"))
+                            {
+                                <img src="/Content/assets/images/onebyone.png" class='flag flag-cny' />
+                                <span class="caret"></span>
+                            }
+                            else
+                            {
+                                <img src="/Content/assets/images/onebyone.png" class='@String.Format("flag flag-{0}", CultureInfo.CurrentCulture.TwoLetterISOLanguageName)' /><span class="caret" style="margin-left: 10px;"></span>
+                            }
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a class="syslang" data-lang="en">
+                                    <img src="/Content/assets/images/onebyone.png" class="flag flag-en" /> @GlobalRes.Shared_Header_Lang_English
+                                </a>
+                            </li>
+                            <li>
+                                <a class="syslang" data-lang="ru">
+                                    <img src="/Content/assets/images/onebyone.png" class="flag flag-ru" /> @GlobalRes.Shared_Header_Lang_Russian
+                                </a>
+                            </li>
+                            <li>
+                                <a class="syslang" data-lang="fr">
+                                    <img src="/Content/assets/images/onebyone.png" class="flag flag-fr" /> @GlobalRes.Shared_Header_Lang_French
+                                </a>
+                            </li>
+                            <li>
+                                <a class="syslang" data-lang="ph">
+                                    <img src="/Content/assets/images/onebyone.png" class="flag flag-enp" /> @GlobalRes.Shared_Header_Lang_Filipino
+                                </a>
+                            </li>
+                            <li>
+                                <a class="syslang" data-lang="ar">
+                                    <img src="/Content/assets/images/onebyone.png" class="flag flag-aed" /> @GlobalRes.Shared_Header_Lang_Arabic
+                                </a>
+                            </li>
+                            <li>
+                                <a class="syslang" data-lang="th">
+                                    <img src="/Content/assets/images/onebyone.png" class="flag flag-thb" /> @GlobalRes.Shared_Header_Lang_Thai
+                                </a>
+                            </li>
+                            <li>
+                                <a class="syslang" data-lang="km">
+                                    <img src="/Content/assets/images/onebyone.png" class="flag flag-khr" /> @GlobalRes.Shared_Header_Lang_Khmer
+                                </a>
+                            </li>
+                            <li>
+                                <a class="syslang" data-lang="cn">
+                                    <img src="/Content/assets/images/onebyone.png" class="flag flag-cny" /> @GlobalRes.Shared_Header_Lang_Chinese
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="btn-group">
+                        <button class="btn btn-default dropdown-toggle" style="margin-top: 10px" type="button" data-toggle="dropdown">
+                            <i class="fa fa-user"></i>
+                            <i class="fa fa-caret-down"></i>
+                        </button>
+                        <ul class="dropdown-menu user_info_dropdown">
+                            <li>
+                                <p class="role">
+                                    <span class="name">@Tsg.UI.Main.Models.Security.AppSecurity.CurrentUser.FirstName @Tsg.UI.Main.Models.Security.AppSecurity.CurrentUser.LastName</span>
+                                    <br />
+                                    <span class="role">@Tsg.UI.Main.Models.Security.AppSecurity.CurrentUser.UserName</span>
+                                </p>
+                            </li>
+
+                            <li class="divider"></li>
+                            <li>
+                                @if (@Session["UiVersion"] != null)
+                                {
+                                    <p class="role" id="session_mobile">
+                                        <a href="https://www.winstantpay.com/en/releasenotes" target="_blank" class="control-label">
+                                            v<span>@Session["UiVersion"].ToString()</span>
+                                        </a>
+                                    </p>
+                                }
+                            </li>
+                            <li>
+                                <p class="role">
+                                    @GlobalRes.Shared_Header_LastLogin <br />
+                                    @Tsg.UI.Main.Models.Security.AppSecurity.CurrentUser.LastLoginDate.ToString("MMM dd, yyyy HH:mm tt")
+                                </p>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a role="menuitem" class="menu-item" tabindex="-1" href="/User/Profile"><i class="fa fa-user"></i> @GlobalRes.Shared_Header_MyProfile</a>
+                            </li>
+                            <li>
+                                <a role="menuitem" class="menu-item" tabindex="-1" href="/User/Logout"><i class="fa fa-power-off"></i> @GlobalRes.Shared_Header_Logout</a>
+                            </li>
+                        </ul>
+                    </div>
+                    @*<div class="btn-group sidebar-left-mt-3em" >*@
+                    <div class="visible-xs toggle-sidebar-left sidebar-ae" data-toggle-class="sidebar-left-opened" data-target="html" data-fire-event="sidebar-left-opened">
+                        <i class="fa fa-bars" aria-label="Toggle sidebar"></i>
+                    </div>
+                    @*</div>*@
+                    
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+        <!-- start: search & user box -->
+        <div class="hidden-xs header-right">
+
+            @*<form action="pages-search-results.html" class="search nav-form">
+                    <div class="input-group input-search">
+                        <input type="text" class="form-control" name="q" id="q" placeholder="Search...">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
+                        </span>
+                    </div>
+                </form>*@
+
+            <span class="separator separator_mr"></span>
+            <div id="userbox" class="userbox">
+                <a href="#" data-toggle="dropdown">
+                    @*<figure class="profile-picture">
+                            <img src="/Content/assets/images/!logged-user.jpg" alt="Joseph Doe" class="img-circle" data-lock-picture="/Content/assets/images/!logged-user.jpg"/>
+                        </figure>*@
+                    <div class="profile-info">
+                        <span class="name">@Tsg.UI.Main.Models.Security.AppSecurity.CurrentUser.FirstName @Tsg.UI.Main.Models.Security.AppSecurity.CurrentUser.LastName</span>
+                        <span class="role">@Tsg.UI.Main.Models.Security.AppSecurity.CurrentUser.UserName</span>
+                    </div>
+
+                    <i class="fa custom-caret"></i>
+                </a>
+
+                <div class="dropdown-menu">
+                    <ul class="list-unstyled">
+                        <li class="divider"></li>
+                        <li>
+                            @if (@Session["UiVersion"] != null)
+                            {
+                                <a href="https://www.winstantpay.com/en/releasenotes" target="_blank" class="control-label">
+                                    v<span>@Session["UiVersion"].ToString()</span>
+                                </a>
+                                <p class="role" id="session_desktop" style="padding-left: 10px">
+                                </p>
+                            }
+                        </li>
+                        <li>
+                            <p class="role" style="padding-left: 10px">
+                                @GlobalRes.Shared_Header_LastLogin <br />
+                                @Tsg.UI.Main.Models.Security.AppSecurity.CurrentUser.LastLoginDate.ToString("MMM dd, yyyy HH:mm tt")
+                            </p>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a role="menuitem" tabindex="-1" href="/User/Profile"><i class="fa fa-user"></i> @GlobalRes.Shared_Header_MyProfile</a>
+                        </li>
+                        @*<li>
+                                <a role="menuitem" tabindex="-1" href="#" data-lock-screen="true"><i class="fa fa-lock"></i> Lock Screen</a>
+                            </li>*@
+                        <li>
+                            <a role="menuitem" tabindex="-1" href="/User/Logout"><i class="fa fa-power-off"></i> @GlobalRes.Shared_Header_Logout</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="hidden-xs header-right" style="margin-top: 0px !important">
+            <div class="dropdown">
+                <button class="btn btn-default dropdown-toggle" style="margin-top: 10px" type="button" data-toggle="dropdown">
+                    @if (CultureInfo.CurrentCulture.Name.Contains("PH"))
+                    {
+                        <img src="/Content/assets/images/onebyone.png" class='flag flag-enp' />
+                        @GlobalRes.Shared_Header_Lang_Filipino
+                        <span class="caret"></span>
+                    }
+                    else if (CultureInfo.CurrentCulture.Name.Contains("ar"))
+                    {
+                        <img src="/Content/assets/images/onebyone.png" class='flag flag-aed' />
+                        @GlobalRes.Shared_Header_Lang_Arabic
+                        <span class="caret"></span>
+                    }
+                    else if (CultureInfo.CurrentCulture.Name.Contains("th"))
+                    {
+                        <img src="/Content/assets/images/onebyone.png" class='flag flag-thb' />
+                        @GlobalRes.Shared_Header_Lang_Thai
+                        <span class="caret"></span>
+                    }
+                    else if (CultureInfo.CurrentCulture.Name.Contains("km"))
+                    {
+                        <img src="/Content/assets/images/onebyone.png" class='flag flag-khr' />
+                        @GlobalRes.Shared_Header_Lang_Khmer
+                        <span class="caret"></span>
+
+                    }
+                    else if (CultureInfo.CurrentCulture.Name.Contains("zh"))
+                    {
+                        <img src="/Content/assets/images/onebyone.png" class='flag flag-cny' />
+                        @GlobalRes.Shared_Header_Lang_Chinese
+                        <span class="caret"></span>
+
+                    }
+                    else
+                    {
+                        <img src="/Content/assets/images/onebyone.png" class='@String.Format("flag flag-{0}", CultureInfo.CurrentCulture.TwoLetterISOLanguageName)' />
+                        @String.Format("{0}{1}", CultureInfo.CurrentCulture.Parent.NativeName[0].ToString().ToUpper(), String.Join("", CultureInfo.CurrentCulture.Parent.NativeName.Skip(1)))
+                        <span class="caret"></span>
+                    }
+                </button>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a class="syslang" data-lang="en">
+                            <img src="/Content/assets/images/onebyone.png" class="flag flag-en" /> @GlobalRes.Shared_Header_Lang_English
+                        </a>
+                    </li>
+                    <li>
+                        <a class="syslang" data-lang="ru">
+                            <img src="/Content/assets/images/onebyone.png" class="flag flag-ru" /> @GlobalRes.Shared_Header_Lang_Russian
+                        </a>
+                    </li>
+                    <li>
+                        <a class="syslang" data-lang="fr">
+                            <img src="/Content/assets/images/onebyone.png" class="flag flag-fr" /> @GlobalRes.Shared_Header_Lang_French
+                        </a>
+                    </li>
+                    <li>
+                        <a class="syslang" data-lang="ph">
+                            <img src="/Content/assets/images/onebyone.png" class="flag flag-enp" /> @GlobalRes.Shared_Header_Lang_Filipino
+                        </a>
+                    </li>
+                    <li>
+                        <a class="syslang" data-lang="ar">
+                            <img src="/Content/assets/images/onebyone.png" class="flag flag-aed" /> @GlobalRes.Shared_Header_Lang_Arabic
+                        </a>
+                    </li>
+                    <li>
+                        <a class="syslang" data-lang="th">
+                            <img src="/Content/assets/images/onebyone.png" class="flag flag-thb" /> @GlobalRes.Shared_Header_Lang_Thai
+                        </a>
+                    </li>
+                    <li>
+                        <a class="syslang" data-lang="km">
+                            <img src="/Content/assets/images/onebyone.png" class="flag flag-khr" /> @GlobalRes.Shared_Header_Lang_Khmer
+                        </a>
+                    </li>
+                    <li>
+                        <a class="syslang" data-lang="cn">
+                            <img src="/Content/assets/images/onebyone.png" class="flag flag-cny" /> @GlobalRes.Shared_Header_Lang_Chinese
+                        </a>
+                    </li>
+                </ul>
+
+            </div>
+
+            @if (@Session["UiVersion"] == null)
+            {
+                <script type="text/javascript" language="javascript">
+                    $.ajax({
+                        url: '@Url.Action("GetUiInfo", "User")',
+                        type: "GET",
+                        success: function (data) {
+                            console.log(data);
+                            if (data.Success) {
+                                // let strVersion = 'V. ' + data.InfoBlock.UserMessage;
+                                let strVersion = '<a href="https://www.winstantpay.com/en/releasenotes" target="_blank" class="control-label">v<span>' + data.InfoBlock.UserMessage + '</span></a>';
+                                $('#session_desktop').text(strVersion);
+                                $('#session_mobile').text(strVersion);
+                            }
+                        }
+                    });
+                </script>
+            }
+
+            <script type="text/javascript" language="javascript">
+                $('.syslang').click(function () {
+                    let lang = this.dataset.lang;
+                    console.log(this.dataset.lang);
+                    $.ajax({
+                        url: '@Url.Action("ChangeCulture", "Home")',
+                        type: "POST",
+                        data: { 'lang': lang },
+                        success: function (data) {
+                            var cl = '@Url.RequestContext.RouteData.Values["lang"]';
+                            location.reload();
+                            blockWindow();
+                        }
+                    });
+
+                });
+            </script>
+
+
+            @*<span class="separator"></span>*@
+        </div>
+
+        <!-- end: search & user box -->
+    </header>
+}<!-- end: header -->
+
+<script>
+    function openEnvelopePanel() {
+        // open panel
+        if ($("#incomingEnvelopesPanel").hasClass("panel-collapsed")) {
+            $("#incomingEnvelopesPanel>header>div>a").click();
+        }
+    }
+
+    $.ajax({
+        "url": '@Url.Action("JsonInputHistoricalData", "InputOutputObjects")',
+        "type": "POST",
+        success: function (json)
+        {
+            try {
+                let newEnvelope = json.filter(function(jsonValue) {
+                    return jsonValue.GetInboxList_SourceType === 2 && !jsonValue.GetInboxList_AcceptedDate;
+                }).length;
+
+                if (newEnvelope > 0) {
+                    $("#envelopeBadgeMobile").text(newEnvelope);
+                    $("#envelopeBadge").text(newEnvelope);
+                }
+            }
+            catch (e) {}
+        }
+    });
+
+</script>

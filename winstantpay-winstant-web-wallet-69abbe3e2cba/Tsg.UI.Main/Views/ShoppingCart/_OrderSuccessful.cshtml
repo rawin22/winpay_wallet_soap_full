@@ -1,0 +1,60 @@
+﻿@model TSG.Models.ServiceModels.Shop.PayedShopModel
+@using Tsg.UI.Main.App_LocalResources
+@using WinstantPay.Common.Extension
+
+
+@{
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+    string[] crypto = { "BTC", "ETH", "XAU" };
+}
+
+
+<div class="form-horizontal">
+    <section class="panel panel-featured panel-featured-info">
+
+        <header class="panel-heading" data-panel-toggle="">
+            <div class="panel-actions">
+                <a href="#" class="panel-action panel-action-toggle" data-panel-toggle=""></a>
+            </div>
+
+            <h2 class="panel-title">@(Model != null && Model.Success ? GlobalRes.OrdersPaymentResult_SuccessText : GlobalRes.OrdersPaymentResult_PaymentError)</h2>
+        </header>
+        <div class="panel-body">
+            <div class="form-group">
+                <div class="col-sm-12">
+                    @if (Model != null && Model.Success)
+                    {
+                        <label class="col-sm-12 text-center" id="bookRes">
+                            <strong>
+                                @GlobalRes.OrdersPaymentResult_ThankText
+                            </strong>
+                            @GlobalRes.OrdersDetails_PurchaseReferenceText @Model.PaymentOrderId
+                        </label>
+                    }
+                    else
+                    {
+                        <label class="col-sm-12 text-center" id="bookRes">
+                            <strong style="color: red">
+                                @GlobalRes.ExchangeCurrencyExchangePage4_MessageUnspecError
+                                <br />
+                                <ol style="display: flex; flex-direction: column; align-items:center;">
+                                    @if (Model!=null && Model.InfoBlock != null)
+                                    {
+                                        @Html.Raw(Model.InfoBlock.UserMessage)
+                                    }
+                                </ol>
+                            </strong>
+                        </label>
+                    }
+                </div>
+            </div>
+        </div>
+        <footer class="panel-footer">
+            <div class="row">
+                <div class="col-sm-12 text-center">
+                    <a class="btn btn-success" href="/">@GlobalRes.ExchangeCurrencyExchangePage4_ReturnButton</a>
+                </div>
+            </div>
+        </footer>
+    </section>
+</div>

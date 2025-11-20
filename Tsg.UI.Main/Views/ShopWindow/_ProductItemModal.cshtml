@@ -1,0 +1,91 @@
+﻿@using Tsg.UI.Main.App_LocalResources
+@using WinstantPay.Common.Extension
+@model TSG.Models.ServiceModels.Shop.ShopProducts
+
+
+@{
+    string[] crypto = { "BTC", "ETH", "XAU" };
+}
+<div class="product-item">
+    <ul class="product-breadcrumb">
+        <li><a href="@Url.Action("Index", "ShopWindow")">MARKETPLACE</a></li>
+        <li><a href="@Url.Action("Index", "ShopWindow", new {categoryId=@Model.ShopProducts_CategoryID, shopId = Model.ShopProducts_ShopID})">@Model.ShopProducts_ShopInfo.ShopInfo_Name</a></li>
+        <li>@Model.ShopProducts_Name</li>
+    </ul>
+    <i class="fa fa-close" aria-hidden="true" data-dismiss="modal" aria-label="Close" ></i>
+    @*<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-top: 5px">
+        <span aria-hidden="true">&times;</span>
+    </button>*@
+    <div class="left">
+        <div class="desc">
+            <h2 class="product-title">@Model.ShopProducts_Name</h2>
+            <p class="short-description">@Html.Raw(@Model.ShopProducts_ShortDescription)</p>
+        </div>
+        <div class="images">
+            <div class = "owl-carousel" >
+                @if (Model.ShopProducts_ShopProductImages.Count > 0)
+                {
+                    foreach (var img in Model.ShopProducts_ShopProductImages)
+                    {
+                        <div class="item">
+                            <img src="@(Url.Content(HtmlExtensions.MapPathReverse(img.ShopProductImages_Path)))">
+                        </div>
+                    }
+                }
+                else
+                {
+                    <div class="item">
+                        <img src="@Url.Content("~/Content/assets/images/no_photo.png")">
+                    </div>
+                    <a class="thumb-image" href="@Url.Content("~/Content/assets/images/no_photo.png")">
+                    </a>
+                }
+            </div>
+        </div>
+        <div class = "full-description">
+            <p>@Html.Raw(@Model.ShopProducts_FullDescription)</p>
+        </div>
+    </div>
+    <div class="right">
+        <div class="desc">
+            <p class="category">Category:<span class="category-name">@Model.ShopProducts_ShopCategory.ShopCategories_Name</span></p>
+            <p class="vendor">Vendor:<span class="vendor-name">@Model.ShopProducts_ShopInfo.ShopInfo_Name</span></p>
+            <p class="price">Price:<strong class="value">@(crypto.Contains(Model.ShopProducts_CurrencyCode) ? Model.ShopProducts_Price.ToString("N8") : Model.ShopProducts_Price.ToString("N2"))</strong><span class="currency">@Model.ShopProducts_CurrencyCode</span></p>
+        </div>
+        <div class="add-to-cart">
+            <form action="" method="">
+                <div class="inputs">
+                    <div class="quantity">
+                        <i class="fa fa-minus-circle" aria-hidden="true" id="minusPositionBtn"></i>
+                        @Html.TextBoxFor(m => Model.ShopingProducts_Count, new
+                        {
+                            @onkeypress = "return (event.charCode >= 48 && event.charCode <= 57) || event.charCode === 46 || event.charCode === 38 || event.charCode === 40 || event.charCode === 0",
+                            @type = "number", @min = "1", @value = "1", style="text-align: center"
+                        })
+                        <i class="fa fa-plus-circle" aria-hidden="true" id="plusPositionBtn"></i>
+                    </div>
+                    @Html.TextBox("ShopingProducts_Position", "", new { @class = "form-control", placeholder = "Position" })
+                </div>
+                <button type="button" class="add-to-cart-button" onclick="addproductToOrders('@Model.ShopProducts_ID')" id="addBankBtn">@GlobalRes.GetAllContractUsListPage_ModalAddRec_Add <i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
+                @*<button class="">add to cart</i></button>*@
+            </form>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" language="javascript">
+
+    $("#minusPositionBtn").click(function () {
+        if (parseInt($("#ShopingProducts_Count").val())>1) {
+            var t = parseInt($("#ShopingProducts_Count").val()) - 1;
+            $("#ShopingProducts_Count").val(t);
+            $("#ShopingProducts_Count").text(t);
+        }
+    });
+
+    $("#plusPositionBtn").click(function () {
+        var t = parseInt($("#ShopingProducts_Count").val()) + 1;
+        $("#ShopingProducts_Count").val(t);
+        $("#ShopingProducts_Count").text(t);
+    });
+</script>

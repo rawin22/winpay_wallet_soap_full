@@ -1,0 +1,67 @@
+﻿@using Tsg.UI.Main.App_LocalResources
+@model Tsg.UI.Main.Models.WireInstructionModel
+
+@{
+    ViewBag.Title = "Add Wire Instruction";
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <section class="panel  @(ViewBag.OpenPanel != null ? "" : "panel-featured panel-featured-info")">
+
+            <header class="panel-heading" data-panel-toggle="">
+                <div class="panel-actions">
+                    <a href="#" class="panel-action panel-action-toggle" data-panel-toggle=""></a>
+                </div>
+
+                <h2 class="panel-title">@GlobalRes.WireInstruction_AddWireInstructionPage_Title</h2>
+                <p class="panel-subtitle">@GlobalRes.WireInstruction_AddWireInstructionPage_SubTitle</p>
+            </header>
+
+            <input type="hidden" name="username" value="@Tsg.UI.Main.Models.Security.AppSecurity.CurrentUser.UserName" />
+
+            <div class="panel-body">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">@GlobalRes.WireInstruction_AddWireInstructionPage_CCY</label>
+                    <div class="col-sm-6">
+                        @Html.DropDownListFor(m => m.BankCurrencyId, Model.AvailableBankCurrencies, new { @class = "form-control", required = "" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">@GlobalRes.WireInstruction_AddWireInstructionPage_WireInstr <span class="required" aria-required="true">*</span><br /><small>500 @GlobalRes.WireInstruction_AddWireInstructionPage_CharsMax</small></label>
+                    <div class="col-sm-6">
+                        @Html.TextAreaFor(m => m.WireInstruction, 5, 1, new { maxlength = 500, @class = "form-control", required = "" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-3 col-md-10" style="color:green">
+                        @ViewBag.Message
+                    </div>
+                </div>
+
+            </div>
+
+            <footer class="panel-footer">
+                <div class="row">
+                    <div class="col-sm-9 col-sm-offset-3">
+                        <input type="submit" class="btn btn-success" value="@GlobalRes.WireInstruction_AddWireInstructionPage_Add" />
+                        <a class="btn btn-success" href="/WireInstruction/GetWireInstructions">@GlobalRes.WireInstruction_AddWireInstructionPage_BackToList</a>
+                    </div>
+                </div>
+            </footer>
+
+        </section>
+    </div>
+}
+
+@section Scripts {
+    @*@Scripts.Render("~/bundles/jqueryval")*@
+}

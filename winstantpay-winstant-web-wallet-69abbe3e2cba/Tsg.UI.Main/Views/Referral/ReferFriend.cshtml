@@ -1,0 +1,152 @@
+﻿@using Tsg.UI.Main.App_LocalResources
+@using RedirectResult = System.Web.Http.Results.RedirectResult
+@model Tsg.UI.Main.Models.ReferalLinks
+
+@{
+    ViewBag.Title = GlobalRes.ReferralReferFriendPage_Title;
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+
+<style></style>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <script type="text/javascript" src="/Content/assets/vendor/jquery/jquery.js"></script>
+
+    <div class="form-horizontal">
+        <section class="panel  @(ViewBag.OpenPanel != null ? "" : "panel-featured panel-featured-info")">
+            <header class="panel-heading" data-panel-toggle="">
+                <div class="panel-actions">
+                    <a href="#" class="panel-action panel-action-toggle" data-panel-toggle=""></a>
+                </div>
+
+                <h2 class="panel-title">@GlobalRes.ReferralReferFriendPage_Title</h2>
+                <p class="panel-subtitle">@GlobalRes.ReferralReferFriendPage_SubTitle</p>
+            </header>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-sm-3">
+                        @GlobalRes.ReferralReferFriendPage_SelectAlias
+                    </div>
+                </div>
+                @{
+                    var prAcc = UiHelper.PrepareAccountAliases();
+                    if (prAcc != null && prAcc.ToList().Any())
+                    {
+                        <div class="row">
+                            <div class="col-sm-6">
+                                @Html.DropDownListFor(m => m.UserAlias, prAcc, new { @class = "form-control", id = "ddlPriorUsedAliases" })
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <input class="form-control" value="@String.Format("{0}{1}", Html.Raw(Model.LinkText), prAcc.FirstOrDefault().Value)" tabindex="-1" readonly="" id="shortlink">
+                            </div>
+                            <div class="col-sm-2">
+                                <a id="copy_shortlink" class="col-sm-12 btn btn-warning" style="max-width: 150px; min-width: 150px" href="#">@GlobalRes.ReferralReferFriendPage_Copy</a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div id="qrcode"></div>
+                        </div>
+                    }
+                    else
+                    {
+                        Response.Redirect("~/Home/Index");
+                    }
+                }
+                
+                <script type="text/javascript" src="~/Content/assets/vendor/jquery/jquery.js"></script>
+                <script type="text/javascript" src="~/Content/assets/vendor/qrcode/qrcode.js"></script>
+
+                <script type="text/javascript">
+                    var qrcode = new QRCode(document.getElementById("qrcode"),
+                        {
+                            width: 200,
+                            height: 200
+                        });
+                    function makeCode() {
+                        let link = $('#shortlink').text();
+                        console.log(link);
+                        qrcode.makeCode(link);
+                    }
+
+                    document.getElementById("copy_shortlink").addEventListener("click",
+                        function () { copyToClipboard(document.getElementById("shortlink")); });
+                    $("#copy_shortlink").click(function () {
+                        
+                        //var lbl = document.createElement("label");
+                        var animEl = $("#shortlink");
+                        animEl.toggle(function () {
+                            $("#shortlink").animate({ top: '-=100px' }, 1000);
+                        });
+                        animEl.toggle(function () {
+                            $("#shortlink").animate({ top: '+=100px' }, 800);
+                        });
+                        //lbl.id = "lblshortlink";
+                        //document.body.appendChild(lbl);
+                        //$("#lblshortlink").val($("#shortlink").val());
+                        //console.log(document.getElementById("lblshortlink"));
+
+                    });
+
+                    function copyToClipboard(elem) {
+                        var targetId = "_hiddenCopyText_";
+                        var isInput = elem.tagName === "INPUT" || elem.tagName === "TEXTAREA";
+                        var origSelectionStart, origSelectionEnd;
+                        if (isInput) {
+                            target = elem;
+                            origSelectionStart = elem.selectionStart;
+                            origSelectionEnd = elem.selectionEnd;
+                        } else {
+                            target = document.getElementById(targetId);
+                            if (!target) {
+                                var target = document.createElement("textarea");
+                                target.style.position = "absolute";
+                                target.style.left = "-9999px";
+                                target.style.top = "0";
+                                target.id = targetId;
+                                document.body.appendChild(target);
+                            }
+                            target.textContent = elem.textContent;
+                        }
+                        var currentFocus = document.activeElement;
+                        target.focus();
+                        target.setSelectionRange(0, target.value.length);
+                        var succeed;
+                        try {
+                            succeed = document.execCommand("copy");
+                        } catch (e) {
+                            succeed = false;
+                        }
+                        if (currentFocus && typeof currentFocus.focus === "function") {
+                            currentFocus.focus();
+                        }
+
+                        if (isInput) {
+                            elem.setSelectionRange(origSelectionStart, origSelectionEnd);
+                        } else {
+                            target.textContent = "";
+                        }
+                        return succeed;
+                    }
+
+                    $("#ddlPriorUsedAliases").change(function () {
+                        $("#shortlink").val("@Html.Raw(Model.LinkText)" + $(this).val());
+                        $("#shortlink").text("@Html.Raw(Model.LinkText)" + $(this).val());
+                        makeCode();
+                    });
+                    $(document).ready(function () { $("#shortlink").text("@Html.Raw(Model.LinkText)" + $(this).val()); makeCode(); });
+
+                </script>
+
+            </div>
+        </section>
+    </div>
+}
+
+@section Scripts {
+    @*@Scripts.Render("~/bundles/jqueryval")*@
+}

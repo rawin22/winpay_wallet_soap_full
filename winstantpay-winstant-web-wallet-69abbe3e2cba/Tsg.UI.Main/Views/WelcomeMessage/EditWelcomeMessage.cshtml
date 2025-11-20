@@ -1,0 +1,142 @@
+﻿@using Tsg.UI.Main.App_LocalResources
+@model Tsg.UI.Main.Models.WelcomeMessageModel
+
+@{
+    ViewBag.Title = GlobalRes.WelcomeMessage_EditWelcomeMessagePage_Title;
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+<script src="~/Content/assets/vendor/jquery/jquery.js"></script>
+<script src="~/Content/ckeditor/ckeditor.js"></script>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <section class="panel  @(ViewBag.OpenPanel != null ? "" : "panel-featured panel-featured-info")">
+            <header class="panel-heading" data-panel-toggle="">
+                <div class="panel-actions">
+                    <a href="#" class="panel-action panel-action-toggle" data-panel-toggle=""></a>
+                </div>
+
+                <h2 class="panel-title">@GlobalRes.WelcomeMessage_EditWelcomeMessagePage_Title</h2>
+                <p class="panel-subtitle">@GlobalRes.WelcomeMessage_EditWelcomeMessagePage_SubTitle</p>
+            </header>
+
+            <div class="panel-body">
+
+                <div class="form-group" hidden="hidden">
+                    <label class="col-sm-3 control-label">@GlobalRes.WelcomeMessage_EditWelcomeMessagePage_WmId</label>
+                    <div class="col-sm-6">
+                        @Html.TextBoxFor(m => m.WelcomeMessageId, new { @class = "form-control", @readonly = "readonly", required = "" })
+                    </div>
+                </div>
+                @if (Model != null)
+                {
+                    <div class="form-group" @(Model.Username == null ? "hidden" : "")>
+                        <label class="col-sm-3 control-label">@GlobalRes.WelcomeMessage_EditWelcomeMessagePage_WmForUser</label>
+                        <div class="col-sm-6">
+                            @Html.TextBoxFor(m => m.Username, new { @class = "form-control", @readonly = "readonly", required = "" })
+                        </div>
+                    </div>
+                }
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">@GlobalRes.WelcomeMessage_EditWelcomeMessagePage_WmText <span class="required" aria-required="true">*</span><br /><small>1000 chars max</small></label>
+                    <div class="col-sm-9">
+                        @Html.TextAreaFor(m => m.WelcomeMessage, 8, 1, new { @class = "form-control", required = "", id = "textEditorMessage", name = "textEditorMessage" })
+                        @Html.ValidationMessageFor(m => m.WelcomeMessage, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">@GlobalRes.WelcomeMessage_AddWelcomeMessagePage_WmTextFr <span class="required" aria-required="true">*</span><br /><small>1000 chars max</small></label>
+                    <div class="col-sm-9">
+                        @Html.TextAreaFor(m => m.WelcomeMessageFr, 8, 1, new { @class = "form-control", required = "", id = "textEditorMessageFr", name = "textEditorMessage" })
+                        @Html.ValidationMessageFor(m => m.WelcomeMessageFr, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">@GlobalRes.WelcomeMessage_AddWelcomeMessagePage_WmTextRu <span class="required" aria-required="true">*</span><br /><small>1000 chars max</small></label>
+                    <div class="col-sm-9">
+                        @Html.TextAreaFor(m => m.WelcomeMessageRu, 8, 1, new { @class = "form-control", required = "", id = "textEditorMessageRu", name = "textEditorMessage" })
+                        @Html.ValidationMessageFor(m => m.WelcomeMessageRu, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">@GlobalRes.WelcomeMessage_AddWelcomeMessagePage_WmTextPh <span class="required" aria-required="true">*</span><br /><small>1000 chars max</small></label>
+                    <div class="col-sm-9">
+                        @Html.TextAreaFor(m => m.WelcomeMessagePh, 8, 1, new { @class = "form-control", required = "", id = "textEditorMessagePh", name = "textEditorMessage" })
+                        @Html.ValidationMessageFor(m => m.WelcomeMessagePh, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">@GlobalRes.WelcomeMessage_AddWelcomeMessagePage_WmTextAe <span class="required" aria-required="true">*</span><br /><small>1000 chars max</small></label>
+                    <div class="col-sm-9">
+                        @Html.TextAreaFor(m => m.WelcomeMessageAe, 8, 1, new { @class = "form-control", required = "", id = "textEditorMessageAe", name = "textEditorMessage" })
+                        @Html.ValidationMessageFor(m => m.WelcomeMessageAe, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">@GlobalRes.WelcomeMessage_AddWelcomeMessagePage_WmTextTh <span class="required" aria-required="true">*</span><br /><small>1000 chars max</small></label>
+                    <div class="col-sm-9">
+                        @Html.TextAreaFor(m => m.WelcomeMessageTh, 8, 1, new { @class = "form-control", required = "", id = "textEditorMessageTh", name = "textEditorMessage" })
+                        @Html.ValidationMessageFor(m => m.WelcomeMessageTh, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">@GlobalRes.WelcomeMessage_AddWelcomeMessagePage_WmTextKh <span class="required" aria-required="true">*</span><br /><small>1000 chars max</small></label>
+                    <div class="col-sm-9">
+                        @Html.TextAreaFor(m => m.WelcomeMessageKh, 8, 1, new { @class = "form-control", required = "", id = "textEditorMessageTh", name = "textEditorMessage" })
+                        @Html.ValidationMessageFor(m => m.WelcomeMessageKh, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">@GlobalRes.WelcomeMessage_AddWelcomeMessagePage_WmTextCn <span class="required" aria-required="true">*</span><br /><small>1000 chars max</small></label>
+                    <div class="col-sm-9">
+                        @Html.TextAreaFor(m => m.WelcomeMessageCn, 8, 1, new { @class = "form-control", required = "", id = "textEditorMessageTh", name = "textEditorMessage" })
+                        @Html.ValidationMessageFor(m => m.WelcomeMessageCn, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-3 col-md-10" style="color:green">
+                        @ViewBag.Message
+                    </div>
+                </div>
+
+            </div>
+
+            <footer class="panel-footer">
+                <div class="row">
+                    <div class="col-sm-9 col-sm-offset-3">
+                        <input type="submit" class="btn btn-success" value="@GlobalRes.WelcomeMessage_EditWelcomeMessagePage_Save" />
+                        <a class="btn btn-success" href="/WelcomeMessage/GetWelcomeMessages">@GlobalRes.WelcomeMessage_EditWelcomeMessagePage_BackToList</a>
+                    </div>
+                </div>
+            </footer>
+        </section>
+    </div>
+}
+
+@section Scripts {
+    @*@Scripts.Render("~/bundles/jqueryval")*@
+}
+<script type="text/javascript" language="javascript">
+    CKEDITOR.replace('textEditorMessage', {
+        removePlugins: 'sourcearea',
+        removeButtons: 'About'
+    });
+    CKEDITOR.replace('textEditorMessageRu', {
+        removePlugins: 'sourcearea',
+        removeButtons: 'About'
+    });
+    CKEDITOR.replace('textEditorMessageFr', {
+        removePlugins: 'sourcearea',
+        removeButtons: 'About'
+    });
+    CKEDITOR.replace('textEditorMessagePh', {
+        removePlugins: 'sourcearea',
+        removeButtons: 'About'
+    });
+</script>

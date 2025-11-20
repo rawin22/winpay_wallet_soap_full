@@ -1,0 +1,179 @@
+@using Tsg.UI.Main.App_LocalResources
+@model TSG.Models.ServiceModels.Shop.ShopOrders
+
+@{
+    ViewBag.Title = GlobalRes.OrdersItems_Title;
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+    var cryptoCurrency = new[] { "BTC", "ETH" };
+
+}
+<link href="~/Content/shop/product-cart-css.css" rel="stylesheet" />
+<div class="mg-main">
+    <div class="row">
+        <section class="panel">
+
+            <header class="panel-heading" data-panel-toggle="">
+                <div class="panel-actions">
+                    <a href="#" class="panel-action panel-action-toggle" data-panel-toggle=""></a>
+                </div>
+
+                <h2 class="panel-title">@GlobalRes.OrdersItems_Shop</h2>
+                <p class="panel-subtitle">@GlobalRes.OrdersItems_ShopList</p>
+            </header>
+
+            <div class="panel-body" style="display: block;">
+                <table class="table table-bordered table-striped table-condensed mb-none" id="datatable-default">
+                    <tr>
+                        <th>
+                            @GlobalRes.CommonObjects_Name
+                        </th>
+                        <th class="hidden-xs">
+                            @GlobalRes.CommonObjects_SolidusUserName
+                        </th>
+                        <th class="hidden-xs">
+                            @GlobalRes.CommonObjects_Price
+                        </th>
+                        <th class="hidden-xs">
+                            @GlobalRes.CommonObjects_Quantity
+                        </th>
+                        <th>
+                            @GlobalRes.CommonObjects_SubTotal
+                        </th>
+                        <th></th>
+                    </tr>
+
+                    @foreach (var item in Model.ShopOrders_ShopOrderItems)
+                    {
+                        <tr>
+                            <td>@item.ShopOrderItems_ShopProduct.ShopProducts_Name</td>
+                            <td class="hidden-xs">@item.ShopOrderItems_Position</td>
+                            <td class="hidden-xs">@item.ShopOrderItems_CurrencyCode @(cryptoCurrency.Contains(item.ShopOrderItems_CurrencyCode) ? item.ShopOrderItems_Price.ToString("N8") : item.ShopOrderItems_Price.ToString("N2"))</td>
+                            <td class="hidden-xs">@item.ShopOrderItems_Quantity</td>
+                            <td>
+                                @item.ShopOrderItems_CurrencyCode @(cryptoCurrency.Contains(item.ShopOrderItems_CurrencyCode) ? (Convert.ToDecimal(item.ShopOrderItems_Quantity) * item.ShopOrderItems_Price).ToString("N8") : (Convert.ToDecimal(item.ShopOrderItems_Quantity) * item.ShopOrderItems_Price).ToString("N2"))
+                            </td>
+
+                            <td>
+                                <a class="fas fa-pencil-alt" aria-hidden="true" style="text-decoration: none; font-size: 18px" data-toggle="modal" data-target="#editProductItem" onclick="callEditItem('@item.ShopOrderItems_ID');" id="btnEditModal2">
+                                </a>|
+                                <a class="fas fa-trash-alt"
+                                   aria-hidden="true" style="color: firebrick; text-decoration: none; font-size: 18px" data-toggle="modal" data-target="#deleleModal" onclick="callDeleteItem('@item.ShopOrderItems_ID');" id="btnDelModal"></a>
+                            </td>
+                        </tr>
+                    }
+                </table>
+
+                <script type="text/javascript">
+                    function callEditItem(id) {
+                        console.log(id);
+                        $.ajax({
+                            url: '@Url.Action("GetProductItemDetailsModal", "ShoppingCart")',
+                            type: 'POST',
+                            data: { "orderItemId": id },
+                            success: function(data) {
+                                console.log(data);
+                                $("#editProductItem").html(data);
+                                //updateBasket();
+                            }
+                        });
+                    }
+
+                    function editProductItemBtn_click() {
+                        console.log("Update click");
+                        $.ajax({
+                            url: '@Url.Action("UpdateProductItem", "ShoppingCart")',
+                            type: 'POST',
+                            data: $("#editProductToBasket").serialize(),
+                            success: function (data) {
+                                location.reload();
+                                updateBasket();
+                            }
+                        });
+                    }
+
+                    function callDeleteItem(modelId) {
+                        const swalWithBootstrapButtons = swal.mixin({
+                            confirmButtonClass: 'btn btn-success',
+                            cancelButtonClass: 'btn btn-danger',
+                            buttonsStyling: false,
+                        });
+                        $.ajax({
+                            url: '@Url.Action("Delete", "ShoppingCart")',
+                            type: "POST",
+                            data: { 'ID': modelId },
+                            success: function (data) {
+                                if (data.Success) {
+                                    swalWithBootstrapButtons(
+                                        'Deleted!',
+                                        'Your item has been deleted.',
+                                        'success');
+                                } else {
+                                    swalWithBootstrapButtons(
+                                        'Cancelled',
+                                        data.Message,
+                                        'error');
+                                }
+                                location.reload();
+                            }
+
+                        });
+                    }
+
+                </script>
+
+                <div class="modal fade" id="editProductItem" tabindex="-1" role="dialog" aria-labelledby="editProductItem" aria-hidden="true">
+
+                </div>
+
+                <div class="col-sm-offset-6 col-sm-6" style="padding-right: 0px;">
+                    <h2>@GlobalRes.OrdersItems_CostByCurrency</h2>
+                    @if (ViewBag.TotalCost != null)
+                    {
+                        <table class="table table-bordered table-striped table-condensed mb-none" id="datatable-default">
+                            <tr>
+                                <th>
+                                    @GlobalRes.FundingGetFundRequestsPage_ModalFilterRecCurrency
+                                </th>
+                                <th>
+                                    @GlobalRes.OrdersItems_TotalCost
+                                </th>
+                            </tr>
+                            @foreach (var item in ((Dictionary<string, decimal>)ViewBag.TotalCost))
+                            {
+
+                                <tr>
+                                    <td>@item.Key</td>
+                                    <td>@(cryptoCurrency.Contains(Convert.ToString(item.Key)) ? item.Value.ToString("N8") : item.Value.ToString("N2"))</td>
+
+                                </tr>
+                            }
+
+                        </table>
+                    }
+
+                    @using (Html.BeginForm("PayOrder", "ShoppingCart", new { orderId = Model.ShopOrders_ID }))
+                    {
+
+                        Html.HiddenFor(h => h.ShopOrders_ID);
+                        <div class="text-right" style="padding-top: 5px">
+                            <input type="submit" class="btn btn-success" value="@GlobalRes.CommonObjects_Pay" id="payOrderBtn"/>
+                        </div>
+                    }
+                </div>
+                <script type="text/javascript">
+                    $("#payOrderBtn").click(function () {
+                        if (!$("#payOrderBtn").hasClass('disabled')) {
+                            $("#payOrderBtn").addClass('disabled');
+                        }
+                        $("#payOrderBtn").prop(disable, true);
+                    });
+                </script>
+            </div>
+
+
+
+        </section>
+    </div>
+
+
+</div>

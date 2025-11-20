@@ -1,0 +1,291 @@
+﻿@using Tsg.UI.Main.App_LocalResources
+@model Tsg.UI.Main.Models.BankAndInstructionModel
+
+@{
+    ViewBag.Title = Model.BankCcyId > 0 ? GlobalRes.AddBankAndWireInstPage_TitleEdit : GlobalRes.AddBankAndWireInstPage_Title;
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+
+
+@*PrepareAvailableBank*@
+<script src="~/Content/ckeditor/ckeditor.js"></script>
+<script src="/Content/assets/vendor/jquery/jquery.js"></script>
+
+
+@using (Html.BeginForm("AddBankAndWireInst", "Bank", FormMethod.Post, new { id = "AddEditBankAndWI" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <section class="panel  @(ViewBag.OpenPanel != null ? "" : "panel-featured panel-featured-info")">
+
+            <header class="panel-heading" data-panel-toggle="">
+                <div class="panel-actions">
+                    <a href="#" class="panel-action panel-action-toggle" data-panel-toggle=""></a>
+                </div>
+                <h2 class="panel-title">@ViewBag.Title</h2>
+                <p class="panel-subtitle"></p>
+            </header>
+
+            <input type="hidden" name="username" value="@Tsg.UI.Main.Models.Security.AppSecurity.CurrentUser.UserName" />
+
+            <div class="panel-body">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(h => h.BankId)
+                @Html.HiddenFor(h => h.BankCcyId)
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">@GlobalRes.AddBankAndWireInstPage_SelectBank <span class="required" aria-required="true">*</span></label>
+                    <div class="col-sm-4">
+                        @Html.DropDownListFor(m => m.BankId, UiHelper.PrepareAvailableBank(), new { @class = "form-control", required = "" })
+                     
+                        @*@Html.TextBoxFor(m => m.BankName, new {@class = "form-control", required = ""})*@
+                    </div>
+
+                    <a class="btn btn-success" id="addnewRecord" data-toggle="modal" data-target="#addNewBankModal">@GlobalRes.AddBankAndWireInstPage_AddNewCurrencyButton</a>
+                    @*@if (Model.BankId != null)
+                    {
+                        @:&nbsp;
+                          
+                        <a href="@Url.Action("EditBank", "Bank", new {id = Model.BankId})" class="fas fa-pencil-alt" aria-hidden="true" id="edtBnkRec" style="vertical-align: -webkit-baseline-middle; text-decoration: none; font-size: 20px"></a>
+                    }*@
+                </div>
+
+                @*<div class="form-group">
+                        <label class="col-sm-3 control-label">@GlobalRes.AddBankAndWireInstPage_BankCountry <span class="required" aria-required="true">*</span></label>
+                        <div class="col-sm-6">
+                            @Html.TextBoxFor(m => m.BankCountry, new { @class = "form-control", required = "" })
+                        </div>
+                    </div>*@
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">@GlobalRes.AddBankAndWireInstPage_ChooseCurrency <span class="required" aria-required="true">*</span></label>
+                    <div class="col-sm-4">
+                        @Html.DropDownListFor(m => m.CurrencyId, UiHelper.PrepareAvailableCurrencies(), new { @class = "form-control", required = "" })
+                        @Html.HiddenFor(h => h.CurrencyId)
+                    </div>
+                    <a class="btn btn-success" id="addnewCurrRecord" data-toggle="modal" data-target="#addNewCurrencyModal">@GlobalRes.AddBankAndWireInstPage_AddNewCurrencyButton</a>
+                    
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">@GlobalRes.AddBankAndWireInstPage_WireInstructions <span class="required" aria-required="true">*</span><br /></label>
+                    <div class="col-sm-6">
+                        @Html.TextAreaFor(m => m.WireInstructionText, new {@class = "form-control", required = "", id = "textEditorMessage", name = "textEditorMessage" })
+                        @Html.HiddenFor(h => h.WireInstructionId)
+                        <br/>
+                        <span class="required" aria-required="true">*</span>Use {client_name} to insert client name dynamically.
+                    </div>
+                </div>
+            </div>
+            <footer class="panel-footer">
+                <div class="row">
+                    <div class="col-sm-9 col-sm-offset-3">
+                        <input type="submit" class="btn btn-success" value="@(Model.BankCcyId > 0 ? GlobalRes.AddBankAndWireInstPage_Edit : GlobalRes.AddBankAndWireInstPage_Add)"/>
+                        <a class="btn btn-success" href="~/Bank/GetBankAndWireInstructions">@GlobalRes.AddBankAndWireInstPage_BackToList</a>
+                    </div>
+                </div>
+            </footer>
+
+        </section>
+    </div>
+    
+    @*<script type="text/javascript" language="javascript">
+        $("select#BankId").change(function() {
+            if ($(this).val() != null) {
+                console.log("W");
+                $("#edtBnkRec").prop("visibility", 'visible');
+
+                $("#edtBnkRec").attr('href', "@Url.Action("EditBank", "Bank")" + "?id=" + $(this).val());
+            } else {
+                $("#edtBnkRec").prop("visibility", 'hidden');
+            }
+        });
+    </script>*@
+    
+
+    <!-- Modal Add New Bank record Begin -->
+    <form id="AddEditBank" method="post" class="form-horizontal" novalidate="novalidate">
+        <div class="modal fade" id="addNewBankModal" tabindex="-1" role="dialog" aria-labelledby="addNewBankLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <img src="/Content/assets/images/winstantpay-logo-notag.png" height="35" alt="" />
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-top: 5px">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <br />
+                        <div class="row">
+                            <div class="col-sm-4">@GlobalRes.AddBankAndWireInstPage_BankName <span class="required" aria-required="true">*</span></div>
+                            <div class="col-sm-8">
+                                @Html.TextBoxFor(m => m.BankName, new { @class = "form-control" })
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-4">@GlobalRes.AddBankAndWireInstPage_BankCountry <span class="required" aria-required="true">*</span></div>
+                            <div class="col-sm-8">
+                                @Html.DropDownListFor(m => m.BankCountryId, UiHelper.PrepareAvailableCountries(), new { @class = "form-control"})
+                                @*@Html.TextBoxFor(m => m.BankCountry, new {@class = "form-control", required = ""})*@
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" onclick="saveChangeByBank()" id="addBankBtn">@GlobalRes.GetAllContractUsListPage_ModalAddRec_Add</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal" id="clsBtnAddBnk">@GlobalRes.GetAllContractUsListPage_ModalAddRec_Close</button>
+                        <br/>
+                        <div class="alert alert-danger" style="display: none; margin-bottom: 0px !important;margin-top: 3px !important" id="modalMessageBlock">
+                            <p class="m-none text-weight-semibold h6 text-left" id="successMesage">Please check all your field</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <script type="text/javascript" language="javascript">
+        function saveChangeByBank() {
+            if (($('#BankName').val() == null || $('#BankName').val().length == 0) || ($('#BankCountryId').val() == null || $('#BankCountryId').val() == 0)) {
+                $('#modalMessageBlock').css("display", "block");
+                setTimeout(function () { $('#modalMessageBlock').css("display", "none") }, 3000);
+            } else {
+                $("#addBankBtn").prop('disabled', true);
+                $("#clsBtnAddBnk").prop('disabled', true);
+                $.ajax({
+                    url: '@Url.Action("AddBankBankAndInstruction", "Bank")',
+                    type: 'POST',
+                    data: $("#AddEditBankAndWI").serialize(),
+                    success: function (data) {
+                        if (data.Message.IsSuccess) {
+                            $("select#BankId").append('<option selected="selected" value="' +
+                                data.BankId +
+                                '">' +
+                                data.BankName +
+                                '</option>');;
+                            $("#BankId").val(data.BankId);
+                            $("#addNewBankModal").modal('toggle');
+                            $("#addBankBtn").prop('disabled', false);
+                            $("#clsBtnAddBnk").prop('disabled', false);
+                            $('#BankName').val("");
+                            $('select#BankCountryId').val(null);
+                        } else {
+                            $("#addBankBtn").prop('disabled', false);
+                            $("#clsBtnAddBnk").prop('disabled', false);
+                        }
+                    }
+                });
+            }
+        }
+
+        $("select#BankId").change(function () {
+            $("#BankId").val($(this).val());
+        });
+
+
+    </script>
+
+    <!-- Modal Add new Bank record End -->
+
+    <!-- Modal New Currency record Begin -->
+    <form id="AddEditCurrency" method="post" class="form-horizontal" novalidate="novalidate">
+        <div class="modal fade" id="addNewCurrencyModal" tabindex="-1" role="dialog" aria-labelledby="addNewCurrencyLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <img src="/Content/assets/images/winstantpay-logo-notag.png" height="35" alt="" />
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-top: 5px">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <br />
+                        <div class="row">
+                            <div class="col-sm-4">@GlobalRes.AddBankAndWireInstPage_ModalCurrency_NameOfCurrency<span class="required" aria-required="true">*</span></div>
+                            <div class="col-sm-8">
+                                @Html.TextBoxFor(m => m.CurrencyName, new { @class = "form-control"})
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-4">@GlobalRes.AddBankAndWireInstPage_ModalCurrency_ShortNameOfCurrency<span class="required" aria-required="true">*</span></div>
+                            <div class="col-sm-8">
+                                @Html.TextBoxFor(m => m.CurrencyCode, new { @class = "form-control"})
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-4">@GlobalRes.AddBankAndWireInstPage_ModalCurrency_SymbolOfCurrency <span class="required" aria-required="true">*</span></div>
+                            <div class="col-sm-8">
+                                @Html.TextBoxFor(m => m.CurrencySymbol, new { @class = "form-control"})
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" onclick="saveChangeByCurrency()" id="addCurrBtn">@GlobalRes.GetAllContractUsListPage_ModalAddRec_Add</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal" id="clsCurrBtn">@GlobalRes.GetAllContractUsListPage_ModalAddRec_Close</button>
+                        <br />
+                        <div class="alert alert-danger" style="display: none; margin-bottom: 0px !important;margin-top: 3px !important" id="modalMessageBlock">
+                            <p class="m-none text-weight-semibold h6 text-left" id="successMesage">Please check all your field</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <script type="text/javascript" language="javascript">
+        function saveChangeByCurrency() {
+            if (($('#CurrencyName').val() == null || $('#CurrencyName').val().length == 0) ||
+                ($('#CurrencyCode').val() == null || $('#CurrencyCode').val().length == 0) ||
+                ($('#CurrencySymbol').val() == null || $('#CurrencySymbol').val().length == 0)) {
+                $('#modalMessageBlock').css("display", "block");
+                setTimeout(function () { $('#modalMessageBlock').css("display", "none") }, 3000);
+            } else {
+                $("#CurrencyId").val(0);
+                $("#addCurrBtn").prop('disabled', true);
+                $("#clsCurrBtn").prop('disabled', true);
+
+                $.ajax({
+                    url: '@Url.Action("AddCurrencyBankAndInstruction", "Bank")',
+                    type: 'POST',
+                    data: { "CurrencyId": $("#CurrencyId").val(), "CurrencyName": $("#CurrencyName").val(), "CurrencyCode": $("#CurrencyCode").val(), "CurrencySymbol": $("#CurrencySymbol").val() },
+                    success: function (data) {
+                        console.log(data);
+                        if (data.Message.IsSuccess) {
+                            $("select#CurrencyId").append('<option selected="selected" value="' +
+                                data.CurrencyId +
+                                '">' +
+                                data.CurrencyName +
+                                '</option>');;
+                            $("#CurrencyId").val(data.CurrencyId);
+                            $("#addNewCurrencyModal").modal('toggle');
+                            $("#addCurrBtn").prop('disabled', false);
+                            $("#clsCurrBtn").prop('disabled', false);
+
+                            $("#CurrencyName").val("");
+                            $("#CurrencyCode").val("");
+                            $("#CurrencySymbol").val("");
+
+                        } else {
+                            $("#addCurrBtn").prop('disabled', false);
+                            $("#clsCurrBtn").prop('disabled', false);
+
+                        }
+                    }
+                });
+            }
+        }
+    </script>
+    <!-- Modal Add New Currency record End -->
+}
+
+@section Scripts {
+    @*@Scripts.Render("~/bundles/jqueryval")*@
+}
+<script type="text/javascript" language="javascript">
+    CKEDITOR.replace('textEditorMessage',
+        {
+            //extraPlugins: 'uploadimage',
+            removePlugins: 'sourcearea',
+            removeButtons: 'About',
+        });
+
+</script>

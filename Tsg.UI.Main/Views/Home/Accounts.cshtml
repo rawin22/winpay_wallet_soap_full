@@ -1,0 +1,13 @@
+﻿@using Tsg.UI.Main.App_LocalResources
+@model Tsg.UI.Main.Models.AccountsViewModel
+
+@{
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+    ViewBag.Title = GlobalRes.HomeAccountsPage_Title;
+}
+
+<!-- Examples -->
+<script src="/Content/assets/javascripts/tables/examples.datatables.default.js"></script>
+<div class="row">
+    @Html.Partial("WebParts/AccountsList", Model.AccountBalancesModel)
+</div>

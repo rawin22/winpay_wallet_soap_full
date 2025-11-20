@@ -1,0 +1,12 @@
+diff a/Tsg.UI.Main/Web.config b/Tsg.UI.Main/Web.config	(rejected hunks)
+@@ -28,8 +28,8 @@
+     </root>
+   </log4net>
+   <connectionStrings>
+-    <add name="ewalletDbCon" connectionString="Data Source=AE\SQLSERVER2012;Initial Catalog=ewalletdb;User Id=sa; password=Q123@.com" />
+-    <add name="WinstantPayEntitiesEntities" connectionString="metadata=res://*/WinstantPayDbModel.csdl|res://*/WinstantPayDbModel.ssdl|res://*/WinstantPayDbModel.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=AE\SQLSERVER2012;Initial Catalog=ewalletdb;User Id=sa; password=Q123@.com;MultipleActiveResultSets=True;App=EntityFramework&quot;" providerName="System.Data.EntityClient" />
++    <add name="ewalletDbCon" connectionString="Data Source=MARK\SQLEXPRESS;Initial Catalog=ewalletdb;User Id=sa; password=Newretypenew12" />
++    <add name="WinstantPayEntitiesEntities" connectionString="metadata=res://*/WinstantPayDbModel.csdl|res://*/WinstantPayDbModel.ssdl|res://*/WinstantPayDbModel.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=MARK\SQLEXPRESS;Initial Catalog=ewalletdb;User Id=sa; password=Newretypenew12;MultipleActiveResultSets=True;App=EntityFramework&quot;" providerName="System.Data.EntityClient" />
+   </connectionStrings>
+   <appSettings>
+ 

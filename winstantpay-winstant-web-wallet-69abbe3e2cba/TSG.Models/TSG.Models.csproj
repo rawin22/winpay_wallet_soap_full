@@ -1,0 +1,402 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{ECBF864B-45DA-4839-99D1-75AE21A95A86}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TSG.Models</RootNamespace>
+    <AssemblyName>TSG.Models</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>7.3</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>7.1</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Dapper, Version=1.50.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.1.50.5\lib\net451\Dapper.dll</HintPath>
+    </Reference>
+    <Reference Include="Dapper.Contrib, Version=1.50.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.Contrib.1.50.5\lib\net451\Dapper.Contrib.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.6\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=5.2.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.6\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="APIModels\ApiCommonModel.cs" />
+    <Compile Include="APIModels\ApiErrors.cs" />
+    <Compile Include="APIModels\ApiExchangeModel.cs" />
+    <Compile Include="APIModels\ApiMainModel.cs" />
+    <Compile Include="APIModels\AutomaticExchange\AutomaticExchangeCurrency.cs" />
+    <Compile Include="APIModels\AutomaticExchange\AutomaticExchangeCurrencies.cs" />
+    <Compile Include="APIModels\Common\ApiPaymentNationalCodeRequest.cs" />
+    <Compile Include="APIModels\Common\ApiPaymentNationalCodeResponse.cs" />
+    <Compile Include="APIModels\Common\ApiPaymentCountriesResponse.cs" />
+    <Compile Include="APIModels\Common\ApiPaymentNationalCodeDetailsModel.cs" />
+    <Compile Include="APIModels\Common\ApiPaymentCountryDetailsModel.cs" />
+    <Compile Include="APIModels\Common\ApiBankDetailsModel.cs" />
+    <Compile Include="APIModels\Common\ApiBankDirectorySearchRequest.cs" />
+    <Compile Include="APIModels\Common\ApiBankDirectorySearchResponse.cs" />
+    <Compile Include="APIModels\CurrencyViewModel.cs" />
+    <Compile Include="APIModels\DelegatedAuthority\CheckingLimitations.cs" />
+    <Compile Include="APIModels\DelegatedAuthority\JoinedLimitations.cs" />
+    <Compile Include="APIModels\DelegatedAuthority\NewPaymentForDa.cs" />
+    <Compile Include="APIModels\ApiErrorModel.cs" />
+    <Compile Include="APIModels\ExchangeModels\ApiFxDealQuoteBookModel.cs" />
+    <Compile Include="APIModels\ExchangeModels\ApiFxDealQuoteCreateModel.cs" />
+    <Compile Include="APIModels\ExchangeModels\CreateQuote2Model.cs" />
+    <Compile Include="APIModels\Fundings\BlockchainInfo\BlockchainInfoRecieveResporse.cs" />
+    <Compile Include="APIModels\Fundings\Pipit\ApiPipitCallBack.cs" />
+    <Compile Include="APIModels\Fundings\Wire Instructions\ApiDepositCreateModel.cs" />
+    <Compile Include="APIModels\InstantPayment\ApiInstantPaymentReceiveModel.cs" />
+    <Compile Include="APIModels\InstantPayment\ApiInstantPaymentReceivesListViewModel.cs" />
+    <Compile Include="APIModels\InstantPayment\ApiInstantPaymentReceiveDetailsViewModel.cs" />
+    <Compile Include="APIModels\Payment\ApiCreatePaymentRequest.cs" />
+    <Compile Include="APIModels\Payment\ApiDeletePaymentResquest.cs" />
+    <Compile Include="APIModels\Payment\ApiSubmitPaymentResquest.cs" />
+    <Compile Include="APIModels\Payment\ApiValidatePaymentRequest.cs" />
+    <Compile Include="APIModels\Payment\ApiValidatePaymentResponse.cs" />
+    <Compile Include="APIModels\Payment\ApiDeletePaymentResponse.cs" />
+    <Compile Include="APIModels\Payment\ApiSubmitPaymentResponse.cs" />
+    <Compile Include="APIModels\Payment\ApiCreatePaymentResponse.cs" />
+    <Compile Include="APIModels\Payment\ApiPaymentSearchRequest.cs" />
+    <Compile Include="APIModels\Payment\ApiPaymentSearchResponse.cs" />
+    <Compile Include="APIModels\Payment\ApiPaymentsListResponse.cs" />
+    <Compile Include="APIModels\Payment\ApiPaymentDetailsModel.cs" />
+    <Compile Include="APIModels\Payment\ApiPaymentModel.cs" />
+    <Compile Include="APIModels\QrCode\GenerateQrCodeModel.cs" />
+    <Compile Include="APIModels\KycIntegrationModel\CustomerCreateFromTemplateModel.cs" />
+    <Compile Include="APIModels\KycIntegrationModel\CustomerUserCreateResponseModel.cs" />
+    <Compile Include="APIModels\KycIntegrationModel\CustomerUserCreateModel.cs" />
+    <Compile Include="APIModels\KycIntegrationModel\CustomerCreateFromTemplateRepsonseModel.cs" />
+    <Compile Include="APIModels\KycIntegrationModel\MiniKycAddNewUser.cs" />
+    <Compile Include="APIModels\KycIntegrationModel\UserAccessRightTemplateLinkResponseModel.cs" />
+    <Compile Include="APIModels\KycIntegrationModel\UserAccessRightTemplateLinkModel.cs" />
+    <Compile Include="APIModels\QrCode\InstantPaymentReceiveDetailResponse.cs" />
+    <Compile Include="APIModels\TransfersApiModel\GettingTustedTokenModel.cs" />
+    <Compile Include="APIModels\TransfersApiModel\RedEnvelopeCreatePaymentResponse.cs" />
+    <Compile Include="APIModels\TransfersApiModel\NewRedEnvelopeModel.cs" />
+    <Compile Include="APIModels\TransfersApiModel\TransferTustedTokenModel.cs" />
+    <Compile Include="APIModels\UserInformation\ApiDeleteUserAliasRequest.cs" />
+    <Compile Include="APIModels\UserInformation\ApiDeleteUserAliasResponse.cs" />
+    <Compile Include="APIModels\UserInformation\UserAlias.cs" />
+    <Compile Include="APIModels\UserRoleType.cs" />
+    <Compile Include="APIModels\Role.cs" />
+    <Compile Include="APIModels\ExchangeModels\CreateQuoteModel.cs" />
+    <Compile Include="APIModels\ExchangeModels\CurrencyModel.cs" />
+    <Compile Include="APIModels\ExchangeModels\ExchangeMainModel.cs" />
+    <Compile Include="APIModels\ExchangeModels\RateModel.cs" />
+    <Compile Include="APIModels\ExchangeModels\UpdateTokenExchangeModel.cs" />
+    <Compile Include="APIModels\FavoriteCurrencyModels\FavoriteCurrenciesModels.cs" />
+    <Compile Include="APIModels\Fundings\Pipit\ApiPipItCreateFundingModel.cs" />
+    <Compile Include="APIModels\Fundings\Pipit\ApiPipitContent.cs" />
+    <Compile Include="APIModels\Fundings\Wire Instructions\AddWireInstructionModel.cs" />
+    <Compile Include="APIModels\Fundings\Wire Instructions\DepositHistoryModel.cs" />
+    <Compile Include="APIModels\InstantPayment\ApiAccountBalanceViewModel.cs" />
+    <Compile Include="APIModels\InstantPayment\ApiAccountBalancesListViewModel.cs" />
+    <Compile Include="APIModels\InstantPayment\ApiInstantPaymentAfterPost.cs" />
+    <Compile Include="APIModels\InstantPayment\ApiInstantPaymentDetailsViewModel.cs" />
+    <Compile Include="APIModels\InstantPayment\ApiInstantPaymentHistory.cs" />
+    <Compile Include="APIModels\InstantPayment\ApiInstantPaymentHistoryModel.cs" />
+    <Compile Include="APIModels\InstantPayment\ApiInstantPaymentModel.cs" />
+    <Compile Include="APIModels\InstantPayment\ApiInstantPaymentViewModel.cs" />
+    <Compile Include="APIModels\InstantPayment\ApiNewInstantPaymentViewModel.cs" />
+    <Compile Include="APIModels\LoginPageModels.cs" />
+    <Compile Include="APIModels\OrderStatuses.cs" />
+    <Compile Include="APIModels\ReferalLinksModel\ReferalLinksModel.cs" />
+    <Compile Include="APIModels\Reports\Accounting\AccountingModels.cs" />
+    <Compile Include="APIModels\StandartResponse.cs" />
+    <Compile Include="APIModels\TsgApiModels.cs" />
+    <Compile Include="APIModels\UserInfo.cs" />
+    <Compile Include="APIModels\UserInformation\IApiUserAliasModel.cs" />
+    <Compile Include="APIModels\UserInformation\ListOfUserAliases.cs" />
+    <Compile Include="APIModels\UserInformation\ViewProfileModel.cs" />
+    <Compile Include="App_LocalResources\GlobalModel.ar-AE.Designer.cs">
+      <DependentUpon>GlobalModel.ar-AE.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="App_LocalResources\GlobalModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GlobalModel.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_LocalResources\GlobalModel.en-PH.Designer.cs">
+      <DependentUpon>GlobalModel.en-PH.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="App_LocalResources\GlobalModel.fr.Designer.cs">
+      <DependentUpon>GlobalModel.fr.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="App_LocalResources\GlobalModel.km-KH.Designer.cs">
+      <DependentUpon>GlobalModel.km-KH.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="App_LocalResources\GlobalModel.ru.Designer.cs">
+      <DependentUpon>GlobalModel.ru.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="App_LocalResources\GlobalModel.th.Designer.cs">
+      <DependentUpon>GlobalModel.th.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="App_LocalResources\GlobalModel.zh-CN.Designer.cs">
+      <DependentUpon>GlobalModel.zh-CN.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="CustomValidation\RequiredIfRequiredPinAmountGreaterThanZero2Attribute.cs" />
+    <Compile Include="CustomValidation\RequiredIfRequiredPinAmountGreaterThanZeroAttribute.cs" />
+    <Compile Include="DTO\Fundings\AddFunds_BlockChainInfoDto.cs" />
+    <Compile Include="DTO\Fundings\AddFunds_PipitDto.cs" />
+    <Compile Include="DTO\Fundings\AddFunds_WireDto.cs" />
+    <Compile Include="DTO\CommonObjects\AnonimMailDto.cs" />
+    <Compile Include="DTO\CommonObjects\ApiTokensDto.cs" />
+    <Compile Include="DTO\AutomaticExchanges\DependencyLiquidForUserDto.cs" />
+    <Compile Include="DTO\AutomaticExchanges\LiquidCcyListDto.cs" />
+    <Compile Include="DTO\AutomaticExchanges\LiquidOverDraftUserListDto.cs" />
+    <Compile Include="DTO\CommonObjects\BankCurrencyDto.cs" />
+    <Compile Include="DTO\CommonObjects\BankDto.cs" />
+    <Compile Include="DTO\CommonObjects\ChangeLogDto.cs" />
+    <Compile Include="DTO\CommonObjects\ConversionDto.cs" />
+    <Compile Include="DTO\CommonObjects\CountryDto.cs" />
+    <Compile Include="DTO\CommonObjects\CurrencyDto.cs" />
+    <Compile Include="DTO\CommonObjects\DepartmentMailsDto.cs" />
+    <Compile Include="DTO\CommonObjects\EnumOfOrderStatusesDto.cs" />
+    <Compile Include="DTO\CommonObjects\FavoritesCurrenciesDto.cs" />
+    <Compile Include="DTO\Fundings\FundChangesDto.cs" />
+    <Compile Include="DTO\Fundings\FundingsDto.cs" />
+    <Compile Include="DTO\Fundings\FundingSourcesDto.cs" />
+    <Compile Include="DTO\InstantPayment\InstantPaymentReceiveMappingDto.cs" />
+    <Compile Include="DTO\InstantPayment\InstantPaymentReceiveDto.cs" />
+    <Compile Include="DTO\LimitPayment\DaUserWPayIDSettingDto.cs" />
+    <Compile Include="DTO\LimitPayment\DaPayLimitsTypeDto.cs" />
+    <Compile Include="DTO\LimitPayment\DaPayLimitsDto.cs" />
+    <Compile Include="DTO\LimitPayment\DaPayLimitsLogDto.cs" />
+    <Compile Include="DTO\LimitPayment\DaPayLimitsTabDto.cs" />
+    <Compile Include="DTO\LimitPayment\DaPaymentLimitSourceTypeDto.cs" />
+    <Compile Include="DTO\CommonObjects\MerchantsDto.cs" />
+    <Compile Include="DTO\CommonObjects\OrdersHistoryDto.cs" />
+    <Compile Include="DTO\CommonObjects\ReferalLinksListDto.cs" />
+    <Compile Include="DTO\CommonObjects\RoleDto.cs" />
+    <Compile Include="DTO\CommonObjects\SendedMailsDto.cs" />
+    <Compile Include="DTO\CommonObjects\SharedAdminLinkDto.cs" />
+    <Compile Include="DTO\CommonObjects\SharedPhotoDto.cs" />
+    <Compile Include="DTO\Shop\ShopCategoriesDto.cs" />
+    <Compile Include="DTO\Shop\ShopInfoDto.cs" />
+    <Compile Include="DTO\Shop\ShopOrderItemsDto.cs" />
+    <Compile Include="DTO\Shop\ShopOrdersDto.cs" />
+    <Compile Include="DTO\Shop\ShopPaymentDto.cs" />
+    <Compile Include="DTO\Shop\ShopProductImagesDto.cs" />
+    <Compile Include="DTO\Shop\ShopProductsDto.cs" />
+    <Compile Include="DTO\Shop\ShowOrderLogDto.cs" />
+    <Compile Include="DTO\CommonObjects\SystemRequirementsDto.cs" />
+    <Compile Include="DTO\CommonObjects\TaskListDto.cs" />
+    <Compile Include="DTO\CommonObjects\TokenKeysForOrdersDto.cs" />
+    <Compile Include="DTO\SuperUserModels\SharedAdminLinkDto.cs" />
+    <Compile Include="DTO\Transfers\KycNewUserDto.cs" />
+    <Compile Include="DTO\Transfers\RedEnvelopeDto.cs" />
+    <Compile Include="DTO\Transfers\Report\GetInboxListDto.cs" />
+    <Compile Include="DTO\Transfers\TransfersDto.cs" />
+    <Compile Include="DTO\CommonObjects\UserDto.cs" />
+    <Compile Include="DTO\UsersDataBlock\UserAliasesDto.cs" />
+    <Compile Include="DTO\CommonObjects\WelcomeMessageDto.cs" />
+    <Compile Include="DTO\CommonObjects\WireInstructionDto.cs" />
+    <Compile Include="Enums\DelegatedAuthorirySourceLimitationTypeEnum.cs" />
+    <Compile Include="Enums\DelegatedAuthoriryLimitationType.cs" />
+    <Compile Include="Enums\PaymentEnum.cs" />
+    <Compile Include="Enums\ShopOrderEnum.cs" />
+    <Compile Include="Enums\TransferStatusesEnum.cs" />
+    <Compile Include="Enums\TransferedTokenStatusesEnum.cs" />
+    <Compile Include="Enums\TransfersSourceTypeEnum.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceModels\BlockchainFunds\DashManagerSenderApiResponse.cs" />
+    <Compile Include="ServiceModels\Fundings\AddFunds_BlockChainInfo.cs" />
+    <Compile Include="ServiceModels\Fundings\AddFunds_Pipit.cs" />
+    <Compile Include="ServiceModels\Fundings\AddFundsWire.cs" />
+    <Compile Include="ServiceModels\CommonObjects\AnonimMail.cs" />
+    <Compile Include="ServiceModels\CommonObjects\ApiTokens.cs" />
+    <Compile Include="ServiceModels\AutomaticExchange\AutomaticExchangeChekingModel.cs" />
+    <Compile Include="ServiceModels\AutomaticExchange\AutomaticExchangeResponse.cs" />
+    <Compile Include="ServiceModels\AutomaticExchange\DependencyLiquidForUserSo.cs" />
+    <Compile Include="ServiceModels\AutomaticExchange\LiquidCcyListSo.cs" />
+    <Compile Include="ServiceModels\AutomaticExchange\LiquidOverDraftUserListSo.cs" />
+    <Compile Include="ServiceModels\CommonObjects\Bank.cs" />
+    <Compile Include="ServiceModels\CommonObjects\BankCurrency.cs" />
+    <Compile Include="ServiceModels\BlockchainFunds\BitcoinManagerSenderApiResponse.cs" />
+    <Compile Include="ServiceModels\BlockchainFunds\BlockChainInfoUpdateCallBackResponse.cs" />
+    <Compile Include="ServiceModels\BlockchainFunds\BlockChainInfoUpdateResponse.cs" />
+    <Compile Include="ServiceModels\CommonObjects\ChangeLog.cs" />
+    <Compile Include="ServiceModels\BlockchainFunds\BlockChainInfoReceiveResponse.cs" />
+    <Compile Include="ServiceModels\CommonObjects\Conversion.cs" />
+    <Compile Include="ServiceModels\CommonObjects\Country.cs" />
+    <Compile Include="ServiceModels\CommonObjects\Currency.cs" />
+    <Compile Include="ServiceModels\CommonObjects\DepartmentMails.cs" />
+    <Compile Include="ServiceModels\CommonObjects\EnumOfOrderStatuses.cs" />
+    <Compile Include="ServiceModels\CommonObjects\FavoritesCurrencies.cs" />
+    <Compile Include="ServiceModels\Fundings\FundChanges.cs" />
+    <Compile Include="ServiceModels\Fundings\Fundings.cs" />
+    <Compile Include="ServiceModels\Fundings\FundingSources.cs" />
+    <Compile Include="ServiceModels\LimitPayment\DaUserWPayIDSettingSo.cs" />
+    <Compile Include="ServiceModels\LimitPayment\DaPayLimitsSo.cs" />
+    <Compile Include="ServiceModels\LimitPayment\DaPayLimitsLogSo.cs" />
+    <Compile Include="ServiceModels\LimitPayment\DaPayLimitsTabSo.cs" />
+    <Compile Include="ServiceModels\LimitPayment\DaPayLimitsTypeSo.cs" />
+    <Compile Include="ServiceModels\LimitPayment\DaPaymentLimitSourceTypeSo.cs" />
+    <Compile Include="ServiceModels\CommonObjects\Merchants.cs" />
+    <Compile Include="ServiceModels\CommonObjects\OrdersHistory.cs" />
+    <Compile Include="ServiceModels\PipitModels\PipitCallBackBody.cs" />
+    <Compile Include="ServiceModels\CommonObjects\ReferalLinksList.cs" />
+    <Compile Include="ServiceModels\CommonObjects\Role.cs" />
+    <Compile Include="ServiceModels\CommonObjects\SendedMails.cs" />
+    <Compile Include="ServiceModels\CommonObjects\SharedAdminLink.cs" />
+    <Compile Include="ServiceModels\CommonObjects\SharedPhoto.cs" />
+    <Compile Include="ServiceModels\Shop\PayedShopModel.cs" />
+    <Compile Include="ServiceModels\Shop\ShopCategories.cs" />
+    <Compile Include="ServiceModels\Shop\ShopInfo.cs" />
+    <Compile Include="ServiceModels\Shop\ShopOrderItems.cs" />
+    <Compile Include="ServiceModels\Shop\ShopOrders.cs" />
+    <Compile Include="ServiceModels\Shop\ShopPayment.cs" />
+    <Compile Include="ServiceModels\Shop\ShopProductImages.cs" />
+    <Compile Include="ServiceModels\Shop\ShopProducts.cs" />
+    <Compile Include="ServiceModels\Shop\ShowOrderLog.cs" />
+    <Compile Include="ServiceModels\CommonObjects\SystemRequirements.cs" />
+    <Compile Include="ServiceModels\CommonObjects\TaskList.cs" />
+    <Compile Include="ServiceModels\CommonObjects\TokenKeysForOrders.cs" />
+    <Compile Include="ServiceModels\SuperUserModels\SharedAdminLinkSo.cs" />
+    <Compile Include="ServiceModels\Transfers\KycNewUserSo.cs" />
+    <Compile Include="ServiceModels\Transfers\RedEnvelope\AddNewRedEnvelope.cs" />
+    <Compile Include="ServiceModels\Transfers\RedEnvelope\RedEnvelopeSo.cs" />
+    <Compile Include="ServiceModels\Transfers\Reports\GetInboxListSo.cs" />
+    <Compile Include="ServiceModels\Transfers\TransfersSo.cs" />
+    <Compile Include="ServiceModels\CommonObjects\User.cs" />
+    <Compile Include="ServiceModels\UsersDataBlock\UserAliasesSo.cs" />
+    <Compile Include="ServiceModels\CommonObjects\WelcomeMessage.cs" />
+    <Compile Include="ServiceModels\CommonObjects\WireInstruction.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Tsg.Business.Model\Tsg.Business.Model.csproj">
+      <Project>{1B752B0A-0D88-4F98-8B19-78FCBF7DB479}</Project>
+      <Name>Tsg.Business.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TSG.Common\WinstantPay.Common.csproj">
+      <Project>{C741AFA7-6DCA-4783-B1ED-471541E692DA}</Project>
+      <Name>WinstantPay.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="App_LocalResources\GlobalModel.ar-AE.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>GlobalModel.ar-AE.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App_LocalResources\GlobalModel.en-PH.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>GlobalModel.en-PH.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App_LocalResources\GlobalModel.fr.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>GlobalModel.fr.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App_LocalResources\GlobalModel.km-KH.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>GlobalModel.km-KH.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App_LocalResources\GlobalModel.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>GlobalModel.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App_LocalResources\GlobalModel.ru.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>GlobalModel.ru.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App_LocalResources\GlobalModel.th.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>GlobalModel.th.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App_LocalResources\GlobalModel.zh-CN.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>GlobalModel.zh-CN.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

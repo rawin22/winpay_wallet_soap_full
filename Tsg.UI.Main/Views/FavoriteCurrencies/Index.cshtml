@@ -1,0 +1,94 @@
+﻿@using Tsg.UI.Main.App_LocalResources
+@model Tsg.UI.Main.Models.PaymentCurrenciesListViewModel
+@{
+    ViewBag.Title = GlobalRes.FavoriteCurrencyIndexPage_Title;
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+
+<script src="/Content/assets/vendor/jquery/jquery.js"></script>
+<div class="row">
+    <section class="panel">
+        <header class="panel-heading">
+            <h2 class="panel-title">@GlobalRes.FavoriteCurrencyIndexPage_Title</h2>
+            <p class="panel-subtitle">@GlobalRes.FavoriteCurrencyIndexPage_SubTitle</p>
+        </header>
+        <div class="panel-body" style="display: block;">
+            @if (Model.Currencies != null)
+            {
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped table-condensed mb-none">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>@GlobalRes.FavoriteCurrencyIndexPage_CurrencyCode</th>
+                                <th>@GlobalRes.FavoriteCurrencyIndexPage_CurrencyName</th>
+                                <th>@GlobalRes.FavoriteCurrencyIndexPage_CurrencySymbol</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.Currencies.OrderBy(ob=>ob.CurrencyCode))
+                            {
+                                <tr>
+                                    <td class="text-right">
+                                        @if (item.IsFavorite)
+                                        {
+                                            <a id=@String.Format("currency_{0}",item.CurrencyCode) onclick="changeFavorite(event);"><i class="fa fa-star"></i></a>
+                                        }
+                                        else
+                                        {
+                                            <a id=@String.Format("currency_{0}",item.CurrencyCode) onclick="changeFavorite(event);"><i class="far fa-star"></i></a>
+                                        }
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.CurrencyCode)
+                                        <img src="/Content/assets/images/onebyone.png" class="flag flag-@(item.CurrencyCode.ToLower())" />
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.CurrencyName)
+                                    </td>
+                                    @*<td>@Html.DisplayFor(modelItem => item.CurrencyAmountScale)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.CurrencyRateScale)</td>*@
+                                    <td>@Html.DisplayFor(modelItem => item.Symbol)</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+        </div>
+        <script type="text/javascript" language="javascript">
+            function changeFavorite(event) {
+                var domElement = $(event.target);
+                console.log(domElement);
+                var id = $(event.target).parent().attr('id');
+                if ($(event.target).attr('class') === "far fa-star") {
+                    $.ajax({ url: '@Url.Action("AddToFavoriteList", "FavoriteCurrencies")/' + '?currencyCode='+id, type: "POST",
+                        dataType: "json",
+                        success: function (result) {
+                            console.log(result.message);
+                            if (result.success) {
+                                $("#" + result.CurrencyCode).children().toggleClass("far fa-star");
+                                $("#" + result.CurrencyCode).children().toggleClass("fa fa-star");
+                            }
+                        }
+                    });
+                }
+                else if ($(event.target).attr('class') === "fa fa-star") {
+                    $.ajax({
+                        url: '@Url.Action("Delete", "FavoriteCurrencies")/' + '?currencyCode='+id,
+                        type: "POST",
+                        dataType: "json",
+                        success: function (result) {
+                            if (result.success) {
+                                $("#" + result.CurrencyCode).children().toggleClass("far fa-star");
+                                $("#" + result.CurrencyCode).children().toggleClass("fa fa-star");
+                            }
+                        }
+                    });
+                }
+            }
+
+
+        </script>
+    </section>
+</div>

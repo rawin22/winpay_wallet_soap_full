@@ -1,0 +1,89 @@
+﻿@using System.Globalization
+@using Tsg.UI.Main.App_LocalResources
+@model IList<Tsg.UI.Main.Models.PayoutViewModel>
+<section class="panel panel-featured panel-featured-info" >
+    <header class="panel-heading" data-panel-toggle="">
+        <div class="panel-actions">
+            <a href="#" class="panel-action panel-action-toggle" data-panel-toggle=""></a>
+        </div>
+
+        <h2 class="panel-title">Payment</h2>
+        <p class="panel-subtitle">Created Status</p>
+    </header>
+    <div class="panel-body">
+        @*@Html.Raw(GlobalRes.Shared_InstantPaymentListPage_PaymentHistoryText)*@
+        @if (Model != null && Model.Count() > 0)
+        {
+           var hiddenClass = "hidden-xs";
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped table-condensed mb-none">
+                    <thead>
+                        <tr>
+                            <th>Reference</th>
+                            <th>Beneficiary Name</th>
+                            <th>Amount</th>
+                            <th>Value Date</th>
+                            @*<th>Status</th>*@
+                            <th>Date</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            string[] crypto = { "BTC", "ETH", "XAU" };
+
+                        }
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="@hiddenClass">
+                                    @Html.ActionLink(item.PaymentReference, "Details", "Payout", new { id = item.PaymentId }, new { @class = "" })
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.BeneficiaryName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.AmountTextWithCurrencyCode)
+                                </td>
+                                <td>
+                                    @String.Format("{0:MMM dd, yyyy}", item.ValueDate)
+                                </td>
+                                @*<td>
+                                    @Html.DisplayFor(modelItem => item.Status)
+                                </td>*@
+                                <td>
+                                    @String.Format("{0:MMM dd, yyyy}", item.CreatedTime)
+                                </td>
+                                <td>
+                                    @*@Html.ActionLink(GlobalRes.Shared_InstantPaymentListPage_Details, "Details", "Payout", new { id = item.PaymentId }, new { @class = "mb-xs btn btn-xs btn-primary" })*@
+                                    @Html.ActionLink("Copy", "Create", "Payout", new { id = item.PaymentId }, new { @class = "mb-xs btn btn-xs btn-primary" })
+
+
+                                    @if (item.Status != null && item.Status.Equals("Created"))
+                                    {
+                                        @Html.ActionLink("Approve", "Submit", "Payout", new { id = item.PaymentId }, new { @class = "mb-xs btn btn-xs btn-success" })
+                                    }
+
+                                    @Html.ActionLink("Delete", "Delete", "Payout", new { id = item.PaymentId }, new { @class = "mb-xs btn btn-xs btn-danger" })
+
+                                </td>
+                            </tr>
+                        }
+                        </tbody>
+                    </table>
+            </div>
+        }
+        else 
+        {
+            <p>There is no payout pending for approval.</p>
+        }
+
+    </div>
+    <footer class="panel-footer">
+        <div class="row">
+            <div class="col-sm-9">
+                <input type="submit" id="refreshPaymentsList" class="btn btn-success" value="@GlobalRes.Shared_InstantPaymentListPage_Refresh" onclick="window.location.reload()" />
+            </div>
+        </div>
+    </footer>
+</section>

@@ -1,0 +1,68 @@
+﻿@model IEnumerable<TSG.Models.ServiceModels.Shop.ShopCategories>
+
+    @{
+        ViewBag.Title = "Index";
+        Layout = "~/Views/Shared/_LayoutMain.cshtml";
+    }
+
+
+    <div class="row">
+        <section class="panel">
+
+            <header class="panel-heading" data-panel-toggle="">
+                <div class="panel-actions">
+                    <a href="#" class="panel-action panel-action-toggle" data-panel-toggle=""></a>
+                </div>
+
+                <h2 class="panel-title">Categories</h2>
+                <p class="panel-subtitle">Browse all categories</p>
+            </header>
+
+            <div class="panel-body" style="display: block;">
+                <p>
+                    @Html.ActionLink("Create New", "Create", "ShopCategories", htmlAttributes: new { @class = "btn btn-success" })
+                </p>
+                <table class="table table-bordered table-striped table-condensed mb-none" id="datatable-default">
+                    <tr>
+                        <th>
+                            Category
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ShopCategories_Parent)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ShopCategories_IsPublished)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ShopCategories_IsDeleted)
+                        </th>
+                        <th></th>
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ShopCategories_Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ShopCategories_ParentShopCategory.ShopCategories_Name)
+                            </td>
+                            <td>
+                                @(item.ShopCategories_IsPublished? "Yes":"No")
+                            </td>
+                            <td>
+                                @(item.ShopCategories_IsDeleted? "Yes" : "No")
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.ShopCategories_ID }) |
+                                @*@Html.ActionLink("Details", "Details", new { id = item.ShopCategories_ID }) |*@
+                                @Html.ActionLink("Delete", "Delete", new { id = item.ShopCategories_ID })
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+            </div>
+        </section>
+    </div>

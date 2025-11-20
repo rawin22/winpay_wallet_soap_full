@@ -1,0 +1,279 @@
+﻿@using System.Globalization
+@using Tsg.UI.Main.App_LocalResources
+@using Tsg.UI.Main.Models
+@model Tsg.UI.Main.Models.AccountStatementViewModel
+
+@{
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+    ViewBag.Title = GlobalRes.HomeAccountStatementPage_Account;
+    string[] crypto = { "BTC", "ETH", "XAU" };
+}
+
+<div class="row panel panel-featured panel-featured-info">
+    <header class="panel-heading" data-panel-toggle="">
+        <div class="panel-actions">
+            <a href="#" class="panel-action panel-action-toggle" data-panel-toggle=""></a>
+        </div>
+
+        <h2 class="panel-title">@GlobalRes.HomeAccountStatementPage_Title</h2>
+        <p class="panel-subtitle">@GlobalRes.HomeAccountStatementPage_SubTitle</p>
+    </header>
+    <div class="panel-body">
+
+        <div class="panel-body well">
+            @{
+                Html.RenderPartial("MessageInfoView");
+            }
+            
+            @using (Html.BeginForm("AccountStatement", "Home", FormMethod.Post, new {@class = "form-inline1"}))
+            {
+
+                <div class="col-lg-2">
+                    <label class="control-label">@GlobalRes.HomeAccountStatementPage_Account</label>
+                    <div class="form-group">
+                        @Html.DropDownListFor(m => m.AccountId, UiHelper.GetAccountBalances(), new {@class = "form-control", required = ""})
+                        @if (!Model.IsFirstTime && Model.AccountId == Guid.Empty)
+                        {
+                            @Html.ValidationMessageFor(x => x.AccountId, GlobalRes.HomeAccountStatementPage_AccountText, new {@class = "text-danger"})
+                        }
+                    </div>
+                </div>
+                <div class="col-lg-10" style="padding-left: 0px; padding-right: 0px">
+                    <div class="col-lg-3">
+                        <label class="control-label">@GlobalRes.HomeAccountStatementPage_Period</label>
+                        <div class="form-group">
+                            @Html.DropDownListFor(m => m.Period, UiHelper.GetDatePeriods(), new {@class = "form-control"})
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <label class="control-label">@GlobalRes.HomeAccountStatementPage_DateRange</label>
+                        <div class="input-group input-daterange">
+                            <span class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
+                            </span>
+                            @Html.TextBoxFor(m => m.StartDate, Model.SafetyStartDate.ToString("dd/MM/yyyy", new CultureInfo("en-US")), new { id = "inputStartDate", @class = "form-control", @readonly="readonly"})
+                            <span class="input-group-addon">@GlobalRes.AccountStatementPage_To</span>
+                            @Html.TextBoxFor(m => m.EndDate, Model.SafetyEndDate.ToString("dd/MM/yyyy", new CultureInfo("en-US")), new { id = "inputEndDate", @class = "form-control", @readonly="readonly" })
+                        </div>
+                    </div>
+                    <div class="col-lg-4" style="padding-top: 26px;">
+                        <button type="submit" class="btn btn-primary">@GlobalRes.HomeAccountStatementPage_GetReport</button>
+                        <a href="/Home/AccountStatement" class="btn btn-default">@GlobalRes.HomeAccountStatementPage_Reset</a>
+                    </div>
+                </div>
+            }
+        </div>
+        @if (!String.IsNullOrEmpty(Model.AccountId.ToString()) && Model.AccountId != Guid.Empty && Model.Data !=null)
+        {
+            <div class="invoice">
+                <header class="clearfix">
+                    <div class="row">
+                        <div class="col-sm-6 mt-md">
+                            @if (Model.Data.AccountInfo != null)
+                            {
+                                <h2 class="h2 mt-none mb-sm text-dark text-weight-bold">@Model.Data.AccountInfo.AccountName</h2>
+                                <h4 class="h4 m-none text-dark text-weight-bold">#@Model.Data.AccountInfo.AccountNumber</h4>
+                            }
+                        </div>
+                        @*<div class="col-sm-6 text-right mt-md mb-md">
+                            <address class="ib mr-xlg">
+                                Okler Themes Ltd
+                                <br>
+                                24 Henrietta Street, London, England
+                            </address>
+                            <div class="ib">
+                                    <img src="assets/images/invoice-logo.png" alt="OKLER Themes">
+                                </div>
+                        </div>*@
+                    </div>
+                </header>
+                <div class="bill-info">
+                    <div class="row">
+                        <div class="col-md-6">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="invoice-summary">
+                    <div class="row">
+                        <div class="col-sm-5 col-sm-offset-7">
+                            <table class="table h5 text-dark">
+                                <tbody>
+                                    <tr class="b-top-none h4">
+                                        <td>@GlobalRes.HomeAccountStatementPage_BeginningBalance</td>
+                                        <td class="text-left">@Model.Data.AccountInfo.BeginningBalance.ToString("N2", new CultureInfo("en-US"))</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    @if (Model.Data.Entries != null && Model.Data.Entries.Length > 0)
+                    {
+                        decimal balance = Model.Data.AccountInfo.BeginningBalance;
+
+                        <table class="table invoice-items">
+                            <thead>
+                                <tr class="h4 text-dark">
+                                    <th id="cell-id" class="text-weight-semibold">@GlobalRes.HomeAccountStatementPage_Date</th>
+                                    <th id="cell-item" class="text-weight-semibold">@GlobalRes.HomeAccountStatementPage_Reference</th>
+                                    <th id="cell-price" class="text-center text-weight-semibold">@GlobalRes.HomeAccountStatementPage_Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.Data.Entries.OrderBy(ob=>ob.ValueDate).ToList())
+                                {
+                                    decimal amt = (-1) * item.AmountDebit + item.AmountCredit;
+                                    balance = balance + amt;
+
+                                    <tr>
+                                        <td>@String.Format("{0:MMM dd, yyyy}", item.ValueDate)</td>
+                                        <td class="text-weight-semibold text-dark">
+                                            @if (item.ItemReference.Contains("INST"))
+                                            {
+                                                <a href="@Url.Action("Details","Payment", new {id=item.ItemId})" target="_blank">@item.ItemReference</a>
+                                            }
+                                            else if (item.ItemReference.StartsWith("DEPO") && item.ItemReference.Contains("SPOT"))
+                                            {
+                                                var referenceArray = item.ItemReference.Split('/');
+                                                <span>@referenceArray[0] / </span>
+                                                <a href="@Url.Action("Details","Exchange", new {reference=@referenceArray[1].Trim()})" target="_blank">@referenceArray[1]</a>
+                                            }
+                                            else
+                                            {
+                                                <span>@item.ItemReference</span>
+                                            }
+                                        </td>
+                                        <td class="text-right" style="@(amt < 0 ? "color:red" : "")">
+                                            @(crypto.Contains((string)Model.Data.AccountInfo.AccountCCY) ? amt.ToString("N8", new CultureInfo("en-US")) : amt.ToString("N2", new CultureInfo("en-US")))
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    }
+                </div>
+
+                <div class="invoice-summary">
+                    <div class="row">
+                        <div class="col-sm-5 col-sm-offset-7">
+                            <table class="table h5 text-dark">
+                                <tbody>
+                                    <tr class="h4">
+                                        <td>@GlobalRes.HomeAccountStatementPage_ClosingBalance</td>
+                                        <td class="text-left">@(crypto.Contains((string)Model.Data.AccountInfo.AccountCCY) ? Model.Data.AccountInfo.EndingBalance.ToString("N8", new CultureInfo("en-US")) : Model.Data.AccountInfo.EndingBalance.ToString("N2", new CultureInfo("en-US")))</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+
+    @section customcss {
+
+    }
+
+    @section VendorScripts {
+
+
+    }
+
+    @section Scripts {
+        <script type="text/javascript">
+            function formSubmit(form) {
+                form.serialize();
+                form.submit();
+            }
+
+            $("#Period").change(function () {
+                var today = new Date();
+                today.setDate(today.getDate() + 5);
+                var periodDate = new Date();
+                var selVal = $(this).val();
+
+                if (selVal == '@DatePeriod.Today.ToString()') {
+                    periodDate = new Date();
+                } else if (selVal == '@DatePeriod.LastWeek.ToString()') {
+                    periodDate.setDate(periodDate.getDate() - 7);
+                } else if (selVal == '@DatePeriod.LastMonth.ToString()') {
+                    periodDate.setMonth(periodDate.getMonth() - 1);
+                } else if (selVal == '@DatePeriod.Last3Months.ToString()') {
+                    periodDate.setMonth(periodDate.getMonth() - 3);
+                } else if (selVal == '@DatePeriod.Last6Months.ToString()') {
+                    periodDate.setMonth(periodDate.getMonth() - 6);
+                }
+
+                var stDate = ('0' + periodDate.getDate()).slice(-2) + '/' + ('0' + (periodDate.getMonth() + 1)).slice(-2) +
+                    '/' + periodDate.getFullYear();
+                var endDate = ('0' + today.getDate()).slice(-2) + '/' + ('0' + (today.getMonth() + 1)).slice(-2) +
+                    '/' + today.getFullYear();
+
+                $.fn.datepicker.defaults.format = "dd/mm/yyyy";
+                $('.input-daterange input[name="StartDate"]').datepicker('setDate', stDate);
+                $('.input-daterange input[name="EndDate"]').datepicker('setDate', endDate);
+
+                $('#inputStartDate').attr('value', stDate);
+                $('#inputEndDate').attr('value', endDate);
+
+                $('.input-daterange').datepicker('updateDates');
+            });
+
+            $(document).ready(function () {
+                $.fn.datepicker.defaults.format = "dd/mm/yyyy";
+
+                $('.input-daterange input[name="StartDate"]').datepicker();
+                $('.input-daterange input[name="EndDate"]').datepicker();
+
+
+
+                //var today = new Date($('.input-daterange input[name="StartDate"]').val());
+                //var periodDate = new Date($('.input-daterange input[name="EndDate"]').val());
+
+                //console.log(today);
+                //console.log(periodDate);
+
+                //var stDate = ('0' + periodDate.getDate()).slice(-2) + '/' + ('0' + (periodDate.getMonth() + 1)).slice(-2) +
+                //    '/' + periodDate.getFullYear();
+                //var endDate = ('0' + today.getDate()).slice(-2) + '/' + ('0' + (today.getMonth() + 1)).slice(-2) +
+                //    '/' + today.getFullYear();
+
+                //$('.input-daterange input[name="StartDate"]').datepicker('setDate', stDate);
+                //$('.input-daterange input[name="EndDate"]').datepicker('setDate', endDate);
+
+                //$('#inputStartDate').attr('value', stDate);
+                //$('#inputEndDate').attr('value', endDate);
+
+                $('.input-daterange').datepicker('updateDates');
+
+
+                $('.input-daterange input[name="StartDate"]').datepicker({
+                    dateFormat: 'dd/mm/yyyy',
+                    inline: true,
+                    onSelect: function (dateText, inst) {
+                        console.log(dateText);
+                    }
+                });
+                $('.input-daterange input[name="EndDate"]').datepicker({
+                    dateFormat: 'dd/mm/yyyy',
+                    inline: true,
+                    onSelect: function (dateText, inst) {
+                        console.log(dateText);  
+                    }
+                });
+
+                //$('.datepicker').datepicker({
+                //    format: "dd/mm/yyyy"
+                //    })
+                //    //Listen for the change even on the input
+                //    .change(dateChanged)
+                //    .on('changeDate', dateChanged);
+            });
+        </script>
+    }
+</div>

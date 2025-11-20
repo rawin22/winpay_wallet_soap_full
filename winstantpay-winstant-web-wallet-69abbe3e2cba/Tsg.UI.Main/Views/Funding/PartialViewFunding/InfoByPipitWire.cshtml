@@ -1,0 +1,106 @@
+﻿@using System.Globalization
+@using Tsg.UI.Main.App_LocalResources
+@using Tsg.UI.Main.Models
+@using TSG.Models.Enums
+@using WinstantPay.Common.Extension
+@model TSG.Models.ServiceModels.AddFundsPipit
+
+@{
+    ViewBag.Title = GlobalRes.Shared_Navigation_AddFunds;
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+<link href="/Content/viewer/viewer.css" rel="stylesheet">
+<script src="/Content/viewer/viewer.js"></script>
+
+<div class="form-horizontal">
+    <section class="panel  @(ViewBag.OpenPanel != null ? "" : "panel-featured panel-featured-info")">
+
+        <header class="panel-heading" data-panel-toggle="">
+            <div class="panel-actions">
+                <a href="#" class="panel-action panel-action-toggle" data-panel-toggle=""></a>
+            </div>
+
+            <h2 class="panel-title">@GlobalRes.ProofDocUploadProofDocPage_Title</h2>
+            <p class="panel-subtitle">@GlobalRes.ProofDocUploadProofDocPage_SubTitle</p>
+        </header>
+        <div class="panel-body">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label">@GlobalRes.ProofDocUploadProofDocPage_Status </label>
+                <div class="col-sm-6">
+                    @{
+                        var description = EnumHelper<FundingStatus>.GetDisplayValue((FundingStatus)Model.AddFundsWire_Fundings.Fundings_StatusByFund);
+                    }
+                    @Html.TextBox("status", description, new { @class = "form-control", required = "", disabled = "disabled" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label">@GlobalRes.InfoByPipitWire_BarCode </label>
+                <div class="col-sm-6">
+                    @Html.TextBoxFor(m => m.AddFundsPipit_BarCode, new { @class = "form-control", required = "", disabled = "disabled" })
+                    @if (Model.AddFundsPipit_ExpiredDate> DateTime.Now)
+                    {
+                        <a href = @string.Format("https://servers.pip-it.net/os/mgr/order/{0}.html", Model.AddFundsPipit_BarCode) target = "_blank" >@GlobalRes.InfoByPipitWire_LinkToPipitWire</a>
+                    }
+                    else
+                    {
+                        <span class="alert alert-danger">@GlobalRes.InfoByPipitWire_DateOfPaymentExpired</span>
+                    }
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label">@GlobalRes.InfoByPipitWire_CreatedDate </label>
+                <div class="col-sm-6">
+                    @Html.TextBoxFor(m => m.AddFundsPipit_CreatedDate, new { @class = "form-control", required = "", disabled = "disabled" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label">@GlobalRes.InfoByPipitWire_ExpiryDate </label>
+                <div class="col-sm-6">
+                    @Html.TextBoxFor(m => m.AddFundsPipit_ExpiredDate, new { @class = "form-control", required = "", disabled = "disabled" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label">@GlobalRes.Shared_NewInstantPaymentFormPage_Currency </label>
+                <div class="col-sm-6">
+                    @Html.TextBoxFor(m => m.AddFundsWire_Fundings.Fundings_Currency.Currency_CcyCode, new { @class = "form-control", required = "", disabled = "disabled" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label">@GlobalRes.InfoByPipitWire_OrderValue </label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" required="" disabled="disabled" value="@(Model.AddFundsPipit_OrderValue.ToString("N2"))" />
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label class="col-sm-3 control-label">@GlobalRes.InfoByPipitWire_Fee </label>
+                <div class = "col-sm-6" >
+                    <input type="text" class = "form-control" required = "" disabled = "disabled" value="@((Model.AddFundsPipit_TotalValue - Model.AddFundsPipit_OrderValue).ToString("N2"))"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label">@GlobalRes.InfoByPipitWire_TotalValue </label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" required="" disabled="disabled" value="@((Model.AddFundsPipit_TotalValue).ToString("N2"))" />
+                </div>
+            </div>
+        </div>
+
+        <footer class="panel-footer">
+            <div class="row">
+                <div class="col-sm-9 col-sm-offset-3">
+                    <a class="btn btn-success" href="@Url.Action("GetAllFundings")">@GlobalRes.ProofDocUploadProofDocPage_DepositHistory</a>
+                </div>
+            </div>
+        </footer>
+
+    </section>
+</div>

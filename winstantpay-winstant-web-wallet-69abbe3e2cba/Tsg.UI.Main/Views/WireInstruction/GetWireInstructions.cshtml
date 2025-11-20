@@ -1,0 +1,85 @@
+﻿@using Tsg.UI.Main.App_LocalResources
+@model IEnumerable<Tsg.UI.Main.Models.WireInstructionModel>
+
+@{
+    ViewBag.Title = GlobalRes.WireInstruction_GetWireInstructionsPage_Title;
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+
+<div class="row">
+    <section class="panel">
+
+        <header class="panel-heading" data-panel-toggle="">
+            <div class="panel-actions">
+                <a href="#" class="panel-action panel-action-toggle" data-panel-toggle=""></a>
+            </div>
+
+            <h2 class="panel-title">@GlobalRes.WireInstruction_GetWireInstructionsPage_Title</h2>
+            <p class="panel-subtitle">@GlobalRes.WireInstruction_GetWireInstructionsPage_SubTitle</p>
+        </header>
+
+        <div class="panel-body" style="display: block;">
+            @if (Model != null)
+            {
+                <table class="table table-bordered table-striped table-condensed mb-none" id="datatable-default">
+
+                    <thead>
+                        <tr>
+                            <th>@GlobalRes.WireInstruction_GetWireInstructionsPage_Id</th>
+                            <th>@GlobalRes.WireInstruction_GetWireInstructionsPage_BankWireInstructions</th>
+                            <th>@GlobalRes.WireInstruction_GetWireInstructionsPage_BankAndCurrency</th>
+                            <th>@GlobalRes.WireInstruction_GetWireInstructionsPage_Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.WireInstructionId)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.WireInstruction)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.BankCurrencyName)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Edit", "EditWireInstruction", new { id = item.WireInstructionId }, new { @class = "mb-xs btn btn-xs btn-primary" })
+                                    @Html.ActionLink("Delete", "DeleteWireInstruction", new { id = item.WireInstructionId }, new { onclick = "return confirm('Are you sure you want to delete?');", @class = "mb-xs btn btn-xs btn-info" })
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+
+            <div>
+                <a class="btn btn-success" href="/WireInstruction/AddWireInstruction">@GlobalRes.WireInstruction_GetWireInstructionsPage_NewWireInstr</a>
+            </div>
+
+        </div>
+
+    </section>
+</div>
+
+@section customcss {
+    <!-- Specific Page Vendor CSS -->
+    <link rel="stylesheet" href="/Content/assets/vendor/select2/css/select2.css" />
+    <link rel="stylesheet" href="/Content/assets/vendor/select2-bootstrap-theme/select2-bootstrap.css" />
+    <link rel="stylesheet" href="/Content/assets/vendor/jquery-datatables-bs3/assets/css/datatables.css" />
+}
+
+@section VendorScripts {
+
+    <script src="/Content/assets/vendor/select2/js/select2.js"></script>
+    <script src="/Content/assets/vendor/jquery-datatables/media/js/jquery.dataTables.js"></script>
+    <script src="/Content/assets/vendor/jquery-datatables/extras/TableTools/js/dataTables.tableTools.min.js"></script>
+    <script src="/Content/assets/vendor/jquery-datatables-bs3/assets/js/datatables.js"></script>
+}
+
+@section Scripts {
+
+    <!-- Examples -->
+    <script src="/Content/assets/javascripts/tables/examples.datatables.default.js"></script>
+}

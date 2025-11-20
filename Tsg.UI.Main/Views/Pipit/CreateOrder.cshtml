@@ -1,0 +1,146 @@
+﻿@using Tsg.UI.Main.App_LocalResources
+@using TSG.Models.APIModels
+@using Tsg.UI.Main.Models.Pipit
+@using TSG.Models.APIModels.Fundings.Pipit
+@using TSG.Models.ServiceModels
+@model Tsg.UI.Main.Models.Pipit.PipitNewOrder
+
+@{
+    ViewBag.Title = GlobalRes.Shared_Pipit_CreateTitle;
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+@using (Html.BeginForm("CreateOrder", "Pipit", FormMethod.Post, new { @class = "form-horizontal", @novalidate = "novalidate" }))
+{
+    <section class="panel">
+        <header class="panel-heading" data-panel-toggle="">
+            <div class="panel-actions">
+                <a href="#" class="panel-action panel-action-toggle" data-panel-toggle=""></a>
+            </div>
+
+            <h2 class="panel-title">@GlobalRes.Shared_Pipit_CreateTitlePage</h2>
+            <p class="panel-subtitle">@GlobalRes.Shared_Pipit_CreateSubTitlePage</p>
+        </header>
+        <div class="panel-body">
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.VendorName)
+            @Html.HiddenFor(model => model.VendorOrderReference)
+            @Html.HiddenFor(model => model.CustomerEmail)
+            
+
+            @*<div class="form-group">
+                    <div class="col-sm-3 text-right">
+                        @Html.LabelFor(model => model.CustomerEmail, htmlAttributes: new { @class = "control-label" })
+                        <span class="required" aria-required="true">*</span>
+                    </div>
+                    <div class="col-md-6">
+                        @Html.EditorFor(model => model.CustomerEmail, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                        @Html.ValidationMessageFor(model => model.CustomerEmail, "", new { @class = "text-danger" })
+                    </div>
+                </div>*@
+            <div class="form-group">
+                <div class="col-sm-3 text-right">
+                    @Html.LabelFor(model => model.OrderCurrencyCode, htmlAttributes: new { @class = "control-label" })
+                    <span class="required" aria-required="true">*</span>
+                </div>
+                <div class="col-md-6">
+                    @Html.DropDownListFor(model => model.OrderCurrencyCode, new SelectList(ViewBag.ListOfCurrency, "Value", "Text"), new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-3 text-right">
+                    @Html.LabelFor(model => model.OrderValue, htmlAttributes: new { @class = "control-label" })
+                    <span class="required" aria-required="true">*</span>
+                </div>
+                <div class="col-md-6">
+                    @Html.EditorFor(model => model.OrderValue, new { htmlAttributes = new { @class = "form-control", @type = "number", @step = "0.01", @required = "required" } })
+                    @Html.ValidationMessageFor(model => model.OrderValue, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            @{
+                var aliases = UiHelper.PrepareAccountAliases();
+            }
+            <div class="form-group @(aliases.Count() > 1 ? "" : "hidden")">
+                <div class="col-sm-3 text-right">
+                    @Html.LabelFor(model => model.Alias, htmlAttributes: new { @class = "control-label" })
+                    <span class="required" aria-required="true">*</span>
+                </div>
+                <div class="col-sm-6">
+                    @Html.DropDownListFor(m => m.Alias, aliases, new { @class = "form-control", required = "" })
+                </div>
+            </div>
+
+            @*<div class = "form-group" >
+                    @Html.LabelFor(model => model.CustomerPhone, htmlAttributes: new {@class = "control-label col-md-3"})
+                    <div class = "col-md-6" >
+                        @Html.EditorFor(model => model.CustomerPhone, new {htmlAttributes = new {@class = "form-control"}})
+                        @Html.ValidationMessageFor(model => model.CustomerPhone, "", new {@class = "text-danger"})
+                    </div>
+                </div>*@
+
+            <div class="form-group @(ViewBag.Order != null ? "hidden" : "") ">
+                <div class="col-md-offset-3 col-md-6">
+                    <input type="submit" value="Create" class="btn btn-success" />
+                </div>
+            </div>
+            <div class="form-group @(ViewBag.Order != null ? "": "hidden") ">
+                <div class="col-md-offset-3 col-md-6">
+                    <a class="btn btn-success" href="@Url.Action("GetAllFundings", "Funding")"> @GlobalRes.ProofDocUploadProofDocPage_DepositHistory</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+}
+
+@if (ViewBag.Order != null)
+{
+    var v = ((AddFundsPipit)ViewBag.Order);
+    <div class="orderRes alert alert-success">
+        <div class="form-group">
+            <div class="col-md-12">
+                <span class="label btn-xs @(v.AddFundsPipit_Status.ToLower().Contains("pending") ? "btn-success_custom" : "btn-danger_custom")">Status: @v.AddFundsPipit_Status</span>
+                <span>
+                    @GlobalRes.InfoByPipitWire_LinkForWire
+                    <a href=@string.Format("https://servers.pip-it.net/os/mgr/order/{0}.html", v.AddFundsPipit_BarCode) target="_blank">@v.AddFundsPipit_BarCode</a>
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-6">
+                <div class="col-sm-2">
+                    @GlobalRes.InfoByPipitWire_CreatedDate
+                </div>
+                <div class="col-sm-10">@v.AddFundsPipit_CreatedDate.ToString("U")</div>
+            </div>
+            <div class="col-sm-6">
+                <div class="col-sm-2">
+                    @GlobalRes.InfoByPipitWire_ExpiryDate
+                </div>
+                <div class="col-sm-10">@v.AddFundsPipit_ExpiredDate.ToString("U")</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-6">
+                <div class="col-sm-2">
+                    @GlobalRes.InfoByPipitWire_OrderValue
+                </div>
+                <div class="col-sm-10"> @v.AddFundsPipit_OrderValue.ToString("F2")</div>
+            </div>
+            <div class="col-sm-6">
+                <div class="col-sm-2">
+                    @GlobalRes.InfoByPipitWire_TotalValue
+                </div>
+                <div class="col-sm-10">@v.AddFundsPipit_TotalValue.ToString("F2")</div>
+            </div>
+        </div>
+    </div>
+}
+else if (ViewBag.Error != null)
+{
+    var error = (ApiPipItCreateFundingModel.PipItCreateOrderException)ViewBag.Error;
+    <div class="orderRes alert alert-danger">
+        @error.fieldErrors[0].FieldMessage
+    </div>
+}

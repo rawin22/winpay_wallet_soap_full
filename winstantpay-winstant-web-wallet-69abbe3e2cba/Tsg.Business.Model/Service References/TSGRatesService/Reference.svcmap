@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="10ec2468-add9-4948-8411-177774107639" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="https://www.bizcurrency1.com/TsgRatesService/TSGRatesService.svc?wsdl" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="TSGRatesService.xsd" MetadataType="Schema" ID="44c6ab87-67cd-4ac6-8ecf-84fe6619e317" SourceId="1" SourceUrl="https://www.bizcurrency1.com/TsgRatesService/TSGRatesService.svc?xsd=xsd3" />
+    <MetadataFile FileName="TSGRatesService1.xsd" MetadataType="Schema" ID="3037b8fe-3124-46c7-82c9-7e0d928c1689" SourceId="1" SourceUrl="https://www.bizcurrency1.com/TsgRatesService/TSGRatesService.svc?xsd=xsd2" />
+    <MetadataFile FileName="TSGRatesService2.xsd" MetadataType="Schema" ID="ab6e99e1-17dd-4c21-bdae-42ad2cc04cd1" SourceId="1" SourceUrl="https://www.bizcurrency1.com/TsgRatesService/TSGRatesService.svc?xsd=xsd1" />
+    <MetadataFile FileName="TSGRatesService3.xsd" MetadataType="Schema" ID="d7287efe-6e4b-40a8-b932-09d96441cfa3" SourceId="1" SourceUrl="https://www.bizcurrency1.com/TsgRatesService/TSGRatesService.svc?xsd=xsd0" />
+    <MetadataFile FileName="TSGRatesService.wsdl" MetadataType="Wsdl" ID="52ed885e-992c-4028-b29d-658fc754c383" SourceId="1" SourceUrl="https://www.bizcurrency1.com/TsgRatesService/TSGRatesService.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

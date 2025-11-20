@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3D82E2FC-3FC8-46A2-9FF1-EE8242987B66}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TSG.ServiceLayer</RootNamespace>
+    <AssemblyName>TSG.ServiceLayer</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>7.3</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>7.1</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Autofac, Version=4.8.1.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.4.8.1\lib\net45\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper, Version=7.0.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.7.0.1\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AutoMapperInitializator.cs" />
+    <Compile Include="AutomaticExchange\DependencyLiquidForUserServiceMethods\DependencyLiquidForUserServiceMethods.cs" />
+    <Compile Include="AutomaticExchange\DependencyLiquidForUserServiceMethods\IDependencyLiquidForUserServiceMethods.cs" />
+    <Compile Include="AutomaticExchange\LiquidCcyListServiceMethods\ILiquidCcyListServiceMethods.cs" />
+    <Compile Include="AutomaticExchange\LiquidCcyListServiceMethods\LiquidCcyListServiceMethods.cs" />
+    <Compile Include="AutomaticExchange\LiquidOverDraftUserServiceMethods\ILiquidOverDraftUserServiceMethods.cs" />
+    <Compile Include="AutomaticExchange\LiquidOverDraftUserServiceMethods\LiquidOverDraftUserServiceMethods.cs" />
+    <Compile Include="Funding\FundingChangeService.cs" />
+    <Compile Include="InstantPayment\IInstantPaymentReceiveMappingMethods.cs" />
+    <Compile Include="InstantPayment\IInstantPaymentReceiveMethods.cs" />
+    <Compile Include="InstantPayment\InstantPaymentReceiveMappingMethods.cs" />
+    <Compile Include="InstantPayment\InstantPaymentReceiveMethods.cs" />
+    <Compile Include="Interfaces\Fundings\AddFundsWireService\IAddBlockchainInfoService.cs" />
+    <Compile Include="Interfaces\Fundings\AddFundsWireService\IAddPipitFundingsService.cs" />
+    <Compile Include="Interfaces\Fundings\AddFundsWireService\IAddWireFundingsService.cs" />
+    <Compile Include="Funding\FundingsServices.cs" />
+    <Compile Include="Funding\FundingSourcesServices.cs" />
+    <Compile Include="Injector.cs" />
+    <Compile Include="Interfaces\Fundings\IFundingChangesService.cs" />
+    <Compile Include="Interfaces\Fundings\IFundingSourcesService.cs" />
+    <Compile Include="Interfaces\Fundings\IFundingService.cs" />
+    <Compile Include="Kyc\IKycNewUserServiceMethods.cs" />
+    <Compile Include="Kyc\KycNewUserServiceMethods.cs" />
+    <Compile Include="LimitPayment\DaPayLimitsSourceTypeServiceMethods\DaPayLimitsSourceTypeServiceMethods.cs" />
+    <Compile Include="LimitPayment\DaPayLimitsSourceTypeServiceMethods\IDaPayLimitsSourceTypeServiceMethods.cs" />
+    <Compile Include="LimitPayment\DaPayLimitsTypeServiceMethods\IDaPayLimitsTypeServiceMethods.cs" />
+    <Compile Include="LimitPayment\DaPayLimitsTypeServiceMethods\DaPayLimitsTypeServiceMethods.cs" />
+    <Compile Include="LimitPayment\DaPayLimitsServiceMethods\IDaPayLimitsServiceMethods.cs" />
+    <Compile Include="LimitPayment\DaPayLimitsServiceMethods\DaPayLimitsServiceMethods.cs" />
+    <Compile Include="LimitPayment\DaPayLimitsLogServiceMethods\IDaPayLimitsLogServiceMethods.cs" />
+    <Compile Include="LimitPayment\DaPayLimitsLogServiceMethods\DaPayLimitsLogServiceMethods.cs" />
+    <Compile Include="LimitPayment\DaPayLimitsTabServiceMethods\IDaPayLimitsTabServiceMethods.cs" />
+    <Compile Include="LimitPayment\DaPayLimitsTabServiceMethods\DaPayLimitsTabServiceMethods.cs" />
+    <Compile Include="LimitPayment\DaUserWPayIDSettingServiceMethods\DaUserWPayIDSettingServiceMethods.cs" />
+    <Compile Include="LimitPayment\DaUserWPayIDSettingServiceMethods\IDaUserWPayIDSettingServiceMethods.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RedEnvelope\IRedEnvelopeServiceMethods.cs" />
+    <Compile Include="RedEnvelope\RedEnvelopeServiceMethods.cs" />
+    <Compile Include="SuperAdmin\ISaSharedLinkForAdminServiceMethods.cs" />
+    <Compile Include="SuperAdmin\SaSharedLinkForAdminServiceMethods.cs" />
+    <Compile Include="Transfers\ITransfersServiceMethods.cs" />
+    <Compile Include="Transfers\Reports\GetInboxListMethods.cs" />
+    <Compile Include="Transfers\Reports\IGetInboxListMethods.cs" />
+    <Compile Include="Transfers\TransfersServiceMethods.cs" />
+    <Compile Include="Users\IUsersServiceMethods.cs" />
+    <Compile Include="Users\UsersServiceMethods.cs" />
+    <Compile Include="WinstantPayShop\Categories\IShopCategoryService.cs" />
+    <Compile Include="WinstantPayShop\Categories\ShopCategoriesService.cs" />
+    <Compile Include="WinstantPayShop\ShopOrderItemsService\IShopOrderItemsService.cs" />
+    <Compile Include="WinstantPayShop\ShopOrderItemsService\ShopOrderItemsService.cs" />
+    <Compile Include="WinstantPayShop\ShopOrdersService\IShopOrdersService.cs" />
+    <Compile Include="WinstantPayShop\ShopOrdersService\ShopOrdersService.cs" />
+    <Compile Include="WinstantPayShop\ShopOrdersLogService\IShopOrdersLogService.cs" />
+    <Compile Include="WinstantPayShop\ShopOrdersLogService\ShopOrdersLogService.cs" />
+    <Compile Include="WinstantPayShop\ShopPaymentService\IShopPaymentService.cs" />
+    <Compile Include="WinstantPayShop\ShopPaymentService\ShopPaymentService.cs" />
+    <Compile Include="WinstantPayShop\ShopProductImagesService\IShopProductImagesService.cs" />
+    <Compile Include="WinstantPayShop\ShopProductImagesService\ShopProductImagesService.cs" />
+    <Compile Include="WinstantPayShop\ShopProductService\IShopProductService.cs" />
+    <Compile Include="WinstantPayShop\ShopProductService\ShopProductService.cs" />
+    <Compile Include="WinstantPayShop\ShopInfoService\IShopInfoService.cs" />
+    <Compile Include="WinstantPayShop\ShopInfoService\ShopInfoService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Interfaces\Commons\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TSG.Common\WinstantPay.Common.csproj">
+      <Project>{C741AFA7-6DCA-4783-B1ED-471541E692DA}</Project>
+      <Name>WinstantPay.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TSG.DAL\TSG.DAL.csproj">
+      <Project>{f6158d10-bc0d-4ba9-899f-bcc483030678}</Project>
+      <Name>TSG.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TSG.Models\TSG.Models.csproj">
+      <Project>{ECBF864B-45DA-4839-99D1-75AE21A95A86}</Project>
+      <Name>TSG.Models</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

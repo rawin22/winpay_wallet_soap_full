@@ -1,0 +1,397 @@
+﻿@using Tsg.UI.Main.App_LocalResources
+@using TSG.Models.ServiceModels.AutomaticExchange
+@using System.Web.Mvc
+@model TSG.Models.ServiceModels.Transfers.RedEnvelope.AddNewRedEnvelope
+@{
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+    ViewBag.Title = GlobalRes.Shared_Navigation_RedEnvelope;
+}
+<style type="text/css">
+    .scrollable-menu {
+        height: auto;
+        max-height: 200px;
+        overflow-x: hidden;
+    }
+
+    .bs-searchbox {
+        padding: 4px 8px;
+    }
+
+    .error_btn {
+        border: 1px solid #b94a48;
+    }
+
+    .success_btn {
+        border: 1px solid #3A3A3A;
+    }
+</style>
+<div class="row">
+    <section class="panel panel-featured panel-featured-info">
+        <header class="panel-heading" data-panel-toggle="">
+            <div class="panel-actions">
+                <a href="#" class="panel-action panel-action-toggle" data-panel-toggle=""></a>
+            </div>
+
+            <h2 class="panel-title">@GlobalRes.Shared_Navigation_RedEnvelope</h2>
+            <p class="panel-subtitle"></p>
+        </header>
+
+
+        <div class="panel-body">
+            <div class="validation-message">
+                <ul></ul>
+            </div>
+
+            @using (Html.BeginForm("NewEnvelope", "AddNewRedEnvelope", FormMethod.Post, new { enctype = "multipart/form-data", id = "form_newEnvelope" }))
+            {
+                <div class="form-group @(Model.AccountAliases.Count > 1? "":"hidden")">
+                    <label class="col-sm-3 control-label">@GlobalRes.Shared_NewInstantPaymentFormPage_From <span class="required" aria-required="true">*</span></label>
+                    <div class="col-sm-6">
+                        @Html.DropDownListFor(m => m.WpayIdFrom, Model.AccountAliases, new { @class = "form-control", required = "" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">@GlobalRes.Shared_NewInstantPaymentFormPage_To <span class="required" aria-required="true">*</span></label>
+                    <div class="col-sm-6" style="text-align: right">
+                        @Html.TextBoxFor(m => m.WpayIdTo, new { @class = "form-control", required = "", @id = "toIdtB" })
+                        @Html.ValidationMessageFor(m => m.WpayIdTo)
+                        @Html.HiddenFor(h => h.KycUserName)
+                        @Html.HiddenFor(h => h.IsKycCreated)
+                        @Html.HiddenFor(h => h.KycId)
+                        <div class="alert alert-info hidden" id="infoByExistUser"></div>
+                        <span class="btn btn-info hidden" data-toggle = "modal" data-target = "#addNewKycUserModalWindow" id="btnCreateNewKycUser"><i class="fa fa-plus-circle" style="color: #ffffff;"></i> @GlobalRes.RedEnvelope_MiniKyc_AddNew</span>
+                        <div class="fa fa-search icon-spin-search font-medium-2 checkWPayIdAlias hidden" style="position: absolute;margin: -24px;"></div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label"></label>
+                    <div class="col-sm-6">
+                        @Html.DropDownListFor(m => m.WpayIdTo, Model.PriorUsedAliases, new { @class = "form-control", id = "ddlPriorUsedAliases" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">@GlobalRes.Shared_NewInstantPaymentFormPage_Currency <span class="required" aria-required="true">*</span></label>
+                    <div class="col-sm-6">
+                        @Html.HiddenFor(x => x.CurrencyCode, new { id = "CurrencyCode", required = "required" })
+                        <div class="dropdown" id="currencyDdr" style="width: 100%">
+                            <button class="btn dropdown-toggle btn-default text-left dropdown" style="width: inherit; text-align: left; padding-left: 16px;" id="selectButton" data-toggle="dropdown">
+                                @GlobalRes.Shared_NewInstantPaymentFormPage_SelectCurrency
+                                <span id="btnCaret" class="searchBtnCaret"></span>
+                            </button>
+                            <ul class="dropdown-menu scrollable-menu inner" role="listbox" id="ddlmenu" data-live-search="true" style="width: inherit">
+                                <li id="searchabli"><div class="bs-searchbox"><input type="text" class="form-control" autocomplete="off" role="textbox" aria-label="@GlobalRes.Shared_NewInstantPaymentFormPage_Search" id="searchabletext"></div></li>
+                                @foreach (var item in Model.AvailableCurrencies)
+                                {
+                                    <li id="curr_@item.Value">
+                                        @if (!String.IsNullOrEmpty(item.Value))
+                                        {
+                                            <a data-pdsa-dropdown-val="@item.Value"><img src="/Content/assets/images/onebyone.png" class="flag flag-@(item.Value.ToLower())" /> @item.Value</a>
+                                        }
+                                        else
+                                        {
+                                            <a>@item.Text</a>
+                                        }
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                        <div id="notificatorCcy" style="color:#b94a48"></div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">@GlobalRes.Shared_NewInstantPaymentFormPage_Amount <span class="required" aria-required="true">*</span></label>
+                    <div class="col-sm-6">
+                        <input class="form-control" id="Amount" name="Amount" required="" type="text" value="@(Model.Amount != 0 ? Model.Amount.ToTrimmedString() : "")" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">@GlobalRes.Shared_NewInstantPaymentFormPage_Memo &nbsp;</label>
+                    <div class="col-sm-6">
+                        @Html.TextAreaFor(m => m.Memo, 5, 1, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">@GlobalRes.ProofDocUploadProofDocPage_AttachProof</label>
+                    <div class="col-sm-8" id="file_load">
+                        <div class="btn btn-primary" onclick="document.getElementById('RedEnvelope_PostedFile').click()">@GlobalRes.ProofDocUploadProofDocPage_AttachmentFile</div>
+                        <label> @GlobalRes.CommonObject_NoFile </label>
+                        <input type="file" name="RedEnvelope_PostedFile" id="RedEnvelope_PostedFile" accept="image/*" class="hidden" />
+                    </div>
+                </div>
+            }
+
+            <br />
+            @if (ViewBag.IsServerError != null && (bool)ViewBag.IsServerError)
+            {
+                <div class="col-sm-6 col-sm-offset-3 alert alert-danger" id="errorMesageServer">
+                    @ViewBag.ErrorServer
+                </div>
+            }
+
+            <div class="col-sm-6 col-sm-offset-3 alert alert-danger hidden" id="errorMesage"></div>
+
+        </div>
+        <footer class="panel-footer">
+            <div class="row">
+                <div class="col-sm-9 col-sm-offset-3">
+                    <button class="btn btn-success blockuiwhenpress" id="savePaymentBtn" title="@GlobalRes.RedEnvelope_AddForm_BtnCreateEnvelope">@GlobalRes.RedEnvelope_AddForm_BtnCreateEnvelope</button>
+                    
+                </div>
+            </div>
+        </footer>
+    </section>
+</div>
+@{
+    Html.RenderPartial("~/Views/MiniKycViews/PartialView/_CreateNewKycUserModal.cshtml", new TSG.Models.APIModels.KycIntegrationModel.MiniKycAddNewUser());
+}
+
+
+
+<script type="text/javascript" language="javascript">
+    $(document).ready(function () {
+        checkAlias();
+
+        var code = "@Model.CurrencyCode";
+        if ($.trim(code).length !== 0) {
+            var buttons = document.getElementById("selectButton");
+            buttons.innerHTML =
+                '<img src="/Content/assets/images/onebyone.png" class="flag flag-' + code.toLowerCase() + '"/>' + '  ' +
+                code +
+                '&nbsp;<span class="caret" style="position: absolute; top: 45%; left: 97.5%; color: #555555 !important; border-top: 6px dashed !important; border-right: 3px solid transparent !important;border-left: 3px solid transparent !important"></span>';
+        }
+    });
+
+    $("#RedEnvelope_PostedFile").on("change", function () {
+            var fileApi = (window.File && window.FileReader && window.FileList && window.Blob) ? true : false;
+
+            var wrapper = $("#file_load"),
+                inp = wrapper.find("input"),
+                btn = wrapper.find("button"),
+                lbl = wrapper.find("label");
+
+            var fileName;
+            if (fileApi && inp[0].files[0])
+                fileName = inp[0].files[0].name;
+            else
+                fileName = inp.val().replace("C:\\fakepath\\", '');
+
+            if (!fileName.length)
+                return;
+            if (lbl.is(":visible")) {
+                lbl.text(fileName);
+            }
+        }).change();
+
+    $("#toIdtB").change(function () {
+        if ($(this).val().trim().length !== 0) {
+            $("#WpayIdTo").val($(this).val());
+            $("#ddlPriorUsedAliases").attr("disabled", true);
+        }
+        else {
+            $("#infoByExistUser").addClass("hidden");
+            $("#btnCreateNewKycUser").addClass("hidden");
+            $("#ddlPriorUsedAliases").attr("disabled", false);
+        }
+    });
+    $("#ddlPriorUsedAliases").change(function () {
+        if ($(this).val().length !== 0) {
+            $("#WpayIdTo").val($(this).val());
+            $("#toIdtB").val($(this).val());
+            $("#toIdtB").prop("readonly", true);
+            checkAlias();
+        }
+        else {
+            $("#toIdtB").val($(this).val());
+            $("#toIdtB").prop("readonly", false);
+            $("#infoByExistUser").text("");
+            $("#infoByExistUser").addClass("hidden");
+            $("#btnCreateNewKycUser").addClass("hidden");
+        }
+
+    });
+
+     $('#selectButton').click(function () {
+        setTimeout(function () { $('#searchabletext').focus(); }, 100);
+    });
+     $('#ddlmenu li a').on('click',
+        function () {
+            console.log("Func work");
+            var id = $(this).data('pdsa-dropdown-val');
+            if (id != null) {
+                console.log(id);
+                var buttons = document.getElementById("selectButton");
+                buttons.innerHTML = '<img src="/Content/assets/images/onebyone.png" class="flag flag-' + id.toLowerCase() + '"/>' + '  ' +
+                    id +
+                    '&nbsp;<span class="caret" style="position: absolute; top: 45%; left: 97.5%; color: #555555 !important; border-top: 6px dashed !important; border-right: 3px solid transparent !important;border-left: 3px solid transparent !important"></span>';
+                $("#ddlmenu").val(id);
+                console.log("#ddlmenu");
+                $("#CurrencyCode").val(id);
+                $("#searchabletext").val("");
+                $("#ddlmenu li").show();
+                console.log("#CurrencyCode");
+                $('#selectButton').removeClass("error_btn");
+                $("#notificatorCcy").empty();
+            }
+            else {
+                var buttons = document.getElementById("selectButton");
+                buttons.innerHTML = '@String.Format(GlobalRes.Shared_NewInstantPaymentFormPage_SelectCurrency)' +
+                    '&nbsp;<span class="caret" style="position: absolute; top: 45%; left: 97.5%; color: #555555 !important; border-top: 6px dashed !important; border-right: 3px solid transparent !important;border-left: 3px solid transparent !important"></span>';
+                $("#ddlmenu").val(null);
+                //console.log("#ddlmenu");
+                $("#CurrencyCode").val(null);
+                $("#searchabletext").val("");
+                $("#ddlmenu li").show();
+                console.log("#CurrencyCode");
+            }
+        });
+
+    $("#searchabletext").on("input",
+        function() {
+            var selText = $(this).val();
+            //console.log($(this).val());
+            $("#ddlmenu li").hide();
+            $("#searchabli").show();
+            $("#ddlmenu li").each(function() {
+                if ($(this).text().trim().indexOf(selText.toUpperCase()) >= 0) {
+                    $("#curr_" + $(this).text().trim()).show();
+                }
+            });
+        });
+
+    $("#searchabletext").one("keydown",
+        function(e) {
+            if (e.which == 13 || e.which == 10) {
+                if ($("#ddlmenu li:visible").first() !== null) {
+                    var el = $("#ddlmenu li:visible a").attr('display', 'list-item').first();
+                    var id = el.data('pdsa-dropdown-val');
+                    if (id != null) {
+                        console.log("Entered");
+
+                        console.log(id);
+                        var buttons = document.getElementById("selectButton");
+                        buttons.innerHTML = '<img src="/Content/assets/images/onebyone.png" class="flag flag-' +
+                            id.toLowerCase() +
+                            '"/>' +
+                            '  ' +
+                            id +
+                            '&nbsp;<span class="caret" style="position: absolute; top: 45%; left: 97.5%; color: #555555 !important; border-top: 6px dashed !important; border-right: 3px solid transparent !important;border-left: 3px solid transparent !important"></span>';
+                        $("ddlmenu").val(id);
+                        console.log("#ddlmenu");
+                        $("#CurrencyCode").val(id);
+                        $("#searchabletext").val("");
+                        $("#ddlmenu li").show();
+                        $('#selectButton').removeClass("error_btn");
+                        $("#notificatorCcy").empty();
+                    } else {
+                        console.log("Not Entered");
+                    }
+                }
+            }
+        });
+
+    function printErrorMessage(message) {
+        $("#errorMesage").removeClass("hidden");
+        $("#errorMesage").append('<p>' + message + '</p>');
+    }
+
+    function clearErrorMessage() {
+        $("#errorMesage").html("");
+    }
+
+    function closeErrorMessage() {
+        $("#errorMesage").fadeOut("");
+        setTimeout(function() {
+                $("#errorMesage").addClass("hidden");
+                clearErrorMessage();
+            },
+            1000);
+    }
+
+    var delay = (function() {
+        var timer = {}, values = {}
+        return function(el) {
+            var id = el.form.id + '.' + el.name;
+            return {
+                enqueue: function(ms, cb) {
+                    if (values[id] == el.value) return;
+                    if (!el.value) return;
+                    var original = values[id] = el.value;
+                    clearTimeout(timer[id]);
+                    timer[id] = setTimeout(function() {
+                            if (original != el.value) return; // solves race condition
+                            cb.apply(el);
+                        },
+                        ms);
+                }
+            }
+        }
+    }());
+
+    function checkAlias() {
+        if ($.trim($("#toIdtB").val()).length > 2) {
+            $(".checkWPayIdAlias").removeClass("hidden");
+              $.ajax({
+                url: "@Url.Action("Post", "CheckAlias")",
+                        type: "POST",
+                        data: { 'aliasName': $("#toIdtB").val() },
+                        dataType: "json",
+                        charset: 'utf-8'
+                    }).error(function(request, status, error) {
+                        console.log(request);
+                        console.log(status);
+                        console.log(error);
+                    }).success(function(data) {
+                        if (data.Success) {
+                            $("#TransferTokens_AliasToUser").text();
+                            $("#TransferTokens_AliasToUser").addClass("hidden");
+                            $("#infoByExistUser").text("");
+                            $("#infoByExistUser").addClass("hidden");
+                            $("#btnCreateNewKycUser").addClass("hidden");
+                        } else {
+                            $("#infoByExistUser").text(data.InfoBlock.UserMessage);
+                            $("#infoByExistUser").removeClass("hidden");
+                            $("#btnCreateNewKycUser").removeClass("hidden");
+                        }
+                    });
+                    $(".checkWPayIdAlias").addClass("hidden");
+        }
+    }
+
+    $("#toIdtB").on("keyup change",
+        function() {
+            if ($.trim($("#toIdtB").val()).length > 2) {
+                delay(this).enqueue(300,
+                    function() {
+                        checkAlias();
+                    });
+            }
+        });
+
+    $("#savePaymentBtn").click(function () {
+        clearErrorMessage();
+        let iserror = false;
+        if (!$("#toIdtB").val() || $("#toIdtB").val() === "") {
+            printErrorMessage("To WPayId must be selected");
+            iserror = true;
+        }
+
+        if (!$("#WpayIdFrom").val() || $("#WpayIdFrom").val() === "") {
+            printErrorMessage("From WPayId must be selected");
+            iserror = true;
+        }
+
+        if (!$("#CurrencyCode").val() || $("#CurrencyCode").val() === "") {
+            printErrorMessage("Please select Currency code");
+            iserror = true;
+        }
+        if (!$("#Amount").val() || $("#Amount").val() === "" || $("#Amount").val() < 0) {
+            printErrorMessage("Amount must be positive");
+            iserror = true;
+        }
+        if (!iserror) {
+            blockWindow();
+            $("#form_newEnvelope").submit();
+        }
+    });
+
+</script>

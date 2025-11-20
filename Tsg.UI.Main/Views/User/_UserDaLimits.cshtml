@@ -1,0 +1,455 @@
+﻿@using System.Globalization
+@using Tsg.UI.Main.App_LocalResources
+@using TSG.Models.ServiceModels.LimitPayment
+@model  Tsg.UI.Main.Models.UserProfileViewModel
+@if (Model.UserID != Guid.Empty)
+{
+    var cryptoCurrency = new[] { "BTC", "ETH" };
+    @Html.HiddenFor(m => m.CcyCode)
+    @Html.HiddenFor(m => m.WPayId)
+    @Html.HiddenFor(m => m.DaUserWPayIDSettingID)
+    @Html.HiddenFor(m => m.IsRestrictedToSelectedCurrency)
+    @Html.HiddenFor(m => m.IsPinRequired)
+    @Html.HiddenFor(m => m.UserID)
+    @Html.HiddenFor(m => m.CcyCode)
+
+
+    <div class="panel">
+        @*<header class="panel-heading">
+                <h2 class="panel-title">@GlobalRes.DelegatedAuthority_Limits</h2>
+            </header>*@
+
+        <div class="panel-body" style="display: block;" id="tab_block">
+            @*<div class="row">
+            <div class="form-group @(Model.WPayIds.Count > 1? "":"hidden")">
+                <label class="col-sm-3 control-label">WPayId</label>
+                <div class="col-sm-5">
+                    @Html.DropDownListFor(m => m.WPayId, Model.WPayIds, new { @class = "form-control" })
+                </div>
+            </div>
+            </div>*@
+
+            @*<div class="row">
+                <h3>Message</h3>
+                <p>{@Model.Message}</p>
+            </div>*@
+            <div class="row" style="display: flex; align-items: center" id="">
+                <label class="col-sm-3 control-label">
+                    WPayID
+                </label>
+                <div class="col-sm-2">
+                    <label class="col-sm-3 control-label">
+                        @Model.WPayId
+                    </label>
+                </div>
+            </div>
+            <div class="row" style="display: flex; align-items: center" id="">
+                <label class="col-sm-2">
+                    PIN Required
+                </label>
+                <div class="col-sm-1">
+                    <input id="chkIsPinRequired" name="chkIsPinRequired" type="checkbox" onchange="SetIsPinRequired(this)" checked="@Model.IsPinRequired">
+                </div>
+                <label class="col-sm-3 control-label" id="lblPinCode">
+                    PIN
+                    <br />
+                    <span class="small"></span>
+                </label>
+                <div class="col-sm-2" id="divPinCode">
+                    @Html.TextBoxFor(m => m.PinCode, new { @class = "form-control", type = "text" })
+                    @Html.ValidationMessageFor(m => m.PinCode, "At least 4 digits", new { @id = "PinCode_ValidationMessage", @class = "hidden text-danger" })
+                </div>
+                <label class="col-sm-2" id="lblExceedingAmount">
+                    If Amount Exceed
+                </label>
+                <div class="col-sm-2" id="divExceedingAmount">
+                    @Html.TextBoxFor(m => m.ExceedingAmount, new { @class = "form-control" })
+                </div>
+
+            </div>
+            <div class="row" style="display: flex; align-items: center" id="">
+                <div class="col-sm-2 col-sm-offset-1">
+                    <div class="checkbox" style="margin-top: 0px">
+                        <div>
+                            <span>Currency</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-7">
+                    <div class="col-sm-6">
+                        <div class="dropdown" id="currencyDdr" style="width: 100%">
+                            <button class="btn dropdown-toggle btn-default text-left dropdown" style="width: inherit; text-align: left; " id="selectButton" data-toggle="dropdown">
+                                @GlobalRes.Shared_NewInstantPaymentFormPage_SelectCurrency
+                                <span id="btnCaret" class="searchBtnCaret"></span>
+                            </button>
+
+                            <ul class="dropdown-menu scrollable-menu inner" role="listbox" id="ddlmenu" data-live-search="true" style="width: inherit">
+                                <li id="searchabli"><div class="bs-searchbox"><input type="text" class="form-control" autocomplete="off" role="textbox" aria-label="@GlobalRes.Shared_NewInstantPaymentFormPage_Search" id="searchabletext" value="@Model.CcyCode"></div></li>
+                                @foreach (var item in UiHelper.PrepareAvailableFavoriteCurrencies())
+                                {
+                                    <li id="curr_@item.Value">
+                                        @if (!String.IsNullOrEmpty(item.Value))
+                                        {
+                                            <a data-pdsa-dropdown-val="@item.Value"><img src="/Content/assets/images/onebyone.png" class="flag flag-@item.Value.ToLower()" /> @item.Value</a>
+                                        }
+                                        else
+                                        {
+                                            <a>@item.Text</a>
+                                        }
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                        @Html.ValidationMessageFor(m => m.CcyCode, GlobalRes.DelegatedAuthority_CurrencyValidationError, new { @id = "DaPayLimits_CcyCode_validationMessage", @class = "hidden red" })
+
+                        <div id="notificatorCcy" style="color:#b94a48"></div>
+                    </div>
+                </div>
+            </div>
+            @{
+                int counter = 0;
+
+                foreach (var limitation in Model.LimitTypes.OrderBy(ob => ob.LimitType))
+                {
+
+                    var currLimitation = Model.LimitTabs?.FirstOrDefault(f => f.TypeOfLimit == limitation.ID);
+
+                    @Html.Hidden(String.Format("LimitTabs[{0}].ID", counter), currLimitation == null ? Guid.Empty : currLimitation.ID)
+                    @Html.Hidden(String.Format("LimitTabs[{0}].TypeOfLimit", counter), limitation.ID)
+                    @Html.Hidden(String.Format("LimitTabs[{0}].ParentDaPayId", counter), Model.UserID)
+                    @Html.Hidden(String.Format("LimitTabs[{0}].IsDeleted", counter), currLimitation == null || currLimitation.IsDeleted || currLimitation.ID == Guid.Empty,
+                                        new { id = @String.Format("realbox_{0}", limitation.ID) })
+
+                    <div class="row @(currLimitation == null || currLimitation.IsDeleted ? "disable" : "")" style="display: flex; align-items: center" id="row_@limitation.ID">
+                        <div class="col-sm-2 col-sm-offset-1">
+                            <div class="checkbox" style="margin-top: 0px">
+                                <div id="nullAccount_LimTransaction">
+                                    <input id="checkbox_@limitation.ID" type="checkbox" data-toggle="toggle" data-on='@GlobalRes.HomeAccountsList_Show' data-off='@GlobalRes.HomeAccountsList_Hide' data-size="small"
+                                            onchange="allowDisallowPayment(this, '@limitation.ID')" @(currLimitation != null && !currLimitation.IsDeleted && currLimitation.ID != Guid.Empty ? "checked='checked'" : "")
+                                            name="@(String.Format("LimitTabs[{0}].IsDeleted", counter))">
+                                    <span>@limitation.NameOfPaymentLimit</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hidden">
+                            <input class="form-control" type="hidden" name="DaPayLimitsTab_TypeOfLimit" id="DaPayLimitsTab_TypeOfLimit" value="@limitation.ID" />
+                        </div>
+                        <div class="col-sm-7">
+                            <input class="form-control numeric_limitation" step="0.01" name=@(String.Format("LimitTabs[{0}].Amount", counter)) value="@(currLimitation?.Amount)" id="LimitTabs_Amount_@limitation.ID" data-input-amount="" />
+                        </div>
+                    </div>
+                    <div id="limitationMessage_@limitation.ID"></div>
+
+                    counter = counter + 1;
+
+                }
+                @*<div class="row">
+                <div class="col-md-2 col-sm-offset-1">
+
+                </div>
+                <div class="col-md-7">
+                    <input type="button" class="btn btn-success" id="btnSaveWPayIdLimits" value="Save Button" />
+                    <button type="submit" class="btn btn-success col-sm-2" id="btnSubmitSaveDa">Save - Submit</button>
+                </div>
+            </div>*@
+                }
+            </div>
+        </div>
+}
+<script type="text/javascript" language="javascript">
+    $(document).ready(function () {
+        $(".disable").find('input[data-input-amount]').prop("disabled", true).on("focus", function() {
+            var focused = $(':focus');
+            if (focused.val() && focused.val() == 0) {
+                focused.text("");
+                focused.val("");
+            }
+        }).on("blur", function() {
+            if (this.value == '' || this.value == 0) {
+                this.value = '0.00';
+                this.text = "0.00";
+            }
+        });
+
+        $(".disable").find('a[class="btn btn-success"]').attr("disabled", "disabled").on("click", function (event) {
+            alert('Before event.preventDefault');
+            if ($(this).is("[disabled]")) {
+                event.preventDefault();
+            }
+        });
+        // alert('CCY: ' + '@Model.CcyCode');
+        SetDefaultCcy('@Model.CcyCode');
+        // SetIsPinRequired('@Model.IsPinRequired');
+        @*SetSelectedCurrency("@Model.DaPayLimits_CcyCode");*@
+
+    });
+    function allowDisallowPayment(inpChBx, parentRow) {
+        if ($(inpChBx).prop('checked')) {
+
+            $(inpChBx).prop('checked', true);
+            $("#row_" + parentRow).removeClass("disable");
+            $("#row_" + parentRow).find('input[data-input-amount]').prop("disabled", false);
+            $("#row_" + parentRow).find('a[class="btn btn-success"]').removeAttr("disabled");
+            $("#realbox_" + parentRow).val("False");
+            $("#realbox_" + parentRow).attr("value", "False");
+
+        }
+        else {
+            $("#realbox_" + parentRow).val("True");
+            $("#realbox_" + parentRow).attr("value", "True");
+            $('#inpChBx').prop('checked', false);
+            $("#row_" + parentRow).addClass("disable");
+            $("#row_" + parentRow).find('input[data-input-amount]').prop("disabled", true);
+            $("#row_" + parentRow).find('a[class="btn btn-success"]').attr("disabled", "disabled")
+        }
+    }
+
+    function saveLimitForDa(limitTypeId) {
+        console.log(limitTypeId);
+        $.ajax({
+            url: "@Url.Action("SaveLimitTabItem", "DaPaymentLimitsList")",
+            type: "POST",
+            data: {
+                'ID': $("#ID_" + limitTypeId).val(),
+                'ParentDaPayId': '@Model.UserID',
+                'TypeOfLimit': limitTypeId,
+                'Amount': $('#LimitTabs_Amount_' + limitTypeId).val()
+            },
+            dataType: "json",
+            charset: 'utf-8',
+            beforeSend: function () {
+                $('#LoadingOverlayApi').trigger('loading-overlay:show');
+            }
+        }).error(function (request, status, error) {
+            console.log(request);
+            console.log(status);
+            console.log(error);
+        }).success(function(data) {
+            console.log(data);
+            if (!data.Success) {
+                if (data.InfoBlock) {
+                    $('#limitationMessage_'+limitTypeId).append('<div class="alert alert-danger">' +
+                        data.InfoBlock.UserMessage +
+                        '</div>');
+                } else {
+                    $('#limitationMessage_' + limitTypeId).append('<div class="alert alert-danger">' +
+                        '@GlobalRes.ShopingCardController_UnspecError' +
+                        '</div>');
+                }
+            }
+            else {
+                $('#DaPayLimitsTab_ID_' + limitTypeId).val(data.DaPayLimitsTab_ID);
+
+                $('#limitationMessage_' + limitTypeId).append('<div class="alert alert-success">' +
+                    '' + data.InfoBlock.UserMessage+
+                    '</div>');
+            }
+            setTimeout(function()  { $('#limitationMessage_' + limitTypeId).empty(); }, 3000);
+
+            $('#LoadingOverlayApi').trigger('loading-overlay:hide');
+        });
+    }
+
+    //$("#btnSaveWPayIdLimits").on("click",
+    //    function () {
+    //        alert("A")
+    //    }
+    //    );
+
+    function SetDefaultCcy(ccycode) {
+            console.log("SetDefaultCcy");
+            var id = ccycode;
+            var id1 = "";
+
+            if (id != null) {
+                console.log(id);
+                var buttons = document.getElementById("selectButton");
+
+                try {
+                    id1 = id.toLowerCase();
+                } catch (e) {
+                    id1 = id;
+                }
+
+                buttons.innerHTML = '<img src="/Content/assets/images/onebyone.png" class="flag flag-' + id1 + '"/>' + '  ' +
+                    id +
+                    '&nbsp;<span class="caret" style="position: absolute; top: 45%; left: 97.5%; color: #555555 !important; border-top: 6px dashed !important; border-right: 3px solid transparent !important;border-left: 3px solid transparent !important"></span>';
+                $("#ddlmenu").val(id);
+                console.log("#ddlmenu");
+                $("#CcyCode").val(id);
+                $("#searchabletext").val("");
+                $("#ddlmenu li").show();
+                console.log("#CcyCode");
+                $('#selectButton').removeClass("error_btn");
+                $("#notificatorCcy").empty();
+            }
+            else {
+                var buttons = document.getElementById("selectButton");
+                buttons.innerHTML = '@String.Format(GlobalRes.Shared_NewInstantPaymentFormPage_SelectCurrency)' + '&nbsp;<span class="caret" style="position: absolute; top: 45%; left: 97.5%; color: #555555 !important; border-top: 6px dashed !important; border-right: 3px solid transparent !important;border-left: 3px solid transparent !important"></span>';
+                $("#ddlmenu").val(null);
+                //console.log("#ddlmenu");
+                $("#CcyCode").val(null);
+                $("#searchabletext").val("");
+                $("#ddlmenu li").show();
+                console.log("#CcyCode");
+            }
+        }
+
+        $('#selectButton').click(function () {
+        setTimeout(function () { $('#searchabletext').focus(); }, 100);
+    });
+    $('#ddlmenu li a').on('click',
+        function () {
+            console.log("Func work");
+            var id = $(this).data('pdsa-dropdown-val');
+            var id1 = "";
+
+            if (id != null) {
+                console.log(id);
+                var buttons = document.getElementById("selectButton");
+
+                try {
+                    id1 = id.toLowerCase();
+                } catch (e) {
+                    id1 = id;
+                }
+
+                buttons.innerHTML = '<img src="/Content/assets/images/onebyone.png" class="flag flag-' + id1 + '"/>' + '  ' +
+                    id +
+                    '&nbsp;<span class="caret" style="position: absolute; top: 45%; left: 97.5%; color: #555555 !important; border-top: 6px dashed !important; border-right: 3px solid transparent !important;border-left: 3px solid transparent !important"></span>';
+                $("#ddlmenu").val(id);
+                console.log("#ddlmenu");
+                $("#CcyCode").val(id);
+                $("#searchabletext").val("");
+                $("#ddlmenu li").show();
+                console.log("#CcyCode");
+                $('#selectButton').removeClass("error_btn");
+                $("#notificatorCcy").empty();
+            }
+            else {
+                var buttons = document.getElementById("selectButton");
+                buttons.innerHTML = '@String.Format(GlobalRes.Shared_NewInstantPaymentFormPage_SelectCurrency)' + '&nbsp;<span class="caret" style="position: absolute; top: 45%; left: 97.5%; color: #555555 !important; border-top: 6px dashed !important; border-right: 3px solid transparent !important;border-left: 3px solid transparent !important"></span>';
+                $("#ddlmenu").val(null);
+                //console.log("#ddlmenu");
+                $("#CcyCode").val(null);
+                $("#searchabletext").val("");
+                $("#ddlmenu li").show();
+                console.log("#CcyCode");
+            }
+        });
+
+    $("#searchabletext").on("input", function () {
+        var selText = $(this).val();
+        //console.log($(this).val());
+        $("#ddlmenu li").hide();
+        $("#searchabli").show();
+        $("#ddlmenu li").each(function () {
+            if ($(this).text().trim().indexOf(selText.toUpperCase()) >= 0) {
+                $("#curr_" + $(this).text().trim()).show();
+            }
+        });
+        $("#searchabletext").one("keydown", function (e) {
+            if (e.which == 13 || e.which == 10) {
+                if ($("#ddlmenu li:visible").first() !== null) {
+                    var el = $("#ddlmenu li:visible a").attr('display', 'list-item').first();
+                    var id = el.data('pdsa-dropdown-val');
+                    if (id != null) {
+                        console.log("Entered");
+
+                        console.log(id);
+                        var buttons = document.getElementById("selectButton");
+                        buttons.innerHTML = '<img src="/Content/assets/images/onebyone.png" class="flag flag-' + id.toLowerCase() + '"/>' + '  ' +
+                            id +
+                            '&nbsp;<span class="caret" style="position: absolute; top: 45%; left: 97.5%; color: #555555 !important; border-top: 6px dashed !important; border-right: 3px solid transparent !important;border-left: 3px solid transparent !important"></span>';
+                        $("ddlmenu").val(id);
+                        console.log("#ddlmenu");
+                        $("#CcyCode").val(id);
+                        $("#searchabletext").val("");
+                        $("#ddlmenu li").show();
+                        $('#selectButton').removeClass("error_btn");
+                        $("#notificatorCcy").empty();
+                    }
+
+                    else { console.log("Not Entered"); }
+                }
+            }
+        });
+
+    });
+
+    function SetRestrictionToSelectedCurrency(inpChBx) {
+        if ($(inpChBx).prop('checked')) {
+            $(inpChBx).prop('checked', true);
+            $("#lblPinCode").attr("visible", "True");
+
+        }
+        else {
+            $('#chkIsRestrictedToSelectedCurrency').prop('checked', false);
+            $("#DaPayLimits_IsRestrictedToSelectedCurrency").attr("value", "False");
+
+        }
+    }
+
+    function SetIsPinRequired(inpChBx) {
+        if ($(inpChBx).prop('checked')) {
+            $(inpChBx).prop('checked', true);
+            $("#divPinCode").show();
+            $("#lblPinCode").show();
+            $("#divExceedingAmount").show();
+            $("#lblExceedingAmount").show();
+            $("#IsPinRequired").attr("value", "True");
+        }
+        else {
+            $("#divPinCode").hide();
+            $("#lblPinCode").hide();
+            $("#divExceedingAmount").hide();
+            $("#lblExceedingAmount").hide();
+            $("#IsPinRequired").attr("value", "False");
+            //$('#chkIsRestrictedToSelectedCurrency').prop('checked', false);
+            //$("#DaPayLimits_IsRestrictedToSelectedCurrency").attr("value", "False");
+            //$("#IsPinRequired").attr("value", "False");
+
+        }
+    }
+
+    $("#PinCode").keydown(function (e) {
+        // Allow: backspace, delete, tab, escape, enter and .
+        if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110]) !== -1 ||
+            // Allow: Ctrl+A, Command+A
+            (e.keyCode === 65 && (e.ctrlKey === true || e.metaKey === true)) ||
+            // Allow: home, end, left, right, down, up
+            (e.keyCode >= 35 && e.keyCode <= 40)) {
+            // let it happen, don't do anything
+            return;
+        }
+        // Ensure that it is a number and stop the keypress
+        if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+            if ($("#PinCode_validationMessage").hasClass('hidden'))
+                $("#PinCode_validationMessage").removeClass('hidden');
+            e.preventDefault();
+        } else {
+            if (!($("#PinCode_validationMessage").hasClass('hidden')))
+                $("#PinCode_validationMessage").addClass('hidden');
+        }
+    }).blur(function () {
+        if (!($("#PinCode_validationMessage").hasClass('hidden'))) {
+            setTimeout(function () { $("#PinCode_validationMessage").addClass('hidden'); }, 2000);
+        }
+    }).focusout(function () {
+        if (!($("#PinCode_validationMessage").hasClass('hidden'))) {
+            setTimeout(function () { $("#PinCode_validationMessage").addClass('hidden'); }, 2000);
+        }
+    });
+
+    $("#PinCode").on("change",
+        function () {
+            $('#PinCode_validationMessage').addClass('hidden');
+
+            var pin = $("#PinCode").val();
+            if (pin.length < 4) {
+                $('#PinCode_validationMessage').text("@(GlobalRes.DelegatedAuthority_PinMore4Digits)");
+                $('#PinCode_validationMessage').removeClass('hidden');
+            }
+        });
+
+</script>

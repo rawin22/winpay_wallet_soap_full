@@ -1,0 +1,270 @@
+﻿@using System.Configuration
+@using Tsg.UI.Main.App_LocalResources
+<!doctype html>
+<html lang="en" class="fixed sidebar-light">
+<head>
+
+    <!-- Basic -->
+    <meta charset="UTF-8">
+    <meta http-equiv="cache-control" Content="no-cache">
+    <meta http-equiv="expires" Content="0">
+    <meta http-equiv="pragma" Content="no-cache">
+
+    <title>@ViewBag.Title | TSG System</title>
+    <meta name="keywords" content="ewallet" />
+    <meta name="description" content="ewallet">
+
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <!-- Web Fonts  -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800|Shadows+Into+Light" rel="stylesheet" type="text/css">
+
+    <!-- Vendor CSS -->
+    <link rel="stylesheet" href="/Content/assets/vendor/bootstrap/css/bootstrap.css" />
+    @if (Culture.Contains("ar"))
+    {
+        <link rel="stylesheet" href="/Content/assets/vendor/bootstrap/css/bootstrap-rtl.css" />
+    }
+
+    <link rel="stylesheet" href="/Content/assets/vendor/font-awesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="/Content/assets/vendor/font-awesome/css/all.css" />
+
+    <link rel="stylesheet" href="/Content/assets/vendor/magnific-popup/magnific-popup.css" />
+    <link rel="stylesheet" href="/Content/assets/vendor/bootstrap-datepicker/css/bootstrap-datepicker3.css" />
+
+    <!-- Specific Page Vendor CSS -->
+    <link rel="stylesheet" href="/Content/assets/vendor/jquery-ui/jquery-ui.css" />
+    <link rel="stylesheet" href="/Content/assets/vendor/jquery-ui/jquery-ui.theme.css" />
+    <link rel="stylesheet" href="/Content/assets/vendor/bootstrap-multiselect/bootstrap-multiselect.css" />
+    <link rel="stylesheet" href="/Content/assets/vendor/morris.js/morris.css" />
+
+    <link rel="stylesheet" href="~/Content/assets/stylesheets/flags.css" />
+
+    @RenderSection("customcss", required: false)
+
+    <!-- Theme CSS -->
+    <link rel="stylesheet" href="/Content/assets/stylesheets/theme.css" />
+
+    <!-- Skin CSS -->
+    <link rel="stylesheet" href="/Content/assets/stylesheets/skins/default.css" />
+
+    <!-- Theme Custom CSS -->
+    <link rel="stylesheet" href="/Content/assets/stylesheets/theme-custom.css">
+    <link href="~/Content/assets/stylesheets/theme-admin-extension.css" rel="stylesheet" />
+
+
+    <!-- Head Libs -->
+    <script src="/Content/assets/vendor/modernizr/modernizr.js"></script>
+
+    <link href="~/Content/modal/sweetalert2.min.css" rel="stylesheet" />
+    <script src="~/Content/assets/vendor/moment/moment.js"></script>
+</head>
+<style>
+    .loading-overlay {
+        background: #d6d6d6ad !important;
+        z-index: 99999 !important;
+    }
+</style>
+<body @(Culture.Contains("ar") ? "class=rtl" : "")>
+
+    <script src="/Content/assets/vendor/jquery/jquery.js"></script>
+
+    <div id="LoadingOverlayApi" data-loading-overlay="">
+        <div class="loading-overlay">
+            <div class="loader black">
+            </div>
+        </div>
+        <section class="body">
+
+            @Html.Partial("_Header")
+
+            <div class="inner-wrapper">
+                @Html.Partial("_Navigation")
+
+                <section role="main" class="content-body">
+                    <header class="page-header">
+                        <h2>@ViewBag.Title</h2>
+                    </header>
+                    @RenderBody()
+                </section>
+            </div>
+            <footer>
+                <div class="text-center">
+                    Powered by 
+                    <a href="@(ConfigurationManager.AppSettings["PoweredByLink"])" target="_blank" class="control-label">
+                        <img src="~/Content/assets/images/@(ConfigurationManager.AppSettings["PoweredByLogo"])" height="30" alt="logo" />
+                    </a>
+                    @if (Session != null && Session["UiVersion"] != null && !String.IsNullOrEmpty(Session["UiVersion"].ToString()))
+                    {
+                        <a href="https://www.winstantpay.com/en/releasenotes" target="_blank" class="control-label">
+                            v<span>@Session["UiVersion"].ToString()</span>
+                        </a>
+                    }
+                </div>
+            </footer>
+        </section>
+    </div>
+    <!-- Vendor -->
+    @*<script src="/Content/assets/vendor/jquery-validation/jquery.validate.js"></script>*@
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+    <script src="/Content/assets/vendor/jquery-browser-mobile/jquery.browser.mobile.js"></script>
+    <script src="/Content/assets/vendor/bootstrap/js/bootstrap.js"></script>
+    <script src="/Content/assets/vendor/nanoscroller/nanoscroller.js"></script>
+    <script src="/Content/assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+    <script src="/Content/assets/vendor/magnific-popup/jquery.magnific-popup.js"></script>
+    <script src="/Content/assets/vendor/jquery-placeholder/jquery-placeholder.js"></script>
+    <script src="/Content/timer/timer.js"></script>
+    @RenderSection("VendorScripts", required: false)
+
+
+
+    <link href="~/Content/shop/owlshop/owl.carousel.min.css" rel="stylesheet" />
+    <link href="~/Content/shop/owlshop/owl.theme.default.min.css" rel="stylesheet" />
+    <script src="~/Content/shop/owlshop/owl.carousel.min.js"></script>
+    <!-- Theme Base, Components and Settings -->
+    <script src="/Content/assets/javascripts/theme.js"></script>
+
+    <!-- Theme Custom -->
+    <script src="/Content/assets/javascripts/theme.custom.js"></script>
+
+    <!-- Theme Initialization Files -->
+    <script src="/Content/assets/javascripts/theme.init.js"></script>
+
+    <script src="~/Content/modal/sweetalert2.all.min.js"></script>
+    <script src="~/Content/modal/sweetalert2.min.js"></script>
+    <script src="~/Content/blockui/jquery.blockUI.js"></script>
+
+    @RenderSection("Scripts", required: false)
+
+    @if (!String.IsNullOrEmpty(ConfigurationManager.AppSettings["isShopAvaliavble"]) && Convert.ToBoolean(ConfigurationManager.AppSettings["isShopAvaliavble"]))
+    {
+        <script type="text/javascript" language="javascript">
+        function updateBasket() {
+            $.ajax({
+                url: '@Url.Action("GetCount", "ShoppingCart")',
+                type: 'POST',
+                success: function(data) {
+                    if (data.res) {
+                        if (data.count === 0) {
+                            $("#shopBadgeMobile").addClass('hidden');
+                            $("#shopBadge").addClass('hidden');
+                        } else {
+                            $("#shopBadgeMobile").removeClass('hidden');
+                            $("#shopBadge").removeClass('hidden');
+
+                            $("#shopBadge").text(data.count);
+                            $("#shopBadgeMobile").text(data.count);
+                        }
+                    }
+                }
+            });
+        }
+
+        window.onload = function() {
+            updateBasket();
+        };
+        </script>
+    }
+
+    <script type="text/javascript">
+        window.onload = function() {
+            if (window != window.top) {
+                window.top.location = "@Url.Action("Login", "User")";
+                window.close();
+            }
+
+            var utcCurrtime = new Date();
+            var seesionTimeoutTimer = utcCurrtime.setMinutes(utcCurrtime.getMinutes() + '@Session.Timeout');
+
+            window.timer_u23dd = new Timer({
+                "tick": 1,
+                "onstart": function() {},
+                "onend": function() {
+                    swal({
+                        title: '@GlobalRes.ModalWindow_EndSessionTitle',
+                        type: 'warning',
+                        confirmButtonText: '@GlobalRes.User_LoginPage_SignIn'
+                    }).then(function(result) {
+                        if (result.value) {
+                            window.location.replace('@Url.Action("Login", "User")');
+                        };
+                    })
+                },
+                "ontick": function(ms) {
+                    var tsec = Math.ceil(ms / 1000);
+                    if (tsec < 50) {
+                        if (!swal.isVisible()) {
+                            swal({
+                                title: '@GlobalRes.ModalWindow_SessionSoonExpire',
+                                //text: 'Did you want to stay in system',
+                                showCancelButton: false,
+                                showLoaderOnConfirm: true,
+                                confirmButtonText: '@GlobalRes.ModalWindow_SessionSoonExpireBtnText',
+                                width: 500,
+                                padding: '190px 0px 10px 200px',
+                                heightAuto: false,
+                                background: '#fff url(/Content/assets/images/ewalllet_session_out.png)',
+                                preConfirm: function() {
+                                    return new Promise(function(resolve, reject) {
+                                        $.ajax({
+                                            url: '@Url.Action("Ping", "User")',
+                                            type: 'POST',
+                                            success: function(result) {
+                                                swal({
+                                                    title: '@GlobalRes.ModalWindow_SessionRenewedText',
+                                                    timer: 2000,
+                                                    type: 'success',
+                                                    showConfirmButton: false
+                                                });
+                                                timer_u23dd.start(@Session.Timeout * 60);
+                                            }
+                                        });
+                                    });
+                                },
+                            });
+                        }
+                    }
+                }
+            });
+            timer_u23dd.start(@Session.Timeout * 60);
+        };
+
+        function blockWindow() {
+            $.blockUI({
+                message: '<div class="fa fa-sync icon-spin font-medium-2"></div>',
+                overlayCSS: {
+                    backgroundColor: '#FFF',
+                    opacity: 0.8,
+                    cursor: 'wait'
+                },
+                css: {
+                    border: 0,
+                    padding: 0,
+                    backgroundColor: 'transparent'
+                }
+            });
+        }
+
+        $(function() {
+            $('form').find('*').filter(':input:visible:enabled:first').focus();
+            $('a.child-link').click(function(e) {
+                if (!e.ctrlKey) {
+                    blockWindow();
+                }
+            });
+        });
+        $(document).ready(function() {
+            $.unblockUI();
+        });
+        $(document.body).on("keydown", this,
+            function (event) {
+                if (event.keyCode == 116) { blockWindow(); location.reload(); }
+                if (event.ctrlKey && event.shiftKey && event.keyCode == 82) { location.reload(true); blockWindow(); }
+            });
+        window.onbeforeunload = function(e) {blockWindow();}
+    </script>
+</body>
+</html>

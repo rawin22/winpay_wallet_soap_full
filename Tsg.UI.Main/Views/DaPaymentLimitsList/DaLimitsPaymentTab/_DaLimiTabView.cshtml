@@ -1,0 +1,128 @@
+﻿@using System.Globalization
+@using Tsg.UI.Main.App_LocalResources
+@using TSG.Models.ServiceModels.LimitPayment
+@model TSG.Models.ServiceModels.LimitPayment.DaPayLimitsSo
+
+@if (Model.DaPayLimits_ID != Guid.Empty)
+{
+    var cryptoCurrency = new[] { "BTC", "ETH" };
+
+    <div class="panel" style="margin: -15px;">
+        <header class="panel-heading" @*data-panel-toggle = ""*@>
+            <h2 class="panel-title">@GlobalRes.DelegatedAuthority_Limits</h2>
+        </header>
+
+        <div class = "panel-body" style = "display: block;" id = "tab_block" >
+            @{
+                int counter = 0;
+
+                @*foreach (var limitation in Model.TotalListOfLimits.OrderBy(ob => ob.DaPayLimitsType_LimitType))
+                {
+
+                    var currLimitation = Model.DaPayLimitsTabs?.FirstOrDefault(f => f.DaPayLimitsTab_TypeOfLimit == limitation.DaPayLimitsType_ID);
+
+                    @Html.Hidden(String.Format("DaPayLimitsTabs[{0}].DaPayLimitsTab_ID", counter), currLimitation == null ? Guid.Empty : currLimitation.DaPayLimitsTab_ID)
+                    @Html.Hidden(String.Format("DaPayLimitsTabs[{0}].DaPayLimitsTab_TypeOfLimit", counter), limitation.DaPayLimitsType_ID)
+                    @Html.Hidden(String.Format("DaPayLimitsTabs[{0}].DaPayLimitsTab_ParentDaPayId", counter), Model.DaPayLimits_ID)
+                    @Html.Hidden(String.Format("DaPayLimitsTabs[{0}].DaPayLimitsTab_IsDeleted", counter), currLimitation == null || currLimitation.DaPayLimitsTab_IsDeleted || currLimitation.DaPayLimitsTab_ID == Guid.Empty, 
+                        new {id=@String.Format("realbox_{0}",limitation.DaPayLimitsType_ID)})
+
+                    <div class = "row @(currLimitation == null || currLimitation.DaPayLimitsTab_IsDeleted ? "disable" : "")" style = "display: flex; align-items: center" id = "row_@limitation.DaPayLimitsType_ID" >
+                        <div class = "col-sm-2 col-sm-offset-1" >
+                            <div class = "checkbox" style = "margin-top: 0px" >
+                                <div id = "nullAccount_LimTransaction" >
+                                    <input id = "checkbox_@limitation.DaPayLimitsType_ID" type = "checkbox" data-toggle = "toggle" data-on = '@GlobalRes.HomeAccountsList_Show' data-off = '@GlobalRes.HomeAccountsList_Hide' data-size = "small"
+                                           onchange = "allowDisallowPayment(this, '@limitation.DaPayLimitsType_ID')" @(currLimitation != null && !currLimitation.DaPayLimitsTab_IsDeleted && currLimitation.DaPayLimitsTab_ID != Guid.Empty ? "checked='checked'" : "")
+                                           name="@(String.Format("DaPayLimitsTabs[{0}].DaPayLimitsTab_IsDeleted", counter))">
+                                    <span>@limitation.DaPayLimitsType_NameOfPaymentLimit</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class = "hidden" >
+                            <input class = "form-control" type = "hidden" name = "DaPayLimitsTab_TypeOfLimit" id = "DaPayLimitsTab_TypeOfLimit" value = "@limitation.DaPayLimitsType_ID"/>
+                        </div>
+                        <div class = "col-sm-7" >
+                            <input class = "form-control numeric_limitation" step = @(cryptoCurrency.Contains(Model.DaPayLimits_CcyCode) ? "0.0000001" : "0.01") name = @(String.Format("DaPayLimitsTabs[{0}].DaPayLimitsTab_Amount", counter))
+                                   value = "@(cryptoCurrency.Contains(Model.DaPayLimits_CcyCode) ? (currLimitation?.DaPayLimitsTab_Amount ?? 0).ToString("N8", CultureInfo.GetCultureInfo("en-US")) : (currLimitation?.DaPayLimitsTab_Amount ?? 0).ToString("N2", CultureInfo.GetCultureInfo("en-US")))" 
+                                   id = "DaPayLimitsTab_Amount_@limitation.DaPayLimitsType_ID" data-input-amount=""/>
+                        </div>
+                    </div>
+                    <div id = "limitationMessage_@limitation.DaPayLimitsType_ID" ></div>
+
+                    counter = counter + 1;
+
+                }*@
+            }
+        </div>
+        </div>
+    }
+
+<script type="text/javascript">
+
+    function allowDisallowPayment(inpChBx, parentRow) {
+        if ($(inpChBx).prop('checked')) {
+
+            $(inpChBx).prop('checked', true);
+            $("#row_" + parentRow).removeClass("disable");
+            $("#row_" + parentRow).find('input[data-input-amount]').prop("disabled", false);
+            $("#row_" + parentRow).find('a[class="btn btn-success"]').removeAttr("disabled");
+            $("#realbox_" + parentRow).val("False");
+            $("#realbox_" + parentRow).attr("value", "False");
+
+        }
+        else {
+            $("#realbox_" + parentRow).val("True");
+            $("#realbox_" + parentRow).attr("value", "True");
+            $('#inpChBx').prop('checked', false);
+            $("#row_" + parentRow).addClass("disable");
+            $("#row_" + parentRow).find('input[data-input-amount]').prop("disabled", true);
+            $("#row_" + parentRow).find('a[class="btn btn-success"]').attr("disabled", "disabled")
+        }
+    }
+
+    function saveLimitForDa(limitTypeId) {
+        console.log(limitTypeId);
+        $.ajax({
+            url: "@Url.Action("SaveLimitTabItem", "DaPaymentLimitsList")",
+            type: "POST",
+            data: {
+                'DaPayLimitsTab_ID': $("#DaPayLimitsTab_ID_" + limitTypeId).val(),
+                'DaPayLimitsTab_ParentDaPayId': '@Model.DaPayLimits_ID',
+                'DaPayLimitsTab_TypeOfLimit': limitTypeId,
+                'DaPayLimitsTab_Amount': $('#DaPayLimitsTab_Amount_' + limitTypeId).val()
+            },
+            dataType: "json",
+            charset: 'utf-8',
+            beforeSend: function () {
+                $('#LoadingOverlayApi').trigger('loading-overlay:show');
+            }
+        }).error(function (request, status, error) {
+            console.log(request);
+            console.log(status);
+            console.log(error);
+        }).success(function(data) {
+            console.log(data);
+            if (!data.Success) {
+                if (data.InfoBlock) {
+                    $('#limitationMessage_'+limitTypeId).append('<div class="alert alert-danger">' +
+                        data.InfoBlock.UserMessage +
+                        '</div>');
+                } else {
+                    $('#limitationMessage_' + limitTypeId).append('<div class="alert alert-danger">' +
+                        '@GlobalRes.ShopingCardController_UnspecError' +
+                        '</div>');
+                }
+            }
+            else {
+                $('#DaPayLimitsTab_ID_' + limitTypeId).val(data.DaPayLimitsTab_ID);
+
+                $('#limitationMessage_' + limitTypeId).append('<div class="alert alert-success">' +
+                    '' + data.InfoBlock.UserMessage+
+                    '</div>');
+            }
+            setTimeout(function()  { $('#limitationMessage_' + limitTypeId).empty(); }, 3000);
+
+            $('#LoadingOverlayApi').trigger('loading-overlay:hide');
+        });
+    }
+</script>

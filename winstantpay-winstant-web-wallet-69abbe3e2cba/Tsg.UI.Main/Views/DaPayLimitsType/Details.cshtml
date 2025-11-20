@@ -1,0 +1,43 @@
+﻿@model TSG.Models.ServiceModels.LimitPayment.DaPayLimitsTypeSo
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>PaymentLimitsDto</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DaPayLimitsType_NameOfPaymentLimit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DaPayLimitsType_NameOfPaymentLimit)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DaPayLimitsType_SysNameOfPaymentLimit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DaPayLimitsType_SysNameOfPaymentLimit)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DaPayLimitsType_LimitType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DaPayLimitsType_LimitType)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.DaPayLimitsType_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

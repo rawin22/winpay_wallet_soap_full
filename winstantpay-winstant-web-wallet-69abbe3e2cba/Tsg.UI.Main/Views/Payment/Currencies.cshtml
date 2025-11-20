@@ -1,0 +1,59 @@
+﻿@using Tsg.UI.Main.App_LocalResources
+@model Tsg.UI.Main.Models.PaymentCurrenciesListViewModel
+@{
+    ViewBag.Title = GlobalRes.PaymentCreatePage_TitleNew;
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+
+<script src="/Content/assets/vendor/jquery/jquery.js"></script>
+<div class="row">
+    <section class="panel">
+        <header class="panel-heading" data-panel-toggle="">
+            <div class="panel-actions">
+                <a href="#" class="panel-action panel-action-toggle" data-panel-toggle=""></a>
+            </div>
+
+            <h2 class="panel-title">@GlobalRes.PaymentCurrenciesPage_Title</h2>
+            <p class="panel-subtitle">@GlobalRes.PaymentCurrenciesPage_SubTitle</p>
+        </header>
+        <div class="panel-body" style="display: block;">
+            @if (Model.Currencies != null)
+            {
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped table-condensed mb-none">
+                        <thead>
+                        <tr>
+                            <th>@GlobalRes.PaymentCurrenciesPage_CurrencyCode</th>
+                            <th>@GlobalRes.PaymentCurrenciesPage_CurrencyName</th>
+                            @*<th>CurrencyAmountScale</th>
+                                    <th>CurrencyRateScale</th>*@
+                            <th>@GlobalRes.PaymentCurrenciesPage_Symbol</th>
+                            <th>@GlobalRes.PaymentCurrenciesPage_PaymentCutOffTime</th>
+                            <th>@GlobalRes.PaymentCurrenciesPage_SettelementDaysToAdd</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach (var item in Model.Currencies)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CurrencyCode)
+                                    <img src="/Content/assets/images/onebyone.png" class="flag flag-@(item.CurrencyCode.ToLower())" />
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CurrencyName)
+                                </td>
+                                @*<td>@Html.DisplayFor(modelItem => item.CurrencyAmountScale)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.CurrencyRateScale)</td>*@
+                                <td>@Html.DisplayFor(modelItem => item.Symbol)</td>
+                                <td>@Html.DisplayFor(modelItem => item.PaymentCutoffTime)</td>
+                                <td>@Html.DisplayFor(modelItem => item.SettlementDaysToAdd)</td>
+                            </tr>
+                        }
+                        </tbody>
+                    </table>
+                </div>
+            }
+        </div>
+      </section>
+</div>

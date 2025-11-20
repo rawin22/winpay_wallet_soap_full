@@ -1,0 +1,297 @@
+﻿@using Tsg.UI.Main.App_LocalResources
+@model Tsg.UI.Main.Models.ContactUsModel
+
+@{
+    ViewBag.Title = GlobalRes.GetAllContractUsListPage_Title;
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+<script src="/Content/assets/vendor/jquery/jquery.js"></script>
+<div class="form-horizontal">
+    <section class="panel panel-featured panel-featured-info">
+        <header class="panel-heading">
+            <h2 class="panel-title">@GlobalRes.GetAllContractUsListPage_PageTitle &nbsp;&nbsp;<span class="fa fa-plus-square" style="color: green" id="addnewRecord" data-toggle="modal" data-target="#createModal"></span></h2>
+            <p class="panel-subtitle">@GlobalRes.GetAllContractUsListPage_PageSubTitle</p>
+        </header>
+        <div class="panel-body">
+            @if (Model.IsSuccessResForAction != null && (bool)Model.IsSuccessResForAction)
+            {
+                <div class="alert alert-success" style="display: block;" id="successMessageBlock">
+                    <p class="m-none text-weight-semibold h6" id="successMesage">@Model.ActionResultText</p>
+                </div>
+            }
+            else if (Model.IsSuccessResForAction != null && !(bool)Model.IsSuccessResForAction)
+            {
+                <div class="alert alert-danger" style="display: block;" id="errorMessageBlock">
+                    <p class="m-none text-weight-semibold h6" id="errorMesage">@Model.ActionResultText</p>
+                </div>
+            }
+            <div class="validation-message">
+                <ul></ul>
+            </div>
+
+            @{
+                var hiddenClass = "hidden-xs";
+            }
+            <table class="table table-bordered table-striped table-condensed mb-none" id="datatable-default">
+                <thead>
+                    <tr>
+                        <th class="@hiddenClass">@GlobalRes.GetAllContractUsListPage_Id</th>
+                        @*<th class="@hiddenClass">Status</th>*@
+                        <th>@GlobalRes.GetAllContractUsListPage_Categories</th>
+                        <th>@GlobalRes.GetAllContractUsListPage_CategoryEmail</th>
+                        <th>@GlobalRes.GetAllContractUsListPage_Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        var i = 0;
+                        foreach (var item in Model.ListOfContactList)
+                        {
+                            i += 1;
+                            <tr>
+                                <td class="@hiddenClass">
+                                    @i
+                                </td>
+                                <td id=@String.Format("depname_{0}", item.DepartmentId)>
+                                    @Html.DisplayFor(modelItem => item.DepartmentName)
+                                </td>
+                                <td id=@String.Format("depmail_{0}", item.DepartmentId)>
+                                    @Html.DisplayFor(modelItem => item.DepartmentMail)
+                                </td>
+                                <td>
+                                    @*<a href="@Url.Action("Edit", "ContactUs", new {id = item.DepartmentId})"
+                                           onclick="return confirm('Are you sure you want to delete?');"
+                                           class="fas fa-pencil-alt" aria-hidden="true" style="text-decoration: none; font-size: 18px">
+
+                                        </a>*@
+                                    <a class="fas fa-pencil-alt" aria-hidden="true" style="text-decoration: none; font-size: 18px" data-toggle="modal" data-target="#editModal" onclick="tbtEdit(@item.DepartmentId);"
+                                       id=@String.Format("btnEditModal{0}", item.DepartmentId)>
+                                    </a>
+                                    <a class="fas fa-trash-alt" aria-hidden="true" style="text-decoration: none; font-size: 18px" data-toggle="modal" data-target="#deleleModal" onclick="tbtTrash(@item.DepartmentId);"
+                                       id=@String.Format("btnDelModal{0}", item.DepartmentId)>
+                                    </a>
+                                    @*<button type="button" class="fas fa-trash-alt" aria-hidden="true" style="text-decoration: none; font-size: 18px" data-toggle="modal" data-target="#deleleModal"/>*@
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+
+            <!-- Modal Add record Begin -->
+            <form id="Create" action="/ContactUs/Create" method="post" class="form-horizontal" novalidate="novalidate">
+                <div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="createModalLabel" aria-hidden="true">
+                    @Html.HiddenFor(m => m.DepartmentId, new { id = "RecCreateID" })
+                    @Html.HiddenFor(m => m.DepartmentName, new { id = "NameOfCreateDep" })
+                    @Html.HiddenFor(m => m.DepartmentMail, new { id = "MailOfCreateDep" })
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <img src="/Content/assets/images/winstantpay-logo-notag.png" height="35" alt="" />
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-top: 5px">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <br />
+                                <div class="row">
+                                    <div class="col-sm-4">@GlobalRes.GetAllContractUsListPage_ModalAddRec_Category</div>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" id="NameOfCreateDepText" />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-4">@GlobalRes.GetAllContractUsListPage_ModalAddRec_CategoryMail</div>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" id="MailOfCreateDepText" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-success">@GlobalRes.GetAllContractUsListPage_ModalAddRec_Add</button>
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">@GlobalRes.GetAllContractUsListPage_ModalAddRec_Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <!-- Modal Add record End -->
+            <!-- Modal Edit record Begin -->
+            <form id="Edit" action="/ContactUs/Edit" method="post" class="form-horizontal" novalidate="novalidate">
+                <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+                    @Html.HiddenFor(m => m.DepartmentId, new { id = "RecEditID" })
+                    @Html.HiddenFor(m => m.DepartmentName, new { id = "NameOfEditDep" })
+                    @Html.HiddenFor(m => m.DepartmentMail, new { id = "MailOfEditDep" })
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <img src="/Content/assets/images/winstantpay-logo-notag.png" height="35" alt="" />
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-top: 5px">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <br />
+                                <div class="row">
+                                    <div class="col-sm-4">@GlobalRes.GetAllContractUsListPage_ModalAddRec_Category</div>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" id="NameOfEditDepText" />
+                                    </div>
+                                </div>
+                                @*<div class="row"><br /></div>*@
+                                <div class="row">
+                                    <div class="col-sm-4">@GlobalRes.GetAllContractUsListPage_ModalAddRec_CategoryMail</div>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" id="MailOfEditDepText" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-success">@GlobalRes.GetAllContractUsListPage_ModalAddRec_Add</button>
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">@GlobalRes.GetAllContractUsListPage_ModalAddRec_Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <!-- Modal Edit record End -->
+            <!-- Modal Delete record Begin -->
+            <form id="Delete" action="/ContactUs/Delete" method="post" class="form-horizontal" novalidate="novalidate">
+                @Html.HiddenFor(m => m.DepartmentId, new { id = "RecDeleteID" })
+                @Html.HiddenFor(m => m.DepartmentName, new { id = "NameOfDeleteDep" })
+                @Html.HiddenFor(m => m.DepartmentMail, new { id = "MailOfDeleteDep" })
+                <div class="modal fade" id="deleleModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <img src="/Content/assets/images/winstantpay-logo-notag.png" height="35" alt="" />
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-top: 5px">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                @GlobalRes.GetAllContractUsListPage_ModalDeleteRec_DeletionRec
+                                <br />
+                                <div class="row">
+                                    <div class="col-sm-4">@GlobalRes.GetAllContractUsListPage_ModalAddRec_Category</div>
+                                    <div class="col-sm-8">
+                                        <b><span id="NameOfDeleteDepText"></span></b>
+                                    </div>
+                                </div>
+                                @*<div class="row"><br/></div>*@
+                                <div class="row">
+                                    <div class="col-sm-4">@GlobalRes.GetAllContractUsListPage_ModalAddRec_CategoryMail</div>
+                                    <div class="col-sm-8">
+                                        <b><span id="MailOfDeleteDepText"></span></b>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-success" id="okDeleteModal" name="Delete" value="Delete">@GlobalRes.GetAllContractUsListPage_ModalDeleteRec_Ok</button>
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">@GlobalRes.GetAllContractUsListPage_ModalAddRec_Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <!-- Modal Delete record End -->
+            <script>
+        $("#addnewRecord").click(function() {
+            toggle();
+            document.getElementById('NameOfCreateDep').value = $("#depname_" + id).text().trim();
+            document.getElementById('MailOfCreateDep').value = $("#depmail_" + id).text().trim();
+            $('#NameOfCreateDepText').val($("#depname_" + id).text().trim());
+            $('#MailOfCreateDepText').val($("#depmail_" + id).text().trim());
+        });
+
+        function tbtTrash(id) {
+            document.getElementById('RecDeleteID').value = id;
+            document.getElementById('NameOfDeleteDep').value = $("#depname_" + id).text().trim();
+            document.getElementById('MailOfDeleteDep').value = $("#depmail_" + id).text().trim();
+            $('#NameOfDeleteDepText').text($("#depname_" + id).text().trim());
+            $('#MailOfDeleteDepText').text($("#depmail_" + id).text().trim());
+        }
+
+        function tbtEdit(id) {
+            document.getElementById('RecEditID').value = id;
+            document.getElementById('NameOfEditDep').value = $("#depname_" + id).text().trim();
+            document.getElementById('MailOfEditDep').value = $("#depmail_" + id).text().trim();
+            $('#NameOfEditDepText').val($("#depname_" + id).text().trim());
+            $('#MailOfEditDepText').val($("#depmail_" + id).text().trim());
+        }
+
+        $('#NameOfEditDepText').change(function() {
+            document.getElementById('NameOfEditDep').value = $(this).val();
+        });
+        $('#MailOfEditDepText').change(function() {
+            document.getElementById('MailOfEditDep').value = $(this).val();
+        });
+        $('#NameOfCreateDepText').change(function () {
+            document.getElementById('NameOfCreateDep').value = $(this).val();
+        });
+        $('#MailOfCreateDepText').change(function () {
+            document.getElementById('MailOfCreateDep').value = $(this).val();
+        });
+
+        @*$("#okDeleteModal").click(function() {
+                window.location.href = '@Url.Action("Delete", "ContactUs")?id=' + $("#RecID").val();
+                });*@
+            </script>
+
+
+            <br />
+            <br />
+            <h2>
+                @GlobalRes.GetEmailForUploadPrrofNotification_PageTitle
+            </h2>
+            @using (Ajax.BeginForm("SaveUploadProofSystemMail", "ContactUs", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "results" }))
+            {
+            <div class="col-md-2"> @Html.LabelFor(l => l.UploadProofInternalMail, "Upload proof internal mail") </div>
+                <div class="col-md-8">@Html.TextBoxFor(m=>m.UploadProofInternalMail, Model.UploadProofInternalMail, new {@class = "form-control"})
+                </div>
+                <div class="col-md-2"><input class="btn btn-info" type="submit" value="Change"/></div>
+            }
+            <div id="results">
+
+            </div>
+        </div>
+    </section>
+</div>
+
+@*<div class="form-horizontal">
+        <section class="panel panel-featured panel-featured-info">
+            <header class="panel-heading">
+                <h2 class="panel-title">@GlobalRes.GetEmailForUploadPrrofNotification_PageTitle&nbsp;&nbsp;@*<span class="fa fa-plus-square" style="color: green" id="addnewRecord" data-toggle="modal" data-target="#createModal"></span></h2>
+                @*<p class="panel-subtitle">@GlobalRes.GetAllContractUsListPage_PageSubTitle</p>
+            </header>
+        <div class="panel-body">
+
+        </div>
+        </section>
+    </div>*@
+
+@section customcss {
+    <!-- Specific Page Vendor CSS -->
+    <link rel="stylesheet" href="/Content/assets/vendor/select2/css/select2.css" />
+    <link rel="stylesheet" href="/Content/assets/vendor/select2-bootstrap-theme/select2-bootstrap.css" />
+    <link rel="stylesheet" href="/Content/assets/vendor/jquery-datatables-bs3/assets/css/datatables.css" />
+}
+
+@section VendorScripts {
+
+    <script src="/Content/assets/vendor/select2/js/select2.js"></script>
+    <script src="/Content/assets/vendor/jquery-datatables/media/js/jquery.dataTables.js"></script>
+    <script src="/Content/assets/vendor/jquery-datatables/extras/TableTools/js/dataTables.tableTools.min.js"></script>
+    <script src="/Content/assets/vendor/jquery-datatables-bs3/assets/js/datatables.js"></script>
+}
+
+@section Scripts {
+    <script src="/Content/assets/javascripts/tables/examples.datatables.default.js"></script>
+}
+
+<script type="text/javascript" language="javascript">
+    $(document).ready(function () {
+        setTimeout(function () { $('#successMessageBlock').css("display", "none") }, 3000);
+        setTimeout(function () { $('#errorMessageBlock').css("display", "none") }, 3000);
+    });
+</script>

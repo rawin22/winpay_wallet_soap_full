@@ -1,0 +1,53 @@
+﻿@model IEnumerable<TSG.Models.ServiceModels.FundChanges>
+    @using System.Globalization
+    @using Tsg.UI.Main.App_LocalResources
+    @using Tsg.UI.Main.Models
+    @using TSG.Models.Enums
+    @using WinstantPay.Common.Extension
+
+    @{
+        ViewBag.Title = GlobalRes.FundingGetHystoryByFundingPage_Title;
+    }
+
+    <section role="main">
+
+        <div class="timeline timeline-simple changelog">
+            <div class="tm-body">
+                <ol class="tm-items">
+                    @foreach (var item in Model)
+                    {
+                        <li>
+                            <div class="tm-box">
+                                <span class="release-date">@item.FundChanges_ChangedDate.ToString("F")</span>
+                                <ul class="list-unstyled">
+                                    @GlobalRes.FundingGetHystoryByFundingPage_StatusChange &nbsp;
+                                    @if (item.FundChanges_FundingFromStatus != null)
+                                    {
+                                        <span class="label label-info">@(EnumHelper<FundingStatus>.GetDisplayValue((FundingStatus)item.FundChanges_FundingFromStatus.Value))</span>
+                                        <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                                    }
+                                    @if (item.FundChanges_FundingToStatus != null)
+                                    {
+                                        <span class="label label-info">@(EnumHelper<FundingStatus>.GetDisplayValue((FundingStatus)item.FundChanges_FundingToStatus.Value))</span>
+                                    }
+                                    <br />
+                                    @GlobalRes.FundingGetHystoryByFundingPage_ChangedBy &nbsp;
+                                    <i class="fa fa-user" aria-hidden="true"></i> @item.FundChanges_ChangedBy
+
+                                    @if (!String.IsNullOrEmpty(item.FundChanges_Notes))
+                                    {
+                                        <br />
+                                        <div>
+                                            @GlobalRes.FundingGetHystoryByFundingPage_AdminNotes
+                                        </div>
+                                        <br />
+                                        @Html.TextAreaFor(m => item.FundChanges_Notes, 3, 1, new { @class = "form-control", @readonly = "readonly" })
+                                    }
+                                </ul>
+                            </div>
+                        </li>
+                    }
+                </ol>
+            </div>
+        </div>
+    </section>

@@ -1,0 +1,213 @@
+﻿@model TSG.Models.ServiceModels.Shop.ShopOrderItems
+@using Tsg.UI.Main.App_LocalResources
+@using WinstantPay.Common.Extension
+
+
+@{
+    string[] crypto = {"BTC", "ETH", "XAU"};
+}
+<link rel = "stylesheet" href = "../../Content/shop/add-to-cart-css.css"/>
+
+<div class = "modal-dialog" role = "document" style = "width: auto" >
+    <div class = "product-item" >
+        <ul class = "product-breadcrumb" >
+            <li>
+                <a href = "@Url.Action("Index", "ShopWindow")" >@GlobalRes.ProductModal_MarketPlace</a>
+            </li>
+            <li>
+                <a href = "@Url.Action("Index", "ShopWindow", new {categoryId = @Model.ShopOrderItems_ShopProduct.ShopProducts_CategoryID, shopId = Model.ShopOrderItems_ShopProduct.ShopProducts_ShopID})" >@Model.ShopOrderItems_ShopProduct.ShopProducts_ShopInfo.ShopInfo_Name</a>
+            </li>
+            <li>@Model.ShopOrderItems_ShopProduct.ShopProducts_Name</li>
+        </ul>
+        <i class = "fa fa-close" aria-hidden = "true" data-dismiss = "modal" aria-label = "Close" ></i>
+        <div class = "left" >
+            <div class = "desc" >
+                <h2 class = "product-title" >@Model.ShopOrderItems_ShopProduct.ShopProducts_Name</h2>
+                <p class = "short-description" >@Html.Raw(@Model.ShopOrderItems_ShopProduct.ShopProducts_ShortDescription)</p>
+            </div>
+            <div class = "images" >
+                <div class = "owl-carousel" >
+                    @if (Model.ShopOrderItems_ShopProduct.ShopProducts_ShopProductImages.Count > 0)
+                    {
+                        foreach (var img in Model.ShopOrderItems_ShopProduct.ShopProducts_ShopProductImages)
+                        {
+                            <div class = "item" >
+                                <img src = "@(Url.Content(img.ShopProductImages_Path))" >
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <div class = "item" >
+                            <img src = "@Url.Content("~/Content/assets/images/no_photo.png")" >
+                        </div>
+                        <a class = "thumb-image" href = "@Url.Content("~/Content/assets/images/no_photo.png")" >
+                        </a>
+                    }
+                </div>
+            </div>
+            <div class = "full-description" >
+                <p>@Html.Raw(@Model.ShopOrderItems_ShopProduct.ShopProducts_FullDescription)</p>
+            </div>
+        </div>
+        <div class = "right" >
+            <div class = "desc" >
+                <p class = "category" >@GlobalRes.ProductModal_Category<span class = "category-name" >@Model.ShopOrderItems_ShopProduct.ShopProducts_ShopCategory.ShopCategories_Name</span></p>
+                <p class="vendor">@GlobalRes.ProductModal_Vendor<span class="vendor-name">@Model.ShopOrderItems_ShopProduct.ShopProducts_ShopInfo.ShopInfo_Name</span></p>
+                <p class="price">@GlobalRes.ProductModal_Price<strong class="value">@(crypto.Contains(Model.ShopOrderItems_CurrencyCode) ? Model.ShopOrderItems_Price.ToString("N8") : Model.ShopOrderItems_Price.ToString("N2"))</strong><span class="currency">@Model.ShopOrderItems_CurrencyCode</span></p>
+            </div>
+            <div class = "add-to-cart" >
+                <form id = "editProductToBasket" method = "post" class = "form-horizontal" novalidate = "novalidate" >
+                    @Html.HiddenFor(f => f.ShopOrderItems_ID)
+                    @Html.HiddenFor(f => f.ShopOrderItems_ProductId)
+                    @Html.HiddenFor(f => f.ShopOrderItems_OrderId)
+                    @Html.HiddenFor(f => f.ShopOrderItems_CurrencyCode)
+                    @Html.HiddenFor(f => f.ShopOrderItems_Price)
+                    <div class = "inputs" >
+                        <div class = "quantity" style = "text-align: center" >
+                            <i class = "fa fa-minus-circle" aria-hidden = "true" id = "minusPositionBtn" ></i>
+                            @Html.TextBoxFor(m => Model.ShopOrderItems_Quantity, new
+                            {
+                                @onkeypress = "return (event.charCode >= 48 && event.charCode <= 57) || event.charCode === 0",
+                                @type = "number", @min = "1", @value = "1", style = "text-align: center"
+                            })
+                            <i class = "fa fa-plus-circle" aria-hidden = "true" id = "plusPositionBtn" ></i>
+                        </div>
+                        <br/>
+                        @Html.TextBox("ShopOrderItems_Position", Model.ShopOrderItems_Position, new {@class = "form-control", placeholder = @GlobalRes.CommonObjects_SolidusUserName})
+                    </div>
+                    <p class = "total-price" >@GlobalRes.OrdersDetails_TotalPrice 
+                        <strong class = "value" > <span id = "totalCostByItem" > @(crypto.Contains(Model.ShopOrderItems_CurrencyCode) ? (Convert.ToDecimal(Model.ShopOrderItems_Quantity) * Model.ShopOrderItems_Price).ToString("N8") : (Convert.ToDecimal(Model.ShopOrderItems_Quantity) * Model.ShopOrderItems_Price).ToString("N2"))</span> @Model.ShopOrderItems_CurrencyCode</strong></p>
+                    <button class = "add-to-cart-button" onclick = "editProductItemBtn_click()" id = "editProductItemBtn" >@GlobalRes.GetAllContractUsListPage_ModalAddRec_Save</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script type = "text/javascript" language = "javascript" >
+
+
+    </script>
+
+    <script type = "text/javascript" language = "javascript" >
+        function addproductToOrders(productId) {
+            if (!$("#editProductItemBtn").hasClass('disabled')) {
+                $("#editProductItemBtn").addClass('disabled');
+                $.ajax({
+                    url: '@Url.Action("AddProductItemToOrder", "ShoppingCart")',
+                    type: 'POST',
+                    data: {
+                        "productId": productId,
+                        "quantity": $("#ShopingProducts_Count").val(),
+                        "position": $("#ShopingProducts_Position").val()
+                    },
+                    success: function(data) {
+                        if (!data.res) {
+                            //console.log(data.message);
+                        } else {
+                            $('#addNewProductShop').modal('toggle');
+                            //location.reload();
+                        }
+                        updateBasket();
+                    }
+                });
+            }
+        }
+
+        $(document).ready(function() {
+
+
+            $(document).ready(function() {
+                $(".product-item .images .owl-carousel").owlCarousel();
+            });
+            $('.product-item .images .owl-carousel').owlCarousel({
+                loop: true,
+                margin: 10,
+                nav: true,
+                items: 1
+            });
+
+            $("#ShopingProducts_Count").val(1);
+            $("#ShopingProducts_Count").text(1);
+        });
+    </script>
+
+
+    @if (crypto.Contains(Model.ShopOrderItems_CurrencyCode))
+    {
+        <script type = "text/javascript" language = "javascript" >
+
+            $("#minusPositionBtn").click(function() {
+                if (parseInt($("#ShopOrderItems_Quantity").val()) > 1) {
+                    var t = parseInt($("#ShopOrderItems_Quantity").val()) - 1;
+                    $("#ShopOrderItems_Quantity").val(t);
+                    $("#ShopOrderItems_Quantity").text(t);
+                    $("#totalCostByItem")
+                        .text((parseFloat($("#ShopOrderItems_Quantity").val()) * @Model.ShopOrderItems_Price)
+                            .toFixed(8));
+                }
+            });
+
+            $("#plusPositionBtn").click(function() {
+                var t = parseInt($("#ShopOrderItems_Quantity").val()) + 1;
+                $("#ShopOrderItems_Quantity").val(t);
+                $("#ShopOrderItems_Quantity").text(t);
+                $("#totalCostByItem").text(
+                    (parseFloat($("#ShopOrderItems_Quantity").val()) * @Model.ShopOrderItems_Price
+                    ).toFixed(8));
+            });
+
+
+            $("#ShopOrderItems_Quantity").on("change keyup paste",
+                function() {
+                    if ($("#ShopOrderItems_Quantity").val() === "0" || $("#ShopOrderItems_Quantity").val() === "") {
+                        $('#modalMessageBlock').css("display", "block");
+                        setTimeout(function() { $('#modalMessageBlock').css("display", "none") }, 3000);
+                        $("#totalCostByItem").val(0);
+                        $("#totalCostByItem").text(0);
+                    } else {
+                        $("#totalCostByItem")
+                            .text((parseFloat($("#ShopOrderItems_Quantity").val()) * @Model.ShopOrderItems_Price)
+                                .toFixed(8));
+                    }
+                });
+        </script>
+    }
+    else
+    {
+        <script type = "text/javascript" language = "javascript" >
+            $("#minusPositionBtn").click(function() {
+                if (parseInt($("#ShopOrderItems_Quantity").val()) > 1) {
+                    var t = parseInt($("#ShopOrderItems_Quantity").val()) - 1;
+                    $("#ShopOrderItems_Quantity").val(t);
+                    $("#ShopOrderItems_Quantity").text(t);
+                    $("#totalCostByItem")
+                        .text((parseFloat($("#ShopOrderItems_Quantity").val()) * @Model.ShopOrderItems_Price)
+                            .toFixed(2));
+                }
+            });
+
+            $("#plusPositionBtn").click(function() {
+                var t = parseInt($("#ShopOrderItems_Quantity").val()) + 1;
+                $("#ShopOrderItems_Quantity").val(t);
+                $("#ShopOrderItems_Quantity").text(t);
+                $("#totalCostByItem").text(
+                    (parseFloat($("#ShopOrderItems_Quantity").val()) * @Model.ShopOrderItems_Price
+                    ).toFixed(2));
+            });
+            $("#ShopOrderItems_Quantity").on("change keyup paste",
+                function() {
+                    if ($("#ShopOrderItems_Quantity").val() === "0" || $("#ShopOrderItems_Quantity").val() === "") {
+                        $('#modalMessageBlock').css("display", "block");
+                        setTimeout(function() { $('#modalMessageBlock').css("display", "none") }, 3000);
+                        $("#totalCostByItem").val(0);
+                        $("#totalCostByItem").text(0);
+                    } else {
+                        $("#totalCostByItem")
+                            .text(((parseFloat($("#ShopOrderItems_Quantity").val()) * @Model.ShopOrderItems_Price)
+                                .toFixed(2)));
+                    }
+                });
+        </script>
+    }
+</div>
